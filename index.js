@@ -24,7 +24,7 @@ module.exports = {
     new GraphQLApp(),
     new AdminUIApp({
       // If enabled, the path of the Admin UI app will be set to /.
-      enableDefaultRoute: true,
+      enableDefaultRoute: false,
       authStrategy: keystone.createAuthStrategy({
         type: PasswordAuthStrategy,
         list: "User"

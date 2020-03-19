@@ -1,12 +1,14 @@
 module.exports = async keystone => {
-  await keystone.createItems({
-    User: [
-      {
-        name: "Admin",
-        email: "admin@codeforafrica.org",
-        isAdmin: true,
-        password: process.env.INIT_ADMIN_PASSWORD
-      }
-    ]
-  });
+  try {
+    await keystone.createItems({
+      User: [
+        {
+          isAdmin: true,
+          name: "Admin",
+          email: "admin1@codeforafrica.org",
+          password: process.env.INIT_ADMIN_PASSWORD
+        }
+      ]
+    });
+  } catch {}
 };
