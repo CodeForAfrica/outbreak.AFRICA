@@ -8,6 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@zeit/next-css": "^1.0.1",
     "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
     "material-icons": "^0.3.1",
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-imports": "^2.0.0",
     "eslint": "^6.8.0",
@@ -48,7 +50,7 @@
       "yarn lint-staged"
     ]
   },
-   "eslintConfig": {
+  "eslintConfig": {
     "extends": "react-app"
   },
   "browserslist": [
