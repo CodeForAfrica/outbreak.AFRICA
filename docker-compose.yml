@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  postgres:
+    image: "postgres:11.2"
+    environment:
+      POSTGRES_USER: covid19
+      POSTGRES_PASSWORD: covid19
+      POSTGRES_DB: covid19
+    volumes:
+      - covid19-postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  covid19-postgres-data:
