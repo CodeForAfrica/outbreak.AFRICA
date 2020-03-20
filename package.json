@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@hurumap-ui/charts": "^0.3.5-alpha.0",
+    "@hurumap-ui/core": "^0.3.5-alpha.0",
     "@zeit/next-css": "^1.0.1",
     "classnames": "^2.2.6",
     "isomorphic-unfetch": "^3.0.0",
