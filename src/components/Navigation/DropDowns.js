@@ -26,14 +26,6 @@ export default function DropDowns({ active, page, toggle }) {
   return (
     <div className={classes.root}>
       <DropDownButton
-        isActive={active === 'analysis'}
-        isHighlighted={page.name === 'analysis'}
-        title="Country Analysis"
-        icon={analysisIcon}
-        iconActive={analysisIconActive}
-        handleClick={toggle('analysis')}
-      />
-      <DropDownButton
         isActive={active === 'topic'}
         isHighlighted={page.name === 'topic'}
         title="Data by Topic"
