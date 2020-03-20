@@ -1,4 +1,4 @@
-  
+
 {
   "presets": [
     "next/babel"
@@ -15,9 +15,7 @@
         ],
         "alias": {
           "assets": "./src/assets",
-          "components": "./src/components",
-          "data": "./src/data",
-          "lib": "./src/lib"
+          "components": "./src/components"
         }
       }
     ]

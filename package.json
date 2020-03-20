@@ -40,16 +40,6 @@
     "now": "^17.0.4",
     "prettier": "^1.19.1"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "src/**/*.{js,json,scss,md}": [
-      "yarn lint-staged"
-    ]
-  },
   "eslintConfig": {
     "extends": "react-app"
   },
