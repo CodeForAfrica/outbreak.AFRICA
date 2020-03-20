@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 
-import Page from '../components/Page';
-import config from '../config';
+import Page from 'components/Page';
 
-function Home({ takwimu }) {
-  const {
-    page: {}
-  } = takwimu;
-
- 
+function Home(){
   return (
-    <Page takwimu={config}>
-    <div>Example page</div>
+    <Page>
+      Example description
     </Page>
-  );
+  )
 }
-
-Home.propTypes = {
-  takwimu: PropTypes.shape({
-    page: PropTypes.shape({})
-  }).isRequired
-};
-
-
 
 export default Home;

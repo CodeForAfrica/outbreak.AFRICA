@@ -9,7 +9,7 @@ import Section from '../Section';
 
 import Takwimu from './Takwimu';
 import QuickLinks from './QuickLinks';
-import StayInTouch from './StayInTouch';
+//import StayInTouch from './StayInTouch';
 import Initiative from './Initiative';
 import Support from './Support';
 
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Footer({ takwimu: { settings }, ...props }) {
+function Footer({ ...props }) {
   const classes = useStyles(props);
   return (
     <Grid
@@ -93,10 +93,7 @@ function Footer({ takwimu: { settings }, ...props }) {
         <Grid container justify="flex-start" alignItems="flex-start">
           <div className={classes.takwimu}>
             <Takwimu classes={{ root: classes.takwimu }} />
-            <StayInTouch
-              settings={settings}
-              classes={{ root: classes.stayInTouch }}
-            />
+            
           </div>
           <div className={classes.links}>
             <QuickLinks />
@@ -121,11 +118,5 @@ function Footer({ takwimu: { settings }, ...props }) {
     </Grid>
   );
 }
-
-Footer.propTypes = {
-  takwimu: PropTypes.shape({
-    settings: PropTypes.shape({}).isRequired
-  }).isRequired
-};
 
 export default Footer;
