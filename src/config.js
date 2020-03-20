@@ -126,8 +126,6 @@ Disallow:
         'https://sibforms.com/serve/MUIEAAXyVOKndq92iptN5nNOxxO8YIbsJQ6GRLFcss45EFC4D-346vXQNHit8uLluJ44jcDUNQztzGSQSX3H_AHE7J71-tlgBI4-cS6dnZrjzgxQxnK2Hd89yCpi_SJDZyUAKo9GGBNqQmbJEgpCInlf403iFzCqHf75RaNFWuGd73QH6yNWhnvrmDGgj3N_DcbUt3GLDzcm_wIP'
     },
     navigation: {
-      country_analysis:
-        '<div class="rich-text"><p>Actionable analysis by geo-political and socioeconomic experts across 10 African countries.</p></div>',
       data_by_topic:
         '<div class="rich-text"><p>Key Human Development metrics curated and visualised across 10 African countries.</p></div>'
     },

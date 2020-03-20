@@ -173,32 +173,6 @@ class Navigation extends React.Component {
             countries={countries}
           />
         </Grid>
-        <Grid item>
-          <Grid container direction="row">
-            <Grid item>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About Us
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation href="/faqs" className={classes.link}>
-                FAQs
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </Grid>
-          </Grid>
-        </Grid>
       </>
     );
   }
@@ -259,28 +233,7 @@ class Navigation extends React.Component {
               countries={countries}
               toggle={this.toggleDrawer}
             />
-            <MenuItem>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/faqs">
-                FAQs
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </MenuItem>
+      
             <MenuItem>
               <ButtonBase
                 className={classes.searchButton}
