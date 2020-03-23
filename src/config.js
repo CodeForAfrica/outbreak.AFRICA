@@ -1,7 +1,7 @@
 const WP_BACKEND_URL =
   // eslint-disable-next-line no-nested-ternary
   process.env.NODE_ENV === 'development'
-    ? 'http://localhost:8080'
+    ? 'https://dashboard.takwimu.africa'
     : 'https://dashboard.takwimu.africa';
 
 const config = {
@@ -30,91 +30,91 @@ Disallow:
   country: {},
   countries: [
     {
-      iso_code: 'BF',
+      isoCode: 'BF',
       name: 'Burkina Faso',
-      iso_name: 'Burkina Faso',
-      short_name: 'Burkina Faso',
+      isoName: 'Burkina Faso',
+      shortName: 'Burkina Faso',
       slug: 'burkina-faso',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'CD',
+      isoCode: 'CD',
       name: 'Democratic Republic of Congo',
-      iso_name: 'Congo, the Democratic Republic of the',
-      short_name: 'DR Congo',
+      isoName: 'Congo, the Democratic Republic of the',
+      shortName: 'DR Congo',
       slug: 'democratic-republic-of-congo',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'ET',
+      isoCode: 'ET',
       name: 'Ethiopia',
-      iso_name: 'Ethiopia',
-      short_name: 'Ethiopia',
+      isoName: 'Ethiopia',
+      shortName: 'Ethiopia',
       slug: 'ethiopia',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'KE',
+      isoCode: 'KE',
       name: 'Kenya',
-      iso_name: 'Kenya',
-      short_name: 'Kenya',
+      isoName: 'Kenya',
+      shortName: 'Kenya',
       slug: 'kenya',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'NG',
+      isoCode: 'NG',
       name: 'Nigeria',
-      iso_name: 'Nigeria',
-      short_name: 'Nigeria',
+      isoName: 'Nigeria',
+      shortName: 'Nigeria',
       slug: 'nigeria',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'SN',
+      isoCode: 'SN',
       name: 'Senegal',
-      iso_name: 'Senegal',
-      short_name: 'Senegal',
+      isoName: 'Senegal',
+      shortName: 'Senegal',
       slug: 'senegal',
       lang: 'fr',
       published: true
     },
     {
-      iso_code: 'ZA',
+      isoCode: 'ZA',
       name: 'South Africa',
-      iso_name: 'South Africa',
-      short_name: 'South Africa',
+      isoName: 'South Africa',
+      shortName: 'South Africa',
       slug: 'south-africa',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'TZ',
+      isoCode: 'TZ',
       name: 'Tanzania',
-      iso_name: 'Tanzania, United Republic of',
-      short_name: 'Tanzania',
+      isoName: 'Tanzania, United Republic of',
+      shortName: 'Tanzania',
       slug: 'tanzania',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'UG',
+      isoCode: 'UG',
       name: 'Uganda',
-      iso_name: 'Uganda',
-      short_name: 'Uganda',
+      isoName: 'Uganda',
+      shortName: 'Uganda',
       slug: 'uganda',
       lang: 'en',
       published: true
     },
     {
-      iso_code: 'ZM',
+      isoCode: 'ZM',
       name: 'Zambia',
-      iso_name: 'Zambia',
-      short_name: 'Zambia',
+      isoName: 'Zambia',
+      shortName: 'Zambia',
       slug: 'zambia',
       lang: 'en',
       published: true

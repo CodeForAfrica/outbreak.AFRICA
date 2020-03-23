@@ -19,12 +19,13 @@ import Search from '@material-ui/icons/Search';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-import logoWhite from 'assets/images/logo-white-all.png';
+import logoWhite from '../../assets/images/logo-white-all.png';
 
+import LanguageSelector from './LanguageSelector';
 import Layout from '../Layout';
 import DropDownButtons from './DropDowns';
 import DropDownDrawer from './DropDownDrawer';
-
+import SearchDrawer from './SearchDrawer';
 import Link from '../Link';
 
 const styles = theme => ({
@@ -140,6 +141,9 @@ class Navigation extends React.Component {
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
             <Grid item>
+              <LanguageSelector lang={language} />
+            </Grid>
+            <Grid item>
               <IconButton
                 disableRipple
                 disableTouchRipple
@@ -158,7 +162,7 @@ class Navigation extends React.Component {
   renderDesktopNav() {
     const {
       classes,
-      takwimu: { page, countries },
+      takwimu: { page, countries, language },
       router: { pathname }
     } = this.props;
     const { openDrawer } = this.state;
@@ -172,6 +176,45 @@ class Navigation extends React.Component {
             toggle={this.toggleDrawer}
             countries={countries}
           />
+        </Grid>
+        <Grid item>
+          <Grid container direction="row">
+            <Grid item>
+              <Link
+                navigation
+                href="/about"
+                className={classes.link}
+                active={['/services', '/about', '/methodology'].includes(
+                  pathname
+                )}
+              >
+                About
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link navigation href="/faqs" className={classes.link}>
+                FAQs
+              </Link>
+            </Grid>
+            <Grid item>
+              <Link navigation className={classes.link} href="/contact">
+                Contact Us
+              </Link>
+            </Grid>
+            <Grid item>
+              <ButtonBase
+                className={classes.searchButton}
+                onClick={this.toggleDrawer('search')}
+              >
+                {openDrawer === 'search' ? <Close /> : <Search />}
+              </ButtonBase>
+            </Grid>
+            <Grid item>
+              <Box marginLeft="1.875rem">
+                <LanguageSelector lang={language} />
+              </Box>
+            </Grid>
+          </Grid>
         </Grid>
       </>
     );
@@ -196,6 +239,24 @@ class Navigation extends React.Component {
       >
         {isWidthUp('md', width) ? this.renderNavBar(true) : <div />}
       </DropDownDrawer>
+    );
+  }
+
+  renderSearchDrawer() {
+    const { takwimu, width } = this.props;
+    const { openDrawer } = this.state;
+    return (
+      <SearchDrawer
+        active={openDrawer === 'search'}
+        takwimu={takwimu}
+        toggle={
+          isWidthUp('md', width)
+            ? this.toggleDrawer(null)
+            : this.toggleMobileDrawer
+        }
+      >
+        {this.renderNavBar(true)}
+      </SearchDrawer>
     );
   }
 
@@ -233,7 +294,28 @@ class Navigation extends React.Component {
               countries={countries}
               toggle={this.toggleDrawer}
             />
-      
+            <MenuItem>
+              <Link
+                navigation
+                href="/about"
+                className={classes.link}
+                active={['/services', '/about', '/methodology'].includes(
+                  pathname
+                )}
+              >
+                About
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link navigation className={classes.link} href="/faqs">
+                FAQs
+              </Link>
+            </MenuItem>
+            <MenuItem>
+              <Link navigation className={classes.link} href="/contact">
+                Contact Us
+              </Link>
+            </MenuItem>
             <MenuItem>
               <ButtonBase
                 className={classes.searchButton}
@@ -254,6 +336,7 @@ class Navigation extends React.Component {
         {this.renderNavBar()}
         {this.renderMobileDrawer()}
         {this.renderDropDownDrawer()}
+        {this.renderSearchDrawer()}
       </>
     );
   }
@@ -264,6 +347,7 @@ Navigation.propTypes = {
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
     page: PropTypes.shape({}).isRequired,
+    language: PropTypes.string.isRequired,
     countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     settings: PropTypes.shape({
       navigation: PropTypes.shape({})

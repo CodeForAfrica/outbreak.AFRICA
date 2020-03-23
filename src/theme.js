@@ -44,9 +44,9 @@ const theme = createTheme({
     },
     bar: {
       width: 350,
-      height: 350,
+      height: 400,
       barWidth: 30,
-      offset: 32,
+      offset: 60,
       style: {
         data: {
           fill: COLOR_BREWER_DIVERGING[0]

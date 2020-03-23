@@ -6,9 +6,9 @@ import classnames from 'classnames';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import downArrow from 'assets/images/down-arrow.svg';
-import downArrowGreen from 'assets/images/down-arrow-green.svg';
-import upArrow from 'assets/images/up-arrow.svg';
+import downArrow from '../../assets/images/down-arrow.svg';
+import downArrowGreen from '../../assets/images/down-arrow-green.svg';
+import upArrow from '../../assets/images/up-arrow.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
