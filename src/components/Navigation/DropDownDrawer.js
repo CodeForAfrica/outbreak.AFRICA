@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import analysisDescriptionBG from 'assets/images/file-paragraph-bg.svg';
-import dataByTopicDescriptionBG from 'assets/images/a-chart-bg.svg';
+import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
+import dataByTopicDescriptionBG from '../../assets/images/a-chart-bg.svg';
 
 import DropDownContent from './DropDownContent';
 
@@ -81,9 +81,7 @@ export default function DropDownDrawer({
         }}
         type={active}
         countries={countries}
-        profile={({ iso_code: isoCode, slug }) =>
-          active === 'analysis' ? slug : `country-${isoCode}`
-        }
+        profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
         title={active === 'analysis' ? 'Country Analysis' : 'Data by Topic'}
         description={active === 'analysis' ? countryAnalysis : dataByTopic}
       />

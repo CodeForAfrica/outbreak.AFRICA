@@ -160,17 +160,17 @@ function DropDownContent({
               key={country.slug}
               underline="none"
               color="textSecondary"
-              href="/profiles/[geoIdOrCountrySlug]"
-              as={`/profiles/${profile(country)}`}
+              href="/[geoIdOrSlug]"
+              as={`/${profile(country)}`}
               className={classes.countryLink}
               onClick={() => window.toggleDrawer(type)()}
             >
               <img
                 alt={country.name}
-                src={flags[country.iso_code]}
+                src={flags[country.isoCode]}
                 className={classes.flag}
               />
-              <span className={classes.countryName}>{country.short_name}</span>
+              <span className={classes.countryName}>{country.shortName}</span>
             </Link>
           ))}
         </Grid>

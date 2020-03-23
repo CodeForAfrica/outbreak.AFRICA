@@ -5,6 +5,9 @@ import React from 'react';
 import App from 'next/app';
 import Head from 'next/head';
 
+import ApolloClient from 'apollo-boost';
+import { ApolloProvider } from '@apollo/react-hooks';
+
 import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   jssPreset,
@@ -15,6 +18,12 @@ import { create } from 'jss';
 
 import theme from '../theme';
 
+const GOOGLE_ANALYTICS_TRACKING_ID = "";
+
+
+const client = new ApolloClient({
+  uri: 'https://graphql.takwimu.africa/graphql'
+});
 export default class MyApp extends App {
   static jss = create(jssPreset());
 
@@ -38,6 +47,7 @@ export default class MyApp extends App {
           />
           <meta charSet="utf-8" />
         </Head>
+        <ApolloProvider client={client}>
           <StylesProvider jss={MyApp.jss}>
             <ThemeProvider theme={theme}>
               <CssBaseline />
@@ -48,7 +58,7 @@ export default class MyApp extends App {
                 dangerouslySetInnerHTML={{
                   __html: `
                     window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                    ga('create', 'UA-115543098-1', 'auto');
+                    ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto');
                 
                     // Ensures consistency in the URL paths that get reported to Google Analytics;
                     // avoiding the problem where separate rows in your pages reports actually point to the same page.
@@ -90,7 +100,7 @@ export default class MyApp extends App {
                     ga('require', 'urlChangeTracker');
                     
                     ga('send', 'pageview');
-                    ga('create', 'UA-44795600-8', 'auto', {'name': 't0'});
+                    ga('create', ${GOOGLE_ANALYTICS_TRACKING_ID}, 'auto', {'name': 't0'});
                     ga('t0.send', 'pageview');`
                 }}
               />
@@ -110,6 +120,7 @@ export default class MyApp extends App {
               {/* <!-- End Google Analytics --> */}
             </ThemeProvider>
           </StylesProvider>
+        </ApolloProvider>
       </>
     );
   }
