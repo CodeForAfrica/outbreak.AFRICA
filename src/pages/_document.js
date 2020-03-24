@@ -54,7 +54,7 @@ const getAnalyticsScript = () => {
       ga('require', 'urlChangeTracker');
 
       ga('send', 'pageview');
-      ga('create', ${GOOGLE_ANALYTICS_TRACKING_ID}, 'auto', {'name': 't0'});
+      ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto', {'name': 't0'});
       ga('t0.send', 'pageview');`
   };
 };
