@@ -6,36 +6,58 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 
 import theme from '../theme';
 
-function getSendInBlueTracker() {
+const GOOGLE_ANALYTICS_TRACKING_ID = 'UA-92541368-6';
+
+const getAnalyticsScript = () => {
   return {
     __html: `
-        (function() {
-            window.sib = {
-                equeue: [],
-                client_key: "a3us3x5ho12d5naxgoea66p6"
-            };
-            /* OPTIONAL: email for identify request*/
-            // window.sib.email_id = 'example@domain.com';
-            window.sendinblue = {};
-            for (var j = ['track', 'identify', 'trackLink', 'page'], i = 0; i < j.length; i++) {
-            (function(k) {
-                window.sendinblue[k] = function() {
-                    var arg = Array.prototype.slice.call(arguments);
-                    (window.sib[k] || function() {
-                            var t = {};
-                            t[k] = arg;
-                            window.sib.equeue.push(t);
-                        })(arg[0], arg[1], arg[2]);
-                    };
-                })(j[i]);
-            }
-            var n = document.createElement("script"),
-                i = document.getElementsByTagName("script")[0];
-            n.type = "text/javascript", n.id = "sendinblue-js", n.async = !0, n.src = "https://sibautomation.com/sa.js?key=" + window.sib.client_key, i.parentNode.insertBefore(n, i), window.sendinblue.page();
-        })();
-      `
+      window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+      ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto');
+
+      // Ensures consistency in the URL paths that get reported to Google Analytics;
+      // avoiding the problem where separate rows in your pages reports actually point to the same page.
+      ga('require', 'cleanUrlTracker');
+      // Enables declarative event tracking, via HTML attributes in the markup.
+      ga('require', 'eventTracker', {
+          hitFilter: (model) => {
+              if (model.get('eventCategory') === 'Twitter') {
+                  // event to social
+                  model.set('hitType', 'social');
+                  model.set('socialNetwork', model.get('eventCategory'));
+                  model.set('socialAction', model.get('eventAction'));
+                  model.set('socialTarget', model.get('eventLabel'));
+                  model.set('eventCategory', null);
+                  model.set('eventAction', null);
+                  model.set('eventLabel', null);
+              }
+          }
+      });
+      // Allows you to track when elements are visible within the viewport.
+      ga('require', 'impressionTracker');
+      // Automatically tracks how far down the page a user scrolls.
+      ga('require', 'maxScrollTracker', {
+          fieldsObj: {
+              eventAction: 'Scrolled',
+              eventLabel: window.location.href
+          }
+      });
+      // Automatically tracks link clicks to external domains e.g. Medium
+      // To track all types of link clicks i.e. Tracking right-clicks and middle-clicks
+      ga('require', 'outboundLinkTracker', {
+          events: ['click', 'auxclick', 'contextmenu']
+      });
+      // Automatically tracks how long pages are in the visible state
+      // (as opposed to in a background tab)
+      ga('require', 'pageVisibilityTracker');
+      // Automatically tracks URL changes for single page applications.
+      // Analysis page changes the url like a single page app.
+      ga('require', 'urlChangeTracker');
+
+      ga('send', 'pageview');
+      ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto', {'name': 't0'});
+      ga('t0.send', 'pageview');`
   };
-}
+};
 
 class MyDocument extends Document {
   render() {
@@ -80,11 +102,22 @@ class MyDocument extends Document {
 
           <link rel="manifest" href="/manifest.json" />
 
+          {/* <!-- Google Analytics --> */}
           <script
-            type="text/javascript"
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={getSendInBlueTracker()}
+            dangerouslySetInnerHTML={getAnalyticsScript()}
           />
+          {/* <!-- Google Analytics: impressionTracker browser support --> */}
+          <script
+            async
+            src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"
+          />
+          <script async src="https://www.google-analytics.com/analytics.js" />
+          <script
+            async
+            src="https://cdnjs.cloudflare.com/ajax/libs/autotrack/2.4.1/autotrack.js"
+          />
+          {/* <!-- End Google Analytics --> */}
         </Head>
         <body>
           <Main />
