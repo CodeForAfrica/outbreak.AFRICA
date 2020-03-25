@@ -1,4 +1,4 @@
-import EN from './assets/images/languages/en.png';
+import EN from './assets/images/languages/en.svg';
 import FR from './assets/images/languages/fr.svg';
 
 export default {
