@@ -336,12 +336,14 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                   title="${chart.title}"
                   allowFullScreen
                 />`}
-                      insight={{
-                        // dataLink: {
-                        //   href: `/profiles/${country.slug}`,
-                        //   title: 'Read the country analysis'
-                        // }
-                      }}
+                      insight={
+                        {
+                          // dataLink: {
+                          //   href: `/profiles/${country.slug}`,
+                          //   title: 'Read the country analysis'
+                          // }
+                        }
+                      }
                       loading={chartData.isLoading}
                       logo={logo}
                       source={source}
@@ -425,6 +427,8 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     }
   }, [indicatorId]);
 
+  const drawChildren = geoId.split('-')[1] === 'NG' || geoId.split('-')[1] === 'KE';
+
   return (
     <Page takwimu={{ ...config, language }}>
       {!profiles.isLoading && (
@@ -437,14 +441,30 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
 
       <div style={{ width: '100%', height: '500px', overflow: 'hidden' }}>
         <MapIt
-          drawProfile
           codeType="AFR"
-          drawChildren={
-            geoId.split('-')[1] === 'NG' || geoId.split('-')[1] === 'KE'
-          }
+          drawProfile={!drawChildren}
+          drawChildren={drawChildren}
           geoLevel={geoId.split('-')[0]}
           geoCode={geoId.split('-')[1]}
           onClickGeoLayer={onClickGeoLayer}
+          geoLayerFocusStyle={{
+            color: '#8c2023',
+            fillColor: '#9b2427',
+            weight: 1.5,
+            opacity: 0.3,
+            fillOpacity: 0.5
+          }}
+          geoLayerBlurStyle={{
+            color: '#8c2023',
+            fillColor: '#9b2427',
+            weight: 1.5,
+            opacity: 0.3,
+            fillOpacity: 0.5
+          }}
+          geoLayerHoverStyle={{
+            fillColor: '#9b2427',
+            fillOpacity: 0.8
+          }}
         />
       </div>
       {!profiles.isLoading && (
