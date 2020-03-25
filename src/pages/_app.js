@@ -4,6 +4,7 @@ import React from 'react';
 
 import App from 'next/app';
 import Head from 'next/head';
+import Router from 'next/router';
 
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from '@apollo/react-hooks';
@@ -17,6 +18,10 @@ import {
 import { create } from 'jss';
 
 import theme from '../theme';
+
+import * as ga from '../lib/ga';
+
+Router.events.on('routeChangeComplete', url => ga.pageview(url));
 
 const client = new ApolloClient({
   uri: 'https://graphql.takwimu.africa/graphql'
