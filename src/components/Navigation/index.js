@@ -2,6 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import {
+  AppBar,
   withWidth,
   Grid,
   MenuList,
@@ -31,8 +32,6 @@ import Link from '../Link';
 const styles = theme => ({
   root: {
     backgroundColor: theme.palette.primary.main,
-    position: 'relative',
-    zIndex: '999',
     width: '100%',
     height: '6.313rem',
     padding: '1.25rem',
@@ -111,7 +110,8 @@ class Navigation extends React.Component {
   renderNavBar(inDrawer = false) {
     const { width, classes } = this.props;
     return (
-      <nav
+      <AppBar
+        position="sticky"
         className={classNames(classes.root, { [classes.noShadow]: inDrawer })}
       >
         <Layout>
@@ -127,7 +127,7 @@ class Navigation extends React.Component {
               : this.renderMobileNav()}
           </Grid>
         </Layout>
-      </nav>
+      </AppBar>
     );
   }
 
