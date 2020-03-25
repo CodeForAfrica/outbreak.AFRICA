@@ -1,12 +1,9 @@
 import React from 'react';
-
 import Page from 'components/Page';
 
-function Home(){
+function Home() {
   return (
-    <Page>
-      Example description
-    </Page>
+    <Page />
   )
 }
 
