@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
 const LINKS = [
   {
     href: '#topic',
-    label: 'Explore data by topic',
+    label: 'Explore country profiles',
     onClick: () => window.toggleDrawer('topic')()
   },
   {
@@ -72,14 +72,14 @@ function QuickLinks() {
                 {link.label}
               </MuiLink>
             ) : (
-              <Link
-                href={link.href}
-                underline="always"
-                className={classNames([classes.text, classes.link])}
-              >
-                {link.label}
-              </Link>
-            )}
+                <Link
+                  href={link.href}
+                  underline="always"
+                  className={classNames([classes.text, classes.link])}
+                >
+                  {link.label}
+                </Link>
+              )}
           </li>
         ))}
       </Typography>

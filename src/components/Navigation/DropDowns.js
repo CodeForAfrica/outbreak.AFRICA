@@ -36,7 +36,7 @@ export default function DropDowns({ active, page, toggle }) {
       <DropDownButton
         isActive={active === 'topic'}
         isHighlighted={page.name === 'topic'}
-        title="Data by Country"
+        title="Country Profiles"
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
