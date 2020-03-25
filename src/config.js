@@ -130,24 +130,25 @@ Disallow:
         '<div class="rich-text"><p>Key Human Development metrics curated and visualised across 10 African countries.</p></div>'
     },
     support: {
-      hello: 'hello@takwimu.africa',
-      support: 'support@takwimu.africa'
+      hello: 'hello@codeforafrica.org',
+      support: 'support@codeforafrica.org'
     },
     socialMedia: {
-      facebook: 'https://facebook.com/TakwimuAfrica',
-      twitter: 'https://twitter.com/TakwimuAfrica',
-      medium: 'https://medium.com/@takwimu_africa',
-      linkedin: 'https://www.linkedin.com/company/takwimu-africa/'
+      facebook: 'https://facebook.com/CodeForAfrica',
+      twitter: 'https://twitter.com/Code4Africa',
+      medium: 'https://medium.com/code-for-africa',
+      linkedin: 'https://www.linkedin.com/company/code-for-africa/'
     },
     address: {
-      locality: 'Westlands',
-      region: 'Nairobi',
-      country: 'Kenya',
+      locality: '84 Shortmarket St, Cape Town City Centre',
+      region: 'Cape Town',
+      country: 'South Africa',
       postalCode: '00100'
     }
   },
   page: {},
-  name: 'Takwimu',
+  name: 'outbreak.AFRICA',
+  legalName: 'Code for Africa',
   description:
     'Data driven analysis on development policies, programmes & outcomes in 10 African countries.',
   media: {

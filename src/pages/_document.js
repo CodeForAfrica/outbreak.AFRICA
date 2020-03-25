@@ -6,13 +6,13 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 
 import theme from '../theme';
 
-const GOOGLE_ANALYTICS_TRACKING_ID = 'UA-92541368-6';
+import { GA_TRACKING_ID } from '../lib/ga';
 
-const getAnalyticsScript = () => {
+const getGaScript = () => {
   return {
     __html: `
       window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-      ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto');
+      ga('create', '${GA_TRACKING_ID}', 'auto');
 
       // Ensures consistency in the URL paths that get reported to Google Analytics;
       // avoiding the problem where separate rows in your pages reports actually point to the same page.
@@ -53,9 +53,7 @@ const getAnalyticsScript = () => {
       // Analysis page changes the url like a single page app.
       ga('require', 'urlChangeTracker');
 
-      ga('send', 'pageview');
-      ga('create', '${GOOGLE_ANALYTICS_TRACKING_ID}', 'auto', {'name': 't0'});
-      ga('t0.send', 'pageview');`
+      ga('send', 'pageview');`
   };
 };
 
@@ -105,7 +103,7 @@ class MyDocument extends Document {
           {/* <!-- Google Analytics --> */}
           <script
             // eslint-disable-next-line react/no-danger
-            dangerouslySetInnerHTML={getAnalyticsScript()}
+            dangerouslySetInnerHTML={getGaScript()}
           />
           {/* <!-- Google Analytics: impressionTracker browser support --> */}
           <script
