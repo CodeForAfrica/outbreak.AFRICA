@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navigation from './Navigation';
+
 import Footer from './Footer';
+import Navigation from './Navigation';
+import SEO from './SEO';
+
 import config from '../config';
 
-function Page({ children }) {
+function Page({ children, ...props }) {
   return (
     <>
-    <Navigation takwimu={config}/>
-        {children}
+      <SEO {...props} />
+      <Navigation takwimu={config} />
+      {children}
       <Footer takwimu={config} />
     </>
   );
