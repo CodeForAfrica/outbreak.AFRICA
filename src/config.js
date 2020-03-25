@@ -30,33 +30,6 @@ Disallow:
   country: {},
   countries: [
     {
-      isoCode: 'BF',
-      name: 'Burkina Faso',
-      isoName: 'Burkina Faso',
-      shortName: 'Burkina Faso',
-      slug: 'burkina-faso',
-      lang: 'en',
-      published: true
-    },
-    {
-      isoCode: 'CD',
-      name: 'Democratic Republic of Congo',
-      isoName: 'Congo, the Democratic Republic of the',
-      shortName: 'DR Congo',
-      slug: 'democratic-republic-of-congo',
-      lang: 'en',
-      published: true
-    },
-    {
-      isoCode: 'ET',
-      name: 'Ethiopia',
-      isoName: 'Ethiopia',
-      shortName: 'Ethiopia',
-      slug: 'ethiopia',
-      lang: 'en',
-      published: true
-    },
-    {
       isoCode: 'KE',
       name: 'Kenya',
       isoName: 'Kenya',
@@ -75,47 +48,11 @@ Disallow:
       published: true
     },
     {
-      isoCode: 'SN',
-      name: 'Senegal',
-      isoName: 'Senegal',
-      shortName: 'Senegal',
-      slug: 'senegal',
-      lang: 'fr',
-      published: true
-    },
-    {
       isoCode: 'ZA',
       name: 'South Africa',
       isoName: 'South Africa',
       shortName: 'South Africa',
       slug: 'south-africa',
-      lang: 'en',
-      published: true
-    },
-    {
-      isoCode: 'TZ',
-      name: 'Tanzania',
-      isoName: 'Tanzania, United Republic of',
-      shortName: 'Tanzania',
-      slug: 'tanzania',
-      lang: 'en',
-      published: true
-    },
-    {
-      isoCode: 'UG',
-      name: 'Uganda',
-      isoName: 'Uganda',
-      shortName: 'Uganda',
-      slug: 'uganda',
-      lang: 'en',
-      published: true
-    },
-    {
-      isoCode: 'ZM',
-      name: 'Zambia',
-      isoName: 'Zambia',
-      shortName: 'Zambia',
-      slug: 'zambia',
       lang: 'en',
       published: true
     }
@@ -126,7 +63,7 @@ Disallow:
         'https://sibforms.com/serve/MUIEAAXyVOKndq92iptN5nNOxxO8YIbsJQ6GRLFcss45EFC4D-346vXQNHit8uLluJ44jcDUNQztzGSQSX3H_AHE7J71-tlgBI4-cS6dnZrjzgxQxnK2Hd89yCpi_SJDZyUAKo9GGBNqQmbJEgpCInlf403iFzCqHf75RaNFWuGd73QH6yNWhnvrmDGgj3N_DcbUt3GLDzcm_wIP'
     },
     navigation: {
-      data_by_topic:
+      country_profiles:
         '<div class="rich-text"><p>Key Human Development metrics curated and visualised across 10 African countries.</p></div>'
     },
     support: {
