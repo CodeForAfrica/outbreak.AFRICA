@@ -200,3 +200,15 @@ tags
 .history
 
 # End of https://www.gitignore.io/api/vim,node,react,linux,macos,visualstudiocode
+
+# Customizations
+
+### Zeit Now ###
+
+.now
+
+# Local development .env files
+.env
+.env.build
+
+# End of Customizations
