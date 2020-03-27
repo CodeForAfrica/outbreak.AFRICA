@@ -89,7 +89,7 @@ Disallow:
   description:
     'Data driven analysis on development policies, programmes & outcomes in 10 African countries.',
   media: {
-    imageUrl: 'https://takwimu.s3.eu-west-1.amazonaws.com/media/images',
+    imageUrl: 'https://cfa-outbreakafrica.s3-eu-west-1.amazonaws.com/media/images',
     imageType: '.png'
   },
   populationTables: [
