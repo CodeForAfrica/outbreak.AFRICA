@@ -93,7 +93,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   title: {
-    marginBottom: '1.25rem'
+    marginBottom: '1.25rem',
+    marginTop: '3rem',
+    [theme.breakpoints.up('md')]: {
+      marginTop: 0
+    },
   }
 }));
 
