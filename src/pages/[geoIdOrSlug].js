@@ -14,7 +14,7 @@ function ProfilePage(initialProps) {
       <Head>
         <link
           rel="preconnect"
-          href="https://dashboard.takwimu.africa"
+          href="https://dashboard.hurumap.org"
           crossOrigin="anonymous"
         />
         {/** Flourish */}

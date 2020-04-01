@@ -1,8 +1,8 @@
 const WP_BACKEND_URL =
   // eslint-disable-next-line no-nested-ternary
   process.env.NODE_ENV === 'development'
-    ? 'https://dashboard.takwimu.africa'
-    : 'https://dashboard.takwimu.africa';
+    ? 'https://dashboard.hurumap.org'
+    : 'https://dashboard.hurumap.org';
 
 const config = {
   url:
@@ -10,7 +10,7 @@ const config = {
       ? 'http://localhost:3000'
       : 'https://takwimu.africa',
   robots: {
-    devHosts: ['dev.takwimu.africa', 'now.sh'],
+    devHosts: ['dev.hurumap.org', 'now.sh'],
     dev: `
 User-agent: *
 Disallow: /
