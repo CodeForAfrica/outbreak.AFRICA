@@ -93,7 +93,6 @@ Disallow:
     imageType: '.png'
   },
   populationTables: [
-    'allPopulation',
     'allPopulationSex2019S',
     'allPopulationResidence2009S',
     'allPopulationGroup2016S'
