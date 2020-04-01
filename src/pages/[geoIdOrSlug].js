@@ -26,7 +26,7 @@ function ProfilePage(initialProps) {
         {/** Graphql Preconnect */}
         <link
           rel="preconnect"
-          href="https://graphql.takwimu.africa"
+          href="https://graphql.hurumap.org"
           crossOrigin="anonymous"
         />
         {/** MapIt Preconnect */}

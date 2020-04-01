@@ -24,7 +24,7 @@ import * as ga from '../lib/ga';
 Router.events.on('routeChangeComplete', url => ga.pageview(url));
 
 const client = new ApolloClient({
-  uri: 'https://graphql.takwimu.africa/graphql'
+  uri: 'https://graphql.hurumap.org/graphql'
 });
 
 export default class MyApp extends App {
