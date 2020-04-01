@@ -93,24 +93,10 @@ Disallow:
     imageType: '.png'
   },
   populationTables: [
-    'allPopulationSex2006S',
-    'allPopulationSex2011S',
-    'allPopulationSex2012S',
-    'allPopulationSex2013S',
+    'allPopulation',
     'allPopulationSex2019S',
-    'allPopulationResidence2012S',
-    'allPopulationResidence2013S',
-    /**
-     * Countries have their populations in `allTotalPopulations`
-     * Make sure we retrieve the latest population total
-     */
-    [
-      'allTotalPopulations',
-      {
-        orderBy: 'TOTAL_POPULATION_YEAR_DESC',
-        first: 1
-      }
-    ]
+    'allPopulationResidence2009S',
+    'allPopulationGroup2016S'
   ]
 };
 
