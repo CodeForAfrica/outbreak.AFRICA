@@ -1,14 +1,20 @@
 const WP_BACKEND_URL =
-  // eslint-disable-next-line no-nested-ternary
   process.env.NODE_ENV === 'development'
     ? 'https://dashboard.hurumap.org'
     : 'https://dashboard.hurumap.org';
+
+const GRAPHQL_ORIGIN =
+  process.env.NODE_ENV === 'development'
+    ? 'https://graphql.hurumap.org'
+    : 'https://graphql.hurumap.org';
 
 const config = {
   url:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
       : 'https://takwimu.africa',
+  graphqlOrigin: GRAPHQL_ORIGIN,
+  graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
   robots: {
     devHosts: ['dev.hurumap.org', 'now.sh'],
     dev: `
