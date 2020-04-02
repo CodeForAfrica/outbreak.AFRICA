@@ -20,11 +20,12 @@ import { create } from 'jss';
 import theme from '../theme';
 
 import * as ga from '../lib/ga';
+import config from '../config';
 
 Router.events.on('routeChangeComplete', url => ga.pageview(url));
 
 const client = new ApolloClient({
-  uri: 'https://graphql.takwimu.africa/graphql'
+  uri: config.graphqlURI
 });
 
 export default class MyApp extends App {

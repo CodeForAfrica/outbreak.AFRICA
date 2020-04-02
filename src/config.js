@@ -1,16 +1,22 @@
 const WP_BACKEND_URL =
-  // eslint-disable-next-line no-nested-ternary
   process.env.NODE_ENV === 'development'
-    ? 'https://dashboard.takwimu.africa'
-    : 'https://dashboard.takwimu.africa';
+    ? 'https://dashboard.hurumap.org'
+    : 'https://dashboard.hurumap.org';
+
+const GRAPHQL_ORIGIN =
+  process.env.NODE_ENV === 'development'
+    ? 'https://graphql.hurumap.org'
+    : 'https://graphql.hurumap.org';
 
 const config = {
   url:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
       : 'https://takwimu.africa',
+  graphqlOrigin: GRAPHQL_ORIGIN,
+  graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
   robots: {
-    devHosts: ['dev.takwimu.africa', 'now.sh'],
+    devHosts: ['dev.hurumap.org', 'now.sh'],
     dev: `
 User-agent: *
 Disallow: /
@@ -93,24 +99,9 @@ Disallow:
     imageType: '.png'
   },
   populationTables: [
-    'allPopulationSex2006S',
-    'allPopulationSex2011S',
-    'allPopulationSex2012S',
-    'allPopulationSex2013S',
     'allPopulationSex2019S',
-    'allPopulationResidence2012S',
-    'allPopulationResidence2013S',
-    /**
-     * Countries have their populations in `allTotalPopulations`
-     * Make sure we retrieve the latest population total
-     */
-    [
-      'allTotalPopulations',
-      {
-        orderBy: 'TOTAL_POPULATION_YEAR_DESC',
-        first: 1
-      }
-    ]
+    'allPopulationResidence2009S',
+    'allPopulationGroup2016S'
   ]
 };
 
