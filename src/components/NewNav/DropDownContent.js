@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     padding: '0 1.25rem',
     justifyContent: 'center',
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: 'white'
   },
   container: {
     [theme.breakpoints.up('md')]: {
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     // Override original takwimu.css & Bootstrap styles
     '&:hover': {
       backgroundColor: 'transparent',
-      color: theme.palette.text.secondary,
+      color: 'black',
       textDecoration: 'none',
       '& span': {
         borderBottom: 'unset'
@@ -136,14 +136,12 @@ function DropDownContent({
             <Typography
               className={classes.title}
               variant="h4"
-              color="textSecondary"
             >
               {title}
             </Typography>
 
             <RichTypography
               variant="body2"
-              color="textSecondary"
               component="div"
             >
               {description}
@@ -163,7 +161,6 @@ function DropDownContent({
             <Link
               key={country.slug}
               underline="none"
-              color="textSecondary"
               href="/[geoIdOrSlug]"
               as={`/${profile(country)}`}
               className={classes.countryLink}

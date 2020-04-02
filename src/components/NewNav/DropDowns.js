@@ -36,10 +36,38 @@ export default function DropDowns({ active, page, toggle }) {
       <DropDownButton
         isActive={active === 'topic'}
         isHighlighted={page.name === 'topic'}
-        title="Country Profiles"
+        title="Issues"
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
+      //onMouseOver={toggle('topic')}
+      />
+      <DropDownButton
+        isActive={active === 'topic'}
+        isHighlighted={page.name === 'topic'}
+        title="Data"
+        icon={topicIcon}
+        iconActive={topicIconActive}
+        handleClick={toggle('topic')}
+      //onMouseOver={toggle('topic')}
+      />
+      <DropDownButton
+        isActive={active === 'topic'}
+        isHighlighted={page.name === 'topic'}
+        title="Reports"
+        icon={topicIcon}
+        iconActive={topicIconActive}
+        handleClick={toggle('topic')}
+      //onMouseOver={toggle('topic')}
+      />
+      <DropDownButton
+        isActive={active === 'topic'}
+        isHighlighted={page.name === 'topic'}
+        title="State of the union"
+        icon={topicIcon}
+        iconActive={topicIconActive}
+        handleClick={toggle('topic')}
+      //onMouseOver={toggle('topic')}
       />
     </div>
   );

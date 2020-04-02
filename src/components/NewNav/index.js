@@ -10,19 +10,19 @@ import {
   IconButton,
   MenuItem,
   ButtonBase,
-  Box
+  Box,
+  Typography
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Close from '@material-ui/icons/Close';
 import MenuOutlined from '@material-ui/icons/MenuOutlined';
 import Search from '@material-ui/icons/Search';
+import MenuIcon from '@material-ui/icons/Menu';
 
 import { isWidthUp } from '@material-ui/core/withWidth';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-import logoWhite from '../../assets/images/logo-white-all.png';
 
-import LanguageSelector from './LanguageSelector';
 import Layout from '../Layout';
 import DropDownButtons from './DropDowns';
 import DropDownDrawer from './DropDownDrawer';
@@ -31,21 +31,22 @@ import Link from '../Link';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'transparent',
     width: '100%',
     height: '6.313rem',
     padding: '1.25rem',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
-    color: theme.palette.text.secondary
+    boxShadow: 'none',
+    //boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+    //color: theme.palette.text.secondary
   },
   noShadow: {
     boxShadow: 'unset'
   },
   drawer: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'transparent',
     outline: 'none',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
   },
@@ -62,7 +63,7 @@ const styles = theme => ({
     '& > svg': {
       fontSize: '30px'
     },
-    color: theme.palette.text.secondary,
+    color: 'black',
     marginBottom: '0.1rem' // Pixel perfect
   },
   iconLink: {
@@ -70,7 +71,7 @@ const styles = theme => ({
   }
 });
 
-class Navigation extends React.Component {
+class NewNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -118,9 +119,10 @@ class Navigation extends React.Component {
           <Grid container justify="space-between" alignItems="center">
             <Grid item>
               <Link href="/">
-                <img alt="logo" src={logoWhite} height={19} />
+                <Typography variant="h4">OUTBREAK</Typography>
               </Link>
             </Grid>
+
 
             {isWidthUp('md', width)
               ? this.renderDesktopNav()
@@ -141,9 +143,11 @@ class Navigation extends React.Component {
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
             <Grid item>
-              <LanguageSelector lang={language} />
-            </Grid>
-            <Grid item>
+
+              <IconButton edge="start" color="primary" aria-label="menu">
+                <MenuIcon />
+              </IconButton>
+
               <IconButton
                 disableRipple
                 disableTouchRipple
@@ -179,28 +183,11 @@ class Navigation extends React.Component {
         </Grid>
         <Grid item>
           <Grid container direction="row">
-            <Grid item>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation href="/faqs" className={classes.link}>
-                FAQs
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </Grid>
+
+            <IconButton edge="start" color="primary" aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+
             <Grid item>
               <ButtonBase
                 className={classes.searchButton}
@@ -208,11 +195,6 @@ class Navigation extends React.Component {
               >
                 {openDrawer === 'search' ? <Close /> : <Search />}
               </ButtonBase>
-            </Grid>
-            <Grid item>
-              <Box marginLeft="1.875rem">
-                <LanguageSelector lang={language} />
-              </Box>
             </Grid>
           </Grid>
         </Grid>
@@ -295,28 +277,6 @@ class Navigation extends React.Component {
               toggle={this.toggleDrawer}
             />
             <MenuItem>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/faqs">
-                FAQs
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </MenuItem>
-            <MenuItem>
               <ButtonBase
                 className={classes.searchButton}
                 onClick={this.toggleDrawer('search')}
@@ -342,7 +302,7 @@ class Navigation extends React.Component {
   }
 }
 
-Navigation.propTypes = {
+NewNav.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
@@ -358,4 +318,4 @@ Navigation.propTypes = {
 
 export default withWidth({
   initialWidth: 'md'
-})(withStyles(styles)(withRouter(Navigation)));
+})(withStyles(styles)(withRouter(NewNav)));

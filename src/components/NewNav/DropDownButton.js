@@ -6,10 +6,6 @@ import classnames from 'classnames';
 import { ButtonBase, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import downArrow from '../../assets/images/down-arrow.svg';
-import downArrowGreen from '../../assets/images/down-arrow-green.svg';
-import upArrow from '../../assets/images/up-arrow.svg';
-
 const useStyles = makeStyles(theme => ({
   root: {
     justifyContent: 'unset',
@@ -33,7 +29,6 @@ const useStyles = makeStyles(theme => ({
   bubble: {
     margin: '-5px -20px',
     padding: '5px 20px',
-    backgroundColor: 'white',
     borderRadius: '1.5rem'
   },
   bubbleArrow: {
@@ -49,8 +44,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function DropDownButton({
-  icon,
-  iconActive,
   title,
   handleClick,
   isHighlighted,
@@ -65,48 +58,11 @@ function DropDownButton({
         [classes.rootCenter]: isHighlighted || isActive
       })}
       onClick={handleClick}
+    //onMouseOver={handleClick}
     >
-      <span
-        className={classnames({ [classes.bubble]: isHighlighted || isActive })}
-      >
-        <Grid
-          container
-          component="span"
-          justify="space-around"
-          alignItems="center"
-          spacing={1}
-        >
-          <Grid item component="span">
-            <img
-              alt=""
-              src={isHighlighted || isActive ? iconActive : icon}
-              height={22}
-            />
-          </Grid>
-          <Grid item component="span" className={classes.item}>
-            <Typography
-              variant="body1"
-              color={
-                isActive || isHighlighted ? 'textPrimary' : 'textSecondary'
-              }
-              style={{ fontSize: '1.125rem' }}
-            >
-              {title}
-            </Typography>
-          </Grid>
-          <Grid item component="span" className={classes.item}>
-            <img
-              className={classes.img}
-              alt=""
-              src={
-                // eslint-disable-next-line no-nested-ternary
-                isActive ? upArrow : isHighlighted ? downArrowGreen : downArrow
-              }
-            />
-          </Grid>
-        </Grid>
-      </span>
-      <span className={classnames({ [classes.bubbleArrow]: isActive })} />
+      <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
+        {title}
+      </Typography>
     </ButtonBase>
   );
 }

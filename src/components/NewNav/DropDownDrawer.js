@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     outline: 'none',
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'transparent',
     [theme.breakpoints.up('md')]: {
       boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
     }
