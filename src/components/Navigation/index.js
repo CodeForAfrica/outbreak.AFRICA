@@ -71,7 +71,7 @@ const styles = theme => ({
   }
 });
 
-class NewNav extends React.Component {
+class Navigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -302,7 +302,7 @@ class NewNav extends React.Component {
   }
 }
 
-NewNav.propTypes = {
+Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
@@ -318,4 +318,4 @@ NewNav.propTypes = {
 
 export default withWidth({
   initialWidth: 'md'
-})(withStyles(styles)(withRouter(NewNav)));
+})(withStyles(styles)(withRouter(Navigation)));
