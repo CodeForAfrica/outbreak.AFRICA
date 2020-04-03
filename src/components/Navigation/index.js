@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import {
-  AppBar,
   withWidth,
   Grid,
   MenuList,
@@ -10,7 +9,6 @@ import {
   IconButton,
   MenuItem,
   ButtonBase,
-  Box,
   Typography
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -22,8 +20,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-
-import Layout from '../Layout';
+import ModalMenu from './ModalMenu'
 import DropDownButtons from './DropDowns';
 import DropDownDrawer from './DropDownDrawer';
 import SearchDrawer from './SearchDrawer';
@@ -40,7 +37,7 @@ const styles = theme => ({
     alignItems: 'center',
     boxShadow: 'none',
     '&:hover': {
-      backgroundColor: 'transparent',
+      backgroundColor: 'white',
       boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
     }
   },
@@ -134,11 +131,6 @@ class Navigation extends React.Component {
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
             <Grid item>
-
-              <IconButton edge="start" color="primary" aria-label="menu">
-                <MenuIcon />
-              </IconButton>
-
               <IconButton
                 disableRipple
                 disableTouchRipple
@@ -171,22 +163,12 @@ class Navigation extends React.Component {
             toggle={this.toggleDrawer}
             countries={countries}
           />
-        </Grid>
-        <Grid item>
-          <Grid container direction="row">
-            <IconButton edge="start" color="primary" aria-label="menu">
-              <MenuIcon />
-            </IconButton>
-
-            <Grid item>
-              <ButtonBase
-                className={classes.searchButton}
-                onClick={this.toggleDrawer('search')}
-              >
-                {openDrawer === 'search' ? <Close /> : <Search />}
-              </ButtonBase>
-            </Grid>
-          </Grid>
+          <ButtonBase
+            className={classes.searchButton}
+            onClick={this.toggleDrawer('search')}
+          >
+            {openDrawer === 'search' ? <Close /> : <Search />}
+          </ButtonBase>
         </Grid>
       </>
     );
@@ -245,7 +227,7 @@ class Navigation extends React.Component {
         anchor="top"
         BackdropProps={{
           style: {
-            backgroundColor: 'transparent'
+            backgroundColor: 'white'
           }
         }}
         PaperProps={{

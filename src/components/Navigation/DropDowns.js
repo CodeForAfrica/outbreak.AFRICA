@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,7 +37,7 @@ export default function DropDowns({ active, page, toggle }) {
       <DropDownButton
         isActive={active === 'topic'}
         isHighlighted={page.name === 'topic'}
-        title="Issues"
+        title="Data"
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
@@ -62,6 +62,7 @@ export default function DropDowns({ active, page, toggle }) {
       //onMouseOver={toggle('topic')}
       />
     </div>
+
   );
 }
 
