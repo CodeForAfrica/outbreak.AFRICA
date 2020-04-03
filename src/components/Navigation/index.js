@@ -34,13 +34,15 @@ const styles = theme => ({
     backgroundColor: 'transparent',
     width: '100%',
     height: '6.313rem',
-    padding: '1.25rem',
     display: 'flex',
-    justifyContent: 'center',
+    direction: 'row',
+    justifyContent: 'space-around',
     alignItems: 'center',
     boxShadow: 'none',
-    //boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
-    //color: theme.palette.text.secondary
+    '&:hover': {
+      backgroundColor: 'transparent',
+      boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+    }
   },
   noShadow: {
     boxShadow: 'unset'
@@ -111,25 +113,14 @@ class Navigation extends React.Component {
   renderNavBar(inDrawer = false) {
     const { width, classes } = this.props;
     return (
-      <AppBar
-        position="sticky"
-        className={classNames(classes.root, { [classes.noShadow]: inDrawer })}
-      >
-        <Layout>
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item>
-              <Link href="/">
-                <Typography variant="h4">OUTBREAK</Typography>
-              </Link>
-            </Grid>
-
-
-            {isWidthUp('md', width)
-              ? this.renderDesktopNav()
-              : this.renderMobileNav()}
-          </Grid>
-        </Layout>
-      </AppBar>
+      <nav className={classNames(classes.root, { [classes.noShadow]: inDrawer })}>
+        <Grid item>
+          <Link href="/">
+            <Typography variant="h4">OUTBREAK</Typography>
+          </Link>
+        </Grid>
+        {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+      </nav>
     );
   }
 
@@ -183,7 +174,6 @@ class Navigation extends React.Component {
         </Grid>
         <Grid item>
           <Grid container direction="row">
-
             <IconButton edge="start" color="primary" aria-label="menu">
               <MenuIcon />
             </IconButton>

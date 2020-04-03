@@ -15,6 +15,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'flex-start',
+    alignItems: "flex-start",
     [theme.breakpoints.up('md')]: {
       display: 'unset'
     }
