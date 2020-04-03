@@ -33,7 +33,8 @@ const styles = theme => ({
     height: '6.313rem',
     display: 'flex',
     direction: 'row',
-    justifyContent: 'space-around',
+    padding: '0rem 2rem',
+    justifyContent: 'space-between',
     alignItems: 'center',
     boxShadow: 'none',
     '&:hover': {
