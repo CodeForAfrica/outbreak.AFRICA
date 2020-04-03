@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import classnames from 'classnames';
 
-import { ButtonBase, Grid, Typography } from '@material-ui/core';
+import { ButtonBase, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +58,8 @@ function DropDownButton({
         [classes.rootCenter]: isHighlighted || isActive
       })}
       onClick={handleClick}
-    //onMouseOver={handleClick}
+      onMouseOver={handleClick}
+      onMouseOut={handleClick}
     >
       <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
         {title}
