@@ -29,10 +29,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   backdrop: {
     marginTop: '0',
-    backgroundColor: 'transparent'
+    backgroundColor: 'white'
   },
   drawer: {
-    backgroundColor: palette.primary.main,
+    backgroundColor: 'white',
     outline: 'none'
   },
   search: {
@@ -75,7 +75,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   searchFieldInput: {
     maxWidth: '90%',
-    backgroundColor: 'inherit !important',
+    backgroundColor: '#d8d8d826 !important',
     borderRadius: '0.563rem',
     border: 'none !important',
     fontFamily: '"Muli", sans-serif !important',
@@ -84,7 +84,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     opacity: 1,
     color: 'white !important',
     '&::placeholder': {
-      color: 'white',
+      color: 'black',
       opacity: '0.59'
     },
     '&:focus': {
@@ -207,12 +207,12 @@ function SearchDrawer({ children, active, toggle }) {
                         className={classes.arrow}
                       />
                     ) : (
-                      <img
-                        alt=""
-                        src={rightArrowTransparent}
-                        className={classes.arrow}
-                      />
-                    )
+                        <img
+                          alt=""
+                          src={rightArrowTransparent}
+                          className={classes.arrow}
+                        />
+                      )
                   }
                   onBlur={e => {
                     handleInput(e);
