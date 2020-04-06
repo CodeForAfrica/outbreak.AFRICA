@@ -41,14 +41,16 @@ export default function DropDowns({ active, page, toggle }) {
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
+      //onMouseOver={toggle('topic')}
       />
-      <DropDownButton
+      {/*<DropDownButton
         isActive={active === 'topic'}
         isHighlighted={page.name === 'topic'}
         title="Insights"
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
+        onMouseOver={toggle('topic')}
       />
       <DropDownButton
         isActive={active === 'topic'}
@@ -57,7 +59,8 @@ export default function DropDowns({ active, page, toggle }) {
         icon={topicIcon}
         iconActive={topicIconActive}
         handleClick={toggle('topic')}
-      />
+        onMouseOver={toggle('topic')}
+      />*/}
     </div>
 
   );

@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
 
-import DropDownContent from './DropDownContent';
+import ImageDrawerContent from './DrawerLayoutContent/ImageSection';
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawer: {
     outline: 'none',
-    backgroundColor: 'transparent',
+    backgroundColor: 'white',
     [theme.breakpoints.up('md')]: {
       boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
     }
@@ -75,7 +75,7 @@ export default function DropDownDrawer({
       onBackdropClick={toggle}
     >
       {children}
-      <DropDownContent
+      <ImageDrawerContent
         classes={{
           container: classes.container
         }}

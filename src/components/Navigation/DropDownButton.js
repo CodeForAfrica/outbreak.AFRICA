@@ -58,8 +58,8 @@ function DropDownButton({
         [classes.rootCenter]: isHighlighted || isActive
       })}
       onClick={handleClick}
-      onMouseOver={handleClick}
-      onMouseOut={handleClick}
+    //onMouseOver={handleClick}
+    //onMouseOut={handleClick}
     >
       <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
         {title}

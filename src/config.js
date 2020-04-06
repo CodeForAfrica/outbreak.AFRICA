@@ -28,6 +28,36 @@ Disallow:
       : 'https://search-cfa-openafrica-z56l24lkfbv5erjxxs76sevr3i.eu-west-1.es.amazonaws.com',
   DEFAULT_LANG: 'en',
   country: {},
+  tileData: [
+    {
+      index: 0,
+      title: 'Research',
+      link: 'https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0',
+      mediaSrc: 'http://placekitten.com/g/400/300',
+      media: 'img'
+    },
+    {
+      index: 1,
+      title: 'Economy',
+      link: 'https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b',
+      mediaSrc: 'http://placekitten.com/g/400/300',
+      media: 'img'
+    },
+    {
+      index: 2,
+      title: 'Health',
+      link: 'https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f',
+      mediaSrc: 'http://placekitten.com/g/400/300',
+      media: 'img'
+    },
+    {
+      index: 3,
+      title: 'Infrastructure',
+      link: 'https://city-press.news24.com/News/a-farmers-15-year-wait-for-land-justice-20180822',
+      mediaSrc: 'http://placekitten.com/g/400/300',
+      media: 'img'
+    }
+  ],
   countries: [
     {
       isoCode: 'KE',
