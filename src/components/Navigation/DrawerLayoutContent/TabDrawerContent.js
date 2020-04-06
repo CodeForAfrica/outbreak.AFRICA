@@ -3,22 +3,27 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
+import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
-    <Typography
-      component="div"
+
+    <Grid
+      container
+      direction="row"
       role="tabpanel"
       hidden={value !== index}
       id={`vertical-tabpanel-${index}`}
       aria-labelledby={`vertical-tab-${index}`}
       {...other}
     >
-      {value === index && <Box p={3}>{children}</Box>}
-    </Typography>
+      {value === index && <Grid container direction="row" justify="space-around">{children}</Grid>}
+
+
+    </Grid>
   );
 }
 
@@ -47,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function VerticalTabs() {
+export default function TabDrawerContent() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -69,7 +74,12 @@ export default function VerticalTabs() {
 
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <Grid item>one </Grid>
+        <Grid item>two </Grid>
+        <Grid item>three </Grid>
+        <Grid item>four </Grid>
+        <Grid item>five </Grid>
+
       </TabPanel>
     </div>
   );
