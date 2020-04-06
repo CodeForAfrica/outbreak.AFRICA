@@ -9,6 +9,8 @@ import SkipPreviousIcon from '@material-ui/icons/SkipPrevious';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import SkipNextIcon from '@material-ui/icons/SkipNext';
 
+import imageSrc from '../../../../assets/images/example/image1.jpeg'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -21,8 +23,7 @@ const useStyles = makeStyles((theme) => ({
     flex: '1 0 auto',
   },
   cover: {
-    height: 0,
-    paddingTop: '56.25%' // 16:9
+    width: 151,
   },
   controls: {
     display: 'flex',
@@ -36,11 +37,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RightColumn() {
+export default function MediaControlCard() {
   const classes = useStyles();
   const theme = useTheme();
 
   return (
+    <div style={{padding:'2rem 0rem'}}>
     <Card className={classes.root}>
       <div className={classes.details}>
         <CardContent className={classes.content}>
@@ -63,12 +65,12 @@ export default function RightColumn() {
           </IconButton>
         </div>
       </div>
-      <img
+      <CardMedia
         className={classes.cover}
-        image="https://i.picsum.photos/id/237/100/300.jpg"
+        image={imageSrc}
         title="Live from space album cover"
-        alt="thumbnail"
       />
     </Card>
+    </div>
   );
 }

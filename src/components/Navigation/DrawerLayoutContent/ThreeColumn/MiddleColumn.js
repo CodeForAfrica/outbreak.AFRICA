@@ -2,7 +2,7 @@ import React from 'react';
 
 function MiddleColumn() {
   return (
-    <div>Middle Column</div>
+    <div style={{padding:'2rem 0rem'}}>Middle Column</div>
   )
 }
 
