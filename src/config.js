@@ -58,6 +58,29 @@ Disallow:
       media: 'img'
     }
   ],
+  leftColumn: [
+    {
+      index: 0,
+      subtitle: 'Job creation and economy',
+      title: 'Research',
+      link: 'https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0',
+      mediaSrc: 'http://placekitten.com/g/40/40'
+    },
+    {
+      index: 1,
+      subtitle: 'Coronavirus',
+      title: 'Example article heading ',
+      link: 'https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b',
+      mediaSrc: 'http://placekitten.com/g/40/30'
+    },
+    {
+      index: 2,
+      subtitle: 'Coronavirus',
+      title: 'Another article heading here',
+      link: 'https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f',
+      mediaSrc: 'http://placekitten.com/g/40/30'
+    }
+  ],
   countries: [
     {
       isoCode: 'KE',

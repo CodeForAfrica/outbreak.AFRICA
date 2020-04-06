@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
 
-import TabDrawerContent from './DrawerLayoutContent/TabDrawerContent';
+import ThreeColumnDrawerContent from './DrawerLayoutContent/ThreeColumn';
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -75,7 +75,7 @@ export default function DropDownDrawer({
       onBackdropClick={toggle}
     >
       {children}
-      <TabDrawerContent
+      <ThreeColumnDrawerContent
         classes={{
           container: classes.container
         }}
