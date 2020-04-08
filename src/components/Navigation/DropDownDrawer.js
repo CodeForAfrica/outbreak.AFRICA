@@ -45,6 +45,9 @@ const useStyles = makeStyles(theme => ({
   })
 }));
 
+
+
+
 export default function DropDownDrawer({
   children,
   title,
@@ -71,7 +74,8 @@ export default function DropDownDrawer({
       onBackdropClick={toggle}
     >
       {children}
-      <DropDownContent
+      {title === "data" ? <div>content here</div> : <div>something different</div>}
+      {/*<DropDownContent
         classes={{
           container: classes.container
         }}
@@ -80,7 +84,7 @@ export default function DropDownDrawer({
         profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
         title='Country Profiles'
         description={countryProfiles}
-      />
+      />*/}
     </Drawer>
   );
 }

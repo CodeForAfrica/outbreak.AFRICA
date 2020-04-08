@@ -27,6 +27,18 @@ export default function DropDowns({ active, page, toggle }) {
         title="Data"
         handleClick={toggle('data')}
       />
+      <DropDownButton
+        isActive={active === 'insight'}
+        isHighlighted={page.name === 'insight'}
+        title="Insight"
+        handleClick={toggle('insight')}
+      />
+      <DropDownButton
+        isActive={active === 'resources'}
+        isHighlighted={page.name === 'resources'}
+        title="Resources"
+        handleClick={toggle('resources')}
+      />
     </div>
 
   );
