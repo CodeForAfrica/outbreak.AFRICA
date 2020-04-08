@@ -17,9 +17,11 @@ const theme = createTheme({
       width: 350,
       height: 200,
       padding: 0,
-      legendWidth: 100,
       origin: { x: 150, y: 125 },
-      colorScale: COLOR_BREWER_DIVERGING
+      colorScale: COLOR_BREWER_DIVERGING,
+      legend: {
+        labelWidth: 100
+      }
     },
     area: {
       colorScale: COLOR_BREWER_DIVERGING
@@ -43,10 +45,10 @@ const theme = createTheme({
       }
     },
     bar: {
-      width: 350,
+      width: 400,
       height: 400,
       barWidth: 30,
-      offset: 60,
+      offset: 50,
       style: {
         data: {
           fill: COLOR_BREWER_DIVERGING[0]
@@ -55,6 +57,9 @@ const theme = createTheme({
           fontFamily: FONT_FAMILY_TEXT,
           fill: 'rgb(0,0,0)'
         }
+      },
+      legend: {
+        labelWidth: 150
       }
     },
     dependentAxis: {
