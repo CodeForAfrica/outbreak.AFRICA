@@ -437,6 +437,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
 
       <div style={{ width: '100%', height: '500px', overflow: 'hidden' }}>
         <MapIt
+          url="https://dev.mapit.hurumap.org"
           drawProfile
           codeType="AFR"
           drawChildren={

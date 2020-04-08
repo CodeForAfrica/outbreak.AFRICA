@@ -61,6 +61,15 @@ Disallow:
       slug: 'south-africa',
       lang: 'en',
       published: true
+    },
+    {
+      isoCode: 'MA',
+      name: 'Morocco',
+      isoName: 'Morocco',
+      shortName: 'Morocco',
+      slug: 'morocco',
+      lang: 'en',
+      published: true
     }
   ],
   settings: {

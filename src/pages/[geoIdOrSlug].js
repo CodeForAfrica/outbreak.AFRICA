@@ -32,7 +32,7 @@ function ProfilePage(initialProps) {
         {/** MapIt Preconnect */}
         <link
           rel="preconnect"
-          href="https://mapit.hurumap.org"
+          href="https://dev.mapit.hurumap.org"
           crossOrigin="anonymous"
         />
         {/** Map Tiles Preconnect */}
