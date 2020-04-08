@@ -23,7 +23,7 @@ const styles = theme => ({
   }
 });
 
-function ThreeColumn({ classes }) {
+function ThreeColumnContent({ classes }) {
   return (
     <Grid container direction="row" justify="space-between" className={classes.root} spacing={6}>
       <Grid item xs={3}>
@@ -47,8 +47,8 @@ function ThreeColumn({ classes }) {
   );
 }
 
-ThreeColumn.propTypes = {
+ThreeColumnContent.propTypes = {
   classes: PropTypes.shape().isRequired
 };
 
-export default withStyles(styles)(ThreeColumn);
+export default withStyles(styles)(ThreeColumnContent);

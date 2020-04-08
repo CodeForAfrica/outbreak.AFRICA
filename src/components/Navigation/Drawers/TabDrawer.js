@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classNames from 'classnames';
-
 import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -45,23 +43,15 @@ const useStyles = makeStyles(theme => ({
   })
 }));
 
-export default function DropDownDrawer({
+export default function TabDrawer({
   children,
-  countries,
   active,
-  navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
   toggle
 }) {
   const classes = useStyles({ active });
   return (
     <Drawer
       anchor="top"
-      ModalProps={{
-        className: classNames({
-          [classes.modalTopic]: active === 'topic',
-          [classes.modalAnalysis]: active === 'analysis'
-        })
-      }}
       BackdropProps={{
         className: classes.backdrop
       }}
@@ -80,29 +70,20 @@ export default function DropDownDrawer({
           container: classes.container
         }}
         type={active}
-        countries={countries}
-        profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
-        title={active === 'analysis' ? 'Country Analysis' : 'Country Profiles'}
-        description={active === 'analysis' ? countryAnalysis : countryProfiles}
       />
     </Drawer>
   );
 }
 
-DropDownDrawer.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+TabDrawer.propTypes = {
   active: PropTypes.oneOf(['analysis', 'topic']),
   toggle: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
-  navigation: PropTypes.shape({
-    country_analysis: PropTypes.string,
-    country_profiles: PropTypes.string
-  }).isRequired
+  ]).isRequired
 };
 
-DropDownDrawer.defaultProps = {
+TabDrawer.defaultProps = {
   active: null
 };

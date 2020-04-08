@@ -5,9 +5,9 @@ import { Grid, Typography, withWidth } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { isWidthDown } from '@material-ui/core/withWidth';
 
-import flags from '../../flags';
-import Link from '../Link';
-import RichTypography from '../RichTypography';
+import flags from '../../../flags';
+import Link from '../../Link';
+import RichTypography from '../../RichTypography';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -101,7 +101,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function DropDownContent({
+function CountryDropDownContent({
   type,
   width,
   title,
@@ -180,7 +180,7 @@ function DropDownContent({
   );
 }
 
-DropDownContent.propTypes = {
+CountryDropDownContent.propTypes = {
   type: PropTypes.string.isRequired,
   width: PropTypes.string.isRequired,
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
@@ -191,4 +191,4 @@ DropDownContent.propTypes = {
 
 export default withWidth({
   initialWidth: 'md'
-})(DropDownContent);
+})(CountryDropDownContent);

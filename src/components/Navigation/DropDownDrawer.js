@@ -5,11 +5,9 @@ import classNames from 'classnames';
 
 import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import DropDownButton from './DropDownButton';
-
 import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
-import DropDownContent from './DropDownContent';
+import CountryDropDownContent from './DropDownContent/CountryDropDownContent';
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -45,9 +43,6 @@ const useStyles = makeStyles(theme => ({
   })
 }));
 
-
-
-
 export default function DropDownDrawer({
   children,
   title,
@@ -74,17 +69,14 @@ export default function DropDownDrawer({
       onBackdropClick={toggle}
     >
       {children}
-      {title === "data" ? <div>content here</div> : <div>something different</div>}
-      {/*<DropDownContent
-        classes={{
-          container: classes.container
-        }}
+      <CountryDropDownContent classes={{
+        container: classes.container
+      }}
         type={active}
         countries={countries}
         profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
         title='Country Profiles'
-        description={countryProfiles}
-      />*/}
+        description={countryProfiles} />
     </Drawer>
   );
 }

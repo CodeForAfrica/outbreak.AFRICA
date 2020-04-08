@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import classNames from 'classnames';
-import classnames from 'classnames';
-
-import { Drawer, ButtonBase, Typography } from '@material-ui/core';
+import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import analysisDescriptionBG from '../../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../../assets/images/a-chart-bg.svg';
 
-import ImageDrawerContent from '../DrawerLayoutContent/ImageSection';
+import ImageDrawerContent from '../DropDownContent/ImageSection';
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -82,84 +79,42 @@ const useStyles = makeStyles(theme => ({
 
 export default function ImageGridDrawer({
   children,
-  countries,
-  active,
-  navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
-  toggle,
-  title,
-  handleClick,
-  isHighlighted,
-  isActive
+  active
 }) {
   const classes = useStyles({ active });
   return (
-    <div>
-      <ButtonBase
-        disableRipple
-        disableTouchRipple
-        className={classnames(classes.buttonRoot, {
-          [classes.rootCenter]: isHighlighted || isActive
-        })}
-        onClick={handleClick}
-      >
-        <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
-          {title}
-        </Typography>
-      </ButtonBase>
-      <Drawer
-        anchor="top"
-        ModalProps={{
-          className: classNames({
-            [classes.modalTopic]: active === 'topic',
-            [classes.modalAnalysis]: active === 'analysis'
-          })
+    <Drawer
+      anchor="top"
+      BackdropProps={{
+        className: classes.backdrop
+      }}
+      PaperProps={{
+        className: classes.drawer
+      }}
+      open={active}
+      elevation={0}
+      transitionDuration={0}
+      onEscapeKeyDown={toggle}
+      onBackdropClick={toggle}
+    >
+      {children}
+      <ImageDrawerContent
+        classes={{
+          container: classes.container
         }}
-        BackdropProps={{
-          className: classes.backdrop
-        }}
-        PaperProps={{
-          className: classes.drawer
-        }}
-        open={active}
-        elevation={0}
-        transitionDuration={0}
-        onEscapeKeyDown={toggle}
-        onBackdropClick={toggle}
-      >
-        {children}
-        <ImageDrawerContent
-          classes={{
-            container: classes.container
-          }}
-          type={active}
-          countries={countries}
-          profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
-          title={active === 'analysis' ? 'Country Analysis' : 'Country Profiles'}
-          description={active === 'analysis' ? countryAnalysis : countryProfiles}
-        />
-      </Drawer>
-    </div>
+        type={active}
+      />
+    </Drawer>
   );
 }
 
 ImageGridDrawer.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  active: PropTypes.oneOf(['analysis', 'topic']),
+  active: PropTypes.oneOf(['data', 'insight', 'resources']),
   toggle: PropTypes.func.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
-  ]).isRequired,
-  navigation: PropTypes.shape({
-    country_analysis: PropTypes.string,
-    country_profiles: PropTypes.string
-  }).isRequired,
-  icon: PropTypes.string.isRequired,
-  iconActive: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  isActive: PropTypes.bool.isRequired,
-  isHighlighted: PropTypes.bool.isRequired,
-  handleClick: PropTypes.func.isRequired
+  ]).isRequired
 };
 
 ImageGridDrawer.defaultProps = {
