@@ -15,12 +15,12 @@ const theme = createTheme({
   chart: {
     pie: {
       width: 350,
-      height: 200,
+      height: 350,
       padding: 0,
       origin: { x: 150, y: 125 },
       colorScale: COLOR_BREWER_DIVERGING,
       legend: {
-        labelWidth: 100
+        labelWidth: 150
       }
     },
     area: {
