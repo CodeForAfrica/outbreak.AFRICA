@@ -61,7 +61,7 @@ Disallow:
   leftColumn: [
     {
       index: 0,
-      subtitle: 'Job creation and economy',
+      subtitle: 'Job Creation',
       title: 'Research',
       link: 'https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0',
       mediaSrc: 'http://placekitten.com/g/40/40'
@@ -75,7 +75,7 @@ Disallow:
     },
     {
       index: 2,
-      subtitle: 'Coronavirus',
+      subtitle: 'Economy',
       title: 'Another article heading here',
       link: 'https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f',
       mediaSrc: 'http://placekitten.com/g/40/30'

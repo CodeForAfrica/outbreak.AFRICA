@@ -19,12 +19,7 @@ const styles = theme => ({
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    /**
-     * The mixture of rem and px set by GridList is
-     * causing height issues resulting in overflow.
-     * Stick to px for this component to function correctly.
-     */
-    height: '370px' // 23.125rem
+    margin: '2rem 0rem'
   },
   cardRoot: {
     minHeight: '10rem',
@@ -47,10 +42,8 @@ const styles = theme => ({
     flexGrow: 1,
     position: 'relative',
     marginTop: '-100%',
-    paddingTop: 0,
-    paddingBottom: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(3)
+    padding: '2rem 7.7rem'
+
   },
   cardMedia: {
     minHeight: '10rem',
@@ -112,7 +105,7 @@ function ImageDrawerContent({ classes }) {
                     direction="column"
                     className={classes.contentRoot}
                     alignItems="flex-start"
-                    style={{ height: '100%' }}
+                  //style={{ height: '100%' }}
                   >
                     <Typography variant="h5" className={classes.bodyTitle}>
                       {story.title}

@@ -5,11 +5,11 @@ import classNames from 'classnames';
 
 import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import DropDownButton from './DropDownButton';
 
 import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
-import DropDownContent from './DropDownContent';
+
+import ThreeColumnDrawerContent from './DrawerLayoutContent/ThreeColumn';
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -47,7 +47,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function DropDownDrawer({
   children,
-  title,
   countries,
   active,
   navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
@@ -57,7 +56,12 @@ export default function DropDownDrawer({
   return (
     <Drawer
       anchor="top"
-      ModalProps={{}}
+      ModalProps={{
+        className: classNames({
+          [classes.modalTopic]: active === 'topic',
+          [classes.modalAnalysis]: active === 'analysis'
+        })
+      }}
       BackdropProps={{
         className: classes.backdrop
       }}
@@ -71,15 +75,15 @@ export default function DropDownDrawer({
       onBackdropClick={toggle}
     >
       {children}
-      <DropDownContent
+      <ThreeColumnDrawerContent
         classes={{
           container: classes.container
         }}
         type={active}
         countries={countries}
         profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
-        title='Country Profiles'
-        description={countryProfiles}
+        title={active === 'analysis' ? 'Country Analysis' : 'Country Profiles'}
+        description={active === 'analysis' ? countryAnalysis : countryProfiles}
       />
     </Drawer>
   );

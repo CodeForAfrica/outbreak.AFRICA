@@ -58,8 +58,6 @@ function DropDownButton({
         [classes.rootCenter]: isHighlighted || isActive
       })}
       onClick={handleClick}
-    //onMouseOver={handleClick}
-    //onMouseOut={handleClick}
     >
       <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
         {title}
@@ -69,8 +67,6 @@ function DropDownButton({
 }
 
 DropDownButton.propTypes = {
-  icon: PropTypes.string.isRequired,
-  iconActive: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   isHighlighted: PropTypes.bool.isRequired,

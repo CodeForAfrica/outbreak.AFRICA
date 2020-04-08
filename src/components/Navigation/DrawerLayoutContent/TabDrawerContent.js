@@ -1,11 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
+import { Divider } from "@material-ui/core";
+
+import Link from 'next/link';
+
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,10 +48,11 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: "flex",
-    height: 224
+    padding: '2rem 0rem '
   },
   tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`
+    borderRight: `1px solid ${theme.palette.divider}`,
+    width: '25%'
   }
 }));
 
@@ -70,16 +74,59 @@ export default function TabDrawerContent() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="Item One" {...a11yProps(0)} />
+        <Tab label="By Topic" {...a11yProps(0)} />
 
       </Tabs>
       <TabPanel value={value} index={0}>
-        <Grid item>one </Grid>
-        <Grid item>two </Grid>
-        <Grid item>three </Grid>
-        <Grid item>four </Grid>
-        <Grid item>five </Grid>
+        <Grid item>
+          <Typography variant="h5">Government  Finances</Typography>
+          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
 
+          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+          </div>
+        </Grid>
+        <Grid item>
+          <Typography variant="h5">Security & Safety</Typography>
+          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
+
+          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+          </div>
+        </Grid>
+        <Grid item>
+          <Typography variant="h5">Economy</Typography>
+          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
+
+          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+          </div>
+
+        </Grid>
+        <Grid item>
+          <Typography variant="h5">People and society</Typography>
+          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
+
+          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
+            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+          </div>
+        </Grid>
       </TabPanel>
     </div>
   );

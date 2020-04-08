@@ -7,6 +7,12 @@ import { ServerStyleSheets } from '@material-ui/core/styles';
 import theme from '../theme';
 
 import { GA_TRACKING_ID } from '../lib/ga';
+import dynamic from 'next/dynamic';
+
+const { default: Carousel, Dots } = dynamic(
+  () => require('@brainhubeu/react-carousel'),
+  { ssr: false },
+);
 
 const getGaScript = () => {
   return {
@@ -56,6 +62,9 @@ const getGaScript = () => {
       ga('send', 'pageview');`
   };
 };
+
+
+
 
 class MyDocument extends Document {
   render() {
