@@ -63,6 +63,15 @@ Disallow:
       published: true
     },
     {
+      isoCode: 'GH',
+      name: 'Ghana',
+      isoName: 'Ghana',
+      shortName: 'Ghana',
+      slug: 'ghana',
+      lang: 'en',
+      published: true
+    },
+    {
       isoCode: 'MA',
       name: 'Morocco',
       isoName: 'Morocco',
