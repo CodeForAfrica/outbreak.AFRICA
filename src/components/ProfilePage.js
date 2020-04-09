@@ -439,6 +439,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
 
       <div style={{ width: '100%', height: '500px', overflow: 'hidden' }}>
         <MapIt
+          url={config.MAPIT_URL}
           drawProfile
           drawChildren
           codeType="AFR"

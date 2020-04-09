@@ -32,6 +32,7 @@ Disallow:
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:9200'
       : 'https://search-cfa-openafrica-z56l24lkfbv5erjxxs76sevr3i.eu-west-1.es.amazonaws.com',
+  MAPIT_URL: 'https://dev.mapit.hurumap.org',
   DEFAULT_LANG: 'en',
   country: {},
   countries: [
@@ -59,6 +60,24 @@ Disallow:
       isoName: 'South Africa',
       shortName: 'South Africa',
       slug: 'south-africa',
+      lang: 'en',
+      published: true
+    },
+    {
+      isoCode: 'GH',
+      name: 'Ghana',
+      isoName: 'Ghana',
+      shortName: 'Ghana',
+      slug: 'ghana',
+      lang: 'en',
+      published: true
+    },
+    {
+      isoCode: 'MA',
+      name: 'Morocco',
+      isoName: 'Morocco',
+      shortName: 'Morocco',
+      slug: 'morocco',
       lang: 'en',
       published: true
     }
