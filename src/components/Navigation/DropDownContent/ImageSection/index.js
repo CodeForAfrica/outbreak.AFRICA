@@ -9,32 +9,29 @@ import {
   CardContent,
   Grid
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 import config from '../../../../config';
 
-const styles = theme => ({
-  mainRoot: {
+const useStyles = makeStyles(theme => ({
+  root: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     overflow: 'hidden',
-    margin: '2rem 0rem'
+    margin: '2rem'
   },
   cardRoot: {
-    minHeight: '10rem',
+    minHeight: '8rem',
     height: '100%',
-    width: 350,
+    width: 315,
     margin: '0.2rem',
     backgroundColor: '#fafafa',
-    border: '1px solid #eeeeee',
-    '&:hover': {
-      backgroundColor: '#fff'
-    }
+    border: '1px solid #eeeeee'
   },
   contentRoot: {
     flexGrow: 1,
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
   },
   cardContent: {
     alignItems: 'flex-end',
@@ -42,13 +39,7 @@ const styles = theme => ({
     flexGrow: 1,
     position: 'relative',
     marginTop: '-100%',
-    padding: '2rem 7.7rem'
-
-  },
-  cardMedia: {
-    minHeight: '10rem',
-    height: '100%',
-    width: '100%'
+    margin: '2rem 7.7rem'
   },
   cardLink: {
     textDecoration: 'none'
@@ -66,14 +57,19 @@ const styles = theme => ({
     margin: '1rem 0'
   },
   media: {
-    filter: 'sepia(100%) hue-rotate(159deg) brightness(40%) saturate(350%)'
+    filter: 'sepia(100%) hue-rotate(159deg) brightness(40%) saturate(350%)',
+    transition: 'all 300ms',
+    '&:hover': {
+      transform: 'scale(1.1)'
+    }
   }
-});
+}));
 
-function ImageDrawerContent({ classes }) {
+function ImageDrawerContent() {
+  const classes = useStyles()
   const { tileData } = config;
   return (
-    <div className={classes.mainRoot}>
+    <div className={classes.root}>
       <Grid container direction="row" justify="flex-start">
         {tileData.map(story =>
           <Card className={classes.cardRoot}>
@@ -93,11 +89,11 @@ function ImageDrawerContent({ classes }) {
               >
                 <CardMedia
                   component={story.media}
-                  className={classes.cardMedia}
                   image={story.mediaSrc}
                   classes={{ media: classes.media }}
                   title="Story"
                 />
+
                 <CardContent className={classes.cardContent}>
                   <Grid
                     container
@@ -105,7 +101,6 @@ function ImageDrawerContent({ classes }) {
                     direction="column"
                     className={classes.contentRoot}
                     alignItems="flex-start"
-                  //style={{ height: '100%' }}
                   >
                     <Typography variant="h5" className={classes.bodyTitle}>
                       {story.title}
@@ -123,8 +118,7 @@ function ImageDrawerContent({ classes }) {
 }
 
 ImageDrawerContent.propTypes = {
-  classes: PropTypes.shape().isRequired,
   story: PropTypes.shape().isRequired
 };
 
-export default withStyles(styles)(ImageDrawerContent);
+export default ImageDrawerContent;

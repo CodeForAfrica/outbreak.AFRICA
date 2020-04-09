@@ -18,10 +18,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const navList = [
-  { title: 'Country', slug: 'data' },
-  { title: 'Insight', slug: 'insight' },
-  { title: 'Resources', slug: 'resources' },
-  { title: 'Data', slug: 'data' }
+  { id: 0, title: 'Country', slug: 'data' },
+  { id: 1, title: 'Insight', slug: 'insight' },
+  { id: 2, title: 'Resources', slug: 'resources' },
+  { id: 3, title: 'Data', slug: 'data' }
 ]
 
 export default function DropDowns({ active, page, toggle }) {
@@ -30,7 +30,7 @@ export default function DropDowns({ active, page, toggle }) {
     <div className={classes.root}>
       {navList.map(menu =>
         <DropDownButton
-          key={menu.slug}
+          key={menu.id}
           isActive={active === menu.slug}
           isHighlighted={page.name === menu.slug}
           title={menu.title}

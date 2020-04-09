@@ -64,7 +64,6 @@ export default function DropDownDrawer({
   toggle
 }) {
   const classes = useStyles({ active, toggle });
-  console.log(active);
   return (
     <Drawer
       anchor="top"

@@ -165,7 +165,7 @@ class Navigation extends React.Component {
             toggle={this.toggleDrawer}
             countries={countries}
           />
-         
+
 
           <ButtonBase
             className={classes.searchButton}
@@ -283,7 +283,7 @@ Navigation.propTypes = {
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
     page: PropTypes.shape({}).isRequired,
-    language: PropTypes.string.isRequired,
+
     countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     settings: PropTypes.shape({
       navigation: PropTypes.shape({})
