@@ -7,7 +7,11 @@ import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
 import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
+
 import CountryDropDownContent from './DropDownContent/CountryDropDownContent';
+import ImageDrawerContent from './DropDownContent/ImageSection'
+import TabDrawerContent from './DropDownContent/TabDrawerContent';
+import ThreeColumn from './DropDownContent/ThreeColumn'
 
 const useStyles = makeStyles(theme => ({
   modalTopic: {
@@ -40,22 +44,30 @@ const useStyles = makeStyles(theme => ({
     backgroundImage: `url(${
       active === 'analysis' ? analysisDescriptionBG : countryProfilesDescriptionBG
       })`
-  })
+  }),
+  buttonRoot: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    alignItems: "flex-start",
+    [theme.breakpoints.up('md')]: {
+      display: 'unset'
+    }
+  }
 }));
 
 export default function DropDownDrawer({
   children,
-  title,
   countries,
   active,
   navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
   toggle
 }) {
-  const classes = useStyles({ active });
+  const classes = useStyles({ active, toggle });
+  console.log(active);
   return (
     <Drawer
       anchor="top"
-      ModalProps={{}}
       BackdropProps={{
         className: classes.backdrop
       }}
@@ -67,24 +79,39 @@ export default function DropDownDrawer({
       transitionDuration={0}
       onEscapeKeyDown={toggle}
       onBackdropClick={toggle}
+      onClick={toggle}
     >
       {children}
-      <CountryDropDownContent classes={{
-        container: classes.container
-      }}
+
+      {/*{active && active === 'Data' && active !== null ?
+        <CountryDropDownContent
+          
+          classes={{
+            container: classes.container
+          }}
+          type={active}
+          countries={countries}
+          profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+          title='Country Profiles'
+          description={countryProfiles} /> : <div><ImageDrawerContent /></div>}*/}
+      {active === 'Data' && active !== null ? <CountryDropDownContent
+        classes={{
+          container: classes.container
+        }}
         type={active}
         countries={countries}
         profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
         title='Country Profiles'
-        description={countryProfiles} />
+        description={countryProfiles} /> : active === "Insight" && active !== null ? <ImageDrawerContent /> : active === 'Resources' && active !== null ? <TabDrawerContent /> : <ThreeColumn />}
     </Drawer>
   );
 }
 
 DropDownDrawer.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  active: PropTypes.oneOf(['analysis', 'topic']),
+  active: PropTypes.oneOf(['data', 'insight', 'resources']),
   toggle: PropTypes.func.isRequired,
+  name: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
