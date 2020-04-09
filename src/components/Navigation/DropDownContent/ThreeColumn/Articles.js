@@ -57,7 +57,7 @@ function ArticlesContent({ title, subtitle }) {
     <Grid container direction="row" className={classes.contentRoot}>
       <Grid item xs={8} className={classes.typoGrid}>
         <div><Typography variant="caption" className={classes.subtitle}>{subtitle}</Typography></div>
-        <div><Typography variant="caption" className={classes.caption}>{title}</Typography></div>
+        <div><Typography variant="body2" className={classes.caption}>{title}</Typography></div>
       </Grid>
 
       <Grid item xs={4} className={classes.mediaGrid}>
