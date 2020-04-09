@@ -8,12 +8,6 @@ import theme from '../theme';
 
 import { GA_TRACKING_ID } from '../lib/ga';
 import dynamic from 'next/dynamic';
-
-const { default: Carousel, Dots } = dynamic(
-  () => require('@brainhubeu/react-carousel'),
-  { ssr: false },
-);
-
 const getGaScript = () => {
   return {
     __html: `

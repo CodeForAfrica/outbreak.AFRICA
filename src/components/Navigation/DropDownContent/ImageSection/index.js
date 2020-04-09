@@ -27,7 +27,14 @@ const useStyles = makeStyles(theme => ({
     width: 315,
     margin: '0.2rem',
     backgroundColor: '#fafafa',
-    border: '1px solid #eeeeee'
+    border: '1px solid #eeeeee',
+    [theme.breakpoints.down('md')]: {
+      display: 'flex',
+      direction: 'row',
+      minHeight: '3rem',
+      width: '300px'
+    },
+
   },
   contentRoot: {
     flexGrow: 1,

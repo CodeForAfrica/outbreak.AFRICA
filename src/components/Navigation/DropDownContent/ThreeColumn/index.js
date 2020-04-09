@@ -40,17 +40,17 @@ function ThreeColumnContent() {
   const classes = useStyles();
   return (
     <Grid container direction="row" justify="space-between" className={classes.root}>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <HeaderTitle title="Articles" />
         <Articles />
       </Grid>
 
-      <Grid item xs={6}>
+      <Grid item xs={12} md={3}>
         <HeaderTitle title="Visualizations" />
         <Visualizations />
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         <HeaderTitle title="Annual Publications" />
         <Publications />
       </Grid>
