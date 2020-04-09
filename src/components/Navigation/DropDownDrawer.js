@@ -83,18 +83,7 @@ export default function DropDownDrawer({
     >
       {children}
 
-      {/*{active && active === 'Data' && active !== null ?
-        <CountryDropDownContent
-          
-          classes={{
-            container: classes.container
-          }}
-          type={active}
-          countries={countries}
-          profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
-          title='Country Profiles'
-          description={countryProfiles} /> : <div><ImageDrawerContent /></div>}*/}
-      {active === 'Data' && active !== null ? <CountryDropDownContent
+      {active === 'Country' && active !== null ? <CountryDropDownContent
         classes={{
           container: classes.container
         }}

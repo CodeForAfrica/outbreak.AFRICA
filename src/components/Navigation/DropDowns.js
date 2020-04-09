@@ -17,23 +17,24 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const menu = [
-  { title: 'Data', slug: 'data' },
+const navList = [
+  { title: 'Country', slug: 'data' },
   { title: 'Insight', slug: 'insight' },
-  { title: 'Resources', slug: 'resources' }
+  { title: 'Resources', slug: 'resources' },
+  { title: 'Data', slug: 'data' }
 ]
 
 export default function DropDowns({ active, page, toggle }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {menu.map(item =>
+      {navList.map(menu =>
         <DropDownButton
-          key={item.slug}
-          isActive={active === item.slug}
-          isHighlighted={page.name === item.slug}
-          title={item.title}
-          handleClick={toggle(item.title)}
+          key={menu.slug}
+          isActive={active === menu.slug}
+          isHighlighted={page.name === menu.slug}
+          title={menu.title}
+          handleClick={toggle(menu.title)}
         />
       )}
     </div>
