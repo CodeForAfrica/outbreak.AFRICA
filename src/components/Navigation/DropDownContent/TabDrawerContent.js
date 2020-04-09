@@ -10,6 +10,41 @@ import Tab from "@material-ui/core/Tab";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
+const menuOptionOne = [
+  { name: 'Debt', slug: 'debt', href: "#" },
+  { name: 'Revenue', slug: 'Rrvenue', href: "#" },
+  { name: 'Spending', slug: 'spending', href: "#" },
+  { name: 'Government Expenditure', slug: 'government-expenditure', href: "#" },
+  { name: 'Taxes', slug: 'taxes', href: "#" },
+  { name: 'Public Research', slug: 'public-research', href: "#" }
+]
+
+const menuOptionTwo = [
+  { name: 'Economy ', slug: 'economy', href: "#" },
+  { name: 'Job', slug: 'job', href: "#" },
+  { name: 'Transport', slug: 'transport', href: "#" },
+  { name: 'Health', slug: 'health', href: "#" },
+  { name: 'Education', slug: 'education', href: "#" },
+  { name: 'Immigration', slug: 'immigration', href: "#" }
+]
+
+const menuOptionThree = [
+  { name: 'Economy ', slug: 'economy', href: "#" },
+  { name: 'Job', slug: 'job', href: "#" },
+  { name: 'Taxes', slug: 'taxes', href: "#" },
+  { name: 'Public Research', slug: 'public-research', href: "#" }
+]
+
+const menuOptionFour = [
+  { name: 'Crime', slug: 'crime', href: "#" },
+  { name: 'Justice', slug: 'justice', href: "#" },
+  { name: 'Energy', slug: 'energy', href: "#" },
+  { name: 'Environmental', slug: 'environmental', href: "#" },
+  { name: 'Taxes', slug: 'taxes', href: "#" },
+  { name: 'Public Research', slug: 'public-research', href: "#" }
+]
+
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -24,7 +59,6 @@ function TabPanel(props) {
       {...other}
     >
       {value === index && <Grid container direction="row" justify="space-around">{children}</Grid>}
-
 
     </Grid>
   );
@@ -53,8 +87,38 @@ const useStyles = makeStyles(theme => ({
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
     width: '25%'
+  },
+  divider: {
+    padding: '1rem 0rem'
+  },
+  menuGrid: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: '0.5rem 0rem'
+  },
+  link: {
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'none',
+      color: theme.palette.text.primary.main
+    }
   }
 }));
+
+
+function TabTitles({ title }) {
+  const classes = useStyles();
+  return (
+    <>
+      <Typography variant="body2">{title}</Typography>
+      <div className={classes.divider}><Divider light /></div>
+    </>
+  )
+}
+
+TabTitles.propTypes = {
+  titile: PropTypes.string.isRequired,
+};
 
 export default function TabDrawerContent() {
   const classes = useStyles();
@@ -74,60 +138,54 @@ export default function TabDrawerContent() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="By Topic" {...a11yProps(0)} />
+        <Tab label="BY TOPIC" {...a11yProps(0)} />
 
       </Tabs>
       <TabPanel value={value} index={0}>
         <Grid item>
-          <Typography variant="h5">Government  Finances</Typography>
-          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
-
-          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+          <TabTitles title="Government  Finances" />
+          <div item className={classes.menuGrid}>
+            {menuOptionOne.map(nav =>
+              <Link key={nav.href} href={nav.href} className={classes.link}>
+                {nav.name}
+              </Link>
+            )}
           </div>
         </Grid>
-        <Grid item>
-          <Typography variant="h5">Security & Safety</Typography>
-          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
 
-          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+        <Grid item>
+          <TabTitles title="Security and Safety" />
+          <div item className={classes.menuGrid}>
+            {menuOptionTwo.map(nav =>
+              <Link key={nav.href} href={nav.href} className={classes.link}>
+                {nav.name}
+              </Link>
+            )}
           </div>
         </Grid>
-        <Grid item>
-          <Typography variant="h5">Economy</Typography>
-          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
 
-          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+        <Grid item>
+          <TabTitles title="Economy" />
+          <div item className={classes.menuGrid}>
+            {menuOptionThree.map(nav =>
+              <Link key={nav.href} href={nav.href} className={classes.link}>
+                {nav.name}
+              </Link>
+            )}
           </div>
-
         </Grid>
-        <Grid item>
-          <Typography variant="h5">People and society</Typography>
-          <div style={{ padding: '1rem 0rem' }}><Divider light /></div>
 
-          <div item style={{ display: 'flex', flexDirection: 'column', padding: '2rem 0rem' }}>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example one</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example two</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example three</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example four</Link>
-            <Link href="#" style={{ textDecoration: 'none' }}>Example five</Link>
+        <Grid item>
+          <TabTitles title="People and society" />
+          <div item className={classes.menuGrid}>
+            {menuOptionFour.map(nav =>
+              <Link key={nav.href} href={nav.href} className={classes.link}>
+                {nav.name}
+              </Link>
+            )}
           </div>
         </Grid>
       </TabPanel>
-    </div>
+    </div >
   );
 }
