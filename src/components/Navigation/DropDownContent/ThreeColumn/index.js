@@ -3,45 +3,57 @@ import PropTypes from 'prop-types';
 
 import {
   Typography,
-  Card,
-  CardActionArea,
-  CardMedia,
-  CardContent,
   Grid
 } from '@material-ui/core';
-import { withStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
-import LeftColumn from './LeftColumn'
-import MiddleColumn from './MiddleColumn'
-import RightColumn from './RightColumn'
+import Articles from './Articles'
+import Visualizations from './Visualizations'
+import Publications from './Publications'
 
-const styles = theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '30rem',
-    padding: '4rem'
+    padding: '2rem 5rem'
+  },
+  title: {
+    padding: '1rem 0rem'
   }
-});
+}));
 
-function ThreeColumnContent({ classes }) {
+function HeaderTitle({ title }) {
+  const classes = useStyles()
+  return (
+    <>
+      <Typography variant="h5" className={classes.title}>{title}</Typography>
+      <Divider width={60} color="inherit" />
+    </>
+  )
+}
+
+HeaderTitle.propTypes = {
+  title: PropTypes.string.isRequired
+};
+
+
+function ThreeColumnContent() {
+  const classes = useStyles();
   return (
     <Grid container direction="row" justify="space-between" className={classes.root} spacing={6}>
       <Grid item xs={3}>
-        <Typography variant="h5" style={{ padding: '1rem 0rem' }}>Articles</Typography>
-        <Divider width={60} color="inherit" />
-        <LeftColumn />
+        <HeaderTitle title="Articles" />
+        <Articles />
       </Grid>
 
       <Grid item xs={6}>
-        <Typography variant="h5" style={{ padding: '1rem 0rem' }}>Visualizations</Typography>
-        <Divider width={60} color="inherit" />
-        <MiddleColumn />
+        <HeaderTitle title="Visualizations" />
+        <Visualizations />
       </Grid>
 
       <Grid item xs={3}>
-        <Typography variant="h5" style={{ padding: '1rem 0rem' }}>Annual Publications</Typography>
-        <Divider width={60} color="inherit" />
-        <RightColumn />
+        <HeaderTitle title="Annual Publications" />
+        <Publications />
       </Grid >
     </Grid>
   );
@@ -51,4 +63,4 @@ ThreeColumnContent.propTypes = {
   classes: PropTypes.shape().isRequired
 };
 
-export default withStyles(styles)(ThreeColumnContent);
+export default ThreeColumnContent;

@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const navList = [
-  { id: 0, title: 'Country', slug: 'data' },
+  { id: 0, title: 'Countries', slug: 'countries' },
   { id: 1, title: 'Insight', slug: 'insight' },
   { id: 2, title: 'Resources', slug: 'resources' },
   { id: 3, title: 'Data', slug: 'data' }

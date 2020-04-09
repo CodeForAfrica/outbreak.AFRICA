@@ -15,7 +15,7 @@ const useStyles = makeStyles({
   }
 });
 
-function LeftColumnContent({ title, subtitle, mediaSrc }) {
+function ArticlesContent({ title, subtitle, mediaSrc }) {
   const { classes } = useStyles();
   return (
     <Grid container direction="row" style={{ borderBottom: '0.5px solid grey' }}>
@@ -31,12 +31,12 @@ function LeftColumnContent({ title, subtitle, mediaSrc }) {
   )
 }
 
-export default function LeftColumn() {
+export default function Articles() {
   const { leftColumn } = config;
   return (
     <div style={{ padding: '2rem 0rem' }}>
       {leftColumn.map(story =>
-        <LeftColumnContent
+        <ArticlesContent
           key={story.index}
           subtitle={story.subtitle}
           title={story.title}

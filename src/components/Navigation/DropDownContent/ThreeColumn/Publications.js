@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MediaControlCard() {
+export default function Publications() {
   const classes = useStyles();
   const theme = useTheme();
 

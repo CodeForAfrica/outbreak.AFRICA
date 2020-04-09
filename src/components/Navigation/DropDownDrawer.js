@@ -82,15 +82,16 @@ export default function DropDownDrawer({
     >
       {children}
 
-      {active === 'Country' && active !== null ? <CountryDropDownContent
-        classes={{
-          container: classes.container
-        }}
-        type={active}
-        countries={countries}
-        profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
-        title='Country Profiles'
-        description={countryProfiles} /> : active === "Insight" && active !== null ? <ImageDrawerContent /> : active === 'Resources' && active !== null ? <TabDrawerContent /> : <ThreeColumn />}
+      {active === 'Countries' && active !== null ?
+        <CountryDropDownContent
+          classes={{
+            container: classes.container
+          }}
+          type={active}
+          countries={countries}
+          profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+          title='Country Profiles'
+          description={countryProfiles} /> : active === "Insight" && active !== null ? <ImageDrawerContent /> : active === 'Resources' && active !== null ? <TabDrawerContent /> : <ThreeColumn />}
     </Drawer>
   );
 }
