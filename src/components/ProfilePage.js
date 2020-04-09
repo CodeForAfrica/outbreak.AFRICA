@@ -440,9 +440,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
           url={config.MAPIT_URL}
           drawProfile
           codeType="AFR"
-          drawChildren={
-            geoId.split('-')[1] === 'NG' || geoId.split('-')[1] === 'KE'
-          }
+          drawChildren
           geoLevel={geoId.split('-')[0]}
           geoCode={geoId.split('-')[1]}
           onClickGeoLayer={onClickGeoLayer}

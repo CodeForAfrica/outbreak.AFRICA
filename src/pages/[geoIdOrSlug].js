@@ -50,7 +50,7 @@ function ProfilePage(initialProps) {
 ProfilePage.propTypes = {
   geoId: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  language: PropTypes.bool.isRequired,
+  language: PropTypes.string.isRequired,
   indicatorId: PropTypes.string
 };
 
