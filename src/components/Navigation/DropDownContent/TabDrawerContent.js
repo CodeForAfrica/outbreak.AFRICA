@@ -98,9 +98,9 @@ const useStyles = makeStyles(theme => ({
   },
   link: {
     textDecoration: 'none',
+    color: 'black',
     '&:hover': {
-      textDecoration: 'none',
-      color: theme.palette.text.primary.main
+      color: theme.palette.primary.main
     }
   }
 }));
@@ -146,8 +146,8 @@ export default function TabDrawerContent() {
           <TabTitles title="Government  Finances" />
           <div item className={classes.menuGrid}>
             {menuOptionOne.map(nav =>
-              <Link key={nav.href} href={nav.href} className={classes.link}>
-                {nav.name}
+              <Link key={nav.href} href={nav.href}>
+                <a className={classes.link}>{nav.name}</a>
               </Link>
             )}
           </div>
@@ -157,8 +157,8 @@ export default function TabDrawerContent() {
           <TabTitles title="Security and Safety" />
           <div item className={classes.menuGrid}>
             {menuOptionTwo.map(nav =>
-              <Link key={nav.href} href={nav.href} className={classes.link}>
-                {nav.name}
+              <Link key={nav.href} href={nav.href}>
+                <a className={classes.link}>{nav.name}</a>
               </Link>
             )}
           </div>
@@ -168,8 +168,8 @@ export default function TabDrawerContent() {
           <TabTitles title="Economy" />
           <div item className={classes.menuGrid}>
             {menuOptionThree.map(nav =>
-              <Link key={nav.href} href={nav.href} className={classes.link}>
-                {nav.name}
+              <Link key={nav.href} href={nav.href}>
+                <a className={classes.link}>{nav.name}</a>
               </Link>
             )}
           </div>
@@ -179,8 +179,8 @@ export default function TabDrawerContent() {
           <TabTitles title="People and society" />
           <div item className={classes.menuGrid}>
             {menuOptionFour.map(nav =>
-              <Link key={nav.href} href={nav.href} className={classes.link}>
-                {nav.name}
+              <Link key={nav.href} href={nav.href} >
+                <a className={classes.link}>{nav.name}</a>
               </Link>
             )}
           </div>
