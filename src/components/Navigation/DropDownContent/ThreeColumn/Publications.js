@@ -10,16 +10,26 @@ import imageSrc from '../../../../assets/images/example/image1.jpeg'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
+    height: '12rem'
   },
   content: {
-    padding: '2rem'
+    paddingLeft: '2rem',
   },
   cover: {
-    height: 0,
-    width: 200,
-    paddingTop: '56.25%', // 16:9
-  }
+    width: 180,
+  },
+  linkGrid: {
+    padding: '1.5rem 0.8rem'
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'black',
+    fontSize: '1rem',
+    '&:hover': {
+      color: theme.palette.primary.main
+    }
+  },
 }));
 
 export default function Publications() {
@@ -27,7 +37,7 @@ export default function Publications() {
   const theme = useTheme();
 
   return (
-    <Grid container direction="column" justify="space-around" spacing={6} style={{ padding: '2rem 0rem' }}>
+    <Grid container direction="column" justify="space-around" spacing={4} style={{ padding: '1rem 0rem' }}>
       <Grid item>
         <Paper className={classes.root}>
           <CardMedia
@@ -61,8 +71,8 @@ export default function Publications() {
         </Paper>
       </Grid>
 
-      <Grid container direction="row" justify="flex-end" style={{ padding: '3rem 0' }}>
-        <Link href="#" style={{ textAlign: 'left' }}>View more</Link>
+      <Grid container direction="row" justify="flex-end" className={classes.linkGrid}>
+        <Link href="#" ><a href="#" className={classes.link}>View more</a></Link>
       </Grid>
     </Grid>
   );

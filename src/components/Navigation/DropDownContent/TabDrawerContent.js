@@ -102,6 +102,12 @@ const useStyles = makeStyles(theme => ({
     '&:hover': {
       color: theme.palette.primary.main
     }
+  },
+  title: {
+    fontWeight: 'bolder'
+  },
+  tabLabel: {
+    fontSize: '1.875rem'
   }
 }));
 
@@ -110,7 +116,7 @@ function TabTitles({ title }) {
   const classes = useStyles();
   return (
     <>
-      <Typography variant="body2">{title}</Typography>
+      <Typography variant="body2" className={classes.title}>{title}</Typography>
       <div className={classes.divider}><Divider light /></div>
     </>
   )
@@ -138,7 +144,7 @@ export default function TabDrawerContent() {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="BY TOPIC" {...a11yProps(0)} />
+        <Tab label={<span className={classes.tabLabel}>BY TOPIC</span>} {...a11yProps(0)} />
 
       </Tabs>
       <TabPanel value={value} index={0}>

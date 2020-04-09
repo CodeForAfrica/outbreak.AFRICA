@@ -14,11 +14,11 @@ import Publications from './Publications'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    height: '30rem',
-    padding: '2rem 5rem'
+    padding: '1rem 4rem',
   },
   title: {
-    padding: '1rem 0rem'
+    padding: '1rem 0rem',
+    fontWeight: 'bolder'
   }
 }));
 
@@ -26,7 +26,7 @@ function HeaderTitle({ title }) {
   const classes = useStyles()
   return (
     <>
-      <Typography variant="h5" className={classes.title}>{title}</Typography>
+      <Typography variant="body2" className={classes.title}>{title}</Typography>
       <Divider width={60} color="inherit" />
     </>
   )
@@ -36,11 +36,10 @@ HeaderTitle.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-
 function ThreeColumnContent() {
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="space-between" className={classes.root} spacing={6}>
+    <Grid container direction="row" justify="space-between" className={classes.root}>
       <Grid item xs={3}>
         <HeaderTitle title="Articles" />
         <Articles />
@@ -54,8 +53,8 @@ function ThreeColumnContent() {
       <Grid item xs={3}>
         <HeaderTitle title="Annual Publications" />
         <Publications />
-      </Grid >
-    </Grid>
+      </Grid>
+    </Grid >
   );
 }
 
