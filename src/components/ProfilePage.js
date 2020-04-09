@@ -336,12 +336,14 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                   title="${chart.title}"
                   allowFullScreen
                 />`}
-                      insight={{
-                        // dataLink: {
-                        //   href: `/profiles/${country.slug}`,
-                        //   title: 'Read the country analysis'
-                        // }
-                      }}
+                      insight={
+                        {
+                          // dataLink: {
+                          //   href: `/profiles/${country.slug}`,
+                          //   title: 'Read the country analysis'
+                          // }
+                        }
+                      }
                       loading={chartData.isLoading}
                       logo={logo}
                       source={source}
@@ -439,10 +441,8 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
         <MapIt
           url="https://dev.mapit.hurumap.org"
           drawProfile
+          drawChildren
           codeType="AFR"
-          drawChildren={
-            geoId.split('-')[1] === 'NG' || geoId.split('-')[1] === 'KE'
-          }
           geoLevel={geoId.split('-')[0]}
           geoCode={geoId.split('-')[1]}
           onClickGeoLayer={onClickGeoLayer}
