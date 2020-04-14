@@ -40,6 +40,9 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     width: 0,
     zIndex: 1
+  },
+  title: {
+    fontSize: '1.125rem'
   }
 }));
 
@@ -59,7 +62,7 @@ function DropDownButton({
       })}
       onClick={handleClick}
     >
-      <Typography variant="body1" style={{ fontSize: '1.125rem' }}>
+      <Typography variant="body1" className={classes.title}>
         {title}
       </Typography>
     </ButtonBase>

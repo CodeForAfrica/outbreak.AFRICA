@@ -60,7 +60,7 @@ export default function DropDownDrawer({
   children,
   countries,
   active,
-  navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
+  navigation: { country_profiles: countryProfiles },
   toggle
 }) {
   const classes = useStyles({ active, toggle });
@@ -78,7 +78,6 @@ export default function DropDownDrawer({
       transitionDuration={0}
       onEscapeKeyDown={toggle}
       onBackdropClick={toggle}
-      onClick={toggle}
     >
       {children}
 
@@ -98,7 +97,7 @@ export default function DropDownDrawer({
 
 DropDownDrawer.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  active: PropTypes.oneOf(['data', 'insight', 'resources']),
+  active: PropTypes.oneOf(['countries', 'data', 'insight', 'resources']),
   toggle: PropTypes.func.isRequired,
   name: PropTypes.string,
   children: PropTypes.oneOfType([
@@ -106,7 +105,6 @@ DropDownDrawer.propTypes = {
     PropTypes.node
   ]).isRequired,
   navigation: PropTypes.shape({
-    country_analysis: PropTypes.string,
     country_profiles: PropTypes.string
   }).isRequired
 };
