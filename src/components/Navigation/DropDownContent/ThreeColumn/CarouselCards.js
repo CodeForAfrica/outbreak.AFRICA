@@ -12,25 +12,23 @@ const useStyles = makeStyles({
     minHeight: 350,
     height: '100%',
     background: '#EEE',
-    filter: 'grayscale(1)',
+    position: 'relative',
     transition: 'all 300ms',
     '&:hover': {
       transform: 'scale(1.1)'
     }
-  },
-  media: {
-    height: 350,
-    paddingTop: '56.25%', // 16:9
-  },
-  card: {
-    position: 'relative',
   },
   overlay: {
     position: 'absolute',
     top: '20px',
     left: '20px',
     color: 'white',
-    padding: '2rem'
+    padding: '5rem 2.5rem'
+  },
+  media: {
+    height: 350,
+    paddingTop: '56.25%', // 16:9
+    filter: ' grayscale(2%) sepia(1%) hue-rotate(27deg) invert(28%);',
   },
   contentRoot: {
     flexGrow: 1,
