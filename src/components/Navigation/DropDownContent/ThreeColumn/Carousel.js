@@ -20,6 +20,27 @@ const useStyles = makeStyles({
 });
 
 
+const carouselData = [
+  {
+    subtitle: 'Visualization',
+    title: ' The Economy: 15 years in 15 seconds',
+    description: 'How american jobs and wages changs in 15 years',
+    link: '#'
+  },
+  {
+    subtitle: 'Visualization',
+    title: ' Democracy Demographics: A look at Alabama',
+    description: 'Every state has its own primary or caucus, but they each hold national importance.',
+    link: '#'
+  },
+  {
+    subtitle: 'Visualization',
+    title: ' Government Revenue and Expediture',
+    description: 'Understand the size and state of the American people with this Census Bureau data.',
+    link: '#'
+  },
+]
+
 function Carousel() {
   const classes = useStyles();
   const [activeItemIndex, setActiveItemIndex] = useState(0);
@@ -36,10 +57,12 @@ function Carousel() {
         outsideChevron
         chevronWidth={chevronWidth}
       >
-        <CarouselCards />
-        <CarouselCards />
-        <CarouselCards />
-        <CarouselCards />
+        {carouselData.map(info =>
+          <CarouselCards
+            subheading={info.subheading}
+            title={info.title}
+            description={info.description} />
+        )}
       </ItemsCarousel >
     </ div >
   )
