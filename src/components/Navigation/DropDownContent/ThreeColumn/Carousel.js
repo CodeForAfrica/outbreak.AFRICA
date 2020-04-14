@@ -2,11 +2,14 @@
 import React, { useState } from 'react';
 import ItemsCarousel from 'react-items-carousel';
 
+import CarouselCards from './CarouselCards';
+
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowBackIosRoundedIcon from '@material-ui/icons/ArrowBackIosRounded';
+import ArrowForwardIosRoundedIcon from '@material-ui/icons/ArrowForwardIosRounded';
 
 const useStyles = makeStyles({
   root: {
-    //padding: '0 20px',
     maxwidth: '1000px',
     margin: '0 auto',
     paddingRight: '40px'
@@ -24,16 +27,16 @@ function Carousel() {
         requestToChangeActive={setActiveItemIndex}
         activeItemIndex={activeItemIndex}
         numberOfCards={2}
-        gutter={20}
-        leftChevron={<button>{'<'}</button>}
-        rightChevron={<button>{'>'}</button>}
+        gutter={300}
+        leftChevron={<ArrowBackIosRoundedIcon />}
+        rightChevron={<ArrowForwardIosRoundedIcon />}
         outsideChevron
         chevronWidth={chevronWidth}
       >
-        <div style={{ height: 400, background: '#EEE' }}>Image card</div>
-        <div style={{ height: 400, background: '#EEE' }}>Image card</div>
-        <div style={{ height: 400, background: '#EEE' }}>Image card</div>
-        <div style={{ height: 400, background: '#EEE' }}>Image card</div>
+        <CarouselCards />
+        <CarouselCards />
+        <CarouselCards />
+        <CarouselCards />
       </ItemsCarousel>
     </ div>
   )
