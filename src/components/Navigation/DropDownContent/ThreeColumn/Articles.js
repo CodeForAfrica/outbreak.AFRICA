@@ -28,12 +28,13 @@ const useStyles = makeStyles(theme => ({
   },
   caption: {
     fontWeight: 'bolder',
+    lineHeight: '1.3rem',
     '&:hover': {
       textDecoration: 'underline'
     }
   },
   mainContainer: {
-    padding: '2rem 0rem'
+    padding: '1.5rem 0rem'
   },
   linkGrid: {
     padding: '1.5rem 4.5rem'

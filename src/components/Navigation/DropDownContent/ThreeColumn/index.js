@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 
 import Articles from './Articles'
-import Visualizations from './Visualizations'
+import Carousel from './Carousel'
 import Publications from './Publications'
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +47,7 @@ function ThreeColumnContent() {
 
       <Grid item xs={12} md={6}>
         <HeaderTitle title="Visualizations" />
-        <Visualizations />
+        <Carousel />
       </Grid>
 
       <Grid item xs={12} md={3}>

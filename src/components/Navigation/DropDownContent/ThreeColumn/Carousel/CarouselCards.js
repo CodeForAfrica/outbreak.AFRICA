@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { Card, CardMedia, Grid, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import mediasrc from '../../../../assets/images/example/image2.jpeg'
+import mediasrc from '../../../../../assets/images/example/image2.jpeg'
 
 const useStyles = makeStyles({
   root: {
@@ -51,18 +51,21 @@ const useStyles = makeStyles({
   },
   divider: {
     color: 'white'
+  },
+  subheading: {
+    
   }
 });
 
 
-function CarouselCards({ title, subheading, description }) {
+function CarouselCards({ link, title, subheading, description }) {
   const classes = useStyles();
   return (
     <Card className={classes.root}>
-      <a href='#' target="_blank" rel="noopener noreferrer">
+      <a href={link} target="_blank" rel="noopener noreferrer">
         <CardMedia image={mediasrc} className={classes.media} />
         <Grid container direction="column" justify="flex-start" className={classes.overlay}>
-          <Typography variant="body2">{subheading}</Typography>
+          <Typography variant="body2" className={classes.subheading}>{subheading}</Typography>
           <div>
             <Typography variant="subtitle2" className={classes.textEdit}>{title}</Typography>
             <Typography variant="body2" className={classes.textEdit}>{description}</Typography>
@@ -81,13 +84,15 @@ function CarouselCards({ title, subheading, description }) {
 CarouselCards.propTypes = {
   title: PropTypes.string.isRequired,
   subheading: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired
+  description: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired
 };
 
 CarouselCards.defaultProps = {
   title: '',
   description: '',
-  subheading: ''
+  subheading: '',
+  link: ''
 };
 
 
