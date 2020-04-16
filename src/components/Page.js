@@ -14,7 +14,7 @@ function Page({ children, ...props }) {
       <SEO {...props} />
       <NewNav takwimu={config} />
       {children}
-      <Grid container style={{ height: '15rem' }}>HERO HERE</Grid>
+      <Grid container style={{ height: '15rem' }} />
       <Footer takwimu={config} />
     </>
   );

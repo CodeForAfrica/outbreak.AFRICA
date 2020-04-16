@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginRight: theme.spacing(2),
   },
+  popper: {
+    paddingTop: '1.5rem'
+  }
 }));
 
 function DropDownMenu({ title }) {
@@ -55,6 +58,41 @@ function DropDownMenu({ title }) {
     prevOpen.current = open;
   }, [open]);
 
+
+  const renderDataMenu = () => {
+    return (
+      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+        <MenuItem>Kenya</MenuItem>
+        <MenuItem>South Africa</MenuItem>
+        <MenuItem>Nigeria</MenuItem>
+        <MenuItem>Ghana</MenuItem>
+        <MenuItem>Morocco</MenuItem>
+      </MenuList>
+    )
+  }
+
+  const renderInsightMenu = () => {
+    return (
+      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+        <MenuItem>Analysis</MenuItem>
+        <MenuItem>Misinformation</MenuItem>
+        <MenuItem>Frontline Reportange</MenuItem>
+        <MenuItem>Multimedia resources</MenuItem>
+      </MenuList>
+    )
+  }
+
+  const renderResourcesMenu = () => {
+    return (
+      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+        <MenuItem>African Experts</MenuItem>
+        <MenuItem>Published Research</MenuItem>
+        <MenuItem>Scientific Institutions</MenuItem>
+      </MenuList>
+    )
+  }
+
+
   return (
     <>
       <Typography
@@ -66,21 +104,15 @@ function DropDownMenu({ title }) {
       >
         {title}
       </Typography>
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal style={{ top: '0!important' }}>
+      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal className={classes.popper}>
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'bottom-end' }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                  <MenuItem>Kenya</MenuItem>
-                  <MenuItem>South Africa</MenuItem>
-                  <MenuItem>Nigeria</MenuItem>
-                  <MenuItem>Ghana</MenuItem>
-                  <MenuItem>Morocco</MenuItem>
-                </MenuList>
+                {title === 'DATA' ? renderDataMenu() : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
             </Paper>
           </Grow>

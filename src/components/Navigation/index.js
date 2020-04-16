@@ -4,24 +4,17 @@ import { PropTypes } from 'prop-types';
 import {
   withWidth,
   Grid,
-  AppBar,
-  Toolbar,
   MenuList,
   Drawer,
-  IconButton,
   MenuItem,
   ButtonBase,
   Typography
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Close from '@material-ui/icons/Close';
-import MenuOutlined from '@material-ui/icons/MenuOutlined';
-import Search from '@material-ui/icons/Search';
-import MenuIcon from '@material-ui/icons/Menu';
-import NavMenu from './NavMenu';
 
+import Search from '@material-ui/icons/Search';
+import NavMenu from './NavMenu';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import classNames from 'classnames';
 import { withRouter } from 'next/router';
 import ModalMenu from './ModalMenu'
 import DropDownButtons from './DropDowns';
