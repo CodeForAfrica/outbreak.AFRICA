@@ -119,8 +119,8 @@ class Navigation extends React.Component {
     return (
       <nav className={classes.root}>
         <Grid item>
-          <Link href="/" className={classes.link}>
-            <Typography variant="h4">OUTBREAK</Typography>
+          <Link href="/" >
+            <Typography variant="h4" className={classes.link}>OUTBREAK</Typography>
           </Link>
         </Grid>
         {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}

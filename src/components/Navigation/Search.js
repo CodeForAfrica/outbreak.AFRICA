@@ -32,6 +32,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputRoot: {
     color: 'inherit',
+    fontSize: '0.8rem',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -41,7 +42,8 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '100%',
+      maxWidth: '100%',
+      width: '15rem'
     },
   },
 }));
