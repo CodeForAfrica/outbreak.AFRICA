@@ -102,11 +102,11 @@ export default function ModalMenu() {
 
         <DialogContent className={classes.dialogContent}>
 
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  5rem' }}>
+          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
             <Grid item>
-              <Typography>Data</Typography>
+              <Typography variant="h5">DATA</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
               <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
               <List component="nav">
                 <ListItem button>
@@ -129,54 +129,45 @@ export default function ModalMenu() {
           </Grid>
 
 
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  5rem' }}>
+          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
             <Grid item>
-              <Typography>Data</Typography>
+              <Typography variant="h5">INSIGHT</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
               <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
               <List component="nav">
                 <ListItem button>
-                  <ListItemText primary="Kenya" />
+                  <ListItemText primary="Analysis" />
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="South Africa" />
+                  <ListItemText primary="Misinformation" />
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="Nigeria" />
+                  <ListItemText primary="Frontline Reportange" />
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="Morocco" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Ghana" />
+                  <ListItemText primary="Multimedia resources" />
                 </ListItem>
               </List>
             </Grid>
           </Grid>
 
 
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  5rem' }}>
+          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
             <Grid item>
-              <Typography>Data</Typography>
+              <Typography variant="h5">RESOURCES</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row' }}>
+            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
               <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
               <List component="nav">
                 <ListItem button>
-                  <ListItemText primary="Kenya" />
+                  <ListItemText primary="African Experts" />
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="South Africa" />
+                  <ListItemText primary="Published Research" />
                 </ListItem>
                 <ListItem button>
-                  <ListItemText primary="Nigeria" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Morocco" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemText primary="Ghana" />
+                  <ListItemText primary="Scientific Institutions" />
                 </ListItem>
               </List>
             </Grid>
