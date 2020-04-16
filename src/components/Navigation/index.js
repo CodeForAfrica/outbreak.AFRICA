@@ -39,9 +39,12 @@ const styles = theme => ({
     color: 'black',
     width: '100%',
     height: '5.313rem',
-    padding: '0rem 8rem',
+    paddingRight: '2rem',
     backgroundColor: 'transparent',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+    [theme.breakpoints.up('md')]: {
+      padding: '0rem 8rem',
+    },
   },
   link: {
     '&:hover': {
@@ -137,16 +140,7 @@ class Navigation extends React.Component {
       <>
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
-            <Grid item>
-              <IconButton
-                disableRipple
-                disableTouchRipple
-                color="inherit"
-                onClick={this.toggleMobileDrawer}
-              >
-                {openDrawer === 'search' ? <Close /> : <MenuOutlined />}
-              </IconButton>
-            </Grid>
+            <ModalMenu />
           </Grid>
         </Grid>
       </>
@@ -160,7 +154,6 @@ class Navigation extends React.Component {
       router: { pathname }
     } = this.props;
     const { openDrawer } = this.state;
-
     return (
       <>
         <Grid item>
