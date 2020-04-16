@@ -4,6 +4,8 @@ import { PropTypes } from 'prop-types';
 import {
   withWidth,
   Grid,
+  AppBar,
+  Toolbar,
   MenuList,
   Drawer,
   IconButton,
@@ -16,6 +18,7 @@ import Close from '@material-ui/icons/Close';
 import MenuOutlined from '@material-ui/icons/MenuOutlined';
 import Search from '@material-ui/icons/Search';
 import MenuIcon from '@material-ui/icons/Menu';
+import NavMenu from './NavMenu';
 
 import { isWidthUp } from '@material-ui/core/withWidth';
 import classNames from 'classnames';
@@ -29,18 +32,20 @@ import Link from '../Link';
 
 const styles = theme => ({
   root: {
-    backgroundColor: 'transparent',
-    width: '100%',
-    height: '6.313rem',
     display: 'flex',
     direction: 'row',
-    padding: '0rem 2rem',
     justifyContent: 'space-between',
     alignItems: 'center',
-    boxShadow: 'none',
+    color: 'black',
+    width: '100%',
+    height: '5.313rem',
+    padding: '0rem 8rem',
+    backgroundColor: 'transparent',
+    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+  },
+  link: {
     '&:hover': {
-      backgroundColor: 'white',
-      boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+      textDecoration: 'none'
     }
   },
   noShadow: {
@@ -109,12 +114,12 @@ class Navigation extends React.Component {
     };
   }
 
-  renderNavBar(inDrawer = false) {
+  renderNavBar() {
     const { width, classes } = this.props;
     return (
-      <nav className={classNames(classes.root, { [classes.noShadow]: inDrawer })}>
+      <nav className={classes.root}>
         <Grid item>
-          <Link href="/">
+          <Link href="/" className={classes.link}>
             <Typography variant="h4">OUTBREAK</Typography>
           </Link>
         </Grid>
@@ -159,20 +164,7 @@ class Navigation extends React.Component {
     return (
       <>
         <Grid item>
-          <DropDownButtons
-            page={page}
-            active={openDrawer}
-            toggle={this.toggleDrawer}
-            countries={countries}
-          />
-
-
-          <ButtonBase
-            className={classes.searchButton}
-            onClick={this.toggleDrawer('search')}
-          >
-            {openDrawer === 'search' ? <Close /> : <Search />}
-          </ButtonBase>
+          <NavMenu />
         </Grid>
       </>
     );
