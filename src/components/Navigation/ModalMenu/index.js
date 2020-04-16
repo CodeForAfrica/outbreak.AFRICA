@@ -1,29 +1,27 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
+import {
+  AppBar,
+  Slide,
+  List,
+  ListItem,
+  ListItemText,
+  Toolbar,
+  IconButton,
+  Grid,
+  Typography,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  Divider
+} from '@material-ui/core'
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+
 import SearchIcon from '@material-ui/icons/Search';
-import Grid from '@material-ui/core/Grid';
-
-
-import Divider from '@material-ui/core/Divider';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
 import MenuIcon from '@material-ui/icons/Menu';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/Inbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +30,20 @@ const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#2C2559',
     boxShadow: 'none'
+  },
+  gridRoot: {
+    padding: '1rem  2rem'
+  },
+  titleGrid: {
+    width: '50%'
+  },
+  listRoot: {
+    display: 'flex',
+    flexDirection: 'row',
+    width: '50%'
+  },
+  divider: {
+    border: "0.5px solid grey"
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -54,6 +66,7 @@ const useStyles = makeStyles((theme) => ({
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
 }
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
 });
@@ -101,74 +114,87 @@ export default function ModalMenu() {
         </DialogTitle>
 
         <DialogContent className={classes.dialogContent}>
-
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
+          <Grid container direction="row" justify="space-between" className={classes.gridRoot}>
             <Grid item>
               <Typography variant="h5">DATA</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
-              <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
+            <Grid item className={classes.listRoot}>
+              <Divider orientation="vertical" flexItem className={classes.divider} />
+
               <List component="nav">
-                <ListItem button>
+                <ListItemLink href="#">
                   <ListItemText primary="Kenya" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="South Africa" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Nigeria" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Morocco" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Ghana" />
-                </ListItem>
+                </ListItemLink>
               </List>
+
             </Grid>
           </Grid>
 
 
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
+          <Grid container direction="row" justify="space-between" className={classes.gridRoot}>
             <Grid item>
               <Typography variant="h5">INSIGHT</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
-              <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
+            <Grid item className={classes.listRoot}>
+              <Divider orientation="vertical" flexItem className={classes.divider} />
+
               <List component="nav">
-                <ListItem button>
+                <ListItemLink href="#">
                   <ListItemText primary="Analysis" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Misinformation" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Frontline Reportange" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Multimedia resources" />
-                </ListItem>
+                </ListItemLink>
               </List>
+
             </Grid>
           </Grid>
 
 
-          <Grid container direction="row" justify="space-between" style={{ padding: '1rem  2rem' }}>
-            <Grid item>
+          <Grid container direction="row" justify="space-between" lassName={classes.gridRoot}>
+            <Grid item style={{ margin: '1rem' }}>
               <Typography variant="h5">RESOURCES</Typography>
             </Grid>
-            <Grid item style={{ display: 'flex', flexDirection: 'row', width: '50%' }}>
-              <Divider orientation="vertical" flexItem style={{ border: "0.5px solid grey" }} />
+            <Grid item className={classes.listRoot}>
+              <Divider orientation="vertical" flexItem className={classes.divider} />
+
               <List component="nav">
-                <ListItem button>
+                <ListItemLink href="#">
                   <ListItemText primary="African Experts" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Published Research" />
-                </ListItem>
-                <ListItem button>
+                </ListItemLink>
+
+                <ListItemLink href="#">
                   <ListItemText primary="Scientific Institutions" />
-                </ListItem>
+                </ListItemLink>
               </List>
             </Grid>
           </Grid>
