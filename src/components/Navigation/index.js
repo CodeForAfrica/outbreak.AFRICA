@@ -22,6 +22,8 @@ import DropDownDrawer from './DropDownDrawer';
 import SearchDrawer from './SearchDrawer';
 import Link from '../Link';
 
+import logo from '../../assets/images/logo/logo-outbreak.svg'
+
 
 const styles = theme => ({
   root: {
@@ -54,6 +56,9 @@ const styles = theme => ({
   },
   link: {
     margin: '1.375rem 3.25rem',
+    color: 'black',
+    fontWeight: '500',
+    textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
       margin: '0.625rem'
     },
@@ -72,6 +77,8 @@ const styles = theme => ({
     margin: '1.375rem 0.7rem'
   }
 });
+
+
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -116,7 +123,10 @@ class Navigation extends React.Component {
       <nav className={classes.root}>
         <Grid item>
           <Link href="/" >
-            <Typography variant="h4" className={classes.link}>OUTBREAK</Typography>
+            <Grid container direction="row" justify="center" alignItems="center">
+              <img src={logo} alt="Outbreak" style={{ height: '3rem' }} />
+              <Typography variant="caption" className={classes.link}>OUTBREAK <br /><span style={{ color: 'blue', textDecoration: 'none' }}>Covid-19</span></Typography>
+            </Grid>
           </Link>
         </Grid>
         {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}
