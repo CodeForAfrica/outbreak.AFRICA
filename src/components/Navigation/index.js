@@ -61,12 +61,11 @@ const styles = theme => ({
     }
   },
   logoLink: {
-    //margin: '1.375rem 3.25rem',
     marginRight: '2rem',
     color: 'black',
     fontSize: '1.2rem',
     lineHeight: '1.5rem',
-    fontWeight: '500',
+    fontWeight: 'bolder',
     textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
       margin: '0.625rem'
@@ -90,7 +89,8 @@ const styles = theme => ({
   },
   span: {
     color: 'blue',
-    textDecoration: 'none'
+    textDecoration: 'none',
+    fontWeight: 'bolder'
   }
 });
 
