@@ -7,11 +7,13 @@ import {
   Popper,
   MenuItem,
   MenuList,
-  ClickAwayListener
+  ClickAwayListener,
+  List
 } from '@material-ui/core';
 
 
 import { makeStyles } from '@material-ui/core/styles';
+import Countries from './Countries';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,7 +27,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-function DropDownMenu({ title }) {
+function MenuItemLink(props) {
+  return <MenuItem button component="a" {...props} />;
+}
+
+function DropDownMenu({ title, countries }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -59,25 +65,13 @@ function DropDownMenu({ title }) {
   }, [open]);
 
 
-  const renderDataMenu = () => {
-    return (
-      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-        <MenuItem>Kenya</MenuItem>
-        <MenuItem>South Africa</MenuItem>
-        <MenuItem>Nigeria</MenuItem>
-        <MenuItem>Ghana</MenuItem>
-        <MenuItem>Morocco</MenuItem>
-      </MenuList>
-    )
-  }
-
   const renderInsightMenu = () => {
     return (
       <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-        <MenuItem>Analysis</MenuItem>
-        <MenuItem>Misinformation</MenuItem>
-        <MenuItem>Frontline Reportange</MenuItem>
-        <MenuItem>Multimedia resources</MenuItem>
+        <MenuItemLink href="/">Analysis</MenuItemLink>
+        <MenuItemLink href="/">Misinformation</MenuItemLink>
+        <MenuItemLink href="/">Frontline Reportange</MenuItemLink>
+        <MenuItemLink href="/">Multimedia resources</MenuItemLink>
       </MenuList>
     )
   }
@@ -85,9 +79,9 @@ function DropDownMenu({ title }) {
   const renderResourcesMenu = () => {
     return (
       <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-        <MenuItem>African Experts</MenuItem>
-        <MenuItem>Published Research</MenuItem>
-        <MenuItem>Scientific Institutions</MenuItem>
+        <MenuItemLink href="/">African Experts</MenuItemLink>
+        <MenuItemLink href="/">Published Research</MenuItemLink>
+        <MenuItemLink href="/">Scientific Institutions</MenuItemLink>
       </MenuList>
     )
   }
@@ -112,7 +106,10 @@ function DropDownMenu({ title }) {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === 'DATA' ? renderDataMenu() : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
+                {title === 'DATA' ?
+                  <Countries
+                    countries={countries}
+                    profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} /> : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
             </Paper>
           </Grow>

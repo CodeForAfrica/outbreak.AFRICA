@@ -171,14 +171,14 @@ class Navigation extends React.Component {
   renderDesktopNav() {
     const {
       classes,
-      takwimu: { page, countries, language },
+      takwimu: { countries },
       router: { pathname }
     } = this.props;
     const { openDrawer } = this.state;
     return (
       <>
         <Grid item>
-          <NavMenu />
+          <NavMenu countries={countries} />
         </Grid>
       </>
     );
@@ -289,7 +289,6 @@ Navigation.propTypes = {
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
     page: PropTypes.shape({}).isRequired,
-
     countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     settings: PropTypes.shape({
       navigation: PropTypes.shape({})
