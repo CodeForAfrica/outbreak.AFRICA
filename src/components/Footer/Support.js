@@ -2,13 +2,13 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
-
-import Title from './Title';
+import A from '@commons-ui/core/A';
 
 import gates from 'assets/images/gates.png';
 import gates2 from 'assets/images/gates@2x.png';
 import gates3 from 'assets/images/gates@3x.png';
+
+import Title from './Title';
 
 const useStyles = makeStyles({
   root: {

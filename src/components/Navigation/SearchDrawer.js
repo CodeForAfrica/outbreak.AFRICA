@@ -8,12 +8,12 @@ import classNames from 'classnames';
 
 import { useRouter } from 'next/router';
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
-import Link from '../Link';
-import rightArrowOpaque from '../../assets/images/right-arrow-opaque.svg';
-import rightArrowTransparent from '../../assets/images/right-arrow-transparent.svg';
 
-import Layout from '../Layout';
-import config from '../../config';
+import Layout from 'components/Layout';
+import Link from 'components/Link';
+import config from 'config';
+import rightArrowOpaque from 'assets/images/right-arrow-opaque.svg';
+import rightArrowTransparent from 'assets/images/right-arrow-transparent.svg';
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

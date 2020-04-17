@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import config from 'config';
+
 import Footer from './Footer';
 import Navigation from './Navigation';
 import SEO from './SEO';
-
-import config from '../config';
 
 function Page({ children, ...props }) {
   return (

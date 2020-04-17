@@ -5,9 +5,9 @@ import { Grid, Typography, withWidth } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { isWidthDown } from '@material-ui/core/withWidth';
 
-import flags from '../../flags';
-import Link from '../Link';
-import RichTypography from '../RichTypography';
+import Link from 'components/Link';
+import RichTypography from 'components/RichTypography';
+import flags from 'flags';
 
 const useStyles = makeStyles(theme => ({
   root: {

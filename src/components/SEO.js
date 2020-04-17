@@ -4,8 +4,8 @@ import { PropTypes } from 'prop-types';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 
-import config from '../config';
-import defaultImage from '../assets/images/cfa.png';
+import config from 'config';
+import defaultImage from 'assets/images/cfa.png';
 
 function SEO({ title, description, image, location = '' }) {
   const pageTitle = title ? `${title} | ${config.name}` : config.name;
@@ -13,7 +13,7 @@ function SEO({ title, description, image, location = '' }) {
   const {
     query: { indicatorId }
   } = useRouter();
-  let imageUrl = indicatorId
+  const imageUrl = indicatorId
     ? `${config.media.imageUrl}/${indicatorId}${config.media.imageType}`
     : `${config.url}${image || defaultImage}`;
 

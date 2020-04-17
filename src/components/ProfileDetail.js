@@ -14,10 +14,10 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import searchIcon from 'assets/images/icon-search.svg';
 import Link from './Link';
 import Layout from './Layout';
 
-import searchIcon from '../assets/images/icon-search.svg';
 import config from '../config';
 import CountrySelector from './CountrySelector';
 

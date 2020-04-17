@@ -20,14 +20,15 @@ import Search from '@material-ui/icons/Search';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import classNames from 'classnames';
 import { withRouter } from 'next/router';
-import logoWhite from '../../assets/images/logo-white-all.png';
+
+import Layout from 'components/Layout';
+import Link from 'components/Link';
+import logoWhite from 'assets/images/logo-white-all.png';
 
 import LanguageSelector from './LanguageSelector';
-import Layout from '../Layout';
 import DropDownButtons from './DropDowns';
 import DropDownDrawer from './DropDownDrawer';
 import SearchDrawer from './SearchDrawer';
-import Link from '../Link';
 
 const styles = theme => ({
   root: {
