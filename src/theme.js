@@ -14,10 +14,9 @@ const COLOR_BREWER_DIVERGING = [
 const theme = createTheme({
   chart: {
     pie: {
-      width: 350,
+      width: 450,
       height: 350,
       padding: 0,
-      origin: { x: 150, y: 125 },
       colorScale: COLOR_BREWER_DIVERGING,
       legend: {
         labelWidth: 150
@@ -31,8 +30,8 @@ const theme = createTheme({
     },
     line: {
       offset: 70,
-      width: 350,
-      height: 350,
+      width: 400,
+      height: 400,
       style: {
         data: {
           strokeWidth: 4
@@ -45,8 +44,8 @@ const theme = createTheme({
     },
     bar: {
       width: 400,
-      height: 400,
-      barWidth: 30,
+      height: 350,
+      barWidth: 40,
       offset: 50,
       style: {
         data: {
