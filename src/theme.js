@@ -106,13 +106,13 @@ const theme = createTheme({
     fontText: FONT_FAMILY_TEXT,
     h1: {
       fontFamily: FONT_FAMILY_HEADING,
-      fontSize: '3.375rem',
+      fontSize: '5rem',
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 'normal',
       letterSpacing: 'normal',
-      color: 'black'
+      color: '#170F49'
     },
     h2: {
       fontFamily: FONT_FAMILY_HEADING,

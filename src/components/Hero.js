@@ -6,25 +6,21 @@ import { makeStyles } from '@material-ui/core/styles';
 import RichTypography from './RichTypography';
 import Section from './Section';
 
-//import heroImage from '../assets/images/africanparliament.jpg';
+import heroImage from '../assets/images/heropattern.png';
+import coronaImage from '../assets/images/coronavirus.svg';
 
 const useStyles = makeStyles(theme => ({
   section: {
-    marginTop: '2.25rem',
     [theme.breakpoints.up('md')]: {
       position: 'relative'
     }
   },
   root: {
     width: '100%',
-    // backgroundImage: `url(${heroImage})`,
-    // backgroundRepeat: 'no-repeat',
-    // backgroundPosition: 'right bottom',
-    // backgroundSize: 'cover'
-  },
-  gradient: {
-    backgroundImage: `linear-gradient(89deg, #ffffff 30%, rgba(255, 255, 255, 0)),
-      linear-gradient(to bottom, #ffffff, transparent)`
+    backgroundImage: `url(${heroImage}), url(${coronaImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '0% 0%, 40% 70%',
+    backgroundSize: 'cover, 65% 75%'
   },
   hero: {
     flexGrow: 1
@@ -32,25 +28,32 @@ const useStyles = makeStyles(theme => ({
   title: {
     margin: 0,
     width: '100%',
+    fontFamily: 'Changa',
     paddingTop: '0.5625rem',
+    textAlign: 'left',
+    letterSpacing: 0,
 
     // Some words are too big to fit mobile so break them
     wordBreak: 'break-all',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '40rem',
-      wordBreak: 'initial'
+      maxWidth: '54.9375rem',
+      wordBreak: 'initial',
+      paddingTop: '12.625rem'
     }
   },
   description: {
     marginTop: '1.0625rem',
     marginBottom: '3.125rem',
+    fontFamily: 'Open Sans',
+    letterSpacing: 0,
     width: '100%',
     '& a': {
-      color: theme.palette.primary.main,
+      color: '#170F49',
       fontWeight: 'bold'
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '27.375rem'
+      maxWidth: '41.125rem',
+      fontSize: '1.875rem'
     }
   }
 }));
@@ -59,31 +62,29 @@ function Hero() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <div className={classes.gradient}>
-        <Section classes={{ root: classes.section }}>
-          <Grid
-            container
-            justify="flex-start"
-            alignItems="flex-start"
-            className={classes.hero}
-          >
-            <Grid item xs={12}>
-              <RichTypography
-                component="div"
-                variant="h1"
-                className={classes.title}
-              >
-                Contextual data with actionable insights
-              </RichTypography>
-            </Grid>
-            <Grid item xs={12}>
-              <RichTypography component="div" className={classes.description}>
-                Data driven analysis on COVID-19 in more than 10 African countries. Find out more about us.
-              </RichTypography>
-            </Grid>
+      <Section classes={{ root: classes.section }}>
+        <Grid
+          container
+          justify="flex-start"
+          alignItems="flex-start"
+          className={classes.hero}
+        >
+          <Grid item xs={12}>
+            <RichTypography
+              component="div"
+              variant="h1"
+              className={classes.title}
+            >
+              Contextual data with actionable insights
+            </RichTypography>
           </Grid>
-        </Section>
-      </div>
+          <Grid item xs={12}>
+            <RichTypography component="div" className={classes.description}>
+              Data driven analysis on COVID-19 in more than 10 African countries. Find out more about us.
+            </RichTypography>
+          </Grid>
+        </Grid>
+      </Section>
     </div>
   );
 }
