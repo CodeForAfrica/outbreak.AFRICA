@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import RichTypography from './RichTypography';
 import Section from './Section';
 
 import heroImage from '../assets/images/heropattern.png';
@@ -17,29 +16,51 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     width: '100%',
-    backgroundImage: `url(${heroImage}), url(${coronaImage})`,
+    backgroundImage: `url(${heroImage})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: '0% 0%, 40% 70%',
-    backgroundSize: 'cover, 65% 75%'
+    backgroundPosition: '0% 0%',
+    backgroundSize: 'cover',
+    [theme.breakpoints.up('md')]: {
+      paddingBottom: '2rem'
+    }
   },
   hero: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundImage: `url(${coronaImage})`,
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: '80% 20%',
+    backgroundSize: '50%',
+    margin: 'auto 1.375rem',
+    [theme.breakpoints.up('md')]: {
+      margin: 'auto 0',
+      backgroundPosition:  '20% 90%',
+      backgroundSize: '70% 75%',
+    }
+
   },
   title: {
     margin: 0,
     width: '100%',
     fontFamily: 'Changa',
-    paddingTop: '0.5625rem',
+    paddingTop: '2.5625rem',
     textAlign: 'left',
     letterSpacing: 0,
+    fontSize: '2rem',
 
     // Some words are too big to fit mobile so break them
-    wordBreak: 'break-all',
+   // wordBreak: 'break-all',
     [theme.breakpoints.up('md')]: {
       maxWidth: '54.935rem',
-      wordBreak: 'initial',
-      paddingTop: '12.625rem'
+     // wordBreak: 'initial',
+      paddingTop: '12.625rem',
+      fontSize: '5rem',
     }
+  },
+  highlight: {
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 50%)'
+  },
+  highlightBlue: {
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 50%)'
   },
   description: {
     marginTop: '1.0625rem',
@@ -71,18 +92,18 @@ function Hero() {
           className={classes.hero}
         >
           <Grid item xs={12}>
-            <RichTypography
-              component="div"
-              variant="h1"
+            <Typography variant="h1" component="div"
               className={classes.title}
             >
-              Contextual data with actionable insights
-            </RichTypography>
+              <span className={classes.highlight}>Contextual</span> data <br />
+               with <span className={classes.highlight}>actionable</span> insights
+            </Typography>
           </Grid>
           <Grid item xs={12}>
-            <RichTypography component="div" className={classes.description}>
-              Data driven analysis on COVID-19 in more than 10 African countries. Find out more about us.
-            </RichTypography>
+            <Typography component="div" className={classes.description}>
+              Data driven analysis on <span className={classes.highlightBlue}>COVID-19</span>
+              in more than <br /> 10 African countries. Find out more about us.
+            </Typography>
           </Grid>
         </Grid>
       </Section>
