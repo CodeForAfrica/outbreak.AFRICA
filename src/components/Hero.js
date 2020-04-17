@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import RichTypography from './RichTypography';
 import Section from './Section';
 
-import heroImage from '../assets/images/africanparliament.jpg';
+//import heroImage from '../assets/images/africanparliament.jpg';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
   },
   root: {
     width: '100%',
-    backgroundImage: `url(${heroImage})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 'right bottom',
-    backgroundSize: 'cover'
+    // backgroundImage: `url(${heroImage})`,
+    // backgroundRepeat: 'no-repeat',
+    // backgroundPosition: 'right bottom',
+    // backgroundSize: 'cover'
   },
   gradient: {
     backgroundImage: `linear-gradient(89deg, #ffffff 30%, rgba(255, 255, 255, 0)),
@@ -57,9 +57,6 @@ const useStyles = makeStyles(theme => ({
 
 function Hero() {
   const classes = useStyles();
-  if (!title || !tagline || !watchVideoLinkTitle) {
-    return null;
-  }
   return (
     <div className={classes.root}>
       <div className={classes.gradient}>
