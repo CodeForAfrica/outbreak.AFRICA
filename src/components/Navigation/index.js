@@ -41,11 +41,6 @@ const styles = theme => ({
       padding: '0rem 8rem',
     },
   },
-  link: {
-    '&:hover': {
-      textDecoration: 'none'
-    }
-  },
   noShadow: {
     boxShadow: 'unset'
   },
@@ -54,9 +49,23 @@ const styles = theme => ({
     outline: 'none',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
   },
-  link: {
-    margin: '1.375rem 3.25rem',
+  logoGrid: {
+    marginRight: '3rem',
+    [theme.breakpoints.up('md')]: {
+      margin: '0rem'
+    },
+  },
+  linkGrid: {
+    '&:hover': {
+      textDecoration: 'none'
+    }
+  },
+  logoLink: {
+    //margin: '1.375rem 3.25rem',
+    marginRight: '2rem',
     color: 'black',
+    fontSize: '1.2rem',
+    lineHeight: '1.5rem',
     fontWeight: '500',
     textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
@@ -75,6 +84,13 @@ const styles = theme => ({
   },
   iconLink: {
     margin: '1.375rem 0.7rem'
+  },
+  img: {
+    height: '3rem'
+  },
+  span: {
+    color: 'blue',
+    textDecoration: 'none'
   }
 });
 
@@ -122,10 +138,12 @@ class Navigation extends React.Component {
     return (
       <nav className={classes.root}>
         <Grid item>
-          <Link href="/" >
-            <Grid container direction="row" justify="center" alignItems="center">
-              <img src={logo} alt="Outbreak" style={{ height: '3rem' }} />
-              <Typography variant="caption" className={classes.link}>OUTBREAK <br /><span style={{ color: 'blue', textDecoration: 'none' }}>Covid-19</span></Typography>
+          <Link href="/" className={classes.linkGrid}>
+            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid}>
+              <img src={logo} alt="Outbreak" className={classes.img} />
+              <Typography variant="caption" className={classes.logoLink}> OUTBREAK <br />
+                <span className={classes.span}>Covid-19</span>
+              </Typography>
             </Grid>
           </Link>
         </Grid>
