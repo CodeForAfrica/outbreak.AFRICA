@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
     // Some words are too big to fit mobile so break them
     wordBreak: 'break-all',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '54.9375rem',
+      maxWidth: '54.935rem',
       wordBreak: 'initial',
       paddingTop: '12.625rem'
     }
@@ -46,13 +46,14 @@ const useStyles = makeStyles(theme => ({
     marginBottom: '3.125rem',
     fontFamily: 'Open Sans',
     letterSpacing: 0,
+    lineHeight: 1.2,
     width: '100%',
     '& a': {
       color: '#170F49',
       fontWeight: 'bold'
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '41.125rem',
+      maxWidth: '41.12rem',
       fontSize: '1.875rem'
     }
   }
