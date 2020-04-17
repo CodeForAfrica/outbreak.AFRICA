@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
 
 import {
   AppBar,
@@ -21,7 +22,7 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import CountriesMobile from '../ModalMenu/CountriesMobile';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -59,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  link: {
+    color: 'white',
   }
 }));
 
@@ -71,7 +75,8 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
 });
 
-export default function ModalMenu() {
+
+function ModalMenu({ countries }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -120,29 +125,9 @@ export default function ModalMenu() {
             </Grid>
             <Grid item className={classes.listRoot}>
               <Divider orientation="vertical" flexItem className={classes.divider} />
-
-              <List component="nav">
-                <ListItemLink href="#">
-                  <ListItemText primary="Kenya" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="South Africa" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Nigeria" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Morocco" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Ghana" />
-                </ListItemLink>
-              </List>
-
+              <CountriesMobile
+                countries={countries}
+                profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} />
             </Grid>
           </Grid>
 
@@ -204,3 +189,10 @@ export default function ModalMenu() {
     </div>
   );
 }
+
+
+ModalMenu.propTypes = {
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+};
+
+export default ModalMenu

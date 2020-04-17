@@ -155,13 +155,15 @@ class Navigation extends React.Component {
   renderMobileNav() {
     const { openDrawer } = this.state;
     const {
-      takwimu: { language }
+      classes,
+      takwimu: { countries },
+      router: { pathname }
     } = this.props;
     return (
       <>
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
-            <ModalMenu />
+            <ModalMenu countries={countries} />
           </Grid>
         </Grid>
       </>
