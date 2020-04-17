@@ -115,7 +115,7 @@ function MenuItemLink(props) {
   </MenuItem>;
 }
 
-function Countries({ profile }) {
+function CountriesMenu({ profile }) {
   const { countries } = config
   const [open, setOpen] = React.useState(false);
 
@@ -126,7 +126,6 @@ function Countries({ profile }) {
       setOpen(false);
     }
   }
-  console.log(config.countries)
 
   return (
     <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} component="div">
@@ -145,9 +144,9 @@ function Countries({ profile }) {
   );
 }
 
-Countries.propTypes = {
+CountriesMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired
 };
 
-export default Countries;
+export default CountriesMenu;

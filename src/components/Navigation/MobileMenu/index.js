@@ -22,7 +22,10 @@ import {
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
-import CountriesMobile from '../ModalMenu/CountriesMobile';
+
+import InsightMobileMenu from './InsightMobileMenu';
+import CountriesMobileMenu from './CountriesMobileMenu';
+import ResourcesMobileMenu from './ResourcesMobileMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,7 +79,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 });
 
 
-function ModalMenu({ countries }) {
+function MobileMenu({ countries }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -119,71 +122,13 @@ function ModalMenu({ countries }) {
         </DialogTitle>
 
         <DialogContent className={classes.dialogContent}>
-          <Grid container direction="row" justify="space-between" className={classes.gridRoot}>
-            <Grid item>
-              <Typography variant="h5">DATA</Typography>
-            </Grid>
-            <Grid item className={classes.listRoot}>
-              <Divider orientation="vertical" flexItem className={classes.divider} />
-              <CountriesMobile
-                countries={countries}
-                profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} />
-            </Grid>
-          </Grid>
-
-
-          <Grid container direction="row" justify="space-between" className={classes.gridRoot}>
-            <Grid item>
-              <Typography variant="h5">INSIGHT</Typography>
-            </Grid>
-            <Grid item className={classes.listRoot}>
-              <Divider orientation="vertical" flexItem className={classes.divider} />
-
-              <List component="nav">
-                <ListItemLink href="#">
-                  <ListItemText primary="Analysis" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Misinformation" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Frontline Reportange" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Multimedia resources" />
-                </ListItemLink>
-              </List>
-
-            </Grid>
-          </Grid>
-
-
-          <Grid container direction="row" justify="space-between" lassName={classes.gridRoot}>
-            <Grid item style={{ margin: '1rem' }}>
-              <Typography variant="h5">RESOURCES</Typography>
-            </Grid>
-            <Grid item className={classes.listRoot}>
-              <Divider orientation="vertical" flexItem className={classes.divider} />
-
-              <List component="nav">
-                <ListItemLink href="#">
-                  <ListItemText primary="African Experts" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Published Research" />
-                </ListItemLink>
-
-                <ListItemLink href="#">
-                  <ListItemText primary="Scientific Institutions" />
-                </ListItemLink>
-              </List>
-            </Grid>
-          </Grid>
-
+          <CountriesMobileMenu
+            title="DATA"
+            countries={countries}
+            profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+          />
+          <InsightMobileMenu title="INSIGHT" />
+          <ResourcesMobileMenu title="RESOURCES" />
         </DialogContent>
       </Dialog>
     </div>
@@ -191,8 +136,8 @@ function ModalMenu({ countries }) {
 }
 
 
-ModalMenu.propTypes = {
+MobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
 };
 
-export default ModalMenu
+export default MobileMenu

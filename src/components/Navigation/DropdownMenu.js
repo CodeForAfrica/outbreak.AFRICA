@@ -13,7 +13,7 @@ import {
 
 
 import { makeStyles } from '@material-ui/core/styles';
-import Countries from './Countries';
+import CountriesMenu from './CountriesMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -107,7 +107,7 @@ function DropDownMenu({ title, countries }) {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 {title === 'DATA' ?
-                  <Countries
+                  <CountriesMenu
                     countries={countries}
                     profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} /> : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
