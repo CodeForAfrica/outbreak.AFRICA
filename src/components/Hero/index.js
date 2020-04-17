@@ -3,10 +3,11 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Section from './Section';
+import Section from '../Section';
+import HeroCarousel from './HeroCarousel';
 
-import heroImage from '../assets/images/heropattern.png';
-import coronaImage from '../assets/images/coronavirus.svg';
+import heroImage from '../../assets/images/heropattern.png';
+import coronaImage from '../../assets/images/coronavirus.svg';
 
 const useStyles = makeStyles(theme => ({
   section: {
@@ -36,8 +37,15 @@ const useStyles = makeStyles(theme => ({
       backgroundPosition:  '20% 90%',
       backgroundSize: '70% 75%',
     }
-
   },
+
+  heroCarousel: {
+    paddingTop: '1.5rem',
+    [theme.breakpoints.up('md')]: {
+        paddingTop: '2.625rem',
+    }
+  },
+
   title: {
     margin: 0,
     width: '100%',
@@ -91,6 +99,7 @@ function Hero() {
           alignItems="flex-start"
           className={classes.hero}
         >
+        <Grid item container md={7}>
           <Grid item xs={12}>
             <Typography variant="h1" component="div"
               className={classes.title}
@@ -105,6 +114,10 @@ function Hero() {
               in more than <br /> 10 African countries. Find out more about us.
             </Typography>
           </Grid>
+        </Grid>
+        <Grid item md={5} className={classes.heroCarousel}>
+            <HeroCarousel />
+        </Grid>
         </Grid>
       </Section>
     </div>
