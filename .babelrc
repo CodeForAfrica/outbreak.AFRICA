@@ -1,5 +1,7 @@
 {
-  "presets": ["next/babel"],
+  "presets": [
+    "next/babel"
+  ],
   "plugins": [
     [
       "transform-imports",
@@ -21,7 +23,9 @@
     [
       "module-resolver",
       {
-        "root": ["./src"],
+        "root": [
+          "./src"
+        ],
         "alias": {
           "assets": "./src/assets",
           "components": "./src/components",
