@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 
 import classNames from 'classnames';
 
-import { Grid, useMediaQuery, useTheme, Typography } from '@material-ui/core';
+import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { A } from '@commons-ui/core';
+
+import shareIcon from 'assets/icon-share.svg';
 
 import Status from './Status';
 
@@ -18,6 +20,10 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: '2.25rem 2.625rem 1.95375rem'
     }
+  },
+  shareImg: {
+    height: 'auto',
+    width: '2rem'
   },
   source: {
     ...theme.typography.caption,
@@ -51,9 +57,16 @@ function Ticker({ lang, source, statuses, title, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Typography variant="body2" component="h2" className={classes.title}>
-        {title}
-      </Typography>
+      <Grid container justify="space-between" className={classes.statuses}>
+        <Grid item>
+          <Typography variant="body2" component="h2" className={classes.title}>
+            {title}
+          </Typography>
+        </Grid>
+        <Grid item>
+          <img src={shareIcon} alt="share" className={classes.shareImg} />
+        </Grid>
+      </Grid>
       <Grid container className={classes.statuses}>
         {statuses.map((status, index) => (
           <Grid key={status.name} item xs={6} md={3}>
