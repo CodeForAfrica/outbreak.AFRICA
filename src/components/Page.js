@@ -6,13 +6,12 @@ import Navigation from './Navigation';
 import SEO from './SEO';
 
 import config from '../config';
-import { Grid } from '@material-ui/core';
 
 function Page({ children, ...props }) {
   return (
     <>
       <SEO {...props} />
-      <NewNav takwimu={config} />
+      <Navigation takwimu={config} />
       {children}
       <Footer takwimu={config} />
     </>
