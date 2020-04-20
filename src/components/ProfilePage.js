@@ -108,13 +108,13 @@ function Chart({ chartData, definition, profiles, classes }) {
   return chartData.isLoading ? (
     <div />
   ) : (
-    <ChartFactory
-      definition={definition}
-      data={chartData.profileVisualsData[definition.queryAlias].nodes}
-      profiles={profiles}
-      classes={classes}
-    />
-  );
+      <ChartFactory
+        definition={definition}
+        data={chartData.profileVisualsData[definition.queryAlias].nodes}
+        profiles={profiles}
+        classes={classes}
+      />
+    );
 }
 
 Chart.propTypes = {
@@ -280,13 +280,13 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                     : `flourish/${chart.id}`;
                 const sourceResult = chartData.profileVisualsData
                   ? chartData.profileVisualsData[
-                      `${chart.visual.queryAlias}Source`
-                    ]
+                  `${chart.visual.queryAlias}Source`
+                  ]
                   : null;
                 const source =
                   sourceResult &&
-                  sourceResult.nodes &&
-                  sourceResult.nodes.length
+                    sourceResult.nodes &&
+                    sourceResult.nodes.length
                     ? sourceResult.nodes[0]
                     : null;
 
@@ -361,48 +361,48 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                     >
                       {chart.type === 'hurumap'
                         ? [
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.stat,
-                                typeProps: {
-                                  ...chart.stat.typeProps,
-                                  classes: {
-                                    description: classes.statDescription,
-                                    statistic: classes.statStatistic,
-                                    subtitle: classes.statSubtitle
-                                  }
+                          <Chart
+                            key={chart.id}
+                            chartData={chartData}
+                            definition={{
+                              ...chart.stat,
+                              typeProps: {
+                                ...chart.stat.typeProps,
+                                classes: {
+                                  description: classes.statDescription,
+                                  statistic: classes.statStatistic,
+                                  subtitle: classes.statSubtitle
                                 }
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />,
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.visual,
-                                typeProps: {
-                                  ...chart.visual.typeProps,
-                                  ...overrideTypePropsFor(chart.visual.type)
-                                }
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />
-                          ]
+                              }
+                            }}
+                            profiles={profiles}
+                            classes={classes}
+                          />,
+                          <Chart
+                            key={chart.id}
+                            chartData={chartData}
+                            definition={{
+                              ...chart.visual,
+                              typeProps: {
+                                ...chart.visual.typeProps,
+                                ...overrideTypePropsFor(chart.visual.type)
+                              }
+                            }}
+                            profiles={profiles}
+                            classes={classes}
+                          />
+                        ]
                         : [
-                            <div key={chart.id} />,
-                            <iframe
-                              key={chart.id}
-                              width="100%"
-                              scrolling="no"
-                              frameBorder="0"
-                              title={chart.title}
-                              src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                            />
-                          ]}
+                          <div key={chart.id} />,
+                          <iframe
+                            key={chart.id}
+                            width="100%"
+                            scrolling="no"
+                            frameBorder="0"
+                            title={chart.title}
+                            src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
+                          />
+                        ]}
                     </InsightContainer>
                   </Grid>
                 );
