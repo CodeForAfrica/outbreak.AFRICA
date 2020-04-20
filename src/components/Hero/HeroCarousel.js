@@ -25,9 +25,12 @@ const responsive = {
 };
 
 const useStyles = makeStyles(() => ({
-  buttonGrid: {
+  buttonContainer: {
     position: 'absolute',
     top: '50px',
+  },
+  buttonGrid: {
+    marginLeft: '1rem'
   },
   button: {
     backgroundColor: '#fafafa',
@@ -35,17 +38,17 @@ const useStyles = makeStyles(() => ({
   }
 }));
 
-function CustomArrowButtons() {
+function CustomArrowButtons({ next, previous }) {
   const classes = useStyles();
   return (
-    <Grid container justify="center" className={classes.buttonGrid}>
-    <Grid item>
-      <IconButton aria-label="back" color="secondary" className={classes.button}>
+    <Grid container justify="center" className={classes.buttonContainer}>
+    <Grid item className={classes.buttonGrid}>
+      <IconButton aria-label="back" color="secondary" className={classes.button} onClick={() => previous()}>
         <ArrowBackIcon />
       </IconButton>
       </Grid>
-      <Grid item>
-      <IconButton aria-label="forward" color="secondary" className={classes.button}>
+      <Grid item className={classes.buttonGrid}>
+      <IconButton aria-label="forward" color="secondary" className={classes.button} onClick={() => next()}>
         <ArrowForwardIcon />
       </IconButton>
       </Grid>
