@@ -4,6 +4,10 @@ import CarouselCard from './CarouselCard';
 import "react-multi-carousel/lib/styles.css";
 import carousel1 from "../../assets/images/carusel-1.png";
 import carousel2 from "../../assets/images/carusel-2.png"
+import { Grid, IconButton } from "@material-ui/core";
+import { makeStyles } from '@material-ui/core/styles';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
  
 const responsive = {
   desktop: {
@@ -19,6 +23,35 @@ const responsive = {
     items: 1.5
   }
 };
+
+const useStyles = makeStyles(() => ({
+  buttonGrid: {
+    position: 'absolute',
+    top: '50px',
+  },
+  button: {
+    backgroundColor: '#fafafa',
+    boxShadow: '0px 3px 6px #00000029',
+  }
+}));
+
+function CustomArrowButtons() {
+  const classes = useStyles();
+  return (
+    <Grid container justify="center" className={classes.buttonGrid}>
+    <Grid item>
+      <IconButton aria-label="back" color="secondary" className={classes.button}>
+        <ArrowBackIcon />
+      </IconButton>
+      </Grid>
+      <Grid item>
+      <IconButton aria-label="forward" color="secondary" className={classes.button}>
+        <ArrowForwardIcon />
+      </IconButton>
+      </Grid>
+    </Grid>
+  )
+}
 
 const carouselItems = [
  {
@@ -43,10 +76,12 @@ function HeroCarousel(props) {
       draggable={false}
       showDots={false}
       responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
+      ssr // means to render carousel on server-side.
+      infinite
       autoPlay={false}
-      keyBoardControl={true}
+      keyBoardControl
+      renderButtonGroupOutside
+      customButtonGroup={<CustomArrowButtons />}
       customTransition="all .5"
       transitionDuration={500}
       containerClass="carousel-container"

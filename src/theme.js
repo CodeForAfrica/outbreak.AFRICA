@@ -367,6 +367,9 @@ const theme = createTheme({
     MuiPaper: {
       elevation1: {
         boxShadow: 'none'
+      },
+      rounded: {
+        borderRadius: 0
       }
     },
     MuiCardContent: {
