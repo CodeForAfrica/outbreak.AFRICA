@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { StoryList } from '@commons-ui/core';
@@ -23,5 +24,9 @@ function FeatureStories({ stories, ...props }) {
     />
   );
 }
+
+FeatureStories.propTypes = {
+  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+};
 
 export default FeatureStories;

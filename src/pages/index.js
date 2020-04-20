@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FeaturedResearchers from 'components/FeaturedResearchers';
 import FeaturedStories from 'components/FeaturedStories';
 import Page from 'components/Page';
+import Ticker from 'components/Ticker';
 
 import { getProfiles, fromTimestamp, useStories } from 'lib';
 
@@ -33,6 +34,15 @@ const useStyles = makeStyles(theme => ({
   },
   featuredStoriesStories: {
     width: 'calc(((100vw - 100%) / 2) + 100%)'
+  },
+  ticker: {
+    margin: '0 auto',
+    padding: '3.8125rem 1.125rem 0 1.125rem',
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      padding: '3.8125rem 0 0',
+      width: `${(1640 / 1920) * 100}%`
+    }
   }
 }));
 
@@ -53,6 +63,38 @@ function Home(props) {
 
   return (
     <Page>
+      <div className={classes.ticker}>
+        <Ticker
+          source={{
+            title: 'openAFRICA',
+            url: 'https://open.africa'
+          }}
+          statuses={[
+            {
+              name: 'Infections',
+              status: 'Confirmed',
+              value: '3,721'
+            },
+            {
+              name: 'Deaths',
+              status: 'Confirmed',
+              value: '670',
+              highlight: true
+            },
+            {
+              name: 'Hospitalisations',
+              status: 'Confirmed',
+              value: '430'
+            },
+            {
+              name: 'Recoveries',
+              status: 'Confirmed',
+              value: '730'
+            }
+          ]}
+          title="Covid-19 cases in Africa"
+        />
+      </div>
       <div className={classes.featuredResearchers}>
         <FeaturedResearchers
           profiles={profiles}
