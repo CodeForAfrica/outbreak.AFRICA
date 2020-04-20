@@ -1,3 +1,4 @@
+import { responsiveFontSizes } from '@material-ui/core/styles';
 import createTheme from '@hurumap-ui/charts/styles/createTheme';
 
 const FONT_FAMILY_HEADING = '"Changa", serif';
@@ -105,17 +106,17 @@ const theme = createTheme({
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: '100px',
+      lineHeight: 1.25,
       letterSpacing: 'normal',
       color: 'black'
     },
     h2: {
       fontFamily: FONT_FAMILY_HEADING,
-      fontSize: '3.375rem',
-      fontWeight: 'normal',
+      fontSize: '5rem',
+      fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.25,
       letterSpacing: 'normal',
       color: 'black'
     },
@@ -125,7 +126,7 @@ const theme = createTheme({
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.25,
       letterSpacing: 'normal',
       color: 'black'
     },
@@ -135,59 +136,59 @@ const theme = createTheme({
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.25,
       letterSpacing: 'normal',
       color: '#231f20'
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1.75rem',
+      fontSize: '2rem',
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.5,
       letterSpacing: 'normal'
     },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '2rem',
+      fontSize: '1.875rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.5,
       letterSpacing: 'normal'
     },
     body1: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1.25rem',
+      fontSize: '1.875rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: '2.05',
+      lineHeight: 1.25,
       letterSpacing: 'normal'
     },
     body2: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '2rem',
+      fontSize: '1.5rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: '30px',
+      lineHeight: 1.25,
       letterSpacing: 'normal'
     },
     button: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '2rem',
+      fontSize: '1.875rem',
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: 1.25,
       letterSpacing: 'normal',
       textTransform: 'none'
     },
     caption: {
       fontFamily: FONT_FAMILY_TEXT,
-      lineHeight: '24px'
+      lineHeight: 1.25
     },
     useNextVariants: true
   },
@@ -378,4 +379,5 @@ const theme = createTheme({
   }
 });
 
-export default theme;
+const responsiveTheme = responsiveFontSizes(theme);
+export default responsiveTheme;
