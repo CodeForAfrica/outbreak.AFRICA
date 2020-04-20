@@ -43,7 +43,7 @@ const styles = theme => ({
   },
   logoGrid: {
     marginRight: '3rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.only('md')]: {
       margin: '0rem'
     },
   },
@@ -131,7 +131,7 @@ class Navigation extends React.Component {
       <nav className={classes.root}>
         <Grid item>
           <Link href="/" className={classes.linkGrid}>
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid}>
+            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid} >
               <img src={logo} alt="Outbreak" className={classes.img} />
               <Typography variant="caption" className={classes.logoLink}> OUTBREAK <br />
                 <span className={classes.span}>Covid-19</span>
@@ -139,7 +139,7 @@ class Navigation extends React.Component {
             </Grid>
           </Link>
         </Grid>
-        {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+        {isWidthUp('lg', width) ? this.renderDesktopNav() : this.renderMobileNav()}
       </nav>
     );
   }
@@ -167,9 +167,9 @@ class Navigation extends React.Component {
     } = this.props;
     return (
       <>
-        <Grid item>
+        <div>
           <NavigationMenu countries={countries} />
-        </Grid>
+        </div>
       </>
     );
   }
