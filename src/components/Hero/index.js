@@ -3,7 +3,6 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Section from '../Section';
 import HeroCarousel from './HeroCarousel';
 
 import heroImage from '../../assets/images/heropattern.png';
@@ -17,18 +16,26 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: '0% 0%',
     backgroundSize: 'cover',
     [theme.breakpoints.up('md')]: {
-      paddingBottom: '2rem'
+      paddingBottom: '2rem',
+      paddingLeft: '2%'
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: '4%'
     }
   },
   hero: {
     flexGrow: 1,
     backgroundImage: `url(${coronaImage})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: '80% 20%',
+    backgroundPosition: '90% 10%',
     backgroundSize: '50%',
     margin: 'auto 1.375rem',
     [theme.breakpoints.up('md')]: {
       margin: 'auto 0',
+      backgroundPosition:  '20% 30%',
+      backgroundSize: '75% 55%',
+    },
+    [theme.breakpoints.up('lg')]: {
       backgroundPosition:  '20% 90%',
       backgroundSize: '70% 75%',
     }
@@ -36,6 +43,9 @@ const useStyles = makeStyles(theme => ({
 
   heroCarousel: {
     paddingTop: '1.5rem',
+    '& ul > li': {
+      padding: '0 8px'
+    },
     [theme.breakpoints.up('md')]: {
         paddingTop: '2.625rem',
     }
@@ -46,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     paddingTop: '2.5625rem',
     fontSize: '2.5rem',
     [theme.breakpoints.up('md')]: {
-      paddingTop: '6.125rem',
+      paddingTop: '4.625rem',
       fontSize: '3rem'
     },
     [theme.breakpoints.up('lg')]: {

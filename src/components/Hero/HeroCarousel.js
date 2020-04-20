@@ -39,7 +39,7 @@ const carouselItems = [
 function HeroCarousel(props) {
   return (
     <Carousel
-      swipeable={false}
+      swipeable={props.deviceType === "mobile" ? true : false}
       draggable={false}
       showDots={false}
       responsive={responsive}
