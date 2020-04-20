@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import DropDownButton from './DropDownButton';
-
-import topicIcon from '../../assets/images/a-chart-white.svg';
-import topicIconActive from '../../assets/images/a-chart-active.svg';
+import topicIcon from 'assets/images/a-chart-white.svg';
+import topicIconActive from 'assets/images/a-chart-active.svg';
 // import analysisIcon from '../../assets/images/file-paragraph.svg';
 // import analysisIconActive from '../../assets/images/file-paragraph-active.svg';
+
+import DropDownButton from './DropDownButton';
 
 const useStyles = makeStyles(theme => ({
   root: {

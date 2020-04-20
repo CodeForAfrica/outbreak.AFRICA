@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import Head from 'next/head';
 
-import config from '../config';
-
-import { getSectionedCharts } from '../cms';
-import ProfilePageComponent from '../components/ProfilePage';
+import ProfilePageComponent from 'components/ProfilePage';
+import config from 'config';
+import { getSectionedCharts } from 'cms';
 
 function ProfilePage(initialProps) {
   return (

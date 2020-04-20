@@ -1,5 +1,5 @@
 import fetch from 'isomorphic-unfetch';
-import config from './config';
+import config from 'config';
 
 export async function getPage(type) {
   const res = await fetch(

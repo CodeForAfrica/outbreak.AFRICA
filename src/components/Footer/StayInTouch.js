@@ -4,16 +4,17 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
+import A from '@commons-ui/core/A';
 
-import Link from '../Link';
-import Title from './Title';
+import Link from 'components/Link';
 
 import email from 'assets/images/email.svg';
 import facebook from 'assets/images/facebook.svg';
 import group3 from 'assets/images/group-3.svg';
 import group3Copy from 'assets/images/group-3-copy.svg';
 import twitter from 'assets/images/twitter.svg';
+
+import Title from './Title';
 
 const useStyles = makeStyles({
   root: {

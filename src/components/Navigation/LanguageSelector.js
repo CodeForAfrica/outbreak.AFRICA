@@ -10,8 +10,9 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import PopupState, { bindTrigger, bindMenu } from 'material-ui-popup-state';
-import languages from '../../languages';
-import Link from '../Link';
+
+import Link from 'components/Link';
+import languages from 'languages';
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -93,7 +94,6 @@ function LanguageSelector({ lang, options, ...props }) {
     </div>
   );
 }
-
 
 LanguageSelector.propTypes = {
   lang: PropTypes.string,

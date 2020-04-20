@@ -6,9 +6,8 @@ import classNames from 'classnames';
 import { Typography, ButtonBase, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import flags from '../flags';
-
-import downArrow from '../assets/images/down-arrow-green.svg';
+import downArrow from 'assets/images/down-arrow-green.svg';
+import flags from 'flags';
 
 const useStyles = makeStyles(theme => ({
   label: {

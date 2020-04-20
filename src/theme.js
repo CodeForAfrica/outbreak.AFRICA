@@ -1,23 +1,22 @@
 import createTheme from '@hurumap-ui/charts/styles/createTheme';
 
-const FONT_FAMILY_HEADING = '"Lora", serif';
-const FONT_FAMILY_TEXT = '"Muli", sans-serif';
+const FONT_FAMILY_HEADING = '"Changa", serif';
+const FONT_FAMILY_TEXT = '"Open Sans", sans-serif';
 
 const COLOR_BREWER_DIVERGING = [
-  '#8ed3a5',
-  '#29a87c',
-  '#223a07',
-  '#7d8c6c',
-  '#5bc17d'
+  '#0050FF',
+  '#170F49',
+  '#00000029',
+  '#D6D6D6',
+  '#F9FF71'
 ];
 
 const theme = createTheme({
   chart: {
     pie: {
-      width: 350,
+      width: 450,
       height: 350,
       padding: 0,
-      origin: { x: 150, y: 125 },
       colorScale: COLOR_BREWER_DIVERGING,
       legend: {
         labelWidth: 150
@@ -31,9 +30,8 @@ const theme = createTheme({
     },
     line: {
       offset: 70,
-      width: 350,
-      height: 350,
-      colorScale: ['#29a87c', '#a0d9b3', '#004494', '#4abc70'],
+      width: 400,
+      height: 400,
       style: {
         data: {
           strokeWidth: 4
@@ -46,8 +44,8 @@ const theme = createTheme({
     },
     bar: {
       width: 400,
-      height: 400,
-      barWidth: 30,
+      height: 350,
+      barWidth: 40,
       offset: 50,
       style: {
         data: {
@@ -81,13 +79,10 @@ const theme = createTheme({
     }
   },
   palette: {
-    primary: {
-      main: '#29a87c' // dark-mint
-    },
-    secondary: {
-      main: '#004494' // darkish-blue
-    },
-    text: { primary: '#000', secondary: '#fff' },
+    primary: { main: '#0050FF' },
+    secondary: { main: '#170F49' },
+    highlight: { main: '#F9FF71' },
+    text: { primary: '#170F49', secondary: '#fff' },
     background: {
       default: '#fff',
       light: '#f6f6f6' // light gray
