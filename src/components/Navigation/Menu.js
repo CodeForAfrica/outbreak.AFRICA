@@ -13,7 +13,7 @@ import {
 
 
 import { makeStyles } from '@material-ui/core/styles';
-import CountriesMenu from './CountriesMenu';
+import DataMenu from './DataMenu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +31,7 @@ function MenuItemLink(props) {
   return <MenuItem button component="a" {...props} />;
 }
 
-function DropDownMenu({ title, countries }) {
+function Menu({ title, countries }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -107,7 +107,7 @@ function DropDownMenu({ title, countries }) {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 {title === 'DATA' ?
-                  <CountriesMenu
+                  <DataMenu
                     countries={countries}
                     profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} /> : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
@@ -119,4 +119,4 @@ function DropDownMenu({ title, countries }) {
   );
 }
 
-export default DropDownMenu
+export default Menu

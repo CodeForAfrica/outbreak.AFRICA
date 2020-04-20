@@ -115,7 +115,7 @@ function MenuItemLink(props) {
   </MenuItem>;
 }
 
-function CountriesMenu({ profile }) {
+function DataMenu({ profile }) {
   const { countries } = config
   const [open, setOpen] = React.useState(false);
 
@@ -144,9 +144,9 @@ function CountriesMenu({ profile }) {
   );
 }
 
-CountriesMenu.propTypes = {
+DataMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired
 };
 
-export default CountriesMenu;
+export default DataMenu;
