@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Footer from './Footer';
-import NewNav from './Navigation';
+import Navigation from './Navigation';
 import SEO from './SEO';
 
 import config from '../config';
