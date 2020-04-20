@@ -107,9 +107,12 @@ function Menu({ title, countries }) {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 {title === 'DATA' ?
-                  <DataMenu
-                    countries={countries}
-                    profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} /> : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
+                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                    <DataMenu
+                      countries={countries}
+                      profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} />
+                  </MenuList>
+                  : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
             </Paper>
           </Grow>

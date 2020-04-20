@@ -2,8 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {
-  MenuItem,
-  MenuList,
+  MenuItem
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -117,18 +116,9 @@ function MenuItemLink(props) {
 
 function DataMenu({ profile }) {
   const { countries } = config
-  const [open, setOpen] = React.useState(false);
-
-
-  function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
-      event.preventDefault();
-      setOpen(false);
-    }
-  }
 
   return (
-    <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown} component="div">
+    <>
       {countries.map(country => (
         <MenuItemLink
           key={country.slug}
@@ -140,7 +130,7 @@ function DataMenu({ profile }) {
         </MenuItemLink>
       ))
       }
-    </MenuList>
+    </>
   );
 }
 
