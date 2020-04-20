@@ -5,8 +5,9 @@ import classNames from 'classnames';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import RichTypography from '../RichTypography';
-import Section from '../Section';
+import Section from 'components/Section';
+import RichTypography from 'components/RichTypography';
+
 import Tabs from './Tabs';
 
 const useStyles = makeStyles({

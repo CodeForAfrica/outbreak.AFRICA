@@ -8,8 +8,8 @@ import { Grid, MenuList } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 
+import activeContentIcon from 'assets/images/active-page.svg';
 import Link from './Link';
-import activeContentIcon from '../assets/images/active-page.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -2,8 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
-import Title from './Title';
+import A from '@commons-ui/core/A';
 
 import ap from 'assets/images/ap.png';
 import ap2 from 'assets/images/ap@2x.png';
@@ -14,6 +13,8 @@ import cfa3 from 'assets/images/cfa@3x.png';
 import ihub from 'assets/images/ihub.png';
 import ihub2 from 'assets/images/ihub@2x.png';
 import ihub3 from 'assets/images/ihub@3x.png';
+
+import Title from './Title';
 
 const useStyles = makeStyles(theme => ({
   root: {

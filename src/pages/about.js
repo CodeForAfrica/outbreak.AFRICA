@@ -4,12 +4,12 @@ import { useRouter } from 'next/router';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import { getSitePage } from '../cms';
-import AboutContent from '../components/AboutContent';
-import ContentPage from '../components/ContentPage';
-import Page from '../components/Page';
-import AsideTableOfContent from '../components/AsideTableOfContent';
-import config from '../config';
+import AboutContent from 'components/AboutContent';
+import AsideTableOfContent from 'components/AsideTableOfContent';
+import ContentPage from 'components/ContentPage';
+import Page from 'components/Page';
+import config from 'config';
+import { getSitePage } from 'cms';
 
 const useStyles = makeStyles({
   root: {

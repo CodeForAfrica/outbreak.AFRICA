@@ -8,21 +8,20 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 
 import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import InsightContainer from '@hurumap-ui/core/InsightContainer';
 import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 import { shareIndicator } from '@hurumap-ui/core/utils';
 
-import config from '../config';
+import config from 'config';
+import logo from 'assets/images/logo-white-all.png';
 
 import Page from './Page';
 import ProfileDetail from './ProfileDetail';
 import ProfileSection, { ProfileSectionTitle } from './ProfileSection';
 import Section from './Section';
-
-import logo from '../assets/images/logo-white-all.png';
 
 const MapIt = dynamic({
   ssr: false,
@@ -158,6 +157,7 @@ const overrideTypePropsFor = chartType => {
 
 function Profile({ indicatorId, sectionedCharts, language, geoId }) {
   const router = useRouter();
+  const theme = useTheme();
 
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
@@ -443,8 +443,26 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
           drawProfile
           drawChildren
           codeType="AFR"
-          geoLevel={geoId.split('-')[0]}
           geoCode={geoId.split('-')[1]}
+          geoLayerBlurStyle={{
+            color: '#D6D6D6',
+            fillColor: theme.palette.primary.main,
+            weight: 1.0,
+            opacity: 1.0,
+            fillOpacity: 0.2
+          }}
+          geoLayerFocusStyle={{
+            color: '#D6D6D6',
+            fillColor: theme.palette.primary.main,
+            weight: 2.0,
+            opacity: 1.0,
+            fillOpacity: 0.5
+          }}
+          geoLayerHoverStyle={{
+            fillColor: theme.palette.primary.main,
+            fillOpacity: 0.4
+          }}
+          geoLevel={geoId.split('-')[0]}
           onClickGeoLayer={onClickGeoLayer}
         />
       </div>

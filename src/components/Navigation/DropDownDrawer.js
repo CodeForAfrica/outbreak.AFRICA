@@ -6,8 +6,8 @@ import classNames from 'classnames';
 import { Drawer } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import analysisDescriptionBG from '../../assets/images/file-paragraph-bg.svg';
-import countryProfilesDescriptionBG from '../../assets/images/a-chart-bg.svg';
+import analysisDescriptionBG from 'assets/images/file-paragraph-bg.svg';
+import countryProfilesDescriptionBG from 'assets/images/a-chart-bg.svg';
 
 import DropDownContent from './DropDownContent';
 
@@ -40,8 +40,10 @@ const useStyles = makeStyles(theme => ({
   container: ({ active }) => ({
     backgroundRepeat: 'no-repeat',
     backgroundImage: `url(${
-      active === 'analysis' ? analysisDescriptionBG : countryProfilesDescriptionBG
-      })`
+      active === 'analysis'
+        ? analysisDescriptionBG
+        : countryProfilesDescriptionBG
+    })`
   })
 }));
 
@@ -49,7 +51,10 @@ export default function DropDownDrawer({
   children,
   countries,
   active,
-  navigation: { country_analysis: countryAnalysis, country_profiles: countryProfiles },
+  navigation: {
+    country_analysis: countryAnalysis,
+    country_profiles: countryProfiles
+  },
   toggle
 }) {
   const classes = useStyles({ active });
@@ -81,7 +86,7 @@ export default function DropDownDrawer({
         }}
         type={active}
         countries={countries}
-        profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+        profile={({ isoCode }) => `country-${isoCode}`}
         title={active === 'analysis' ? 'Country Analysis' : 'Country Profiles'}
         description={active === 'analysis' ? countryAnalysis : countryProfiles}
       />

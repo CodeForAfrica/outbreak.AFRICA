@@ -1,12 +1,12 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["airbnb", "plugin:prettier/recommended", "prettier/react"],
+  "extends": ["airbnb", "prettier/react", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "jest": true
   },
-  "plugins": ["module-resolver"],
+  "plugins": ["module-resolver", "react-hooks", "json", "markdown"],
   "settings": {
     "import/resolver": {
       "babel-module": {}
