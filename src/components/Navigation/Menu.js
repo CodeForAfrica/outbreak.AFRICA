@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   popper: {
-    paddingTop: '1.5rem'
+    paddingTop: '1.5rem',
+    zIndex: 9999
   }
 }));
 
