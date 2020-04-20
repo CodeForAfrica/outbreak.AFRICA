@@ -10,11 +10,6 @@ import heroImage from '../../assets/images/heropattern.png';
 import coronaImage from '../../assets/images/coronavirus.svg';
 
 const useStyles = makeStyles(theme => ({
-  section: {
-    [theme.breakpoints.up('md')]: {
-      position: 'relative'
-    }
-  },
   root: {
     width: '100%',
     backgroundImage: `url(${heroImage})`,
@@ -47,21 +42,16 @@ const useStyles = makeStyles(theme => ({
   },
 
   title: {
-    margin: 0,
     width: '100%',
-    fontFamily: 'Changa',
     paddingTop: '2.5625rem',
-    textAlign: 'left',
-    letterSpacing: 0,
-    fontSize: '2rem',
-
-    // Some words are too big to fit mobile so break them
-   // wordBreak: 'break-all',
+    fontSize: '2.5rem',
     [theme.breakpoints.up('md')]: {
-      maxWidth: '54.935rem',
-     // wordBreak: 'initial',
-      paddingTop: '12.625rem',
-      fontSize: '5rem',
+      paddingTop: '6.125rem',
+      fontSize: '3rem'
+    },
+    [theme.breakpoints.up('lg')]: {
+      paddingTop: '8.125rem',
+      fontSize: '5rem'
     }
   },
   highlight: {
@@ -73,14 +63,8 @@ const useStyles = makeStyles(theme => ({
   description: {
     marginTop: '1.0625rem',
     marginBottom: '3.125rem',
-    fontFamily: 'Open Sans',
-    letterSpacing: 0,
-    lineHeight: 1.2,
     width: '100%',
-    '& a': {
-      color: '#170F49',
-      fontWeight: 'bold'
-    },
+    fontSize: '1.25rem',
     [theme.breakpoints.up('md')]: {
       maxWidth: '41.12rem',
       fontSize: '1.875rem'
@@ -92,34 +76,32 @@ function Hero() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
-        <Grid
-          container
-          justify="flex-start"
-          alignItems="flex-start"
-          className={classes.hero}
-        >
+      <Grid
+        container
+        justify="flex-start"
+        alignItems="flex-start"
+        className={classes.hero}
+      >
         <Grid item container md={7}>
           <Grid item xs={12}>
             <Typography variant="h1" component="div"
               className={classes.title}
             >
               <span className={classes.highlight}>Contextual</span> data <br />
-               with <span className={classes.highlight}>actionable</span> insights
+              with <span className={classes.highlight}>actionable</span> insights
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography component="div" className={classes.description}>
               Data driven analysis on <span className={classes.highlightBlue}>COVID-19</span>
-              in more than <br /> 10 African countries. Find out more about us.
+              in more than 10 African countries. Find out more about us.
             </Typography>
           </Grid>
         </Grid>
-        <Grid item md={5} className={classes.heroCarousel}>
+        <Grid item xs={12} md={5} className={classes.heroCarousel}>
             <HeroCarousel />
         </Grid>
-        </Grid>
-      </Section>
+      </Grid>
     </div>
   );
 }

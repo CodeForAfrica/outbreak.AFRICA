@@ -15,6 +15,7 @@ import A from '@hurumap-ui/core/A';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '100%',
     minHeight: '22rem',
     height: '100%',
     backgroundColor: '#fafafa',
@@ -53,8 +54,8 @@ const useStyles = makeStyles(theme => ({
     textDecoration: 'underline',
     textTransform: 'uppercase',
     color: '#F9FF71',
-    fontSize: '2rem',
-    fontSize: 'bold'
+    fontSize: '1rem',
+    fontWeight: 'bold'
   },
   overline: {
     color: '#fff'
@@ -62,7 +63,14 @@ const useStyles = makeStyles(theme => ({
   bodyTitle: {
     color: '#fff',
     fontWeight: 'bold',
-    marginTop: '1rem'
+    fontSize: '1.125rem',
+    marginTop: '1rem',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.25rem'
+    },
+    [theme.breakpoints.up('lg')]: {
+      fontSize: '1.5rem'
+    }
   },
   bodyText: {
     color: '#fff',

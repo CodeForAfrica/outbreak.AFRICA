@@ -12,11 +12,11 @@ const responsive = {
   },
   tablet: {
     breakpoint: { max: 1024, min: 464 },
-    items: 1,
+    items: 1.5,
   },
   mobile: {
     breakpoint: { max: 464, min: 0 },
-    items: 1
+    items: 1.5
   }
 };
 
@@ -50,7 +50,7 @@ function HeroCarousel(props) {
       customTransition="all .5"
       transitionDuration={500}
       containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
+      removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
       deviceType={props.deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
