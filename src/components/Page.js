@@ -7,15 +7,12 @@ import Footer from './Footer';
 import Navigation from './Navigation';
 import SEO from './SEO';
 
-import { Grid } from '@material-ui/core';
-
 function Page({ children, ...props }) {
   return (
     <>
       <SEO {...props} />
       <Navigation takwimu={config} />
       {children}
-      <Grid style={{ height: '15rem' }} />
       <Footer takwimu={config} />
     </>
   );
