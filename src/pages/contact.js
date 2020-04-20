@@ -3,12 +3,13 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { useRouter } from 'next/router';
-import { getSitePage } from '../cms';
-import ContactContent from '../components/ContactContent';
-import ContentPage from '../components/ContentPage';
-import Page from '../components/Page';
-import AsideTableOfContent from '../components/AsideTableOfContent';
-import config from '../config';
+
+import AsideTableOfContent from 'components/AsideTableOfContent';
+import ContactContent from 'components/ContactContent';
+import ContentPage from 'components/ContentPage';
+import Page from 'components/Page';
+import config from 'config';
+import { getSitePage } from 'cms';
 
 const useStyles = makeStyles({
   root: {

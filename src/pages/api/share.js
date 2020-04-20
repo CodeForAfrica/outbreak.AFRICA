@@ -27,12 +27,12 @@ export default (req, res) => {
     });
     const promise = upload.promise();
     return promise.then(
-      data => {
+      () => {
         res.statusCode = 200;
         res.end('');
         return res.statusCode;
       },
-      data => {
+      () => {
         res.statusCode = 500;
         res.end('');
         return res.statusCode;

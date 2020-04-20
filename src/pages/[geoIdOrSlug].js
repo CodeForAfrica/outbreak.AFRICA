@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 import Head from 'next/head';
 
-import config from '../config';
-
-import { getSectionedCharts } from '../cms';
-import ProfilePageComponent from '../components/ProfilePage';
+import ProfilePageComponent from 'components/ProfilePage';
+import config from 'config';
+import { getSectionedCharts } from 'cms';
 
 function ProfilePage(initialProps) {
   return (
@@ -32,7 +31,7 @@ function ProfilePage(initialProps) {
         {/** MapIt Preconnect */}
         <link
           rel="preconnect"
-          href="https://mapit.hurumap.org"
+          href="https://dev.mapit.hurumap.org"
           crossOrigin="anonymous"
         />
         {/** Map Tiles Preconnect */}
@@ -50,7 +49,7 @@ function ProfilePage(initialProps) {
 ProfilePage.propTypes = {
   geoId: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  language: PropTypes.bool.isRequired,
+  language: PropTypes.string.isRequired,
   indicatorId: PropTypes.string
 };
 

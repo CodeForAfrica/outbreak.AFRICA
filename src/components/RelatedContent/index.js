@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Section from 'components/Section';
+
 import Links from './Links';
-import Section from '../Section';
 
 const useStyles = makeStyles({
   sectionRoot: {

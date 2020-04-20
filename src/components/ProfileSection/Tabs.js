@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link, Tabs, Tab } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Layout from '../Layout';
+import Layout from 'components/Layout';
 
 const useStyles = makeStyles(theme => ({
   layoutRoot: {

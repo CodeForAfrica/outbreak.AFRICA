@@ -1,11 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
-import Section from '../Section';
+import A from '@commons-ui/core/A';
+
+import Section from 'components/Section';
 
 import Takwimu from './Takwimu';
 import QuickLinks from './QuickLinks';
@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function Footer({ takwimu: { settings },...props }) {
+function Footer({ takwimu: { settings }, ...props }) {
   const classes = useStyles(props);
   return (
     <Grid

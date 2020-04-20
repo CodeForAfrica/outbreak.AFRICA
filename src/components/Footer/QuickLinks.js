@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import { Link as MuiLink, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../Link';
+import Link from 'components/Link';
 import Title from './Title';
 
 const useStyles = makeStyles(theme => ({
@@ -72,14 +72,14 @@ function QuickLinks() {
                 {link.label}
               </MuiLink>
             ) : (
-                <Link
-                  href={link.href}
-                  underline="always"
-                  className={classNames([classes.text, classes.link])}
-                >
-                  {link.label}
-                </Link>
-              )}
+              <Link
+                href={link.href}
+                underline="always"
+                className={classNames([classes.text, classes.link])}
+              >
+                {link.label}
+              </Link>
+            )}
           </li>
         ))}
       </Typography>

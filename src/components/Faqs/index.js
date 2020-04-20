@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import ContentSection from '../ContentSection';
+import ContentSection from 'components/ContentSection';
+import RichTypography from 'components/RichTypography';
+
 import Faq from './Faq';
-import RichTypography from '../RichTypography';
 
 const useStyles = makeStyles(theme => ({
   root: {},

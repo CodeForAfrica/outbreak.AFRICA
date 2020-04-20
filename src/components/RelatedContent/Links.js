@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Link, Tooltip, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
+import A from '@commons-ui/core/A';
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -61,17 +61,17 @@ function Links({ items }) {
                   {item.title}
                 </Link>
               ) : (
-                <A
-                  href={item.link}
-                  variant="inherit"
-                  color="inherit"
-                  underline="always"
-                  noWrap
-                  className={classes.listItem}
-                >
-                  {item.title}
-                </A>
-              )}
+                  <A
+                    href={item.link}
+                    variant="inherit"
+                    color="inherit"
+                    underline="always"
+                    noWrap
+                    className={classes.listItem}
+                  >
+                    {item.title}
+                  </A>
+                )}
             </Tooltip>
           </li>
         ))}

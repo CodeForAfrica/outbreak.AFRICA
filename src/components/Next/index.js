@@ -4,11 +4,12 @@ import { PropTypes } from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@hurumap-ui/core/A';
+import A from '@commons-ui/core/A';
+
+import Link from 'components/Link';
+import Section from 'components/Section';
 
 import Card from './Card';
-import Section from '../Section';
-import Link from '../Link';
 
 const useStyles = makeStyles(theme => ({
   sectionRoot: {},
