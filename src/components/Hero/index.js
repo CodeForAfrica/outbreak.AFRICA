@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundImage: `url(${coronaImage})`,
     backgroundRepeat: 'no-repeat',
-    backgroundPosition: '90% 10%',
+    backgroundPosition: '90% 2%',
     backgroundSize: '50%',
     margin: '0 auto',
     padding: '3.8125rem 1.125rem 0 1.125rem',
@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme => ({
     }
   },
   heroCarousel: {
-    paddingTop: '1.5rem',
     '& ul > li': {
       padding: '0 8px'
     },

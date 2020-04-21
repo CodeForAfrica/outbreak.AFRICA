@@ -5,7 +5,6 @@ import {
   makeStyles,
   Card,
   CardActionArea,
-  CardContent,
   CardMedia,
   Grid,
   Typography
@@ -31,19 +30,12 @@ const useStyles = makeStyles(theme => ({
     }
   },
   contentRoot: {
-    flexGrow: 1,
-    justifyContent: 'flex-end'
-  },
-  cardContent: {
-    alignItems: 'flex-end',
-    display: 'flex',
-    flexGrow: 1,
-    position: 'relative',
-    marginTop: '-100%',
-    paddingTop: 0,
-    paddingBottom: theme.spacing(2),
-    paddingLeft: theme.spacing(2),
-    paddingRight: theme.spacing(3)
+    position: 'absolute',
+    top: '40%',
+    left: '15px',
+    [theme.breakpoints.up('md')]: {
+      top: '55%'
+    },
   },
   media: {
     minHeight: '20rem',
@@ -74,7 +66,11 @@ const useStyles = makeStyles(theme => ({
   },
   bodyText: {
     color: '#fff',
-    margin: '1rem 0'
+    margin: '1rem 0',
+    fontSize: '1rem',
+    [theme.breakpoints.up('md')]: {
+      fontSize: '1.25rem'
+    }
   }
 }));
 
@@ -84,26 +80,19 @@ function CarouselCard({ item }) {
   return (
     <Card className={classes.root}>
         <CardActionArea
-          style={{
-            display: 'flex',
-            alignItems: 'flex-end',
-            flexFlow: 'column',
-            height: '100%'
-          }}
+          style={{ height: '100%' }}
         >
           <CardMedia
             className={classes.media}
             image={item.mediaLink}
             title="Item"
           />
-          <CardContent className={classes.cardContent}>
             <Grid
               container
               item
               direction="column"
               className={classes.contentRoot}
               alignItems="flex-start"
-              style={{ height: '100%' }}
             >
               <Typography variant="h5" className={classes.bodyTitle}>
                 {item.title}
@@ -115,7 +104,6 @@ function CarouselCard({ item }) {
                 {item.linkTitle}
               </A>
             </Grid>
-          </CardContent>
         </CardActionArea>
     </Card>
   );
