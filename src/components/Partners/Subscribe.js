@@ -10,6 +10,10 @@ const useStyles = makeStyles({
   root: {
     backgroundColor: '#170F49'
   },
+  mainContainer:{
+    margin: '3rem', 
+    paddingTop: '3rem' 
+  },
   typo: {
     color: 'white',
   },
@@ -23,10 +27,19 @@ const useStyles = makeStyles({
     fontSize:'3rem',
     fontWeight:700
   },
+  form:{
+    padding: '2rem 0rem'
+  },
    input: {
      margin: 8, 
      color: 'white',  
      padding:' 0rem 2rem'
+   },
+   img:{
+     height:'2.5rem'
+   },
+   iconGrid:{
+     padding:'0rem 2rem' 
    }
 });
 
@@ -34,11 +47,11 @@ function Subscribe() {
   const classes = useStyles()
   return (
     <Grid item className={classes.root}>
-      <div style={{ margin: '3rem', paddingTop: '3rem' }}>
+      <div className={classes.mainContainer}>
         <Typography variant="h2" className={classes.title}>Subscribe</Typography>
         <Typography variant="body1" className={classes.body1}> Stay updated with the latest News, Research and Analysis</Typography>
 
-        <form style={{ padding: '2rem 0rem' }}>
+        <form className={classes.form}>
           <TextField
             id="standard-basic"
             className={classes.input}
@@ -48,9 +61,9 @@ function Subscribe() {
               shrink:true
             }}
           />
-          <div style={{ padding:'0rem 4rem' }}>
+          <div className={classes.iconGrid}>
             <IconButton>
-              <img src={email} al="example"  style={{height:"2.5rem"}}/>
+              <img src={email} al="example"  className={classes.img}/>
             </IconButton>
           </div>
         </form>
