@@ -24,10 +24,13 @@ const responsive = {
   }
 };
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   buttonContainer: {
-    position: 'absolute',
-    top: '50px',
+    display: 'none',
+    [theme.breakpoints.up('md')]: {
+      position: 'absolute',
+      top: '50px',
+    }
   },
   buttonGrid: {
     marginLeft: '1rem'
@@ -35,7 +38,8 @@ const useStyles = makeStyles(() => ({
   button: {
     backgroundColor: '#fafafa',
     boxShadow: '0px 3px 6px #00000029',
-  }
+  },
+  carousel: { }
 }));
 
 function CustomArrowButtons({ next, previous }) {
@@ -73,6 +77,7 @@ const carouselItems = [
 }]
 
 function HeroCarousel(props) {
+  const classes = useStyles();
   return (
     <Carousel
       swipeable
@@ -87,7 +92,7 @@ function HeroCarousel(props) {
       customButtonGroup={<CustomArrowButtons />}
       customTransition="all .5"
       transitionDuration={500}
-      containerClass="carousel-container"
+      containerClass={classes.carousel}
       removeArrowOnDeviceType={["desktop", "tablet", "mobile"]}
       deviceType={props.deviceType}
       dotListClass="custom-dot-list-style"

@@ -15,13 +15,7 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '0% 0%',
     backgroundSize: 'cover',
-    [theme.breakpoints.up('md')]: {
-      paddingBottom: '2rem',
-      paddingLeft: '2%'
-    },
-    [theme.breakpoints.up('lg')]: {
-      paddingLeft: '4%'
-    }
+    overflow: 'hidden'
   },
   hero: {
     flexGrow: 1,
@@ -29,18 +23,20 @@ const useStyles = makeStyles(theme => ({
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '90% 10%',
     backgroundSize: '50%',
-    margin: 'auto 1.375rem',
+    margin: '0 auto',
+    padding: '3.8125rem 1.125rem 0 1.125rem',
+    width: '100%',
     [theme.breakpoints.up('md')]: {
-      margin: 'auto 0',
+      padding: '3.8125rem 0 0',
+      width: `${(1640 / 1920) * 100}%`,
       backgroundPosition:  '20% 30%',
-      backgroundSize: '75% 55%',
+      backgroundSize: '75% 55%'
     },
     [theme.breakpoints.up('lg')]: {
       backgroundPosition:  '20% 90%',
       backgroundSize: '70% 75%',
     }
   },
-
   heroCarousel: {
     paddingTop: '1.5rem',
     '& ul > li': {
@@ -48,17 +44,19 @@ const useStyles = makeStyles(theme => ({
     },
     [theme.breakpoints.up('md')]: {
         paddingTop: '2.625rem',
-        position: 'relative'
+        position: 'relative',
+        right: '-122px'
     }
   },
 
   title: {
     width: '100%',
-    paddingTop: '2.5625rem',
     fontSize: '2.5rem',
+    lineHeight: '4rem',
     [theme.breakpoints.up('md')]: {
       paddingTop: '4.625rem',
-      fontSize: '3rem'
+      fontSize: '3rem',
+      lineHeight: '100px'
     },
     [theme.breakpoints.up('lg')]: {
       paddingTop: '8.125rem',

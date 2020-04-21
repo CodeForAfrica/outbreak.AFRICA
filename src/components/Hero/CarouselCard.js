@@ -108,7 +108,7 @@ function CarouselCard({ item }) {
               <Typography variant="h5" className={classes.bodyTitle}>
                 {item.title}
               </Typography>
-              <Typography variant="body2" className={classes.bodyText}>
+              <Typography variant="body1" className={classes.bodyText}>
                 {item.brief}
               </Typography>
               <A href={item.link} className={classes.cardLink}>

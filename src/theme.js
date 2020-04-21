@@ -139,6 +139,15 @@ const theme = createTheme({
       letterSpacing: 'normal',
       color: '#231f20'
     },
+    h5: {
+      fontFamily: FONT_FAMILY_HEADING,
+      fontSize: '1.5rem',
+      fontWeight: 'normal',
+      fontStyle: 'normal',
+      fontStretch: 'normal',
+      lineHeight: 'normal',
+      letterSpacing: 'normal'
+    },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
       fontSize: '1.75rem',
