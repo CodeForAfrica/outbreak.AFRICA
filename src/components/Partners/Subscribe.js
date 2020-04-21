@@ -28,18 +28,16 @@ const useStyles = makeStyles({
     fontWeight:700
   },
   form:{
-    padding: '2rem 0rem'
+    padding: '2rem 2.5rem'
   },
    input: {
-     margin: 8, 
      color: 'white',  
-     padding:' 0rem 2rem'
+     fontSize:'0.8rem',
+     borderBottom:'1px solid white',
+
    },
    img:{
      height:'2.5rem'
-   },
-   iconGrid:{
-     padding:'0rem 2rem' 
    }
 });
 
@@ -54,16 +52,15 @@ function Subscribe() {
         <form className={classes.form}>
           <TextField
             id="standard-basic"
-            className={classes.input}
-            placeholder="Enter  your email address"
+            autoFocus={false}
+            placeholder="Enter your email address"
             margin="normal"
-            InputLabelProps={{
-              shrink:true
-            }}
+            fullWidth
+            InputProps={{ className: classes.input}}
           />
-          <div className={classes.iconGrid}>
+          <div>
             <IconButton>
-              <img src={email} al="example"  className={classes.img}/>
+              <img src={email} al="Arrow icon"  className={classes.img}/>
             </IconButton>
           </div>
         </form>

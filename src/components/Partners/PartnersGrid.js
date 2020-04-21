@@ -1,6 +1,11 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { PropTypes } from 'prop-types';
+
+
+import { withWidth } from '@material-ui/core';
+import { isWidthUp } from '@material-ui/core/withWidth';
 
 import africaarxiv from '../../assets/partnerLogos/africaarxiv/africaarxiv.png';
 import africapractice from '../../assets/partnerLogos/africapractice/africapractice.png';
@@ -12,12 +17,22 @@ import takwimu from '../../assets/partnerLogos/takwimu/takwimu.png';
 import wanadata from '../../assets/partnerLogos/wanadata/wanadata.png';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=> ({
   root: {
     backgroundColor: '#fcfc74',
   },
   typogrid: {
-    padding: '5rem 10rem'
+    padding: '2rem 4rem',
+    [theme.breakpoints.up('md')]: {
+      padding: '5rem 10rem'
+    }
+  },
+  imageGrid:{
+    padding: '2rem 6rem',
+    display:'flex',
+    [theme.breakpoints.up('md')]: {
+      padding: '5rem 10rem'
+    }
   },
   typo: {
     color: 'white',
@@ -29,12 +44,56 @@ const useStyles = makeStyles({
   },
   img: {
     maxWidth: '100%',
-    height: '3rem'
-
+    [theme.breakpoints.up('md')]: {
+      height: '3rem'
+    }
   }
-});
+}));
 
-function PartnersGrid() {
+const partners =[
+  {
+    name:'Africa Ar Xiv',
+    image:`${africaarxiv}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'Takwimu',
+    image:`${takwimu}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'Africa Practice',
+    image:`${africapractice}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'PesaCheck',
+    image:`${pesacheck}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'African Science Initiative',
+    image:`${asi}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'Africa Open Science Hardware',
+    image:`${aosh}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'African Science Literacy Network',
+    image:`${asln}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  },
+  {
+    name:'Wanadata',
+    image:`${wanadata}`,
+    description:'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+  }
+]
+
+function PartnersGrid({ width }) {
   const classes = useStyles()
   return (
     <Grid className={classes.root}>
@@ -42,62 +101,22 @@ function PartnersGrid() {
         <Typography variant="h2" className={classes.title}>Our Partners</Typography>
       </div>
 
-      <Grid container direction="row" style={{ padding: '0rem 10rem' }} spacing={10}>
-        <Grid item xs={12} md={6}>
-          <img src={africaarxiv} alt="Africa Ar Xvi" className={classes.img} />
+      <Grid container direction="row" className={classes.imageGrid} spacing={10}>
+        {partners.map(partner => 
+         <Grid item xs={12} md={6}>
+          <img src={partner.image} alt={partner.name} className={classes.img} />
           <div>
-            <Typography variant="caption"> Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
+            {isWidthUp('md', width) ? <Typography variant="caption">{partner.description}</Typography> : null}
           </div>
         </Grid>
-        <Grid item xs={12} md={6} >
-          <img src={takwimu} alt="Takwimu" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <img src={africapractice} alt="Africa Practice" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={pesacheck} alt="Pesacheck" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <img src={asi} alt="African Science Initiative" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={aosh} alt="Africa Open Science Hardware" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-
-        <Grid item xs={12} md={6}>
-          <img src={asln} alt="Africa Science Literacty Network" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-        <Grid item xs={12} md={6}>
-          <img src={wanadata} alt="Wanadata" className={classes.img} />
-          <div>
-            <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
-          </div>
-        </Grid>
-
+        )}
       </Grid>
     </Grid>
   )
 }
 
-export default PartnersGrid
+PartnersGrid.propTypes = {
+  width: PropTypes.string.isRequired
+};
+
+export default withWidth({initialWidth: 'md'})(PartnersGrid);

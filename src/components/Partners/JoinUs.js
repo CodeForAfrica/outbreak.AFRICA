@@ -2,16 +2,19 @@ import React from 'react'
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme=> ({
   root: {
-    backgroundColor: '#cbdbfb'
+    backgroundColor: '#cbdbfb',
+    width:'100%',
+    [theme.breakpoints.up('md')]: {
+      width:'24%'
+    }
   },
   typogrid: {
     padding: '2rem 4rem'
   },
   typo: {
-    color: 'white',
-    //padding: '1rem 0rem'
+    color: 'white'
   },
   link:{
     textDecoration:'underline'
@@ -21,7 +24,7 @@ const useStyles = makeStyles({
     fontWeight:700,
     padding:'1rem 0rem'
   }
-});
+}));
 
 function JoinUs() {
   const classes = useStyles()

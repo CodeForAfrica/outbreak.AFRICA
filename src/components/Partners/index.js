@@ -10,7 +10,7 @@ import Subscribe from './Subscribe';
 import PartnerGrid from './PartnersGrid';
 import JoinUs from './JoinUs';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( theme =>({
   root: {
     position:'relative',
     margin:'3rem 0rem'
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     position:'absolute',
     left:"4rem", 
     top:'34rem', 
-    width:'24%'
+    width:'100%'
   },
   partner:{
     width: '75%'
@@ -35,7 +35,7 @@ const useStyles = makeStyles({
     position: 'absolute', 
     zIndex: 9999 
   }
-});
+}));
 
 function Partners({width}) {
   const classes = useStyles()
@@ -65,10 +65,10 @@ function Partners({width}) {
     const classes = useStyles()
     return (
      <Grid container direction="row">
-          <PartnerGrid/>
-          <Subscribe/>
-          <JoinUs/>  
-       </Grid>
+        <PartnerGrid/>
+        <Subscribe/>
+        <JoinUs/>  
+      </Grid>
     )
   }
 
