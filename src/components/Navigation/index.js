@@ -2,56 +2,63 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 import {
-  AppBar,
   withWidth,
   Grid,
-  MenuList,
-  Drawer,
-  IconButton,
-  MenuItem,
-  ButtonBase,
-  Box
+  Typography
 } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
-import Close from '@material-ui/icons/Close';
-import MenuOutlined from '@material-ui/icons/MenuOutlined';
-import Search from '@material-ui/icons/Search';
 
+import NavigationMenu from './NavigationMenu';
+import MobileMenu from '../Navigation/MobileMenu';
 import { isWidthUp } from '@material-ui/core/withWidth';
-import classNames from 'classnames';
 import { withRouter } from 'next/router';
 
-import Layout from 'components/Layout';
-import Link from 'components/Link';
-import logoWhite from 'assets/images/logo-white-all.png';
+import Link from '../Link';
+import logo from '../../assets/images/logo/logo-outbreak.svg'
 
-import LanguageSelector from './LanguageSelector';
-import DropDownButtons from './DropDowns';
-import DropDownDrawer from './DropDownDrawer';
-import SearchDrawer from './SearchDrawer';
 
 const styles = theme => ({
   root: {
-    backgroundColor: theme.palette.primary.main,
-    width: '100%',
-    height: '6.313rem',
-    padding: '1.25rem',
     display: 'flex',
-    justifyContent: 'center',
+    direction: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
+    color: 'black',
+    width: '100%',
+    height: '5.313rem',
+    paddingRight: '2rem',
+    backgroundColor: 'transparent',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
-    color: theme.palette.text.secondary
+    [theme.breakpoints.up('md')]: {
+      padding: '0rem 8rem',
+    },
   },
   noShadow: {
     boxShadow: 'unset'
   },
   drawer: {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: 'transparent',
     outline: 'none',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
   },
-  link: {
-    margin: '1.375rem 3.25rem',
+  logoGrid: {
+    marginRight: '3rem',
+    [theme.breakpoints.only('md')]: {
+      margin: '0rem'
+    },
+  },
+  linkGrid: {
+    '&:hover': {
+      textDecoration: 'none'
+    }
+  },
+  logoLink: {
+    marginRight: '2rem',
+    color: 'black',
+    fontSize: '1.2rem',
+    lineHeight: '1.5rem',
+    fontWeight: 'bolder',
+    textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
       margin: '0.625rem'
     },
@@ -63,13 +70,23 @@ const styles = theme => ({
     '& > svg': {
       fontSize: '30px'
     },
-    color: theme.palette.text.secondary,
+    color: 'black',
     marginBottom: '0.1rem' // Pixel perfect
   },
   iconLink: {
     margin: '1.375rem 0.7rem'
+  },
+  img: {
+    height: '3rem'
+  },
+  span: {
+    color: 'blue',
+    textDecoration: 'none',
+    fontWeight: 'bolder'
   }
 });
+
+
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -108,52 +125,35 @@ class Navigation extends React.Component {
     };
   }
 
-  renderNavBar(inDrawer = false) {
+  renderNavBar() {
     const { width, classes } = this.props;
     return (
-      <AppBar
-        position="sticky"
-        className={classNames(classes.root, { [classes.noShadow]: inDrawer })}
-      >
-        <Layout>
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item>
-              <Link href="/">
-                <img alt="logo" src={logoWhite} height={19} />
-              </Link>
+      <nav className={classes.root}>
+        <Grid item>
+          <Link href="/" className={classes.linkGrid}>
+            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid} >
+              <img src={logo} alt="Outbreak" className={classes.img} />
+              <Typography variant="caption" className={classes.logoLink}> OUTBREAK <br />
+                <span className={classes.span}>Covid-19</span>
+              </Typography>
             </Grid>
-
-            {isWidthUp('md', width)
-              ? this.renderDesktopNav()
-              : this.renderMobileNav()}
-          </Grid>
-        </Layout>
-      </AppBar>
+          </Link>
+        </Grid>
+        {isWidthUp('lg', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+      </nav>
     );
   }
 
   renderMobileNav() {
-    const { openDrawer } = this.state;
     const {
-      takwimu: { language }
+      takwimu: { countries },
+      router: { pathname }
     } = this.props;
     return (
       <>
         <Grid item>
           <Grid container direction="row" alignItems="center" spacing={2}>
-            <Grid item>
-              <LanguageSelector lang={language} />
-            </Grid>
-            <Grid item>
-              <IconButton
-                disableRipple
-                disableTouchRipple
-                color="inherit"
-                onClick={this.toggleMobileDrawer}
-              >
-                {openDrawer === 'search' ? <Close /> : <MenuOutlined />}
-              </IconButton>
-            </Grid>
+            <MobileMenu countries={countries} />
           </Grid>
         </Grid>
       </>
@@ -162,172 +162,15 @@ class Navigation extends React.Component {
 
   renderDesktopNav() {
     const {
-      classes,
-      takwimu: { page, countries, language },
+      takwimu: { countries },
       router: { pathname }
     } = this.props;
-    const { openDrawer } = this.state;
-
     return (
       <>
-        <Grid item>
-          <DropDownButtons
-            page={page}
-            active={openDrawer}
-            toggle={this.toggleDrawer}
-            countries={countries}
-          />
-        </Grid>
-        <Grid item>
-          <Grid container direction="row">
-            <Grid item>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation href="/faqs" className={classes.link}>
-                FAQs
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </Grid>
-            <Grid item>
-              <ButtonBase
-                className={classes.searchButton}
-                onClick={this.toggleDrawer('search')}
-              >
-                {openDrawer === 'search' ? <Close /> : <Search />}
-              </ButtonBase>
-            </Grid>
-            <Grid item>
-              <Box marginLeft="1.875rem">
-                <LanguageSelector lang={language} />
-              </Box>
-            </Grid>
-          </Grid>
-        </Grid>
+        <div>
+          <NavigationMenu countries={countries} />
+        </div>
       </>
-    );
-  }
-
-  renderDropDownDrawer() {
-    const {
-      width,
-      takwimu: { countries, settings }
-    } = this.props;
-    const { openDrawer } = this.state;
-    return (
-      <DropDownDrawer
-        active={openDrawer}
-        countries={countries}
-        navigation={settings.navigation}
-        toggle={
-          isWidthUp('md', width)
-            ? this.toggleDrawer(null)
-            : this.toggleMobileDrawer
-        }
-      >
-        {isWidthUp('md', width) ? this.renderNavBar(true) : <div />}
-      </DropDownDrawer>
-    );
-  }
-
-  renderSearchDrawer() {
-    const { takwimu, width } = this.props;
-    const { openDrawer } = this.state;
-    return (
-      <SearchDrawer
-        active={openDrawer === 'search'}
-        takwimu={takwimu}
-        toggle={
-          isWidthUp('md', width)
-            ? this.toggleDrawer(null)
-            : this.toggleMobileDrawer
-        }
-      >
-        {this.renderNavBar(true)}
-      </SearchDrawer>
-    );
-  }
-
-  renderMobileDrawer() {
-    const {
-      classes,
-      router: { pathname },
-      takwimu: { page, countries }
-    } = this.props;
-    const { openDrawer, isMobileDrawerOpen } = this.state;
-
-    return (
-      <Drawer
-        anchor="top"
-        BackdropProps={{
-          style: {
-            backgroundColor: 'transparent'
-          }
-        }}
-        PaperProps={{
-          className: classes.drawer
-        }}
-        open={isMobileDrawerOpen}
-        elevation={0}
-        transitionDuration={0}
-        onEscapeKeyDown={this.toggleMobileDrawer}
-        onBackdropClick={this.toggleMobileDrawer}
-      >
-        <Grid container direction="column" alignItems="flex-start">
-          {this.renderNavBar(true)}
-          <MenuList>
-            <DropDownButtons
-              page={page}
-              active={openDrawer}
-              countries={countries}
-              toggle={this.toggleDrawer}
-            />
-            <MenuItem>
-              <Link
-                navigation
-                href="/about"
-                className={classes.link}
-                active={['/services', '/about', '/methodology'].includes(
-                  pathname
-                )}
-              >
-                About
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/faqs">
-                FAQs
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <Link navigation className={classes.link} href="/contact">
-                Contact Us
-              </Link>
-            </MenuItem>
-            <MenuItem>
-              <ButtonBase
-                className={classes.searchButton}
-                onClick={this.toggleDrawer('search')}
-              >
-                <Search className={classes.search} />
-              </ButtonBase>
-            </MenuItem>
-          </MenuList>
-        </Grid>
-      </Drawer>
     );
   }
 
@@ -335,9 +178,6 @@ class Navigation extends React.Component {
     return (
       <>
         {this.renderNavBar()}
-        {this.renderMobileDrawer()}
-        {this.renderDropDownDrawer()}
-        {this.renderSearchDrawer()}
       </>
     );
   }
@@ -348,7 +188,6 @@ Navigation.propTypes = {
   width: PropTypes.string.isRequired,
   takwimu: PropTypes.shape({
     page: PropTypes.shape({}).isRequired,
-    language: PropTypes.string.isRequired,
     countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     settings: PropTypes.shape({
       navigation: PropTypes.shape({})

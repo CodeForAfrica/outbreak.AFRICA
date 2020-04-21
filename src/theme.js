@@ -105,7 +105,7 @@ const theme = createTheme({
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 'normal',
+      lineHeight: '100px',
       letterSpacing: 'normal',
       color: '#170F49'
     },
@@ -150,7 +150,7 @@ const theme = createTheme({
     },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1.5rem',
+      fontSize: '2rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
@@ -168,31 +168,26 @@ const theme = createTheme({
     },
     body2: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '1.125rem',
+      fontSize: '2rem',
       fontWeight: 'normal',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: '2.05',
-      letterSpacing: 'normal'
-    },
-    caption: {
-      fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '0.8125rem',
-      fontWeight: 'normal',
-      fontStyle: 'normal',
-      fontStretch: 'normal',
-      lineHeight: '1.69',
+      lineHeight: '30px',
       letterSpacing: 'normal'
     },
     button: {
       fontFamily: FONT_FAMILY_TEXT,
-      fontSize: '0.875rem',
+      fontSize: '2rem',
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 'normal',
       letterSpacing: 'normal',
       textTransform: 'none'
+    },
+    caption: {
+      fontFamily: FONT_FAMILY_TEXT,
+      lineHeight: '24px'
     },
     useNextVariants: true
   },
