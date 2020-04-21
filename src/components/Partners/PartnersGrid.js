@@ -17,9 +17,7 @@ const useStyles = makeStyles({
     backgroundColor: '#fcfc74',
   },
   typogrid: {
-    //padding: '2rem 3rem',
-    padding: '2rem 10rem'
-
+    padding: '5rem 10rem'
   },
   typo: {
     color: 'white',
@@ -37,56 +35,56 @@ function PartnersGrid() {
   return (
     <Grid className={classes.root}>
       <div className={classes.typogrid}>
-        <Typography variant="h4">Our Partners</Typography>
+        <Typography variant="subtitle1">Our Partners</Typography>
       </div>
 
-      <Grid container direction="row" style={{ padding: '2rem 10rem' }} spacing={10}>
-        <Grid item xs={6} >
+      <Grid container direction="row" style={{ padding: '0rem 10rem' }} spacing={10}>
+        <Grid item xs={12} md={6}>
           <img src={africaarxiv} alt="Africa Ar Xvi" className={classes.img} />
           <div>
             <Typography variant="caption"> Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
-        <Grid item xs={6} >
+        <Grid item xs={12} md={6} >
           <img src={takwimu} alt="Takwimu" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={africapractice} alt="Africa Practice" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={pesacheck} alt="Pesacheck" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={asi} alt="African Science Initiative" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={aosh} alt="Africa Open Science Hardware" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={asln} alt="Africa Science Literacty Network" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>
           </div>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} md={6}>
           <img src={wanadata} alt="Wanadata" className={classes.img} />
           <div>
             <Typography variant="caption">Lorem ipsum is simply dummy text of the printing and typeseting industry</Typography>

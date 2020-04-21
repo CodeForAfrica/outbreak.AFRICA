@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 function JoinUs() {
   const classes = useStyles()
   return (
-    <Grid item xs={6} className={classes.root}>
+    <Grid item className={classes.root}>
       <div className={classes.typogrid}>
         <Typography variant="body2">Join us</Typography>
         <Typography variant="body1">Be part of the initiative</Typography>
