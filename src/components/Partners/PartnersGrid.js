@@ -23,6 +23,10 @@ const useStyles = makeStyles({
     color: 'white',
     padding: '1rem 0rem'
   },
+  title:{
+    fontSize:'3rem',
+    fontWeight:700
+  },
   img: {
     maxWidth: '100%',
     height: '3rem'
@@ -35,7 +39,7 @@ function PartnersGrid() {
   return (
     <Grid className={classes.root}>
       <div className={classes.typogrid}>
-        <Typography variant="subtitle1">Our Partners</Typography>
+        <Typography variant="h2" className={classes.title}>Our Partners</Typography>
       </div>
 
       <Grid container direction="row" style={{ padding: '0rem 10rem' }} spacing={10}>

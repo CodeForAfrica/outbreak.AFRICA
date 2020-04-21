@@ -17,7 +17,7 @@ function Partners() {
   return (
     <div style={{position:'relative'}}>
       <Grid container direction="row" justify="flex-end" className={classes.root}>
-        <Grid item style={{ position:'absolute' , left:"4rem", top:'34.10rem', width:'24%'}}>
+        <Grid item style={{ position:'absolute' , left:"4rem", top:'34rem', width:'24%'}}>
           <JoinUs />
         </Grid>
 

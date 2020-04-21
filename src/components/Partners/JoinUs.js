@@ -7,28 +7,32 @@ const useStyles = makeStyles({
     backgroundColor: '#cbdbfb'
   },
   typogrid: {
-    padding: '2rem 3rem'
-
+    padding: '2rem 4rem'
   },
   typo: {
     color: 'white',
-    padding: '1rem 0rem'
+    //padding: '1rem 0rem'
+  },
+  link:{
+    textDecoration:'underline'
+  },
+  title:{
+    fontSize:'3rem',
+    fontWeight:700,
+    padding:'1rem 0rem'
   }
 });
 
 function JoinUs() {
   const classes = useStyles()
   return (
-    <Grid item className={classes.root}>
-      <div className={classes.typogrid}>
-        <Typography variant="body2">Join us</Typography>
+      <div className={classes.root}>
+        <div className={classes.typogrid}>
+        <Typography variant="h2" className={classes.title}>Join us</Typography>
         <Typography variant="body1">Be part of the initiative</Typography>
-        <Typography variant="subtitle1">Learn more</Typography>
+        <Typography variant="h6" className={classes.link}>LEARN MORE</Typography>
+        </div>
       </div>
-
-
-
-    </Grid>
   )
 }
 
