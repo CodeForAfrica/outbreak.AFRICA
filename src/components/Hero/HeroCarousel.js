@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
+      display: 'flex',
       position: 'absolute',
       top: '50px',
     }
