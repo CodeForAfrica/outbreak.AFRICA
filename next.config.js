@@ -3,9 +3,6 @@ const withImages = require('next-images');
 
 module.exports = withCSS(
   withImages({
-    cssLoaderOptions: {
-      url: false
-    },
     webpack(config) {
       // support font & image imports inside css files
       config.module.rules.push({
