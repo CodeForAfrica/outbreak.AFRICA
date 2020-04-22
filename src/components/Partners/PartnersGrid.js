@@ -25,14 +25,14 @@ const useStyles = makeStyles(theme=> ({
   typogrid: {
     padding: '2rem 4rem',
     [theme.breakpoints.up('md')]: {
-      padding: '5rem 10rem'
+      padding: '3rem 10rem'
     }
   },
   imageGrid:{
     padding: '2rem 6rem',
     display:'flex',
     [theme.breakpoints.up('md')]: {
-      padding: '5rem 10rem'
+      padding: '2rem 10rem'
     }
   },
   typo: {
