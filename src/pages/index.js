@@ -75,21 +75,18 @@ function Home(props) {
       </div>
       <MythBusting
         title="Myth-busting"
-        description={() => {
-          return {
-            __html:
-              'A searchable database of ' +
-              '<span class="highlight">debunked misinformation</span>' +
-              ', <br />' +
-              'backed up by a transnational team of expert ' +
-              '<span class="highlight">' +
-              'African fact-' +
-              '<br />' +
-              'checkers' +
-              '</span> ' +
-              'to help you test new questionable claims.'
-          };
-        }}
+        description={`
+              A searchable database of
+              <span class="highlight">debunked misinformation</span>
+               <br />
+              backed up by a transnational team of expert
+              <span class="highlight">
+              African fact-
+              <br />
+              checkers
+              </span>
+              to help you test new questionable claims.
+        `}
         linkText="LEARN MORE"
       />
     </Page>
