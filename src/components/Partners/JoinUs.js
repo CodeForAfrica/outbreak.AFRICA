@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme=> ({
   divider:{
     backgroundColor: '#170F49',
     height:'2px',
-    width:'20%',
+    width:'25%',
     [theme.breakpoints.up('md')]: {
       width:'50%'
     }
