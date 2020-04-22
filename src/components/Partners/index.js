@@ -74,8 +74,7 @@ function Partners({width}) {
 
   return (
     <div className={classes.root}>
-  
-     {renderDesktopPartner()} 
+      {isWidthUp('md', width) ? renderDesktopPartner() : rendeMobilePartner()}
     </div >
   )
 }
