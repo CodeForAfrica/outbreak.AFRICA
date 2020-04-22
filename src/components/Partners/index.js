@@ -13,7 +13,7 @@ import JoinUs from './JoinUs';
 const useStyles = makeStyles( theme =>({
   root: {
     position:'relative',
-    margin:'3rem 0rem'
+    margin:'3rem'
   },
   desktopContainer:{
     padding: '2rem 6rem'
