@@ -20,22 +20,6 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function description() {
-  return {
-    __html:
-      'A searchable database of ' +
-      '<span className="highlight">debunked misinformation</span>' +
-      ', <br />\n' +
-      'backed up by a transnational team of expert ' +
-      '<span className="highlight">' +
-      'African fact-\n' +
-      '<br />' +
-      'checkers' +
-      '</span> ' +
-      'to help you test new questionable claims.'
-  };
-}
-
 function Home(props) {
   const classes = useStyles(props);
 
