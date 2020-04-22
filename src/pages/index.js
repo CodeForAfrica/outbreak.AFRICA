@@ -59,7 +59,7 @@ function Home(props) {
           title="Covid-19 cases in Africa"
         />
       </div>
-      <Partners />
+      
       <MythBusting
         title="Myth-busting"
         description={`
@@ -76,6 +76,8 @@ function Home(props) {
         `}
         linkText="LEARN MORE"
       />
+
+      <Partners />
     </Page>
   );
 }

@@ -6,9 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import email from 'assets/email.svg'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#170F49'
+    backgroundColor: '#170F49',
+    width:'100%'
   },
   mainContainer:{
     margin: '3rem', 
@@ -39,7 +40,7 @@ const useStyles = makeStyles({
    img:{
      height:'2.5rem'
    }
-});
+}));
 
 function Subscribe() {
   const classes = useStyles()

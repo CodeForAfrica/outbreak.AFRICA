@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme=> ({
     }
   },
   typogrid: {
-    padding: '2rem 4rem'
+    padding: '4rem 4rem'
   },
   typo: {
     color: 'white'

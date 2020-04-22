@@ -111,7 +111,7 @@ function PartnersGrid({ width, ...props }) {
         <Typography variant="h2" className={classes.title}>Our Partners</Typography>
       </div>
 
-      <Grid container direction="row" className={classes.imageGrid} spacing={10}>
+      <Grid container direction="row" className={classes.imageGrid} justify="center" spacing={10}>
         {partners.map(partner => 
          <Grid item xs={12} md={6}>
           <img src={partner.image} alt={partner.name} className={partner.image === `${africaarxiv}` ? classes.image : classes.img} />
