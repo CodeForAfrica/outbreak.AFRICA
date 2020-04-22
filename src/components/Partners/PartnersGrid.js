@@ -46,8 +46,17 @@ const useStyles = makeStyles(theme=> ({
   img: {
     maxWidth: '100%',
     [theme.breakpoints.up('md')]: {
-      height: '3rem'
+      height:'2.8rem'
     }
+  },
+  image:{
+    [theme.breakpoints.up('md')]: {
+      height: '100px',
+      marginTop: '-2rem'
+    }
+  },
+  descGrid:{
+    paddingTop: '1rem'
   }
 }));
 
@@ -105,8 +114,9 @@ function PartnersGrid({ width, ...props }) {
       <Grid container direction="row" className={classes.imageGrid} spacing={10}>
         {partners.map(partner => 
          <Grid item xs={12} md={6}>
-          <img src={partner.image} alt={partner.name} className={classes.img} />
-          <div>
+          <img src={partner.image} alt={partner.name} className={partner.image === `${africaarxiv}` ? classes.image : classes.img} />
+          
+          <div className={classes.descGrid}>
             {isWidthUp('md', width) ? <Typography variant="caption">{partner.description}</Typography> : null}
           </div>
         </Grid>

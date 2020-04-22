@@ -32,7 +32,7 @@ function JoinUs() {
       <div className={classes.root}>
         <div className={classes.typogrid}>
         <Typography variant="h2" className={classes.title}>Join us</Typography>
-        <Typography variant="body1">Be part of the initiative</Typography>
+        <Typography variant="body1" style={{fontSize:'1rem'}}>Be part of the initiative</Typography>
         <Typography variant="h6" className={classes.link}>LEARN MORE</Typography>
         </div>
       </div>
