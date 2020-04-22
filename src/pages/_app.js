@@ -19,8 +19,6 @@ import { create } from 'jss';
 
 import theme from 'theme';
 
-import "react-multi-carousel/lib/styles.css";
-
 import * as ga from 'lib/ga';
 import config from 'config';
 
