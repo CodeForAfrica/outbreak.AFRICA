@@ -4,30 +4,28 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { makeStyles } from '@material-ui/core/styles';
-
-import Section from 'components/Section';
-import RichTypography from 'components/RichTypography';
+import { RichTypography, Section } from '@commons-ui/core';
 
 import Tabs from './Tabs';
 
 const useStyles = makeStyles({
   root: {},
   tabs: {
-    height: '6.25rem' // 100px / 16
+    height: '6.25rem', // 100px / 16
   },
   fix: {
     position: 'fixed',
     zIndex: 999,
     top: 0,
     right: 0,
-    left: 0
+    left: 0,
   },
   sectionTitle: {
-    margin: '2.75rem 0'
+    margin: '2.75rem 0',
   },
   description: {
-    marginBottom: '1rem'
-  }
+    marginBottom: '1rem',
+  },
 });
 
 function ProfileSection({
@@ -35,7 +33,7 @@ function ProfileSection({
   tabs,
   description,
   activeTab,
-  setActiveTab
+  setActiveTab,
 }) {
   const classes = useStyles();
   const [fixToTop, setFixToTop] = useState(false);
@@ -72,7 +70,7 @@ function ProfileSection({
 
   const { geo } = profile;
 
-  const tab = tabs.find(t => t.slug === activeTab);
+  const tab = tabs.find((t) => t.slug === activeTab);
   const title = activeTab === 'all' || !tab ? 'Country Profiles' : tab.name;
 
   // Wagtail inserts div/p when RichTextField is empty
@@ -86,7 +84,7 @@ function ProfileSection({
       <div id="section-tabs" className={classes.tabs}>
         <div
           className={classNames(classes.tabs, {
-            [classes.fix]: fixToTop
+            [classes.fix]: fixToTop,
           })}
         >
           <Tabs
@@ -114,24 +112,24 @@ function ProfileSection({
 ProfileSection.propTypes = {
   profile: PropTypes.shape({
     geo: PropTypes.shape({
-      name: PropTypes.string.isRequired
-    }).isRequired
+      name: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
+      slug: PropTypes.string.isRequired,
     })
   ).isRequired,
   description: PropTypes.string,
   activeTab: PropTypes.string,
-  setActiveTab: PropTypes.func
+  setActiveTab: PropTypes.func,
 };
 
 ProfileSection.defaultProps = {
   activeTab: undefined,
   setActiveTab: undefined,
-  description: undefined
+  description: undefined,
 };
 
 export { default as ProfileSectionTitle } from './Title';

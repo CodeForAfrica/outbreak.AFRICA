@@ -1,16 +1,19 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import classnames from 'classnames';
-import { makeStyles } from '@material-ui/core/styles';
+
 import { Grid, Link, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+
+import { RichTypography } from '@commons-ui/core';
 
 import illo from 'assets/images/illo-03.png';
 import illoMobile from 'assets/images/illo-03-mobile.png';
-import PropTypes from 'prop-types';
-import RichTypography from 'components/RichTypography';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#170F49'
+    backgroundColor: '#170F49',
   },
   description: {
     paddingTop: '12rem',
@@ -22,49 +25,49 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       paddingBottom: '3rem',
       paddingTop: '1rem',
-      paddingLeft: '1rem'
-    }
+      paddingLeft: '1rem',
+    },
   },
   title: {
-    color: 'white'
+    color: 'white',
   },
   linkContainer: {
     paddingLeft: '5rem',
     [theme.breakpoints.down('sm')]: {
       paddingLeft: '1rem',
-      paddingBottom: '3rem'
-    }
+      paddingBottom: '3rem',
+    },
   },
   link: {
     color: 'yellow',
     textDecoration: 'none',
     fontWeight: 'bolder',
     borderBottom: '1px solid',
-    paddingBottom: '3px'
+    paddingBottom: '3px',
   },
   subtitle: {
     '&.subtitle': {
-      color: 'white'
+      color: 'white',
     },
     '& .highlight': {
       background:
         "url(\"data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='white' fill-opacity='0.5' /%3E%3C/svg%3E\") no-repeat 100% 100%",
-      backgroundSize: '100% 50%'
-    }
+      backgroundSize: '100% 50%',
+    },
   },
   imgContainer: {
     overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
-      display: 'none'
-    }
+      display: 'none',
+    },
   },
   mobileImgContainer: {
     display: 'none',
     [theme.breakpoints.down('sm')]: {
       display: 'block',
-      maxWidth: '100%'
-    }
-  }
+      maxWidth: '100%',
+    },
+  },
 }));
 
 function MythBursting({ title, description, linkText, ...props }) {
@@ -78,7 +81,7 @@ function MythBursting({ title, description, linkText, ...props }) {
             <div>
               <img
                 src={illoMobile}
-                alt="CoronaVirus Image"
+                alt="CoronaVirus"
                 className={classes.mobileImgContainer}
               />
               <Typography variant="h2" className={classes.title}>
@@ -99,7 +102,7 @@ function MythBursting({ title, description, linkText, ...props }) {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.imgContainer}>
-          <img src={illo} alt="CoronaVirus Image" />
+          <img src={illo} alt="CoronaVirus" />
         </Grid>
       </Grid>
     </div>
@@ -109,7 +112,7 @@ function MythBursting({ title, description, linkText, ...props }) {
 MythBursting.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  linkText: PropTypes.string.isRequired
+  linkText: PropTypes.string.isRequired,
 };
 
 export default MythBursting;

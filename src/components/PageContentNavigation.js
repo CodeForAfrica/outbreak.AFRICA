@@ -5,12 +5,13 @@ import classNames from 'classnames';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Layout from './Layout';
+import { Layout } from '@commons-ui/core';
+
 import ContentNavigation from './ContentNavigation';
 
 import useScrollListener from './useScrollListener';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   container: {
     position: 'fixed',
     top: 0,
@@ -23,14 +24,14 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     zIndex: 2, // Ensure its ontop (data continer actions has index 1)
     backgroundColor: theme.palette.primary.main,
-    boxShadow: '0 2px 6px 2px rgba(0, 0, 0, 0.27)'
+    boxShadow: '0 2px 6px 2px rgba(0, 0, 0, 0.27)',
   },
   containerNavigation: {
     top: '-100px',
-    transition: 'top .27s ease 0s'
+    transition: 'top .27s ease 0s',
   },
   containerTransition: {
-    top: 0
+    top: 0,
   },
   label: ({ navigation }) =>
     navigation
@@ -38,13 +39,13 @@ const useStyles = makeStyles(theme => ({
           color: 'white',
           fontSize: '0.813rem',
           marginTop: '1rem',
-          marginBottom: '0.5rem'
+          marginBottom: '0.5rem',
         }
       : {},
   other: ({ navigation }) =>
     navigation
       ? {
-          color: 'white'
+          color: 'white',
         }
       : {},
   navigation: ({ navigation }) =>
@@ -53,13 +54,13 @@ const useStyles = makeStyles(theme => ({
           backgroundColor: 'unset',
           padding: 0,
           [theme.breakpoints.up('md')]: {
-            width: '100%'
+            width: '100%',
           },
           [theme.breakpoints.up('lg')]: {
-            width: '100%'
-          }
+            width: '100%',
+          },
         }
-      : {}
+      : {},
 }));
 
 function PageContentNavigation({
@@ -70,10 +71,10 @@ function PageContentNavigation({
   current,
   generateHref,
   generateTitle,
-  onClick
+  onClick,
 }) {
   const scrollThreshold = useScrollListener(navigation && 100, {
-    initial: true
+    initial: true,
   });
   const classes = useStyles({ navigation, scrollThreshold });
 
@@ -82,7 +83,7 @@ function PageContentNavigation({
       classes={{
         root: classes.navigation,
         label: classes.label,
-        other: classes.other
+        other: classes.other,
       }}
       current={current}
       onClick={onClick}
@@ -99,7 +100,7 @@ function PageContentNavigation({
     <div
       className={classNames(classes.container, {
         [classes.containerTransition]: scrollThreshold,
-        [classes.containerNavigation]: navigation
+        [classes.containerNavigation]: navigation,
       })}
     >
       <Layout>{renderContent()}</Layout>
@@ -117,13 +118,13 @@ PageContentNavigation.propTypes = {
   content: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   generateHref: PropTypes.func.isRequired,
   generateTitle: PropTypes.func.isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
 };
 
 PageContentNavigation.defaultProps = {
   contentTitle: undefined,
   navigation: false,
-  onClick: undefined
+  onClick: undefined,
 };
 
 export default PageContentNavigation;

@@ -10,19 +10,20 @@ import {
   Popper,
   Paper,
   MenuList,
-  MenuItem
+  MenuItem,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { Layout } from '@commons-ui/core';
+
 import searchIcon from 'assets/images/icon-search.svg';
 import Link from './Link';
-import Layout from './Layout';
 
 import config from '../config';
 import CountrySelector from './CountrySelector';
 
-const useStyles = makeStyles(theme => ({
-  root: props => ({
+const useStyles = makeStyles((theme) => ({
+  root: (props) => ({
     alignItems: 'flex-start',
     backgroundColor: 'rgba(255, 255, 255, 0.63)',
     display: 'flex',
@@ -37,8 +38,8 @@ const useStyles = makeStyles(theme => ({
       border: 'solid 0.063rem rgba(0, 0, 0, 0.19)',
       borderRadius: '0 0 1.063rem 1.063rem',
       pointerEvents: 'all',
-      zIndex: '1'
-    }
+      zIndex: '1',
+    },
   }),
   layout: {
     zIndex: 999,
@@ -48,43 +49,43 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     [theme.breakpoints.up('md')]: {
       position: 'absolute',
-      pointerEvents: 'none'
-    }
+      pointerEvents: 'none',
+    },
   },
   label: {
     color: '#231f20',
     fontWeight: 'normal',
     fontSize: '0.938rem',
-    lineHeight: 'normal'
+    lineHeight: 'normal',
   },
   verticalLine: {
     width: '0.25rem',
     height: '12.125rem',
     marginLeft: '1.063rem',
     marginRight: '2.188rem',
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   valueLabel: {
     fontSize: '2rem',
-    fontWeight: 600
+    fontWeight: 600,
   },
   searchBar: {
     position: 'relative',
-    width: '100%'
+    width: '100%',
   },
   searchBarInput: {
     padding: '0.625rem',
     borderRadius: '0.25rem',
-    border: 'solid 0.063rem rgba(151, 151, 151, 0.3)'
+    border: 'solid 0.063rem rgba(151, 151, 151, 0.3)',
   },
   searchBarIcon: {
     position: 'absolute',
     right: '1rem',
-    top: '1rem'
+    top: '1rem',
   },
   popperIndex: {
-    zIndex: 2
-  }
+    zIndex: 2,
+  },
 }));
 
 function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
@@ -93,7 +94,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  const handleSearch = e => {
+  const handleSearch = (e) => {
     const newSearchTerm = e && e.target ? e.target.value : searchTerm;
     setSearchTerm(newSearchTerm);
     if (newSearchTerm.length) {
@@ -109,10 +110,10 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
   let country;
   if (geoLevel === 'country') {
     const { geoCode } = geo;
-    country = config.countries.find(c => c.isoCode === geoCode);
+    country = config.countries.find((c) => c.isoCode === geoCode);
   } else {
     // if level is not country, then we are in level 1
-    country = config.countries.find(c => c.isoCode === parentCode);
+    country = config.countries.find((c) => c.isoCode === parentCode);
   }
 
   return (
@@ -138,7 +139,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
                         variant="body1"
                         className={classNames([
                           classes.label,
-                          classes.valueLabel
+                          classes.valueLabel,
                         ])}
                       >
                         {Number(population).toLocaleString()}
@@ -154,7 +155,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
                         variant="body1"
                         className={classNames([
                           classes.label,
-                          classes.valueLabel
+                          classes.valueLabel,
                         ])}
                       >
                         {Number(squareKms).toLocaleString()}
@@ -170,7 +171,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
                         variant="body1"
                         className={classNames([
                           classes.label,
-                          classes.valueLabel
+                          classes.valueLabel,
                         ])}
                       >
                         {Number(populationDensity).toLocaleString()}
@@ -205,7 +206,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
                     open={showSearchResults}
                     anchorEl={searchBarRef}
                     style={{
-                      width: searchBarRef ? searchBarRef.clientWidth : null
+                      width: searchBarRef ? searchBarRef.clientWidth : null,
                     }}
                   >
                     <Paper>
@@ -238,14 +239,14 @@ ProfileDetail.propTypes = {
     demographics: PropTypes.shape({
       population_density: PropTypes.shape({
         values: PropTypes.shape({
-          this: PropTypes.number
-        })
+          this: PropTypes.number,
+        }),
       }),
       total_population: PropTypes.shape({
         values: PropTypes.shape({
-          this: PropTypes.number
-        })
-      })
+          this: PropTypes.number,
+        }),
+      }),
     }),
     geo: PropTypes.shape({
       geoCode: PropTypes.string,
@@ -253,9 +254,9 @@ ProfileDetail.propTypes = {
       parentCode: PropTypes.string,
       name: PropTypes.string,
       squareKms: PropTypes.number,
-      totalPopulation: PropTypes.number
-    })
-  }).isRequired
+      totalPopulation: PropTypes.number,
+    }),
+  }).isRequired,
 };
 
 export default ProfileDetail;

@@ -4,30 +4,30 @@ import { PropTypes } from 'prop-types';
 import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Section from './Section';
+import { Section } from '@commons-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '3.875rem'
+    marginTop: '3.875rem',
   },
   aside: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '16rem' // .75 of lg
+      width: '16rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '19.0625rem'
-    }
+      width: '19.0625rem',
+    },
   },
   main: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '42.265625rem' // .75 of lg
+      width: '42.265625rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '58.4375rem'
-    }
-  }
+      width: '58.4375rem',
+    },
+  },
 }));
 
 function ContentPage({ aside, children }) {
@@ -45,12 +45,12 @@ function ContentPage({ aside, children }) {
 ContentPage.propTypes = {
   aside: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default ContentPage;

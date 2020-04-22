@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Section from './Section';
-import RichTypography from './RichTypography';
+import { RichTypography, Section } from '@commons-ui/core';
 
 const useStyles = makeStyles({
   root: {},
-  text: {}
+  text: {},
 });
 
 function RichTextSection({ component, title, value, variant, ...props }) {
@@ -25,7 +24,7 @@ function RichTextSection({ component, title, value, variant, ...props }) {
       title,
       variant,
       classes: { root: classes.root },
-      ...props
+      ...props,
     },
     text
   );
@@ -35,12 +34,12 @@ RichTextSection.propTypes = {
   component: PropTypes.elementType,
   title: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  variant: PropTypes.string
+  variant: PropTypes.string,
 };
 
 RichTextSection.defaultProps = {
   variant: 'h3',
-  component: Section
+  component: Section,
 };
 
 export default RichTextSection;
