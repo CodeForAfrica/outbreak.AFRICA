@@ -9,6 +9,7 @@ import theme from 'theme';
 import { GA_TRACKING_ID } from 'lib/ga';
 
 import 'simplebar/dist/simplebar.min.css';
+import "react-multi-carousel/lib/styles.css";
 
 const getGaScript = () => {
   return {
