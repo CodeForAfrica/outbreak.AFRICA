@@ -1,11 +1,12 @@
 import React from 'react';
-import clsx from 'clsx';
+import classnames from 'classnames';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Link, Typography } from '@material-ui/core';
 
 import illo from 'assets/images/illo-03.png';
 import illoMobile from 'assets/images/illo-03-mobile.png';
 import PropTypes from 'prop-types';
+import RichTypography from 'components/RichTypography';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,11 +84,12 @@ function MythBursting({ title, description, linkText, ...props }) {
               <Typography variant="h2" className={classes.title}>
                 {title}
               </Typography>
-              <Typography
+              <RichTypography
                 variant="subtitle2"
-                className={clsx(classes.subtitle, 'subtitle')}
-                dangerouslySetInnerHTML={description()}
-              />
+                className={classnames(classes.subtitle, 'subtitle')}
+              >
+                {description}
+              </RichTypography>
             </div>
           </div>
           <div className={classes.linkContainer}>
@@ -106,7 +108,7 @@ function MythBursting({ title, description, linkText, ...props }) {
 
 MythBursting.propTypes = {
   title: PropTypes.string.isRequired,
-  description: PropTypes.element.isRequired,
+  description: PropTypes.string.isRequired,
   linkText: PropTypes.string.isRequired
 };
 
