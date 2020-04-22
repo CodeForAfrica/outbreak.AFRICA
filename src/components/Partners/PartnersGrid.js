@@ -7,14 +7,14 @@ import { PropTypes } from 'prop-types';
 import { withWidth } from '@material-ui/core';
 import { isWidthUp } from '@material-ui/core/withWidth';
 
-import africaarxiv from '../../assets/partnerLogos/africaarxiv/africaarxiv.png';
-import africapractice from '../../assets/partnerLogos/africapractice/africapractice.png';
-import aosh from '../../assets/partnerLogos/aosh/aosh.png';
-import asi from '../../assets/partnerLogos/asi/asi.png';
-import asln from '../../assets/partnerLogos/asln/asln.png';
-import pesacheck from '../../assets/partnerLogos/pesacheck/pesacheck.png';
-import takwimu from '../../assets/partnerLogos/takwimu/takwimu.png';
-import wanadata from '../../assets/partnerLogos/wanadata/wanadata.png';
+import africaarxiv from 'assets/partnerLogos/africaarxiv/africaarxiv.png';
+import africapractice from 'assets/partnerLogos/africapractice/africapractice.png';
+import aosh from 'assets/partnerLogos/aosh/aosh.png';
+import asi from 'assets/partnerLogos/asi/asi.png';
+import asln from 'assets/partnerLogos/asln/asln.png';
+import pesacheck from 'assets/partnerLogos/pesacheck/pesacheck.png';
+import takwimu from 'assets/partnerLogos/takwimu/takwimu.png';
+import wanadata from 'assets/partnerLogos/wanadata/wanadata.png';
 
 
 const useStyles = makeStyles(theme=> ({
