@@ -93,8 +93,8 @@ const partners =[
   }
 ]
 
-function PartnersGrid({ width }) {
-  const classes = useStyles()
+function PartnersGrid({ width, ...props }) {
+  const classes = useStyles(props)
   return (
     <Grid className={classes.root}>
       <div className={classes.typogrid}>
