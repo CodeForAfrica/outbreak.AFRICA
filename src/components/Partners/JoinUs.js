@@ -38,7 +38,6 @@ const useStyles = makeStyles(theme=> ({
     [theme.breakpoints.up('md')]: {
       paddingTop:'0.5rem'
     }
-
   }
 }));
 

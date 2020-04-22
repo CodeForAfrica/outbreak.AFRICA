@@ -2,9 +2,10 @@ import React from 'react';
 
 import { PropTypes } from 'prop-types';
 
-import { Grid, withWidth } from '@material-ui/core';
-import { isWidthUp } from '@material-ui/core/withWidth';
+import { Grid } from '@material-ui/core';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles'
 
 import Subscribe from './Subscribe';
 import PartnerGrid from './PartnersGrid';
@@ -39,9 +40,9 @@ const useStyles = makeStyles( theme =>({
   }
 }));
 
-function Partners({width}) {
-  const classes = useStyles()
-
+function Partners() {
+  const classes = useStyles();
+  const theme = useTheme();
   const renderDesktopPartner = ()=> {
     const classes = useStyles()
     return (
@@ -50,19 +51,16 @@ function Partners({width}) {
           <Grid item className={classes.joinUs} >
             <JoinUs />
           </Grid>
-      
           <Grid className={classes.partner}>
             <PartnerGrid />
           </Grid>
       </Grid>
-
       <Grid item className={classes.subscribe}>
         <Subscribe />
       </Grid>
       </>
     )
   }
-
   const rendeMobilePartner = () => {
     const classes = useStyles()
     return (
@@ -73,16 +71,11 @@ function Partners({width}) {
       </Grid>
     )
   }
-
   return (
     <div className={classes.root}>
-      {isWidthUp('md', width) ? renderDesktopPartner() : rendeMobilePartner()}
+      {useMediaQuery(theme.breakpoints.up('md')) ? renderDesktopPartner() : rendeMobilePartner()}
     </div >
   )
 }
 
-Partners.propTypes = {
-  width: PropTypes.string.isRequired
-};
-
-export default withWidth({initialWidth: 'md'})(Partners);
+export default Partners;
