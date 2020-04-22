@@ -6,10 +6,11 @@ import FeaturedResearchers from 'components/FeaturedResearchers';
 import FeaturedStories from 'components/FeaturedStories';
 import Page from 'components/Page';
 import Ticker from 'components/Ticker';
+import MythBusting from 'components/MythBusting';
 
 import { getProfiles, fromTimestamp, useStories } from 'lib';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   featuredResearchers: {
     margin: '0 auto',
@@ -17,11 +18,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
-      width: `${(1640 / 1920) * 100}%`
-    }
+      width: `${(1640 / 1920) * 100}%`,
+    },
   },
   featuredResearchersProfiles: {
-    width: 'calc(((100vw - 100%) / 2) + 100%)'
+    width: 'calc(((100vw - 100%) / 2) + 100%)',
   },
   featuredStories: {
     margin: '0 auto',
@@ -29,11 +30,11 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
-      width: `${(1640 / 1920) * 100}%`
-    }
+      width: `${(1640 / 1920) * 100}%`,
+    },
   },
   featuredStoriesStories: {
-    width: 'calc(((100vw - 100%) / 2) + 100%)'
+    width: 'calc(((100vw - 100%) / 2) + 100%)',
   },
   ticker: {
     margin: '0 auto',
@@ -41,9 +42,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
-      width: `${(1640 / 1920) * 100}%`
-    }
-  }
+      width: `${(1640 / 1920) * 100}%`,
+    },
+  },
 }));
 
 function Home(props) {
@@ -53,12 +54,12 @@ function Home(props) {
     'https://pesacheck.org/tagged/public-finance'
   );
 
-  const stories = foundStories.map(story => ({
+  const stories = foundStories.map((story) => ({
     ...story,
     createdAt: fromTimestamp(story.createdAt),
     image: {
-      url: `https://cdn-images-1.medium.com/max/480/${story.virtuals.previewImage.imageId}`
-    }
+      url: `https://cdn-images-1.medium.com/max/480/${story.virtuals.previewImage.imageId}`,
+    },
   }));
 
   return (
@@ -67,30 +68,30 @@ function Home(props) {
         <Ticker
           source={{
             title: 'openAFRICA',
-            url: 'https://open.africa'
+            url: 'https://open.africa',
           }}
           statuses={[
             {
               name: 'Infections',
               status: 'Confirmed',
-              value: '3,721'
+              value: '3,721',
             },
             {
               name: 'Deaths',
               status: 'Confirmed',
               value: '670',
-              highlight: true
+              highlight: true,
             },
             {
               name: 'Hospitalisations',
               status: 'Confirmed',
-              value: '430'
+              value: '430',
             },
             {
               name: 'Recoveries',
               status: 'Confirmed',
-              value: '730'
-            }
+              value: '730',
+            },
           ]}
           title="Covid-19 cases in Africa"
         />
@@ -107,6 +108,22 @@ function Home(props) {
           classes={{ stories: classes.featuredStoriesStories }}
         />
       </div>
+      <MythBusting
+        title="Myth-busting"
+        description={`
+              A searchable database of
+              <span class="highlight">debunked misinformation</span>
+               <br />
+              backed up by a transnational team of expert
+              <span class="highlight">
+              African fact-
+              <br />
+              checkers
+              </span>
+              to help you test new questionable claims.
+        `}
+        linkText="LEARN MORE"
+      />
     </Page>
   );
 }
