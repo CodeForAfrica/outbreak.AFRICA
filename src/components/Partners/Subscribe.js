@@ -39,6 +39,9 @@ const useStyles = makeStyles(theme => ({
    },
    img:{
      height:'2.5rem'
+   },
+   button:{
+     padding:0
    }
 }));
 
@@ -59,11 +62,11 @@ function Subscribe() {
             fullWidth
             InputProps={{ className: classes.input}}
           />
-          <div>
-            <IconButton>
+    
+            <IconButton className={classes.button}>
               <img src={email} al="Arrow icon"  className={classes.img}/>
             </IconButton>
-          </div>
+          
         </form>
       </div>
     </Grid>
