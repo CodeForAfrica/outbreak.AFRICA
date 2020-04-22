@@ -5,6 +5,7 @@ import { PropTypes } from 'prop-types';
 
 
 import { withWidth } from '@material-ui/core';
+//import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isWidthUp } from '@material-ui/core/withWidth';
 
 import africaarxiv from 'assets/partnerLogos/africaarxiv/africaarxiv.png';
@@ -96,7 +97,7 @@ const partners =[
 function PartnersGrid({ width, ...props }) {
   const classes = useStyles(props)
   return (
-    <Grid className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.typogrid}>
         <Typography variant="h2" className={classes.title}>Our Partners</Typography>
       </div>
@@ -111,7 +112,7 @@ function PartnersGrid({ width, ...props }) {
         </Grid>
         )}
       </Grid>
-    </Grid>
+    </div>
   )
 }
 

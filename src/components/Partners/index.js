@@ -45,13 +45,13 @@ function Partners({width}) {
     return (
       <>
       <Grid container direction="row" justify="flex-end" className={classes.desktopContainer}>
-        <Grid item className={classes.joinUs}>
-          <JoinUs />
-        </Grid>
-
-        <Grid item className={classes.partner}>
-          <PartnerGrid />
-        </Grid>
+          <Grid item className={classes.joinUs} >
+            <JoinUs />
+          </Grid>
+      
+          <Grid className={classes.partner}>
+            <PartnerGrid />
+          </Grid>
       </Grid>
 
       <Grid item className={classes.subscribe}>
@@ -74,7 +74,8 @@ function Partners({width}) {
 
   return (
     <div className={classes.root}>
-     {isWidthUp('md', width) ? renderDesktopPartner() : rendeMobilePartner()}
+  
+     {renderDesktopPartner()} 
     </div >
   )
 }
