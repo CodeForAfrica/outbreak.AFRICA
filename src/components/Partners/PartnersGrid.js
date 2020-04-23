@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   imageGrid: {
-    padding: '2rem 6rem',
+    padding: '2rem 4rem',
     display: 'flex',
     [theme.breakpoints.up('md')]: {
       padding: '2rem 10rem'
@@ -138,7 +138,6 @@ function PartnersGrid({ ...props }) {
                 partner.image === `${africaarxiv}` ? classes.image : classes.img
               }
             />
-
             <div
               className={
                 partner.image === `${africaarxiv}`
