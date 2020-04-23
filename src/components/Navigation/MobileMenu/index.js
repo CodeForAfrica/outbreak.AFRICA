@@ -11,7 +11,7 @@ import {
   Typography,
   Dialog,
   DialogContent,
-  DialogTitle
+  DialogTitle,
 } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
@@ -22,46 +22,46 @@ import InsightMobileMenu from './InsightMobileMenu';
 import CountriesMobileMenu from './CountriesMobileMenu';
 import ResourcesMobileMenu from './ResourcesMobileMenu';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   appBar: {
     backgroundColor: '#2C2559',
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
   gridRoot: {
-    padding: '1rem  2rem'
+    padding: '1rem  2rem',
   },
   titleGrid: {
-    width: '50%'
+    width: '50%',
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%'
+    width: '50%',
   },
   divider: {
-    border: '0.5px solid grey'
+    border: '0.5px solid grey',
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1
+    flex: 1,
   },
   dialogContent: {
     paddingTop: '3rem',
     color: 'white',
-    backgroundColor: '#2C2559'
+    backgroundColor: '#2C2559',
   },
   toolbar: {
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   link: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -141,7 +141,7 @@ function MobileMenu({ countries }) {
 }
 
 MobileMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
 };
 
 export default MobileMenu;

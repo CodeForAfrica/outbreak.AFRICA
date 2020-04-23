@@ -5,22 +5,22 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import { fade, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     height: '2rem',
     borderRadius: 'none',
     backgroundColor: fade('#C0C0C0', 0.25),
     '&:hover': {
-      backgroundColor: fade('#C0C0C0', 0.25)
+      backgroundColor: fade('#C0C0C0', 0.25),
     },
     marginRight: theme.spacing(2),
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
-      width: 'auto'
-    }
+      width: 'auto',
+    },
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -29,11 +29,11 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   inputRoot: {
     color: 'inherit',
-    fontSize: '0.8rem'
+    fontSize: '0.8rem',
   },
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
@@ -43,9 +43,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       maxWidth: '100%',
-      width: '15rem'
-    }
-  }
+      width: '15rem',
+    },
+  },
 }));
 
 function Search() {
@@ -59,7 +59,7 @@ function Search() {
         placeholder="Search for issues,topics,etc..."
         classes={{
           root: classes.inputRoot,
-          input: classes.inputInput
+          input: classes.inputInput,
         }}
         inputProps={{ 'aria-label': 'search' }}
       />

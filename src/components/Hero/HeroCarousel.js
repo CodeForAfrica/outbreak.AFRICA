@@ -5,12 +5,12 @@ import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 
 import Carousel from 'react-multi-carousel';
-import CarouselCard from './CarouselCard';
 import 'react-multi-carousel/lib/styles.css';
 
 import carousel1 from 'assets/images/carusel-1.png';
 import carousel2 from 'assets/images/carusel-2.png';
 import carousel3 from 'assets/images/carousel3.png';
+import CarouselCard from './CarouselCard';
 
 const responsive = {
   desktop: {
@@ -101,7 +101,7 @@ const carouselItems = [
   },
 ];
 
-function HeroCarousel(props) {
+function HeroCarousel({ deviceType }) {
   return (
     <Carousel
       swipeable
@@ -116,7 +116,7 @@ function HeroCarousel(props) {
       customButtonGroup={<CustomArrowButtons />}
       autoPlaySpeed={5000}
       removeArrowOnDeviceType={['desktop', 'tablet', 'mobile']}
-      deviceType={props.deviceType}
+      deviceType={deviceType}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
     >

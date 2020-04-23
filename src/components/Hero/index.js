@@ -3,10 +3,9 @@ import React from 'react';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import HeroCarousel from './HeroCarousel';
-
 import heroImage from 'assets/images/heropattern.png';
 import coronaImage from 'assets/images/coronavirus.svg';
+import HeroCarousel from './HeroCarousel';
 
 const useStyles = makeStyles((theme) => ({
   root: {

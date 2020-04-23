@@ -7,7 +7,7 @@ import {
   MenuItem,
   Grid,
   Typography,
-  Divider
+  Divider,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -15,45 +15,45 @@ import Link from 'components/Link';
 
 const useStyles = makeStyles({
   menuItem: {
-    padding: '1rem'
+    padding: '1rem',
   },
   listItem: {
-    color: 'white'
+    color: 'white',
   },
   gridRoot: {
-    padding: '1rem  2rem'
+    padding: '1rem  2rem',
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%'
+    width: '50%',
   },
   divider: {
-    border: '0.5px solid grey'
-  }
+    border: '0.5px solid grey',
+  },
 });
 
 const insightMenu = [
   {
     slug: 'analysis',
     name: 'Analysis',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'misinformation',
     name: 'Misinformation',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'frontline-reportange',
     name: 'Frontline Reportange',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'multimedia-resources',
     name: 'Multimedia resources',
-    link: '#'
-  }
+    link: '#',
+  },
 ];
 
 function MenuItemLink(props) {
@@ -80,7 +80,7 @@ function InsightMobileMenu({ title }) {
       <Grid item className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {insightMenu.map(insight => (
+          {insightMenu.map((insight) => (
             <MenuItemLink
               key={insight.slug}
               underline="none"
@@ -99,7 +99,7 @@ function InsightMobileMenu({ title }) {
 }
 
 InsightMobileMenu.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default InsightMobileMenu;
