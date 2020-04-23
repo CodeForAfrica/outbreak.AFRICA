@@ -1,15 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import classnames from 'classnames';
 
-import { Grid, Link, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Link, Typography } from '@material-ui/core';
 
 import { RichTypography } from '@commons-ui/core';
 
 import illo from 'assets/images/illo-03.png';
 import illoMobile from 'assets/images/illo-03-mobile.png';
+import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,7 +80,7 @@ function MythBursting({ title, description, linkText, ...props }) {
             <div>
               <img
                 src={illoMobile}
-                alt="CoronaVirus"
+                alt="Corona virus"
                 className={classes.mobileImgContainer}
               />
               <Typography variant="h2" className={classes.title}>
@@ -102,7 +101,7 @@ function MythBursting({ title, description, linkText, ...props }) {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.imgContainer}>
-          <img src={illo} alt="CoronaVirus" />
+          <img src={illo} alt="Corona virus" />
         </Grid>
       </Grid>
     </div>
