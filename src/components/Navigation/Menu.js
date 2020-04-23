@@ -7,20 +7,18 @@ import {
   Popper,
   MenuItem,
   MenuList,
-  ClickAwayListener,
-  List
+  ClickAwayListener
 } from '@material-ui/core';
-
 
 import { makeStyles } from '@material-ui/core/styles';
 import DataMenu from './DataMenu';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   paper: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(2)
   },
   popper: {
     paddingTop: '1.5rem',
@@ -32,16 +30,16 @@ function MenuItemLink(props) {
   return <MenuItem button component="a" {...props} />;
 }
 
-function Menu({ title, countries }) {
+function Menu({ title, countries, slug }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
-    setOpen((prevOpen) => !prevOpen);
+    setOpen(prevOpen => !prevOpen);
   };
 
-  const handleClose = (event) => {
+  const handleClose = event => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -65,28 +63,34 @@ function Menu({ title, countries }) {
     prevOpen.current = open;
   }, [open]);
 
-
   const renderInsightMenu = () => {
     return (
-      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+      <MenuList
+        autoFocusItem={open}
+        id="menu-list-grow"
+        onKeyDown={handleListKeyDown}
+      >
         <MenuItemLink href="/">Analysis</MenuItemLink>
         <MenuItemLink href="/">Misinformation</MenuItemLink>
         <MenuItemLink href="/">Frontline Reportange</MenuItemLink>
         <MenuItemLink href="/">Multimedia resources</MenuItemLink>
       </MenuList>
-    )
-  }
+    );
+  };
 
   const renderResourcesMenu = () => {
     return (
-      <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+      <MenuList
+        autoFocusItem={open}
+        id="menu-list-grow"
+        onKeyDown={handleListKeyDown}
+      >
         <MenuItemLink href="/">African Experts</MenuItemLink>
         <MenuItemLink href="/">Published Research</MenuItemLink>
         <MenuItemLink href="/">Scientific Institutions</MenuItemLink>
       </MenuList>
-    )
-  }
-
+    );
+  };
 
   return (
     <>
@@ -99,21 +103,40 @@ function Menu({ title, countries }) {
       >
         {title}
       </Typography>
-      <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal className={classes.popper}>
+      <Popper
+        open={open}
+        anchorEl={anchorRef.current}
+        role={undefined}
+        transition
+        disablePortal
+        className={classes.popper}
+      >
         {({ TransitionProps, placement }) => (
           <Grow
             {...TransitionProps}
-            style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'bottom-end' }}
+            style={{
+              transformOrigin:
+                placement === 'bottom' ? 'center top' : 'bottom-end'
+            }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === 'DATA' ?
-                  <MenuList autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
+                {title === 'DATA' ? (
+                  <MenuList
+                    autoFocusItem={open}
+                    id="menu-list-grow"
+                    onKeyDown={handleListKeyDown}
+                  >
                     <DataMenu
                       countries={countries}
-                      profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`} />
+                      profile={({ isoCode, slug }) => `country-${isoCode}`}
+                    />
                   </MenuList>
-                  : title === 'INSIGHT' ? renderInsightMenu() : renderResourcesMenu()}
+                ) : title === 'INSIGHT' ? (
+                  renderInsightMenu()
+                ) : (
+                  renderResourcesMenu()
+                )}
               </ClickAwayListener>
             </Paper>
           </Grow>
@@ -123,4 +146,4 @@ function Menu({ title, countries }) {
   );
 }
 
-export default Menu
+export default Menu;
