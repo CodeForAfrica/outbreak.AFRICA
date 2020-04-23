@@ -1,9 +1,6 @@
 import React from 'react';
-import { Grid, Typography, withWidth } from '@material-ui/core';
+import { Grid, Typography, useMediaQuery } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
-
-import { isWidthUp } from '@material-ui/core/withWidth';
-import { useMediaQuery } from '@material-ui/core';
 
 import africaarxiv from 'assets/partnerLogos/africaarxiv/africaarxiv.png';
 import africapractice from 'assets/partnerLogos/africapractice/africapractice.png';
