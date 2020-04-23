@@ -1,15 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  MenuItem
-} from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../Link';
-import config from '../../config'
-
+import config from 'config';
+import Link from 'components/Link';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -99,23 +96,24 @@ const useStyles = makeStyles(theme => ({
     marginTop: '3rem',
     [theme.breakpoints.up('md')]: {
       marginTop: 0
-    },
+    }
   },
   menulink: {
     color: 'black'
   }
 }));
 
-
 function MenuItemLink(props) {
-  const classes = useStyles()
-  return <MenuItem style={{ padding: '1rem' }}>
-    <Link {...props} className={classes.menulink} />
-  </MenuItem>;
+  const classes = useStyles();
+  return (
+    <MenuItem style={{ padding: '1rem' }}>
+      <Link {...props} className={classes.menulink} />
+    </MenuItem>
+  );
 }
 
 function DataMenu({ profile }) {
-  const { countries } = config
+  const { countries } = config;
 
   return (
     <>
@@ -128,14 +126,12 @@ function DataMenu({ profile }) {
         >
           {country.shortName}
         </MenuItemLink>
-      ))
-      }
+      ))}
     </>
   );
 }
 
 DataMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired
 };
 

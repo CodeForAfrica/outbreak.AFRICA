@@ -6,6 +6,7 @@ import FeaturedResearchers from 'components/FeaturedResearchers';
 import FeaturedStories from 'components/FeaturedStories';
 import Page from 'components/Page';
 import Ticker from 'components/Ticker';
+import Partners from 'components/Partners';
 import MythBusting from 'components/MythBusting';
 
 import { getProfiles, fromTimestamp, useStories } from 'lib';
@@ -102,12 +103,7 @@ function Home(props) {
           classes={{ profiles: classes.featuredResearchersProfiles }}
         />
       </div>
-      <div className={classes.featuredStories}>
-        <FeaturedStories
-          stories={stories}
-          classes={{ stories: classes.featuredStoriesStories }}
-        />
-      </div>
+
       <MythBusting
         title="Myth-busting"
         description={`
@@ -124,6 +120,13 @@ function Home(props) {
         `}
         linkText="LEARN MORE"
       />
+      <div className={classes.featuredStories}>
+        <FeaturedStories
+          stories={stories}
+          classes={{ stories: classes.featuredStoriesStories }}
+        />
+      </div>
+      <Partners />
     </Page>
   );
 }

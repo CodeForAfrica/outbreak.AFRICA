@@ -1,6 +1,6 @@
 import config from 'config';
 
-function Robots() { }
+function Robots() {}
 
 Robots.propTypes = {};
 

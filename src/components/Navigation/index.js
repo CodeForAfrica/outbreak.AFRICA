@@ -1,21 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-import {
-  withWidth,
-  Grid,
-  Typography
-} from '@material-ui/core';
+import { withWidth, Grid, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import NavigationMenu from './NavigationMenu';
-import MobileMenu from '../Navigation/MobileMenu';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'next/router';
-
-import Link from '../Link';
-import logo from '../../assets/images/logo/logo-outbreak.svg'
-
+import logo from 'assets/images/logo/logo-outbreak.svg';
+import NavigationMenu from 'components/Navigation/NavigationMenu';
+import MobileMenu from 'components/Navigation/MobileMenu';
+import Link from 'components/Link';
 
 const styles = theme => ({
   root: {
@@ -30,8 +24,8 @@ const styles = theme => ({
     backgroundColor: 'transparent',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
     [theme.breakpoints.up('md')]: {
-      padding: '0rem 8rem',
-    },
+      padding: '0rem 8rem'
+    }
   },
   noShadow: {
     boxShadow: 'unset'
@@ -45,7 +39,7 @@ const styles = theme => ({
     marginRight: '3rem',
     [theme.breakpoints.only('md')]: {
       margin: '0rem'
-    },
+    }
   },
   linkGrid: {
     '&:hover': {
@@ -85,8 +79,6 @@ const styles = theme => ({
     fontWeight: 'bolder'
   }
 });
-
-
 
 class Navigation extends React.Component {
   constructor(props) {
@@ -131,23 +123,32 @@ class Navigation extends React.Component {
       <nav className={classes.root}>
         <Grid item>
           <Link href="/" className={classes.linkGrid}>
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid} >
+            <Grid
+              container
+              direction="row"
+              justify="space-around"
+              alignItems="center"
+              className={classes.logoGrid}
+            >
               <img src={logo} alt="Outbreak" className={classes.img} />
-              <Typography variant="caption" className={classes.logoLink}> OUTBREAK <br />
+              <Typography variant="caption" className={classes.logoLink}>
+                {' '}
+                OUTBREAK <br />
                 <span className={classes.span}>Covid-19</span>
               </Typography>
             </Grid>
           </Link>
         </Grid>
-        {isWidthUp('lg', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+        {isWidthUp('lg', width)
+          ? this.renderDesktopNav()
+          : this.renderMobileNav()}
       </nav>
     );
   }
 
   renderMobileNav() {
     const {
-      takwimu: { countries },
-      router: { pathname }
+      takwimu: { countries }
     } = this.props;
     return (
       <>
@@ -162,8 +163,7 @@ class Navigation extends React.Component {
 
   renderDesktopNav() {
     const {
-      takwimu: { countries },
-      router: { pathname }
+      takwimu: { countries }
     } = this.props;
     return (
       <>
@@ -175,11 +175,7 @@ class Navigation extends React.Component {
   }
 
   render() {
-    return (
-      <>
-        {this.renderNavBar()}
-      </>
-    );
+    return <>{this.renderNavBar()}</>;
   }
 }
 
