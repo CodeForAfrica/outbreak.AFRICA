@@ -61,17 +61,17 @@ function Links({ items }) {
                   {item.title}
                 </Link>
               ) : (
-                  <A
-                    href={item.link}
-                    variant="inherit"
-                    color="inherit"
-                    underline="always"
-                    noWrap
-                    className={classes.listItem}
-                  >
-                    {item.title}
-                  </A>
-                )}
+                <A
+                  href={item.link}
+                  variant="inherit"
+                  color="inherit"
+                  underline="always"
+                  noWrap
+                  className={classes.listItem}
+                >
+                  {item.title}
+                </A>
+              )}
             </Tooltip>
           </li>
         ))}
