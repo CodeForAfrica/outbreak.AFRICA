@@ -11,13 +11,13 @@ import takwimu3 from 'assets/images/takwimu-logo@3x.png';
 
 const useStyles = makeStyles({
   root: {
-    width: '19.5625rem'
+    width: '19.5625rem',
   },
   text: {
     marginTop: '2.3125rem',
     fontSize: '0.9375rem',
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
 
 function Takwimu() {

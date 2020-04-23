@@ -5,18 +5,17 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import HeroCarousel from './HeroCarousel';
 
-import heroImage from '../../assets/images/heropattern.png';
-import coronaImage from '../../assets/images/coronavirus.svg';
-import BlockLoader from '@hurumap-ui/core/BlockLoader';
+import heroImage from 'assets/images/heropattern.png';
+import coronaImage from 'assets/images/coronavirus.svg';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     backgroundImage: `url(${heroImage})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: '0% 0%',
     backgroundSize: 'cover',
-    overflow: 'hidden'
+    overflow: 'hidden',
   },
   hero: {
     flexGrow: 1,
@@ -30,23 +29,23 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
       width: `${(1640 / 1920) * 100}%`,
-      backgroundPosition:  '20% 30%',
-      backgroundSize: '75% 55%'
+      backgroundPosition: '20% 30%',
+      backgroundSize: '75% 55%',
     },
     [theme.breakpoints.up('lg')]: {
-      backgroundPosition:  '20% 90%',
+      backgroundPosition: '20% 90%',
       backgroundSize: '70% 75%',
-    }
+    },
   },
   heroCarousel: {
     '& ul > li': {
-      padding: '0 8px'
+      padding: '0 8px',
     },
     [theme.breakpoints.up('md')]: {
-        paddingTop: '2.625rem',
-        position: 'relative',
-        right: '-122px'
-    }
+      paddingTop: '2.625rem',
+      position: 'relative',
+      right: '-122px',
+    },
   },
 
   title: {
@@ -56,20 +55,20 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       paddingTop: '4.625rem',
       fontSize: '3rem',
-      lineHeight: '100px'
+      lineHeight: '100px',
     },
     [theme.breakpoints.up('lg')]: {
       paddingTop: '8.125rem',
-      fontSize: '5rem'
-    }
+      fontSize: '5rem',
+    },
   },
   highlight: {
     display: 'inline-block',
-    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )'
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )',
   },
   highlightBlue: {
     display: 'inline-block',
-    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )'
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )',
   },
   description: {
     marginTop: '1.0625rem',
@@ -80,9 +79,9 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       maxWidth: '41.12rem',
       fontSize: '1.875rem',
-      lineHeight: 2.05
-    }
-  }
+      lineHeight: 2.05,
+    },
+  },
 }));
 
 function Hero() {
@@ -97,22 +96,22 @@ function Hero() {
       >
         <Grid item container md={7}>
           <Grid item xs={12}>
-            <Typography variant="h1" component="div"
-              className={classes.title}
-            >
+            <Typography variant="h1" component="div" className={classes.title}>
               <span className={classes.highlight}>Contextual</span> data <br />
-              with <span className={classes.highlight}>actionable</span> insights
+              with <span className={classes.highlight}>actionable</span>{' '}
+              insights
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography component="div" className={classes.description}>
-              Data driven analysis on <span className={classes.highlightBlue}>COVID-19</span>
+              Data driven analysis on{' '}
+              <span className={classes.highlightBlue}>COVID-19</span>
               in more than 10 African countries. Find out more about us.
             </Typography>
           </Grid>
         </Grid>
         <Grid item xs={12} md={5} className={classes.heroCarousel}>
-            <HeroCarousel />
+          <HeroCarousel />
         </Grid>
       </Grid>
     </div>

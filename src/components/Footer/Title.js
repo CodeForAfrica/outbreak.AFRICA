@@ -8,8 +8,8 @@ const useStyles = makeStyles({
   text: {
     fontSize: '1.125rem',
     lineHeight: '1.44',
-    color: 'white'
-  }
+    color: 'white',
+  },
 });
 
 function Title({ children }) {
@@ -24,8 +24,8 @@ function Title({ children }) {
 Title.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default Title;

@@ -11,7 +11,7 @@ import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import activeContentIcon from 'assets/images/active-page.svg';
 import Link from './Link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -35,43 +35,43 @@ const useStyles = makeStyles(theme => ({
       scrollbarColor: '#d3d3d3 transparent',
       scrollbarWidth: 'thin',
       '&::-webkit-scrollbar': {
-        width: '0.4rem'
+        width: '0.4rem',
       },
       '&::-webkit-scrollbar-thumb': {
-        backgroundColor: '#d3d3d3'
+        backgroundColor: '#d3d3d3',
       },
       '&::-webkit-scrollbar-corner': {
-        backgroundColor: 'transparent'
-      }
-    }
+        backgroundColor: 'transparent',
+      },
+    },
   },
   children: {
-    paddingLeft: '1.5rem'
+    paddingLeft: '1.5rem',
   },
   menuListRoot: {
     padding: 0,
-    width: '14.188rem'
+    width: '14.188rem',
   },
   activeContentIndicator: {
-    marginRight: '1rem'
+    marginRight: '1rem',
   },
   listItem: {
     // Use padding instead of lineHeight: 2.39 in case a list item is too
     // long to fit one line
     padding: '0.625rem 0',
-    display: 'flex'
+    display: 'flex',
   },
   linkRoot: {
     paddingLeft: '1.5rem',
     fontWeight: 'bold',
     textDecoration: 'underline',
-    color: theme.palette.primary.main
+    color: theme.palette.primary.main,
   },
   activeLink: {
     paddingLeft: 0,
     color: theme.palette.text.primary,
-    textDecoration: 'none'
-  }
+    textDecoration: 'none',
+  },
 }));
 
 function TableOfContent({
@@ -150,7 +150,7 @@ function TableOfContent({
                 }
                 variant="body2"
                 className={classNames(classes.linkRoot, {
-                  [classes.activeLink]: current === index
+                  [classes.activeLink]: current === index,
                 })}
               >
                 {c.title}
@@ -166,20 +166,20 @@ function TableOfContent({
 TableOfContent.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   top: PropTypes.number,
   content: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   current: PropTypes.number.isRequired,
   generateHref: PropTypes.func.isRequired,
-  width: PropTypes.string.isRequired
+  width: PropTypes.string.isRequired,
 };
 
 TableOfContent.defaultProps = {
   children: null,
-  top: 175 // navbar height + layout margin + some padding
+  top: 175, // navbar height + layout margin + some padding
 };
 
 export default withWidth({
-  initialWidth: 'md'
+  initialWidth: 'md',
 })(TableOfContent);

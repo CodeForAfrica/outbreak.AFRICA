@@ -10,11 +10,11 @@ import Links from './Links';
 
 const useStyles = makeStyles({
   sectionRoot: {
-    margin: '0 0 2.3125rem 0'
+    margin: '0 0 2.3125rem 0',
   },
   root: {
-    flexGrow: 1
-  }
+    flexGrow: 1,
+  },
 });
 
 function RelatedContent({ content: relatedContent }) {
@@ -53,10 +53,10 @@ RelatedContent.propTypes = {
       PropTypes.shape({
         type: PropTypes.string,
         title: PropTypes.string,
-        link: PropTypes.string
+        link: PropTypes.string,
       })
-    )
-  }).isRequired
+    ),
+  }).isRequired,
 };
 
 export default RelatedContent;

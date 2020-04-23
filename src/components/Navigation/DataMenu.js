@@ -1,51 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  MenuItem
-} from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 
 import Link from '../Link';
-import config from '../../config'
+import config from '../../config';
 
-
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     padding: '0 1.25rem',
     justifyContent: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   container: {
     [theme.breakpoints.up('md')]: {
       width: '58.265625rem', // .75 of lg
       paddingTop: '1.5rem',
       paddingLeft: '1.5rem',
-      paddingBottom: '0.75rem'
+      paddingBottom: '0.75rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '80.6875rem'
-    }
+      width: '80.6875rem',
+    },
   },
   flag: {
     height: '2.375rem',
     width: '2.375rem',
     marginRight: '0.625rem',
     border: '2px solid white',
-    borderRadius: '1.187rem'
+    borderRadius: '1.187rem',
   },
   flagsContainer: {
     overflow: 'auto',
     justifyContent: 'space-between',
     [theme.breakpoints.up('sm')]: {
       overflow: 'visible',
-      justifyContent: 'unset'
+      justifyContent: 'unset',
     },
     [theme.breakpoints.up('md')]: {
-      paddingLeft: '1.5rem'
-    }
+      paddingLeft: '1.5rem',
+    },
   },
   countryLink: {
     display: 'flex',
@@ -56,8 +53,8 @@ const useStyles = makeStyles(theme => ({
       color: 'black',
       textDecoration: 'none',
       '& span': {
-        borderBottom: 'unset'
-      }
+        borderBottom: 'unset',
+      },
     },
     height: 'fit-content',
     marginBottom: '1.25em',
@@ -69,57 +66,58 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('sm')]: {
       width: 'auto',
-      minWidth: '11.25rem'
+      minWidth: '11.25rem',
     },
     [theme.breakpoints.up('md')]: {
-      margin: '0 1.5rem'
+      margin: '0 1.5rem',
     },
     '& span': {
-      borderBottom: '1px solid'
-    }
+      borderBottom: '1px solid',
+    },
   },
   countryName: {
-    lineHeight: 'unset'
+    lineHeight: 'unset',
   },
   leftContent: {
     height: 'fit-content',
     marginBottom: '1.25rem',
     [theme.breakpoints.up('md')]: {
       height: '15.625rem',
-      marginBottom: '0'
+      marginBottom: '0',
     },
 
     // Override takwimu.css styles
     '& p': {
-      fontSize: theme.typography.body2.fontSize
-    }
+      fontSize: theme.typography.body2.fontSize,
+    },
   },
   title: {
     marginBottom: '1.25rem',
     marginTop: '3rem',
     [theme.breakpoints.up('md')]: {
-      marginTop: 0
+      marginTop: 0,
     },
   },
   menulink: {
-    color: 'black'
-  }
+    color: 'black',
+  },
 }));
 
-
 function MenuItemLink(props) {
-  const classes = useStyles()
-  return <MenuItem style={{ padding: '1rem' }}>
-    <Link {...props} className={classes.menulink} />
-  </MenuItem>;
+  const classes = useStyles();
+  return (
+    <MenuItem style={{ padding: '1rem' }}>
+      <Link {...props} className={classes.menulink} />
+    </MenuItem>
+  );
 }
 
 function DataMenu({ profile }) {
-  const { countries } = config
+  const { countries } = config;
 
   return (
     <>
-      {countries.map(country => (
+      {countries.map((country) => (
         <MenuItemLink
           key={country.slug}
           underline="none"
@@ -128,15 +126,14 @@ function DataMenu({ profile }) {
         >
           {country.shortName}
         </MenuItemLink>
-      ))
-      }
+      ))}
     </>
   );
 }
 
 DataMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  profile: PropTypes.func.isRequired
+  profile: PropTypes.func.isRequired,
 };
 
 export default DataMenu;

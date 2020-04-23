@@ -6,18 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import TableOfContent from './TableOfContent';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   asideRoot: {
     [theme.breakpoints.up('md')]: {
-      top: '10.375rem'
-    }
+      top: '10.375rem',
+    },
   },
   asideHeader: {
-    color: theme.palette.info.other
+    color: theme.palette.info.other,
   },
   asideMenuListRoot: {
-    marginTop: '1.625rem'
-  }
+    marginTop: '1.625rem',
+  },
 }));
 
 function AsideTableOfContent({
@@ -33,7 +33,7 @@ function AsideTableOfContent({
       current={current}
       classes={{
         root: classes.asideRoot,
-        menuListRoot: classes.asideMenuListRoot
+        menuListRoot: classes.asideMenuListRoot,
       }}
       content={contentHeadings}
       {...props}
@@ -51,20 +51,20 @@ function AsideTableOfContent({
 AsideTableOfContent.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
-    PropTypes.arrayOf(PropTypes.node)
+    PropTypes.arrayOf(PropTypes.node),
   ]),
   hideTitle: PropTypes.bool,
   current: PropTypes.number.isRequired,
   contentHeadings: PropTypes.arrayOf(
     PropTypes.shape({
-      link: PropTypes.string
+      link: PropTypes.string,
     }).isRequired
-  ).isRequired
+  ).isRequired,
 };
 
 AsideTableOfContent.defaultProps = {
   hideTitle: false,
-  children: undefined
+  children: undefined,
 };
 
 export default AsideTableOfContent;

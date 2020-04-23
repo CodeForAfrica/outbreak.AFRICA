@@ -14,8 +14,8 @@ import { getSitePage } from 'cms';
 const useStyles = makeStyles({
   root: {
     marginTop: '2.875rem',
-    marginBottom: '4.375rem'
-  }
+    marginBottom: '4.375rem',
+  },
 });
 
 function About(takwimu) {
@@ -34,45 +34,45 @@ function About(takwimu) {
       related_content_title: relatedContentTitle,
       related_links: relatedLinks,
       where_to_next_title: whereToNextTitle,
-      where_to_next_link: whereToNextLink
-    }
+      where_to_next_link: whereToNextLink,
+    },
   } = takwimu;
 
-  const aboutTakwimu = content.find(c => c.type === 'about') || {};
-  const methodology = content.find(c => c.type === 'methodology') || {};
-  const services = content.find(c => c.type === 'services') || {};
+  const aboutTakwimu = content.find((c) => c.type === 'about') || {};
+  const methodology = content.find((c) => c.type === 'methodology') || {};
+  const services = content.find((c) => c.type === 'services') || {};
 
   const faqs = {
     label: faqsLabel,
     title: faqsTitle,
     description: faqsDescription,
-    questionsAnswers
+    questionsAnswers,
   };
   const relatedContent = {
     title: relatedContentTitle,
-    relatedLinks: relatedLinks || []
+    relatedLinks: relatedLinks || [],
   };
   const whereToNext = {
     title: whereToNextTitle,
-    whereToNextLink
+    whereToNextLink,
   };
   const contentHeadings = [];
   if (aboutTakwimu) {
     contentHeadings.push({
       title: aboutTakwimu.label,
-      link: 'about'
+      link: 'about',
     });
   }
   if (methodology) {
     contentHeadings.push({
       title: methodology.label,
-      link: 'methodology'
+      link: 'methodology',
     });
   }
   if (services) {
     contentHeadings.push({
       title: services.label,
-      link: 'services'
+      link: 'services',
     });
   }
   if (faqs) {
@@ -81,7 +81,7 @@ function About(takwimu) {
 
   const current = useMemo(() => {
     const currentLink = pathname.split('/').pop();
-    return contentHeadings.findIndex(x => x.link === currentLink);
+    return contentHeadings.findIndex((x) => x.link === currentLink);
   }, [pathname, contentHeadings]);
 
   useEffect(() => {
@@ -128,9 +128,9 @@ function About(takwimu) {
   );
 }
 
-About.getInitialProps = async props => {
+About.getInitialProps = async (props) => {
   const {
-    query: { lang: pageLanguage }
+    query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   return getSitePage('about', lang);

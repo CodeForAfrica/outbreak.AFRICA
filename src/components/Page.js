@@ -21,13 +21,13 @@ function Page({ children, ...props }) {
 Page.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 Page.defaultProps = {
-  title: undefined
+  title: undefined,
 };
 
 export default Page;

@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import NextComposed from './NextComposed';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: ({ navigation, active }) =>
     navigation && {
       color: theme.palette.text.secondary,
@@ -18,16 +18,16 @@ const useStyles = makeStyles(theme => ({
         color: active
           ? theme.palette.text.primary
           : theme.palette.text.secondary,
-        textDecoration: 'none'
+        textDecoration: 'none',
       },
       ...(active && {
         margin: '-5px -20px',
         padding: '5px 20px',
         backgroundColor: 'white',
         borderRadius: '1.125rem',
-        color: theme.palette.text.primary
-      })
-    }
+        color: theme.palette.text.primary,
+      }),
+    },
 }));
 
 // A styled version of the Next.js Link component:
@@ -50,10 +50,10 @@ function Link({
   const classes = useStyles({ navigation, active });
 
   const className = classNames(classes.root, classNameProps, {
-    [activeClassName]: active && activeClassName
+    [activeClassName]: active && activeClassName,
   });
 
-  const langPath = link => {
+  const langPath = (link) => {
     if (!link) {
       return undefined;
     }
@@ -114,7 +114,7 @@ Link.propTypes = {
   innerRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   naked: PropTypes.bool,
   onClick: PropTypes.func,
-  prefetch: PropTypes.bool
+  prefetch: PropTypes.bool,
 };
 
 Link.defaultProps = {
@@ -129,7 +129,7 @@ Link.defaultProps = {
   naked: undefined,
   onClick: undefined,
   prefetch: undefined,
-  lang: undefined
+  lang: undefined,
 };
 
 export default React.forwardRef((props, ref) => (

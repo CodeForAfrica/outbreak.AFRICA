@@ -9,42 +9,42 @@ import ContentSection from './ContentSection';
 import RelatedContent from './RelatedContent';
 import RichTextSection from './RichTextSection';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: '58.313rem'
+    maxWidth: '58.313rem',
   },
   title: {
     marginBottom: '1.375rem',
-    padding: '0 0.75rem'
+    padding: '0 0.75rem',
   },
   body: {
-    padding: '0 1.188rem'
+    padding: '0 1.188rem',
   },
   section: {
     marginTop: '2.5rem',
     paddingTop: '1rem',
     paddingBottom: '1rem',
-    borderTop: `4px solid ${theme.palette.primary.main}`
+    borderTop: `4px solid ${theme.palette.primary.main}`,
   },
   social: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     '&:not(:last-child)': {
-      marginRight: '3.125rem'
+      marginRight: '3.125rem',
     },
     '& > :first-child': {
-      marginRight: '0.625rem'
-    }
+      marginRight: '0.625rem',
+    },
   },
   keyContacts: {
     '& > :not(:last-child)': {
-      marginBottom: '2.5rem'
-    }
+      marginBottom: '2.5rem',
+    },
   },
   whereToNext: {
-    marginTop: '7.75rem'
-  }
+    marginTop: '7.75rem',
+  },
 }));
 
 function LegalContent({
@@ -53,7 +53,7 @@ function LegalContent({
   contents,
   current,
   contentHeadings,
-  relatedContent
+  relatedContent,
 }) {
   const classes = useStyles();
   return (
@@ -97,11 +97,11 @@ LegalContent.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   contentHeadings: PropTypes.arrayOf(
     PropTypes.shape({
-      link: PropTypes.string
+      link: PropTypes.string,
     }).isRequired
   ).isRequired,
   current: PropTypes.number.isRequired,
-  relatedContent: PropTypes.shape({}).isRequired
+  relatedContent: PropTypes.shape({}).isRequired,
 };
 
 export default LegalContent;

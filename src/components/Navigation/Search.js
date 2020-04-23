@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 
 import { fade, makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   search: {
     position: 'relative',
     height: '2rem',
@@ -43,13 +43,13 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       maxWidth: '100%',
-      width: '15rem'
+      width: '15rem',
     },
   },
 }));
 
 function Search() {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -64,8 +64,7 @@ function Search() {
         inputProps={{ 'aria-label': 'search' }}
       />
     </div>
-  )
+  );
 }
 
-
-export default Search
+export default Search;

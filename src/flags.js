@@ -19,5 +19,5 @@ export default {
   ZA,
   TZ,
   UG,
-  ZM
+  ZM,
 };

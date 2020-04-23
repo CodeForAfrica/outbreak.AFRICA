@@ -21,65 +21,65 @@ import RelatedContent from './RelatedContent';
 
 import ContentNavigation from './PageContentNavigation';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    maxWidth: '58.313rem'
+    maxWidth: '58.313rem',
   },
   title: {
     marginBottom: '1.375rem',
-    padding: '0 0.75rem'
+    padding: '0 0.75rem',
   },
   addressText: {
-    marginTop: '2.5rem'
+    marginTop: '2.5rem',
   },
   body: {
-    padding: '0 1.188rem'
+    padding: '0 1.188rem',
   },
   contactTitle: {
     fontWeight: 'bold',
-    marginBottom: '0.5rem'
+    marginBottom: '0.5rem',
   },
   contactEmail: {
-    fontSize: '1.25rem'
+    fontSize: '1.25rem',
   },
   section: {
     marginTop: '2.5rem',
     paddingTop: '1.5rem',
     paddingBottom: '1rem',
-    borderTop: `4px solid ${theme.palette.primary.main}`
+    borderTop: `4px solid ${theme.palette.primary.main}`,
   },
   social: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
     '&:not(:last-child)': {
-      marginRight: '3.125rem'
+      marginRight: '3.125rem',
     },
     '& > :first-child': {
-      marginRight: '0.625rem'
-    }
+      marginRight: '0.625rem',
+    },
   },
   socialGrid: {
-    marginTop: '2.8125rem'
+    marginTop: '2.8125rem',
   },
   whereToRoot: {
-    marginTop: '2.375rem'
+    marginTop: '2.375rem',
   },
   keyContacts: {
     fontSize: '1.25rem',
-    marginBottom: '2.75rem'
+    marginBottom: '2.75rem',
   },
   whereToNext: {
     width: '100%',
     margin: '7.75rem 0 0 0',
     padding: 0,
     [theme.breakpoints.up('md')]: {
-      width: '43.734375rem' // .75 of lg
+      width: '43.734375rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '58.3125rem'
-    }
-  }
+      width: '58.3125rem',
+    },
+  },
 }));
 
 const SOCIAL_MEDIA = {
@@ -88,7 +88,7 @@ const SOCIAL_MEDIA = {
   instagram: { name: 'Instagram', logo: instagram },
   linkedin: { name: 'LinkedIn', logo: linkedin },
   medium: { name: 'Medium', logo: medium },
-  twitter: { name: 'Twitter', logo: twitter }
+  twitter: { name: 'Twitter', logo: twitter },
 };
 
 function ContactContent({
@@ -102,7 +102,7 @@ function ContactContent({
   current,
   contentHeadings,
   whereToNext,
-  relatedContent
+  relatedContent,
 }) {
   const classes = useStyles();
   return (
@@ -125,7 +125,7 @@ function ContactContent({
           title={keyContacts.title}
           variant="h3"
         >
-          {keyContacts.contacts.map(keyContact => (
+          {keyContacts.contacts.map((keyContact) => (
             <Grid
               key={keyContact.link}
               className={classes.keyContacts}
@@ -159,7 +159,7 @@ function ContactContent({
           variant="h3"
         >
           <Grid container direction="row" className={classes.socialGrid}>
-            {socialMedia.accounts.map(account => (
+            {socialMedia.accounts.map((account) => (
               <A
                 className={classes.social}
                 href={account.account_url}
@@ -181,7 +181,7 @@ function ContactContent({
       <WhereToNext
         classes={{
           sectionRoot: classes.whereToNext,
-          root: classes.whereToRoot
+          root: classes.whereToRoot,
         }}
         variant="dual"
         whereToNext={whereToNext}
@@ -195,17 +195,17 @@ ContactContent.propTypes = {
   title: PropTypes.string.isRequired,
   address: PropTypes.shape({
     description: PropTypes.string,
-    title: PropTypes.string
+    title: PropTypes.string,
   }).isRequired,
   addressIndex: PropTypes.number.isRequired,
   keyContacts: PropTypes.shape({
     title: PropTypes.string,
-    contacts: PropTypes.arrayOf(PropTypes.shape({}))
+    contacts: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
   keyContactsIndex: PropTypes.number.isRequired,
   socialMedia: PropTypes.shape({
     title: PropTypes.string,
-    accounts: PropTypes.arrayOf(PropTypes.shape({}))
+    accounts: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
   socialMediaIndex: PropTypes.number.isRequired,
   relatedContent: PropTypes.shape({}).isRequired,
@@ -213,13 +213,13 @@ ContactContent.propTypes = {
   contentHeadings: PropTypes.arrayOf(
     PropTypes.shape({
       link: PropTypes.string,
-      title: PropTypes.string
+      title: PropTypes.string,
     }).isRequired
   ).isRequired,
   whereToNext: PropTypes.shape({
     title: PropTypes.string,
-    whereLink: PropTypes.arrayOf(PropTypes.shape({}))
-  }).isRequired
+    whereLink: PropTypes.arrayOf(PropTypes.shape({})),
+  }).isRequired,
 };
 
 export default ContactContent;

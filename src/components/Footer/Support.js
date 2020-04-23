@@ -13,11 +13,11 @@ import Title from './Title';
 const useStyles = makeStyles({
   root: {
     marginTop: '3.125rem',
-    width: '14.375rem'
+    width: '14.375rem',
   },
   img: {
-    marginTop: '2.5625rem'
-  }
+    marginTop: '2.5625rem',
+  },
 });
 
 function Support() {

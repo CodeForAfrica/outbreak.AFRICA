@@ -13,7 +13,7 @@ import StayInTouch from './StayInTouch';
 import Initiative from './Initiative';
 import Support from './Support';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     zIndex: 1,
@@ -22,25 +22,25 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'black',
     paddingTop: '4.5625rem',
     paddingBottom: '5.3125rem',
-    marginTop: '1.875rem'
+    marginTop: '1.875rem',
   },
   license: {
-    marginTop: '2.3125rem'
+    marginTop: '2.3125rem',
   },
   takwimu: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '14.375rem', // match thinnest component
       // Should be marginRight: '2.578125rem' but won't fit
-      marginRight: '2rem'
+      marginRight: '2rem',
     },
     [theme.breakpoints.up('lg')]: {
       width: '19.5625rem',
-      marginRight: '3.4375rem'
-    }
+      marginRight: '3.4375rem',
+    },
   },
   stayInTouch: {
-    marginTop: '3.125rem'
+    marginTop: '3.125rem',
   },
   links: {
     paddingTop: '2.25rem',
@@ -49,12 +49,12 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: '4.6875rem',
       paddingRight: '3.9375rem',
       borderLeft: '0.125rem solid rgba(151, 151, 151, 0.45)',
-      borderRight: '0.125rem solid rgba(151, 151, 151, 0.45)'
+      borderRight: '0.125rem solid rgba(151, 151, 151, 0.45)',
     },
     [theme.breakpoints.up('lg')]: {
       paddingLeft: '6.25rem',
-      paddingRight: '5.25rem'
-    }
+      paddingRight: '5.25rem',
+    },
   },
   project: {
     width: '100%',
@@ -63,20 +63,20 @@ const useStyles = makeStyles(theme => ({
       width: '14.53125rem', // .75 of lg
       // Should be marginLeft: '5.109375rem' but won't fit
       marginLeft: '2rem',
-      padding: 0
+      padding: 0,
     },
     [theme.breakpoints.up('lg')]: {
       width: '19.375rem',
-      marginLeft: '6.8125rem'
-    }
+      marginLeft: '6.8125rem',
+    },
   },
   support: {
-    marginTop: '4.0625rem'
+    marginTop: '4.0625rem',
   },
   text: {
     fontSize: '0.9375rem',
-    color: 'white'
-  }
+    color: 'white',
+  },
 }));
 
 function Footer({ takwimu: { settings }, ...props }) {

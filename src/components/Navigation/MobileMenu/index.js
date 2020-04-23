@@ -15,9 +15,8 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Divider
-} from '@material-ui/core'
-
+  Divider,
+} from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
@@ -33,21 +32,21 @@ const useStyles = makeStyles((theme) => ({
   },
   appBar: {
     backgroundColor: '#2C2559',
-    boxShadow: 'none'
+    boxShadow: 'none',
   },
   gridRoot: {
-    padding: '1rem  2rem'
+    padding: '1rem  2rem',
   },
   titleGrid: {
-    width: '50%'
+    width: '50%',
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%'
+    width: '50%',
   },
   divider: {
-    border: "0.5px solid grey"
+    border: '0.5px solid grey',
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -62,13 +61,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   link: {
     color: 'white',
-  }
+  },
 }));
-
 
 function ListItemLink(props) {
   return <ListItem button component="a" {...props} />;
@@ -77,7 +75,6 @@ function ListItemLink(props) {
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
 });
-
 
 function MobileMenu({ countries }) {
   const classes = useStyles();
@@ -93,12 +90,23 @@ function MobileMenu({ countries }) {
 
   return (
     <div>
-      <IconButton edge="start" color="primary" aria-label="menu" onClick={handleClickOpen}>
+      <IconButton
+        edge="start"
+        color="primary"
+        aria-label="menu"
+        onClick={handleClickOpen}
+      >
         <MenuIcon />
       </IconButton>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} className={classes.dialog}>
+      <Dialog
+        fullScreen
+        open={open}
+        onClose={handleClose}
+        TransitionComponent={Transition}
+        className={classes.dialog}
+      >
         <DialogTitle>
-          <AppBar postion='static' className={classes.appBar}>
+          <AppBar postion="static" className={classes.appBar}>
             <Toolbar className={classes.toolbar}>
               <SearchIcon />
 
@@ -113,7 +121,12 @@ function MobileMenu({ countries }) {
                   <Typography variant="caption">&#x0633;</Typography>
                 </Grid>
 
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
+                <IconButton
+                  edge="start"
+                  color="inherit"
+                  onClick={handleClose}
+                  aria-label="close"
+                >
                   <CloseIcon />
                 </IconButton>
               </Grid>
@@ -125,7 +138,7 @@ function MobileMenu({ countries }) {
           <CountriesMobileMenu
             title="DATA"
             countries={countries}
-            profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+            profile={({ isoCode, slug }) => `country-${isoCode}`}
           />
           <InsightMobileMenu title="INSIGHT" />
           <ResourcesMobileMenu title="RESOURCES" />
@@ -135,9 +148,8 @@ function MobileMenu({ countries }) {
   );
 }
 
-
 MobileMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
 };
 
-export default MobileMenu
+export default MobileMenu;

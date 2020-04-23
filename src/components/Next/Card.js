@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { Button, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     borderRadius: 0,
     height: '14.875rem',
@@ -22,37 +22,37 @@ const useStyles = makeStyles(theme => ({
       marginTop: '2rem',
       [theme.breakpoints.up('md')]: {
         marginTop: 0,
-        marginLeft: '1.5rem' // .75 of lg
+        marginLeft: '1.5rem', // .75 of lg
       },
       [theme.breakpoints.up('lg')]: {
-        marginLeft: '2rem'
-      }
-    }
+        marginLeft: '2rem',
+      },
+    },
   },
   cardDual: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '21.09375rem' // .75 of lg
+      width: '21.09375rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '28.125rem'
-    }
+      width: '28.125rem',
+    },
   },
   cardTriple: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '18.375rem' // .75 of lg
+      width: '18.375rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '24.5rem'
-    }
+      width: '24.5rem',
+    },
   },
   title: {
     color: '#fff',
     textAlign: 'center',
     marginTop: '5.25rem',
-    marginBottom: '5.25rem'
-  }
+    marginBottom: '5.25rem',
+  },
 }));
 
 function Card({ children, variant, ...props }) {
@@ -80,12 +80,12 @@ function Card({ children, variant, ...props }) {
 Card.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]),
   component: PropTypes.elementType,
   href: PropTypes.string,
   onClick: PropTypes.func,
-  variant: PropTypes.oneOf(['dual', 'triple'])
+  variant: PropTypes.oneOf(['dual', 'triple']),
 };
 
 Card.defaultProps = {
@@ -93,7 +93,7 @@ Card.defaultProps = {
   component: 'button',
   href: null,
   onClick: null,
-  variant: 'triple'
+  variant: 'triple',
 };
 
 export default Card;
