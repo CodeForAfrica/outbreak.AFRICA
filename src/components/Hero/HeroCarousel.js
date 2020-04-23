@@ -101,7 +101,7 @@ const carouselItems = [
   },
 ];
 
-function HeroCarousel() {
+function HeroCarousel({ deviceType}) {
   return (
     <Carousel
       swipeable
@@ -115,6 +115,7 @@ function HeroCarousel() {
       renderButtonGroupOutside
       customButtonGroup={<CustomArrowButtons />}
       autoPlaySpeed={5000}
+      deviceType={deviceType}
       removeArrowOnDeviceType={['desktop', 'tablet', 'mobile']}
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
