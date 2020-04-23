@@ -2,43 +2,43 @@ import React from 'react';
 import { Grid, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#cbdbfb',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '24%'
-    }
+      width: '24%',
+    },
   },
   typogrid: {
-    padding: '5rem'
+    padding: '5rem',
   },
   typo: {
-    color: 'white'
+    color: 'white',
   },
   link: {
     fontSize: '1rem',
-    fontWeight: 700
+    fontWeight: 700,
   },
   title: {
     fontSize: '3rem',
     fontWeight: 700,
-    padding: '1rem 0rem'
+    padding: '1rem 0rem',
   },
   divider: {
     backgroundColor: '#170F49',
     height: '2px',
     width: '25%',
     [theme.breakpoints.up('md')]: {
-      width: '50%'
-    }
+      width: '50%',
+    },
   },
   learnMore: {
     paddingTop: '1rem',
     [theme.breakpoints.up('md')]: {
-      paddingTop: '0.5rem'
-    }
-  }
+      paddingTop: '0.5rem',
+    },
+  },
 }));
 
 function JoinUs() {

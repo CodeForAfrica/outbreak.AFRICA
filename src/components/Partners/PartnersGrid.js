@@ -11,53 +11,53 @@ import pesacheck from 'assets/partnerLogos/pesacheck/pesacheck.png';
 import takwimu from 'assets/partnerLogos/takwimu/takwimu.png';
 import wanadata from 'assets/partnerLogos/wanadata/wanadata.png';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#fcfc74',
-    width: '100%'
+    width: '100%',
   },
   typogrid: {
     padding: '2rem 4rem',
     [theme.breakpoints.up('md')]: {
-      padding: '3rem 10rem'
-    }
+      padding: '3rem 10rem',
+    },
   },
   imageGrid: {
     padding: '2rem 4rem',
     display: 'flex',
     [theme.breakpoints.up('md')]: {
-      padding: '2rem 10rem'
-    }
+      padding: '2rem 10rem',
+    },
   },
   typo: {
     color: 'white',
-    padding: '1rem 0rem'
+    padding: '1rem 0rem',
   },
   title: {
     fontSize: '3rem',
-    fontWeight: 700
+    fontWeight: 700,
   },
   img: {
     maxWidth: '100%',
     [theme.breakpoints.up('md')]: {
       height: '3rem',
-      width: 'auto'
-    }
+      width: 'auto',
+    },
   },
   image: {
     maxWidth: '100%',
     height: 'auto',
     [theme.breakpoints.up('md')]: {
       height: '100px',
-      marginTop: '-2rem'
-    }
+      marginTop: '-2rem',
+    },
   },
   descGrid: {
-    marginTop: '-0.3rem'
+    marginTop: '-0.3rem',
   },
   divGrid: {
-    marginTop: '1rem'
-  }
+    marginTop: '1rem',
+  },
 }));
 
 const partners = [
@@ -65,50 +65,50 @@ const partners = [
     name: 'Africa Ar Xiv',
     image: `${africaarxiv}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'Takwimu',
     image: `${takwimu}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'Africa Practice',
     image: `${africapractice}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'PesaCheck',
     image: `${pesacheck}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'African Science Initiative',
     image: `${asi}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'Africa Open Science Hardware',
     image: `${aosh}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'African Science Literacy Network',
     image: `${asln}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
   },
   {
     name: 'Wanadata',
     image: `${wanadata}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry'
-  }
+      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+  },
 ];
 
 function PartnersGrid({ ...props }) {
@@ -129,7 +129,7 @@ function PartnersGrid({ ...props }) {
         justify="center"
         spacing={10}
       >
-        {partners.map(partner => (
+        {partners.map((partner) => (
           <Grid item xs={12} md={6}>
             <img
               src={partner.image}
