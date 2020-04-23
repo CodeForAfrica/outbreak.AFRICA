@@ -7,6 +7,7 @@ import HeroCarousel from './HeroCarousel';
 
 import heroImage from '../../assets/images/heropattern.png';
 import coronaImage from '../../assets/images/coronavirus.svg';
+import BlockLoader from '@hurumap-ui/core/BlockLoader';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -63,9 +64,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   highlight: {
+    display: 'inline-block',
     background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )'
   },
   highlightBlue: {
+    display: 'inline-block',
     background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )'
   },
   description: {
