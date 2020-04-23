@@ -41,12 +41,12 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     [theme.breakpoints.up('md')]: {
       height: '3rem',
-      width:'auto'
+      width: 'auto'
     }
   },
   image: {
     maxWidth: '100%',
-    height:'auto',
+    height: 'auto',
     [theme.breakpoints.up('md')]: {
       height: '100px',
       marginTop: '-2rem'
@@ -139,10 +139,13 @@ function PartnersGrid({ ...props }) {
               }
             />
 
-            <div 
-            className={
-                partner.image === `${africaarxiv}` ? classes.descGrid : classes.divGrid 
-              }>
+            <div
+              className={
+                partner.image === `${africaarxiv}`
+                  ? classes.descGrid
+                  : classes.divGrid
+              }
+            >
               {useMediaQuery(theme.breakpoints.up('md')) ? (
                 <Typography variant="caption">{partner.description}</Typography>
               ) : null}

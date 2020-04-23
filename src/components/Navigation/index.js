@@ -7,10 +7,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'next/router';
 import logo from 'assets/images/logo/logo-outbreak.svg';
-import NavigationMenu from './NavigationMenu';
-import MobileMenu from './MobileMenu';
-
-import Link from '../Link';
+import NavigationMenu from 'components/Navigation/NavigationMenu';
+import MobileMenu from 'components/Navigation/MobileMenu';
+import Link from 'components/Link';
 
 const styles = theme => ({
   root: {

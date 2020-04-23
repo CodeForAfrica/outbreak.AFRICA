@@ -11,7 +11,7 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
+import Link from 'components/Link';
 
 const useStyles = makeStyles({
   menuItem: {

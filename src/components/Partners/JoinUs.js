@@ -46,7 +46,9 @@ function JoinUs() {
   return (
     <Grid item className={classes.root}>
       <div className={classes.typogrid}>
-        <Typography variant="h2" className={classes.title}>Join us</Typography>
+        <Typography variant="h2" className={classes.title}>
+          Join us
+        </Typography>
         <Typography variant="body1" style={{ fontSize: '1rem' }}>
           Be part of the initiative
         </Typography>

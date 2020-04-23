@@ -30,7 +30,7 @@ function MenuItemLink(props) {
   return <MenuItem button component="a" {...props} />;
 }
 
-function Menu({ title, countries, slug }) {
+function Menu({ title, countries }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);

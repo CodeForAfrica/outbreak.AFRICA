@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     left: '4rem',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      top: '33rem',
+      top: '33rem'
     }
   },
   partner: {

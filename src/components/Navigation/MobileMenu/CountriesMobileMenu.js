@@ -11,8 +11,8 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
-import config from '../../../config';
+import Link from 'components/Link';
+import config from 'config';
 
 const useStyles = makeStyles({
   menuItem: {
@@ -78,7 +78,6 @@ function CountriesMobileMenu({ profile, title }) {
 }
 
 CountriesMobileMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
 };
