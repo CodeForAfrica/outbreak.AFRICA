@@ -1,10 +1,9 @@
 import React from 'react';
 import { Grid, Typography, withWidth } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { PropTypes } from 'prop-types';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 
-// import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { isWidthUp } from '@material-ui/core/withWidth';
+import { useMediaQuery } from '@material-ui/core';
 
 import africaarxiv from 'assets/partnerLogos/africaarxiv/africaarxiv.png';
 import africapractice from 'assets/partnerLogos/africapractice/africapractice.png';
@@ -108,8 +107,9 @@ const partners = [
   }
 ];
 
-function PartnersGrid({ width, ...props }) {
+function PartnersGrid({...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
   return (
     <Grid item className={classes.root}>
       <div className={classes.typogrid}>
@@ -136,9 +136,7 @@ function PartnersGrid({ width, ...props }) {
             />
 
             <div className={classes.descGrid}>
-              {isWidthUp('md', width) ? (
-                <Typography variant="caption">{partner.description}</Typography>
-              ) : null}
+              {useMediaQuery(theme.breakpoints.up('md')) ? <Typography variant="caption">{partner.description}</Typography> : null}
             </div>
           </Grid>
         ))}
@@ -147,8 +145,4 @@ function PartnersGrid({ width, ...props }) {
   );
 }
 
-PartnersGrid.propTypes = {
-  width: PropTypes.string.isRequired
-};
-
-export default withWidth({ initialWidth: 'md' })(PartnersGrid);
+export default PartnersGrid;
