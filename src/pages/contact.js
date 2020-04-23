@@ -14,8 +14,8 @@ import { getSitePage } from 'cms';
 const useStyles = makeStyles({
   root: {
     marginTop: '2.875rem',
-    marginBottom: '4.375rem'
-  }
+    marginBottom: '4.375rem',
+  },
 });
 
 function Contact(takwimu) {
@@ -35,32 +35,32 @@ function Contact(takwimu) {
       address_label: addressLabel,
       address_description: addressDescription,
       where_to_next_title: whereToNextTitle,
-      where_to_next_link: whereToNextLink
-    }
+      where_to_next_link: whereToNextLink,
+    },
   } = takwimu;
 
   const keyContacts = {
     label: keyContactLabel,
     title: keyContactTitle,
-    contacts
+    contacts,
   };
   const address = {
     label: addressLabel,
     title: addressTitle,
-    description: addressDescription
+    description: addressDescription,
   };
   const socialMedia = {
     label: socialMediaLabel,
     title: socialMediaTitle,
-    accounts: socialMediaAccounts
+    accounts: socialMediaAccounts,
   };
   const relatedContent = {
     title: relatedContentTitle,
-    relatedLinks
+    relatedLinks,
   };
   const whereToNext = {
     title: whereToNextTitle,
-    whereToNextLink
+    whereToNextLink,
   };
 
   let keyContactsIndex = -1;
@@ -102,7 +102,7 @@ function Contact(takwimu) {
     const handleHash = () => {
       setCurrent(
         contentHeadings.findIndex(
-          heading => heading.link === window.location.hash.slice(1)
+          (heading) => heading.link === window.location.hash.slice(1)
         )
       );
     };
@@ -148,9 +148,9 @@ function Contact(takwimu) {
   );
 }
 
-Contact.getInitialProps = async props => {
+Contact.getInitialProps = async (props) => {
   const {
-    query: { lang: pageLanguage }
+    query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   return getSitePage('contact', lang);

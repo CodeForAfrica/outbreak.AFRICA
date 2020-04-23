@@ -7,23 +7,23 @@ import {
   Popper,
   MenuItem,
   MenuList,
-  ClickAwayListener
+  ClickAwayListener,
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 import DataMenu from './DataMenu';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    display: 'flex',
   },
   paper: {
-    marginRight: theme.spacing(2)
+    marginRight: theme.spacing(2),
   },
   popper: {
     paddingTop: '1.5rem',
-    zIndex: 9999
-  }
+    zIndex: 9999,
+  },
 }));
 
 function MenuItemLink(props) {
@@ -36,10 +36,10 @@ function Menu({ title, countries }) {
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -116,7 +116,7 @@ function Menu({ title, countries }) {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom' ? 'center top' : 'bottom-end'
+                placement === 'bottom' ? 'center top' : 'bottom-end',
             }}
           >
             <Paper>

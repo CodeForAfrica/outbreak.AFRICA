@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import A from '@commons-ui/core/A';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   list: {},
   listItem: {
@@ -14,16 +14,16 @@ const useStyles = makeStyles(theme => ({
     lineHeight: 2.28,
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '21.375rem'
+      width: '21.375rem',
     },
     [theme.breakpoints.up('lg')]: {
-      width: '28.5rem'
-    }
+      width: '28.5rem',
+    },
   },
   tooltip: {
     fontSize: theme.typography.caption.fontSize,
-    backgroundColor: theme.palette.primary.main
-  }
+    backgroundColor: theme.palette.primary.main,
+  },
 }));
 
 function Links({ items }) {
@@ -36,7 +36,7 @@ function Links({ items }) {
         className={classes.list}
         component="ul"
       >
-        {items.map(item => (
+        {items.map((item) => (
           <li key={item.link}>
             <Tooltip
               title={item.title}
@@ -81,7 +81,7 @@ function Links({ items }) {
 }
 
 Links.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+  items: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
 };
 
 export default Links;

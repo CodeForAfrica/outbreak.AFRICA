@@ -12,42 +12,42 @@ import shareIcon from 'assets/icon-share.svg';
 
 import Status from './Status';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     border: '1px solid #D6D6D6',
     boxShadow: '0px 4px 4px #00000029',
     padding: '1.125rem',
     [theme.breakpoints.up('md')]: {
-      padding: '2.25rem 2.625rem 1.95375rem'
-    }
+      padding: '2.25rem 2.625rem 1.95375rem',
+    },
   },
   shareImg: {
     height: 'auto',
-    width: '2rem'
+    width: '2rem',
   },
   source: {
     ...theme.typography.caption,
-    color: '#9D9C9C'
+    color: '#9D9C9C',
   },
   status: {},
   statusBorderRight: {
-    borderRight: '1px solid #D6D6D6'
+    borderRight: '1px solid #D6D6D6',
   },
   statusBorderTop: {
-    borderTop: '1px solid #D6D6D6'
+    borderTop: '1px solid #D6D6D6',
   },
   statusHighlight: {
-    color: theme.palette.secondary.main
+    color: theme.palette.secondary.main,
   },
   statuses: {
     marginTop: '1.125rem',
     [theme.breakpoints.up('md')]: {
-      marginTop: '2.625rem'
-    }
+      marginTop: '2.625rem',
+    },
   },
   title: {
-    fontWeight: 'bold'
-  }
+    fontWeight: 'bold',
+  },
 }));
 
 function Ticker({ lang, source, statuses, title, ...props }) {
@@ -79,11 +79,11 @@ function Ticker({ lang, source, statuses, title, ...props }) {
                   {
                     [classes.statusBorderRight]: isMobile
                       ? index % 2 === 0
-                      : index < statuses.length - 1
+                      : index < statuses.length - 1,
                   },
                   { [classes.statusBorderTop]: isMobile && index > 1 },
                   { [classes.statusHighlight]: status.highlight }
-                )
+                ),
               }}
             />
           </Grid>
@@ -107,18 +107,18 @@ Ticker.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       status: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      value: PropTypes.string.isRequired,
     })
   ).isRequired,
   source: PropTypes.shape({
     title: PropTypes.string,
-    url: PropTypes.string.isRequired
+    url: PropTypes.string.isRequired,
   }).isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 Ticker.defaultProps = {
-  lang: undefined
+  lang: undefined,
 };
 
 export default Ticker;

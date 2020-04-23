@@ -13,7 +13,7 @@ export default (req, res) => {
     AWS.config.update({
       accessKeyId: process.env.HURUMAP_AWS_ACCESS_KEY_ID,
       secretAccessKey: process.env.HURUMAP_AWS_SECRET_ACCESS_KEY,
-      region: process.env.HURUMAP_AWS_REGION
+      region: process.env.HURUMAP_AWS_REGION,
     });
     const upload = new AWS.S3.ManagedUpload({
       params: {
@@ -22,8 +22,8 @@ export default (req, res) => {
         Body,
         ContentEncoding: 'base64',
         ContentType: `image/${ext}`,
-        ACL: 'public-read'
-      }
+        ACL: 'public-read',
+      },
     });
     const promise = upload.promise();
     return promise.then(

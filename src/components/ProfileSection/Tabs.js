@@ -6,9 +6,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Layout from 'components/Layout';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   layoutRoot: {
-    margin: '0 auto'
+    margin: '0 auto',
   },
   root: {
     alignItems: 'center',
@@ -16,10 +16,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     height: '5.8125rem', // 93px / 16
     scrollBehavior: 'smooth',
-    width: '100%'
+    width: '100%',
   },
   indicator: {
-    display: 'none'
+    display: 'none',
   },
   tab: {
     fontSize: '1.0625rem', // 17px
@@ -28,15 +28,15 @@ const useStyles = makeStyles(theme => ({
     textTransform: 'none',
     '&$tabSelected': {
       backgroundColor: '#fff',
-      borderRadius: 21.5
+      borderRadius: 21.5,
     },
     [theme.breakpoints.up('md')]: {
-      minWidth: 0
-    }
+      minWidth: 0,
+    },
   },
   tabSelected: {
-    fontWeight: 700
-  }
+    fontWeight: 700,
+  },
 }));
 
 function LinkTab(props) {
@@ -55,7 +55,7 @@ function ProfileTabs({ handleChange, tabs, value }) {
           value={value}
           variant="scrollable"
         >
-          {tabs.map(tab => (
+          {tabs.map((tab) => (
             <LinkTab
               key={tab.slug}
               value={tab.slug}
@@ -63,7 +63,7 @@ function ProfileTabs({ handleChange, tabs, value }) {
               label={tab.name}
               className={classes.tab}
               classes={{
-                selected: classes.tabSelected
+                selected: classes.tabSelected,
               }}
               underline="none"
             />
@@ -79,14 +79,14 @@ ProfileTabs.propTypes = {
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
-      slug: PropTypes.string.isRequired
+      slug: PropTypes.string.isRequired,
     })
   ).isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
 };
 
 ProfileTabs.defaultProps = {
-  handleChange: null
+  handleChange: null,
 };
 
 export default ProfileTabs;

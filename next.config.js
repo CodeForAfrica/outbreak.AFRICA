@@ -3,6 +3,9 @@ const withImages = require('next-images');
 
 module.exports = withCSS(
   withImages({
+    cssLoaderOptions: {
+      url: false,
+    },
     webpack(config) {
       // support font & image imports inside css files
       config.module.rules.push({
@@ -10,12 +13,12 @@ module.exports = withCSS(
         test: /(layers|layers-2x|marker-icon)\.png$/,
         use: [
           {
-            loader: require.resolve('url-loader')
-          }
-        ]
+            loader: require.resolve('url-loader'),
+          },
+        ],
       });
 
       return config;
-    }
+    },
   })
 );

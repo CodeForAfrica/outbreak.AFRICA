@@ -19,23 +19,23 @@ import Title from './Title';
 const useStyles = makeStyles({
   root: {
     marginTop: '3.125rem',
-    width: '14.375rem'
+    width: '14.375rem',
   },
   icons: {
-    marginTop: '2.25rem'
+    marginTop: '2.25rem',
   },
   icon: {
     width: '1.5625rem',
     height: '1.5625rem',
     objectFit: 'contain',
-    marginRight: '0.9375rem'
+    marginRight: '0.9375rem',
   },
   title: {
     fontSize: 'inherit',
     fontWeight: 'inherit',
     lineHeight: 'inherit',
-    color: 'inherit'
-  }
+    color: 'inherit',
+  },
 });
 
 function StayInTouch({ settings: { support, socialMedia } }) {
@@ -93,15 +93,15 @@ function StayInTouch({ settings: { support, socialMedia } }) {
 StayInTouch.propTypes = {
   settings: PropTypes.shape({
     support: PropTypes.shape({
-      hello: PropTypes.string
+      hello: PropTypes.string,
     }).isRequired,
     socialMedia: PropTypes.shape({
       facebook: PropTypes.string,
       linkedin: PropTypes.string,
       medium: PropTypes.string,
-      twitter: PropTypes.string
-    }).isRequired
-  }).isRequired
+      twitter: PropTypes.string,
+    }).isRequired,
+  }).isRequired,
 };
 
 export default StayInTouch;

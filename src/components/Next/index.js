@@ -4,25 +4,25 @@ import { PropTypes } from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 
-import A from '@commons-ui/core/A';
+import { A } from '@commons-ui/core';
 
 import Link from 'components/Link';
 import Section from 'components/Section';
 
 import Card from './Card';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sectionRoot: {},
   root: {
     flexGrow: 1,
-    paddingBottom: '6.25rem'
+    paddingBottom: '6.25rem',
   },
   link: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 'auto'
-    }
-  }
+      width: 'auto',
+    },
+  },
 }));
 
 function WhereToNext({
@@ -41,7 +41,7 @@ function WhereToNext({
       >
         {whereToNextLink &&
           whereToNextLink.length > 0 &&
-          whereToNextLink.map(where =>
+          whereToNextLink.map((where) =>
             where.link.startsWith('/') ? (
               /* Note: Next.js uses filesystem-based routing & since we can't */
               /*       determine dynamically the filesystem route based on */
@@ -78,14 +78,14 @@ WhereToNext.propTypes = {
     whereToNextLink: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string,
-        link: PropTypes.string
+        link: PropTypes.string,
       })
-    )
-  }).isRequired
+    ),
+  }).isRequired,
 };
 
 WhereToNext.defaultProps = {
-  variant: ''
+  variant: '',
 };
 
 export default WhereToNext;

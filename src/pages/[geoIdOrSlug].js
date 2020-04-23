@@ -50,18 +50,18 @@ ProfilePage.propTypes = {
   geoId: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   language: PropTypes.string.isRequired,
-  indicatorId: PropTypes.string
+  indicatorId: PropTypes.string,
 };
 
 ProfilePage.defaultProps = {
-  indicatorId: undefined
+  indicatorId: undefined,
 };
 
 ProfilePage.getInitialProps = async ({
-  query: { geoIdOrSlug, lang: queryLang, indicatorId }
+  query: { geoIdOrSlug, lang: queryLang, indicatorId },
 }) => {
   const country = config.countries.find(
-    c => c.slug === geoIdOrSlug.toLowerCase()
+    (c) => c.slug === geoIdOrSlug.toLowerCase()
   );
   const lang = queryLang || config.DEFAULT_LANG;
 
@@ -69,7 +69,7 @@ ProfilePage.getInitialProps = async ({
     geoId: country ? `country-${country.isoCode}` : geoIdOrSlug,
     sectionedCharts: await getSectionedCharts(lang),
     language: lang,
-    indicatorId
+    indicatorId,
   };
 };
 

@@ -6,18 +6,18 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import ContentLoader from '@hurumap-ui/core/ContentLoader';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: '1.5rem',
-    width: '100%'
+    width: '100%',
   },
   title: {
     color: theme.palette.text.secondary,
     backgroundColor: theme.palette.primary.main,
     fontWeight: 'bold',
     padding: '0.75rem 0 0.75rem 1.875rem',
-    textTransform: 'capitalize'
-  }
+    textTransform: 'capitalize',
+  },
 }));
 
 function ProfileSectionTitle({ loading, tab: { name }, ...props }) {
@@ -40,13 +40,13 @@ function ProfileSectionTitle({ loading, tab: { name }, ...props }) {
 
 ProfileSectionTitle.propTypes = {
   tab: PropTypes.shape({
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
   }).isRequired,
-  loading: PropTypes.bool
+  loading: PropTypes.bool,
 };
 
 ProfileSectionTitle.defaultProps = {
-  loading: false
+  loading: false,
 };
 
 export default ProfileSectionTitle;

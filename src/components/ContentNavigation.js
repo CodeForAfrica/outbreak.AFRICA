@@ -9,32 +9,32 @@ import classNames from 'classnames';
 import ContentSection from './ContentSection';
 import Link from './Link';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.info.main,
-    padding: '1.125rem 1.625rem'
+    padding: '1.125rem 1.625rem',
   },
   links: {
     '& > a:nth-child(n)': {
       lineHeight: 1.5,
-      marginRight: '1.125rem'
-    }
+      marginRight: '1.125rem',
+    },
   },
   link: {
     display: 'inline-block',
-    whiteSpace: 'nowrap'
+    whiteSpace: 'nowrap',
   },
   topic: {
-    textDecoration: 'underline'
+    textDecoration: 'underline',
   },
   selected: {},
   label: {
     fontSize: '0.813rem',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
   },
   other: {
-    color: '#848484'
-  }
+    color: '#848484',
+  },
 }));
 
 function ContentNavigation({
@@ -80,9 +80,9 @@ function ContentNavigation({
               }
               classes={{ root: classes.link }}
               className={classNames({
-                [classes.topic]: current !== index
+                [classes.topic]: current !== index,
               })}
-              onClick={e => onClick && onClick(index, e)}
+              onClick={(e) => onClick && onClick(index, e)}
             >
               {generateTitle(item)}
             </Link>
@@ -102,14 +102,14 @@ ContentNavigation.propTypes = {
   generateTitle: PropTypes.func.isRequired,
   onClick: PropTypes.func,
   linksPrimaryColor: PropTypes.string,
-  linksSecondaryColor: PropTypes.string
+  linksSecondaryColor: PropTypes.string,
 };
 
 ContentNavigation.defaultProps = {
   contentTitle: '',
   linksPrimaryColor: 'primary',
   linksSecondaryColor: 'textPrimary',
-  onClick: undefined
+  onClick: undefined,
 };
 
 export default ContentNavigation;
