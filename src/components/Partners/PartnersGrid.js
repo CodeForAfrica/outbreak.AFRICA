@@ -13,7 +13,8 @@ import wanadata from 'assets/partnerLogos/wanadata/wanadata.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#fcfc74'
+    backgroundColor: '#fcfc74',
+    width: '100%'
   },
   typogrid: {
     padding: '2rem 4rem',
@@ -49,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   descGrid: {
-    paddingTop: '1rem'
+    marginTop: '-1.5rem'
   }
 }));
 
@@ -104,7 +105,7 @@ const partners = [
   }
 ];
 
-function PartnersGrid({...props }) {
+function PartnersGrid({ ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   return (
@@ -132,8 +133,13 @@ function PartnersGrid({...props }) {
               }
             />
 
-            <div className={classes.descGrid}>
-              {useMediaQuery(theme.breakpoints.up('md')) ? <Typography variant="caption">{partner.description}</Typography> : null}
+            <div 
+            className={
+                partner.image === `${africaarxiv}` ? classes.descGrid : null
+              }>
+              {useMediaQuery(theme.breakpoints.up('md')) ? (
+                <Typography variant="caption">{partner.description}</Typography>
+              ) : null}
             </div>
           </Grid>
         ))}
