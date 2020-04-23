@@ -15,7 +15,7 @@ import A from '@hurumap-ui/core/A';
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
-    minHeight: '22rem',
+    minHeight: '21rem',
     height: '100%',
     backgroundColor: '#fafafa',
     border: '1px solid #eeeeee',

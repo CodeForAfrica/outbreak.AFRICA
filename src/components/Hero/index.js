@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     backgroundPosition: '90% 2%',
     backgroundSize: '50%',
     margin: '0 auto',
-    padding: '3.8125rem 1.125rem 0 1.125rem',
+    padding: '2.125rem 1.125rem 0 1.125rem',
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   title: {
     width: '100%',
     fontSize: '2.5rem',
-    lineHeight: '4rem',
+    lineHeight: '3rem',
     [theme.breakpoints.up('md')]: {
       paddingTop: '4.625rem',
       fontSize: '3rem',
@@ -63,19 +63,21 @@ const useStyles = makeStyles(theme => ({
     }
   },
   highlight: {
-    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 50%)'
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )'
   },
   highlightBlue: {
-    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 50%)'
+    background: 'linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )'
   },
   description: {
     marginTop: '1.0625rem',
-    marginBottom: '3.125rem',
+    marginBottom: '3rem',
     width: '100%',
     fontSize: '1.25rem',
+    lineHeight: 1.5,
     [theme.breakpoints.up('md')]: {
       maxWidth: '41.12rem',
-      fontSize: '1.875rem'
+      fontSize: '1.875rem',
+      lineHeight: 2.05
     }
   }
 }));
