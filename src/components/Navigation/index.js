@@ -20,6 +20,7 @@ import logo from '../../assets/images/logo/logo-outbreak.svg'
 const styles = theme => ({
   root: {
     display: 'flex',
+    flexGrow: 1,
     direction: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
@@ -128,7 +129,7 @@ class Navigation extends React.Component {
     const { width, classes } = this.props;
     return (
       <nav className={classes.root}>
-        <Grid item>
+        <Grid item md={4}>
           <Link href="/" className={classes.linkGrid}>
             <Grid container direction="row" alignItems="center" className={classes.logoGrid}>
               <img src={logo} alt="Outbreak" className={classes.img} />
@@ -138,7 +139,7 @@ class Navigation extends React.Component {
             </Grid>
           </Link>
         </Grid>
-        {isWidthUp('lg', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+        {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}
       </nav>
     );
   }
@@ -161,7 +162,7 @@ class Navigation extends React.Component {
       takwimu: { countries }
     } = this.props;
     return (
-      <Grid item>
+      <Grid item xs={12}>
         <NavigationMenu countries={countries} />
       </Grid>
     );

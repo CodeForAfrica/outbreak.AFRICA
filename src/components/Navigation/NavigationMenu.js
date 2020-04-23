@@ -19,10 +19,13 @@ function NavigationMenu() {
   const classes = useStyles();
   return (
     <Grid container direction="row" justify="space-between" alignItem="center" className={classes.root}>
+
       <Menu title="DATA" />
       <Menu title="INSIGHT" />
       <Menu title="RESEARCH" />
+
       <Search className={classes.search} />
+
       <div>
         <Typography variant="caption">EN</Typography>
       </div>
@@ -32,6 +35,7 @@ function NavigationMenu() {
       <div>
         <Typography variant="caption">&#x0633;</Typography>
       </div>
+
     </Grid>
   )
 }
