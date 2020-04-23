@@ -1,39 +1,42 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   AppBar,
-  Slide,
-  List,
-  ListItem,
-  ListItemText,
   Toolbar,
   IconButton,
   Grid,
   Typography,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  Divider
+  SwipeableDrawer
 } from '@material-ui/core'
-
 
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import InsightMobileMenu from './InsightMobileMenu';
-import CountriesMobileMenu from './CountriesMobileMenu';
+import DataMobileMenu from './DataMobileMenu';
 import ResourcesMobileMenu from './ResourcesMobileMenu';
+
+const drawerWidth = 400;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+    display: 'flex',
+  },
+  hide: {
+    display: 'none',
+  },
+  drawerPaper: {
+    width: drawerWidth,
+    backgroundColor: '#2C2559',
+    overflowX: 'hidden'
   },
   appBar: {
     backgroundColor: '#2C2559',
-    boxShadow: 'none'
+    boxShadow: 'none',
+    width: drawerWidth,
   },
   gridRoot: {
     padding: '1rem  2rem'
@@ -57,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: '3rem',
     color: 'white',
     backgroundColor: '#2C2559',
+    width: drawerWidth,
   },
   toolbar: {
     display: 'flex',
@@ -69,68 +73,64 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="left" ref={ref} {...props} />;
-});
-
-
 function MobileMenu({ countries }) {
   const classes = useStyles();
+  const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleDrawerOpen = () => {
     setOpen(true);
   };
 
-  const handleClose = () => {
+  const handleDrawerClose = () => {
     setOpen(false);
   };
 
   return (
-    <div>
-      <IconButton edge="start" color="primary" aria-label="menu" onClick={handleClickOpen}>
+    <div className={classes.root}>
+      <IconButton edge="start" color="primary" aria-label="open drawer" onClick={handleDrawerOpen}>
         <MenuIcon />
       </IconButton>
-      <Dialog fullScreen open={open} onClose={handleClose} TransitionComponent={Transition} className={classes.dialog}>
-        <DialogTitle>
-          <AppBar postion='static' className={classes.appBar}>
-            <Toolbar className={classes.toolbar}>
-              <SearchIcon />
+      <SwipeableDrawer
+        variant="persistent"
+        anchor="right"
+        open={open}
+        classes={{ paper: classes.drawerPaper }}
+      >
 
-              <Grid container direction="row" justify="flex-end" spacing={4}>
-                <Grid item>
-                  <Typography variant="caption">EN</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="caption">FR</Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="caption">&#x0633;</Typography>
-                </Grid>
+        <AppBar postion='static' className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
+            <SearchIcon />
 
-                <IconButton edge="start" color="inherit" onClick={handleClose} aria-label="close">
-                  <CloseIcon />
-                </IconButton>
+            <Grid container direction="row" justify="flex-end" spacing={4}>
+              <Grid item>
+                <Typography variant="caption">EN</Typography>
               </Grid>
-            </Toolbar>
-          </AppBar>
-        </DialogTitle>
+              <Grid item>
+                <Typography variant="caption">FR</Typography>
+              </Grid>
+              <Grid item>
+                <Typography variant="caption">&#x0633;</Typography>
+              </Grid>
 
-        <DialogContent className={classes.dialogContent}>
-          <CountriesMobileMenu
+              <IconButton edge="start" color="inherit" onClick={handleDrawerClose} aria-label="close">
+                <CloseIcon />
+              </IconButton>
+            </Grid>
+          </Toolbar>
+        </AppBar>
+
+
+        <div className={classes.dialogContent}>
+          <DataMobileMenu
             title="DATA"
             countries={countries}
-            profile={({ isoCode: isoCode, slug }) => `country-${isoCode}`}
+            profile={({ isoCode: isoCode }) => `country-${isoCode}`}
           />
           <InsightMobileMenu title="INSIGHT" />
           <ResourcesMobileMenu title="RESOURCES" />
-        </DialogContent>
-      </Dialog>
+        </div>
+      </SwipeableDrawer>
     </div>
   );
 }
@@ -139,5 +139,6 @@ function MobileMenu({ countries }) {
 MobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
 };
+
 
 export default MobileMenu

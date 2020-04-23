@@ -8,18 +8,18 @@ import Link from '../../Link';
 
 const useStyles = makeStyles({
   menuItem: {
-    padding: '1rem'
+    padding: '0px 16px'
   },
   listItem: {
     color: 'white'
   },
   gridRoot: {
-    padding: '1rem  2rem'
+    padding: '1rem  0rem'
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%'
+    //width: '50%'
   },
   divider: {
     border: "0.5px solid grey"
@@ -47,18 +47,18 @@ const resourcesMenu = [
 function MenuItemLink(props) {
   const classes = useStyles()
   return <MenuItem className={classes.menuItem}>
-    <Link {...props} className={classes.menulink} />
+    <Link {...props} />
   </MenuItem>;
 }
 
 function ResourcesMobileMenu({ title }) {
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="space-between" className={classes.gridRoot} >
-      <Grid item >
+    <Grid container direction="row" justify="space-between" className={classes.gridRoot} spacing={4}>
+      <Grid item xs={6} md={6}>
         <Typography variant="h5">{title}</Typography>
       </Grid>
-      <Grid item className={classes.listRoot}>
+      <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
           {resourcesMenu.map(resources =>

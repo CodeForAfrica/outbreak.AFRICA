@@ -139,7 +139,7 @@ class Navigation extends React.Component {
             </Grid>
           </Link>
         </Grid>
-        {isWidthUp('md', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+        {isWidthUp('sm', width) ? this.renderDesktopNav() : this.renderMobileNav()}
       </nav>
     );
   }
@@ -149,11 +149,7 @@ class Navigation extends React.Component {
       takwimu: { countries }
     } = this.props;
     return (
-      <Grid item>
-        <Grid container direction="row" alignItems="center" spacing={2}>
-          <MobileMenu countries={countries} />
-        </Grid>
-      </Grid>
+      <MobileMenu countries={countries} />
     );
   }
 
@@ -162,7 +158,7 @@ class Navigation extends React.Component {
       takwimu: { countries }
     } = this.props;
     return (
-      <Grid item xs={12}>
+      <Grid item xs={8}>
         <NavigationMenu countries={countries} />
       </Grid>
     );
@@ -191,5 +187,5 @@ Navigation.propTypes = {
 };
 
 export default withWidth({
-  initialWidth: 'md'
+  initialWidth: 'sm'
 })(withStyles(styles)(withRouter(Navigation)));
