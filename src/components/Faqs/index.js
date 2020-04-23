@@ -5,19 +5,19 @@ import { Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ContentSection from 'components/ContentSection';
-import RichTypography from 'components/RichTypography';
+import { RichTypography } from '@commons-ui/core';
 
 import Faq from './Faq';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   contentGrid: {
     paddingTop: '2rem',
     paddingBottom: '2rem',
     '& a': {
-      color: theme.palette.primary.main
-    }
-  }
+      color: theme.palette.primary.main,
+    },
+  },
 }));
 
 function Faqs({ faqs, ...props }) {
@@ -42,7 +42,7 @@ function Faqs({ faqs, ...props }) {
         direction="column"
         justify="flex-start"
       >
-        {questionsAnswers.map(faq => (
+        {questionsAnswers.map((faq) => (
           <Faq expandTitle={faq.question} key={faq.question}>
             <RichTypography variant="body2">{faq.answer}</RichTypography>
           </Faq>
@@ -59,10 +59,10 @@ Faqs.propTypes = {
     questionsAnswers: PropTypes.arrayOf(
       PropTypes.shape({
         question: PropTypes.string,
-        answer: PropTypes.string
+        answer: PropTypes.string,
       })
-    )
-  }).isRequired
+    ),
+  }).isRequired,
 };
 
 export default Faqs;

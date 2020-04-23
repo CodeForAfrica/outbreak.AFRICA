@@ -8,50 +8,49 @@ import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-  IconButton
+  IconButton,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { RichTypography } from '@commons-ui/core';
 
-import RichTypography from 'components/RichTypography';
-
-const styles = theme => ({
+const styles = (theme) => ({
   panel: {
     marginTop: '0.3125rem',
     marginBottom: '0.0625rem',
     '&::before': {
       content: '',
-      backgroundColor: 'transparent'
-    }
+      backgroundColor: 'transparent',
+    },
   },
   panelExpanded: {
-    margin: '0.3125rem 0 0 0 !important'
+    margin: '0.3125rem 0 0 0 !important',
   },
   header: {
     height: '5.25rem',
-    backgroundColor: theme.palette.background.light
+    backgroundColor: theme.palette.background.light,
   },
   expandedHeader: {
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: theme.palette.primary.main,
   },
   headerTitle: {
     color: theme.palette.primary.main,
     margin: '0.5rem',
-    fontWeight: 600
+    fontWeight: 600,
   },
   expandedHeaderTitle: {
-    color: 'white'
+    color: 'white',
   },
   iconButton: {
     color: '#000',
     '&:hover': {
-      backgroundColor: 'transparent'
-    }
+      backgroundColor: 'transparent',
+    },
   },
   icon: {
-    fontSize: '2.4375rem'
+    fontSize: '2.4375rem',
   },
   iconExpanded: { fontSize: '2.4375rem', color: 'white' },
-  panelDetails: { backgroundColor: theme.palette.info.main }
+  panelDetails: { backgroundColor: theme.palette.info.main },
 });
 
 class Faq extends React.Component {
@@ -63,8 +62,8 @@ class Faq extends React.Component {
   }
 
   handleChange(event) {
-    this.setState(state => ({
-      expanded: !state.expanded
+    this.setState((state) => ({
+      expanded: !state.expanded,
     }));
     event.preventDefault();
   }
@@ -82,7 +81,7 @@ class Faq extends React.Component {
         <ExpansionPanelSummary
           className={classNames([
             classes.header,
-            { [classes.expandedHeader]: expanded }
+            { [classes.expandedHeader]: expanded },
           ])}
           onClick={this.handleChange}
           disableRipple
@@ -111,7 +110,7 @@ class Faq extends React.Component {
           <RichTypography
             className={classNames([
               classes.headerTitle,
-              { [classes.expandedHeaderTitle]: expanded }
+              { [classes.expandedHeaderTitle]: expanded },
             ])}
             onClick={this.handleChange}
           >
@@ -132,11 +131,11 @@ Faq.propTypes = {
   expandTitle: PropTypes.string,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 Faq.defaultProps = {
-  expandTitle: ''
+  expandTitle: '',
 };
 
 export default withStyles(styles)(Faq);
