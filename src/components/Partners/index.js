@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     [theme.breakpoints.up('md')]: {
-      margin: '3rem'
+      margin: '2rem'
     }
   },
   desktopContainer: {
@@ -20,8 +20,10 @@ const useStyles = makeStyles(theme => ({
   joinUs: {
     position: 'absolute',
     left: '4rem',
-    top: '34rem',
-    width: '100%'
+    width: '100%',
+    [theme.breakpoints.up('md')]: {
+      top: '33rem',
+    }
   },
   partner: {
     width: '75%'

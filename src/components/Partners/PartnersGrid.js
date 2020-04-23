@@ -40,17 +40,23 @@ const useStyles = makeStyles(theme => ({
   img: {
     maxWidth: '100%',
     [theme.breakpoints.up('md')]: {
-      height: '2.8rem'
+      height: '3rem',
+      width:'auto'
     }
   },
   image: {
+    maxWidth: '100%',
+    height:'auto',
     [theme.breakpoints.up('md')]: {
       height: '100px',
       marginTop: '-2rem'
     }
   },
   descGrid: {
-    marginTop: '-1.5rem'
+    marginTop: '-0.3rem'
+  },
+  divGrid: {
+    marginTop: '1rem'
   }
 }));
 
@@ -135,7 +141,7 @@ function PartnersGrid({ ...props }) {
 
             <div 
             className={
-                partner.image === `${africaarxiv}` ? classes.descGrid : null
+                partner.image === `${africaarxiv}` ? classes.descGrid : classes.divGrid 
               }>
               {useMediaQuery(theme.breakpoints.up('md')) ? (
                 <Typography variant="caption">{partner.description}</Typography>
