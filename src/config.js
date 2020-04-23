@@ -24,7 +24,7 @@ Disallow: /
     prod: `
 User-agent: *
 Disallow:
-    `,
+    `
   },
   WP_BACKEND_URL,
   WP_HURUMAP_DATA_API: `${WP_BACKEND_URL}/wp-json/hurumap-data`,
@@ -42,7 +42,7 @@ Disallow:
       link:
         'https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0',
       mediaSrc: 'http://placekitten.com/g/400/300',
-      media: 'img',
+      media: 'img'
     },
     {
       index: 1,
@@ -50,7 +50,7 @@ Disallow:
       link:
         'https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b',
       mediaSrc: 'http://placekitten.com/g/400/300',
-      media: 'img',
+      media: 'img'
     },
     {
       index: 2,
@@ -58,7 +58,7 @@ Disallow:
       link:
         'https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f',
       mediaSrc: 'http://placekitten.com/g/400/300',
-      media: 'img',
+      media: 'img'
     },
     {
       index: 3,
@@ -66,8 +66,8 @@ Disallow:
       link:
         'https://city-press.news24.com/News/a-farmers-15-year-wait-for-land-justice-20180822',
       mediaSrc: 'http://placekitten.com/g/400/300',
-      media: 'img',
-    },
+      media: 'img'
+    }
   ],
   leftColumn: [
     {
@@ -76,7 +76,7 @@ Disallow:
       title: 'Research',
       link:
         'https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0',
-      mediaSrc: 'http://placekitten.com/g/40/40',
+      mediaSrc: 'http://placekitten.com/g/40/40'
     },
     {
       index: 1,
@@ -84,7 +84,7 @@ Disallow:
       title: 'Example article heading ',
       link:
         'https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b',
-      mediaSrc: 'http://placekitten.com/g/40/30',
+      mediaSrc: 'http://placekitten.com/g/40/30'
     },
     {
       index: 2,
@@ -92,8 +92,8 @@ Disallow:
       title: 'Another article heading here',
       link:
         'https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f',
-      mediaSrc: 'http://placekitten.com/g/40/30',
-    },
+      mediaSrc: 'http://placekitten.com/g/40/30'
+    }
   ],
   countries: [
     {
@@ -103,7 +103,7 @@ Disallow:
       shortName: 'Kenya',
       slug: 'kenya',
       lang: 'en',
-      published: true,
+      published: true
     },
     {
       isoCode: 'NG',
@@ -112,7 +112,7 @@ Disallow:
       shortName: 'Nigeria',
       slug: 'nigeria',
       lang: 'en',
-      published: true,
+      published: true
     },
     {
       isoCode: 'ZA',
@@ -121,7 +121,7 @@ Disallow:
       shortName: 'South Africa',
       slug: 'south-africa',
       lang: 'en',
-      published: true,
+      published: true
     },
     {
       isoCode: 'GH',
@@ -130,7 +130,7 @@ Disallow:
       shortName: 'Ghana',
       slug: 'ghana',
       lang: 'en',
-      published: true,
+      published: true
     },
     {
       isoCode: 'MA',
@@ -139,34 +139,34 @@ Disallow:
       shortName: 'Morocco',
       slug: 'morocco',
       lang: 'en',
-      published: true,
-    },
+      published: true
+    }
   ],
   settings: {
     mailingList: {
       href:
-        'https://sibforms.com/serve/MUIEAAXyVOKndq92iptN5nNOxxO8YIbsJQ6GRLFcss45EFC4D-346vXQNHit8uLluJ44jcDUNQztzGSQSX3H_AHE7J71-tlgBI4-cS6dnZrjzgxQxnK2Hd89yCpi_SJDZyUAKo9GGBNqQmbJEgpCInlf403iFzCqHf75RaNFWuGd73QH6yNWhnvrmDGgj3N_DcbUt3GLDzcm_wIP',
+        'https://sibforms.com/serve/MUIEAAXyVOKndq92iptN5nNOxxO8YIbsJQ6GRLFcss45EFC4D-346vXQNHit8uLluJ44jcDUNQztzGSQSX3H_AHE7J71-tlgBI4-cS6dnZrjzgxQxnK2Hd89yCpi_SJDZyUAKo9GGBNqQmbJEgpCInlf403iFzCqHf75RaNFWuGd73QH6yNWhnvrmDGgj3N_DcbUt3GLDzcm_wIP'
     },
     navigation: {
       country_profiles:
-        '<div class="rich-text"><p>Key Human Development metrics curated and visualised across 10 African countries.</p></div>',
+        '<div class="rich-text"><p>Key Human Development metrics curated and visualised across 10 African countries.</p></div>'
     },
     support: {
       hello: 'hello@codeforafrica.org',
-      support: 'support@codeforafrica.org',
+      support: 'support@codeforafrica.org'
     },
     socialMedia: {
       facebook: 'https://facebook.com/CodeForAfrica',
       twitter: 'https://twitter.com/Code4Africa',
       medium: 'https://medium.com/code-for-africa',
-      linkedin: 'https://www.linkedin.com/company/code-for-africa/',
+      linkedin: 'https://www.linkedin.com/company/code-for-africa/'
     },
     address: {
       locality: '84 Shortmarket St, Cape Town City Centre',
       region: 'Cape Town',
       country: 'South Africa',
-      postalCode: '00100',
-    },
+      postalCode: '00100'
+    }
   },
   page: {},
   name: 'outbreak.AFRICA',
@@ -176,13 +176,13 @@ Disallow:
   media: {
     imageUrl:
       'https://cfa-outbreakafrica.s3-eu-west-1.amazonaws.com/media/images',
-    imageType: '.png',
+    imageType: '.png'
   },
   populationTables: [
     'allPopulationSex2019S',
     'allPopulationResidence2009S',
-    'allPopulationGroup2016S',
-  ],
+    'allPopulationGroup2016S'
+  ]
 };
 
 if (typeof document !== 'undefined') {

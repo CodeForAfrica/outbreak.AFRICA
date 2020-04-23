@@ -27,81 +27,81 @@ const MapIt = dynamic({
   ssr: false,
   loader: () => {
     return typeof window !== 'undefined' && import('@hurumap-ui/core/MapIt');
-  },
+  }
 });
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
   actionsShareButton: {
-    minWidth: '4rem',
+    minWidth: '4rem'
   },
   actionsRoot: {
-    border: 'solid 1px #eaeaea',
+    border: 'solid 1px #eaeaea'
   },
   container: {
-    marginBottom: '0.625rem',
+    marginBottom: '0.625rem'
   },
   containerRoot: ({ loading }) => ({
     width: '100%',
     minHeight: loading && '300px',
     backgroundColor: '#f6f6f6',
-    margin: 0,
+    margin: 0
   }),
   containerInsightAnalysisLink: {
-    padding: 0,
+    padding: 0
   },
   containerInsightDataLink: {
     backgroundColor: 'white',
     borderRadius: '12px',
     border: `solid 2px ${palette.primary.main}`,
-    padding: 0,
+    padding: 0
   },
   containerSourceGrid: {
     [breakpoints.up('md')]: {
-      whiteSpace: 'nowrap',
-    },
+      whiteSpace: 'nowrap'
+    }
   },
   containerSourceLink: {
     fontSize: typography.caption.fontSize,
-    color: palette.text.primary,
+    color: palette.text.primary
   },
   insight: {
-    paddingTop: '1.275rem',
+    paddingTop: '1.275rem'
   },
   insightGrid: {
     [breakpoints.up('lg')]: {
-      maxWidth: '23.6875rem',
-    },
+      maxWidth: '23.6875rem'
+    }
   },
   numberTitle: {
-    fontWeight: 'bold',
+    fontWeight: 'bold'
   },
   hideHighlightGrid: {
-    display: 'none',
+    display: 'none'
   },
   statDescription: {
     fontWeight: 600,
     fontSize: '1.5rem',
     lineHeight: 1.71,
-    wordBreak: 'break-word',
+    wordBreak: 'break-word'
   },
   statStatistic: {
     fontWeight: 'bold',
     fontSize: '2.5rem',
     lineHeight: 1.03,
     marginBottom: '0.6875rem',
-    marginTop: '1.125rem',
+    marginTop: '1.125rem'
   },
   statSubtitle: {
     fontWeight: 'bold',
     fontSize: '1.25rem',
     marginTop: '1rem',
-    paddingRight: '1.25rem', // On the same line as chart title hence better to have spacing between them
+    paddingRight: '1.25rem' // On the same line as chart title hence better to have spacing between them
   },
   title: {
     fontFamily: typography.fontText,
     lineHeight: 2.05,
-    marginTop: '1rem',
-  },
+    marginTop: '1rem'
+  }
 }));
 
 function Chart({ chartData, definition, profiles, classes }) {
@@ -121,16 +121,16 @@ Chart.propTypes = {
   chartData: PropTypes.shape({
     isLoading: PropTypes.bool,
     profileVisualsData: PropTypes.shape({
-      nodes: PropTypes.arrayOf(PropTypes.shape({})),
-    }),
+      nodes: PropTypes.arrayOf(PropTypes.shape({}))
+    })
   }).isRequired,
   definition: PropTypes.shape({
-    queryAlias: PropTypes.string,
+    queryAlias: PropTypes.string
   }).isRequired,
-  profiles: PropTypes.shape({}).isRequired,
+  profiles: PropTypes.shape({}).isRequired
 };
 
-const overrideTypePropsFor = (chartType) => {
+const overrideTypePropsFor = chartType => {
   switch (chartType) {
     case 'column': // Fall through
     case 'grouped_column':
@@ -140,15 +140,15 @@ const overrideTypePropsFor = (chartType) => {
             dependent: {
               style: {
                 grid: {
-                  display: 'none',
+                  display: 'none'
                 },
                 tickLabels: {
-                  display: 'none',
-                },
-              },
-            },
-          },
-        },
+                  display: 'none'
+                }
+              }
+            }
+          }
+        }
       };
     default:
       return {};
@@ -188,7 +188,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
   const { profiles, chartData } = useProfileLoader({
     geoId,
     visuals,
-    populationTables: config.populationTables,
+    populationTables: config.populationTables
   });
 
   const filterByChartData = useCallback(
@@ -208,15 +208,13 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       return {};
     }
     if (profiles.profile.geoLevel === 'country') {
-      return config.countries.find(
-        (c) => c.isoCode === profiles.profile.geoCode
-      );
+      return config.countries.find(c => c.isoCode === profiles.profile.geoCode);
     }
-    return config.countries.find((c) => c.isoCode === profiles.parent.geoCode);
+    return config.countries.find(c => c.isoCode === profiles.parent.geoCode);
   }, [profiles]);
 
   const onClickGeoLayer = useCallback(
-    (area) => {
+    area => {
       router.push(`/${area.codes.AFR}`);
     },
     [router]
@@ -231,7 +229,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
         if (filteredCharts.length) {
           a.push({
             ...rest,
-            charts: filteredCharts,
+            charts: filteredCharts
           });
         }
         return a;
@@ -252,30 +250,30 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
             if (filteredCharts.length) {
               a.push({
                 ...rest,
-                charts: filteredCharts,
+                charts: filteredCharts
               });
             }
             return a;
-          }, []),
+          }, [])
       ]),
     [
       debouceSetProfileTabs,
       filterByChartData,
       filterByGeography,
-      sectionedCharts,
+      sectionedCharts
     ]
   );
 
   const charts = useMemo(
     () =>
       profileTabs.map(
-        (tab) =>
+        tab =>
           (activeTab === 'all' || activeTab === tab.slug) && (
             <Grid item container id={tab.slug} key={tab.slug}>
               {(activeTab === 'all' || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
-              {tab.charts.map((chart) => {
+              {tab.charts.map(chart => {
                 const embedPath =
                   chart.type === 'hurumap'
                     ? `hurumap/${geoId}/${chart.id}`
@@ -312,7 +310,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                           '/api/share'
                         ),
                         handleShowData: null,
-                        handleCompare: null,
+                        handleCompare: null
                       }}
                       classes={{
                         insight: classes.insight,
@@ -330,7 +328,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                         highlightGrid:
                           chart.type === 'flourish' &&
                           classes.hideHighlightGrid,
-                        title: classes.title,
+                        title: classes.title
                       }}
                       embedCode={`<iframe
                   id="${chart.id}"
@@ -358,7 +356,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                         rawData:
                           !chartData.isLoading &&
                           chartData.profileVisualsData[chart.visual.queryAlias]
-                            .nodes,
+                            .nodes
                       }}
                     >
                       {chart.type === 'hurumap'
@@ -373,9 +371,9 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                                   classes: {
                                     description: classes.statDescription,
                                     statistic: classes.statStatistic,
-                                    subtitle: classes.statSubtitle,
-                                  },
-                                },
+                                    subtitle: classes.statSubtitle
+                                  }
+                                }
                               }}
                               profiles={profiles}
                               classes={classes}
@@ -387,12 +385,12 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                                 ...chart.visual,
                                 typeProps: {
                                   ...chart.visual.typeProps,
-                                  ...overrideTypePropsFor(chart.visual.type),
-                                },
+                                  ...overrideTypePropsFor(chart.visual.type)
+                                }
                               }}
                               profiles={profiles}
                               classes={classes}
-                            />,
+                            />
                           ]
                         : [
                             <div key={chart.id} />,
@@ -403,7 +401,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                               frameBorder="0"
                               title={chart.title}
                               src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                            />,
+                            />
                           ]}
                     </InsightContainer>
                   </Grid>
@@ -422,7 +420,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
         setTimeout(() => {
           el.scrollIntoView({
             inline: 'center',
-            block: 'center',
+            block: 'center'
           });
         }, 1000);
       }
@@ -434,7 +432,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       {!profiles.isLoading && (
         <ProfileDetail
           profile={{
-            geo: profiles.profile,
+            geo: profiles.profile
           }}
         />
       )}
@@ -451,18 +449,18 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
             fillColor: theme.palette.primary.main,
             weight: 1.0,
             opacity: 1.0,
-            fillOpacity: 0.2,
+            fillOpacity: 0.2
           }}
           geoLayerFocusStyle={{
             color: '#D6D6D6',
             fillColor: theme.palette.primary.main,
             weight: 2.0,
             opacity: 1.0,
-            fillOpacity: 0.5,
+            fillOpacity: 0.5
           }}
           geoLayerHoverStyle={{
             fillColor: theme.palette.primary.main,
-            fillOpacity: 0.4,
+            fillOpacity: 0.4
           }}
           geoLevel={geoId.split('-')[0]}
           onClickGeoLayer={onClickGeoLayer}
@@ -488,15 +486,15 @@ Profile.propTypes = {
     PropTypes.shape({
       charts: PropTypes.arrayOf(
         PropTypes.shape({
-          type: PropTypes.string,
+          type: PropTypes.string
         })
-      ).isRequired,
+      ).isRequired
     })
-  ).isRequired,
+  ).isRequired
 };
 
 Profile.defaultProps = {
-  indicatorId: undefined,
+  indicatorId: undefined
 };
 
 export default Profile;

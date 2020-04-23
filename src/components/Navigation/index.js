@@ -6,13 +6,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from 'next/router';
-import NavigationMenu from './NavigationMenu';
-import MobileMenu from './MobileMenu';
+import logo from 'assets/images/logo/logo-outbreak.svg';
+import NavigationMenu from 'components/Navigation/NavigationMenu';
+import MobileMenu from 'components/Navigation/MobileMenu';
+import Link from 'components/Link';
 
-import Link from '../Link';
-import logo from '../../assets/images/logo/logo-outbreak.svg';
-
-const styles = (theme) => ({
+const styles = theme => ({
   root: {
     display: 'flex',
     direction: 'row',
@@ -25,27 +24,27 @@ const styles = (theme) => ({
     backgroundColor: 'transparent',
     boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
     [theme.breakpoints.up('md')]: {
-      padding: '0rem 8rem',
-    },
+      padding: '0rem 8rem'
+    }
   },
   noShadow: {
-    boxShadow: 'unset',
+    boxShadow: 'unset'
   },
   drawer: {
     backgroundColor: 'transparent',
     outline: 'none',
-    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)',
+    boxShadow: '0 2px 8px 0 rgba(0, 0, 0, 0.07)'
   },
   logoGrid: {
     marginRight: '3rem',
     [theme.breakpoints.only('md')]: {
-      margin: '0rem',
-    },
+      margin: '0rem'
+    }
   },
   linkGrid: {
     '&:hover': {
-      textDecoration: 'none',
-    },
+      textDecoration: 'none'
+    }
   },
   logoLink: {
     marginRight: '2rem',
@@ -55,30 +54,30 @@ const styles = (theme) => ({
     fontWeight: 'bolder',
     textDecoration: 'none',
     [theme.breakpoints.up('md')]: {
-      margin: '0.625rem',
+      margin: '0.625rem'
     },
     [theme.breakpoints.up('lg')]: {
-      margin: '1.375rem',
-    },
+      margin: '1.375rem'
+    }
   },
   searchButton: {
     '& > svg': {
-      fontSize: '30px',
+      fontSize: '30px'
     },
     color: 'black',
-    marginBottom: '0.1rem', // Pixel perfect
+    marginBottom: '0.1rem' // Pixel perfect
   },
   iconLink: {
-    margin: '1.375rem 0.7rem',
+    margin: '1.375rem 0.7rem'
   },
   img: {
-    height: '3rem',
+    height: '3rem'
   },
   span: {
     color: 'blue',
     textDecoration: 'none',
-    fontWeight: 'bolder',
-  },
+    fontWeight: 'bolder'
+  }
 });
 
 class Navigation extends React.Component {
@@ -86,7 +85,7 @@ class Navigation extends React.Component {
     super(props);
     this.state = {
       isMobileDrawerOpen: false,
-      openDrawer: null,
+      openDrawer: null
     };
 
     this.toggleDrawer = this.toggleDrawer.bind(this);
@@ -98,9 +97,9 @@ class Navigation extends React.Component {
   }
 
   toggleMobileDrawer() {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       isMobileDrawerOpen: !prevState.isMobileDrawerOpen,
-      openDrawer: !prevState.isMobileDrawerOpen ? prevState.openDrawer : null,
+      openDrawer: !prevState.isMobileDrawerOpen ? prevState.openDrawer : null
     }));
   }
 
@@ -113,7 +112,7 @@ class Navigation extends React.Component {
       const { width } = this.props;
       this.setState({
         isMobileDrawerOpen: isWidthUp('md', width) ? false : hasDrawer,
-        openDrawer: newOpenDrawer,
+        openDrawer: newOpenDrawer
       });
     };
   }
@@ -149,8 +148,7 @@ class Navigation extends React.Component {
 
   renderMobileNav() {
     const {
-      takwimu: { countries },
-      router: { pathname },
+      takwimu: { countries }
     } = this.props;
     return (
       <>
@@ -165,8 +163,7 @@ class Navigation extends React.Component {
 
   renderDesktopNav() {
     const {
-      takwimu: { countries },
-      router: { pathname },
+      takwimu: { countries }
     } = this.props;
     return (
       <>
@@ -189,12 +186,12 @@ Navigation.propTypes = {
     page: PropTypes.shape({}).isRequired,
     countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
     settings: PropTypes.shape({
-      navigation: PropTypes.shape({}),
-    }).isRequired,
+      navigation: PropTypes.shape({})
+    }).isRequired
   }).isRequired,
-  router: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
+  router: PropTypes.shape({ pathname: PropTypes.string }).isRequired
 };
 
 export default withWidth({
-  initialWidth: 'md',
+  initialWidth: 'md'
 })(withStyles(styles)(withRouter(Navigation)));

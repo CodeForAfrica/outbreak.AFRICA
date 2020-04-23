@@ -7,31 +7,31 @@ import {
   MenuItem,
   Grid,
   Typography,
-  Divider,
+  Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
-import config from '../../../config';
+import Link from 'components/Link';
+import config from 'config';
 
 const useStyles = makeStyles({
   menuItem: {
-    padding: '1rem',
+    padding: '1rem'
   },
   listItem: {
-    color: 'white',
+    color: 'white'
   },
   gridRoot: {
-    padding: '1rem  2rem',
+    padding: '1rem  2rem'
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%',
+    width: '50%'
   },
   divider: {
-    border: '0.5px solid grey',
-  },
+    border: '0.5px solid grey'
+  }
 });
 
 function MenuItemLink(props) {
@@ -59,7 +59,7 @@ function CountriesMobileMenu({ profile, title }) {
       <Grid item className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {countries.map((country) => (
+          {countries.map(country => (
             <MenuItemLink
               key={country.slug}
               underline="none"
@@ -78,9 +78,8 @@ function CountriesMobileMenu({ profile, title }) {
 }
 
 CountriesMobileMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 export default CountriesMobileMenu;

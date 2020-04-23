@@ -6,13 +6,13 @@ import Search from './Search';
 
 import Menu from './Menu';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     margin: '0rem 6rem',
     [theme.breakpoints.up('md')]: {
       // margin: '2rem'
-    },
-  },
+    }
+  }
 }));
 
 function NavigationMenu() {

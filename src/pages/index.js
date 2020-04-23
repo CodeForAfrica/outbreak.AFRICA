@@ -5,6 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Page from 'components/Page';
 import Hero from 'components/Hero';
 import Ticker from 'components/Ticker';
+import Partners from 'components/Partners';
+import MythBusting from 'components/MythBusting';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -57,6 +59,25 @@ function Home(props) {
           title="Covid-19 cases in Africa"
         />
       </div>
+
+      <MythBusting
+        title="Myth-busting"
+        description={`
+              A searchable database of
+              <span class="highlight">debunked misinformation</span>
+               <br />
+              backed up by a transnational team of expert
+              <span class="highlight">
+              African fact-
+              <br />
+              checkers
+              </span>
+              to help you test new questionable claims.
+        `}
+        linkText="LEARN MORE"
+      />
+
+      <Partners />
     </Page>
   );
 }

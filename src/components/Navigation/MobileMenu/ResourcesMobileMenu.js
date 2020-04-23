@@ -7,48 +7,48 @@ import {
   MenuItem,
   Grid,
   Typography,
-  Divider,
+  Divider
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
+import Link from 'components/Link';
 
 const useStyles = makeStyles({
   menuItem: {
-    padding: '1rem',
+    padding: '1rem'
   },
   listItem: {
-    color: 'white',
+    color: 'white'
   },
   gridRoot: {
-    padding: '1rem  2rem',
+    padding: '1rem  2rem'
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%',
+    width: '50%'
   },
   divider: {
-    border: '0.5px solid grey',
-  },
+    border: '0.5px solid grey'
+  }
 });
 
 const resourcesMenu = [
   {
     slug: 'african-experts',
     name: 'African Experts',
-    link: '#',
+    link: '#'
   },
   {
     slug: 'published-research',
     name: 'Published Research',
-    link: '#',
+    link: '#'
   },
   {
     slug: 'scientific-institutions',
     name: 'Scientific Institutions',
-    link: '#',
-  },
+    link: '#'
+  }
 ];
 
 function MenuItemLink(props) {
@@ -75,7 +75,7 @@ function ResourcesMobileMenu({ title }) {
       <Grid item className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {resourcesMenu.map((resources) => (
+          {resourcesMenu.map(resources => (
             <MenuItemLink
               key={resources.slug}
               underline="none"
@@ -94,6 +94,6 @@ function ResourcesMobileMenu({ title }) {
 }
 
 ResourcesMobileMenu.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired
 };
 export default ResourcesMobileMenu;
