@@ -130,7 +130,7 @@ function MobileMenu({ countries }) {
           <CountriesMobileMenu
             title="DATA"
             countries={countries}
-            profile={({ isoCode, slug }) => `country-${isoCode}`}
+            profile={({ isoCode }) => `country-${isoCode}`}
           />
           <InsightMobileMenu title="INSIGHT" />
           <ResourcesMobileMenu title="RESOURCES" />

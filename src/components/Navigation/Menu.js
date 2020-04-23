@@ -129,7 +129,7 @@ function Menu({ title, countries }) {
                   >
                     <DataMenu
                       countries={countries}
-                      profile={({ isoCode, slug }) => `country-${isoCode}`}
+                      profile={({ isoCode }) => `country-${isoCode}`}
                     />
                   </MenuList>
                 ) : title === 'INSIGHT' ? (
