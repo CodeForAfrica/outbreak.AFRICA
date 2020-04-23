@@ -10,6 +10,7 @@ import JoinUs from './JoinUs';
 const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
+    overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
       margin: '2rem'
     }
