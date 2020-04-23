@@ -87,7 +87,6 @@ const styles = theme => ({
 });
 
 
-
 class Navigation extends React.Component {
   constructor(props) {
     super(props);
@@ -131,7 +130,7 @@ class Navigation extends React.Component {
       <nav className={classes.root}>
         <Grid item>
           <Link href="/" className={classes.linkGrid}>
-            <Grid container direction="row" justify="space-around" alignItems="center" className={classes.logoGrid} >
+            <Grid container direction="row" alignItems="center" className={classes.logoGrid}>
               <img src={logo} alt="Outbreak" className={classes.img} />
               <Typography variant="caption" className={classes.logoLink}> OUTBREAK <br />
                 <span className={classes.span}>Covid-19</span>
@@ -146,31 +145,25 @@ class Navigation extends React.Component {
 
   renderMobileNav() {
     const {
-      takwimu: { countries },
-      router: { pathname }
+      takwimu: { countries }
     } = this.props;
     return (
-      <>
-        <Grid item>
-          <Grid container direction="row" alignItems="center" spacing={2}>
-            <MobileMenu countries={countries} />
-          </Grid>
+      <Grid item>
+        <Grid container direction="row" alignItems="center" spacing={2}>
+          <MobileMenu countries={countries} />
         </Grid>
-      </>
+      </Grid>
     );
   }
 
   renderDesktopNav() {
     const {
-      takwimu: { countries },
-      router: { pathname }
+      takwimu: { countries }
     } = this.props;
     return (
-      <>
-        <div>
-          <NavigationMenu countries={countries} />
-        </div>
-      </>
+      <Grid item>
+        <NavigationMenu countries={countries} />
+      </Grid>
     );
   }
 

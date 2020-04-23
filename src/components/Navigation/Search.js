@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
-    alignItems: 'center',
+    alignItems: 'flex-end',
     justifyContent: 'center',
   },
   inputRoot: {
