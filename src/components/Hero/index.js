@@ -110,8 +110,7 @@ function Hero() {
           </Grid>
         </Grid>
         <Grid item xs={12} md={5} className={classes.heroCarousel}>
-          <div style={{ width: '100%'}}>
-          <HeroCarousel /></div>
+          <HeroCarousel />
         </Grid>
       </Grid>
     </div>

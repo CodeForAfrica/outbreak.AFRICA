@@ -38,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   media: {
-    minHeight: '20rem',
     height: '100%',
     width: '100%',
   },
