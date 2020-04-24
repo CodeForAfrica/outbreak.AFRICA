@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     color: theme.palette.primary.main,
-    textAlign: 'center'
+    textAlign: 'center',
   },
   name: {
-    color: 'inherit'
+    color: 'inherit',
+    fontWeight: 'bold',
   },
   status: {
-    color: 'inherit'
+    color: 'inherit',
+    fontSize: '1rem',
   },
   value: {
-    ...theme.typography.h1,
-    color: 'inherit'
-  }
+    color: 'inherit',
+    lineHeight: '6.25rem',
+  },
 }));
 
 function Status({ name, status, value, ...props }) {
@@ -38,7 +40,7 @@ function Status({ name, status, value, ...props }) {
         </Typography>
       </Grid>
       <Grid xs={12}>
-        <Typography variant="caption" component="h1" className={classes.value}>
+        <Typography variant="h1" className={classes.value}>
           {value}
         </Typography>
       </Grid>
@@ -50,11 +52,11 @@ Status.propTypes = {
   lang: PropTypes.string,
   name: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired
+  value: PropTypes.string.isRequired,
 };
 
 Status.defaultProps = {
-  lang: undefined
+  lang: undefined,
 };
 
 export default Status;
