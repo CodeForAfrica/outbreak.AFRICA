@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  hide: {
-    display: 'none',
-  },
+  //hide: {
+  //display: 'none',
+  //},
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: '#2C2559',
@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   dialogContent: {
-    paddingTop: '3rem',
+    padding: '4rem',
     color: 'white',
     backgroundColor: '#2C2559',
     width: drawerWidth,

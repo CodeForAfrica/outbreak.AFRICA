@@ -12,7 +12,8 @@ const useStyles = makeStyles({
     padding: '0px 16px'
   },
   listItem: {
-    color: 'white'
+    color: 'white',
+    fontSize: '1rem'
   },
   gridRoot: {
     padding: '1rem  0rem'
@@ -24,25 +25,25 @@ const useStyles = makeStyles({
   divider: {
     border: "0.5px solid grey"
   },
-  titleGrid: {
-
+  link: {
+    textDecoration: 'none',
   }
 });
 
 function MenuItemLink(props) {
   const classes = useStyles()
-  return <MenuItem className={classes.menuItem}>
-    <Link {...props} />
-  </MenuItem>;
+  return <div className={classes.menuItem}>
+    <Link {...props} className={classes.link} />
+  </div>;
 }
 
-function CountriesMobileMenu({ profile, title }) {
+function DataMobileMenu({ profile, title }) {
   const { countries } = config;
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="space-between" className={classes.gridRoot} spacing={4}>
+    <Grid container direction="row" justify="space-around" className={classes.gridRoot} spacing={4}>
       <Grid item xs={6} className={classes.titleGrid}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h6">{title}</Typography>
       </Grid>
       <Grid item xs={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
@@ -54,7 +55,7 @@ function CountriesMobileMenu({ profile, title }) {
               href="/[geoIdOrSlug]"
               as={`/${profile(country)}`}
             >
-              <ListItemText className={classes.listItem}>{country.shortName}</ListItemText>
+              <Typography className={classes.listItem}>{country.shortName}</Typography>
             </MenuItemLink>
           )}
         </List >
@@ -63,10 +64,10 @@ function CountriesMobileMenu({ profile, title }) {
   )
 }
 
-CountriesMobileMenu.propTypes = {
+DataMobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired
 };
 
-export default CountriesMobileMenu
+export default DataMobileMenu

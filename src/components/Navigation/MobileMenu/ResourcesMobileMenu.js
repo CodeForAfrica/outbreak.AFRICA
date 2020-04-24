@@ -11,7 +11,8 @@ const useStyles = makeStyles({
     padding: '0px 16px'
   },
   listItem: {
-    color: 'white'
+    color: 'white',
+    fontSize: '1rem'
   },
   gridRoot: {
     padding: '1rem  0rem'
@@ -19,11 +20,13 @@ const useStyles = makeStyles({
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    //width: '50%'
   },
   divider: {
     border: "0.5px solid grey"
   },
+  link: {
+    textDecoration: 'none'
+  }
 });
 
 const resourcesMenu = [
@@ -46,9 +49,9 @@ const resourcesMenu = [
 
 function MenuItemLink(props) {
   const classes = useStyles()
-  return <MenuItem className={classes.menuItem}>
-    <Link {...props} />
-  </MenuItem>;
+  return <div item className={classes.menuItem}>
+    <Link {...props} className={classes.link} />
+  </div>;
 }
 
 function ResourcesMobileMenu({ title }) {
@@ -56,7 +59,7 @@ function ResourcesMobileMenu({ title }) {
   return (
     <Grid container direction="row" justify="space-between" className={classes.gridRoot} spacing={4}>
       <Grid item xs={6} md={6}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h6">{title}</Typography>
       </Grid>
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
@@ -68,7 +71,7 @@ function ResourcesMobileMenu({ title }) {
               href={`/${resources.name}`}
               as={`/${resources.name}`}
             >
-              <ListItemText className={classes.listItem}>{resources.name}</ListItemText>
+              <Typography className={classes.listItem}>{resources.name}</Typography>
             </MenuItemLink>
           )}
         </List >

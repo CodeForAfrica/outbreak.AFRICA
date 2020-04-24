@@ -11,19 +11,22 @@ const useStyles = makeStyles({
     padding: '0px 16px'
   },
   listItem: {
-    color: 'white'
+    color: 'white',
+    fontSize: '1rem'
   },
   gridRoot: {
     padding: '1rem  0rem'
   },
   listRoot: {
     display: 'flex',
-    flexDirection: 'row',
-    //width: '50%'
+    flexDirection: 'row'
   },
   divider: {
     border: "0.5px solid grey"
   },
+  link: {
+    textDecoration: 'none'
+  }
 });
 
 const insightMenu = [
@@ -38,8 +41,8 @@ const insightMenu = [
     link: '#'
   },
   {
-    slug: 'frontline-reportange',
-    name: 'Frontline Reportange',
+    slug: 'frontline-reportage',
+    name: 'Frontline Reportasge',
     link: '#'
   },
   {
@@ -51,9 +54,9 @@ const insightMenu = [
 
 function MenuItemLink(props) {
   const classes = useStyles()
-  return <MenuItem className={classes.menuItem}>
-    <Link {...props} />
-  </MenuItem>;
+  return <div className={classes.menuItem}>
+    <Link {...props} className={classes.link} />
+  </div>;
 }
 
 function InsightMobileMenu({ title }) {
@@ -61,7 +64,7 @@ function InsightMobileMenu({ title }) {
   return (
     <Grid container direction="row" justify="space-between" className={classes.gridRoot} spacing={4} >
       <Grid item xs={6} md={6}>
-        <Typography variant="h5">{title}</Typography>
+        <Typography variant="h6">{title}</Typography>
       </Grid>
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
@@ -73,7 +76,7 @@ function InsightMobileMenu({ title }) {
               href={`/${insight.name}`}
               as={`/${insight.name}`}
             >
-              <ListItemText className={classes.listItem}>{insight.name}</ListItemText>
+              <Typography className={classes.listItem}>{insight.name}</Typography>
             </MenuItemLink>
           )}
         </List >
