@@ -139,7 +139,7 @@ class Navigation extends React.Component {
             </Grid>
           </Link>
         </Grid>
-        {isWidthUp('sm', width) ? this.renderDesktopNav() : this.renderMobileNav()}
+        {isWidthUp('lg', width) ? this.renderDesktopNav() : this.renderMobileNav()}
       </nav>
     );
   }
@@ -187,5 +187,5 @@ Navigation.propTypes = {
 };
 
 export default withWidth({
-  initialWidth: 'sm'
+  initialWidth: 'lg'
 })(withStyles(styles)(withRouter(Navigation)));

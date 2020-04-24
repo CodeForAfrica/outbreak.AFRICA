@@ -19,24 +19,27 @@ import InsightMobileMenu from './InsightMobileMenu';
 import DataMobileMenu from './DataMobileMenu';
 import ResourcesMobileMenu from './ResourcesMobileMenu';
 
-const drawerWidth = 400;
+const drawerWidth = '95%';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
-  //hide: {
-  //display: 'none',
-  //},
   drawerPaper: {
     width: drawerWidth,
     backgroundColor: '#2C2559',
-    overflowX: 'hidden'
+    overflowX: 'hidden',
+    [theme.breakpoints.up('md')]: {
+      width: '100%'
+    },
   },
   appBar: {
     backgroundColor: '#2C2559',
     boxShadow: 'none',
     width: drawerWidth,
+    [theme.breakpoints.up('md')]: {
+      width: '100%'
+    },
   },
   gridRoot: {
     padding: '1rem  2rem'

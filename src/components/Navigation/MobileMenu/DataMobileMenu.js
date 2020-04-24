@@ -13,7 +13,8 @@ const useStyles = makeStyles({
   },
   listItem: {
     color: 'white',
-    fontSize: '1rem'
+    fontSize: '1rem',
+    fontWeight: 700
   },
   gridRoot: {
     padding: '1rem  0rem'
@@ -27,6 +28,12 @@ const useStyles = makeStyles({
   },
   link: {
     textDecoration: 'none',
+  },
+  title: {
+    color: '#A9A9A9',
+    '&:hover': {
+      color: '#0050FF'
+    }
   }
 });
 
@@ -43,7 +50,7 @@ function DataMobileMenu({ profile, title }) {
   return (
     <Grid container direction="row" justify="space-around" className={classes.gridRoot} spacing={4}>
       <Grid item xs={6} className={classes.titleGrid}>
-        <Typography variant="h6">{title}</Typography>
+        <Typography variant="h6" className={classes.title}>{title}</Typography>
       </Grid>
       <Grid item xs={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
