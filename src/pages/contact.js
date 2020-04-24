@@ -4,9 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { useRouter } from 'next/router';
 
-import AsideTableOfContent from 'components/AsideTableOfContent';
-import ContactContent from 'components/ContactContent';
-import ContentPage from 'components/ContentPage';
+// import AsideTableOfContent from 'components/AsideTableOfContent';
+// import ContactContent from 'components/ContactContent';
+// import ContentPage from 'components/ContentPage';
 import Page from 'components/Page';
 import config from 'config';
 import { getSitePage } from 'cms';
@@ -120,7 +120,7 @@ function Contact(takwimu) {
 
   return (
     <Page takwimu={takwimu} title={title}>
-      <ContentPage
+      {/* <ContentPage
         aside={
           <AsideTableOfContent
             current={current}
@@ -143,7 +143,7 @@ function Contact(takwimu) {
           relatedContent={relatedContent}
           whereToNext={whereToNext}
         />
-      </ContentPage>
+      </ContentPage> */}
     </Page>
   );
 }
