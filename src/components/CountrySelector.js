@@ -9,29 +9,29 @@ import { makeStyles } from '@material-ui/core/styles';
 import downArrow from 'assets/images/down-arrow-green.svg';
 import flags from 'flags';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   label: {
     color: '#231f20',
     fontWeight: 'normal',
     fontSize: '0.938rem',
-    lineHeight: 'normal'
+    lineHeight: 'normal',
   },
   countryName: {
     fontSize: '1.75rem',
     fontFamily: theme.typography.fontHeading,
     marginLeft: '1.125rem',
     marginRight: '1.125rem',
-    textAlign: 'start'
+    textAlign: 'start',
   },
   chooserButton: {
     marginTop: '0.938rem',
-    marginBottom: '1.375rem'
+    marginBottom: '1.375rem',
   },
   changeCountryLabel: {
     fontWeight: 600,
     fontSize: '0.8125rem',
-    color: '#848484'
-  }
+    color: '#848484',
+  },
 }));
 
 export default function CountrySelector({ context, country }) {
@@ -71,6 +71,6 @@ CountrySelector.propTypes = {
   country: PropTypes.shape({
     isoCode: PropTypes.string,
     slug: PropTypes.string,
-    shortName: PropTypes.string
-  }).isRequired
+    shortName: PropTypes.string,
+  }).isRequired,
 };

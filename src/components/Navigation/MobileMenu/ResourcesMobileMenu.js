@@ -41,18 +41,18 @@ const resourcesMenu = [
   {
     slug: 'african-experts',
     name: 'African Experts',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'published-research',
     name: 'Published Research',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'scientific-institutions',
     name: 'Scientific Institutions',
-    link: '#'
-  }
+    link: '#',
+  },
 ];
 
 function MenuItemLink(props) {
@@ -82,7 +82,7 @@ function ResourcesMobileMenu({ title }) {
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {resourcesMenu.map(resources => (
+          {resourcesMenu.map((resources) => (
             <MenuItemLink
               key={resources.slug}
               underline="none"
@@ -101,6 +101,6 @@ function ResourcesMobileMenu({ title }) {
 }
 
 ResourcesMobileMenu.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 export default ResourcesMobileMenu;

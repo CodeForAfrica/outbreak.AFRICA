@@ -8,45 +8,45 @@ import { makeStyles } from '@material-ui/core/styles';
 import Link from 'components/Link';
 import Title from './Title';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
       width: '12.8125rem',
-      paddingBottom: '0.5rem'
-    }
+      paddingBottom: '0.5rem',
+    },
   },
   text: {
-    color: '#fff'
+    color: '#fff',
   },
   list: {
     listStyle: 'none',
     margin: '1.5rem 0 0 0',
-    padding: 0
+    padding: 0,
   },
   link: {
-    fontSize: '0.9375rem'
-  }
+    fontSize: '0.9375rem',
+  },
 }));
 
 const LINKS = [
   {
     href: '#topic',
     label: 'Explore country profiles',
-    onClick: () => window.toggleDrawer('topic')()
+    onClick: () => window.toggleDrawer('topic')(),
   },
   {
     href: '#analysis',
     label: 'Expert insights and analysis',
-    onClick: () => window.toggleDrawer('analysis')()
+    onClick: () => window.toggleDrawer('analysis')(),
   },
   { href: '/about', label: 'About Takwimu' },
   { href: '/faqs', label: 'FAQs' },
-  { href: '/contact', label: 'Contact Us' }
+  { href: '/contact', label: 'Contact Us' },
 ];
 const LEGAL = [
   { href: '/terms', label: 'Terms of use' },
-  { href: '/privacy', label: 'Privacy Policy' }
+  { href: '/privacy', label: 'Privacy Policy' },
 ];
 
 function QuickLinks() {
@@ -60,14 +60,14 @@ function QuickLinks() {
         className={classNames([classes.text, classes.list])}
         component="ul"
       >
-        {LINKS.map(link => (
+        {LINKS.map((link) => (
           <li key={link.label}>
             {link.onClick ? (
               <MuiLink
                 href={link.href}
                 underline="always"
                 className={classNames([classes.text, classes.link])}
-                onClick={e => link.onClick(e)}
+                onClick={(e) => link.onClick(e)}
               >
                 {link.label}
               </MuiLink>
@@ -88,7 +88,7 @@ function QuickLinks() {
         className={classNames([classes.text, classes.list])}
         component="ul"
       >
-        {LEGAL.map(link => (
+        {LEGAL.map((link) => (
           <li key={link.label}>
             <Link
               href={link.href}

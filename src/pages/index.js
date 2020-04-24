@@ -3,11 +3,12 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Page from 'components/Page';
+import Hero from 'components/Hero';
 import Ticker from 'components/Ticker';
 import Partners from 'components/Partners';
 import MythBusting from 'components/MythBusting';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   ticker: {
     margin: '0 auto',
@@ -15,9 +16,9 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '3.8125rem 0 0',
-      width: `${(1640 / 1920) * 100}%`
-    }
-  }
+      width: `${(1640 / 1920) * 100}%`,
+    },
+  },
 }));
 
 function Home(props) {
@@ -25,34 +26,35 @@ function Home(props) {
 
   return (
     <Page>
+      <Hero />
       <div className={classes.ticker}>
         <Ticker
           source={{
             title: 'openAFRICA',
-            url: 'https://open.africa'
+            url: 'https://open.africa',
           }}
           statuses={[
             {
               name: 'Infections',
               status: 'Confirmed',
-              value: '3,721'
+              value: '3,721',
             },
             {
               name: 'Deaths',
               status: 'Confirmed',
               value: '670',
-              highlight: true
+              highlight: true,
             },
             {
               name: 'Hospitalisations',
               status: 'Confirmed',
-              value: '430'
+              value: '430',
             },
             {
               name: 'Recoveries',
               status: 'Confirmed',
-              value: '730'
-            }
+              value: '730',
+            },
           ]}
           title="Covid-19 cases in Africa"
         />

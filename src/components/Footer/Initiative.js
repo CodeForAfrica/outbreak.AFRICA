@@ -16,25 +16,25 @@ import ihub3 from 'assets/images/ihub@3x.png';
 
 import Title from './Title';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: '19.375rem'
+    width: '19.375rem',
   },
   img: {
-    marginTop: '2.5625rem'
+    marginTop: '2.5625rem',
   },
   imgCfa: {
     marginLeft: '1rem',
     marginRight: '1rem',
     [theme.breakpoints.up('md')]: {
       marginLeft: '2.15625rem',
-      marginRight: '2.25rem'
+      marginRight: '2.25rem',
     },
     [theme.breakpoints.up('lg')]: {
       marginLeft: '2.875rem',
-      marginRight: '3rem'
-    }
-  }
+      marginRight: '3rem',
+    },
+  },
 }));
 
 function Initiative() {

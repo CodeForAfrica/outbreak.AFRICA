@@ -4,21 +4,21 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
+const styles = (theme) => ({
   root: {
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: '58.265625rem' // .75 of lg
+      width: '58.265625rem', // .75 of lg
     },
     [theme.breakpoints.up('lg')]: {
-      width: '77.6875rem'
-    }
+      width: '77.6875rem',
+    },
   },
   title: {
     [theme.breakpoints.up('md')]: {
-      width: '51.125rem'
-    }
-  }
+      width: '51.125rem',
+    },
+  },
 });
 
 function Layout({ classes, children, ...props }) {
@@ -33,8 +33,8 @@ Layout.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
-  ]).isRequired
+    PropTypes.node,
+  ]).isRequired,
 };
 
 export default withStyles(styles)(Layout);

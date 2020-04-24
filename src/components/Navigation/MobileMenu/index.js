@@ -42,22 +42,22 @@ const useStyles = makeStyles(theme => ({
     }
   },
   gridRoot: {
-    padding: '1rem  2rem'
+    padding: '1rem  2rem',
   },
   titleGrid: {
-    width: '50%'
+    width: '50%',
   },
   listRoot: {
     display: 'flex',
     flexDirection: 'row',
-    width: '50%'
+    width: '50%',
   },
   divider: {
-    border: '0.5px solid grey'
+    border: '0.5px solid grey',
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1
+    flex: 1,
   },
   dialogContent: {
     padding: '4rem',
@@ -69,11 +69,11 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   link: {
-    color: 'white'
-  }
+    color: 'white',
+  },
 }));
 
 function MobileMenu({ countries }) {
@@ -147,7 +147,7 @@ function MobileMenu({ countries }) {
 }
 
 MobileMenu.propTypes = {
-  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
 };
 
 export default MobileMenu;

@@ -66,7 +66,7 @@ function DataMobileMenu({ profile, title }) {
       <Grid item xs={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {countries.map(country => (
+          {countries.map((country) => (
             <MenuItemLink
               key={country.slug}
               underline="none"
@@ -87,7 +87,7 @@ function DataMobileMenu({ profile, title }) {
 DataMobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   profile: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default DataMobileMenu;

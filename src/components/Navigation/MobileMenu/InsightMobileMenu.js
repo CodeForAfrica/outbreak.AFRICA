@@ -41,12 +41,12 @@ const insightMenu = [
   {
     slug: 'analysis',
     name: 'Analysis',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'misinformation',
     name: 'Misinformation',
-    link: '#'
+    link: '#',
   },
   {
     slug: 'frontline-reportage',
@@ -56,8 +56,8 @@ const insightMenu = [
   {
     slug: 'multimedia-resources',
     name: 'Multimedia resources',
-    link: '#'
-  }
+    link: '#',
+  },
 ];
 
 function MenuItemLink(props) {
@@ -87,7 +87,7 @@ function InsightMobileMenu({ title }) {
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {insightMenu.map(insight => (
+          {insightMenu.map((insight) => (
             <MenuItemLink
               key={insight.slug}
               underline="none"
@@ -106,7 +106,7 @@ function InsightMobileMenu({ title }) {
 }
 
 InsightMobileMenu.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
 };
 
 export default InsightMobileMenu;
