@@ -38,9 +38,12 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   media: {
-    minHeight: '30rem',
+    minHeight: '21rem',
     height: '100%',
     width: '100%',
+    [theme.breakpoints.up('md')]: {
+      minHeight: '30rem'
+    },
   },
   cardLink: {
     textDecoration: 'underline',
