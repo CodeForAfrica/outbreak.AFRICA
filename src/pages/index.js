@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
   root: {},
   section: {
     margin: '0 1.25rem 0 1.375rem',
+    width: 'auto',
     [theme.breakpoints.up('md')]: {
       margin: '0 auto',
       width: '85.4166667%',

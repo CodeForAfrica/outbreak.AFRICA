@@ -13,7 +13,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import {
   jssPreset,
   StylesProvider,
-  ThemeProvider
+  ThemeProvider,
 } from '@material-ui/core/styles';
 import { create } from 'jss';
 
@@ -22,10 +22,10 @@ import theme from 'theme';
 import * as ga from 'lib/ga';
 import config from 'config';
 
-Router.events.on('routeChangeComplete', url => ga.pageview(url));
+Router.events.on('routeChangeComplete', (url) => ga.pageview(url));
 
 const client = new ApolloClient({
-  uri: config.graphqlURI
+  uri: config.graphqlURI,
 });
 
 export default class CustomApp extends App {
