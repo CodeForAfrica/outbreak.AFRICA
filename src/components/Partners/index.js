@@ -7,27 +7,27 @@ import Subscribe from './Subscribe';
 import PartnerGrid from './PartnersGrid';
 import JoinUs from './JoinUs';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
     position: 'relative',
     overflow: 'hidden',
     [theme.breakpoints.up('md')]: {
-      margin: '2rem',
-    },
+      margin: '2rem'
+    }
   },
   desktopContainer: {
-    padding: '2rem 6rem',
+    padding: '2rem 6rem'
   },
   joinUs: {
     position: 'absolute',
     left: '4rem',
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      top: '33rem',
-    },
+      top: '33rem'
+    }
   },
   partner: {
-    width: '75%',
+    width: '75%'
   },
   subscribe: {
     width: '30%',
@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
     top: '3px',
     margin: '0rem 4rem',
     position: 'absolute',
-    zIndex: 9999,
-  },
+    zIndex: 9999
+  }
 }));
 
 function Partners() {

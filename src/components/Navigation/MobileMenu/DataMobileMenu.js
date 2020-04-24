@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  List,
-  Grid,
-  Typography,
-  Divider
-} from '@material-ui/core';
+import { List, Grid, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Link from 'components/Link';
@@ -29,10 +24,10 @@ const useStyles = makeStyles({
     flexDirection: 'row'
   },
   divider: {
-    border: "0.5px solid grey"
+    border: '0.5px solid grey'
   },
   link: {
-    textDecoration: 'none',
+    textDecoration: 'none'
   },
   title: {
     color: '#A9A9A9',
@@ -44,19 +39,29 @@ const useStyles = makeStyles({
 });
 
 function MenuItemLink(props) {
-  const classes = useStyles()
-  return <div className={classes.menuItem}>
-    <Link {...props} className={classes.link} />
-  </div>;
+  const classes = useStyles();
+  return (
+    <div className={classes.menuItem}>
+      <Link {...props} className={classes.link} />
+    </div>
+  );
 }
 
 function DataMobileMenu({ profile, title }) {
   const { countries } = config;
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="space-around" className={classes.gridRoot} spacing={4}>
+    <Grid
+      container
+      direction="row"
+      justify="space-around"
+      className={classes.gridRoot}
+      spacing={4}
+    >
       <Grid item xs={6} className={classes.titleGrid}>
-        <Typography variant="h6" className={classes.title}>{title}</Typography>
+        <Typography variant="h6" className={classes.title}>
+          {title}
+        </Typography>
       </Grid>
       <Grid item xs={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
@@ -68,7 +73,9 @@ function DataMobileMenu({ profile, title }) {
               href="/[geoIdOrSlug]"
               as={`/${profile(country)}`}
             >
-              <Typography className={classes.listItem}>{country.shortName}</Typography>
+              <Typography className={classes.listItem}>
+                {country.shortName}
+              </Typography>
             </MenuItemLink>
           ))}
         </List>
@@ -83,4 +90,4 @@ DataMobileMenu.propTypes = {
   title: PropTypes.string.isRequired
 };
 
-export default DataMobileMenu
+export default DataMobileMenu;

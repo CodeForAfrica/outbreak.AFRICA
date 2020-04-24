@@ -124,7 +124,12 @@ class Navigation extends React.Component {
       <nav className={classes.root}>
         <Grid item md={4}>
           <Link href="/" className={classes.linkGrid}>
-            <Grid container direction="row" alignItems="center" className={classes.logoGrid}>
+            <Grid
+              container
+              direction="row"
+              alignItems="center"
+              className={classes.logoGrid}
+            >
               <img src={logo} alt="Outbreak" className={classes.img} />
               <Typography variant="caption" className={classes.logoLink}>
                 {' '}
@@ -145,9 +150,7 @@ class Navigation extends React.Component {
     const {
       takwimu: { countries }
     } = this.props;
-    return (
-      <MobileMenu countries={countries} />
-    );
+    return <MobileMenu countries={countries} />;
   }
 
   renderDesktopNav() {

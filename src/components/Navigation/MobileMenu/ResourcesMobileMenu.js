@@ -1,12 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  List,
-  Grid,
-  Typography,
-  Divider
-} from '@material-ui/core';
+import { List, Grid, Typography, Divider } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Link from 'components/Link';
@@ -25,10 +20,10 @@ const useStyles = makeStyles({
   },
   listRoot: {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   divider: {
-    border: "0.5px solid grey"
+    border: '0.5px solid grey'
   },
   link: {
     textDecoration: 'none'
@@ -61,18 +56,28 @@ const resourcesMenu = [
 ];
 
 function MenuItemLink(props) {
-  const classes = useStyles()
-  return <div item className={classes.menuItem}>
-    <Link {...props} className={classes.link} />
-  </div>;
+  const classes = useStyles();
+  return (
+    <div item className={classes.menuItem}>
+      <Link {...props} className={classes.link} />
+    </div>
+  );
 }
 
 function ResourcesMobileMenu({ title }) {
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="space-between" className={classes.gridRoot} spacing={4}>
+    <Grid
+      container
+      direction="row"
+      justify="space-between"
+      className={classes.gridRoot}
+      spacing={4}
+    >
       <Grid item xs={6} md={6}>
-        <Typography variant="h6" className={classes.title}>{title}</Typography>
+        <Typography variant="h6" className={classes.title}>
+          {title}
+        </Typography>
       </Grid>
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
@@ -84,7 +89,9 @@ function ResourcesMobileMenu({ title }) {
               href={`/${resources.name}`}
               as={`/${resources.name}`}
             >
-              <Typography className={classes.listItem}>{resources.name}</Typography>
+              <Typography className={classes.listItem}>
+                {resources.name}
+              </Typography>
             </MenuItemLink>
           ))}
         </List>

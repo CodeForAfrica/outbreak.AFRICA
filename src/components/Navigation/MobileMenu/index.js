@@ -9,7 +9,7 @@ import {
   Grid,
   Typography,
   SwipeableDrawer
-} from '@material-ui/core'
+} from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
 import CloseIcon from '@material-ui/icons/Close';
@@ -21,9 +21,9 @@ import ResourcesMobileMenu from './ResourcesMobileMenu';
 
 const drawerWidth = '95%';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(theme => ({
   root: {
-    display: 'flex',
+    display: 'flex'
   },
   drawerPaper: {
     width: drawerWidth,
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     overflowX: 'hidden',
     [theme.breakpoints.up('md')]: {
       width: '100%'
-    },
+    }
   },
   appBar: {
     backgroundColor: '#2C2559',
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
     width: drawerWidth,
     [theme.breakpoints.up('md')]: {
       width: '100%'
-    },
+    }
   },
   gridRoot: {
     padding: '1rem  2rem'
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '4rem',
     color: 'white',
     backgroundColor: '#2C2559',
-    width: drawerWidth,
+    width: drawerWidth
   },
   toolbar: {
     display: 'flex',
@@ -91,7 +91,12 @@ function MobileMenu({ countries }) {
 
   return (
     <div className={classes.root}>
-      <IconButton edge="start" color="primary" aria-label="open drawer" onClick={handleDrawerOpen}>
+      <IconButton
+        edge="start"
+        color="primary"
+        aria-label="open drawer"
+        onClick={handleDrawerOpen}
+      >
         <MenuIcon />
       </IconButton>
       <SwipeableDrawer
@@ -100,8 +105,7 @@ function MobileMenu({ countries }) {
         open={open}
         classes={{ paper: classes.drawerPaper }}
       >
-
-        <AppBar postion='static' className={classes.appBar}>
+        <AppBar postion="static" className={classes.appBar}>
           <Toolbar className={classes.toolbar}>
             <SearchIcon />
 
@@ -116,19 +120,23 @@ function MobileMenu({ countries }) {
                 <Typography variant="caption">&#x0633;</Typography>
               </Grid>
 
-              <IconButton edge="start" color="inherit" onClick={handleDrawerClose} aria-label="close">
+              <IconButton
+                edge="start"
+                color="inherit"
+                onClick={handleDrawerClose}
+                aria-label="close"
+              >
                 <CloseIcon />
               </IconButton>
             </Grid>
           </Toolbar>
         </AppBar>
 
-
         <div className={classes.dialogContent}>
           <DataMobileMenu
             title="DATA"
             countries={countries}
-            profile={({ isoCode: isoCode }) => `country-${isoCode}`}
+            profile={({ isoCode }) => `country-${isoCode}`}
           />
           <InsightMobileMenu title="INSIGHT" />
           <ResourcesMobileMenu title="RESOURCES" />
@@ -142,5 +150,4 @@ MobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired
 };
 
-
-export default MobileMenu
+export default MobileMenu;
