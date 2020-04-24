@@ -13,6 +13,13 @@ import { getProfiles, fromTimestamp, useStories } from 'lib';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  section: {
+    margin: '0 1.25rem 0 1.375rem',
+    [theme.breakpoints.up('md')]: {
+      margin: '0 auto',
+      width: '85.4166667%',
+    },
+  },
   featuredResearchers: {
     margin: '0 auto',
     padding: '3.8125rem 1.125rem 0 1.125rem',
@@ -64,7 +71,7 @@ function Home(props) {
   }));
 
   return (
-    <Page>
+    <Page classes={{ section: classes.section }}>
       <div className={classes.ticker}>
         <Ticker
           source={{

@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-has-content */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -6,13 +5,13 @@ import classNames from 'classnames';
 
 import { useRouter } from 'next/router';
 
-import MuiLink from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 
 import NextComposed from './NextComposed';
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
-function Link(props) {
+function ButtonLink(props) {
   const {
     activeClassName = 'active',
     className: classNameProps,
@@ -39,7 +38,7 @@ function Link(props) {
   }
 
   return (
-    <MuiLink
+    <Button
       component={NextComposed}
       className={className}
       href={href}
@@ -49,7 +48,7 @@ function Link(props) {
   );
 }
 
-Link.propTypes = {
+ButtonLink.propTypes = {
   activeClassName: PropTypes.string,
   as: PropTypes.string,
   className: PropTypes.string,
@@ -60,7 +59,7 @@ Link.propTypes = {
   prefetch: PropTypes.bool,
 };
 
-Link.defaultProps = {
+ButtonLink.defaultProps = {
   activeClassName: undefined,
   as: undefined,
   className: undefined,
@@ -72,5 +71,5 @@ Link.defaultProps = {
 };
 
 export default React.forwardRef((props, ref) => (
-  <Link {...props} innerRef={ref} />
+  <ButtonLink {...props} innerRef={ref} />
 ));

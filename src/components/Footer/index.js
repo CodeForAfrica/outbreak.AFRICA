@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Footer } from '@commons-ui/core';
+// import { Footer } from '@commons-ui/core';
 
 import pulitzer from 'assets/pulitzer.png';
 import cfaLogo from 'assets/cfa.png';
@@ -11,14 +11,26 @@ import Medium from 'assets/group-3.svg';
 import LinkedIn from 'assets/group-3-copy.svg';
 import Twitter from 'assets/twitter.svg';
 
-const FIRST_LINKS = {
-  title: 'MORE',
-  links: [
-    { href: '/about', label: 'About About' },
-    { href: '/faqs', label: 'FAQs' },
-    { href: '/contact', label: 'Contact Us' },
-  ],
-};
+import Footer from './Footer';
+
+const QUICK_LINKS = [
+  {
+    title: 'MORE',
+    links: [
+      { href: '#', label: 'FAQs' },
+      { href: '#', label: 'Data Sources' },
+      { href: '#', label: 'Methodology' },
+    ],
+  },
+  {
+    title: 'CONTACTS',
+    links: [
+      { href: '#', label: 'About Us' },
+      { href: '#', label: 'Join Us' },
+      { href: '/contact', label: 'Press Releases' },
+    ],
+  },
+];
 
 const ABOUT = {
   about:
@@ -82,12 +94,12 @@ const SOCIAL_MEDIA = {
   ],
 };
 
-function MainFooter() {
+function MainFooter(props) {
   return (
     <Footer
+      {...props}
       about={SOCIAL_MEDIA}
-      firstLinks={FIRST_LINKS}
-      secondLinks={FIRST_LINKS}
+      quickLinks={QUICK_LINKS}
       aboutSection={ABOUT}
       initiativeLogo={INITIATIVE_LOGO}
       CFA={CFA}

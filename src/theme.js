@@ -9,7 +9,7 @@ const COLOR_BREWER_DIVERGING = [
   '#170F49',
   '#00000029',
   '#D6D6D6',
-  '#F9FF71'
+  '#F9FF71',
 ];
 
 const theme = createTheme({
@@ -20,14 +20,14 @@ const theme = createTheme({
       padding: 0,
       colorScale: COLOR_BREWER_DIVERGING,
       legend: {
-        labelWidth: 150
-      }
+        labelWidth: 150,
+      },
     },
     area: {
-      colorScale: COLOR_BREWER_DIVERGING
+      colorScale: COLOR_BREWER_DIVERGING,
     },
     group: {
-      colorScale: COLOR_BREWER_DIVERGING
+      colorScale: COLOR_BREWER_DIVERGING,
     },
     line: {
       offset: 70,
@@ -35,13 +35,13 @@ const theme = createTheme({
       height: 400,
       style: {
         data: {
-          strokeWidth: 4
+          strokeWidth: 4,
         },
         labels: {
           fontFamily: FONT_FAMILY_TEXT,
-          fill: 'rgb(0,0,0)'
-        }
-      }
+          fill: 'rgb(0,0,0)',
+        },
+      },
     },
     bar: {
       width: 400,
@@ -50,34 +50,34 @@ const theme = createTheme({
       offset: 50,
       style: {
         data: {
-          fill: COLOR_BREWER_DIVERGING[0]
+          fill: COLOR_BREWER_DIVERGING[0],
         },
         labels: {
           fontFamily: FONT_FAMILY_TEXT,
-          fill: 'rgb(0,0,0)'
-        }
+          fill: 'rgb(0,0,0)',
+        },
       },
       legend: {
-        labelWidth: 150
-      }
+        labelWidth: 150,
+      },
     },
     dependentAxis: {
       fixLabelOverlap: true,
-      tickCount: 3
+      tickCount: 3,
     },
     axis: {
       labelWidth: 150,
       style: {
         tickLabels: {
           fontFamily: FONT_FAMILY_TEXT,
-          fill: 'rgb(0,0,0)'
+          fill: 'rgb(0,0,0)',
         },
         axisLabels: {
           fontFamily: FONT_FAMILY_TEXT,
-          fill: 'rgb(0,0,0)'
-        }
-      }
-    }
+          fill: 'rgb(0,0,0)',
+        },
+      },
+    },
   },
   palette: {
     primary: { main: '#0050FF' },
@@ -86,16 +86,16 @@ const theme = createTheme({
     text: { primary: '#170F49', secondary: '#fff' },
     background: {
       default: '#fff',
-      light: '#f6f6f6' // light gray
+      light: '#f6f6f6', // light gray
     },
     info: {
       main: '#f6fbfa', // ice-blue
-      other: '#9b9b9b'
+      other: '#9b9b9b',
     },
     data: {
       main: '#4a4a4a',
-      light: '#F5F5F5' // #4a4a4a opacity 0.05
-    }
+      light: '#F5F5F5', // #4a4a4a opacity 0.05
+    },
   },
   typography: {
     fontHeading: FONT_FAMILY_HEADING,
@@ -108,7 +108,7 @@ const theme = createTheme({
       fontStretch: 'normal',
       lineHeight: 1.25,
       letterSpacing: 'normal',
-      color: 'black'
+      color: '#170F49',
     },
     h2: {
       fontFamily: FONT_FAMILY_HEADING,
@@ -118,7 +118,7 @@ const theme = createTheme({
       fontStretch: 'normal',
       lineHeight: 1.25,
       letterSpacing: 'normal',
-      color: 'black'
+      color: 'black',
     },
     h3: {
       fontFamily: FONT_FAMILY_HEADING,
@@ -128,7 +128,7 @@ const theme = createTheme({
       fontStretch: 'normal',
       lineHeight: 1.25,
       letterSpacing: 'normal',
-      color: 'black'
+      color: 'black',
     },
     h4: {
       fontFamily: FONT_FAMILY_HEADING,
@@ -138,7 +138,7 @@ const theme = createTheme({
       fontStretch: 'normal',
       lineHeight: 1.25,
       letterSpacing: 'normal',
-      color: '#231f20'
+      color: '#231f20',
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -147,7 +147,7 @@ const theme = createTheme({
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 1.5,
-      letterSpacing: 'normal'
+      letterSpacing: 'normal',
     },
     subtitle2: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -156,7 +156,7 @@ const theme = createTheme({
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 1.5,
-      letterSpacing: 'normal'
+      letterSpacing: 'normal',
     },
     body1: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -165,7 +165,7 @@ const theme = createTheme({
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 1.25,
-      letterSpacing: 'normal'
+      letterSpacing: 'normal',
     },
     body2: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -174,45 +174,46 @@ const theme = createTheme({
       fontStyle: 'normal',
       fontStretch: 'normal',
       lineHeight: 1.25,
-      letterSpacing: 'normal'
+      letterSpacing: 'normal',
     },
     button: {
-      fontFamily: FONT_FAMILY_TEXT,
+      fontFamily: FONT_FAMILY_HEADING,
       fontSize: '1.875rem',
       fontWeight: 'bold',
       fontStyle: 'normal',
       fontStretch: 'normal',
-      lineHeight: 1.25,
+      lineHeight: 2.375,
       letterSpacing: 'normal',
-      textTransform: 'none'
+      textTransform: 'none',
     },
     caption: {
       fontFamily: FONT_FAMILY_TEXT,
-      lineHeight: 1.25
+      fontSize: '1.25rem',
+      lineHeight: 1.875,
     },
-    useNextVariants: true
+    useNextVariants: true,
   },
   props: {
     MuiButtonBase: {
       disableRipple: true,
-      disableTouchRipple: true
+      disableTouchRipple: true,
     },
     MuiButton: {
       color: 'primary',
-      variant: 'contained'
+      variant: 'contained',
     },
     MuiPaper: {
-      elevation: 2
+      elevation: 2,
     },
     MuiDialogContentText: {
-      color: 'textPrimary'
-    }
+      color: 'textPrimary',
+    },
   },
   overrides: {
     MuiCssBaseline: {
       '@global': {
         '*': {
-          outline: 'none'
+          outline: 'none',
         },
         p: {
           fontSize: '1.25rem',
@@ -220,24 +221,24 @@ const theme = createTheme({
           fontStyle: 'normal',
           fontStretch: 'normal',
           lineHeight: '2.05',
-          letterSpacing: 'normal'
+          letterSpacing: 'normal',
         },
         '#wpcontent': {
-          paddingLeft: 0
+          paddingLeft: 0,
         },
         '.wp-block-columns': {
           display: 'flex',
           marginBottom: '28px',
           flexWrap: 'wrap',
           '& .are-vertically-aligned-top': {
-            alignItems: 'flex-start'
+            alignItems: 'flex-start',
           },
           '& .are-vertically-aligned-center': {
-            alignItems: 'center'
+            alignItems: 'center',
           },
           '& .are-vertically-aligned-bottom': {
-            alignItems: 'flex-end'
-          }
+            alignItems: 'flex-end',
+          },
         },
         '.wp-block-column': {
           marginBottom: '1em',
@@ -248,30 +249,30 @@ const theme = createTheme({
           overflowWrap: 'break-word',
           display: 'flex',
           '& .is-vertically-aligned-top': {
-            alignSelf: 'flex-start'
+            alignSelf: 'flex-start',
           },
           '& .is-vertically-aligned-center': {
-            alignSelf: 'center'
+            alignSelf: 'center',
           },
           '& .is-vertically-aligned-bottom': {
-            alignSelf: 'flex-end'
+            alignSelf: 'flex-end',
           },
           '@media (max-width: 599px)': {
-            flexBasis: '100% !important'
+            flexBasis: '100% !important',
           },
           '@media (min-width: 600px)': {
             flexBasis: 'calc(50% - 16px)',
-            flexGrow: '0'
-          }
+            flexGrow: '0',
+          },
         },
         '.indicator-widget': {
-          width: '100%'
+          width: '100%',
         },
         '.indicator-description': {
-          display: 'none' // deprecated php indicator has div with this class name which is redundant
+          display: 'none', // deprecated php indicator has div with this class name which is redundant
         },
         '.flourish-embed': {
-          width: '100%'
+          width: '100%',
         },
         [`.wp-block-columns,
           .wp-block-hurumap-card-block,
@@ -279,37 +280,37 @@ const theme = createTheme({
           .wp-block-hurumap-data-flourish-block`]: {
           margin: '1em 0',
           '& > div': {
-            margin: 0
-          }
+            margin: 0,
+          },
         },
         '.wp-block-columns .wp-block-column': {
-          width: '100%'
+          width: '100%',
         },
         '.wp-block-column > div': {
-          width: '100%'
+          width: '100%',
         },
         '.wp-block-column:nth-child(even)': {
           '@media (min-width: 600px)': {
-            marginLeft: '32px'
-          }
+            marginLeft: '32px',
+          },
         },
         '.wp-block-column:not(:first-child)': {
           '@media (min-width: 782px)': {
-            marginLeft: '32px'
-          }
+            marginLeft: '32px',
+          },
         },
         '.aligncenter': {
           display: 'block',
           'margin-left': 'auto',
-          'margin-right': 'auto'
+          'margin-right': 'auto',
         },
         '.alignleft': {
           float: 'left',
-          marginRight: '1em'
+          marginRight: '1em',
         },
         '.alignright': {
           float: 'right',
-          marginLeft: '1em'
+          marginLeft: '1em',
         },
         /**
          * Override load-styles.php customizations
@@ -318,13 +319,13 @@ const theme = createTheme({
           '&:focus': {
             boxShadow: 'none',
             color: 'black',
-            outline: 'none'
-          }
+            outline: 'none',
+          },
         },
         li: {
-          marginBottom: 0
-        }
-      }
+          marginBottom: 0,
+        },
+      },
     },
     MuiLink: {
       root: {
@@ -334,8 +335,8 @@ const theme = createTheme({
         fontStyle: 'normal',
         fontStretch: 'normal',
         lineHeight: 'normal',
-        letterSpacing: 'normal'
-      }
+        letterSpacing: 'normal',
+      },
     },
     MuiButton: {
       root: {
@@ -345,38 +346,38 @@ const theme = createTheme({
         padding: '0',
         '@media (min-width: 960px)': {
           // md
-          width: '15.609375rem' // .75 of lg
+          width: '15.609375rem', // .75 of lg
         },
         '@media (min-width: 1280px)': {
           // lg
-          width: '20.8125rem'
-        }
+          width: '20.8125rem',
+        },
       },
       contained: {
-        boxShadow: 'none'
+        boxShadow: 'none',
       },
       label: {
         paddingTop: '1.125rem',
-        paddingBottom: '1.0625rem'
-      }
+        paddingBottom: '1.0625rem',
+      },
     },
     MuiPaper: {
       elevation1: {
-        boxShadow: 'none'
-      }
+        boxShadow: 'none',
+      },
     },
     MuiCardContent: {
       root: {
-        padding: '1.4375rem 0'
-      }
+        padding: '1.4375rem 0',
+      },
     },
     MuiList: {
       padding: {
         paddingTop: 0,
-        paddingBottom: 0
-      }
-    }
-  }
+        paddingBottom: 0,
+      },
+    },
+  },
 });
 
 const responsiveTheme = responsiveFontSizes(theme);

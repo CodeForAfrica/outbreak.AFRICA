@@ -11,7 +11,7 @@ function SEO({ title, description, image, location = '' }) {
   const pageTitle = title ? `${title} | ${config.name}` : config.name;
   // indicatorId should override image, image should override defaultImage.
   const {
-    query: { indicatorId }
+    query: { indicatorId },
   } = useRouter();
   const imageUrl = indicatorId
     ? `${config.media.imageUrl}/${indicatorId}${config.media.imageType}`
@@ -43,7 +43,7 @@ function SEO({ title, description, image, location = '' }) {
     "${config.settings.socialMedia.medium}",
     "${config.settings.socialMedia.linkedin}"
   ]
-}`
+}`,
   };
 
   return (
@@ -95,14 +95,14 @@ SEO.propTypes = {
   description: PropTypes.string,
   image: PropTypes.string,
   location: PropTypes.string,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 SEO.defaultProps = {
   description: undefined,
   image: undefined,
   location: undefined,
-  title: undefined
+  title: undefined,
 };
 
 export default SEO;

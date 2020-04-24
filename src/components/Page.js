@@ -11,18 +11,19 @@ import SEO from './SEO';
 
 const useStyles = makeStyles(() => ({
   root: {
-    overflowX: 'hidden'
-  }
+    overflowX: 'hidden',
+  },
+  section: {},
 }));
 
-function Page({ children, ...props }) {
-  const classes = useStyles(props);
+function Page({ children, classes: classesProp, ...props }) {
+  const classes = useStyles({ classes: classesProp });
   return (
     <div className={classes.root}>
       <SEO {...props} />
-      <Navigation takwimu={config} />
+      <Navigation takwimu={config} classes={{ section: classes.section }} />
       {children}
-      <Footer takwimu={config} />
+      <Footer takwimu={config} classes={{ section: classes.section }} />
     </div>
   );
 }
@@ -30,13 +31,13 @@ function Page({ children, ...props }) {
 Page.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node
+    PropTypes.node,
   ]).isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
 };
 
 Page.defaultProps = {
-  title: undefined
+  title: undefined,
 };
 
 export default Page;
