@@ -30,6 +30,7 @@ const useStyles = makeStyles({
   },
   title: {
     color: '#A9A9A9',
+    fontWeight: 700,
     '&:hover': {
       color: '#0050FF'
     }
