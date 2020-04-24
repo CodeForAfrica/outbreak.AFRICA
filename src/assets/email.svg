@@ -1,8 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
-    <g fill="none" fill-rule="evenodd">
-        <circle cx="12.5" cy="12.5" r="12.5" fill="#FFF"/>
-        <text fill="#000" font-family="Helvetica" font-size="18">
-            <tspan x="4" y="19">@</tspan>
-        </text>
-    </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="63" height="63" viewBox="0 0 63 63"><defs><style>.a{fill:#f9ff71;}.b{fill:none;stroke:#170f49;stroke-width:3px;}</style></defs><circle class="a" cx="31.5" cy="31.5" r="31.5"/><path class="b" d="M3.011,24.488l23.308-9.994L3.011,4.5,3,12.273l5.83,2.221L3,16.715Z" transform="translate(16.974 17.446)"/></svg>
