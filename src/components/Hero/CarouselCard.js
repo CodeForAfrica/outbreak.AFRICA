@@ -31,23 +31,29 @@ const useStyles = makeStyles((theme) => ({
   },
   contentRoot: {
     position: 'absolute',
-    top: '40%',
-    left: '15px',
+    top: '50%',
+    left: '35px',
     [theme.breakpoints.up('md')]: {
       top: '55%',
+      left: '15px',
     },
   },
   media: {
-    minHeight: '20rem',
+    minHeight: '21rem',
     height: '100%',
     width: '100%',
+    [theme.breakpoints.up('md')]: {
+      minHeight: '30rem'
+    },
   },
   cardLink: {
     textDecoration: 'underline',
-    textTransform: 'uppercase',
     color: '#F9FF71',
     fontSize: '1rem',
     fontWeight: 'bold',
+    [theme.breakpoints.up('md')]: {
+      textTransform: 'uppercase',
+    },
   },
   overline: {
     color: '#fff',
@@ -66,7 +72,8 @@ const useStyles = makeStyles((theme) => ({
   },
   bodyText: {
     color: '#fff',
-    margin: '1rem 0',
+    marginBottom: '2rem',
+    lineHeight: 1.5,
     fontSize: '1rem',
     [theme.breakpoints.up('md')]: {
       fontSize: '1.25rem',
