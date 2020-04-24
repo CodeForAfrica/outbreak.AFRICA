@@ -78,7 +78,7 @@ function MythBursting({ title, description, linkText, ...props }) {
             <div>
               <img
                 src={illoMobile}
-                alt="CoronaVirus Image"
+                alt="CoronaVirus"
                 className={classes.mobileImgContainer}
               />
               <Typography variant="h2" className={classes.title}>
@@ -99,7 +99,7 @@ function MythBursting({ title, description, linkText, ...props }) {
           </div>
         </Grid>
         <Grid item xs={12} sm={6} className={classes.imgContainer}>
-          <img src={illo} alt="CoronaVirus Image" />
+          <img src={illo} alt="CoronaVirus" />
         </Grid>
       </Grid>
     </div>

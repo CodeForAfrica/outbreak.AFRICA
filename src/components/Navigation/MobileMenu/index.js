@@ -53,11 +53,11 @@ const useStyles = makeStyles((theme) => ({
     width: '50%'
   },
   divider: {
-    border: "0.5px solid grey"
+    border: '0.5px solid grey'
   },
   title: {
     marginLeft: theme.spacing(2),
-    flex: 1,
+    flex: 1
   },
   dialogContent: {
     padding: '4rem',
@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between'
   },
   link: {
-    color: 'white',
+    color: 'white'
   }
 }));
 
@@ -137,7 +137,6 @@ function MobileMenu({ countries }) {
     </div>
   );
 }
-
 
 MobileMenu.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired

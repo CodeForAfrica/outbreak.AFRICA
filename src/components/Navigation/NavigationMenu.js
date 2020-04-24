@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Grid, Typography } from '@material-ui/core'
+import { Grid, Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 import Search from './Search';
 
-import { makeStyles } from '@material-ui/core/styles';
 import Menu from './Menu';
 
 const useStyles = makeStyles({
@@ -35,9 +35,8 @@ function NavigationMenu() {
       <div>
         <Typography variant="caption">&#x0633;</Typography>
       </div>
-
     </Grid>
-  )
+  );
 }
 
 export default NavigationMenu;

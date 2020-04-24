@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List, ListItemText, MenuItem, Grid, Typography, Divider } from '@material-ui/core'
+import {
+  List,
+  Grid,
+  Typography,
+  Divider
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
+import Link from 'components/Link';
 
 const useStyles = makeStyles({
   menuItem: {
@@ -53,7 +58,7 @@ const resourcesMenu = [
     name: 'Scientific Institutions',
     link: '#'
   }
-]
+];
 
 function MenuItemLink(props) {
   const classes = useStyles()
@@ -72,7 +77,7 @@ function ResourcesMobileMenu({ title }) {
       <Grid item xs={6} md={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {resourcesMenu.map(resources =>
+          {resourcesMenu.map(resources => (
             <MenuItemLink
               key={resources.slug}
               underline="none"
@@ -81,14 +86,14 @@ function ResourcesMobileMenu({ title }) {
             >
               <Typography className={classes.listItem}>{resources.name}</Typography>
             </MenuItemLink>
-          )}
-        </List >
+          ))}
+        </List>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 ResourcesMobileMenu.propTypes = {
   title: PropTypes.string.isRequired
 };
-export default ResourcesMobileMenu
+export default ResourcesMobileMenu;

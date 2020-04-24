@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { List, ListItemText, MenuItem, Grid, Typography, Divider } from '@material-ui/core'
+import {
+  List,
+  Grid,
+  Typography,
+  Divider
+} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Link from '../../Link';
-import config from '../../../config';
+import Link from 'components/Link';
+import config from 'config';
 
 const useStyles = makeStyles({
   menuItem: {
@@ -56,7 +61,7 @@ function DataMobileMenu({ profile, title }) {
       <Grid item xs={6} className={classes.listRoot}>
         <Divider orientation="vertical" flexItem className={classes.divider} />
         <List component="nav">
-          {countries.map(country =>
+          {countries.map(country => (
             <MenuItemLink
               key={country.slug}
               underline="none"
@@ -65,11 +70,11 @@ function DataMobileMenu({ profile, title }) {
             >
               <Typography className={classes.listItem}>{country.shortName}</Typography>
             </MenuItemLink>
-          )}
-        </List >
+          ))}
+        </List>
       </Grid>
     </Grid>
-  )
+  );
 }
 
 DataMobileMenu.propTypes = {
