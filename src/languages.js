@@ -3,5 +3,5 @@ import FR from 'assets/images/languages/fr.svg';
 
 export default {
   EN,
-  FR
+  FR,
 };

@@ -96,7 +96,12 @@ function MythBursting({ title, description, linkText, ...props }) {
               </div>
             </div>
             <div className={classes.linkContainer}>
-              <Button variant="outlined" color="primary" href="/" className={classes.link}>
+              <Button
+                variant="outlined"
+                color="primary"
+                href="/"
+                className={classes.link}
+              >
                 {linkText}
               </Button>
             </div>

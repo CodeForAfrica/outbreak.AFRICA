@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import FeaturedResearchers from 'components/FeaturedResearchers';
 import FeaturedStories from 'components/FeaturedStories';
 import Page from 'components/Page';
+import Hero from 'components/Hero';
 import Ticker from 'components/Ticker';
 import Partners from 'components/Partners';
 import MythBusting from 'components/MythBusting';
@@ -73,6 +74,7 @@ function Home(props) {
 
   return (
     <Page classes={{ section: classes.section }}>
+      <Hero />
       <div className={classes.ticker}>
         <Ticker
           source={{

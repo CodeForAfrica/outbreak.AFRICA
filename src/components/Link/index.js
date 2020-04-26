@@ -24,7 +24,7 @@ function Link(props) {
   const router = useRouter();
 
   const className = classNames(classNameProps, {
-    [activeClassName]: router.pathname === href && activeClassName,
+    [activeClassName]: router.asPath === href && activeClassName,
   });
 
   if (naked) {
