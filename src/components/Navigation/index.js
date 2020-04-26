@@ -1,15 +1,11 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 
-// import { withRouter } from 'next/router';
-
 import { AppBar, Toolbar, useMediaQuery } from '@material-ui/core';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
-
-import Logo from './Logo';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,8 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   section: {
     height: '4.375rem',
-    padding: 0,
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('xl')]: {
       height: '9.375rem',
     },
   },
@@ -104,8 +99,7 @@ function Navigation({ takwimu: { countries }, ...props }) {
   return (
     <>
       <AppBar position="fixed" color="default" className={classes.root}>
-        <Toolbar className={classes.section}>
-          <Logo />
+        <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
             <DesktopNavigation countries={countries} />
           ) : (
@@ -114,10 +108,10 @@ function Navigation({ takwimu: { countries }, ...props }) {
               <MobileNavigation countries={countries} />
             </>
           )}
-          {/* https://material-ui.com/components/app-bar/#fixed-placement */}
         </Toolbar>
       </AppBar>
-      <Toolbar />
+      {/* https://material-ui.com/components/app-bar/#fixed-placement */}
+      <Toolbar className={classes.section} />
     </>
   );
 }
@@ -131,7 +125,6 @@ Navigation.propTypes = {
       navigation: PropTypes.shape({}),
     }).isRequired,
   }).isRequired,
-  router: PropTypes.shape({ pathname: PropTypes.string }).isRequired,
 };
 
 export default Navigation;

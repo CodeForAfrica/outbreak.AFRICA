@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-block',
     fontSize: '1rem',
     lineHeight: 1,
+    verticalAlign: 'middle',
     width: '4.4375rem',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('xl')]: {
       fontSize: '2.25rem',
       width: '10rem',
     },
@@ -49,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 function Logo(props) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('md'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
   const src = isDesktop ? logoDesktop : logo;
 
   return (

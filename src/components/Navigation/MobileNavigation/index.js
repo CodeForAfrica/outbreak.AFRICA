@@ -19,6 +19,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import MenuIcon from '@material-ui/icons/Menu';
 
 import IconButtonLink from 'components/Link/IconButton';
+import Logo from 'components/Navigation/Logo';
+
 import NavigationList from './NavigationList';
 
 const useStyles = makeStyles((theme) => ({
@@ -93,97 +95,110 @@ function MobileMenu({ countries }) {
   };
 
   return (
-    <>
-      <IconButtonLink
-        aria-label="Open drawer"
-        color="secondary"
-        edge="start"
-        href="#"
-        onClick={handleClickOpen}
-      >
-        <MenuIcon fontSize="large" />
-      </IconButtonLink>
-      <Dialog
-        fullScreen
-        open={open}
-        onClose={handleClose}
-        TransitionComponent={Transition}
-        classes={{ root: classes.dialog, paper: classes.dialogPaper }}
-      >
-        <DialogActions className={classes.dialogActions}>
-          <IconButton
-            aria-label="search"
-            edge="start"
-            href="/search"
-            className={classes.button}
-          >
-            <SearchIcon fontSize="large" />
-          </IconButton>
-          <Grid container justify="flex-end">
-            <Grid item>
-              <Button
-                variant="text"
-                className={classNames(
-                  classes.button,
-                  classes.languageButton,
-                  'active'
-                )}
-              >
-                En
-              </Button>
+    <Grid container justify="space-between" alignItems="center">
+      <Grid item>
+        <Logo />
+      </Grid>
+      <Grid item>
+        <IconButtonLink
+          aria-label="Open drawer"
+          color="secondary"
+          edge="start"
+          href="#"
+          onClick={handleClickOpen}
+        >
+          <MenuIcon fontSize="large" />
+        </IconButtonLink>
+        <Dialog
+          fullScreen
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Transition}
+          classes={{ root: classes.dialog, paper: classes.dialogPaper }}
+        >
+          <DialogActions className={classes.dialogActions}>
+            <IconButton
+              aria-label="search"
+              edge="start"
+              href="/search"
+              className={classes.button}
+            >
+              <SearchIcon fontSize="large" />
+            </IconButton>
+            <Grid container justify="flex-end">
+              <Grid item>
+                <Button
+                  variant="text"
+                  className={classNames(
+                    classes.button,
+                    classes.languageButton,
+                    'active'
+                  )}
+                >
+                  En
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="text"
+                  className={classNames(classes.button, classes.languageButton)}
+                >
+                  Fr
+                </Button>
+              </Grid>
+              <Grid item>
+                <Button
+                  variant="text"
+                  className={classNames(classes.button, classes.languageButton)}
+                >
+                  عربى
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item>
-              <Button
-                variant="text"
-                className={classNames(classes.button, classes.languageButton)}
-              >
-                Fr
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                variant="text"
-                className={classNames(classes.button, classes.languageButton)}
-              >
-                عربى
-              </Button>
-            </Grid>
-          </Grid>
-          <IconButton
-            aria-label="close drawer"
-            edge="start"
-            onClick={handleClose}
-            className={classes.button}
-          >
-            <CloseIcon fontSize="large" />
-          </IconButton>
-        </DialogActions>
+            <IconButton
+              aria-label="close drawer"
+              edge="start"
+              onClick={handleClose}
+              className={classes.button}
+            >
+              <CloseIcon fontSize="large" />
+            </IconButton>
+          </DialogActions>
 
-        <DialogContent className={classes.dialogContent}>
-          <NavigationList
-            title="DATA"
-            items={countries}
-            toAs={({ isoCode }) => `/country-${isoCode}`}
-            toHref={() => '/[geoIdOrSlug]'}
-            toName={({ shortName }) => shortName}
-          />
-          <NavigationList
-            title="INSIGHT"
-            items={[{ name: 'Item 1' }, { name: 'Item 2' }, { name: 'Item 3' }]}
-            toAs={() => undefined}
-            toHref={() => '#'}
-            toName={({ name }) => name}
-          />
-          <NavigationList
-            title="RESOURCES"
-            items={[{ name: 'Item 1' }, { name: 'Item 2' }, { name: 'Item 3' }]}
-            toAs={() => undefined}
-            toHref={() => '#'}
-            toName={({ name }) => name}
-          />
-        </DialogContent>
-      </Dialog>
-    </>
+          <DialogContent className={classes.dialogContent}>
+            <NavigationList
+              title="DATA"
+              items={countries}
+              toAs={({ isoCode }) => `/country-${isoCode}`}
+              toHref={() => '/[geoIdOrSlug]'}
+              toName={({ shortName }) => shortName}
+            />
+            <NavigationList
+              title="INSIGHT"
+              items={[
+                { name: 'Item 1' },
+                { name: 'Item 2' },
+                { name: 'Item 3' },
+              ]}
+              toAs={() => undefined}
+              toHref={() => '#'}
+              toName={({ name }) => name}
+            />
+            <NavigationList
+              title="RESOURCES"
+              items={[
+                { name: 'Item 1' },
+                { name: 'Item 2' },
+                { name: 'Item 3' },
+              ]}
+              toAs={() => undefined}
+              toHref={() => '#'}
+              toName={({ name }) => name}
+            />
+          </DialogContent>
+        </Dialog>
+      </Grid>
+    </Grid>
   );
 }
 

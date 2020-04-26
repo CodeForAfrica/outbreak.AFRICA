@@ -5,8 +5,11 @@ import classNames from 'classnames';
 import { Button, IconButton, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
+import Link from 'components/Link';
+
+import Logo from 'components/Navigation/Logo';
 import Search from './Search';
-import Menu from './Menu';
+// import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -16,20 +19,15 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   button: {
-    color: theme.palette.text.primary,
-    marginRight: theme.spacing(8),
+    // marginRight: '4rem',
     width: 'auto',
   },
   buttonLanguage: {
     color: '#9D9C9C',
-    fontSize: '1.25rem',
-    fontFamily: theme.typography.body1.fontFamily,
-    lineHeight: 1.875,
-    marginRight: 0,
-    minWidth: 54,
     '&.active': {
       color: '#D6D6D6',
     },
+    marginLeft: '2rem',
   },
   buttonLanguageLast: {
     marginRight: '-5.5rem',
@@ -42,29 +40,36 @@ const useStyles = makeStyles((theme) => ({
 function DesktopNavigation() {
   const classes = useStyles();
   return (
-    <>
-      <div className={classes.grow} />
-      <Grid item>
-        <Button variant="text" className={classes.button}>
-          DATA
-        </Button>
+    <Grid container justify="flex-start" alignItems="center">
+      <Grid item md={3}>
+        <Logo />
       </Grid>
-      <Grid item>
-        <Button variant="text" className={classes.button}>
-          INSIGHT
-        </Button>
+      {/* <div className={classes.grow} /> */}
+      <Grid item md={5} container justify="flex-end">
+        <Grid item>
+          <Button size="large" className={classes.button}>
+            DATA
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button size="large" className={classes.button}>
+            INSIGHT
+          </Button>
+        </Grid>
+        <Grid item>
+          <Button size="large" className={classes.button}>
+            RESEARCH
+          </Button>
+        </Grid>
       </Grid>
-      <Grid item>
-        <Button variant="text" className={classes.button}>
-          RESEARCH
-        </Button>
+      <Grid item md={3}>
+        <Search size="large" style={{ fontSize: 20 }} />
       </Grid>
-      <Grid item>
-        <Search style={{ fontSize: 20 }} />
-      </Grid>
-      <Grid item>
-        <Button
-          variant="text"
+      <Grid item md={1} container justify="flex-start">
+        <Link
+          href="/#"
+          underline="none"
+          variant="overline"
           className={classNames(
             classes.button,
             classes.buttonLanguage,
@@ -72,19 +77,19 @@ function DesktopNavigation() {
           )}
         >
           En
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button
-          variant="text"
+        </Link>
+        <Link
+          href="/#"
+          underline="none"
+          variant="overline"
           className={classNames(classes.button, classes.buttonLanguage)}
         >
           Fr
-        </Button>
-      </Grid>
-      <Grid item>
-        <Button
-          variant="text"
+        </Link>
+        <Link
+          href="/#"
+          underline="none"
+          variant="overline"
           className={classNames(
             classes.button,
             classes.buttonLanguage,
@@ -92,9 +97,9 @@ function DesktopNavigation() {
           )}
         >
           عربى
-        </Button>
+        </Link>
       </Grid>
-    </>
+    </Grid>
   );
 }
 
