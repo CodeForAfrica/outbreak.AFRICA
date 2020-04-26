@@ -2,9 +2,9 @@ import React from 'react';
 import classnames from 'classnames';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Link, Typography } from '@material-ui/core';
+import { Button, Grid, Typography } from '@material-ui/core';
 
-import { RichTypography } from '@commons-ui/core';
+import { RichTypography, Section } from '@commons-ui/core';
 
 import illo from 'assets/images/illo-03.png';
 import illoMobile from 'assets/images/illo-03-mobile.png';
@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#170F49',
   },
+  section: {},
   description: {
     paddingTop: '12rem',
     paddingLeft: '5rem',
@@ -38,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   link: {
-    color: 'yellow',
-    textDecoration: 'none',
-    fontWeight: 'bolder',
-    borderBottom: '1px solid',
-    paddingBottom: '3px',
+    // color: 'yellow',
+    // textDecoration: 'none',
+    // fontWeight: 'bolder',
+    // borderBottom: '1px solid',
+    // paddingBottom: '3px',
   },
   subtitle: {
     '&.subtitle': {
@@ -55,7 +56,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   imgContainer: {
-    overflow: 'hidden',
     [theme.breakpoints.down('sm')]: {
       display: 'none',
     },
@@ -74,36 +74,38 @@ function MythBursting({ title, description, linkText, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={12} sm={6}>
-          <div className={classes.description}>
-            <div>
-              <img
-                src={illoMobile}
-                alt="Corona virus"
-                className={classes.mobileImgContainer}
-              />
-              <Typography variant="h2" className={classes.title}>
-                {title}
-              </Typography>
-              <RichTypography
-                variant="subtitle2"
-                className={classnames(classes.subtitle, 'subtitle')}
-              >
-                {description}
-              </RichTypography>
+      <Section classes={{ root: classes.section }}>
+        <Grid container>
+          <Grid item xs={12} md={6}>
+            <div className={classes.description}>
+              <div>
+                <img
+                  src={illoMobile}
+                  alt="Corona virus"
+                  className={classes.mobileImgContainer}
+                />
+                <Typography variant="h2" className={classes.title}>
+                  {title}
+                </Typography>
+                <RichTypography
+                  variant="subtitle2"
+                  className={classnames(classes.subtitle, 'subtitle')}
+                >
+                  {description}
+                </RichTypography>
+              </div>
             </div>
-          </div>
-          <div className={classes.linkContainer}>
-            <Link href="/" className={classes.link} underline="none">
-              {linkText}
-            </Link>
-          </div>
+            <div className={classes.linkContainer}>
+              <Button variant="outlined" color="primary" href="/" className={classes.link}>
+                {linkText}
+              </Button>
+            </div>
+          </Grid>
+          <Grid item xs={12} md={6} className={classes.imgContainer}>
+            <img src={illo} alt="Corona virus" />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} className={classes.imgContainer}>
-          <img src={illo} alt="Corona virus" />
-        </Grid>
-      </Grid>
+      </Section>
     </div>
   );
 }
