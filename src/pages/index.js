@@ -127,6 +127,7 @@ function Home(props) {
               to help you test new questionable claims.
         `}
         linkText="LEARN MORE"
+        classes={{ section: classes.section }}
       />
       <div className={classes.featuredStories}>
         <FeaturedStories
