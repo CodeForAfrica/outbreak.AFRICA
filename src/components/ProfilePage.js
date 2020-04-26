@@ -170,6 +170,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     ({ type, inGeographies }) =>
       // Support only HURUmap Charts
       type === 'hurumap' &&
+      inGeographies &&
       // Check in Geography
       inGeographies.find(
         ({ geoLevel, geoCode }) => `${geoLevel}-${geoCode}` === geoId
