@@ -12,7 +12,6 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     color: 'inherit',
-    fontWeight: 'bold',
   },
   status: {
     color: 'inherit',
@@ -34,12 +33,12 @@ function Status({ name, status, value, ...props }) {
           {status}
         </Typography>
       </Grid>
-      <Grid xs={12}>
-        <Typography variant="body2" component="h2" className={classes.name}>
+      <Grid item xs={12}>
+        <Typography variant="subtitle2" component="h2" className={classes.name}>
           {name}
         </Typography>
       </Grid>
-      <Grid xs={12}>
+      <Grid item xs={12}>
         <Typography variant="h1" className={classes.value}>
           {value}
         </Typography>

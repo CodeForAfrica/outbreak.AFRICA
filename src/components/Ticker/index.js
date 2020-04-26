@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
     width: '2rem',
   },
   source: {
-    ...theme.typography.caption,
     color: '#9D9C9C',
     fontSize: '1rem',
   },
@@ -57,8 +56,19 @@ function Ticker({ lang, source, statuses, title, ...props }) {
   const isMobile = !useMediaQuery(theme.breakpoints.up('md'));
 
   return (
-    <div className={classes.root}>
-      <Grid container justify="space-between" className={classes.statuses}>
+    <Grid
+      container
+      justify="center"
+      alignItems="center"
+      className={classes.root}
+    >
+      <Grid
+        item
+        xs={12}
+        container
+        justify="space-between"
+        className={classes.statuses}
+      >
         <Grid item>
           <Typography variant="body2" component="h2" className={classes.title}>
             {title}
@@ -68,7 +78,7 @@ function Ticker({ lang, source, statuses, title, ...props }) {
           <img src={shareIcon} alt="share" className={classes.shareImg} />
         </Grid>
       </Grid>
-      <Grid container className={classes.statuses}>
+      <Grid item xs={12} container className={classes.statuses}>
         {statuses.map((status, index) => (
           <Grid key={status.name} item xs={6} md={3}>
             <Status
@@ -90,15 +100,18 @@ function Ticker({ lang, source, statuses, title, ...props }) {
           </Grid>
         ))}
       </Grid>
-      <A
-        href={source.url}
-        variant="caption"
-        underline="none"
-        className={classes.source}
-      >
-        Source: {source.title || source.url}
-      </A>
-    </div>
+      <Grid item xs={12}>
+        <A
+          href={source.url}
+          variant="caption"
+          size="small"
+          underline="none"
+          className={classes.source}
+        >
+          Source: {source.title || source.url}
+        </A>
+      </Grid>
+    </Grid>
   );
 }
 
