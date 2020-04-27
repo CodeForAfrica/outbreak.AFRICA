@@ -38,13 +38,7 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: '3rem',
     },
   },
-  link: {
-    // color: 'yellow',
-    // textDecoration: 'none',
-    // fontWeight: 'bolder',
-    // borderBottom: '1px solid',
-    // paddingBottom: '3px',
-  },
+  link: {},
   subtitle: {
     '&.subtitle': {
       color: 'white',
