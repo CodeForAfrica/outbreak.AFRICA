@@ -2,13 +2,15 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 
+import FeaturedData from 'components/FeaturedData';
+import FeaturedResearch from 'components/FeaturedResearch';
 import FeaturedResearchers from 'components/FeaturedResearchers';
 import FeaturedStories from 'components/FeaturedStories';
-import Page from 'components/Page';
 import Hero from 'components/Hero';
-import Ticker from 'components/Ticker';
-import Partners from 'components/Partners';
 import MythBusting from 'components/MythBusting';
+import Page from 'components/Page';
+import Partners from 'components/Partners';
+import Ticker from 'components/Ticker';
 
 import { getProfiles, fromTimestamp, useStories } from 'lib';
 
@@ -107,6 +109,8 @@ function Home(props) {
           title="Covid-19 cases in Africa"
         />
       </div>
+      <FeaturedData classes={{ section: classes.section }} />
+      <FeaturedResearch classes={{ section: classes.section }} />
       <div className={classes.featuredResearchers}>
         <FeaturedResearchers
           profiles={profiles}
