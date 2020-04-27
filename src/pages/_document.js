@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Head, Main, NextScript } from "next/document";
 
-import { ServerStyleSheets } from '@material-ui/core/styles';
+import { ServerStyleSheets } from "@material-ui/core/styles";
 
-import theme from 'theme';
+import theme from "theme";
 
-import { GA_TRACKING_ID } from 'lib/ga';
+import { GA_TRACKING_ID } from "lib/ga";
 
-import 'simplebar/dist/simplebar.min.css';
+import "simplebar/dist/simplebar.min.css";
 
 const getGaScript = () => {
   return {
@@ -142,7 +142,7 @@ CustomDocument.getInitialProps = async (ctx) => {
 
   return {
     ...initialProps,
-    lang: ctx.query.lang || 'en',
+    lang: ctx.query.lang || "en",
     // Styles fragment is rendered after the app and page rendering finish.
     styles: [
       ...React.Children.toArray(initialProps.styles),

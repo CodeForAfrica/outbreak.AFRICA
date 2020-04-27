@@ -1,5 +1,5 @@
-const withCSS = require('@zeit/next-css');
-const withImages = require('next-images');
+const withCSS = require("@zeit/next-css");
+const withImages = require("next-images");
 
 module.exports = withCSS(
   withImages({
@@ -13,7 +13,7 @@ module.exports = withCSS(
         test: /(layers|layers-2x|marker-icon)\.png$/,
         use: [
           {
-            loader: require.resolve('url-loader'),
+            loader: require.resolve("url-loader"),
           },
         ],
       });

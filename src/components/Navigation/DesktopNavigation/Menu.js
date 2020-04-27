@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 import {
   Grow,
@@ -8,21 +8,21 @@ import {
   MenuItem,
   MenuList,
   ClickAwayListener,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-import DataMenu from './DataMenu';
+import DataMenu from "./DataMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   paper: {
     marginRight: theme.spacing(2),
   },
   popper: {
-    paddingTop: '1.5rem',
+    paddingTop: "1.5rem",
     zIndex: 9999,
   },
 }));
@@ -48,7 +48,7 @@ function Menu({ title, countries }) {
   };
 
   function handleListKeyDown(event) {
-    if (event.key === 'Tab') {
+    if (event.key === "Tab") {
       event.preventDefault();
       setOpen(false);
     }
@@ -98,7 +98,7 @@ function Menu({ title, countries }) {
       <Typography
         variant="h6"
         ref={anchorRef}
-        aria-controls={open ? 'menu-list-grow' : undefined}
+        aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
       >
@@ -117,12 +117,12 @@ function Menu({ title, countries }) {
             {...TransitionProps}
             style={{
               transformOrigin:
-                placement === 'bottom' ? 'center top' : 'bottom-end',
+                placement === "bottom" ? "center top" : "bottom-end",
             }}
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === 'DATA' ? (
+                {title === "DATA" ? (
                   <MenuList
                     autoFocusItem={open}
                     id="menu-list-grow"
@@ -133,7 +133,7 @@ function Menu({ title, countries }) {
                       profile={({ isoCode }) => `country-${isoCode}`}
                     />
                   </MenuList>
-                ) : title === 'INSIGHT' ? (
+                ) : title === "INSIGHT" ? (
                   renderInsightMenu()
                 ) : (
                   renderResourcesMenu()

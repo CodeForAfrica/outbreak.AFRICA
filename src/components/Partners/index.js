@@ -1,40 +1,40 @@
-import React from 'react';
+import React from "react";
 
-import { Grid, useMediaQuery } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Grid, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import Subscribe from './Subscribe';
-import PartnerGrid from './PartnersGrid';
-import JoinUs from './JoinUs';
+import Subscribe from "./Subscribe";
+import PartnerGrid from "./PartnersGrid";
+import JoinUs from "./JoinUs";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    position: 'relative',
-    overflow: 'hidden',
-    [theme.breakpoints.up('md')]: {
-      margin: '2rem',
+    position: "relative",
+    overflow: "hidden",
+    [theme.breakpoints.up("md")]: {
+      margin: "2rem",
     },
   },
   desktopContainer: {
-    padding: '2rem 6rem',
+    padding: "2rem 6rem",
   },
   joinUs: {
-    position: 'absolute',
-    left: '4rem',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      top: '33rem',
+    position: "absolute",
+    left: "4rem",
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      top: "33rem",
     },
   },
   partner: {
-    width: '75%',
+    width: "75%",
   },
   subscribe: {
-    width: '30%',
-    padding: '1rem 0rem ',
-    top: '3px',
-    margin: '0rem 4rem',
-    position: 'absolute',
+    width: "30%",
+    padding: "1rem 0rem ",
+    top: "3px",
+    margin: "0rem 4rem",
+    position: "absolute",
     zIndex: 1,
   },
 }));
@@ -75,7 +75,7 @@ function Partners() {
   };
   return (
     <div className={classes.root}>
-      {useMediaQuery(theme.breakpoints.up('md'))
+      {useMediaQuery(theme.breakpoints.up("md"))
         ? renderDesktopPartner()
         : rendeMobilePartner()}
     </div>

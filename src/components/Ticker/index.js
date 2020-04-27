@@ -1,59 +1,59 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Grid, Typography, useMediaQuery, useTheme } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import { A } from '@commons-ui/core';
+import { A } from "@commons-ui/core";
 
-import shareIcon from 'assets/icon-share.svg';
+import shareIcon from "assets/icon-share.svg";
 
-import Status from './Status';
+import Status from "./Status";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    border: '1px solid #D6D6D6',
-    boxShadow: '0px 4px 4px #00000029',
-    padding: '1.125rem',
-    [theme.breakpoints.up('md')]: {
-      padding: '2.25rem 2.625rem 1.95375rem',
+    border: "1px solid #D6D6D6",
+    boxShadow: "0px 4px 4px #00000029",
+    padding: "1.125rem",
+    [theme.breakpoints.up("md")]: {
+      padding: "2.25rem 2.625rem 1.95375rem",
     },
   },
   shareImg: {
-    height: 'auto',
-    width: '2rem',
+    height: "auto",
+    width: "2rem",
   },
   source: {
-    color: '#9D9C9C',
-    fontSize: '1rem',
+    color: "#9D9C9C",
+    fontSize: "1rem",
   },
   status: {},
   statusBorderRight: {
-    borderRight: '1px solid #D6D6D6',
+    borderRight: "1px solid #D6D6D6",
   },
   statusBorderTop: {
-    borderTop: '1px solid #D6D6D6',
+    borderTop: "1px solid #D6D6D6",
   },
   statusHighlight: {
     color: theme.palette.secondary.main,
   },
   statuses: {
-    marginTop: '1.125rem',
-    [theme.breakpoints.up('md')]: {
-      marginTop: '2.625rem',
+    marginTop: "1.125rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "2.625rem",
     },
   },
   title: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
 }));
 
 function Ticker({ lang, source, statuses, title, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isMobile = !useMediaQuery(theme.breakpoints.up('md'));
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <Grid

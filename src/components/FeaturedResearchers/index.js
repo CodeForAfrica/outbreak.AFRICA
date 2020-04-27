@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { ProfileList } from '@commons-ui/core';
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { ProfileList } from "@commons-ui/core";
 
 const useStyles = makeStyles(() => ({
   root: {},
-  profiles: {}
+  profiles: {},
 }));
 
 function FeatureResearchers({ description, profiles, title, ...props }) {
@@ -25,13 +25,13 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
       >
         <Grid item xs={12}>
           <Typography variant="h2" className={classes.title}>
-            {title || 'Featured Researchers'}
+            {title || "Featured Researchers"}
           </Typography>
         </Grid>
         <Grid item>
           <Typography variant="body1" className={classes.description}>
             {description ||
-              'Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent.'}
+              "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
           </Typography>
         </Grid>
       </Grid>
@@ -46,7 +46,7 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
 }
 
 FeatureResearchers.propTypes = {
-  profiles: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  profiles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default FeatureResearchers;

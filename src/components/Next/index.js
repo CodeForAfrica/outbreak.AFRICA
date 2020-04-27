@@ -1,25 +1,25 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import React from "react";
+import { PropTypes } from "prop-types";
 
-import Grid from '@material-ui/core/Grid';
-import { makeStyles } from '@material-ui/core/styles';
+import Grid from "@material-ui/core/Grid";
+import { makeStyles } from "@material-ui/core/styles";
 
-import { A, Section } from '@commons-ui/core';
+import { A, Section } from "@commons-ui/core";
 
-import Link from 'components/Link';
+import Link from "components/Link";
 
-import Card from './Card';
+import Card from "./Card";
 
 const useStyles = makeStyles((theme) => ({
   sectionRoot: {},
   root: {
     flexGrow: 1,
-    paddingBottom: '6.25rem',
+    paddingBottom: "6.25rem",
   },
   link: {
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: 'auto',
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "auto",
     },
   },
 }));
@@ -33,7 +33,7 @@ function WhereToNext({
   return (
     <Section
       title={title}
-      titleProps={{ variant: 'h3' }}
+      titleProps={{ variant: "h3" }}
       classes={{ root: classes.sectionRoot }}
     >
       <Grid
@@ -45,7 +45,7 @@ function WhereToNext({
         {whereToNextLink &&
           whereToNextLink.length > 0 &&
           whereToNextLink.map((where) =>
-            where.link.startsWith('/') ? (
+            where.link.startsWith("/") ? (
               /* Note: Next.js uses filesystem-based routing & since we can't */
               /*       determine dynamically the filesystem route based on */
               /*       href, we'll use normal `a` which means server-based */
@@ -88,7 +88,7 @@ WhereToNext.propTypes = {
 };
 
 WhereToNext.defaultProps = {
-  variant: '',
+  variant: "",
 };
 
 export default WhereToNext;

@@ -1,64 +1,64 @@
-import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 
-import _debounce from 'lodash/debounce';
+import _debounce from "lodash/debounce";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
+import dynamic from "next/dynamic";
+import { useRouter } from "next/router";
 
-import { Grid } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Grid } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import InsightContainer from '@hurumap-ui/core/InsightContainer';
-import ChartFactory from '@hurumap-ui/charts/ChartFactory';
-import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
-import { shareIndicator } from '@hurumap-ui/core/utils';
+import InsightContainer from "@hurumap-ui/core/InsightContainer";
+import ChartFactory from "@hurumap-ui/charts/ChartFactory";
+import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
+import { shareIndicator } from "@hurumap-ui/core/utils";
 
-import { Section } from '@commons-ui/core';
+import { Section } from "@commons-ui/core";
 
-import config from 'config';
-import logo from 'assets/images/logo-white-all.png';
+import config from "config";
+import logo from "assets/images/logo-white-all.png";
 
-import Page from './Page';
-import ProfileDetail from './ProfileDetail';
-import ProfileSection, { ProfileSectionTitle } from './ProfileSection';
+import Page from "./Page";
+import ProfileDetail from "./ProfileDetail";
+import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
 const MapIt = dynamic({
   ssr: false,
   loader: () => {
-    return typeof window !== 'undefined' && import('@hurumap-ui/core/MapIt');
+    return typeof window !== "undefined" && import("@hurumap-ui/core/MapIt");
   },
 });
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
   actionsShareButton: {
-    minWidth: '4rem',
+    minWidth: "4rem",
   },
   actionsRoot: {
-    border: 'solid 1px #eaeaea',
+    border: "solid 1px #eaeaea",
   },
   container: {
-    marginBottom: '0.625rem',
+    marginBottom: "0.625rem",
   },
   containerRoot: ({ loading }) => ({
-    width: '100%',
-    minHeight: loading && '300px',
-    backgroundColor: '#f6f6f6',
+    width: "100%",
+    minHeight: loading && "300px",
+    backgroundColor: "#f6f6f6",
     margin: 0,
   }),
   containerInsightAnalysisLink: {
     padding: 0,
   },
   containerInsightDataLink: {
-    backgroundColor: 'white',
-    borderRadius: '12px',
+    backgroundColor: "white",
+    borderRadius: "12px",
     border: `solid 2px ${palette.primary.main}`,
     padding: 0,
   },
   containerSourceGrid: {
-    [breakpoints.up('md')]: {
-      whiteSpace: 'nowrap',
+    [breakpoints.up("md")]: {
+      whiteSpace: "nowrap",
     },
   },
   containerSourceLink: {
@@ -66,42 +66,42 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
     color: palette.text.primary,
   },
   insight: {
-    paddingTop: '1.275rem',
+    paddingTop: "1.275rem",
   },
   insightGrid: {
-    [breakpoints.up('lg')]: {
-      maxWidth: '23.6875rem',
+    [breakpoints.up("lg")]: {
+      maxWidth: "23.6875rem",
     },
   },
   numberTitle: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   hideHighlightGrid: {
-    display: 'none',
+    display: "none",
   },
   statDescription: {
     fontWeight: 600,
-    fontSize: '1.5rem',
+    fontSize: "1.5rem",
     lineHeight: 1.71,
-    wordBreak: 'break-word',
+    wordBreak: "break-word",
   },
   statStatistic: {
-    fontWeight: 'bold',
-    fontSize: '2.5rem',
+    fontWeight: "bold",
+    fontSize: "2.5rem",
     lineHeight: 1.03,
-    marginBottom: '0.6875rem',
-    marginTop: '1.125rem',
+    marginBottom: "0.6875rem",
+    marginTop: "1.125rem",
   },
   statSubtitle: {
-    fontWeight: 'bold',
-    fontSize: '1.25rem',
-    marginTop: '1rem',
-    paddingRight: '1.25rem', // On the same line as chart title hence better to have spacing between them
+    fontWeight: "bold",
+    fontSize: "1.25rem",
+    marginTop: "1rem",
+    paddingRight: "1.25rem", // On the same line as chart title hence better to have spacing between them
   },
   title: {
     fontFamily: typography.fontText,
     lineHeight: 2.05,
-    marginTop: '1rem',
+    marginTop: "1rem",
   },
 }));
 
@@ -133,18 +133,18 @@ Chart.propTypes = {
 
 const overrideTypePropsFor = (chartType) => {
   switch (chartType) {
-    case 'column': // Fall through
-    case 'grouped_column':
+    case "column": // Fall through
+    case "grouped_column":
       return {
         parts: {
           axis: {
             dependent: {
               style: {
                 grid: {
-                  display: 'none',
+                  display: "none",
                 },
                 tickLabels: {
-                  display: 'none',
+                  display: "none",
                 },
               },
             },
@@ -163,13 +163,13 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
       ? window.location.hash.slice(1)
-      : 'demographics' // 'all'
+      : "demographics" // 'all'
   );
 
   const filterByGeography = useCallback(
     ({ type, inGeographies }) =>
       // Support only HURUmap Charts
-      type === 'hurumap' &&
+      type === "hurumap" &&
       inGeographies &&
       // Check in Geography
       inGeographies.find(
@@ -209,7 +209,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     if (!profiles.profile || !profiles.profile.geoLevel) {
       return {};
     }
-    if (profiles.profile.geoLevel === 'country') {
+    if (profiles.profile.geoLevel === "country") {
       return config.countries.find(
         (c) => c.isoCode === profiles.profile.geoCode
       );
@@ -272,14 +272,14 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     () =>
       profileTabs.map(
         (tab) =>
-          (activeTab === 'all' || activeTab === tab.slug) && (
+          (activeTab === "all" || activeTab === tab.slug) && (
             <Grid item container id={tab.slug} key={tab.slug}>
-              {(activeTab === 'all' || activeTab === tab.slug) && (
+              {(activeTab === "all" || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
               {tab.charts.map((chart) => {
                 const embedPath =
-                  chart.type === 'hurumap'
+                  chart.type === "hurumap"
                     ? `hurumap/${geoId}/${chart.id}`
                     : `flourish/${chart.id}`;
                 const sourceResult = chartData.profileVisualsData
@@ -311,7 +311,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                           null,
                           id,
                           null,
-                          '/api/share'
+                          "/api/share"
                         ),
                         handleShowData: null,
                         handleCompare: null,
@@ -330,7 +330,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                         insightDataLink: classes.containerInsightDataLink,
                         insightGrid: classes.insightGrid,
                         highlightGrid:
-                          chart.type === 'flourish' &&
+                          chart.type === "flourish" &&
                           classes.hideHighlightGrid,
                         title: classes.title,
                       }}
@@ -363,7 +363,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
                             .nodes,
                       }}
                     >
-                      {chart.type === 'hurumap'
+                      {chart.type === "hurumap"
                         ? [
                             <Chart
                               key={chart.id}
@@ -423,8 +423,8 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       if (el) {
         setTimeout(() => {
           el.scrollIntoView({
-            inline: 'center',
-            block: 'center',
+            inline: "center",
+            block: "center",
           });
         }, 1000);
       }
@@ -441,22 +441,22 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
         />
       )}
 
-      <div style={{ width: '100%', height: '500px', overflow: 'hidden' }}>
+      <div style={{ width: "100%", height: "500px", overflow: "hidden" }}>
         <MapIt
           url={config.MAPIT_URL}
           drawProfile
           drawChildren
           codeType="AFR"
-          geoCode={geoId.split('-')[1]}
+          geoCode={geoId.split("-")[1]}
           geoLayerBlurStyle={{
-            color: '#D6D6D6',
+            color: "#D6D6D6",
             fillColor: theme.palette.primary.main,
             weight: 1.0,
             opacity: 1.0,
             fillOpacity: 0.2,
           }}
           geoLayerFocusStyle={{
-            color: '#D6D6D6',
+            color: "#D6D6D6",
             fillColor: theme.palette.primary.main,
             weight: 2.0,
             opacity: 1.0,
@@ -466,7 +466,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
             fillColor: theme.palette.primary.main,
             fillOpacity: 0.4,
           }}
-          geoLevel={geoId.split('-')[0]}
+          geoLevel={geoId.split("-")[0]}
           onClickGeoLayer={onClickGeoLayer}
         />
       </div>

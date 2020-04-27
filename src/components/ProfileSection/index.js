@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { makeStyles } from '@material-ui/core/styles';
-import { RichTypography, Section } from '@commons-ui/core';
+import { makeStyles } from "@material-ui/core/styles";
+import { RichTypography, Section } from "@commons-ui/core";
 
-import Tabs from './Tabs';
+import Tabs from "./Tabs";
 
 const useStyles = makeStyles({
   root: {},
   tabs: {
-    height: '6.25rem', // 100px / 16
+    height: "6.25rem", // 100px / 16
   },
   fix: {
-    position: 'fixed',
+    position: "fixed",
     zIndex: 999,
     top: 0,
     right: 0,
     left: 0,
   },
   sectionTitle: {
-    margin: '2.75rem 0',
+    margin: "2.75rem 0",
   },
   description: {
-    marginBottom: '1rem',
+    marginBottom: "1rem",
   },
 });
 
@@ -39,7 +39,7 @@ function ProfileSection({
   const [fixToTop, setFixToTop] = useState(false);
   useEffect(() => {
     function handleScroll() {
-      const el = document.getElementById('section-tabs');
+      const el = document.getElementById("section-tabs");
       const rect = el.getBoundingClientRect();
       if (rect.y <= 0 && !fixToTop) {
         setFixToTop(true);
@@ -49,9 +49,9 @@ function ProfileSection({
         //
       }
     }
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [fixToTop]);
 
@@ -61,9 +61,9 @@ function ProfileSection({
     }
 
     setTimeout(() => {
-      const sectionTab = document.getElementById('section-tabs');
+      const sectionTab = document.getElementById("section-tabs");
       if (sectionTab) {
-        sectionTab.scrollIntoView({ behavior: 'smooth' });
+        sectionTab.scrollIntoView({ behavior: "smooth" });
       }
     }, 200);
   };
@@ -71,13 +71,13 @@ function ProfileSection({
   const { geo } = profile;
 
   const tab = tabs.find((t) => t.slug === activeTab);
-  const title = activeTab === 'all' || !tab ? 'Country Profiles' : tab.name;
+  const title = activeTab === "all" || !tab ? "Country Profiles" : tab.name;
 
   // Wagtail inserts div/p when RichTextField is empty
   const hasDescription = () =>
     description &&
     description.length > 0 &&
-    description !== '<p></p>' &&
+    description !== "<p></p>" &&
     description !== '<div class="rich-text"></div>';
   return (
     <div className={classes.root}>
@@ -132,6 +132,6 @@ ProfileSection.defaultProps = {
   description: undefined,
 };
 
-export { default as ProfileSectionTitle } from './Title';
+export { default as ProfileSectionTitle } from "./Title";
 
 export default ProfileSection;

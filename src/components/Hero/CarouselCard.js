@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 import {
   makeStyles,
@@ -8,75 +8,75 @@ import {
   CardMedia,
   Grid,
   Typography,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import A from '@hurumap-ui/core/A';
+import A from "@hurumap-ui/core/A";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '100%',
-    minHeight: '21rem',
-    height: '100%',
-    backgroundColor: '#fafafa',
-    border: '1px solid #eeeeee',
+    width: "100%",
+    minHeight: "21rem",
+    height: "100%",
+    backgroundColor: "#fafafa",
+    border: "1px solid #eeeeee",
     opacity: 0.9,
-    '&:hover': {
+    "&:hover": {
       opacity: 1,
-      backgroundColor: '#fff',
+      backgroundColor: "#fff",
     },
-    [theme.breakpoints.up('md')]: {
-      marginRight: '1.25rem',
-      minHeight: '30rem',
+    [theme.breakpoints.up("md")]: {
+      marginRight: "1.25rem",
+      minHeight: "30rem",
     },
   },
   contentRoot: {
-    position: 'absolute',
-    top: '50%',
-    left: '35px',
-    [theme.breakpoints.up('md')]: {
-      top: '55%',
-      left: '15px',
+    position: "absolute",
+    top: "50%",
+    left: "35px",
+    [theme.breakpoints.up("md")]: {
+      top: "55%",
+      left: "15px",
     },
   },
   media: {
-    minHeight: '21rem',
-    height: '100%',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      minHeight: '30rem'
+    minHeight: "21rem",
+    height: "100%",
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      minHeight: "30rem",
     },
   },
   cardLink: {
-    textDecoration: 'underline',
-    color: '#F9FF71',
-    fontSize: '1rem',
-    fontWeight: 'bold',
-    [theme.breakpoints.up('md')]: {
-      textTransform: 'uppercase',
+    textDecoration: "underline",
+    color: "#F9FF71",
+    fontSize: "1rem",
+    fontWeight: "bold",
+    [theme.breakpoints.up("md")]: {
+      textTransform: "uppercase",
     },
   },
   overline: {
-    color: '#fff',
+    color: "#fff",
   },
   bodyTitle: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: '1.125rem',
-    marginTop: '1rem',
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.25rem',
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: "1.125rem",
+    marginTop: "1rem",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.25rem",
     },
-    [theme.breakpoints.up('lg')]: {
-      fontSize: '1.5rem',
+    [theme.breakpoints.up("lg")]: {
+      fontSize: "1.5rem",
     },
   },
   bodyText: {
-    color: '#fff',
-    marginBottom: '2rem',
+    color: "#fff",
+    marginBottom: "2rem",
     lineHeight: 1.5,
-    fontSize: '1rem',
-    [theme.breakpoints.up('md')]: {
-      fontSize: '1.25rem',
+    fontSize: "1rem",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.25rem",
     },
   },
 }));
@@ -86,7 +86,7 @@ function CarouselCard({ item }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea style={{ height: '100%' }}>
+      <CardActionArea style={{ height: "100%" }}>
         <CardMedia
           className={classes.media}
           image={item.mediaLink}

@@ -1,56 +1,56 @@
-import React from 'react';
+import React from "react";
 
-import { Typography, useMediaQuery } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Typography, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import IconButton from 'components/Link/IconButton';
-import Link from 'components/Link';
-import logo from 'assets/logo-outbreak-1.svg';
-import logoDesktop from 'assets/logo-outbreak.svg';
+import IconButton from "components/Link/IconButton";
+import Link from "components/Link";
+import logo from "assets/logo-outbreak-1.svg";
+import logoDesktop from "assets/logo-outbreak.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '&:hover': {
-      textDecoration: 'none',
+    "&:hover": {
+      textDecoration: "none",
     },
   },
   logo: {
     padding: 0,
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('md')]: {
-      marginLeft: '-1rem',
+    [theme.breakpoints.up("md")]: {
+      marginLeft: "-1rem",
     },
   },
   title: {
-    display: 'inline-block',
-    fontSize: '1rem',
+    display: "inline-block",
+    fontSize: "1rem",
     lineHeight: 1,
-    verticalAlign: 'middle',
-    width: '4.4375rem',
-    [theme.breakpoints.up('xl')]: {
-      fontSize: '2.25rem',
-      width: '10rem',
+    verticalAlign: "middle",
+    width: "4.4375rem",
+    [theme.breakpoints.up("xl")]: {
+      fontSize: "2.25rem",
+      width: "10rem",
     },
   },
   titleLink: {
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
+    fontSize: "inherit",
+    lineHeight: "inherit",
   },
   titleMain: {
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
+    fontSize: "inherit",
+    lineHeight: "inherit",
   },
   titleSub: {
     color: theme.palette.primary.main,
-    fontSize: 'inherit',
-    lineHeight: 'inherit',
+    fontSize: "inherit",
+    lineHeight: "inherit",
   },
 }));
 
 function Logo(props) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up('xl'));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("xl"));
   const src = isDesktop ? logoDesktop : logo;
 
   return (

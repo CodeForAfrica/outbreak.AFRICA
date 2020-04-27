@@ -1,113 +1,113 @@
-import React from 'react';
-import { Grid, Typography, useMediaQuery } from '@material-ui/core';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import React from "react";
+import { Grid, Typography, useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import africaarxiv from 'assets/partnerLogos/africaarxiv/africaarxiv.png';
-import africapractice from 'assets/partnerLogos/africapractice/africapractice.png';
-import aosh from 'assets/partnerLogos/aosh/aosh.png';
-import asi from 'assets/partnerLogos/asi/asi.png';
-import asln from 'assets/partnerLogos/asln/asln.png';
-import pesacheck from 'assets/partnerLogos/pesacheck/pesacheck.png';
-import takwimu from 'assets/partnerLogos/takwimu/takwimu.png';
-import wanadata from 'assets/partnerLogos/wanadata/wanadata.png';
+import africaarxiv from "assets/partnerLogos/africaarxiv/africaarxiv.png";
+import africapractice from "assets/partnerLogos/africapractice/africapractice.png";
+import aosh from "assets/partnerLogos/aosh/aosh.png";
+import asi from "assets/partnerLogos/asi/asi.png";
+import asln from "assets/partnerLogos/asln/asln.png";
+import pesacheck from "assets/partnerLogos/pesacheck/pesacheck.png";
+import takwimu from "assets/partnerLogos/takwimu/takwimu.png";
+import wanadata from "assets/partnerLogos/wanadata/wanadata.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fcfc74',
-    width: '100%',
+    backgroundColor: "#fcfc74",
+    width: "100%",
   },
   typogrid: {
-    padding: '2rem 4rem',
-    [theme.breakpoints.up('md')]: {
-      padding: '3rem 10rem',
+    padding: "2rem 4rem",
+    [theme.breakpoints.up("md")]: {
+      padding: "3rem 10rem",
     },
   },
   imageGrid: {
-    padding: '2rem 4rem',
-    display: 'flex',
-    [theme.breakpoints.up('md')]: {
-      padding: '2rem 10rem',
+    padding: "2rem 4rem",
+    display: "flex",
+    [theme.breakpoints.up("md")]: {
+      padding: "2rem 10rem",
     },
   },
   typo: {
-    color: 'white',
-    padding: '1rem 0rem',
+    color: "white",
+    padding: "1rem 0rem",
   },
   title: {
-    fontSize: '3rem',
+    fontSize: "3rem",
     fontWeight: 700,
   },
   img: {
-    maxWidth: '100%',
-    [theme.breakpoints.up('md')]: {
-      height: '3rem',
-      width: 'auto',
+    maxWidth: "100%",
+    [theme.breakpoints.up("md")]: {
+      height: "3rem",
+      width: "auto",
     },
   },
   image: {
-    maxWidth: '100%',
-    height: 'auto',
-    [theme.breakpoints.up('md')]: {
-      height: '100px',
-      marginTop: '-2rem',
+    maxWidth: "100%",
+    height: "auto",
+    [theme.breakpoints.up("md")]: {
+      height: "100px",
+      marginTop: "-2rem",
     },
   },
   descGrid: {
-    marginTop: '-0.3rem',
+    marginTop: "-0.3rem",
   },
   divGrid: {
-    marginTop: '1rem',
+    marginTop: "1rem",
   },
 }));
 
 const partners = [
   {
-    name: 'Africa Ar Xiv',
+    name: "Africa Ar Xiv",
     image: `${africaarxiv}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'Takwimu',
+    name: "Takwimu",
     image: `${takwimu}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'Africa Practice',
+    name: "Africa Practice",
     image: `${africapractice}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'PesaCheck',
+    name: "PesaCheck",
     image: `${pesacheck}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'African Science Initiative',
+    name: "African Science Initiative",
     image: `${asi}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'Africa Open Science Hardware',
+    name: "Africa Open Science Hardware",
     image: `${aosh}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'African Science Literacy Network',
+    name: "African Science Literacy Network",
     image: `${asln}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
   {
-    name: 'Wanadata',
+    name: "Wanadata",
     image: `${wanadata}`,
     description:
-      'Lorem ipsum is simply dummy text of the printing and typeseting industry',
+      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
   },
 ];
 
@@ -145,7 +145,7 @@ function PartnersGrid({ ...props }) {
                   : classes.divGrid
               }
             >
-              {useMediaQuery(theme.breakpoints.up('md')) ? (
+              {useMediaQuery(theme.breakpoints.up("md")) ? (
                 <Typography variant="caption">{partner.description}</Typography>
               ) : null}
             </div>

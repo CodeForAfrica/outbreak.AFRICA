@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import Head from 'next/head';
+import Head from "next/head";
 
-import ProfilePageComponent from 'components/ProfilePage';
+import ProfilePageComponent from "components/ProfilePage";
 
-import config from 'config';
-import { getSectionedCharts } from 'cms';
+import config from "config";
+import { getSectionedCharts } from "cms";
 
 function ProfilePage(props) {
   const { geoId } = props;

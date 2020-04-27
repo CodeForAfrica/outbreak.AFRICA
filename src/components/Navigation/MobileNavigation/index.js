@@ -1,8 +1,8 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import {
   Button,
@@ -12,21 +12,21 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
-} from '@material-ui/core';
+} from "@material-ui/core";
 
-import SearchIcon from '@material-ui/icons/Search';
-import CloseIcon from '@material-ui/icons/Close';
-import MenuIcon from '@material-ui/icons/Menu';
+import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
+import MenuIcon from "@material-ui/icons/Menu";
 
-import IconButtonLink from 'components/Link/IconButton';
-import Logo from 'components/Navigation/Logo';
+import IconButtonLink from "components/Link/IconButton";
+import Logo from "components/Navigation/Logo";
 
-import NavigationList from './NavigationList';
+import NavigationList from "./NavigationList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: '1.125rem 1.234375rem 0 1.6875rem',
+    padding: "1.125rem 1.234375rem 0 1.6875rem",
   },
   button: {
     color: theme.palette.text.secondary,
@@ -35,15 +35,15 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   titleGrid: {
-    width: '50%',
+    width: "50%",
   },
   listRoot: {
-    display: 'flex',
-    flexDirection: 'row',
-    width: '50%',
+    display: "flex",
+    flexDirection: "row",
+    width: "50%",
   },
   divider: {
-    border: '0.5px solid grey',
+    border: "0.5px solid grey",
   },
   title: {
     marginLeft: theme.spacing(2),
@@ -53,28 +53,28 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 22,
   },
   dialogActions: {
-    padding: '8px 24px',
+    padding: "8px 24px",
   },
   dialogPaper: {
     backgroundColor: theme.palette.secondary.main,
   },
   languageButton: {
-    fontSize: '1rem',
+    fontSize: "1rem",
     lineHeight: 1.875,
-    minWidth: '1.5rem',
+    minWidth: "1.5rem",
     opacity: 0.5,
-    '&.active': {
+    "&.active": {
       opacity: 1.0,
     },
   },
   toolbar: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    display: "flex",
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   link: {
-    color: 'white',
+    color: "white",
   },
 }));
 
@@ -132,7 +132,7 @@ function MobileMenu({ countries }) {
                   className={classNames(
                     classes.button,
                     classes.languageButton,
-                    'active'
+                    "active"
                   )}
                 >
                   En
@@ -170,29 +170,29 @@ function MobileMenu({ countries }) {
               title="DATA"
               items={countries}
               toAs={({ isoCode }) => `/country-${isoCode}`}
-              toHref={() => '/[geoIdOrSlug]'}
+              toHref={() => "/[geoIdOrSlug]"}
               toName={({ shortName }) => shortName}
             />
             <NavigationList
               title="INSIGHT"
               items={[
-                { name: 'Item 1' },
-                { name: 'Item 2' },
-                { name: 'Item 3' },
+                { name: "Item 1" },
+                { name: "Item 2" },
+                { name: "Item 3" },
               ]}
               toAs={() => undefined}
-              toHref={() => '#'}
+              toHref={() => "#"}
               toName={({ name }) => name}
             />
             <NavigationList
               title="RESOURCES"
               items={[
-                { name: 'Item 1' },
-                { name: 'Item 2' },
-                { name: 'Item 3' },
+                { name: "Item 1" },
+                { name: "Item 2" },
+                { name: "Item 3" },
               ]}
               toAs={() => undefined}
-              toHref={() => '#'}
+              toHref={() => "#"}
               toName={({ name }) => name}
             />
           </DialogContent>

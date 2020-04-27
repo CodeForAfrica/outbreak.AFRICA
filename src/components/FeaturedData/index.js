@@ -1,35 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Grid } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { Section, RichTypography } from '@commons-ui/core';
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Section, RichTypography } from "@commons-ui/core";
 
-import chart1 from 'assets/chart-1.png';
-import chart2 from 'assets/chart-2.png';
+import chart1 from "assets/chart-1.png";
+import chart2 from "assets/chart-2.png";
 
-import Container from './Container';
+import Container from "./Container";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
   section: {},
   chart00: {
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.only("md")]: {
       order: 2,
     },
   },
   chart01: {
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.only("md")]: {
       order: 1,
     },
   },
   chart02: {
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.only("md")]: {
       order: 4,
     },
   },
   chart03: {
-    [theme.breakpoints.only('md')]: {
+    [theme.breakpoints.only("md")]: {
       order: 3,
     },
   },
@@ -79,7 +79,7 @@ FeaturedData.propTypes = {
 };
 FeaturedData.defaultProps = {
   description:
-    'Comparative data insights, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.',
-  title: 'Featured Data',
+    "Comparative data insights, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.",
+  title: "Featured Data",
 };
 export default FeaturedData;

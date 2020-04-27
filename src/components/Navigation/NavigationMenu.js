@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Search from './Search';
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import Search from "./Search";
 
-import Menu from './Menu';
+import Menu from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '0rem 6rem',
-    [theme.breakpoints.up('md')]: {
+    margin: "0rem 6rem",
+    [theme.breakpoints.up("md")]: {
       // margin: '2rem'
     },
   },

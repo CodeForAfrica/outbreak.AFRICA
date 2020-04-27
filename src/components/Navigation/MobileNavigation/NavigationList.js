@@ -1,5 +1,5 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 import {
   Divider,
@@ -7,14 +7,14 @@ import {
   List,
   ListItemText,
   Typography,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Link from 'components/Link';
+import Link from "components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '1.25rem',
+    marginTop: "1.25rem",
   },
   divider: {
     backgroundColor: theme.palette.text.secondary,
@@ -22,33 +22,33 @@ const useStyles = makeStyles((theme) => ({
     width: 1,
   },
   items: {
-    width: '49%',
+    width: "49%",
   },
   list: {
-    paddingLeft: '0.625rem',
+    paddingLeft: "0.625rem",
   },
   listItemLink: {},
   listItemText: {
-    position: 'relative', // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
-    top: '-1rem',
+    position: "relative", // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
+    top: "-1rem",
     color: theme.palette.text.secondary,
-    fontSize: '1.25rem',
-    fontWeight: 'bold',
+    fontSize: "1.25rem",
+    fontWeight: "bold",
     letterSpacing: 0,
     lineHeight: 2.5,
     marginTop: 0,
   },
   main: {
-    position: 'relative', // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
-    top: '-1rem',
+    position: "relative", // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
+    top: "-1rem",
     color: theme.palette.text.secondary,
-    fontSize: '1.25rem',
+    fontSize: "1.25rem",
     letterSpacing: 2,
     lineHeight: 2.375,
     opacity: 0.3,
   },
   title: {
-    width: '49%',
+    width: "49%",
   },
 }));
 

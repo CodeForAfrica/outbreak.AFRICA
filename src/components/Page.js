@@ -1,17 +1,17 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-import config from 'config';
+import config from "config";
 
-import Footer from './Footer';
-import Navigation from './Navigation';
-import SEO from './SEO';
+import Footer from "./Footer";
+import Navigation from "./Navigation";
+import SEO from "./SEO";
 
 const useStyles = makeStyles(() => ({
   root: {
-    overflowX: 'hidden',
+    overflowX: "hidden",
   },
   section: {},
 }));

@@ -1,36 +1,36 @@
-import React from 'react';
+import React from "react";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { Button, IconButton, Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Button, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Link from 'components/Link';
+import Link from "components/Link";
 
-import Logo from 'components/Navigation/Logo';
-import Search from './Search';
+import Logo from "components/Navigation/Logo";
+import Search from "./Search";
 // import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: '0rem 6rem',
-    [theme.breakpoints.up('md')]: {
+    margin: "0rem 6rem",
+    [theme.breakpoints.up("md")]: {
       // margin: '2rem'
     },
   },
   button: {
     // marginRight: '4rem',
-    width: 'auto',
+    width: "auto",
   },
   buttonLanguage: {
-    color: '#9D9C9C',
-    '&.active': {
-      color: '#D6D6D6',
+    color: "#9D9C9C",
+    "&.active": {
+      color: "#D6D6D6",
     },
-    marginLeft: '2rem',
+    marginLeft: "2rem",
   },
   buttonLanguageLast: {
-    marginRight: '-5.5rem',
+    marginRight: "-5.5rem",
   },
   grow: {
     flexGrow: 1,
@@ -73,7 +73,7 @@ function DesktopNavigation() {
           className={classNames(
             classes.button,
             classes.buttonLanguage,
-            'active'
+            "active"
           )}
         >
           En

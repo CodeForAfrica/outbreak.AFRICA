@@ -1,19 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
-import { IconButton } from '@material-ui/core';
+import { IconButton } from "@material-ui/core";
 
-import NextComposed from './NextComposed';
+import NextComposed from "./NextComposed";
 
 // A styled version of the Next.js Link component:
 // https://nextjs.org/docs/#with-link
 function IconButtonLink(props) {
   const {
-    activeClassName = 'active',
+    activeClassName = "active",
     className: classNameProps,
     href,
     innerRef,

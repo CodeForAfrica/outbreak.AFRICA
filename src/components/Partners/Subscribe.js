@@ -1,43 +1,43 @@
-import React from 'react';
-import { Grid, IconButton, Typography } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { Grid, IconButton, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-import email from 'assets/email.svg';
+import email from "assets/email.svg";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#170F49',
-    width: '100%',
+    backgroundColor: "#170F49",
+    width: "100%",
   },
   mainContainer: {
-    margin: '3rem',
-    paddingTop: '3rem',
+    margin: "3rem",
+    paddingTop: "3rem",
   },
   typo: {
-    color: 'white',
+    color: "white",
   },
   body1: {
-    color: 'white',
-    padding: '1.5rem 2rem',
+    color: "white",
+    padding: "1.5rem 2rem",
   },
   title: {
-    color: 'white',
-    padding: '1.5rem 2rem',
-    fontSize: '3rem',
+    color: "white",
+    padding: "1.5rem 2rem",
+    fontSize: "3rem",
     fontWeight: 700,
   },
   form: {
-    padding: '2rem 2.5rem',
+    padding: "2rem 2.5rem",
   },
   input: {
-    color: 'white',
-    fontSize: '0.8rem',
-    borderBottom: '1px solid white',
+    color: "white",
+    fontSize: "0.8rem",
+    borderBottom: "1px solid white",
   },
   img: {
-    height: '2.5rem',
+    height: "2.5rem",
   },
   button: {
     padding: 0,
@@ -53,7 +53,7 @@ function Subscribe() {
           Subscribe
         </Typography>
         <Typography variant="body1" className={classes.body1}>
-          {' '}
+          {" "}
           Stay updated with the latest News, Research and Analysis
         </Typography>
 
