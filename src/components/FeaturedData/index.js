@@ -33,57 +33,65 @@ const useStyles = makeStyles((theme) => ({
       order: 3,
     },
   },
+  insight: {
+    [theme.breakpoints.up("md")]: {
+      alignItems: "flex-start",
+      justifyContent: "flex-end",
+    },
+  },
 }));
 
 function FeaturedData({ description, title, ...props }) {
   const classes = useStyles(props);
   return (
-    <Section title={title} classes={{ root: classes.section }}>
-      <Grid container className={classes.root}>
-        <Grid item xs={12} md={8}>
-          <RichTypography variant="subtitle1">{description}</RichTypography>
+    <div className={classes.root}>
+      <Section title={title} classes={{ root: classes.section }}>
+        <Grid container>
+          <Grid item xs={12} md={8}>
+            <RichTypography variant="subtitle1">{description}</RichTypography>
+          </Grid>
+          <Grid item xs={12} md={4} container className={classes.insight}>
+            <Button variant="contained" size="large">
+              See Insights
+            </Button>
+          </Grid>
+          <Grid item xs={12} container spacing={2}>
+            <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
+              <Container
+                action="Explore"
+                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              >
+                <img src={chart1} alt="chart1" />
+              </Container>
+            </Grid>
+            <Grid item xs={12} lg={8} className={classes.chart01}>
+              <Container
+                action="Explore"
+                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              >
+                <img src={chart2} alt="chart1" />
+              </Container>
+            </Grid>
+            <Grid item xs={12} lg={8} className={classes.chart02}>
+              <Container
+                action="Explore"
+                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              >
+                <img src={chart2} alt="chart1" />
+              </Container>
+            </Grid>
+            <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
+              <Container
+                action="Explore"
+                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+              >
+                <img src={chart1} alt="chart1" />
+              </Container>
+            </Grid>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Button variant="contained" size="large">
-            See Insights
-          </Button>
-        </Grid>
-        <Grid item xs={12} container spacing={2}>
-          <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-            <Container
-              action="Explore"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            >
-              <img src={chart1} alt="chart1" />
-            </Container>
-          </Grid>
-          <Grid item xs={12} lg={8} className={classes.chart01}>
-            <Container
-              action="Explore"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            >
-              <img src={chart2} alt="chart1" />
-            </Container>
-          </Grid>
-          <Grid item xs={12} lg={8} className={classes.chart02}>
-            <Container
-              action="Explore"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            >
-              <img src={chart2} alt="chart1" />
-            </Container>
-          </Grid>
-          <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
-            <Container
-              action="Explore"
-              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-            >
-              <img src={chart1} alt="chart1" />
-            </Container>
-          </Grid>
-        </Grid>
-      </Grid>
-    </Section>
+      </Section>
+    </div>
   );
 }
 

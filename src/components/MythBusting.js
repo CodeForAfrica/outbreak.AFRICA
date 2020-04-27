@@ -78,7 +78,7 @@ function MythBursting({ title, description, linkText, ...props }) {
                   {title}
                 </Typography>
                 <RichTypography
-                  variant="subtitle2"
+                  variant="subtitle1"
                   className={classnames(classes.subtitle, "subtitle")}
                 >
                   {description}
