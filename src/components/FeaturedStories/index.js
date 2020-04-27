@@ -6,7 +6,7 @@ import { StoryList } from '@commons-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {},
-  stories: {}
+  stories: {},
 }));
 
 function FeatureStories({ stories, ...props }) {
@@ -26,7 +26,7 @@ function FeatureStories({ stories, ...props }) {
 }
 
 FeatureStories.propTypes = {
-  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired
+  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default FeatureStories;
