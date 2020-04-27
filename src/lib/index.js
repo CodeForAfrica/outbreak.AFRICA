@@ -1,6 +1,12 @@
 import { useEffect, useState } from "react";
 
-import personImage from "assets/person_3.png";
+import person1Image from "assets/person_1.png";
+import person2Image from "assets/person_2.png";
+import person3Image from "assets/person_3.png";
+import tile1Image from "assets/tile-1@1x-100.png";
+import tile2Image from "assets/tile-2@1x-100.png";
+import tile3Image from "assets/tile-3@1x-100.png";
+import tile5Image from "assets/tile-5@1x-100.png";
 
 export function getProfiles() {
   return [
@@ -9,60 +15,107 @@ export function getProfiles() {
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: person2Image,
       },
-      name: "Firstname1 Lastname1",
-      title: "Credible Institute",
+      name: "Wandia Njoya",
+      title: "Daystar University",
     },
     {
       id: 2,
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: person3Image,
       },
-      name: "Firstname2 Lastname2",
-      title: "Credible Institute",
+      name: "Wandia Njoya",
+      title: "Daystar University",
     },
     {
       id: 3,
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: person1Image,
       },
-      name: "Firstname3 Lastname3",
-      title: "Credible Institute",
+      name: "Wandia Njoya",
+      title: "Daystar University",
     },
     {
       id: 4,
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: person2Image,
       },
-      name: "Firstname4 Lastname4",
-      title: "Credible Institute",
+      name: "Wandia Njoya",
+      title: "Daystar University",
     },
     {
       id: 5,
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: person3Image,
       },
-      name: "Firstname5 Lastname5",
-      title: "Credible Institute",
+      name: "Wandia Njoya",
+      title: "Daystar University",
     },
+  ];
+}
+
+export function getStories() {
+  return [
     {
-      id: 6,
+      id: 1,
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
       image: {
-        url: personImage,
+        url: tile2Image,
       },
-      name: "Firstname6 Lastname6",
-      title: "Credible Institute",
+      link: {
+        url: "#",
+        title: "Learn More",
+      },
+      title: "A new drug",
+    },
+    {
+      id: 2,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: tile3Image,
+      },
+      link: {
+        url: "#",
+        title: "Learn More",
+      },
+      title: "Keep healthy",
+    },
+    {
+      id: 3,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: tile1Image,
+      },
+      link: {
+        url: "#",
+        title: "Learn More",
+      },
+      title: "Coronavirus updates",
+    },
+    {
+      id: 4,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: tile5Image,
+      },
+      link: {
+        url: "#",
+        title: "Learn More",
+      },
+      title: "A new drug",
     },
   ];
 }
