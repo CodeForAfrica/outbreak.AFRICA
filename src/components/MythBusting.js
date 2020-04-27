@@ -17,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
   section: {},
   description: {
     paddingTop: "12rem",
-    paddingLeft: "5rem",
     paddingBottom: "12rem",
     display: "flex",
     flexDirection: "column",
@@ -25,16 +24,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.down("sm")]: {
       paddingBottom: "3rem",
       paddingTop: "1rem",
-      paddingLeft: "1rem",
     },
   },
   title: {
     color: "white",
   },
   linkContainer: {
-    paddingLeft: "5rem",
     [theme.breakpoints.down("sm")]: {
-      paddingLeft: "1rem",
       paddingBottom: "3rem",
     },
   },
