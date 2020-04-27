@@ -227,11 +227,37 @@ deepmerge(
     // Style sheet name ⚛️
     MuiButton: {
       // Name of the rule
-      outlined: {
-        // borderLeft: 'none',
+      contained: {
+        color: theme.palette.secondary.main,
+        border: "none",
         borderRadius: 0,
-        // borderRight: 'none',
-        // borderTop: 'none',
+        boxShadow: "none",
+        paddingLeft: 0,
+        paddingRight: 0,
+        background: "linear-gradient(180deg, #FFFFFF 40%, #F9FF71 30% )",
+        "&:hover": {
+          border: "inherit",
+          boxShadow: "inherit",
+        },
+      },
+      containedPrimary: {
+        color: theme.palette.secondary.main,
+        border: "none",
+        boxShadow: "none",
+        paddingLeft: 0,
+        paddingRight: 0,
+        background: "linear-gradient(180deg, FFFFFF 50%, #F9FF71 30% )",
+      },
+      containedSizeSmall: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      containedSizeLarge: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      outlined: {
+        borderRadius: 0,
         paddingLeft: 0,
         paddingRight: 0,
         paddingTop: 0,
