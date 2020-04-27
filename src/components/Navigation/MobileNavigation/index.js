@@ -105,7 +105,7 @@ function MobileMenu({ countries }) {
           aria-label="Open drawer"
           color="secondary"
           edge="start"
-          href="#"
+          href="/#"
           onClick={handleClickOpen}
         >
           <MenuIcon fontSize="large" />
