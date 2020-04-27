@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography } from "@commons-ui/core";
@@ -34,7 +35,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function Container({ children, description, ...props }) {
+function Container({ action, children, description, ...props }) {
   const classes = useStyles(props);
 
   return (
@@ -47,6 +48,11 @@ function Container({ children, description, ...props }) {
       </div>
       <div className={classes.description}>
         <RichTypography variant="body2">{description}</RichTypography>
+      </div>
+      <div className={classes.description}>
+        <Button variant="contained" size="large">
+          {action}
+        </Button>
       </div>
     </div>
   );

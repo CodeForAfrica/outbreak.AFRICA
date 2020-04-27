@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section, RichTypography } from "@commons-ui/core";
 
@@ -44,26 +44,40 @@ function FeaturedData({ description, title, ...props }) {
           <RichTypography variant="subtitle1">{description}</RichTypography>
         </Grid>
         <Grid item xs={12} md={4}>
-          {/* Button */}
+          <Button variant="contained" size="large">
+            See Insights
+          </Button>
         </Grid>
         <Grid item xs={12} container spacing={2}>
           <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-            <Container description="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+            <Container
+              action="Explore"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            >
               <img src={chart1} alt="chart1" />
             </Container>
           </Grid>
           <Grid item xs={12} lg={8} className={classes.chart01}>
-            <Container description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+            <Container
+              action="Explore"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            >
               <img src={chart2} alt="chart1" />
             </Container>
           </Grid>
           <Grid item xs={12} lg={8} className={classes.chart02}>
-            <Container description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+            <Container
+              action="Explore"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            >
               <img src={chart2} alt="chart1" />
             </Container>
           </Grid>
           <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
-            <Container description="Lorem Ipsum is simply dummy text of the printing and typesetting industry.">
+            <Container
+              action="Explore"
+              description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            >
               <img src={chart1} alt="chart1" />
             </Container>
           </Grid>
