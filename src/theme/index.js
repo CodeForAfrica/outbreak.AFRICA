@@ -127,14 +127,22 @@ deepmerge(
     h1: {
       fontSize: pxToRem(40),
       lineHeight: 400 / 40,
-      [breakpoints.up('xl')]: {
+      [breakpoints.up('md')]: {
         fontSize: pxToRem(56),
+        lineHeight: 67.2 / 80,
+      },
+      [breakpoints.up('xl')]: {
+        fontSize: pxToRem(80),
         lineHeight: 100 / 80,
       },
     },
     h2: {
       fontSize: pxToRem(40),
       lineHeight: 40 / 40,
+      [breakpoints.up('md')]: {
+        fontSize: pxToRem(56),
+        lineHeight: 67.2 / 80,
+      },
       [breakpoints.up('xl')]: {
         fontSize: pxToRem(80),
         lineHeight: 100 / 80,
