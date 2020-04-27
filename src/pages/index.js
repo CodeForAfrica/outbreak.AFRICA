@@ -12,7 +12,7 @@ import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
 
-import { getProfiles, fromTimestamp, useStories } from "lib";
+import { getProfiles, getStories } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -24,37 +24,40 @@ const useStyles = makeStyles((theme) => ({
       width: "85.4166667%",
     },
   },
-  featuredResearchers: {
-    margin: "0 auto",
-    padding: "3.8125rem 1.125rem 0 1.125rem",
-    width: "100%",
+  featuredData: {
+    marginTop: "2.875rem",
     [theme.breakpoints.up("md")]: {
-      padding: "3.8125rem 0 0",
-      width: `${(1640 / 1920) * 100}%`,
+      marginTop: "9.92125rem",
     },
   },
-  featuredResearchersProfiles: {
-    width: "calc(((100vw - 100%) / 2) + 100%)",
+  featuredResearch: {
+    marginTop: "4.375rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "4.375rem",
+    },
+  },
+  featuredResearchers: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
   },
   featuredStories: {
-    margin: "0 auto",
-    padding: "3.8125rem 1.125rem 0 1.125rem",
-    width: "100%",
+    marginTop: "3rem",
     [theme.breakpoints.up("md")]: {
-      padding: "3.8125rem 0 0",
-      width: `${(1640 / 1920) * 100}%`,
+      marginTop: "8.3125rem",
     },
   },
-  featuredStoriesStories: {
-    width: "calc(((100vw - 100%) / 2) + 100%)",
+  mythBusting: {
+    marginTop: "6.375rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "11.75rem",
+    },
   },
   ticker: {
-    margin: "0 auto",
-    padding: "3.8125rem 1.125rem 0 1.125rem",
-    width: "100%",
+    marginTop: "6.1875rem",
     [theme.breakpoints.up("md")]: {
-      padding: "3.8125rem 0 0",
-      width: `${(1640 / 1920) * 100}%`,
+      marginTop: "3.8125rem",
     },
   },
 }));
@@ -62,61 +65,58 @@ const useStyles = makeStyles((theme) => ({
 function Home(props) {
   const classes = useStyles(props);
   const profiles = getProfiles();
-  const foundStories = useStories(
-    "https://pesacheck.org/tagged/public-finance"
-  );
-
-  const stories = foundStories.map((story) => ({
-    ...story,
-    createdAt: fromTimestamp(story.createdAt),
-    image: {
-      url: `https://cdn-images-1.medium.com/max/480/${story.virtuals.previewImage.imageId}`,
-    },
-  }));
+  const stories = getStories();
 
   return (
     <Page classes={{ section: classes.section }}>
       <Hero />
-      <div className={classes.ticker}>
-        <Ticker
-          source={{
-            title: "openAFRICA",
-            url: "https://open.africa",
-          }}
-          statuses={[
-            {
-              name: "Infections",
-              status: "Confirmed",
-              value: "3,721",
-            },
-            {
-              name: "Deaths",
-              status: "Confirmed",
-              value: "670",
-              highlight: true,
-            },
-            {
-              name: "Hospitalisations",
-              status: "Confirmed",
-              value: "430",
-            },
-            {
-              name: "Recoveries",
-              status: "Confirmed",
-              value: "730",
-            },
-          ]}
-          title="Covid-19 cases in Africa"
-        />
-      </div>
-      <FeaturedData classes={{ section: classes.section }} />
-      <FeaturedResearch classes={{ section: classes.section }} />
-      <div className={classes.featuredResearchers}>
-        <FeaturedResearchers
-          profiles={profiles}
-          classes={{ profiles: classes.featuredResearchersProfiles }}
-        />
-      </div>
+      <Ticker
+        source={{
+          title: "openAFRICA",
+          url: "https://open.africa",
+        }}
+        statuses={[
+          {
+            name: "Infections",
+            status: "Confirmed",
+            value: "3,721",
+          },
+          {
+            name: "Deaths",
+            status: "Confirmed",
+            value: "670",
+            highlight: true,
+          },
+          {
+            name: "Hospitalisations",
+            status: "Confirmed",
+            value: "430",
+          },
+          {
+            name: "Recoveries",
+            status: "Confirmed",
+            value: "730",
+          },
+        ]}
+        title="Covid-19 cases in Africa"
+        classes={{ root: classes.ticker, section: classes.section }}
+      />
+      <FeaturedData
+        classes={{ root: classes.featuredData, section: classes.section }}
+      />
+      <FeaturedResearch
+        classes={{
+          root: classes.featuredResearchers,
+          section: classes.section,
+        }}
+      />
+      <FeaturedResearchers
+        profiles={profiles}
+        classes={{
+          root: classes.featuredResearchers,
+          section: classes.section,
+        }}
+      />
 
       <MythBusting
         title="Myth-busting"
@@ -133,14 +133,12 @@ function Home(props) {
               to help you test new questionable claims.
         `}
         linkText="LEARN MORE"
-        classes={{ section: classes.section }}
+        classes={{ root: classes.mythBusting, section: classes.section }}
       />
-      <div className={classes.featuredStories}>
-        <FeaturedStories
-          stories={stories}
-          classes={{ stories: classes.featuredStoriesStories }}
-        />
-      </div>
+      <FeaturedStories
+        stories={stories}
+        classes={{ root: classes.featuredStories, section: classes.section }}
+      />
       <Partners />
     </Page>
   );
