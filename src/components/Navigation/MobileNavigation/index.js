@@ -12,6 +12,7 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  Link,
 } from "@material-ui/core";
 
 import SearchIcon from "@material-ui/icons/Search";
@@ -50,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     flex: 1,
   },
   dialog: {
-    marginLeft: 22,
+    marginLeft: `${(22 / 360) * 100}%`,
   },
   dialogActions: {
     padding: "8px 24px",
@@ -59,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.secondary.main,
   },
   languageButton: {
-    fontSize: "1rem",
+    fontWeight: 700,
     lineHeight: 1.875,
     minWidth: "1.5rem",
     opacity: 0.5,
@@ -125,10 +126,12 @@ function MobileMenu({ countries }) {
             >
               <SearchIcon fontSize="large" />
             </IconButton>
-            <Grid container justify="flex-end">
+            <Grid container justify="flex-end" alignItems="center" spacing={1}>
               <Grid item>
-                <Button
-                  variant="text"
+                <Link
+                  href="/#"
+                  variant="overline"
+                  underline="none"
                   className={classNames(
                     classes.button,
                     classes.languageButton,
@@ -136,23 +139,27 @@ function MobileMenu({ countries }) {
                   )}
                 >
                   En
-                </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button
-                  variant="text"
+                <Link
+                  href="/#"
+                  variant="overline"
+                  underline="none"
                   className={classNames(classes.button, classes.languageButton)}
                 >
                   Fr
-                </Button>
+                </Link>
               </Grid>
               <Grid item>
-                <Button
-                  variant="text"
+                <Link
+                  href="/#"
+                  variant="overline"
+                  underline="none"
                   className={classNames(classes.button, classes.languageButton)}
                 >
                   عربى
-                </Button>
+                </Link>
               </Grid>
             </Grid>
             <IconButton

@@ -32,9 +32,7 @@ const useStyles = makeStyles((theme) => ({
     position: "relative", // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
     top: "-1rem",
     color: theme.palette.text.secondary,
-    fontSize: "1.25rem",
-    fontWeight: "bold",
-    letterSpacing: 0,
+    fontWeight: 700,
     lineHeight: 2.5,
     marginTop: 0,
   },
@@ -42,8 +40,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative", // https://stackoverflow.com/questions/4089379/align-block-elements-on-top-when-using-line-height
     top: "-1rem",
     color: theme.palette.text.secondary,
-    fontSize: "1.25rem",
-    letterSpacing: 2,
     lineHeight: 2.375,
     opacity: 0.3,
   },
@@ -54,7 +50,9 @@ const useStyles = makeStyles((theme) => ({
 
 function ListItemLink(props) {
   const classes = useStyles();
-  return <Link {...props} variant="h2" className={classes.listItemLink} />;
+  return (
+    <Link {...props} variant="subtitle1" className={classes.listItemLink} />
+  );
 }
 
 function NavigationList({ items, title, toAs, toHref, toName, ...props }) {
@@ -68,7 +66,7 @@ function NavigationList({ items, title, toAs, toHref, toName, ...props }) {
       className={classes.root}
     >
       <Grid item className={classes.title}>
-        <Typography variant="h1" className={classes.main}>
+        <Typography variant="h3" className={classes.main}>
           {title}
         </Typography>
       </Grid>
