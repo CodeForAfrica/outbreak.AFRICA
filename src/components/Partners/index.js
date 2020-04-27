@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     top: '3px',
     margin: '0rem 4rem',
     position: 'absolute',
-    zIndex: 9999,
+    zIndex: 1,
   },
 }));
 
