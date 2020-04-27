@@ -14,7 +14,7 @@ function FeatureStories({ stories, ...props }) {
 
   return (
     <StoryList
-      description="View and explore how we visualise Kenya’s budget data to show how much money each county has received from the national government, and how the money is allocated and utilized based on each county’spriorities"
+      description="View and explore how we visualise Kenya’s budget data to show how much money each county has received from the national government, and how the money is allocated and utilized based on each county’s priorities"
       md={3.3}
       spacing={0}
       stories={stories}

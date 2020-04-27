@@ -105,7 +105,7 @@ function Hero() {
             <Typography component="div" className={classes.description}>
               Data driven analysis on{" "}
               <span className={classes.highlightBlue}>COVID-19</span>
-              in more than 10 African countries. Find out more about us.
+              {" "}in more than 10 African countries. Find out more about us.
             </Typography>
           </Grid>
         </Grid>
