@@ -45,9 +45,7 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "2.625rem",
     },
   },
-  title: {
-    fontWeight: "bold",
-  },
+  title: {},
 }));
 
 function Ticker({ lang, source, statuses, title, ...props }) {
@@ -62,15 +60,13 @@ function Ticker({ lang, source, statuses, title, ...props }) {
       alignItems="center"
       className={classes.root}
     >
-      <Grid
-        item
-        xs={12}
-        container
-        justify="space-between"
-        className={classes.statuses}
-      >
+      <Grid item xs={12} container justify="space-between">
         <Grid item>
-          <Typography variant="body2" component="h2" className={classes.title}>
+          <Typography
+            variant="subtitle2"
+            component="h2"
+            className={classes.title}
+          >
             {title}
           </Typography>
         </Grid>
