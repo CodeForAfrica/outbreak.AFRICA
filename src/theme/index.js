@@ -262,22 +262,30 @@ deepmerge(
         paddingRight: 0,
         paddingTop: 0,
         border: "none",
+        borderBottom: `2px solid ${theme.palette.highlight.main}`,
+        color: theme.palette.highlight.main,
         "&:hover": {
           border: "none",
+          borderBottom: `2px solid ${theme.palette.highlight.main}`,
         },
       },
       outlinedPrimary: {
-        color: "#F9FF71",
         border: "none",
-        borderBottom: "1px solid #F9FF71",
+        borderBottom: `2px solid ${theme.palette.highlight.main}`,
+        color: theme.palette.highlight.main,
         "&:hover": {
           border: "none",
-          borderBottom: "1px solid #F9FF71",
+          borderBottom: `2px solid ${theme.palette.highlight.main}`,
         },
       },
       outlinedSecondary: {
+        border: "none",
         color: theme.palette.secondary.main,
-        borderColor: theme.palette.secondary.main,
+        borderBottom: `2px solid ${theme.palette.secondary.main}`,
+        "&:hover": {
+          border: "none",
+          borderBottom: `2px solid ${theme.palette.secondary.main}`,
+        },
       },
       sizeLarge: {
         // Some CSS
