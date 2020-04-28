@@ -49,10 +49,10 @@ const useStyles = makeStyles((theme) => ({
   title: {
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      paddingTop: "4.625rem"
+      paddingTop: "4.625rem",
     },
     [theme.breakpoints.up("lg")]: {
-      paddingTop: "8.125rem"
+      paddingTop: "8.125rem",
     },
   },
   highlight: {
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "3rem",
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      maxWidth: "41.12rem"
+      maxWidth: "41.12rem",
     },
   },
 }));
@@ -92,7 +92,7 @@ function Hero() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography component="div" className={classes.description}>
+            <Typography variant="subtitle1" component="div" className={classes.description}>
               Data driven analysis on{" "}
               <span className={classes.highlightBlue}>COVID-19</span> in more
               than 10 African countries. Find out more about us.

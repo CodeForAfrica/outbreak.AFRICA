@@ -33,8 +33,9 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     top: "50%",
     left: "35px",
+    width: "90%",
     [theme.breakpoints.up("md")]: {
-      top: "55%",
+      top: "62.5%",
       left: "15px",
     },
   },
@@ -48,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cardLink: {
     textDecoration: "underline",
+    letterSpacing: "2.4px",
+    fontFamily: theme.typography.button.fontFamily,
     color: "#F9FF71",
     fontSize: "1rem",
     fontWeight: "bold",
@@ -55,29 +58,14 @@ const useStyles = makeStyles((theme) => ({
       textTransform: "uppercase",
     },
   },
-  overline: {
-    color: "#fff",
-  },
   bodyTitle: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: "1.125rem",
     marginTop: "1rem",
-    [theme.breakpoints.up("md")]: {
-      fontSize: "1.25rem",
-    },
-    [theme.breakpoints.up("lg")]: {
-      fontSize: "1.5rem",
-    },
   },
   bodyText: {
     color: "#fff",
     marginBottom: "2rem",
-    lineHeight: 1.5,
-    fontSize: "1rem",
-    [theme.breakpoints.up("md")]: {
-      fontSize: "1.25rem",
-    },
   },
 }));
 
@@ -99,10 +87,10 @@ function CarouselCard({ item }) {
           className={classes.contentRoot}
           alignItems="flex-start"
         >
-          <Typography variant="h5" className={classes.bodyTitle}>
+          <Typography variant="subtitle2" className={classes.bodyTitle}>
             {item.title}
           </Typography>
-          <Typography variant="body1" className={classes.bodyText}>
+          <Typography variant="caption" className={classes.bodyText}>
             {item.brief}
           </Typography>
           <A href={item.link} className={classes.cardLink}>
