@@ -998,10 +998,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@commons-ui/core@^0.0.1-alpha.9":
-  version "0.0.1-alpha.9"
-  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.9.tgz#4bd371245402912a3ebbef47829dd7cba911458b"
-  integrity sha512-E/z54xfFlRBIizJBunjRKYalyK6QbMwItk+yodzZS1KH9YTDmz1niX4wPmJWPhlSrMyVeN3wVueYKTEiZbW4WQ==
+"@commons-ui/core@^0.0.1-alpha.10":
+  version "0.0.1-alpha.10"
+  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.10.tgz#cb8cd7d3819e23ddb1e884ae71dc066a5e68a838"
+  integrity sha512-WZakAJKCjzLtT4Iwk3u7J/YKTujHZ3PIcXs1O2TTmvlrD5t65lUiCiq90Pb5ImStKZh1VdvJ5GVA5DGJGISIGQ==
   dependencies:
     classnames "^2.2.6"
     clsx "^1.1.0"
