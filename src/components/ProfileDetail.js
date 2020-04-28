@@ -57,6 +57,10 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '0.938rem',
     lineHeight: 'normal',
   },
+  link: {
+    marginTop: '0.25rem',
+    fontSize: '0.938rem'
+  },
   verticalLine: {
     width: '0.25rem',
     height: '12.125rem',
@@ -220,11 +224,12 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
           </Grid>
           <Link
             button
-            href="/profiles/[geoIdOrCountrySlug]"
-            as={`/profiles/${country.slug}`}
+            href="/[geoIdOrCountrySlug]"
+            as={`/${country.slug}`}
+            className={classes.link} 
             fullWidth
           >
-            Read the cdc reports
+            Read the CDC reports
           </Link>
         </div>
       </Layout>

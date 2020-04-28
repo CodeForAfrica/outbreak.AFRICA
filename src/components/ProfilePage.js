@@ -168,13 +168,15 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
   const filterByGeography = useCallback(
     ({ type, inGeographies }) =>
       // Support only HURUmap Charts
-      type === 'hurumap' &&
+      type === 'hurumap' && inGeographies &&
       // Check in Geography
       inGeographies.find(
         ({ geoLevel, geoCode }) => `${geoLevel}-${geoCode}` === geoId
       ),
     [geoId]
   );
+
+  console.log(sectionedCharts);
 
   const visuals = useMemo(
     () =>
