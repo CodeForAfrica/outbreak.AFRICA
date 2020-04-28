@@ -13,18 +13,19 @@ const useStyles = makeStyles((theme) => ({
     overflow: "visible",
   },
   section: {},
-  profileListProfile: {
-    "& .profile-0:after": {
+  storyList: {},
+  storyListStory: {
+    "& .story-0:after": {
       backgroundColor: theme.palette.primary.main,
     },
-    "& .profile-1:after": {
+    "& .story-1:after": {
       backgroundColor: `#000000`,
     },
-    "& .profile-2:after": {
+    "& .story-2:after": {
       backgroundColor: theme.palette.highlight.main,
     },
   },
-  profileListProfiles: {},
+  storyListStories: {},
 }));
 
 function FeatureStories({ description, stories, title, ...props }) {
