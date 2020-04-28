@@ -88,9 +88,9 @@ function Home(props) {
             highlight: true,
           },
           {
-            name: "Hospitalisations",
+            name: "Active",
             status: "Confirmed",
-            value: "430",
+            value: "2621",
           },
           {
             name: "Recoveries",
