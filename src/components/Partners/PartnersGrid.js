@@ -146,7 +146,7 @@ function PartnersGrid({ ...props }) {
               }
             >
               {useMediaQuery(theme.breakpoints.up("md")) ? (
-                <Typography variant="caption">{partner.description}</Typography>
+                <Typography variant="body2">{partner.description}</Typography>
               ) : null}
             </div>
           </Grid>

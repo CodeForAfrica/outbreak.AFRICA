@@ -6,9 +6,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import email from "assets/email.svg";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#170F49",
+    backgroundColor: theme.palette.secondary.main,
     width: "100%",
   },
   mainContainer: {
@@ -18,8 +18,7 @@ const useStyles = makeStyles({
   typo: {
     color: "white",
   },
-  body1: {
-    color: "white",
+  subtitle: {
     padding: "1.5rem 2rem",
   },
   title: {
@@ -42,7 +41,7 @@ const useStyles = makeStyles({
   button: {
     padding: 0,
   },
-});
+}));
 
 function Subscribe() {
   const classes = useStyles();
@@ -52,7 +51,11 @@ function Subscribe() {
         <Typography variant="h2" className={classes.title}>
           Subscribe
         </Typography>
-        <Typography variant="body1" className={classes.body1}>
+        <Typography
+          variant="subtitle1"
+          color="textSecondary"
+          className={classes.subtitle}
+        >
           {" "}
           Stay updated with the latest News, Research and Analysis
         </Typography>
