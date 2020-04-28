@@ -126,7 +126,7 @@ deepmerge(
   {
     h1: {
       fontSize: pxToRem(40),
-      lineHeight: 400 / 40,
+      lineHeight: 40 / 40,
       [breakpoints.up("md")]: {
         fontSize: pxToRem(56),
         lineHeight: 67.2 / 80,
