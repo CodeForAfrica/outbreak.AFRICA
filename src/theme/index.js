@@ -66,6 +66,7 @@ const theme = createTheme({
       fontStyle: "normal",
       fontWeight: 700,
       letterSpacing: 0,
+      textTransform: "uppercase",
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -127,9 +128,9 @@ deepmerge(
     h1: {
       fontSize: pxToRem(40),
       lineHeight: 40 / 40,
-      [breakpoints.up("md")]: {
-        fontSize: pxToRem(56),
-        lineHeight: 67.2 / 80,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(50),
+        lineHeight: 80 / 50,
       },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(80),
@@ -139,9 +140,9 @@ deepmerge(
     h2: {
       fontSize: pxToRem(40),
       lineHeight: 40 / 40,
-      [breakpoints.up("md")]: {
-        fontSize: pxToRem(56),
-        lineHeight: 67.2 / 80,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(50),
+        lineHeight: 80 / 50,
       },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(80),
@@ -161,6 +162,10 @@ deepmerge(
     subtitle1: {
       fontSize: pxToRem(20),
       lineHeight: 30 / 20,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(20),
+        lineHeight: 30 / 20,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(30),
         lineHeight: 40 / 30,
@@ -169,6 +174,10 @@ deepmerge(
     subtitle2: {
       fontSize: pxToRem(16),
       lineHeight: 23 / 16,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(14),
+        lineHeight: 20 / 14,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(24),
         lineHeight: 30 / 24,
@@ -177,6 +186,10 @@ deepmerge(
     body1: {
       fontSize: pxToRem(20),
       lineHeight: 30 / 20,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(20),
+        lineHeight: 30 / 20,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(30),
         lineHeight: 40 / 30,
@@ -185,6 +198,10 @@ deepmerge(
     body2: {
       fontSize: pxToRem(18),
       lineHeight: 24 / 18,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(14),
+        lineHeight: 20 / 14,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(24),
         lineHeight: 30 / 24,
@@ -203,6 +220,10 @@ deepmerge(
     caption: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(14),
+        lineHeight: 20 / 14,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(20),
         lineHeight: 30 / 20,
@@ -211,6 +232,10 @@ deepmerge(
     overline: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(14),
+        lineHeight: 20 / 14,
+      },
       [breakpoints.up("xl")]: {
         fontSize: pxToRem(20),
         lineHeight: 30 / 20,
