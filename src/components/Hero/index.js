@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     "& ul > li": {
       padding: "0 8px",
     },
-    width: "calc(((35vw - 100%) / 2) + 100%)",
+    width: "calc(((100vw - 100%) / 2) + 100%)",
     zIndex: 1,
     [theme.breakpoints.up("md")]: {
       paddingTop: "2.625rem",
