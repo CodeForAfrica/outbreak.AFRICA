@@ -1,5 +1,8 @@
 import React from "react";
 
+import classNames from "classnames";
+
+import { makeStyles } from "@material-ui/core/styles";
 import { Footer } from "@commons-ui/core";
 
 import pulitzer from "assets/pulitzer.png";
@@ -113,7 +116,31 @@ const SOCIAL_MEDIA = {
   ],
 };
 
-function MainFooter(props) {
+const useStyles = makeStyles((theme) => ({
+  typography: {
+    fontWeight: 700,
+    lineHeight: 69 / 27,
+  },
+  legalLinks: {
+    marginTop: "3.09375",
+    [theme.breakpoints.up("md")]: {
+      marginTop: 0,
+    },
+  },
+  legalLinksLink: {},
+  stayInTouchLinks: {
+    marginTop: "2.215rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: 0,
+    },
+  },
+  stayInTouchText: {},
+  text: {},
+}));
+
+function MainFooter({ classes: classesProp, ...props }) {
+  const classes = useStyles({ classes: classesProp });
+
   return (
     <Footer
       {...props}
@@ -124,6 +151,17 @@ function MainFooter(props) {
       legalLinks={LEGAL_LINKS}
       quickLinks={QUICK_LINKS}
       organizationLogo={ORGANIZATION_LOGO}
+      classes={{
+        legalLinks: classes.legalLinks,
+        legalLinksLink: classNames(classes.typography, classes.legalLinksLink),
+        stayInTouchLinks: classes.stayInTouchLinks,
+        stayInTouchText: classNames(
+          classes.typography,
+          classes.stayInTouchText
+        ),
+        text: classNames(classes.typography, classes.text),
+        ...classesProp,
+      }}
     />
   );
 }

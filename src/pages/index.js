@@ -19,9 +19,13 @@ const useStyles = makeStyles((theme) => ({
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("lg")]: {
       margin: "0 auto",
-      width: "85.4166667%",
+      width: "78.5rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      margin: "0 auto",
+      width: "102.5rem",
     },
   },
   featuredData: {
@@ -88,9 +92,9 @@ function Home(props) {
             highlight: true,
           },
           {
-            name: "Hospitalisations",
+            name: "Active",
             status: "Confirmed",
-            value: "430",
+            value: "2621",
           },
           {
             name: "Recoveries",

@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography, StoryList, Section } from "@commons-ui/core";
@@ -13,23 +13,47 @@ const useStyles = makeStyles((theme) => ({
     overflow: "visible",
   },
   section: {},
-  storyList: {},
+  storyList: {
+    color: "white",
+    marginTop: "2.375rem",
+    "& .simplebar-track": {
+      backgroundColor: "#D6D6D6",
+      width: "30%",
+      [theme.breakpoints.up("lg")]: {
+        width: "20%",
+      },
+    },
+    "& .simplebar-track.simplebar-horizontal": {
+      marginLeft: "35%",
+    },
+    "& .simplebar-track.simplebar-horizontal .simplebar-scrollbar": {
+      backgroundColor: "#9D9C9C",
+    },
+    "& .simplebar-track.simplebar-horizontal .simplebar-scrollbar:before": {
+      backgroundColor: "#9D9C9C",
+    },
+  },
   storyListStory: {
-    "& .story-0:after": {
-      backgroundColor: theme.palette.primary.main,
-    },
-    "& .story-1:after": {
-      backgroundColor: `#000000`,
-    },
-    "& .story-2:after": {
-      backgroundColor: theme.palette.highlight.main,
+    "&:after": {
+      backgroundColor: "inherit",
+      mixBlendMode: "overlay",
+      opacity: 1,
     },
   },
   storyListStories: {},
+  title: {},
 }));
 
 function FeatureStories({ description, stories, title, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
+  const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
+  const isLg = isUpLg && !isUpXl;
+  let cellHeight;
+  if (isUpLg) {
+    cellHeight = isLg ? 438 : 637;
+  }
 
   return (
     <div className={classes.root}>
@@ -54,6 +78,8 @@ function FeatureStories({ description, stories, title, ...props }) {
         </Grid>
         <Grid item xs={12}>
           <StoryList
+            cellHeight={cellHeight}
+            height={cellHeight && cellHeight + 48}
             stories={stories}
             classes={{
               root: classes.storyList,

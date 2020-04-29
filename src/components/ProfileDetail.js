@@ -59,8 +59,8 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "normal",
   },
   link: {
-    marginTop: '0.25rem',
-    fontSize: '0.938rem'
+    marginTop: "0.25rem",
+    fontSize: "0.938rem",
   },
   verticalLine: {
     width: "0.25rem",
@@ -227,7 +227,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
             button
             href="/[geoIdOrCountrySlug]"
             as={`/${country.slug}`}
-            className={classes.link} 
+            className={classes.link}
             fullWidth
           >
             Read the CDC reports

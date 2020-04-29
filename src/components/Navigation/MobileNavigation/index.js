@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {
-  Button,
   Slide,
   Grid,
   IconButton,
@@ -42,9 +41,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "row",
     width: "50%",
-  },
-  divider: {
-    border: "0.5px solid grey",
   },
   title: {
     marginLeft: theme.spacing(2),
