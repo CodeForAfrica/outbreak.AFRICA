@@ -92,7 +92,11 @@ function Hero() {
             </Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="subtitle1" component="div" className={classes.description}>
+            <Typography
+              variant="subtitle1"
+              component="div"
+              className={classes.description}
+            >
               Data driven analysis on{" "}
               <span className={classes.highlightBlue}>COVID-19</span> in more
               than 10 African countries. Find out more about us.

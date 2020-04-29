@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Grid, Divider, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,14 +21,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "3rem",
     fontWeight: 700,
     padding: "1rem 0rem",
-  },
-  divider: {
-    backgroundColor: "#170F49",
-    height: "2px",
-    width: "25%",
-    [theme.breakpoints.up("md")]: {
-      width: "50%",
-    },
   },
   learnMore: {
     paddingTop: "1rem",
