@@ -73,7 +73,7 @@ function Home(props) {
 
   return (
     <Page classes={{ section: classes.section }}>
-      <Hero />
+      <Hero classes={{ section: classes.section }}/>
       <Ticker
         source={{
           title: "openAFRICA",
