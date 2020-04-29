@@ -22,12 +22,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "90% 2%",
     backgroundSize: "50%",
-    //margin: "0 auto",
-    //padding: "2.125rem 1.125rem 0 1.125rem",
-    //width: "100%",
     [theme.breakpoints.up("md")]: {
-     // padding: "3.8125rem 0 0",
-      //width: `${(1640 / 1920) * 100}%`,
       backgroundPosition: "20% 30%",
       backgroundSize: "75% 55%",
     },
