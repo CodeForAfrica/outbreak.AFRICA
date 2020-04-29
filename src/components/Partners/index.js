@@ -11,29 +11,22 @@ const useStyles = makeStyles((theme) => ({
   root: {
     position: "relative",
     overflow: "hidden",
-    [theme.breakpoints.up("md")]: {
-      margin: "2rem",
-    },
   },
-  desktopContainer: {
-    padding: "2rem 6rem",
-  },
+  desktopContainer: {},
   joinUs: {
     position: "absolute",
-    left: "4rem",
     width: "100%",
     [theme.breakpoints.up("md")]: {
       top: "33rem",
     },
   },
   partner: {
-    width: "75%",
+    width: "70%",
   },
   subscribe: {
-    width: "30%",
+    width: "35%",
     padding: "1rem 0rem ",
-    top: "3px",
-    margin: "0rem 4rem",
+    top: "10%",
     position: "absolute",
     zIndex: 1,
   },
