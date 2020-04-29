@@ -15,27 +15,23 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#fcfc74",
     width: "100%",
-  },
-  typogrid: {
-    padding: "2rem 4rem",
+    paddingLeft: '20px',
     [theme.breakpoints.up("md")]: {
-      padding: "3rem 10rem",
+      paddingLeft: '20%',
+      paddingTop: '8%',
+      paddingRight: '10%',
+      paddingBottom: "5%",
     },
   },
   imageGrid: {
-    padding: "2rem 4rem",
-    display: "flex",
+    marginTop: "2rem",
     [theme.breakpoints.up("md")]: {
-      padding: "2rem 10rem",
+      marginTop: "4rem",
     },
   },
   typo: {
     color: "white",
     padding: "1rem 0rem",
-  },
-  title: {
-    fontSize: "3rem",
-    fontWeight: 700,
   },
   img: {
     maxWidth: "100%",
@@ -48,15 +44,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     height: "auto",
     [theme.breakpoints.up("md")]: {
-      height: "100px",
-      marginTop: "-2rem",
+      marginTop: "-3rem",
     },
   },
   descGrid: {
-    marginTop: "-0.3rem",
+    marginTop: '-0.25rem',
   },
   divGrid: {
-    marginTop: "1rem",
+    marginTop: "2rem",
   },
 }));
 
@@ -115,14 +110,14 @@ function PartnersGrid({ ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   return (
-    <Grid item className={classes.root}>
-      <div className={classes.typogrid}>
-        <Typography variant="h2" className={classes.title}>
+    <Grid container direction="column" className={classes.root}>
+      <Grid item>
+        <Typography variant="h1">
           Our Partners
         </Typography>
-      </div>
-
+      </Grid>
       <Grid
+        item
         container
         direction="row"
         className={classes.imageGrid}
