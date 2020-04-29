@@ -10,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.secondary.main,
     width: "100%",
+    paddingLeft: '1.25rem',
+    paddingRight: '3.25rem',
+    paddingTop: '2rem',
+    paddingBottom: '2rem',
     [theme.breakpoints.up("md")]: {
       padding: "10% 21%",
     },

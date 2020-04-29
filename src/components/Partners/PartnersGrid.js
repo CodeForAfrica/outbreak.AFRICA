@@ -15,23 +15,20 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#fcfc74",
     width: "100%",
-    paddingLeft: '20px',
+    paddingLeft: '1.25rem',
+    paddingRight: '3.25rem',
+    paddingTop: '8%',
+    paddingBottom: "5%",
     [theme.breakpoints.up("md")]: {
       paddingLeft: '20%',
-      paddingTop: '8%',
       paddingRight: '10%',
-      paddingBottom: "5%",
     },
   },
   imageGrid: {
-    marginTop: "2rem",
+    marginTop: '2rem',
     [theme.breakpoints.up("md")]: {
       marginTop: "4rem",
     },
-  },
-  typo: {
-    color: "white",
-    padding: "1rem 0rem",
   },
   img: {
     maxWidth: "100%",
@@ -122,7 +119,7 @@ function PartnersGrid({ ...props }) {
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={10}
+        spacing={2}
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6}>
