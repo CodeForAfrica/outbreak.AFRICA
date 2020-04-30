@@ -58,6 +58,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "11.75rem",
     },
   },
+  partners: {
+    marginTop: "4.96875rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "11.75rem",
+    },
+  },
   ticker: {
     marginTop: "6.1875rem",
     [theme.breakpoints.up("md")]: {
@@ -143,7 +149,7 @@ function Home(props) {
         stories={stories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
-      <Partners />
+      <Partners classes={{ root: classes.partners, section: classes.section }} />
     </Page>
   );
 }
