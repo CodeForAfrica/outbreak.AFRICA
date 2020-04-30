@@ -430,8 +430,16 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     }
   }, [indicatorId]);
 
+  let title;
+  if (country) {
+    title = country.shortName;
+  }
   return (
-    <Page takwimu={{ ...config, language }}>
+    <Page
+      takwimu={{ ...config, language }}
+      indicatorId={indicatorId}
+      title={title}
+    >
       {!profiles.isLoading && (
         <ProfileDetail
           profile={{

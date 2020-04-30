@@ -1,16 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Error from "next/error";
 import Head from "next/head";
 
-import ProfilePageComponent from "components/ProfilePage";
+import ProfilePage from "components/ProfilePage";
 
 import config from "config";
 import { getSectionedCharts } from "cms";
 
-function ProfilePage(props) {
-  const { geoId } = props;
+function GeoId({ errorCode, ...props }) {
+  if (errorCode === 404) {
+    return <Error statusCode={errorCode} />;
+  }
 
+  const { geoId } = props;
   return (
     <>
       <Head>
@@ -44,38 +48,42 @@ function ProfilePage(props) {
           crossOrigin="anonymous"
         />
       </Head>
-      <ProfilePageComponent key={geoId} {...props} />
+      <ProfilePage key={geoId} {...props} />
     </>
   );
 }
 
-ProfilePage.propTypes = {
+GeoId.propTypes = {
   geoId: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   language: PropTypes.string.isRequired,
   indicatorId: PropTypes.string,
 };
 
-ProfilePage.defaultProps = {
+GeoId.defaultProps = {
   indicatorId: undefined,
 };
 
 export async function getServerSideProps({
-  params: { geoIdOrSlug, lang: queryLang, indicatorId = null },
+  params: { geoId, lang: queryLang, indicatorId = null },
 }) {
-  const country = config.countries.find(
-    (c) => c.slug === geoIdOrSlug.toLowerCase()
-  );
-  const lang = queryLang || config.DEFAULT_LANG;
+  const found = /-([a-zA-Z]{2})(-|$)/.exec(geoId);
+  const countryCode = found && found[1];
+  const country =
+    countryCode &&
+    config.countries.find((c) => c.isoCode === countryCode.toUpperCase());
+  const lang = queryLang || (country && country.lang) || config.DEFAULT_LANG;
+  const errorCode = country ? null : 404;
 
   return {
     props: {
-      geoId: country ? `country-${country.isoCode}` : geoIdOrSlug,
-      sectionedCharts: await getSectionedCharts(lang),
-      language: lang,
+      errorCode,
+      geoId,
       indicatorId,
+      language: lang,
+      sectionedCharts: await getSectionedCharts(lang),
     },
   };
 }
 
-export default ProfilePage;
+export default GeoId;
