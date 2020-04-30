@@ -4,15 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#cbdbfb",
     width: "100%",
-    paddingLeft: '1.25rem',
-    paddingRight: '3.25rem',
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
-    [theme.breakpoints.up("md")]: {
-      padding: "12% 23%",
-    },
   },
   link: {
     textTransform: 'uppercase',
@@ -21,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   title: {
-    paddingBottom: "2.5rem",
+    paddingBottom: "1.25rem",
   },
   brief: {
     paddingBottom: "1.5rem",

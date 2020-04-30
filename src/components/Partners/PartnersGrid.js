@@ -13,16 +13,7 @@ import wanadata from "assets/partnerLogos/wanadata/wanadata.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#fcfc74",
     width: "100%",
-    paddingLeft: '1.25rem',
-    paddingRight: '3.25rem',
-    paddingTop: '8%',
-    paddingBottom: "5%",
-    [theme.breakpoints.up("md")]: {
-      paddingLeft: '20%',
-      paddingRight: '10%',
-    },
   },
   imageGrid: {
     marginTop: '2rem',
@@ -106,6 +97,8 @@ const partners = [
 function PartnersGrid({ ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item>
@@ -119,7 +112,7 @@ function PartnersGrid({ ...props }) {
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={2}
+        spacing={isMobile? 2 : 10 }
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6}>
@@ -137,9 +130,9 @@ function PartnersGrid({ ...props }) {
                   : classes.divGrid
               }
             >
-              {useMediaQuery(theme.breakpoints.up("md")) ? (
+              {!isMobile &&
                 <Typography variant="body2">{partner.description}</Typography>
-              ) : null}
+              }
             </div>
           </Grid>
         ))}

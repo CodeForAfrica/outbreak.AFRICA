@@ -8,29 +8,22 @@ import email from "assets/email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.secondary.main,
     width: "100%",
-    paddingLeft: '1.25rem',
-    paddingRight: '3.25rem',
     paddingTop: '2rem',
     paddingBottom: '2rem',
     [theme.breakpoints.up("md")]: {
-      padding: "10% 21%",
+      paddingTop: "10%",
     },
   },
-  typo: {
-    color: theme.palette.text.secondary,
-  },
   subtitle: {
-    width: '60%',
-    paddingBottom: "6rem",
+    width: '80%',
+    paddingBottom: "5rem",
   },
   title: {
     color: theme.palette.text.secondary,
-    paddingBottom: "6rem"
+    paddingBottom: "5rem"
   },
-  form: {
-  },
+  form: {},
   input: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
