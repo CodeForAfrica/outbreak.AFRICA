@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 
-import _debounce from "lodash/debounce";
+// import _debounce from "lodash/debounce";
 
 import PropTypes from "prop-types";
 
@@ -10,10 +10,10 @@ import { useRouter } from "next/router";
 import { Grid } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import InsightContainer from "@hurumap-ui/core/InsightContainer";
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
-import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
+import InsightContainer from "@hurumap-ui/core/InsightContainer";
 import { shareIndicator } from "@hurumap-ui/core/utils";
+import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
 
@@ -32,6 +32,19 @@ const MapIt = dynamic({
 });
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
+  root: {},
+  section: {
+    margin: "0 1.25rem 0 1.375rem",
+    width: "auto",
+    [breakpoints.up("lg")]: {
+      margin: "0 auto",
+      width: "78.5rem",
+    },
+    [breakpoints.up("xl")]: {
+      margin: "0 auto",
+      width: "102.5rem",
+    },
+  },
   actionsShareButton: {
     minWidth: "4rem",
   },
@@ -156,7 +169,7 @@ const overrideTypePropsFor = (chartType) => {
   }
 };
 
-function Profile({ indicatorId, sectionedCharts, language, geoId }) {
+function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
   const router = useRouter();
   const theme = useTheme();
 
@@ -239,11 +252,11 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       }, [])
   );
 
-  const debouceSetProfileTabs = _debounce(setProfileTabs, 2000);
+  const debounceSetProfileTabs = setProfileTabs; // _debounce(setProfileTabs, 2000);
 
   useEffect(
     () =>
-      debouceSetProfileTabs([
+      debounceSetProfileTabs([
         ...sectionedCharts
           // Filter empty sections
           .reduce((a, { charts, ...rest }) => {
@@ -260,7 +273,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
           }, []),
       ]),
     [
-      debouceSetProfileTabs,
+      debounceSetProfileTabs,
       filterByChartData,
       filterByGeography,
       sectionedCharts,
@@ -439,15 +452,16 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       takwimu={{ ...config, language }}
       indicatorId={indicatorId}
       title={title}
+      classes={{ section: classes.section }}
     >
       {!profiles.isLoading && (
         <ProfileDetail
           profile={{
             geo: profiles.profile,
           }}
+          classes={{ section: classes.section }}
         />
       )}
-
       <div style={{ width: "100%", height: "500px", overflow: "hidden" }}>
         <MapIt
           url={config.MAPIT_URL}
@@ -483,14 +497,22 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
           tabs={profileTabs}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          // classes={{ section: classes.section }}
         />
       )}
-      <Section>{charts}</Section>
+      {console.log("BOOM", {
+        geoId,
+        country,
+        charts,
+        chartData,
+        profiles,
+        visuals,
+      }) || <Section>{charts}</Section>}
     </Page>
   );
 }
 
-Profile.propTypes = {
+ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
   language: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(
@@ -504,8 +526,8 @@ Profile.propTypes = {
   ).isRequired,
 };
 
-Profile.defaultProps = {
+ProfilePage.defaultProps = {
   indicatorId: undefined,
 };
 
-export default Profile;
+export default ProfilePage;
