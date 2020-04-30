@@ -7,7 +7,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   link: {
-    textTransform: 'uppercase',
     borderBottom: '2px solid',
     borderRadius: 0,
     padding: 0,
