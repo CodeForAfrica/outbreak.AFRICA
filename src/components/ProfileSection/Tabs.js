@@ -1,18 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Link, Tabs, Tab } from "@material-ui/core";
+import classNames from "classnames";
+
+import { Button, Tab, Tabs } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Layout } from "@commons-ui/core";
-
 const useStyles = makeStyles((theme) => ({
-  layoutRoot: {
-    margin: "0 auto",
-  },
   root: {
     alignItems: "center",
-    backgroundColor: "#f6f6f6",
+    backgroundColor: "#fff",
     display: "flex",
     height: "5.8125rem", // 93px / 16
     scrollBehavior: "smooth",
@@ -22,54 +19,51 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   tab: {
-    fontSize: "1.0625rem", // 17px
-    fontWeight: "normal",
-    padding: "0.6875rem 1rem 0.6875rem 1.125rem",
-    textTransform: "none",
+    color: "#9D9C9C",
+    paddingLeft: 0,
+    minWidth: 0, // Mui-Tab has min-width
     "&$tabSelected": {
-      backgroundColor: "#fff",
-      borderRadius: 21.5,
-    },
-    [theme.breakpoints.up("md")]: {
-      minWidth: 0,
+      color: theme.palette.secondary.main,
+      backgroundColor: "inherit",
     },
   },
-  tabSelected: {
-    fontWeight: 700,
+  tabLast: {
+    paddingRight: 0,
   },
+  tabSelected: {},
 }));
 
 function LinkTab(props) {
   /* eslint-disable-next-line react/jsx-props-no-spreading */
-  return <Tab component={Link} {...props} />;
+  return <Tab component={Button} {...props} />;
 }
 
 function ProfileTabs({ handleChange, tabs, value }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Layout classes={{ root: classes.layoutRoot }}>
-        <Tabs
-          classes={{ indicator: classes.indicator }}
-          onChange={handleChange}
-          value={value}
-          variant="scrollable"
-        >
-          {tabs.map((tab) => (
-            <LinkTab
-              key={tab.slug}
-              value={tab.slug}
-              href={`#${tab.slug}`} // Always show the tabs on click
-              label={tab.name}
-              className={classes.tab}
-              classes={{
-                selected: classes.tabSelected,
-              }}
-              underline="none"
-            />
-          ))}
-        </Tabs>
-      </Layout>
+      <Tabs
+        classes={{ indicator: classes.indicator }}
+        onChange={handleChange}
+        value={value}
+        variant="scrollable"
+      >
+        {tabs.map((tab, index) => (
+          <LinkTab
+            key={tab.slug}
+            value={tab.slug}
+            href={`#${tab.slug}`} // Always show the tabs on click
+            label={tab.name}
+            className={classNames(classes.tab, {
+              [classes.tabLast]: index === tabs.length - 1,
+            })}
+            classes={{
+              selected: classes.tabSelected,
+            }}
+            underline="none"
+          />
+        ))}
+      </Tabs>
     </div>
   );
 }
