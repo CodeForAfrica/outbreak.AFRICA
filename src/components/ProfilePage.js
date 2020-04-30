@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 
 import { Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import InsightContainer from "@hurumap-ui/core/InsightContainer";
@@ -164,7 +164,6 @@ const overrideTypePropsFor = (chartType) => {
 
 function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
   const router = useRouter();
-  const theme = useTheme();
 
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
@@ -467,10 +466,10 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
           tabs={profileTabs}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
-          // classes={{ section: classes.section }}
+          classes={{ section: classes.section }}
         />
       )}
-      <Section>{charts}</Section>
+      <Section classes={{ root: classes.section }}>{charts}</Section>
     </Page>
   );
 }
