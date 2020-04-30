@@ -97,7 +97,7 @@ const partners = [
 function PartnersGrid({ ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <Grid container direction="column" className={classes.root}>
@@ -112,7 +112,7 @@ function PartnersGrid({ ...props }) {
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={isMobile? 2 : 10 }
+        spacing={isDesktop? 10 : 2 }
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6} key={partner.name}>
@@ -130,7 +130,7 @@ function PartnersGrid({ ...props }) {
                   : classes.divGrid
               }
             >
-              {!isMobile &&
+              {isDesktop &&
                 <Typography variant="body2">{partner.description}</Typography>
               }
             </div>

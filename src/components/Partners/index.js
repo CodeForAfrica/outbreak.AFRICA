@@ -88,11 +88,11 @@ const useStyles = makeStyles((theme) => ({
 function Partners(props) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <div className={classes.root}>
-      {!isMobile && 
+      {isDesktop && 
       <>
         <div className={classes.yellowDiv} />
 
@@ -101,10 +101,10 @@ function Partners(props) {
         <div className={classes.oceanBlueDiv} />
       </>
     }
-      <Section classes={{ root: classNames({[classes.section]: !isMobile}) }}>
+      <Section classes={{ root: classNames({[classes.section]: isDesktop}) }}>
         <Grid
             container
-            direction={isMobile ? "column-reverse": "row"}
+            direction={isDesktop ? "row": "column-reverse"}
           >
             <Grid item md={5} sm={12} direction="column" className={classes.bannerContainer}>
               <Grid item className={classes.subscribe}>
