@@ -74,6 +74,7 @@ export async function getServerSideProps({
     config.countries.find((c) => c.isoCode === countryCode.toUpperCase());
   const lang = queryLang || (country && country.lang) || config.DEFAULT_LANG;
   const errorCode = country ? null : 404;
+  const sectionedCharts = country ? await getSectionedCharts(lang) : null;
 
   return {
     props: {
@@ -81,7 +82,7 @@ export async function getServerSideProps({
       geoId,
       indicatorId,
       language: lang,
-      sectionedCharts: await getSectionedCharts(lang),
+      sectionedCharts,
     },
   };
 }
