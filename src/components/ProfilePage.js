@@ -4,7 +4,6 @@ import React, { useEffect, useState, useMemo, useCallback } from "react";
 
 import PropTypes from "prop-types";
 
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 import { Grid } from "@material-ui/core";
@@ -20,16 +19,10 @@ import { Section } from "@commons-ui/core";
 import config from "config";
 import logo from "assets/images/logo-white-all.png";
 
+import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
-
-const MapIt = dynamic({
-  ssr: false,
-  loader: () => {
-    return typeof window !== "undefined" && import("@hurumap-ui/core/MapIt");
-  },
-});
 
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
   root: {},
@@ -462,35 +455,12 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
           classes={{ section: classes.section }}
         />
       )}
-      <div style={{ width: "100%", height: "500px", overflow: "hidden" }}>
-        <MapIt
-          url={config.MAPIT_URL}
-          drawProfile
-          drawChildren
-          codeType="AFR"
-          geoCode={geoId.split("-")[1]}
-          geoLayerBlurStyle={{
-            color: "#D6D6D6",
-            fillColor: theme.palette.primary.main,
-            weight: 1.0,
-            opacity: 1.0,
-            fillOpacity: 0.2,
-          }}
-          geoLayerFocusStyle={{
-            color: "#D6D6D6",
-            fillColor: theme.palette.primary.main,
-            weight: 2.0,
-            opacity: 1.0,
-            fillOpacity: 0.5,
-          }}
-          geoLayerHoverStyle={{
-            fillColor: theme.palette.primary.main,
-            fillOpacity: 0.4,
-          }}
-          geoLevel={geoId.split("-")[0]}
-          onClickGeoLayer={onClickGeoLayer}
-        />
-      </div>
+      <MapIt
+        geoId={geoId}
+        height="500px"
+        onClickGeoLayer={onClickGeoLayer}
+        width="100%"
+      />
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}
