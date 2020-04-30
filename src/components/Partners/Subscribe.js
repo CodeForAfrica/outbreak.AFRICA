@@ -8,31 +8,31 @@ import email from "assets/email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.secondary.main,
     width: "100%",
-  },
-  mainContainer: {
-    margin: "3rem",
-    paddingTop: "3rem",
-  },
-  typo: {
-    color: "white",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "10%",
+    },
   },
   subtitle: {
-    padding: "1.5rem 2rem",
+    width: "90%",
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      width: '80%',
+      paddingBottom: "5rem",
+    },
   },
   title: {
-    color: "white",
-    padding: "1.5rem 2rem",
-    fontSize: "3rem",
-    fontWeight: 700,
+    color: theme.palette.text.secondary,
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "5rem",
+    },
   },
-  form: {
-    padding: "2rem 2.5rem",
-  },
+  form: {},
   input: {
-    color: "white",
-    fontSize: "0.8rem",
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.caption.fontSize,
+    lineHeight: theme.typography.caption.lineHeight,
     borderBottom: "1px solid white",
   },
   img: {
@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     padding: 0,
+    paddingTop: "1rem",
   },
 }));
 
@@ -47,34 +48,32 @@ function Subscribe() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-      <div className={classes.mainContainer}>
-        <Typography variant="h2" className={classes.title}>
-          Subscribe
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          color="textSecondary"
-          className={classes.subtitle}
-        >
-          {" "}
-          Stay updated with the latest News, Research and Analysis
-        </Typography>
+      <Typography variant="h2" className={classes.title}>
+        Subscribe
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        color="textSecondary"
+        className={classes.subtitle}
+      >
+        {" "}
+        Stay updated with the latest News, Research and Analysis
+      </Typography>
 
-        <form className={classes.form}>
-          <TextField
-            id="standard-basic"
-            autoFocus={false}
-            placeholder="Enter your email address"
-            margin="normal"
-            fullWidth
-            InputProps={{ className: classes.input }}
-          />
+      <form className={classes.form}>
+        <TextField
+          id="standard-basic"
+          autoFocus={false}
+          placeholder="Enter your email address"
+          margin="normal"
+          fullWidth
+          InputProps={{ className: classes.input }}
+        />
 
-          <IconButton className={classes.button}>
-            <img src={email} alt="Arrow icon" className={classes.img} />
-          </IconButton>
-        </form>
-      </div>
+        <IconButton className={classes.button}>
+          <img src={email} alt="Arrow icon" className={classes.img} />
+        </IconButton>
+      </form>
     </Grid>
   );
 }

@@ -4,29 +4,18 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#cbdbfb",
     width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "24%",
-    },
   },
-  typoGrid: {
-    padding: "5rem",
+  link: {
+    borderBottom: '2px solid',
+    borderRadius: 0,
+    padding: 0,
   },
-  typo: {
-    color: "white",
-  },
-  link: {},
   title: {
-    fontSize: "3rem",
-    fontWeight: 700,
-    padding: "1rem 0rem",
+    paddingBottom: "1.25rem",
   },
-  learnMore: {
-    paddingTop: "1rem",
-    [theme.breakpoints.up("md")]: {
-      paddingTop: "0.5rem",
-    },
+  brief: {
+    paddingBottom: "1.5rem",
   },
 }));
 
@@ -34,17 +23,15 @@ function JoinUs() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-      <div className={classes.typoGrid}>
         <Typography variant="h2" className={classes.title}>
           Join us
         </Typography>
-        <Typography variant="subtitle1">Be part of the initiative</Typography>
-        <div className={classes.learnMore}>
-          <Button variant="outlined" color="secondary" className={classes.link}>
-            LEARN MORE
-          </Button>
-        </div>
-      </div>
+        <Typography variant="subtitle1" className={classes.brief}>
+          Be part of the initiative
+        </Typography>
+        <Button variant="outline" color="secondary" className={classes.link}>
+          Learn More
+        </Button>
     </Grid>
   );
 }
