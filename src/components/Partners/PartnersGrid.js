@@ -115,7 +115,7 @@ function PartnersGrid({ ...props }) {
         spacing={isMobile? 2 : 10 }
       >
         {partners.map((partner) => (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} key={partner.name}>
             <img
               src={partner.image}
               alt={partner.name}
