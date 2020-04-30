@@ -4,7 +4,7 @@ import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
 import Subscribe from "./Subscribe";
 import PartnerGrid from "./PartnersGrid";
@@ -13,10 +13,6 @@ import JoinUs from "./JoinUs";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-   // backgroundImage: "linear-gradient(90deg, #170F49 0% 35%, transparent 35%), linear-gradient(90deg, transparent 0% 30%, #fcfc74 30%)",
-    //backgroundSize: "90% 75%, auto",
-    //backgroundPosition: "10% 10%, auto",
-    //backgroundRepeat: "no-repeat, no-repeat",
     position: "relative",
   },
   yellowDiv: {
@@ -45,23 +41,45 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1,
     position: 'relative',
   },
+  mobileSection: {
+    width: "100%",
+    margin: "0%"
+  },
   bannerContainer: {
+    paddingRight: 0,
     [theme.breakpoints.up("md")]: {
       paddingRight: "20%",
     },
   },
   partnerContainer: {
-    paddingTop: '8%',
-    paddingBottom: "5%",
+    padding: "2rem 1.25rem 4rem 1.375rem",
+    backgroundColor: "#F9FF71",
+    [theme.breakpoints.up("md")]: {
+      background: "transparent",
+      paddingTop: '8%',
+      paddingBottom: "5%",
+      paddingRight: 0,
+      paddingLeft: 0,
+    }
   },
   joinUs: {
+    padding: "4rem 1.25rem 3rem 1.375rem",
+    backgroundColor: "#cbdbfb",
     [theme.breakpoints.up("md")]: {
+      background: "transparent",
       paddingTop: "25%",
+      paddingRight: 0,
+      paddingLeft: 0,
     },
   },
   subscribe: {
+    padding: "5rem 1.25rem 5rem 1.375rem",
+    backgroundColor: "#170F49",
     [theme.breakpoints.up("md")]: {
+      background: "transparent",
       paddingTop: "40%",
+      paddingRight: 0,
+      paddingLeft: 0,
       zIndex: 1,
     },
   },
@@ -83,10 +101,10 @@ function Partners(props) {
         <div className={classes.oceanBlueDiv} />
       </>
     }
-      <Section classes={{ root: classes.section}}>
+      <Section classes={{ root: classNames({[classes.section]: !isMobile}) }}>
         <Grid
             container
-            direction={isMobile? "row-reverse": "row"}
+            direction={isMobile ? "column-reverse": "row"}
           >
             <Grid item md={5} sm={12} direction="column" className={classes.bannerContainer}>
               <Grid item className={classes.subscribe}>

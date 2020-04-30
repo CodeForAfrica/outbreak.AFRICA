@@ -9,19 +9,24 @@ import email from "assets/email.svg";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    paddingTop: '2rem',
-    paddingBottom: '2rem',
     [theme.breakpoints.up("md")]: {
       paddingTop: "10%",
     },
   },
   subtitle: {
-    width: '80%',
-    paddingBottom: "5rem",
+    width: "90%",
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      width: '80%',
+      paddingBottom: "5rem",
+    },
   },
   title: {
     color: theme.palette.text.secondary,
-    paddingBottom: "5rem"
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "5rem",
+    },
   },
   form: {},
   input: {
