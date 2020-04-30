@@ -500,14 +500,7 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
           // classes={{ section: classes.section }}
         />
       )}
-      {console.log("BOOM", {
-        geoId,
-        country,
-        charts,
-        chartData,
-        profiles,
-        visuals,
-      }) || <Section>{charts}</Section>}
+      <Section>{charts}</Section>
     </Page>
   );
 }
