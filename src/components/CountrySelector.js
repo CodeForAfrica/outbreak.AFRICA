@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import classNames from "classnames";
-
 import { Typography, ButtonBase, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import downArrow from "assets/images/down-arrow-green.svg";
-import flags from "flags";
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   label: {
     color: "#231f20",
     fontWeight: "normal",
@@ -17,10 +12,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "normal",
   },
   countryName: {
-    fontSize: "1.75rem",
-    fontFamily: theme.typography.fontHeading,
     marginLeft: "1.125rem",
-    marginRight: "1.125rem",
     textAlign: "start",
   },
   chooserButton: {
@@ -34,19 +26,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CountrySelector({ context, country }) {
-  const classes = useStyles();
+export default function CountrySelector({ context, country, ...props }) {
+  const classes = useStyles(props);
 
   return (
     <Grid container direction="column">
-      <Grid item>
-        <Typography
-          variant="caption"
-          className={classNames([classes.label, classes.changeCountryLabel])}
-        >
-          Change Country
-        </Typography>
-      </Grid>
       <Grid item>
         <ButtonBase
           disableRipple
@@ -59,11 +43,9 @@ export default function CountrySelector({ context, country }) {
             window.toggleDrawer(context)
           }
         >
-          <img alt="" height="37" src={flags[country.isoCode]} />
-          <Typography variant="subtitle2" className={classes.countryName}>
+          <Typography variant="h2" className={classes.countryName}>
             {country.shortName}
           </Typography>
-          <img alt="" src={downArrow} />
         </ButtonBase>
       </Grid>
     </Grid>
