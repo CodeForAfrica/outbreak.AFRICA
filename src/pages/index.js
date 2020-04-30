@@ -72,7 +72,7 @@ function Home(props) {
   const stories = getStories();
 
   return (
-    <Page classes={{ section: classes.section }}>
+    <Page>
       <Hero />
       <Ticker
         source={{

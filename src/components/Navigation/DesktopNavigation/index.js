@@ -9,7 +9,7 @@ import Link from "components/Link";
 
 import Logo from "components/Navigation/Logo";
 import Search from "./Search";
-// import Menu from './Menu';
+import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,17 +48,17 @@ function DesktopNavigation() {
       <Grid item md={5} container justify="flex-end">
         <Grid item>
           <Button size="large" className={classes.button}>
-            DATA
+            <Menu title="DATA" />
           </Button>
         </Grid>
         <Grid item>
           <Button size="large" className={classes.button}>
-            INSIGHT
+            <Menu title="INSIGHT" />
           </Button>
         </Grid>
         <Grid item>
           <Button size="large" className={classes.button}>
-            RESEARCH
+            <Menu title="RESOURCES" />
           </Button>
         </Grid>
       </Grid>

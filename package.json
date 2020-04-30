@@ -1,6 +1,5 @@
 {
   "name": "covid19map",
-  "version": "0.1.0-alpha.0",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
