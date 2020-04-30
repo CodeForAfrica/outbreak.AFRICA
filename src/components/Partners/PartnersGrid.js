@@ -102,7 +102,7 @@ function PartnersGrid({ ...props }) {
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item>
-        <Typography variant="h1">
+        <Typography variant="h2">
           Our Partners
         </Typography>
       </Grid>
