@@ -48,7 +48,7 @@ function Subscribe() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-      <Typography variant="h1" className={classes.title}>
+      <Typography variant="h2" className={classes.title}>
         Subscribe
       </Typography>
       <Typography
