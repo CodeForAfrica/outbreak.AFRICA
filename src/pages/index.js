@@ -1,6 +1,8 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
+import config from 'config';
+import { getSitePage } from 'cms';
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -76,6 +78,9 @@ function Home(props) {
   const classes = useStyles(props);
   const profiles = getProfiles();
   const stories = getStories();
+
+  const { pageContent: {
+    news_carousel: newsCarouselItems }} = props; 
 
   return (
     <Page classes={{ section: classes.section }}>
@@ -153,5 +158,16 @@ function Home(props) {
     </Page>
   );
 }
+
+Home.getInitialProps = async props => {
+  const {
+    query: { lang: pageLanguage }
+  } = props;
+  const lang = pageLanguage || config.DEFAULT_LANG;
+  const { page: pageContent } = await getSitePage('index', lang);
+  return {
+    pageContent
+  };
+};
 
 export default Home;
