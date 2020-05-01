@@ -112,7 +112,7 @@ function PartnersGrid({ ...props }) {
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={isDesktop? 10 : 2 }
+        spacing={isDesktop ? 10 : 2}
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6} key={partner.name}>

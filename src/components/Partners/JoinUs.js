@@ -23,14 +23,14 @@ function JoinUs() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-        <Typography variant="h2" className={classes.title}>
-          Join us
+      <Typography variant="h2" className={classes.title}>
+        Join us
         </Typography>
-        <Typography variant="subtitle1" className={classes.brief}>
-          Be part of the initiative
+      <Typography variant="subtitle1" className={classes.brief}>
+        Be part of the initiative
         </Typography>
-        <Button variant="outline" color="secondary" className={classes.link}>
-          Learn More
+      <Button variant="outline" color="secondary" className={classes.link}>
+        Learn More
         </Button>
     </Grid>
   );

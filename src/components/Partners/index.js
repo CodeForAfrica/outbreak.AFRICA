@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 1
   },
   oceanBlueDiv: {
-    backgroundColor: "#cbdbfb",   
+    backgroundColor: "#cbdbfb",
     position: "absolute",
     width: "30%",
     bottom: "12.5%",
@@ -92,35 +92,35 @@ function Partners(props) {
 
   return (
     <div className={classes.root}>
-      {isDesktop && 
-      <>
-        <div className={classes.yellowDiv} />
+      {isDesktop &&
+        <>
+          <div className={classes.yellowDiv} />
 
-        <div className={classes.darkBlueDiv} />
+          <div className={classes.darkBlueDiv} />
 
-        <div className={classes.oceanBlueDiv} />
-      </>
-    }
-      <Section classes={{ root: classNames({[classes.section]: isDesktop}) }}>
+          <div className={classes.oceanBlueDiv} />
+        </>
+      }
+      <Section classes={{ root: classNames({ [classes.section]: isDesktop }) }}>
         <Grid
-            container
-            direction={isDesktop ? "row": "column-reverse"}
-          >
-            <Grid item md={5} sm={12} direction="column" className={classes.bannerContainer}>
-              <Grid item className={classes.subscribe}>
-                <Subscribe />
-              </Grid>
-              <Grid item className={classes.joinUs}>
-                <JoinUs />
-              </Grid>
+          container
+          direction={isDesktop ? "row" : "column-reverse"}
+        >
+          <Grid item md={5} sm={12} direction="column" className={classes.bannerContainer}>
+            <Grid item className={classes.subscribe}>
+              <Subscribe />
             </Grid>
-
-            <Grid md={7} sm={12} className={classes.partnerContainer}   >
-              <PartnerGrid />
+            <Grid item className={classes.joinUs}>
+              <JoinUs />
             </Grid>
           </Grid>
-        </Section>
-      </div>
+
+          <Grid md={7} sm={12} className={classes.partnerContainer}   >
+            <PartnerGrid />
+          </Grid>
+        </Grid>
+      </Section>
+    </div>
   );
 }
 

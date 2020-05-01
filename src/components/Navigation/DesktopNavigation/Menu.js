@@ -21,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     marginRight: theme.spacing(2),
   },
+  title: {
+    fontWeight: 700
+  },
   popper: {
     paddingTop: "1.5rem",
     zIndex: 9999,
@@ -71,10 +74,9 @@ function Menu({ title, countries }) {
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
       >
-        <MenuItemLink href="/">Analysis</MenuItemLink>
-        <MenuItemLink href="/">Misinformation</MenuItemLink>
-        <MenuItemLink href="/">Frontline Reportange</MenuItemLink>
-        <MenuItemLink href="/">Multimedia resources</MenuItemLink>
+        <MenuItemLink href="/">Item 1</MenuItemLink>
+        <MenuItemLink href="/">Item 2</MenuItemLink>
+        <MenuItemLink href="/">Item 3</MenuItemLink>
       </MenuList>
     );
   };
@@ -86,9 +88,9 @@ function Menu({ title, countries }) {
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
       >
-        <MenuItemLink href="/">African Experts</MenuItemLink>
-        <MenuItemLink href="/">Published Research</MenuItemLink>
-        <MenuItemLink href="/">Scientific Institutions</MenuItemLink>
+        <MenuItemLink href="/">Item 1</MenuItemLink>
+        <MenuItemLink href="/">Item 2</MenuItemLink>
+        <MenuItemLink href="/">Item 3</MenuItemLink>
       </MenuList>
     );
   };
@@ -101,6 +103,7 @@ function Menu({ title, countries }) {
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
         onClick={handleToggle}
+        className={classes.title}
       >
         {title}
       </Typography>
@@ -136,8 +139,8 @@ function Menu({ title, countries }) {
                 ) : title === "INSIGHT" ? (
                   renderInsightMenu()
                 ) : (
-                  renderResourcesMenu()
-                )}
+                      renderResourcesMenu()
+                    )}
               </ClickAwayListener>
             </Paper>
           </Grow>
