@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     '& a': {
       color: theme.palette.primary.main,
     },
-    '& .hightlight': {
+    '& .highlight': {
         display: "inline-block",
         background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
     },

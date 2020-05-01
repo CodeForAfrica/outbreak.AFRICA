@@ -4,6 +4,8 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
+import RichTypography from "components/RichTypography";
+
 import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
@@ -55,18 +57,13 @@ const useStyles = makeStyles((theme) => ({
       paddingTop: "8.125rem",
     },
   },
-  highlight: {
-    display: "inline-block",
-    background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
-  },
-  highlightBlue: {
-    display: "inline-block",
-    background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )",
-  },
   description: {
     marginTop: "1.0625rem",
     marginBottom: "3rem",
     width: "100%",
+    '& .highlight': {
+      background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
     [theme.breakpoints.up("md")]: {
       maxWidth: "41.12rem",
     },
@@ -86,22 +83,17 @@ function Hero(props) {
         >
           <Grid item container md={7}>
             <Grid item xs={12}>
-              <Typography variant="h1" component="div" className={classes.title}>
-                <span className={classes.highlight}>Contextual</span> data <br />
-                with <span className={classes.highlight}>actionable</span>{" "}
-                insights
-              </Typography>
+              <RichTypography variant="h1" component="div" classes={{ root: classes.title}}>
+                {"<span class='highlight'>Contextual</span> data <br /> \n with <span class='highlight'>actionable</span>  \n insights"}
+              </RichTypography>
             </Grid>
             <Grid item xs={12}>
-              <Typography
+              <RichTypography
                 variant="subtitle1"
-                component="div"
-                className={classes.description}
+                classes={{ root: classes.description}}
               >
-                Data driven analysis on{" "}
-                <span className={classes.highlightBlue}>COVID-19</span> in more
-                than 10 African countries. Find out more about us.
-              </Typography>
+                {"Data driven analysis on  <span class='highlight'>COVID-19</span> in more than 10 African countries. Find out more about us."}
+              </RichTypography>
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
