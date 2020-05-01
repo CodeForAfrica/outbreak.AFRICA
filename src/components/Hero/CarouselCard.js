@@ -72,6 +72,10 @@ const useStyles = makeStyles((theme) => ({
 function CarouselCard({ item, linkTitle }) {
   const classes = useStyles();
 
+  if (!item) {
+    return null
+  }
+
   const { title, brief, image, link_url: link } = item;
 
   return (
@@ -85,15 +89,21 @@ function CarouselCard({ item, linkTitle }) {
           className={classes.contentRoot}
           alignItems="flex-start"
         >
-          <Typography variant="subtitle2" className={classes.bodyTitle}>
-            {title}
-          </Typography>
-          <Typography variant="caption" className={classes.bodyText}>
-            {brief}
-          </Typography>
-          <A href={link} className={classes.cardLink}>
-            {linkTitle}
-          </A>
+          { title && 
+            <Typography variant="subtitle2" className={classes.bodyTitle}>
+              {title}
+            </Typography>
+          }
+          { brief && 
+            <Typography variant="caption" className={classes.bodyText}>
+              {brief}
+            </Typography>
+          }
+          { link && 
+            <A href={link} className={classes.cardLink}>
+              {linkTitle}
+            </A>
+          }
         </Grid>
       </CardActionArea>
     </Card>
@@ -106,8 +116,13 @@ CarouselCard.propTypes = {
     brief: PropTypes.string,
     image: PropTypes.string,
     link_url: PropTypes.string,
-  }).isRequired,
-  linkTitle: PropTypes.string.isRequired,
+  }),
+  linkTitle: PropTypes.string,
 };
+
+CarouselCard.defaultProps = {
+  linkTitle: 'Learn More',
+  item: undefined
+}
 
 export default CarouselCard;

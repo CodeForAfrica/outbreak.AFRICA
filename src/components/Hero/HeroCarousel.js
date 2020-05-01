@@ -74,6 +74,9 @@ function CustomArrowButtons({ next, previous }) {
 }
 
 function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
+  if(!carouselItems || carouselItems.length == 0) {
+    return null;
+  }
   return (
     <Carousel
       swipeable
@@ -108,8 +111,13 @@ HeroCarousel.propTypes = {
     PropTypes.shape({
       title: PropTypes.string,
     })
-  ).isRequired,
-  carouselLinkTitle: PropTypes.string.isRequired,
+  ),
+  carouselLinkTitle: PropTypes.string,
+};
+
+HeroCarousel.defaultProps = {
+  carouselItems: undefined,
+  carouselLinkTitle: undefined,
 };
 
 export default HeroCarousel;

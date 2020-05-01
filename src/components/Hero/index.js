@@ -123,8 +123,8 @@ Hero.propTypes = {
 };
 
 Hero.defaultProps = {
-  carouselItems: [],
-  carouselLinkTitle: "Learn More",
+  carouselItems: undefined,
+  carouselLinkTitle: undefined,
 };
 
 export default Hero;
