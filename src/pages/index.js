@@ -78,8 +78,8 @@ function Home(props) {
   const stories = getStories();
 
   return (
-    <Page>
-      <Hero />
+    <Page classes={{ section: classes.section }}>
+      <Hero classes={{ section: classes.section }}/>
       <Ticker
         source={{
           title: "openAFRICA",
