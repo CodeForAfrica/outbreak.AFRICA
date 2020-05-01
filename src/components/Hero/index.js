@@ -3,9 +3,7 @@ import PropTypes from "prop-types";
 
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
-
-import RichTypography from "components/RichTypography";
+import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
@@ -51,6 +49,11 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     width: "100%",
+    "& .highlight": {
+      display: "inline-block",
+      background:
+        "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
+    },
     [theme.breakpoints.up("md")]: {
       paddingTop: "4.625rem",
     },
