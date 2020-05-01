@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -32,28 +33,40 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   },
 }));
 
-function FeaturedResearch(props) {
+function FeaturedResearch(
+  { title, 
+    description,
+    linkLabel,
+    documentTitle,
+    documentDescription,
+    documentLink,
+    datasetTitle,
+    datasetDescription,
+    datasetLink,
+     ...props
+  }) {
+
   const classes = useStyles(props);
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
         <DocumentsAndDatasets
-          title="Featured Research"
+          title={title}
           highlightChildren={<div className={classes.img} />}
-          description="Get access to the best original scientific and medical research by African experts who understand local context."
+          description={description}
           documentContent={{
-            contentType: "Document",
-            description:
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            linkTitle: "LEARN MORE",
-            children: <img src={docsIcon} alt="Documents" />,
+            contentType: documentTitle,
+            description: documentDescription,
+            linkTitle: linkLabel,
+            link: datasetLink,
+            children: <img src={docsIcon} alt={documentTitle} />,
           }}
           datasetContent={{
-            contentType: "Dataset",
-            description:
-              "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            linkTitle: "LEARN MORE",
-            children: <img src={datasetsIcon} alt="Datasets" />,
+            contentType: datasetTitle,
+            description: datasetDescription,
+            linkTitle: linkLabel,
+            link: datasetLink,
+            children: <img src={datasetsIcon} alt={datasetTitle} />,
           }}
           classes={{
             datasetData: classes.datasetData,
@@ -63,5 +76,29 @@ function FeaturedResearch(props) {
     </div>
   );
 }
+
+FeaturedResearch.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  linkLabel: PropTypes.string,
+  documentTitle: PropTypes.string,
+  documentDescription: PropTypes.string,
+  documentLink: PropTypes.string,
+  datasetTitle: PropTypes.string,
+  datasetDescription: PropTypes.string,
+  datasetLink: PropTypes.string,
+};
+
+FeaturedResearch.defaultProps = {
+  title: undefined,
+  description: undefined,
+  linkLabel: undefined,
+  documentTitle: undefined,
+  documentDescription: undefined,
+  documentLink: undefined,
+  datasetTitle: undefined,
+  datasetDescription: undefined,
+  datasetLink: undefined,
+};
 
 export default FeaturedResearch;

@@ -83,6 +83,15 @@ function Home(props) {
     pageContent: {
       news_carousel: newsCarouselItems,
       hero_link_title: newsCarouselLinkTitle,
+      documents_datasets_title: documentsDatasetsTitle,
+      documents_datasets_description: documentsDatasetsDescription,
+      documents_datasets_link_label: documentsDatasetsLinkLabel,
+      document_title: documentTitle,
+      document_description: documentDescription,
+      document_link: documentLink,
+      dataset_title: datasetTitle,
+      dataset_description: datasetDescription,
+      dataset_link: datasetLink
     },
   } = props;
 
@@ -128,6 +137,14 @@ function Home(props) {
         classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch
+        title={documentsDatasetsTitle}
+        description={documentsDatasetsDescription}
+        documentTitle={documentTitle}
+        documentDescription={documentDescription}
+        documentLink={documentLink}
+        datasetTitle={datasetTitle}
+        datasetDescription={datasetDescription}
+        datasetLink={datasetLink}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
