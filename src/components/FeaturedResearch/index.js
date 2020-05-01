@@ -33,19 +33,18 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   },
 }));
 
-function FeaturedResearch(
-  { title, 
-    description,
-    linkLabel,
-    documentTitle,
-    documentDescription,
-    documentLink,
-    datasetTitle,
-    datasetDescription,
-    datasetLink,
-     ...props
-  }) {
-
+function FeaturedResearch({
+  title,
+  description,
+  linkLabel,
+  documentTitle,
+  documentDescription,
+  documentLink,
+  datasetTitle,
+  datasetDescription,
+  datasetLink,
+  ...props
+}) {
   const classes = useStyles(props);
   return (
     <div className={classes.root}>

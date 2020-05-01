@@ -73,7 +73,7 @@ function CarouselCard({ item, linkTitle }) {
   const classes = useStyles();
 
   if (!item) {
-    return null
+    return null;
   }
 
   const { title, brief, image, link_url: link } = item;
@@ -89,21 +89,21 @@ function CarouselCard({ item, linkTitle }) {
           className={classes.contentRoot}
           alignItems="flex-start"
         >
-          { title && 
+          {title && (
             <Typography variant="subtitle2" className={classes.bodyTitle}>
               {title}
             </Typography>
-          }
-          { brief && 
+          )}
+          {brief && (
             <Typography variant="caption" className={classes.bodyText}>
               {brief}
             </Typography>
-          }
-          { link && 
+          )}
+          {link && (
             <A href={link} className={classes.cardLink}>
               {linkTitle}
             </A>
-          }
+          )}
         </Grid>
       </CardActionArea>
     </Card>
@@ -121,8 +121,8 @@ CarouselCard.propTypes = {
 };
 
 CarouselCard.defaultProps = {
-  linkTitle: 'Learn More',
-  item: undefined
-}
+  linkTitle: "Learn More",
+  item: undefined,
+};
 
 export default CarouselCard;

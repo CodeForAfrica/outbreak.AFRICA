@@ -74,7 +74,7 @@ function CustomArrowButtons({ next, previous }) {
 }
 
 function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
-  if(!carouselItems || carouselItems.length == 0) {
+  if (!carouselItems || carouselItems.length === 0) {
     return null;
   }
   return (

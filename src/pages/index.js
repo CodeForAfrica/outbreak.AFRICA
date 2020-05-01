@@ -91,7 +91,7 @@ function Home(props) {
       document_link: documentLink,
       dataset_title: datasetTitle,
       dataset_description: datasetDescription,
-      dataset_link: datasetLink
+      dataset_link: datasetLink,
     },
   } = props;
 
@@ -139,6 +139,7 @@ function Home(props) {
       <FeaturedResearch
         title={documentsDatasetsTitle}
         description={documentsDatasetsDescription}
+        linkLabel={documentsDatasetsLinkLabel}
         documentTitle={documentTitle}
         documentDescription={documentDescription}
         documentLink={documentLink}
