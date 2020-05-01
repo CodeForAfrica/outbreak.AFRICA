@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   title: {},
 }));
 
-function FeatureStories({ description, stories, title, ...props }) {
+function FeatureStories({ description, stories, title, linkLabel, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -94,6 +94,9 @@ function FeatureStories({ description, stories, title, ...props }) {
 }
 
 FeatureStories.propTypes = {
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  linkLabel: PropTypes.string.isRequired,
   stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 

@@ -178,6 +178,9 @@ function Home(props) {
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
+        title={featuredStoriesTitle}
+        description={featuredStoriesDescription}
+        linkLabel={featuredStoriesLinkLabel}
         stories={stories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
