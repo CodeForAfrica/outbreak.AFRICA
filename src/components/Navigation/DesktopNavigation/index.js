@@ -9,7 +9,7 @@ import Link from "components/Link";
 
 import Logo from "components/Navigation/Logo";
 import Search from "./Search";
-import Menu from './Menu';
+import Menu from "./Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {

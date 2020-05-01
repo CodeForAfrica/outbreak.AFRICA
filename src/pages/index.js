@@ -1,8 +1,8 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
-import config from 'config';
-import { getSitePage } from 'cms';
+import config from "config";
+import { getSitePage } from "cms";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -79,16 +79,16 @@ function Home(props) {
   const profiles = getProfiles();
   const stories = getStories();
 
-  const { pageContent: 
-    {
+  const {
+    pageContent: {
       news_carousel: newsCarouselItems,
-      hero_link_title: newsCarouselLinkTitle 
-    }
-  } = props; 
+      hero_link_title: newsCarouselLinkTitle,
+    },
+  } = props;
 
   return (
     <Page classes={{ section: classes.section }}>
-      <Hero 
+      <Hero
         carouselItems={newsCarouselItems}
         carouselLinkTitle={newsCarouselLinkTitle}
         classes={{ section: classes.section }}
@@ -162,19 +162,22 @@ function Home(props) {
         stories={stories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
-      <Partners classes={{ root: classes.partners, section: classes.section }} />
+      <Partners
+        classes={{ root: classes.partners, section: classes.section }}
+      />
     </Page>
   );
 }
 
-Home.getInitialProps = async props => {
+Home.getInitialProps = async (props) => {
   const {
-    query: { lang: pageLanguage }
+    query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const { page: pageContent } = await getSitePage('index', lang);
+  const { page: pageContent } = await getSitePage("index", lang);
+  console.log(pageContent);
   return {
-    pageContent
+    pageContent,
   };
 };
 

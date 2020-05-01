@@ -9,9 +9,6 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import carousel1 from "assets/images/carusel-1.png";
-import carousel2 from "assets/images/carusel-2.png";
-import carousel3 from "assets/images/carousel3.png";
 import CarouselCard from "./CarouselCard";
 
 const responsive = {
@@ -96,17 +93,23 @@ function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
       itemClass="carousel-item-padding-40-px"
     >
       {carouselItems.map((item) => (
-        <CarouselCard key={item.title} item={item} linkTitle={carouselLinkTitle} />
+        <CarouselCard
+          key={item.title}
+          item={item}
+          linkTitle={carouselLinkTitle}
+        />
       ))}
     </Carousel>
   );
 }
 
 HeroCarousel.propTypes = {
-  carouselItems: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-  })).isRequired,
+  carouselItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+    })
+  ).isRequired,
   carouselLinkTitle: PropTypes.string.isRequired,
-}
+};
 
 export default HeroCarousel;

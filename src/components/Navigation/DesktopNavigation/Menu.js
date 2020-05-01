@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    fontWeight: 700
+    fontWeight: 700,
   },
   popper: {
     paddingTop: "1.5rem",
@@ -139,8 +139,8 @@ function Menu({ title, countries }) {
                 ) : title === "INSIGHT" ? (
                   renderInsightMenu()
                 ) : (
-                      renderResourcesMenu()
-                    )}
+                  renderResourcesMenu()
+                )}
               </ClickAwayListener>
             </Paper>
           </Grow>

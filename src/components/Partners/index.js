@@ -4,7 +4,7 @@ import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import Subscribe from "./Subscribe";
 import PartnerGrid from "./PartnersGrid";
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   yellowDiv: {
     position: "absolute",
     width: "70%",
-    height: '100%',
+    height: "100%",
     right: 0,
     backgroundColor: "#F9FF71",
   },
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     height: "52.5%",
     position: "absolute",
     top: "10%",
-    zIndex: 1
+    zIndex: 1,
   },
   oceanBlueDiv: {
     backgroundColor: "#cbdbfb",
@@ -39,11 +39,11 @@ const useStyles = makeStyles((theme) => ({
   },
   section: {
     zIndex: 1,
-    position: 'relative',
+    position: "relative",
   },
   mobileSection: {
     width: "100%",
-    margin: "0%"
+    margin: "0%",
   },
   bannerContainer: {
     paddingRight: 0,
@@ -56,11 +56,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#F9FF71",
     [theme.breakpoints.up("md")]: {
       background: "transparent",
-      paddingTop: '8%',
+      paddingTop: "8%",
       paddingBottom: "5%",
       paddingRight: 0,
       paddingLeft: 0,
-    }
+    },
   },
   joinUs: {
     padding: "4rem 1.25rem 3rem 1.375rem",
@@ -92,7 +92,7 @@ function Partners(props) {
 
   return (
     <div className={classes.root}>
-      {isDesktop &&
+      {isDesktop && (
         <>
           <div className={classes.yellowDiv} />
 
@@ -100,13 +100,16 @@ function Partners(props) {
 
           <div className={classes.oceanBlueDiv} />
         </>
-      }
+      )}
       <Section classes={{ root: classNames({ [classes.section]: isDesktop }) }}>
-        <Grid
-          container
-          direction={isDesktop ? "row" : "column-reverse"}
-        >
-          <Grid item md={5} sm={12} direction="column" className={classes.bannerContainer}>
+        <Grid container direction={isDesktop ? "row" : "column-reverse"}>
+          <Grid
+            item
+            md={5}
+            sm={12}
+            direction="column"
+            className={classes.bannerContainer}
+          >
             <Grid item className={classes.subscribe}>
               <Subscribe />
             </Grid>
@@ -115,7 +118,7 @@ function Partners(props) {
             </Grid>
           </Grid>
 
-          <Grid md={7} sm={12} className={classes.partnerContainer}   >
+          <Grid md={7} sm={12} className={classes.partnerContainer}>
             <PartnerGrid />
           </Grid>
         </Grid>
