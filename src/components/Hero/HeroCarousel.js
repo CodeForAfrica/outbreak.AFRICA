@@ -121,7 +121,7 @@ function HeroCarousel({ deviceType }) {
       itemClass="carousel-item-padding-40-px"
     >
       {carouselItems.map((item) => (
-        <CarouselCard item={item} />
+        <CarouselCard key={item.title} item={item} />
       ))}
     </Carousel>
   );

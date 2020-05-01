@@ -13,29 +13,13 @@ import wanadata from "assets/partnerLogos/wanadata/wanadata.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#fcfc74",
     width: "100%",
   },
-  typogrid: {
-    padding: "2rem 4rem",
-    [theme.breakpoints.up("md")]: {
-      padding: "3rem 10rem",
-    },
-  },
   imageGrid: {
-    padding: "2rem 4rem",
-    display: "flex",
+    marginTop: '2rem',
     [theme.breakpoints.up("md")]: {
-      padding: "2rem 10rem",
+      marginTop: "4rem",
     },
-  },
-  typo: {
-    color: "white",
-    padding: "1rem 0rem",
-  },
-  title: {
-    fontSize: "3rem",
-    fontWeight: 700,
   },
   img: {
     maxWidth: "100%",
@@ -48,15 +32,14 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     height: "auto",
     [theme.breakpoints.up("md")]: {
-      height: "100px",
-      marginTop: "-2rem",
+      marginTop: "-3rem",
     },
   },
   descGrid: {
-    marginTop: "-0.3rem",
+    marginTop: '-0.25rem',
   },
   divGrid: {
-    marginTop: "1rem",
+    marginTop: "2rem",
   },
 }));
 
@@ -114,23 +97,25 @@ const partners = [
 function PartnersGrid({ ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
-    <Grid item className={classes.root}>
-      <div className={classes.typogrid}>
-        <Typography variant="h2" className={classes.title}>
+    <Grid container direction="column" className={classes.root}>
+      <Grid item>
+        <Typography variant="h2">
           Our Partners
         </Typography>
-      </div>
-
+      </Grid>
       <Grid
+        item
         container
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={10}
+        spacing={isDesktop? 10 : 2 }
       >
         {partners.map((partner) => (
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={6} key={partner.name}>
             <img
               src={partner.image}
               alt={partner.name}
@@ -145,9 +130,9 @@ function PartnersGrid({ ...props }) {
                   : classes.divGrid
               }
             >
-              {useMediaQuery(theme.breakpoints.up("md")) ? (
+              {isDesktop &&
                 <Typography variant="body2">{partner.description}</Typography>
-              ) : null}
+              }
             </div>
           </Grid>
         ))}
