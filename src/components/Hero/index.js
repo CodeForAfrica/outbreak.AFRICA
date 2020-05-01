@@ -93,9 +93,9 @@ function Hero({ carouselItems, carouselLinkTitle, ...props }) {
                 component="div"
                 classes={{ root: classes.title }}
               >
-                {
-                  "<span class='highlight'>Contextual</span> data <br /> \n with <span class='highlight'>actionable</span>  \n insights"
-                }
+                {`<span class='highlight'>Contextual</span> data <br /> 
+                  with <span class='highlight'>actionable</span>  
+                  insights`}
               </RichTypography>
             </Grid>
             <Grid item xs={12}>
@@ -103,9 +103,9 @@ function Hero({ carouselItems, carouselLinkTitle, ...props }) {
                 variant="subtitle1"
                 classes={{ root: classes.description }}
               >
-                {
-                  "Data driven analysis on  <span class='highlight'>COVID-19</span> in more than 10 African countries. Find out more about us."
-                }
+                {`Data driven analysis on  
+                <span class='highlight'>COVID-19</span> in more than 
+                10 African countries. Find out more about us.`}
               </RichTypography>
             </Grid>
           </Grid>

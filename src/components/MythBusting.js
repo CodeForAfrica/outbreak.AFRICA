@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MythBursting({ title, description, linkText, ...props }) {
+function MythBursting({ title, description, link, linkText, ...props }) {
   const classes = useStyles(props);
 
   return (
@@ -89,7 +89,7 @@ function MythBursting({ title, description, linkText, ...props }) {
               <Button
                 variant="outlined"
                 color="primary"
-                href="/"
+                href={link}
                 className={classes.link}
               >
                 {linkText}
@@ -109,6 +109,7 @@ MythBursting.propTypes = {
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   linkText: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
 };
 
 export default MythBursting;

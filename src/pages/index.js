@@ -92,6 +92,15 @@ function Home(props) {
       dataset_title: datasetTitle,
       dataset_description: datasetDescription,
       dataset_link: datasetLink,
+      featured_experts_title: featuredExpertsTitle,
+      featured_experts_brief: featuredExpertsBrief,
+      myth_title: mythTitle,
+      myth_description: mythDescription,
+      myth_link_label: mythLinkLabel,
+      myth_link_url: mythLinkUrl,
+      featured_stories_title: featuredStoriesTitle,
+      featured_stories_description: featuredStoriesDescription,
+      featured_stories_link_label: featuredStoriesLinkLabel,
     },
   } = props;
 
@@ -152,6 +161,8 @@ function Home(props) {
         }}
       />
       <FeaturedResearchers
+        title={featuredExpertsTitle}
+        brief={featuredExpertsBrief}
         profiles={profiles}
         classes={{
           root: classes.featuredResearchers,
@@ -160,20 +171,10 @@ function Home(props) {
       />
 
       <MythBusting
-        title="Myth-busting"
-        description={`
-              A searchable database of
-              <span class="highlight">debunked misinformation</span>
-               <br />
-              backed up by a transnational team of expert
-              <span class="highlight">
-              African fact-
-              <br />
-              checkers
-              </span>
-              to help you test new questionable claims.
-        `}
-        linkText="LEARN MORE"
+        title={mythTitle}
+        description={mythDescription}
+        linkText={mythLinkLabel}
+        link={mythLinkUrl}
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
