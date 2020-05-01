@@ -69,15 +69,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CarouselCard({ item }) {
+function CarouselCard({ item, linkTitle }) {
   const classes = useStyles();
+
+  const {
+    title,
+    brief,
+    image,
+    link_url: link
+  } = item;
 
   return (
     <Card className={classes.root}>
       <CardActionArea style={{ height: "100%" }}>
         <CardMedia
           className={classes.media}
-          image={item.mediaLink}
+          image={image}
           title="Item"
         />
         <Grid
@@ -88,13 +95,13 @@ function CarouselCard({ item }) {
           alignItems="flex-start"
         >
           <Typography variant="subtitle2" className={classes.bodyTitle}>
-            {item.title}
+            {title}
           </Typography>
           <Typography variant="caption" className={classes.bodyText}>
-            {item.brief}
+            {brief}
           </Typography>
-          <A href={item.link} className={classes.cardLink}>
-            {item.linkTitle}
+          <A href={link} className={classes.cardLink}>
+            {linkTitle}
           </A>
         </Grid>
       </CardActionArea>
@@ -103,7 +110,13 @@ function CarouselCard({ item }) {
 }
 
 CarouselCard.propTypes = {
-  item: PropTypes.shape().isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    brief: PropTypes.string,
+    image: PropTypes.string,
+    link_url: PropTypes.string,
+  }).isRequired,
+  linkTitle: PropTypes.string,
 };
 
 export default CarouselCard;

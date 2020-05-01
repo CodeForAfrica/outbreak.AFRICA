@@ -79,12 +79,20 @@ function Home(props) {
   const profiles = getProfiles();
   const stories = getStories();
 
-  const { pageContent: {
-    news_carousel: newsCarouselItems }} = props; 
+  const { pageContent: 
+    {
+      news_carousel: newsCarouselItems,
+      hero_link_title: newsCarouselLinkTitle 
+    }
+  } = props; 
 
   return (
     <Page classes={{ section: classes.section }}>
-      <Hero classes={{ section: classes.section }}/>
+      <Hero 
+        carouselItems={newsCarouselItems}
+        carouselLinkTitle={newsCarouselLinkTitle}
+        classes={{ section: classes.section }}
+      />
       <Ticker
         source={{
           title: "openAFRICA",

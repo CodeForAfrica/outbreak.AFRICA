@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Hero(props) {
+function Hero({ carouselItems, carouselLinkTitle, ...props}) {
   const classes = useStyles(props);
   return (
     <div className={classes.root}>
@@ -97,12 +98,21 @@ function Hero(props) {
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
-            <HeroCarousel />
+            <HeroCarousel carouselItems={carouselItems} carouselLinkTitle={carouselLinkTitle}  />
           </Grid>
         </Grid>
       </Section>
     </div>
   );
 }
+Hero.propTypes = {
+  carouselItems: PropTypes.array,
+  carouselLinkTitle: PropTypes.string,
+};
+
+Hero.defaultProps = {
+  carouselItems: [],
+  carouselLinkTitle: 'Learn More'
+};
 
 export default Hero;
