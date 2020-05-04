@@ -60,6 +60,36 @@ export function getProfiles() {
       name: "Wandia Njoya",
       title: "Daystar University",
     },
+    {
+      id: 6,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person1Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
+    {
+      id: 7,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person2Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
+    {
+      id: 8,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person3Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
   ];
 }
 

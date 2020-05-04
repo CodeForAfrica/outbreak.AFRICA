@@ -29,10 +29,10 @@ function ProfileList({
   const rootRef = useRef(null);
 
   return (
-    <div className={classes.root} ref={rootRef}>
-      <Grid container direction="row" justify="center" spacing={6}>
+    <div className={classes.root} ref={rootRef} style={{ padding: '2rem 2rem' }}>
+      <Grid container direction="row" justify="center" spacing={2}>
         {profiles.map((profile, index) => (
-          <Grid item xs={12} md={3} key={profile.id} style={{ margin: '3rem' }}>
+          <Grid item xs={12} md={3} key={profile.id}>
             <Profile
               key={profile.title}
               classes={{
