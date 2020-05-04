@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from 'components/Page';
 import Hero from "components/Hero";
-import FeaturedResearch from "components/FeaturedResearch";
+import Subscribe from "components/Subscribe";
 import FeaturedResearchers from "components/FeaturedResearchers";
 
 import { getProfiles, getStories } from "lib";
@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
+  },
+  subscribe: {
+    marginTop: '4rem'
   },
   featuredResearch: {
     marginTop: "4.375rem",
@@ -46,21 +49,9 @@ function Research() {
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
-      <FeaturedResearchers
-        profiles={profiles}
-        classes={{
-          root: classes.featuredResearchers,
-          section: classes.section,
-        }}
-      />
-
-      <FeaturedResearch
-        classes={{
-          root: classes.featuredResearchers,
-          section: classes.section,
-        }}
-      />
-
+      <div style={{ marginTop: '5rem' }}>
+        <Subscribe />
+      </div>
     </Page>
   )
 }
