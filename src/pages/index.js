@@ -14,7 +14,7 @@ import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
 
-import { getProfiles, getStories } from "lib";
+import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -77,7 +77,6 @@ const useStyles = makeStyles((theme) => ({
 function Home(props) {
   const classes = useStyles(props);
   const profiles = getProfiles();
-  const stories = getStories();
 
   const {
     pageContent: {
@@ -101,6 +100,7 @@ function Home(props) {
       featured_stories_title: featuredStoriesTitle,
       featured_stories_description: featuredStoriesDescription,
       featured_stories_link_label: featuredStoriesLinkLabel,
+      stories
     },
   } = props;
 
@@ -197,7 +197,6 @@ Home.getInitialProps = async (props) => {
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const { page: pageContent } = await getSitePage("index", lang);
-  console.log(pageContent);
   return {
     pageContent,
   };

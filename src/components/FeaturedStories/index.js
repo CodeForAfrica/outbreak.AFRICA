@@ -55,6 +55,21 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
+  const storiesList = stories && stories.map((story, index) => {
+    return {
+      id: index,
+      title: story.title,
+      description: story.description,
+      link: {
+        title: linkLabel,
+        url: story.link_label,
+      },
+      image: {
+        url: story.image
+      }
+    }
+  })
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -80,7 +95,7 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
           <StoryList
             cellHeight={cellHeight}
             height={cellHeight && cellHeight + 48}
-            stories={stories}
+            stories={storiesList}
             classes={{
               root: classes.storyList,
               story: classes.storyListStory,
