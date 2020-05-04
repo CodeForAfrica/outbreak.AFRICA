@@ -17,8 +17,11 @@ const useStyles = makeStyles((theme) => ({
   button: {
     border: '1px solid grey',
     margin: '1rem',
-    padding: '0.5rem 1.5rem'
-
+    padding: '0.5rem 1.5rem',
+    "&:hover": {
+      backgroundColor: "#0050FF",
+      color: 'white'
+    }
   }
 }));
 
