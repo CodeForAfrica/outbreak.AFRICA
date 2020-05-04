@@ -70,29 +70,27 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
           justify="flex-start"
           alignItems="center"
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} container>
             <RichTypography variant="h2" className={classes.title}>
               {title || "Featured Researchers"}
             </RichTypography>
-          </Grid>
-          <Grid item>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
                 "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
             </RichTypography>
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <ProfileList
-            cellHeight={cellHeight}
-            height={cellHeight && cellHeight + 48}
-            profiles={profiles}
-            classes={{
-              root: classes.profileList,
-              profile: classes.profileListProfile,
-              profiles: classes.profileListProfiles,
-            }}
-          />
+          <Grid item xs={12}>
+            <ProfileList
+              cellHeight={cellHeight}
+              height={cellHeight && cellHeight + 48}
+              profiles={profiles}
+              classes={{
+                root: classes.profileList,
+                profile: classes.profileListProfile,
+                profiles: classes.profileListProfiles,
+              }}
+            />
+          </Grid>
         </Grid>
       </Section>
     </div>
