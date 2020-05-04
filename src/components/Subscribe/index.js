@@ -13,14 +13,14 @@ const useStyles = makeStyles((theme) => ({
     color: 'white',
   },
   subscribeGrid: {
-    padding: '3rem 0rem'
+    padding: '8rem 0rem'
   },
   subtitle: {
-    paddingBottom: "2rem",
+    padding: "2rem 0rem",
   },
   title: {
     color: theme.palette.text.secondary,
-    paddingBottom: "2rem",
+    padding: '2rem 0rem'
   },
   form: {},
   input: {
@@ -34,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
     height: "2.5rem",
   },
   subscribeImage: {
-    height: '25rem'
+    height: 'auto',
+    width: '80%'
   },
   button: {
     padding: 0,
@@ -50,7 +51,7 @@ function Subscribe() {
         <img src={source} alt="Subscribe" className={classes.subscribeImage} />
       </Grid>
 
-      <Grid item s={12} md={6} className={classes.subscribeGrid}>
+      <Grid item xs={12} md={6} className={classes.subscribeGrid}>
         <Typography variant="h2" className={classes.title}>
           Subscribe
         </Typography>

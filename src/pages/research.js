@@ -7,7 +7,7 @@ import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
 import ProfileList from 'components/Research/ProfileList'
 
-import { getProfiles, getStories } from "lib";
+import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
 function Research() {
   const classes = useStyles();
   const profiles = getProfiles();
-  console.log(profiles)
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
