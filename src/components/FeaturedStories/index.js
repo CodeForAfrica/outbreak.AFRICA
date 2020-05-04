@@ -55,20 +55,22 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
-  const storiesList = stories && stories.map((story, index) => {
-    return {
-      id: index,
-      title: story.title,
-      description: story.description,
-      link: {
-        title: linkLabel,
-        url: story.link_label,
-      },
-      image: {
-        url: story.image
-      }
-    }
-  })
+  const storiesList =
+    stories &&
+    stories.map((story, index) => {
+      return {
+        id: index,
+        title: story.title,
+        description: story.description,
+        link: {
+          title: linkLabel,
+          url: story.link_label,
+        },
+        image: {
+          url: story.image,
+        },
+      };
+    });
 
   return (
     <div className={classes.root}>

@@ -100,7 +100,7 @@ function Home(props) {
       featured_stories_title: featuredStoriesTitle,
       featured_stories_description: featuredStoriesDescription,
       featured_stories_link_label: featuredStoriesLinkLabel,
-      stories
+      stories,
     },
   } = props;
 
