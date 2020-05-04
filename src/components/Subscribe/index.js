@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: theme.typography.caption.lineHeight,
     borderBottom: "1px solid white",
     width: '80%'
+
   },
   img: {
     height: "2.5rem",
@@ -51,7 +52,7 @@ function Subscribe() {
         <img src={source} alt="Subscribe" className={classes.subscribeImage} />
       </Grid>
 
-      <Grid item xs={12} md={6} className={classes.subscribeGrid}>
+      <Grid item xs={8} md={6} className={classes.subscribeGrid}>
         <Typography variant="h2" className={classes.title}>
           Subscribe
         </Typography>

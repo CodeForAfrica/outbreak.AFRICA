@@ -11,9 +11,6 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     padding: '4rem 0rem'
   },
-  buttonGrid: {
-    margin: '1rem'
-  },
   button: {
     border: '1px solid grey',
     margin: '1rem',
@@ -41,10 +38,10 @@ function Filter() {
         <RichTypography variant="h2">Featured Experts</RichTypography>
       </Grid>
 
-      <Grid container item xs={12} direction="row" justify="flex-start" alignItems="center">
+      <Grid container item xs={12} direction="row" justify="flex-start" alignItems="center" spacing={3}>
         <Typography variant="caption"> Filter: </Typography>
         {filterData.map(data =>
-          <Grid item className={classes.buttonGrid}>
+          <Grid item xs={3} sm={6} md={1}>
             <Button size="small" rounded className={classes.button}>
               <Typography variant="caption" className={classes.caption}>{data.topic}</Typography>
             </Button>
