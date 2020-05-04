@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
 
 import email from "assets/email.svg";
-import source from "assets/subscribe-image.svg";
+import source from "assets/subscribe-image.png";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
     height: "2.5rem",
   },
   subscribeImage: {
-    height: '20rem'
+    height: '25rem'
   },
   button: {
     padding: 0,
