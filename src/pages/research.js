@@ -23,12 +23,6 @@ const useStyles = makeStyles((theme) => ({
       width: "102.5rem",
     },
   },
-  featuredData: {
-    marginTop: "2.875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "9.92125rem",
-    },
-  },
   featuredResearch: {
     marginTop: "4.375rem",
     [theme.breakpoints.up("md")]: {
@@ -40,31 +34,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
-  },
-  featuredStories: {
-    marginTop: "3rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "8.3125rem",
-    },
-  },
-  mythBusting: {
-    marginTop: "6.375rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "11.75rem",
-    },
-  },
-  partners: {
-    marginTop: "4.96875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "11.75rem",
-    },
-  },
-  ticker: {
-    marginTop: "6.1875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
+  }
 }));
 
 
