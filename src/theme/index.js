@@ -312,6 +312,10 @@ deepmerge(
           borderBottom: `2px solid ${theme.palette.secondary.main}`,
         },
       },
+      outlinedSizeSmall: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
       sizeLarge: {
         // Some CSS
         fontSize: pxToRem(22),
