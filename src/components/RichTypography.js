@@ -1,20 +1,21 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import React from "react";
+import { PropTypes } from "prop-types";
 
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    '& a': {
+    "& a": {
       color: theme.palette.primary.main,
     },
-    '& .highlight': {
-        display: "inline-block",
-        background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
+    "& .highlight": {
+      display: "inline-block",
+      background:
+        "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
     },
-  }
+  },
 }));
 
 function RichTypography({ children, variant, ...props }) {
@@ -30,7 +31,7 @@ function RichTypography({ children, variant, ...props }) {
       component="div"
       className={classes.root}
       dangerouslySetInnerHTML={{
-        __html: children
+        __html: children,
       }}
       {...props}
     />
@@ -39,12 +40,12 @@ function RichTypography({ children, variant, ...props }) {
 
 RichTypography.propTypes = {
   children: PropTypes.string,
-  variant: PropTypes.string
+  variant: PropTypes.string,
 };
 
 RichTypography.defaultProps = {
   children: null,
-  variant: 'body1'
+  variant: "body1",
 };
 
 export default RichTypography;
