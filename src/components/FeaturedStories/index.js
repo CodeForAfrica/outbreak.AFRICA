@@ -64,29 +64,27 @@ function FeatureStories({ description, stories, title, ...props }) {
           justify="flex-start"
           alignItems="center"
         >
-          <Grid item xs={12}>
+          <Grid item xs={12} container>
             <RichTypography variant="h2" className={classes.title}>
               {title || "Featured Stories"}
             </RichTypography>
-          </Grid>
-          <Grid item>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
                 "View and explore how we visualise Kenya’s budget data to show how much money each county has received from the national government, and how the money is allocated and utilized based on each county’s priorities"}
             </RichTypography>
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <StoryList
-            cellHeight={cellHeight}
-            height={cellHeight && cellHeight + 48}
-            stories={stories}
-            classes={{
-              root: classes.storyList,
-              story: classes.storyListStory,
-              stories: classes.storyListStories,
-            }}
-          />
+          <Grid item xs={12}>
+            <StoryList
+              cellHeight={cellHeight}
+              height={cellHeight && cellHeight + 48}
+              stories={stories}
+              classes={{
+                root: classes.storyList,
+                story: classes.storyListStory,
+                stories: classes.storyListStories,
+              }}
+            />
+          </Grid>
         </Grid>
       </Section>
     </div>
