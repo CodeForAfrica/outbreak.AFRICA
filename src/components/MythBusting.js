@@ -59,8 +59,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MythBursting({ title, description, link, linkText, ...props }) {
+function MythBursting({ myth, ...props }) {
   const classes = useStyles(props);
+
+  if (!myth) {
+    return null
+  }
+
+  const { title, description, link_url: link, link_label: linkLabel } = myth;
 
   return (
     <div className={classes.root}>
@@ -92,7 +98,7 @@ function MythBursting({ title, description, link, linkText, ...props }) {
                 href={link}
                 className={classes.link}
               >
-                {linkText}
+                {linkLabel}
               </Button>
             </div>
           </Grid>
@@ -106,10 +112,16 @@ function MythBursting({ title, description, link, linkText, ...props }) {
 }
 
 MythBursting.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  linkText: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  myth: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    lin_label: PropTypes.string,
+    link_url: PropTypes.string,
+  })
 };
+
+MythBursting.defaultProps = {
+  myth: undefined
+}
 
 export default MythBursting;

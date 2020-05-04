@@ -75,12 +75,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Hero(
-  { heroCarousel: { 
-    carousel_items: carouselItems,
-    link_title: linkTitle },
-     ...props
-  }) {
+function Hero({ heroCarousel, ...props}) {
+
   const classes = useStyles(props);
   return (
     <div className={classes.root}>
@@ -115,10 +111,10 @@ function Hero(
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
-            <HeroCarousel
-              carouselItems={carouselItems}
-              carouselLinkTitle={linkTitle}
-            />
+            { heroCarousel && <HeroCarousel
+              carouselItems={heroCarousel.carouselItems}
+              carouselLinkTitle={heroCarousel.link_title}
+            /> }
           </Grid>
         </Grid>
       </Section>
@@ -133,8 +129,7 @@ Hero.propTypes = {
 };
 
 Hero.defaultProps = {
-  carouselItems: undefined,
-  carouselLinkTitle: undefined,
+  heroCarousel: undefined,
 };
 
 export default Hero;

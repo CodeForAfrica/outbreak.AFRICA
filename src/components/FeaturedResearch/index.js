@@ -33,23 +33,29 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   },
 }));
 
-function FeaturedResearch({
-  title,
-  description,
-  link_label: linkLabel,
-  document: {
-    title: documentTitle,
-    description: documentDescription,
-    link: documentLink
-  },
-  dataset: {
-    title: datasetTitle,
-    description: datasetDescription,
-    link: datasetLink
-  },
-  ...props
-}) {
+function FeaturedResearch({ documentsAndDatasets, ...props }) {
   const classes = useStyles(props);
+
+  if (!documentsAndDatasets) {
+    return null
+  }
+  
+  const {
+    title,
+    description,
+    link_label: linkLabel,
+    document: {
+      title: documentTitle,
+      description: documentDescription,
+      link: documentLink
+    },
+    dataset: {
+      title: datasetTitle,
+      description: datasetDescription,
+      link: datasetLink
+    },
+  } = documentsAndDatasets;
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -99,11 +105,7 @@ FeaturedResearch.propTypes = {
 };
 
 FeaturedResearch.defaultProps = {
-  title: undefined,
-  description: undefined,
-  link_label: undefined,
-  document: undefined,
-  dataset: undefined,
+  documentsAndDatasets: undefined
 };
 
 export default FeaturedResearch;

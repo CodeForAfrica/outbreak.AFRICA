@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   profileListProfiles: {},
 }));
 
-function FeatureResearchers({ description, profiles, title, ...props }) {
+function FeatureResearchers({ featuredExperts, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -61,9 +61,15 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
-  const profilesList =
-    profiles &&
-    profiles.map((profile, index) => {
+  if (!featuredExperts) {
+    return null
+  }
+
+  const { brief, experts, title } = featuredExperts
+
+  const profiles =
+    experts &&
+    experts.map((profile, index) => {
       return {
         id: index,
         name: profile.name,
@@ -91,7 +97,7 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
           </Grid>
           <Grid item>
             <RichTypography variant="subtitle1" className={classes.description}>
-              {description ||
+              {brief ||
                 "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
             </RichTypography>
           </Grid>
@@ -100,7 +106,7 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
           <ProfileList
             cellHeight={cellHeight}
             height={cellHeight && cellHeight + 48}
-            profiles={profilesList}
+            profiles={profiles}
             classes={{
               root: classes.profileList,
               profile: classes.profileListProfile,
@@ -114,7 +120,14 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
 }
 
 FeatureResearchers.propTypes = {
-  profiles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  featuredExperts: PropTypes.shape({
+    experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    title: PropTypes.string,
+    brief: PropTypes.string,
+  })
 };
 
+FeatureResearchers.defaultProps = {
+  featuredExperts: undefined
+}
 export default FeatureResearchers;

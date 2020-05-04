@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
   title: {},
 }));
 
-function FeatureStories({ description, stories, title, linkLabel, ...props }) {
+function FeatureStories({ featuredStories, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -55,6 +55,10 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
+  if (!featuredStories) {
+    return null
+  }
+  const { description, stories, title, link_label: linkLabel } = featuredStories;
   const storiesList =
     stories &&
     stories.map((story, index) => {
@@ -64,7 +68,7 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
         description: story.description,
         link: {
           title: linkLabel,
-          url: story.link_label,
+          url: story.link_url,
         },
         image: {
           url: story.image,
@@ -111,10 +115,16 @@ function FeatureStories({ description, stories, title, linkLabel, ...props }) {
 }
 
 FeatureStories.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  linkLabel: PropTypes.string.isRequired,
-  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  featuredStories: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    link_label: PropTypes.string,
+    stories: PropTypes.arrayOf(PropTypes.shape({})),
+  })
 };
+
+FeatureStories.defaultProps = {
+  featuredStories: undefined
+}
 
 export default FeatureStories;

@@ -77,36 +77,18 @@ function Home(props) {
 
   const {
     pageContent: {
-      news_carousel: newsCarouselItems,
-      hero_link_title: newsCarouselLinkTitle,
-      documents_datasets_title: documentsDatasetsTitle,
-      documents_datasets_description: documentsDatasetsDescription,
-      documents_datasets_link_label: documentsDatasetsLinkLabel,
-      document_title: documentTitle,
-      document_description: documentDescription,
-      document_link: documentLink,
-      dataset_title: datasetTitle,
-      dataset_description: datasetDescription,
-      dataset_link: datasetLink,
-      featured_experts_title: featuredExpertsTitle,
-      featured_experts_brief: featuredExpertsBrief,
-      myth_title: mythTitle,
-      myth_description: mythDescription,
-      myth_link_label: mythLinkLabel,
-      myth_link_url: mythLinkUrl,
-      featured_stories_title: featuredStoriesTitle,
-      featured_stories_description: featuredStoriesDescription,
-      featured_stories_link_label: featuredStoriesLinkLabel,
-      experts,
-      stories,
+      hero_carousel: heroCarousel,
+      documents_and_datasets: documentsAndDatasets,
+      featured_stories: featuredStories,
+      featured_experts: featuredExperts,
+      myth
     },
   } = props;
 
   return (
     <Page classes={{ section: classes.section }}>
       <Hero
-        carouselItems={newsCarouselItems}
-        carouselLinkTitle={newsCarouselLinkTitle}
+        heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
       <Ticker
@@ -144,42 +126,25 @@ function Home(props) {
         classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch
-        title={documentsDatasetsTitle}
-        description={documentsDatasetsDescription}
-        linkLabel={documentsDatasetsLinkLabel}
-        documentTitle={documentTitle}
-        documentDescription={documentDescription}
-        documentLink={documentLink}
-        datasetTitle={datasetTitle}
-        datasetDescription={datasetDescription}
-        datasetLink={datasetLink}
+        documentsAndDatasets={documentsAndDatasets}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
         }}
       />
       <FeaturedResearchers
-        title={featuredExpertsTitle}
-        brief={featuredExpertsBrief}
-        profiles={experts}
+        featuredExperts={featuredExperts}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
         }}
       />
-
       <MythBusting
-        title={mythTitle}
-        description={mythDescription}
-        linkText={mythLinkLabel}
-        link={mythLinkUrl}
+        myth={myth}
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
-        title={featuredStoriesTitle}
-        description={featuredStoriesDescription}
-        linkLabel={featuredStoriesLinkLabel}
-        stories={stories}
+        featuredStories={featuredStories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
       <Partners
@@ -195,6 +160,8 @@ Home.getInitialProps = async (props) => {
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const { page: pageContent } = await getSitePage("index", lang);
+
+  console.log(pageContent);
   return {
     pageContent,
   };
