@@ -116,7 +116,7 @@ function Home(props) {
       />
       <FeaturedResearch
         classes={{
-          root: classes.featuredResearchers,
+          root: classes.featuredResearch,
           section: classes.section,
         }}
       />
