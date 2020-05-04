@@ -126,7 +126,7 @@ function Hero(
   );
 }
 Hero.propTypes = {
-  heroCarousel: PropTypes.shapeOf({
+  heroCarousel: PropTypes.shape({
     carousel_items: PropTypes.arrayOf(PropTypes.shape({})),
     link_title: PropTypes.string,
   })

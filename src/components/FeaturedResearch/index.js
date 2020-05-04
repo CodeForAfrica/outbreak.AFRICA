@@ -36,13 +36,17 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
 function FeaturedResearch({
   title,
   description,
-  linkLabel,
-  documentTitle,
-  documentDescription,
-  documentLink,
-  datasetTitle,
-  datasetDescription,
-  datasetLink,
+  link_label: linkLabel,
+  document: {
+    title: documentTitle,
+    description: documentDescription,
+    link: documentLink
+  },
+  dataset: {
+    title: datasetTitle,
+    description: datasetDescription,
+    link: datasetLink
+  },
   ...props
 }) {
   const classes = useStyles(props);
@@ -57,7 +61,7 @@ function FeaturedResearch({
             contentType: documentTitle,
             description: documentDescription,
             linkTitle: linkLabel,
-            link: datasetLink,
+            link: documentLink,
             children: <img src={docsIcon} alt={documentTitle} />,
           }}
           datasetContent={{
@@ -77,27 +81,29 @@ function FeaturedResearch({
 }
 
 FeaturedResearch.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  linkLabel: PropTypes.string,
-  documentTitle: PropTypes.string,
-  documentDescription: PropTypes.string,
-  documentLink: PropTypes.string,
-  datasetTitle: PropTypes.string,
-  datasetDescription: PropTypes.string,
-  datasetLink: PropTypes.string,
+  documentsAndDatasets: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    link_label: PropTypes.string,
+    document: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      link: PropTypes.string,
+    }),
+    dataset: PropTypes.shape({
+      title: PropTypes.string,
+      description: PropTypes.string,
+      link: PropTypes.string,
+    }),
+  })
 };
 
 FeaturedResearch.defaultProps = {
   title: undefined,
   description: undefined,
-  linkLabel: undefined,
-  documentTitle: undefined,
-  documentDescription: undefined,
-  documentLink: undefined,
-  datasetTitle: undefined,
-  datasetDescription: undefined,
-  datasetLink: undefined,
+  link_label: undefined,
+  document: undefined,
+  dataset: undefined,
 };
 
 export default FeaturedResearch;
