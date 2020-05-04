@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from 'components/Page';
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
-import FeaturedResearchGrid from "components/Research";
+//import FeaturedResearchGrid from "components/Research";
+import ProfileList from 'components/Research/ProfileList'
 
 import { getProfiles, getStories } from "lib";
 
@@ -40,13 +41,12 @@ const useStyles = makeStyles((theme) => ({
 function Research() {
   const classes = useStyles();
   const profiles = getProfiles();
-  const stories = getStories();
-
+  console.log(profiles)
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
       <div className={classes.sectionGrid}>
-        <FeaturedResearchGrid />
+        <ProfileList profiles={profiles} />
       </div>
       <div className={classes.sectionGrid}>
         <Subscribe />
