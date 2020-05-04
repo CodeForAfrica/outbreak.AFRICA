@@ -14,8 +14,6 @@ import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
 
-import { getProfiles } from "lib";
-
 const useStyles = makeStyles((theme) => ({
   root: {},
   section: {
@@ -76,7 +74,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Home(props) {
   const classes = useStyles(props);
-  const profiles = getProfiles();
 
   const {
     pageContent: {
@@ -100,6 +97,7 @@ function Home(props) {
       featured_stories_title: featuredStoriesTitle,
       featured_stories_description: featuredStoriesDescription,
       featured_stories_link_label: featuredStoriesLinkLabel,
+      experts,
       stories,
     },
   } = props;
@@ -163,7 +161,7 @@ function Home(props) {
       <FeaturedResearchers
         title={featuredExpertsTitle}
         brief={featuredExpertsBrief}
-        profiles={profiles}
+        profiles={experts}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,

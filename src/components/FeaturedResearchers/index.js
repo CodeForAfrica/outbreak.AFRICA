@@ -61,6 +61,20 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
+  const profilesList =
+    profiles &&
+    profiles.map((profile, index) => {
+      return {
+        id: index,
+        name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
+        image: {
+          url: profile.image,
+        },
+      };
+    });
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -86,7 +100,7 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
           <ProfileList
             cellHeight={cellHeight}
             height={cellHeight && cellHeight + 48}
-            profiles={profiles}
+            profiles={profilesList}
             classes={{
               root: classes.profileList,
               profile: classes.profileListProfile,
