@@ -2,7 +2,10 @@ import React from 'react'
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
+
 import email from "assets/email.svg";
+import source from "assets/subscribe-image.svg";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,6 +33,9 @@ const useStyles = makeStyles((theme) => ({
   img: {
     height: "2.5rem",
   },
+  subscribeImage: {
+    height: '20rem'
+  },
   button: {
     padding: 0,
     paddingTop: "1rem",
@@ -40,7 +46,9 @@ function Subscribe() {
   const classes = useStyles()
   return (
     <Grid container direction="row" justify="center" className={classes.root} spacing={5}>
-      <Grid item xs={12} md={6}>One</Grid>
+      <Grid item xs={12} md={6}>
+        <img src={source} alt="Subscribe" className={classes.subscribeImage} />
+      </Grid>
 
       <Grid item s={12} md={6} className={classes.subscribeGrid}>
         <Typography variant="h2" className={classes.title}>
