@@ -93,6 +93,41 @@ export function getProfiles() {
   ];
 }
 
+export function getFilterData() {
+  return [
+    {
+      id: 1,
+      topic: "Lorem",
+      slug: 'lorem'
+    },
+    {
+      id: 2,
+      topic: "Ipsum",
+      slug: 'ipsum'
+    },
+    {
+      id: 3,
+      topic: "Dolor",
+      slug: 'dolor'
+    },
+    {
+      id: 4,
+      topic: "Sit",
+      slug: 'sit'
+    },
+    {
+      id: 5,
+      topic: "Amet",
+      slug: 'amet'
+    },
+    {
+      id: 6,
+      topic: "Sed",
+      slug: 'sed'
+    }
+  ];
+}
+
 export function getStories() {
   return [
     {

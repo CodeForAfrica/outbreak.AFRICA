@@ -4,11 +4,10 @@ import { PropTypes } from "prop-types";
 
 import clsx from "clsx";
 
-import { Grid, GridListTile } from "@material-ui/core";
-
-//import GridList from "../ScrollableGridList";
+import { Grid } from "@material-ui/core";
 import Profile from "../ListItem";
 import useStyles from "./useStyles";
+import Filter from '../Filter';
 
 function ProfileList({
   cellHeight,
@@ -29,7 +28,8 @@ function ProfileList({
   const rootRef = useRef(null);
 
   return (
-    <div className={classes.root} ref={rootRef} style={{ padding: '2rem 2rem' }}>
+    <div className={classes.root} ref={rootRef}>
+      <Filter />
       <Grid container direction="row" justify="center" spacing={2}>
         {profiles.map((profile, index) => (
           <Grid item xs={12} md={3} key={profile.id}>

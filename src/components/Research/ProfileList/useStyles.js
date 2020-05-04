@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    //width: "calc(((100vw - 100%) / 2) + 100%)",
+    padding: '5rem'
   },
   profile: {},
   profileDescription: {},
