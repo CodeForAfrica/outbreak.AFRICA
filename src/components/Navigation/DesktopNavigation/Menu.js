@@ -12,7 +12,7 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import DataMenu from "./DataMenu";
+import DataMenu from "../DataMenu";
 
 const useStyles = makeStyles((theme) => ({
   root: {

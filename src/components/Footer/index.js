@@ -129,7 +129,7 @@ MainFooter.propTypes = {
       initiative_logo: PropTypes.shape({}),
       quick_links: PropTypes.shape({}),
       legal_links: PropTypes.shape({}),
-    })
+    }),
   }).isRequired,
 };
 

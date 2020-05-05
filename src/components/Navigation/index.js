@@ -94,7 +94,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ outbreak: { page: { navigation} , countries }, ...props }) {
+function Navigation({
+  outbreak: {
+    page: { navigation },
+    countries,
+  },
+  ...props
+}) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -104,17 +110,11 @@ function Navigation({ outbreak: { page: { navigation} , countries }, ...props })
       <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation
-              countries={countries}
-              navigation={navigation}
-            />
+            <DesktopNavigation countries={countries} navigation={navigation} />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation
-                countries={countries}
-                navigation={navigation}
-              />
+              <MobileNavigation countries={countries} navigation={navigation} />
             </>
           )}
         </Toolbar>
@@ -132,7 +132,7 @@ Navigation.propTypes = {
       navigation: PropTypes.arrayOf(PropTypes.shape({})),
     }),
     countries: PropTypes.arrayOf(PropTypes.shape({})),
-  })
+  }).isRequired,
 };
 
 export default Navigation;

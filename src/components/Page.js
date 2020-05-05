@@ -14,27 +14,16 @@ const useStyles = makeStyles(() => ({
   section: {},
 }));
 
-function Page({
-  children,
-  classes: classesProp,
-  outbreak,
-  ...props
-}) {
+function Page({ children, classes: classesProp, outbreak, ...props }) {
   const classes = useStyles({ classes: classesProp });
 
   return (
     <div className={classes.root}>
       <SEO {...props} />
-      <Navigation
-        outbreak={outbreak}
-        classes={{ section: classes.section }}
-      />
+      <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
 
       {children}
-      <Footer
-        outbreak={outbreak}
-        classes={{ section: classes.section }}
-      />
+      <Footer outbreak={outbreak} classes={{ section: classes.section }} />
     </div>
   );
 }

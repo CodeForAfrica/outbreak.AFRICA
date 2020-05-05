@@ -90,12 +90,12 @@ function CarouselCard({ item, linkTitle }) {
           )}
           {link && (
             <Button
-            variant="outlined"
-            href={item.link}
-            className={classes.cardLink}
-          >
-            {item.linkTitle}
-          </Button>
+              variant="outlined"
+              href={link}
+              className={classes.cardLink}
+            >
+              {linkTitle}
+            </Button>
           )}
         </Grid>
       </CardActionArea>

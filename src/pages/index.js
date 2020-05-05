@@ -73,13 +73,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home({ outbreak, ...props}) {
+function Home({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
-    language,
     page: {
-      rendered,
       myth,
       partners,
       subscribe,
@@ -88,14 +86,11 @@ function Home({ outbreak, ...props}) {
       featured_stories: featuredStories,
       featured_experts: featuredExperts,
       join_us: joinUs,
-    }
+    },
   } = outbreak;
 
   return (
-    <Page
-      outbreak={outbreak}
-      classes={{ section: classes.section }}
-    >
+    <Page outbreak={outbreak} classes={{ section: classes.section }}>
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
@@ -172,8 +167,8 @@ Home.propTypes = {
     language: PropTypes.string,
     page: PropTypes.shape({
       rendered: PropTypes.string,
-    })
-  }).isRequired
+    }),
+  }).isRequired,
 };
 
 Home.getInitialProps = async (props) => {
@@ -184,7 +179,7 @@ Home.getInitialProps = async (props) => {
   const outbreak = await getSitePage("index", lang);
 
   return {
-    outbreak
+    outbreak,
   };
 };
 
