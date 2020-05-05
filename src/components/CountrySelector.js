@@ -57,7 +57,7 @@ export default function CountrySelector({ context, country, ...props }) {
         popperProps={{ placement: "right-start" }}
         classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}
       >
-        <DataMenuList dense />
+        <DataMenuList country={country} dense />
       </MenuButton>
       <Typography variant="h2" className={classes.countryName}>
         {country.shortName}

@@ -441,7 +441,7 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
   }
   return (
     <Page
-      takwimu={{ ...config, language }}
+      takwimu={{ ...config, country, language }}
       indicatorId={indicatorId}
       title={title}
       classes={{ section: classes.section }}
