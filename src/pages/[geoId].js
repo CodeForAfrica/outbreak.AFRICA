@@ -7,7 +7,7 @@ import Head from "next/head";
 import ProfilePage from "components/ProfilePage";
 
 import config from "config";
-import { getSectionedCharts } from "cms";
+import { getSectionedCharts, getSitePage } from "cms";
 
 function GeoId({ errorCode, ...props }) {
   if (errorCode === 404) {
@@ -74,6 +74,7 @@ export async function getServerSideProps({
     config.countries.find((c) => c.isoCode === countryCode.toUpperCase());
   const lang = queryLang || (country && country.lang) || config.DEFAULT_LANG;
   const errorCode = country ? null : 404;
+  const outbreak = country ? await getSitePage("index", lang) : {};
   const sectionedCharts = country ? await getSectionedCharts(lang) : null;
 
   return {
@@ -82,6 +83,7 @@ export async function getServerSideProps({
       geoId,
       indicatorId,
       language: lang,
+      outbreak,
       sectionedCharts,
     },
   };
