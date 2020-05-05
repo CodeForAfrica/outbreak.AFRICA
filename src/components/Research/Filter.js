@@ -20,9 +20,6 @@ const useStyles = makeStyles((theme) => ({
       color: 'white'
     }
   },
-  lastTypo: {
-    //marginLeft: '20rem'
-  },
   caption: {
     fontSize: '1rem'
   },
@@ -32,7 +29,12 @@ const useStyles = makeStyles((theme) => ({
   filter: {
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'center',
+    flexGrow: 1,
+    [theme.breakpoints.up("md")]: {
+      flexGrow: 0
+    },
+
   }
 }));
 
@@ -49,7 +51,7 @@ function Filter() {
         <div className={classes.filter} >
           <Typography variant="caption"> Filter: </Typography>
           {filterData.map(data =>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={3}>
               <Button size="small" rounded className={classes.button}>
                 <Typography variant="caption" className={classes.caption}>{data.topic}</Typography>
               </Button>
