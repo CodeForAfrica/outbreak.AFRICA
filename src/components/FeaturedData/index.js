@@ -54,7 +54,9 @@ function FeaturedData({ description, title, ...props }) {
       <Section title={title} classes={{ root: classes.section }}>
         <Grid container>
           <Grid item xs={12} md={8}>
-            <RichTypography variant="subtitle1">{description}</RichTypography>
+            <RichTypography variant="subtitle1" className={classes.description}>
+              {description}
+            </RichTypography>
           </Grid>
           <Grid item xs={12} md={4} container className={classes.insight}>
             <Button variant="contained" size="large">
