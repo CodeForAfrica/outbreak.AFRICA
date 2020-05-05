@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
     backgroundColor: "#fff",
     display: "flex",
-    height: "5.8125rem", // 93px / 16
     scrollBehavior: "smooth",
     width: "100%",
   },
@@ -21,7 +20,9 @@ const useStyles = makeStyles((theme) => ({
   tab: {
     color: "#9D9C9C",
     paddingLeft: 0,
+    paddingRight: theme.spacing(4),
     minWidth: 0, // Mui-Tab has min-width
+    maxWidth: "none", // Mui-Tab has a fixed max-width
     "&$tabSelected": {
       color: theme.palette.secondary.main,
       backgroundColor: "inherit",

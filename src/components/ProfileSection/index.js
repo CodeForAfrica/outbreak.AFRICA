@@ -13,9 +13,7 @@ const useStyles = makeStyles({
     border: "1px solid #f6f6f6",
   },
   section: {},
-  tabs: {
-    height: "4rem",
-  },
+  tabs: {},
   fix: {},
 });
 
