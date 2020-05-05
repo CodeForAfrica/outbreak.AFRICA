@@ -4,47 +4,33 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import {
-  Typography,
   Grid,
   Input,
-  Popper,
-  Paper,
-  MenuList,
   MenuItem,
+  MenuList,
+  Paper,
+  Popper,
+  Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { Layout } from "@commons-ui/core";
+import { Section } from "@commons-ui/core";
 
+import Button from "components/Link/Button";
+import config from "config";
 import searchIcon from "assets/images/icon-search.svg";
-import Link from "./Link";
 
-import config from "../config";
 import CountrySelector from "./CountrySelector";
 
 const useStyles = makeStyles((theme) => ({
-  root: (props) => ({
-    alignItems: "flex-start",
-    backgroundColor: "rgba(255, 255, 255, 0.63)",
-    display: "flex",
-    flexDirection: "column",
-    height: props.comparable ? "30rem" : "25.5rem",
-    justifyContent: "space-between",
-    lineHeight: "normal",
-    padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "23.375rem",
-      border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
-      borderRadius: "0 0 1.063rem 1.063rem",
-      pointerEvents: "all",
-      zIndex: "1",
-    },
-  }),
-  layout: {
-    zIndex: 999,
+  root: {},
+  section: {
     position: "relative",
-    height: "34rem",
+  },
+  container: {
+    zIndex: 999,
+    position: "initial",
+    // height: "34rem",
     display: "flex",
     justifyContent: "flex-start",
     [theme.breakpoints.up("md")]: {
@@ -52,22 +38,28 @@ const useStyles = makeStyles((theme) => ({
       pointerEvents: "none",
     },
   },
-  label: {
-    color: "#231f20",
-    fontWeight: "normal",
-    fontSize: "0.938rem",
+  profile: (props) => ({
+    height: props.comparable ? "30rem" : "25.5rem",
+  }),
+  geo: {
+    pointerEvents: "all",
+  },
+  geoInfo: () => ({
+    backgroundColor: "rgba(255, 255, 255, 0.63)",
     lineHeight: "normal",
-  },
+    padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: theme.typography.pxToRem(375),
+      border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
+      borderRadius: 0,
+      pointerEvents: "all",
+      zIndex: 1,
+    },
+  }),
+  label: {},
   link: {
-    marginTop: "0.25rem",
-    fontSize: "0.938rem",
-  },
-  verticalLine: {
-    width: "0.25rem",
-    height: "12.125rem",
-    marginLeft: "1.063rem",
-    marginRight: "2.188rem",
-    backgroundColor: theme.palette.primary.main,
+    marginTop: "2rem",
   },
   valueLabel: {
     fontSize: "2rem",
@@ -92,8 +84,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
-  const classes = useStyles({ comparable });
+function ProfileDetail({
+  profile: { comparable = false, geo = {} },
+  ...props
+}) {
+  const classes = useStyles({ ...props, comparable });
   const searchBarRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -121,119 +116,129 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
   }
 
   return (
-    <Grid container justify="center" className={classes.rootContainer}>
-      <Layout classes={{ root: classes.layout }}>
-        <div className={classes.root}>
-          <Grid container direction="column" justify="flex-start">
-            <Grid item>
-              <CountrySelector country={country} context="topic" />
-            </Grid>
-            <Grid item>
-              <Grid container direction="row" wrap="nowrap">
-                <Grid item>
-                  <div className={classes.verticalLine} />
-                </Grid>
-                <Grid item container direction="column" justify="space-between">
-                  {population && (
-                    <Grid item>
-                      <Typography variant="body1" className={classes.label}>
-                        Population
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        className={classNames([
-                          classes.label,
-                          classes.valueLabel,
-                        ])}
-                      >
-                        {Number(population).toLocaleString()}
-                      </Typography>
-                    </Grid>
-                  )}
-                  {squareKms && (
-                    <Grid item>
-                      <Typography variant="body1" className={classes.label}>
-                        Square kilometres
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        className={classNames([
-                          classes.label,
-                          classes.valueLabel,
-                        ])}
-                      >
-                        {Number(squareKms).toLocaleString()}
-                      </Typography>
-                    </Grid>
-                  )}
-                  {populationDensity && (
-                    <Grid item>
-                      <Typography variant="body1" className={classes.label}>
-                        People per square kilometre
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        className={classNames([
-                          classes.label,
-                          classes.valueLabel,
-                        ])}
-                      >
-                        {Number(populationDensity).toLocaleString()}
-                      </Typography>
-                    </Grid>
-                  )}
-                </Grid>
-              </Grid>
-            </Grid>
-            {comparable && (
-              <Grid item>
-                <Grid container>
-                  <div ref={searchBarRef} className={classes.searchBar}>
-                    <Input
-                      fullWidth
-                      disableUnderline
-                      className={classes.searchBarInput}
-                      onFocus={handleSearch}
-                      onBlur={() => setShowSearchResults(false)}
-                      placeholder="Compare with"
-                      onChange={handleSearch}
-                    />
-                    <img
-                      alt=""
-                      src={searchIcon}
-                      className={classes.searchBarIcon}
-                    />
-                  </div>
-
-                  <Popper
-                    className={classes.popperIndex}
-                    open={showSearchResults}
-                    anchorEl={searchBarRef}
-                    style={{
-                      width: searchBarRef ? searchBarRef.clientWidth : null,
-                    }}
-                  >
-                    <Paper>
-                      <MenuList>
-                        <MenuItem>Example</MenuItem>
-                      </MenuList>
-                    </Paper>
-                  </Popper>
-                </Grid>
-              </Grid>
-            )}
-          </Grid>
-          <Link
-            button
-            href="/[geoIdOrCountrySlug]"
-            as={`/${country.slug}`}
-            className={classes.link}
-            fullWidth
+    <Grid container className={classes.root}>
+      <Section classes={{ root: classes.section }}>
+        <div className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+            className={classes.profile}
           >
-            Read the CDC reports
-          </Link>
+            <Grid item container direction="column" justify="flex-start">
+              <Grid item className={classes.geo}>
+                <CountrySelector country={country} context="topic" />
+              </Grid>
+              <Grid item className={classes.geoInfo}>
+                <Grid container direction="row" wrap="nowrap">
+                  <Grid
+                    item
+                    container
+                    direction="column"
+                    justify="space-between"
+                  >
+                    {population && (
+                      <Grid item>
+                        <Typography variant="body1" className={classes.label}>
+                          Population
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          className={classNames([
+                            classes.label,
+                            classes.valueLabel,
+                          ])}
+                        >
+                          {Number(population).toLocaleString()}
+                        </Typography>
+                      </Grid>
+                    )}
+                    {squareKms && (
+                      <Grid item>
+                        <Typography variant="body1" className={classes.label}>
+                          Square kilometres
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          className={classNames([
+                            classes.label,
+                            classes.valueLabel,
+                          ])}
+                        >
+                          {Number(squareKms).toLocaleString()}
+                        </Typography>
+                      </Grid>
+                    )}
+                    {populationDensity && (
+                      <Grid item>
+                        <Typography variant="body1" className={classes.label}>
+                          People per km<sup>2</sup>
+                        </Typography>
+                        <Typography
+                          variant="body1"
+                          className={classNames([
+                            classes.label,
+                            classes.valueLabel,
+                          ])}
+                        >
+                          {Number(populationDensity).toLocaleString()}
+                        </Typography>
+                      </Grid>
+                    )}
+                  </Grid>
+                </Grid>
+                <Grid item>
+                  <Button
+                    href="#"
+                    variant="outlined"
+                    color="secondary"
+                    className={classes.link}
+                  >
+                    LEARN MORE
+                  </Button>
+                </Grid>
+              </Grid>
+              {comparable && (
+                <Grid item>
+                  <Grid container>
+                    <div ref={searchBarRef} className={classes.searchBar}>
+                      <Input
+                        fullWidth
+                        disableUnderline
+                        className={classes.searchBarInput}
+                        onFocus={handleSearch}
+                        onBlur={() => setShowSearchResults(false)}
+                        placeholder="Compare with"
+                        onChange={handleSearch}
+                      />
+                      <img
+                        alt=""
+                        src={searchIcon}
+                        className={classes.searchBarIcon}
+                      />
+                    </div>
+
+                    <Popper
+                      className={classes.popperIndex}
+                      open={showSearchResults}
+                      anchorEl={searchBarRef}
+                      style={{
+                        width: searchBarRef ? searchBarRef.clientWidth : null,
+                      }}
+                    >
+                      <Paper>
+                        <MenuList>
+                          <MenuItem>Example</MenuItem>
+                        </MenuList>
+                      </Paper>
+                    </Popper>
+                  </Grid>
+                </Grid>
+              )}
+            </Grid>
+          </Grid>
         </div>
-      </Layout>
+      </Section>
     </Grid>
   );
 }
