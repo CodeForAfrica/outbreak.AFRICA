@@ -111,11 +111,19 @@ function Navigation({
       <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation country={country} countries={countries} navigation={navigation} />
+            <DesktopNavigation
+              country={country}
+              countries={countries}
+              navigation={navigation}
+            />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation country={country} countries={countries} navigation={navigation} />
+              <MobileNavigation
+                country={country}
+                countries={countries}
+                navigation={navigation}
+              />
             </>
           )}
         </Toolbar>

@@ -89,11 +89,7 @@ function CarouselCard({ item, linkTitle }) {
             </Typography>
           )}
           {link && (
-            <Button
-              variant="outlined"
-              href={link}
-              className={classes.cardLink}
-            >
+            <Button variant="outlined" href={link} className={classes.cardLink}>
               {linkTitle}
             </Button>
           )}
