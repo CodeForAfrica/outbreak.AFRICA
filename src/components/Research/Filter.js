@@ -7,8 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { getFilterData } from 'lib'
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
-  heading: {
+  root: {
     padding: '4rem 0rem'
   },
   button: {
@@ -25,20 +24,22 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     fontSize: '1rem'
+  },
+  filterGrid: {
+    padding: '0rem 1rem'
   }
-
 }));
 
 function Filter() {
   const classes = useStyles()
   const filterData = getFilterData()
   return (
-    <div className={classes.heading}>
+    <div className={classes.root}>
       <Grid item xs={12}>
         <RichTypography variant="h2">Featured Experts</RichTypography>
       </Grid>
 
-      <Grid container item xs={12} direction="row" justify="flex-start" alignItems="center" spacing={3}>
+      <Grid container item xs={12} direction="row" justify="flex-start" alignItems="center" spacing={3} className={classes.filterGrid}>
         <Typography variant="caption"> Filter: </Typography>
         {filterData.map(data =>
           <Grid item xs={3} sm={6} md={1}>

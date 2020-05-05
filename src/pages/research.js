@@ -31,9 +31,6 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
-  },
-  sectionGrid: {
-    marginTop: '2.5rem'
   }
 }));
 
@@ -43,7 +40,7 @@ function Research() {
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
-      <div className={classes.sectionGrid}>
+      <div classes={{ section: classes.section }} >
         <ProfileList profiles={profiles} />
       </div>
       <div className={classes.sectionGrid}>
