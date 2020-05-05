@@ -71,7 +71,7 @@ function FeatureResearchers({ featuredExperts, ...props }) {
     return null;
   }
 
-  const { brief, experts, title } = featuredExperts;
+  const { brief: description, experts, title } = featuredExperts;
 
   const profiles =
     experts &&
