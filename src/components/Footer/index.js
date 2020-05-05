@@ -132,6 +132,6 @@ MainFooter.defaultProps = {
   initiativeLogo: undefined,
   quickLinks: undefined,
   legalLinks: undefined,
-}
+};
 
 export default MainFooter;
