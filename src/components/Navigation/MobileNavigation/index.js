@@ -177,23 +177,15 @@ function MobileMenu({ countries }) {
               toName={({ shortName }) => shortName}
             />
             <NavigationList
-              title="INSIGHT"
-              items={[
-                { name: "Item 1" },
-                { name: "Item 2" },
-                { name: "Item 3" },
-              ]}
+              title="Research"
+              items={[{ name: "Experts", href: "/research" }]}
               toAs={() => undefined}
-              toHref={() => "#"}
+              toHref={({ href }) => href}
               toName={({ name }) => name}
             />
             <NavigationList
-              title="RESOURCES"
-              items={[
-                { name: "Item 1" },
-                { name: "Item 2" },
-                { name: "Item 3" },
-              ]}
+              title="INSIGHT"
+              items={[]}
               toAs={() => undefined}
               toHref={() => "#"}
               toName={({ name }) => name}
