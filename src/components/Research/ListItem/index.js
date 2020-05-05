@@ -2,7 +2,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 
-import clsx from "clsx";
+import classNames from "classnames";
 
 import { Button, Grid, Typography } from "@material-ui/core";
 import useStyles from "./useStyles";
@@ -36,14 +36,14 @@ function ListItem({
       <img
         alt={image.description || name || title}
         src={image.url}
-        className={clsx(classes.picture, {
+        className={classNames(classes.picture, {
           [classes.pictureSelected]: selected,
         })}
       />
       {name && name.length > 0 && (
         <Typography
           variant="h3"
-          className={clsx(classes.name, {
+          className={classNames(classes.name, {
             [classes.nameSelected]: selected,
           })}
         >
