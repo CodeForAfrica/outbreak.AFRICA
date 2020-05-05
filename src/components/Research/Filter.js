@@ -23,9 +23,6 @@ const useStyles = makeStyles((theme) => ({
   caption: {
     fontSize: '1rem'
   },
-  filterGrid: {
-    padding: '0rem 1rem'
-  },
   filter: {
     display: 'flex',
     flexDirection: 'row',
@@ -47,7 +44,7 @@ function Filter() {
         <RichTypography variant="h2">Featured Experts</RichTypography>
       </Grid>
 
-      <Grid container direction="row" justify="space-between" alignItems="center" className={classes.filterGrid}>
+      <Grid container direction="row" justify="space-between" alignItems="center">
         <div className={classes.filter} >
           <Typography variant="caption"> Filter: </Typography>
           {filterData.map(data =>

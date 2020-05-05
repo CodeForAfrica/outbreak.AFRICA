@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   subscribe: {
     marginTop: '4rem'
   },
-  featuredResearchers: {
+  featuredExperts: {
     marginTop: "3.5rem",
     [theme.breakpoints.up("md")]: {
       marginTop: "3.8125rem",
@@ -40,7 +40,10 @@ function Research() {
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
-      <div classes={{ section: classes.section }} >
+      <div classes={{
+        root: classes.featuredExperts,
+        section: classes.section,
+      }} >
         <ProfileList profiles={profiles} />
       </div>
       <div className={classes.sectionGrid}>
