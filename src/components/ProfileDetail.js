@@ -41,14 +41,16 @@ const useStyles = makeStyles((theme) => ({
   profile: (props) => ({
     height: props.comparable ? "30rem" : "25.5rem",
   }),
-  geo: {},
+  geo: {
+    pointerEvents: "all",
+  },
   geoInfo: () => ({
     backgroundColor: "rgba(255, 255, 255, 0.63)",
     lineHeight: "normal",
     padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
     width: "100%",
     [theme.breakpoints.up("md")]: {
-      width: "23.375rem",
+      width: theme.typography.pxToRem(375),
       border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
       borderRadius: 0,
       pointerEvents: "all",
