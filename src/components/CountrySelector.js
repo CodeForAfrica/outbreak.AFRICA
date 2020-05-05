@@ -1,10 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Typography, ButtonBase, Grid } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(() => ({
+import DataMenuList from "components/Navigation/DesktopNavigation/DataMenuList";
+import MenuButton from "components/Navigation/DesktopNavigation//MenuButton";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    alignItems: "center",
+  },
   label: {
     color: "#231f20",
     fontWeight: "normal",
@@ -24,31 +31,38 @@ const useStyles = makeStyles(() => ({
     fontSize: "0.8125rem",
     color: "#848484",
   },
+  menuButton: {
+    backgroundColor: "white",
+    height: 32,
+    width: 32,
+  },
+  menuButtonPopper: {
+    marginTop: theme.spacing(4),
+    [theme.breakpoints.up("md")]: {
+      marginTop: theme.spacing(4),
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
 export default function CountrySelector({ context, country, ...props }) {
   const classes = useStyles(props);
 
   return (
-    <Grid container direction="column">
-      <Grid item>
-        <ButtonBase
-          disableRipple
-          disableTouchRipple
-          style={{ outline: "none" }}
-          className={classes.chooserButton}
-          onClick={
-            process.browser &&
-            window.toggleDrawer &&
-            window.toggleDrawer(context)
-          }
-        >
-          <Typography variant="h2" className={classes.countryName}>
-            {country.shortName}
-          </Typography>
-        </ButtonBase>
-      </Grid>
-    </Grid>
+    <div className={classes.root}>
+      <MenuButton
+        color="secondary"
+        size="large"
+        variant="outlined"
+        popperProps={{ placement: "right-start" }}
+        classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}
+      >
+        <DataMenuList dense />
+      </MenuButton>
+      <Typography variant="h2" className={classes.countryName}>
+        {country.shortName}
+      </Typography>
+    </div>
   );
 }
 
