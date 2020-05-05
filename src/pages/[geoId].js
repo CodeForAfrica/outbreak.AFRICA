@@ -67,7 +67,7 @@ GeoId.defaultProps = {
 export async function getServerSideProps({
   params: { geoId, lang: queryLang, indicatorId = null },
 }) {
-  const found = /-([a-zA-Z]{2})(-|$)/.exec(geoId);
+  const found = /-([a-zA-Z]{2})(_|$)/.exec(geoId);
   const countryCode = found && found[1];
   const country =
     countryCode &&
