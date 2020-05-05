@@ -1,36 +1,36 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Link, Tabs, Tab } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Link, Tabs, Tab } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import Layout from 'components/Layout';
+import { Layout } from "@commons-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   layoutRoot: {
-    margin: '0 auto',
+    margin: "0 auto",
   },
   root: {
-    alignItems: 'center',
-    backgroundColor: '#f6f6f6',
-    display: 'flex',
-    height: '5.8125rem', // 93px / 16
-    scrollBehavior: 'smooth',
-    width: '100%',
+    alignItems: "center",
+    backgroundColor: "#f6f6f6",
+    display: "flex",
+    height: "5.8125rem", // 93px / 16
+    scrollBehavior: "smooth",
+    width: "100%",
   },
   indicator: {
-    display: 'none',
+    display: "none",
   },
   tab: {
-    fontSize: '1.0625rem', // 17px
-    fontWeight: 'normal',
-    padding: '0.6875rem 1rem 0.6875rem 1.125rem',
-    textTransform: 'none',
-    '&$tabSelected': {
-      backgroundColor: '#fff',
+    fontSize: "1.0625rem", // 17px
+    fontWeight: "normal",
+    padding: "0.6875rem 1rem 0.6875rem 1.125rem",
+    textTransform: "none",
+    "&$tabSelected": {
+      backgroundColor: "#fff",
       borderRadius: 21.5,
     },
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up("md")]: {
       minWidth: 0,
     },
   },

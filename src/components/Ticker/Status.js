@@ -1,24 +1,25 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     color: theme.palette.primary.main,
-    textAlign: 'center',
+    textAlign: "center",
   },
   name: {
-    color: 'inherit',
+    color: "inherit",
   },
   status: {
-    color: 'inherit',
+    color: "inherit",
+    fontSize: "1rem",
   },
   value: {
-    ...theme.typography.h1,
-    color: 'inherit',
+    color: "inherit",
+    lineHeight: "6.25rem",
   },
 }));
 
@@ -32,13 +33,13 @@ function Status({ name, status, value, ...props }) {
           {status}
         </Typography>
       </Grid>
-      <Grid xs={12}>
-        <Typography variant="body2" component="h2" className={classes.name}>
+      <Grid item xs={12}>
+        <Typography variant="subtitle2" component="h2" className={classes.name}>
           {name}
         </Typography>
       </Grid>
-      <Grid xs={12}>
-        <Typography variant="caption" component="h1" className={classes.value}>
+      <Grid item xs={12}>
+        <Typography variant="h1" className={classes.value}>
           {value}
         </Typography>
       </Grid>

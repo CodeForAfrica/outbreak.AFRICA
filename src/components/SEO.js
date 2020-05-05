@@ -1,13 +1,13 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
+import React from "react";
+import { PropTypes } from "prop-types";
 
-import { useRouter } from 'next/router';
-import Head from 'next/head';
+import { useRouter } from "next/router";
+import Head from "next/head";
 
-import config from 'config';
-import defaultImage from 'assets/images/cfa.png';
+import config from "config";
+import defaultImage from "assets/images/cfa.png";
 
-function SEO({ title, description, image, location = '' }) {
+function SEO({ title, description, image, location = "" }) {
   const pageTitle = title ? `${title} | ${config.name}` : config.name;
   // indicatorId should override image, image should override defaultImage.
   const {
@@ -70,7 +70,7 @@ function SEO({ title, description, image, location = '' }) {
       <meta name="twitter:card" content="summary" />
       <meta
         name="twitter:site"
-        content={`@${config.settings.socialMedia.twitter.split('/').pop()}`}
+        content={`@${config.settings.socialMedia.twitter.split("/").pop()}`}
       />
       <meta name="twitter:title" content={pageTitle} />
       <meta

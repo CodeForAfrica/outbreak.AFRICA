@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useRef } from "react";
+import PropTypes from "prop-types";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import {
   Typography,
@@ -11,80 +11,81 @@ import {
   Paper,
   MenuList,
   MenuItem,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import searchIcon from 'assets/images/icon-search.svg';
-import Link from './Link';
-import Layout from './Layout';
+import { Layout } from "@commons-ui/core";
 
-import config from '../config';
-import CountrySelector from './CountrySelector';
+import searchIcon from "assets/images/icon-search.svg";
+import Link from "./Link";
+
+import config from "../config";
+import CountrySelector from "./CountrySelector";
 
 const useStyles = makeStyles((theme) => ({
   root: (props) => ({
-    alignItems: 'flex-start',
-    backgroundColor: 'rgba(255, 255, 255, 0.63)',
-    display: 'flex',
-    flexDirection: 'column',
-    height: props.comparable ? '30rem' : '25.5rem',
-    justifyContent: 'space-between',
-    lineHeight: 'normal',
-    padding: '0.875rem 1.438rem 1.5625rem 1.438rem',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '23.375rem',
-      border: 'solid 0.063rem rgba(0, 0, 0, 0.19)',
-      borderRadius: '0 0 1.063rem 1.063rem',
-      pointerEvents: 'all',
-      zIndex: '1',
+    alignItems: "flex-start",
+    backgroundColor: "rgba(255, 255, 255, 0.63)",
+    display: "flex",
+    flexDirection: "column",
+    height: props.comparable ? "30rem" : "25.5rem",
+    justifyContent: "space-between",
+    lineHeight: "normal",
+    padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "23.375rem",
+      border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
+      borderRadius: "0 0 1.063rem 1.063rem",
+      pointerEvents: "all",
+      zIndex: "1",
     },
   }),
   layout: {
     zIndex: 999,
-    position: 'relative',
-    height: '34rem',
-    display: 'flex',
-    justifyContent: 'flex-start',
-    [theme.breakpoints.up('md')]: {
-      position: 'absolute',
-      pointerEvents: 'none',
+    position: "relative",
+    height: "34rem",
+    display: "flex",
+    justifyContent: "flex-start",
+    [theme.breakpoints.up("md")]: {
+      position: "absolute",
+      pointerEvents: "none",
     },
   },
   label: {
-    color: '#231f20',
-    fontWeight: 'normal',
-    fontSize: '0.938rem',
-    lineHeight: 'normal',
+    color: "#231f20",
+    fontWeight: "normal",
+    fontSize: "0.938rem",
+    lineHeight: "normal",
   },
   link: {
-    marginTop: '0.25rem',
-    fontSize: '0.938rem'
+    marginTop: "0.25rem",
+    fontSize: "0.938rem",
   },
   verticalLine: {
-    width: '0.25rem',
-    height: '12.125rem',
-    marginLeft: '1.063rem',
-    marginRight: '2.188rem',
+    width: "0.25rem",
+    height: "12.125rem",
+    marginLeft: "1.063rem",
+    marginRight: "2.188rem",
     backgroundColor: theme.palette.primary.main,
   },
   valueLabel: {
-    fontSize: '2rem',
+    fontSize: "2rem",
     fontWeight: 600,
   },
   searchBar: {
-    position: 'relative',
-    width: '100%',
+    position: "relative",
+    width: "100%",
   },
   searchBarInput: {
-    padding: '0.625rem',
-    borderRadius: '0.25rem',
-    border: 'solid 0.063rem rgba(151, 151, 151, 0.3)',
+    padding: "0.625rem",
+    borderRadius: "0.25rem",
+    border: "solid 0.063rem rgba(151, 151, 151, 0.3)",
   },
   searchBarIcon: {
-    position: 'absolute',
-    right: '1rem',
-    top: '1rem',
+    position: "absolute",
+    right: "1rem",
+    top: "1rem",
   },
   popperIndex: {
     zIndex: 2,
@@ -94,7 +95,7 @@ const useStyles = makeStyles((theme) => ({
 function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
   const classes = useStyles({ comparable });
   const searchBarRef = useRef(null);
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
 
   const handleSearch = (e) => {
@@ -111,7 +112,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
   const population = totalPopulation.toFixed(0);
   const populationDensity = (population / squareKms).toFixed(1);
   let country;
-  if (geoLevel === 'country') {
+  if (geoLevel === "country") {
     const { geoCode } = geo;
     country = config.countries.find((c) => c.isoCode === geoCode);
   } else {
@@ -226,7 +227,7 @@ function ProfileDetail({ profile: { comparable = false, geo = {} } }) {
             button
             href="/[geoIdOrCountrySlug]"
             as={`/${country.slug}`}
-            className={classes.link} 
+            className={classes.link}
             fullWidth
           >
             Read the CDC reports

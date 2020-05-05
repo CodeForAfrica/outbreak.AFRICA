@@ -1,14 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+/* eslint-disable jsx-a11y/anchor-has-content */
+import React from "react";
+import PropTypes from "prop-types";
+import NextLink from "next/link";
 
-import NextLink from 'next/link';
-
-const NextComposed = React.forwardRef((props, ref) => {
+const NextComposed = React.forwardRef(function NextComposed(props, ref) {
   const { as, href, prefetch, ...other } = props;
 
   return (
     <NextLink href={href} prefetch={prefetch} as={as}>
-      {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
       <a ref={ref} {...other} />
     </NextLink>
   );
@@ -25,5 +24,4 @@ NextComposed.defaultProps = {
   href: undefined,
   prefetch: undefined,
 };
-
 export default NextComposed;

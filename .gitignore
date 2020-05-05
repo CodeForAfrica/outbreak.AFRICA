@@ -285,6 +285,8 @@ tags
 # Ignore all local history of files
 .history
 
+# End of https://www.gitignore.io/api/vim,node,react,linux,macos,intellij+all,visualstudiocode
+
 # Customizations
 
 ### Zeit Now ###
@@ -296,5 +298,3 @@ tags
 .env.build
 
 # End of Customizations
-
-# End of https://www.gitignore.io/api/vim,node,react,linux,macos,intellij+all,visualstudiocode

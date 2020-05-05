@@ -1,77 +1,79 @@
-import React from 'react';
-import { Grid, IconButton, Typography } from '@material-ui/core';
-import TextField from '@material-ui/core/TextField';
+import React from "react";
+import { Grid, IconButton, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from "@material-ui/core/styles";
 
-import email from 'assets/email.svg';
+import email from "assets/email.svg";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#170F49',
-    width: '100%',
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      paddingTop: "10%",
+    },
   },
-  mainContainer: {
-    margin: '3rem',
-    paddingTop: '3rem',
-  },
-  typo: {
-    color: 'white',
-  },
-  body1: {
-    color: 'white',
-    padding: '1.5rem 2rem',
+  subtitle: {
+    width: "90%",
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      width: "80%",
+      paddingBottom: "5rem",
+    },
   },
   title: {
-    color: 'white',
-    padding: '1.5rem 2rem',
-    fontSize: '3rem',
-    fontWeight: 700,
+    color: theme.palette.text.secondary,
+    paddingBottom: "2rem",
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: "5rem",
+    },
   },
-  form: {
-    padding: '2rem 2.5rem',
-  },
+  form: {},
   input: {
-    color: 'white',
-    fontSize: '0.8rem',
-    borderBottom: '1px solid white',
+    color: theme.palette.text.secondary,
+    fontSize: theme.typography.caption.fontSize,
+    lineHeight: theme.typography.caption.lineHeight,
+    borderBottom: "1px solid white",
   },
   img: {
-    height: '2.5rem',
+    height: "2.5rem",
   },
   button: {
     padding: 0,
+    paddingTop: "1rem",
   },
-});
+}));
 
 function Subscribe() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-      <div className={classes.mainContainer}>
-        <Typography variant="h2" className={classes.title}>
-          Subscribe
-        </Typography>
-        <Typography variant="body1" className={classes.body1}>
-          {' '}
-          Stay updated with the latest News, Research and Analysis
-        </Typography>
+      <Typography variant="h2" className={classes.title}>
+        Subscribe
+      </Typography>
+      <Typography
+        variant="subtitle1"
+        color="textSecondary"
+        className={classes.subtitle}
+      >
+        {" "}
+        Stay updated with the latest News, Research and Analysis
+      </Typography>
 
-        <form className={classes.form}>
-          <TextField
-            id="standard-basic"
-            autoFocus={false}
-            placeholder="Enter your email address"
-            margin="normal"
-            fullWidth
-            InputProps={{ className: classes.input }}
-          />
+      <form className={classes.form}>
+        <TextField
+          id="standard-basic"
+          autoFocus={false}
+          placeholder="Enter your email address"
+          margin="normal"
+          fullWidth
+          InputProps={{ className: classes.input }}
+        />
 
-          <IconButton className={classes.button}>
-            <img src={email} alt="Arrow icon" className={classes.img} />
-          </IconButton>
-        </form>
-      </div>
+        <IconButton className={classes.button}>
+          <img src={email} alt="Arrow icon" className={classes.img} />
+        </IconButton>
+      </form>
     </Grid>
   );
 }

@@ -1,22 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import { Grid, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-import ContentLoader from '@hurumap-ui/core/ContentLoader';
+import ContentLoader from "@hurumap-ui/core/ContentLoader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: '1.5rem',
-    width: '100%',
+    marginTop: "1.5rem",
+    width: "100%",
   },
   title: {
     color: theme.palette.text.secondary,
     backgroundColor: theme.palette.primary.main,
-    fontWeight: 'bold',
-    padding: '0.75rem 0 0.75rem 1.875rem',
-    textTransform: 'capitalize',
+    fontWeight: "bold",
+    padding: "0.75rem 0 0.75rem 1.875rem",
+    textTransform: "capitalize",
   },
 }));
 

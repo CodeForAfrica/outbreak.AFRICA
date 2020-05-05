@@ -1,43 +1,21 @@
-import React from 'react';
-import { Grid, Typography, Divider } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import { Button, Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#cbdbfb',
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '24%',
-    },
-  },
-  typogrid: {
-    padding: '5rem',
-  },
-  typo: {
-    color: 'white',
+    width: "100%",
   },
   link: {
-    fontSize: '1rem',
-    fontWeight: 700,
+    borderBottom: "2px solid",
+    borderRadius: 0,
+    padding: 0,
   },
   title: {
-    fontSize: '3rem',
-    fontWeight: 700,
-    padding: '1rem 0rem',
+    paddingBottom: "1.25rem",
   },
-  divider: {
-    backgroundColor: '#170F49',
-    height: '2px',
-    width: '25%',
-    [theme.breakpoints.up('md')]: {
-      width: '50%',
-    },
-  },
-  learnMore: {
-    paddingTop: '1rem',
-    [theme.breakpoints.up('md')]: {
-      paddingTop: '0.5rem',
-    },
+  brief: {
+    paddingBottom: "1.5rem",
   },
 }));
 
@@ -45,20 +23,15 @@ function JoinUs() {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
-      <div className={classes.typogrid}>
-        <Typography variant="h2" className={classes.title}>
-          Join us
-        </Typography>
-        <Typography variant="body1" style={{ fontSize: '1rem' }}>
-          Be part of the initiative
-        </Typography>
-        <div className={classes.learnMore}>
-          <Typography variant="h6" className={classes.link}>
-            LEARN MORE
-          </Typography>
-          <Divider className={classes.divider} />
-        </div>
-      </div>
+      <Typography variant="h2" className={classes.title}>
+        Join us
+      </Typography>
+      <Typography variant="subtitle1" className={classes.brief}>
+        Be part of the initiative
+      </Typography>
+      <Button variant="outline" color="secondary" className={classes.link}>
+        Learn More
+      </Button>
     </Grid>
   );
 }
