@@ -41,11 +41,17 @@ const useStyles = makeStyles((theme) => ({
 
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const {
+    page: { hero_carousel: heroCarousel },
+  } = outbreak;
   const profiles = getProfiles();
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <Hero classes={{ section: classes.section }} />
+      <Hero
+        heroCarousel={heroCarousel}
+        classes={{ section: classes.section }}
+      />
       <ProfileList
         profiles={profiles}
         classes={{
