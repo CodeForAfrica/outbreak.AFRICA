@@ -33,6 +33,12 @@ const useStyles = makeStyles((theme) => ({
       order: 3,
     },
   },
+  description: {
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
+  },
   insight: {
     [theme.breakpoints.up("md")]: {
       alignItems: "flex-start",
@@ -48,7 +54,9 @@ function FeaturedData({ description, title, ...props }) {
       <Section title={title} classes={{ root: classes.section }}>
         <Grid container>
           <Grid item xs={12} md={8}>
-            <RichTypography variant="subtitle1">{description}</RichTypography>
+            <RichTypography variant="subtitle1" className={classes.description}>
+              {description}
+            </RichTypography>
           </Grid>
           <Grid item xs={12} md={4} container className={classes.insight}>
             <Button variant="contained" size="large">
@@ -101,7 +109,7 @@ FeaturedData.propTypes = {
 };
 FeaturedData.defaultProps = {
   description:
-    "Comparative data insights, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.",
+    'Comparative <span class="highlight">data insights</span>, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.',
   title: "Featured Data",
 };
 export default FeaturedData;

@@ -87,6 +87,11 @@ class CustomDocument extends Document {
             name="msapplication-TileColor"
             content={theme.palette.primary.main}
           />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, 
+            width=device-width"
+          />
 
           <link
             rel="preload"
