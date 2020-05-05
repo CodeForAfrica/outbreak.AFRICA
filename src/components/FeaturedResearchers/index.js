@@ -62,10 +62,10 @@ function FeatureResearchers({ featuredExperts, ...props }) {
   }
 
   if (!featuredExperts) {
-    return null
+    return null;
   }
 
-  const { brief, experts, title } = featuredExperts
+  const { brief, experts, title } = featuredExperts;
 
   const profiles =
     experts &&
@@ -124,10 +124,10 @@ FeatureResearchers.propTypes = {
     experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     title: PropTypes.string,
     brief: PropTypes.string,
-  })
+  }),
 };
 
 FeatureResearchers.defaultProps = {
-  featuredExperts: undefined
-}
+  featuredExperts: undefined,
+};
 export default FeatureResearchers;

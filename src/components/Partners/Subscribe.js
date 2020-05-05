@@ -85,7 +85,7 @@ Subscribe.propTypes = {
 };
 
 Subscribe.defaultProps = {
-  title: 'Subscribe',
-  description: 'Stay updated with the latest News, Research and Analysis'
-}
+  title: "Subscribe",
+  description: "Stay updated with the latest News, Research and Analysis",
+};
 export default Subscribe;

@@ -10,7 +10,6 @@ import classNames from "classnames";
 import Subscribe from "./Subscribe";
 import PartnerGrid from "./PartnersGrid";
 import JoinUs from "./JoinUs";
-import { join } from "upath";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -87,7 +86,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Partners({ partners, subscribe, joinUs, ...props}) {
+function Partners({ partners, subscribe, joinUs, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -113,16 +112,26 @@ function Partners({ partners, subscribe, joinUs, ...props}) {
             className={classes.bannerContainer}
           >
             <Grid item className={classes.subscribe}>
-              { subscribe && 
-              <Subscribe title={subscribe.title} description={subscribe.description} />}
+              {subscribe && (
+                <Subscribe
+                  title={subscribe.title}
+                  description={subscribe.description}
+                />
+              )}
             </Grid>
             <Grid item className={classes.joinUs}>
-              { joinUs && <JoinUs title={joinUs.title} description={joinUs.description} linkLabel={joinUs.link_label} /> }
+              {joinUs && (
+                <JoinUs
+                  title={joinUs.title}
+                  description={joinUs.description}
+                  linkLabel={joinUs.link_label}
+                />
+              )}
             </Grid>
           </Grid>
 
           <Grid md={7} sm={12} className={classes.partnerContainer}>
-            <PartnerGrid partners={partners}/>
+            <PartnerGrid partners={partners} />
           </Grid>
         </Grid>
       </Section>
@@ -146,7 +155,7 @@ Partners.propTypes = {
 Partners.defaultProps = {
   partners: [],
   subscribe: undefined,
-  joinUs: undefined
+  joinUs: undefined,
 };
 
 export default Partners;

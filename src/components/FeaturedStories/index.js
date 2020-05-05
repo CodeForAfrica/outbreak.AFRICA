@@ -56,9 +56,14 @@ function FeatureStories({ featuredStories, ...props }) {
   }
 
   if (!featuredStories) {
-    return null
+    return null;
   }
-  const { description, stories, title, link_label: linkLabel } = featuredStories;
+  const {
+    description,
+    stories,
+    title,
+    link_label: linkLabel,
+  } = featuredStories;
   const storiesList =
     stories &&
     stories.map((story, index) => {
@@ -120,11 +125,11 @@ FeatureStories.propTypes = {
     description: PropTypes.string,
     link_label: PropTypes.string,
     stories: PropTypes.arrayOf(PropTypes.shape({})),
-  })
+  }),
 };
 
 FeatureStories.defaultProps = {
-  featuredStories: undefined
-}
+  featuredStories: undefined,
+};
 
 export default FeatureStories;

@@ -37,9 +37,9 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
   const classes = useStyles(props);
 
   if (!documentsAndDatasets) {
-    return null
+    return null;
   }
-  
+
   const {
     title,
     description,
@@ -47,12 +47,12 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
     document: {
       title: documentTitle,
       description: documentDescription,
-      link: documentLink
+      link: documentLink,
     },
     dataset: {
       title: datasetTitle,
       description: datasetDescription,
-      link: datasetLink
+      link: datasetLink,
     },
   } = documentsAndDatasets;
 
@@ -101,11 +101,11 @@ FeaturedResearch.propTypes = {
       description: PropTypes.string,
       link: PropTypes.string,
     }),
-  })
+  }),
 };
 
 FeaturedResearch.defaultProps = {
-  documentsAndDatasets: undefined
+  documentsAndDatasets: undefined,
 };
 
 export default FeaturedResearch;

@@ -42,13 +42,11 @@ JoinUs.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
   linkLabel: PropTypes.string,
-  link: PropTypes.string,
 };
 
 JoinUs.defaultProps = {
-  title: 'Join Us',
-  description: 'Be part of the initiative',
-  linkLabel: 'Learn More',
-  link: '#'
+  title: "Join Us",
+  description: "Be part of the initiative",
+  linkLabel: "Learn More",
 };
 export default JoinUs;

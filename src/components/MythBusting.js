@@ -63,7 +63,7 @@ function MythBursting({ myth, ...props }) {
   const classes = useStyles(props);
 
   if (!myth) {
-    return null
+    return null;
   }
 
   const { title, description, link_url: link, link_label: linkLabel } = myth;
@@ -117,11 +117,11 @@ MythBursting.propTypes = {
     description: PropTypes.string,
     lin_label: PropTypes.string,
     link_url: PropTypes.string,
-  })
+  }),
 };
 
 MythBursting.defaultProps = {
-  myth: undefined
-}
+  myth: undefined,
+};
 
 export default MythBursting;

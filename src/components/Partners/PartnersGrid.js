@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function PartnersGrid({partners, ...props }) {
+function PartnersGrid({ partners, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -60,12 +60,12 @@ function PartnersGrid({partners, ...props }) {
               src={partner.image}
               alt={partner.name}
               className={
-                partner.name === 'Africa Ar Xiv' ? classes.image : classes.img
+                partner.name === "Africa Ar Xiv" ? classes.image : classes.img
               }
             />
             <div
               className={
-                partner.name === 'Africa Ar Xiv'
+                partner.name === "Africa Ar Xiv"
                   ? classes.descGrid
                   : classes.divGrid
               }

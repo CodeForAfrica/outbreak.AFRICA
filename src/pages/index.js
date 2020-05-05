@@ -81,7 +81,10 @@ function Home(props) {
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
       featured_experts: featuredExperts,
-      myth
+      join_us: joinUs,
+      myth,
+      partners,
+      subscribe,
     },
   } = props;
 
@@ -131,6 +134,7 @@ function Home(props) {
           root: classes.featuredResearchers,
           section: classes.section,
         }}
+        heroCarousel
       />
       <FeaturedResearchers
         featuredExperts={featuredExperts}
@@ -148,6 +152,9 @@ function Home(props) {
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
       <Partners
+        partners={partners}
+        subscribe={subscribe}
+        joinUs={joinUs}
         classes={{ root: classes.partners, section: classes.section }}
       />
     </Page>
