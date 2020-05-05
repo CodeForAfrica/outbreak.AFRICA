@@ -69,4 +69,3 @@ export async function getPostById(type, id, lang) {
   );
   return res.ok ? res.json() : null;
 }
-

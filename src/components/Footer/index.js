@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
@@ -82,14 +82,15 @@ const useStyles = makeStyles((theme) => ({
   text: {},
 }));
 
-function MainFooter({ 
-    classes: classesProp,
-    about,
-    organizationLogo,
-    initiativeLogo,
-    quickLinks,
-    legalLinks,
-     ...props }) {
+function MainFooter({
+  classes: classesProp,
+  about,
+  organizationLogo,
+  initiativeLogo,
+  quickLinks,
+  legalLinks,
+  ...props
+}) {
   const classes = useStyles({ classes: classesProp });
 
   return (
@@ -123,6 +124,14 @@ MainFooter.propTypes = {
   initiativeLogo: PropTypes.shape({}),
   quickLinks: PropTypes.shape({}),
   legalLinks: PropTypes.shape({}),
+};
+
+MainFooter.defaultProps = {
+  about: undefined,
+  organizationLogo: undefined,
+  initiativeLogo: undefined,
+  quickLinks: undefined,
+  legalLinks: undefined,
 }
 
 export default MainFooter;

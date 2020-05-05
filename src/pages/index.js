@@ -95,14 +95,15 @@ function Home(props) {
   } = props;
 
   return (
-    <Page 
+    <Page
       navigation={navigation}
       about={about}
       organizationLogo={organizationLogo}
       initiativeLogo={initiativeLogo}
       quickLinks={quickLinks}
       legalLinks={legalLinks}
-      classes={{ section: classes.section }}>
+      classes={{ section: classes.section }}
+    >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}

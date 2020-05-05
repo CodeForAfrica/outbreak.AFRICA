@@ -4,10 +4,9 @@ import { PropTypes } from "prop-types";
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import config from "config";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-
-import config from 'config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -103,11 +102,17 @@ function Navigation({ navigation, ...props }) {
       <AppBar position="fixed" color="default" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation countries={config.countries} navigation={navigation} />
+            <DesktopNavigation
+              countries={config.countries}
+              navigation={navigation}
+            />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation countries={config.countries} navigation={navigation} />
+              <MobileNavigation
+                countries={config.countries}
+                navigation={navigation}
+              />
             </>
           )}
         </Toolbar>
