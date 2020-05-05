@@ -55,7 +55,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       background:
         "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
     },
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       paddingTop: "4.625rem",
     },
     [breakpoints.up("lg")]: {
