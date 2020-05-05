@@ -23,15 +23,18 @@ const useStyles = makeStyles((theme) => ({
       width: "102.5rem",
     },
   },
-  subscribe: {
-    marginTop: '4rem'
-  },
   featuredExperts: {
     marginTop: "3.5rem",
     [theme.breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
-  }
+  },
+  subscribe: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
+  },
 }));
 
 function Research() {
@@ -40,15 +43,17 @@ function Research() {
   return (
     <Page classes={{ section: classes.section }}>
       <Hero classes={{ section: classes.section }} />
-      <div classes={{
-        root: classes.featuredExperts,
+      <ProfileList
+        profiles={profiles}
+        classes={{
+          root: classes.featuredExperts,
+          section: classes.section,
+        }}
+      />
+      <Subscribe classes={{
+        root: classes.subscribe,
         section: classes.section,
-      }} >
-        <ProfileList profiles={profiles} />
-      </div>
-      <div className={classes.sectionGrid}>
-        <Subscribe />
-      </div>
+      }} />
     </Page>
   )
 }

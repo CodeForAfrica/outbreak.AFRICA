@@ -4,6 +4,8 @@ import { PropTypes } from "prop-types";
 
 import clsx from "clsx";
 
+import { Section } from "@commons-ui/core";
+
 import { Grid } from "@material-ui/core";
 import Profile from "../ListItem";
 import useStyles from "./useStyles";
@@ -29,37 +31,39 @@ function ProfileList({
 
   return (
     <div className={classes.root} ref={rootRef}>
-      <Filter />
-      <Grid container direction="row" justify="center" spacing={2}>
-        {profiles.map((profile, index) => (
-          <Grid item xs={12} md={3} key={profile.id}>
-            <Profile
-              key={profile.title}
-              classes={{
-                root: clsx(classes.profile, {
-                  [`${profileClassPrefix}${
-                    index % profileClassCount
-                    }`]: profileClassCount,
-                }),
-                description: classes.profileDescription,
-                link: classes.profileLink,
-                name: classes.profileName,
-                nameSelected: classes.profileNameSelected,
-                picture: classes.profilePicture,
-                pictureSelected: classes.profilePictureSelected,
-                title: classes.profileTitle,
-              }}
-              height={cellHeight}
-              description={profile.description}
-              image={profile.image}
-              link={profile.link}
-              linkComponent={linkComponent}
-              name={profile.name}
-              title={profile.title}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      <Section classes={{ root: classes.section }}>
+        <Filter />
+        <Grid container direction="row" justify="center" spacing={2}>
+          {profiles.map((profile, index) => (
+            <Grid item xs={12} md={3} key={profile.id}>
+              <Profile
+                key={profile.title}
+                classes={{
+                  root: clsx(classes.profile, {
+                    [`${profileClassPrefix}${
+                      index % profileClassCount
+                      }`]: profileClassCount,
+                  }),
+                  description: classes.profileDescription,
+                  link: classes.profileLink,
+                  name: classes.profileName,
+                  nameSelected: classes.profileNameSelected,
+                  picture: classes.profilePicture,
+                  pictureSelected: classes.profilePictureSelected,
+                  title: classes.profileTitle,
+                }}
+                height={cellHeight}
+                description={profile.description}
+                image={profile.image}
+                link={profile.link}
+                linkComponent={linkComponent}
+                name={profile.name}
+                title={profile.title}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      </Section>
     </div>
   );
 }
