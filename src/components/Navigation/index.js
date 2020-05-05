@@ -7,6 +7,8 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 
+import config from 'config';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     boxShadow: "0px 10px 40px #0000002E",
@@ -91,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ takwimu: { countries }, ...props }) {
+function Navigation({ navigation, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -101,11 +103,11 @@ function Navigation({ takwimu: { countries }, ...props }) {
       <AppBar position="fixed" color="default" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation countries={countries} />
+            <DesktopNavigation countries={config.countries} navigation={navigation} />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation countries={countries} />
+              <MobileNavigation countries={config.countries} navigation={navigation} />
             </>
           )}
         </Toolbar>
@@ -118,13 +120,7 @@ function Navigation({ takwimu: { countries }, ...props }) {
 
 Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  takwimu: PropTypes.shape({
-    page: PropTypes.shape({}).isRequired,
-    countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-    settings: PropTypes.shape({
-      navigation: PropTypes.shape({}),
-    }).isRequired,
-  }).isRequired,
+  navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default Navigation;

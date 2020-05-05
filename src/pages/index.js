@@ -77,19 +77,32 @@ function Home(props) {
 
   const {
     pageContent: {
+      about,
+      myth,
+      navigation,
+      partners,
+      subscribe,
       hero_carousel: heroCarousel,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
       featured_experts: featuredExperts,
       join_us: joinUs,
-      myth,
-      partners,
-      subscribe,
+      organization_logo: organizationLogo,
+      initiative_logo: initiativeLogo,
+      quick_links: quickLinks,
+      legal_links: legalLinks,
     },
   } = props;
 
   return (
-    <Page classes={{ section: classes.section }}>
+    <Page 
+      navigation={navigation}
+      about={about}
+      organizationLogo={organizationLogo}
+      initiativeLogo={initiativeLogo}
+      quickLinks={quickLinks}
+      legalLinks={legalLinks}
+      classes={{ section: classes.section }}>
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
@@ -168,7 +181,6 @@ Home.getInitialProps = async (props) => {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const { page: pageContent } = await getSitePage("index", lang);
 
-  console.log(pageContent);
   return {
     pageContent,
   };
