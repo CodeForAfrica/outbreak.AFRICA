@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import config from "config";
 import { getSitePage } from "cms";
-
-import renderBlocks from '@hurumap-ui/content/renderBlocks';
-import logo from 'assets/images/logo/logo-outbreak.svg';
-import { Section } from "@commons-ui/core";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -95,30 +91,6 @@ function Home({ outbreak, ...props}) {
     }
   } = outbreak;
 
-  const [blocks, setBlocks] = useState();
-  useEffect(
-    () =>
-      setBlocks(
-        renderBlocks({
-          logo,
-          flourishURL: id =>
-            `${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/?lang=${language}`,
-          fetchDefinitionUrl: (type, id) => {
-            switch (type) {
-              case 'flourish':
-              case 'hurumap':
-                return `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}?lang=${language}`;
-              case 'snippet':
-                return `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}/${id}?lang=${language}`;
-              default:
-                return '';
-            }
-          }
-        })
-      ),
-    [language]
-  );
-
   return (
     <Page
       outbreak={outbreak}
@@ -159,15 +131,6 @@ function Home({ outbreak, ...props}) {
         title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
       />
-      <Section title="Featured Data" classes={{ root: classes.section }}>
-        <div
-          // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{
-            __html: rendered
-          }}
-        />
-        {blocks}
-      </Section>
       <FeaturedData
         classes={{ root: classes.featuredData, section: classes.section }}
       />
