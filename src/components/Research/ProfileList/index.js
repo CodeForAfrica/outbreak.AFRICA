@@ -49,7 +49,7 @@ function ProfileList({
                 pictureSelected: classes.profilePictureSelected,
                 title: classes.profileTitle,
               }}
-              height={600}
+              height={cellHeight}
               description={profile.description}
               image={profile.image}
               link={profile.link}
