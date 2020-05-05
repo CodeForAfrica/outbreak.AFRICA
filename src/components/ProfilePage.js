@@ -1,37 +1,43 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
 
-import _debounce from "lodash/debounce";
+// import _debounce from "lodash/debounce";
 
 import PropTypes from "prop-types";
 
-import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 
 import { Grid } from "@material-ui/core";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-import InsightContainer from "@hurumap-ui/core/InsightContainer";
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
-import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
+import InsightContainer from "@hurumap-ui/core/InsightContainer";
 import { shareIndicator } from "@hurumap-ui/core/utils";
+import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
 
 import config from "config";
 import logo from "assets/images/logo-white-all.png";
 
+import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const MapIt = dynamic({
-  ssr: false,
-  loader: () => {
-    return typeof window !== "undefined" && import("@hurumap-ui/core/MapIt");
-  },
-});
-
 const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
+  root: {},
+  section: {
+    margin: "0 1.25rem 0 1.375rem",
+    width: "auto",
+    [breakpoints.up("lg")]: {
+      margin: "0 auto",
+      width: "78.5rem",
+    },
+    [breakpoints.up("xl")]: {
+      margin: "0 auto",
+      width: "102.5rem",
+    },
+  },
   actionsShareButton: {
     minWidth: "4rem",
   },
@@ -156,9 +162,8 @@ const overrideTypePropsFor = (chartType) => {
   }
 };
 
-function Profile({ indicatorId, sectionedCharts, language, geoId }) {
+function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
   const router = useRouter();
-  const theme = useTheme();
 
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
@@ -239,11 +244,11 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
       }, [])
   );
 
-  const debouceSetProfileTabs = _debounce(setProfileTabs, 2000);
+  const debounceSetProfileTabs = setProfileTabs; // _debounce(setProfileTabs, 2000);
 
   useEffect(
     () =>
-      debouceSetProfileTabs([
+      debounceSetProfileTabs([
         ...sectionedCharts
           // Filter empty sections
           .reduce((a, { charts, ...rest }) => {
@@ -260,7 +265,7 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
           }, []),
       ]),
     [
-      debouceSetProfileTabs,
+      debounceSetProfileTabs,
       filterByChartData,
       filterByGeography,
       sectionedCharts,
@@ -430,59 +435,46 @@ function Profile({ indicatorId, sectionedCharts, language, geoId }) {
     }
   }, [indicatorId]);
 
+  let title;
+  if (country) {
+    title = country.shortName;
+  }
   return (
-    <Page takwimu={{ ...config, language }}>
+    <Page
+      takwimu={{ ...config, country, language }}
+      indicatorId={indicatorId}
+      title={title}
+      classes={{ section: classes.section }}
+    >
       {!profiles.isLoading && (
         <ProfileDetail
           profile={{
             geo: profiles.profile,
           }}
+          classes={{ section: classes.section }}
         />
       )}
-
-      <div style={{ width: "100%", height: "500px", overflow: "hidden" }}>
-        <MapIt
-          url={config.MAPIT_URL}
-          drawProfile
-          drawChildren
-          codeType="AFR"
-          geoCode={geoId.split("-")[1]}
-          geoLayerBlurStyle={{
-            color: "#D6D6D6",
-            fillColor: theme.palette.primary.main,
-            weight: 1.0,
-            opacity: 1.0,
-            fillOpacity: 0.2,
-          }}
-          geoLayerFocusStyle={{
-            color: "#D6D6D6",
-            fillColor: theme.palette.primary.main,
-            weight: 2.0,
-            opacity: 1.0,
-            fillOpacity: 0.5,
-          }}
-          geoLayerHoverStyle={{
-            fillColor: theme.palette.primary.main,
-            fillOpacity: 0.4,
-          }}
-          geoLevel={geoId.split("-")[0]}
-          onClickGeoLayer={onClickGeoLayer}
-        />
-      </div>
+      <MapIt
+        geoId={geoId}
+        height="500px"
+        onClickGeoLayer={onClickGeoLayer}
+        width="100%"
+      />
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}
           tabs={profileTabs}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
+          classes={{ section: classes.section }}
         />
       )}
-      <Section>{charts}</Section>
+      <Section classes={{ root: classes.section }}>{charts}</Section>
     </Page>
   );
 }
 
-Profile.propTypes = {
+ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
   language: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(
@@ -496,8 +488,8 @@ Profile.propTypes = {
   ).isRequired,
 };
 
-Profile.defaultProps = {
+ProfilePage.defaultProps = {
   indicatorId: undefined,
 };
 
-export default Profile;
+export default ProfilePage;

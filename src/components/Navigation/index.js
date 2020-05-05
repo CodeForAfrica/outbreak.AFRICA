@@ -1,5 +1,5 @@
 import React from "react";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -97,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
 function Navigation({
   outbreak: {
     page: { navigation },
+    country,
     countries,
   },
   ...props
@@ -110,11 +111,11 @@ function Navigation({
       <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation countries={countries} navigation={navigation} />
+            <DesktopNavigation country={country} countries={countries} navigation={navigation} />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation countries={countries} navigation={navigation} />
+              <MobileNavigation country={country} countries={countries} navigation={navigation} />
             </>
           )}
         </Toolbar>
