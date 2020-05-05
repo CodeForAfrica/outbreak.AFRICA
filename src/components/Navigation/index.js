@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   section: {
     height: "4.375rem",
+    [theme.breakpoints.up("md")]: {
+      height: "6.375rem",
+    },
     [theme.breakpoints.up("xl")]: {
       height: "9.375rem",
     },
@@ -98,7 +101,7 @@ function Navigation({ outbreak: { page: { navigation} , countries }, ...props })
 
   return (
     <>
-      <AppBar position="fixed" color="default" className={classes.root}>
+      <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
             <DesktopNavigation

@@ -174,7 +174,7 @@ function Home({ outbreak, ...props}) {
       <FeaturedResearch
         documentsAndDatasets={documentsAndDatasets}
         classes={{
-          root: classes.featuredResearchers,
+          root: classes.featuredResearch,
           section: classes.section,
         }}
         heroCarousel

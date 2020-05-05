@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: "visible",
   },
   section: {},
+  description: {
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
+  },
   profileList: {
     color: "white",
     marginTop: "2.375rem",
@@ -83,7 +89,10 @@ function FeatureResearchers({ featuredExperts, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
+      <Section
+        title={title || "Featured Researchers"}
+        classes={{ root: classes.section }}
+      >
         <Grid
           container
           className={classes.heading}
@@ -91,28 +100,23 @@ function FeatureResearchers({ featuredExperts, ...props }) {
           alignItems="center"
         >
           <Grid item xs={12}>
-            <RichTypography variant="h2" className={classes.title}>
-              {title || "Featured Researchers"}
-            </RichTypography>
-          </Grid>
-          <Grid item>
             <RichTypography variant="subtitle1" className={classes.description}>
               {brief ||
                 "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
             </RichTypography>
           </Grid>
-        </Grid>
-        <Grid item xs={12}>
-          <ProfileList
-            cellHeight={cellHeight}
-            height={cellHeight && cellHeight + 48}
-            profiles={profiles}
-            classes={{
-              root: classes.profileList,
-              profile: classes.profileListProfile,
-              profiles: classes.profileListProfiles,
-            }}
-          />
+          <Grid item xs={12}>
+            <ProfileList
+              cellHeight={cellHeight}
+              height={cellHeight && cellHeight + 48}
+              profiles={profiles}
+              classes={{
+                root: classes.profileList,
+                profile: classes.profileListProfile,
+                profiles: classes.profileListProfiles,
+              }}
+            />
+          </Grid>
         </Grid>
       </Section>
     </div>
