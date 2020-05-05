@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   title: {},
 }));
 
-function FeatureStories({ description, stories, title, ...props }) {
+function FeatureStories({ featuredStories, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -60,6 +60,32 @@ function FeatureStories({ description, stories, title, ...props }) {
   if (isUpLg) {
     cellHeight = isLg ? 438 : 637;
   }
+
+  if (!featuredStories) {
+    return null;
+  }
+  const {
+    description,
+    stories,
+    title,
+    link_label: linkLabel,
+  } = featuredStories;
+  const storiesList =
+    stories &&
+    stories.map((story, index) => {
+      return {
+        id: index,
+        title: story.title,
+        description: story.description,
+        link: {
+          title: linkLabel,
+          url: story.link_url,
+        },
+        image: {
+          url: story.image,
+        },
+      };
+    });
 
   return (
     <div className={classes.root}>
@@ -79,18 +105,18 @@ function FeatureStories({ description, stories, title, ...props }) {
                 'A selection of the African best <span class="highlight">data-driven</span> reportage or evidence-based analysis of coronavirus.'}
             </RichTypography>
           </Grid>
-          <Grid item xs={12}>
-            <StoryList
-              cellHeight={cellHeight}
-              height={cellHeight && cellHeight + 48}
-              stories={stories}
-              classes={{
-                root: classes.storyList,
-                story: classes.storyListStory,
-                stories: classes.storyListStories,
-              }}
-            />
-          </Grid>
+        </Grid>
+        <Grid item xs={12}>
+          <StoryList
+            cellHeight={cellHeight}
+            height={cellHeight && cellHeight + 48}
+            stories={storiesList}
+            classes={{
+              root: classes.storyList,
+              story: classes.storyListStory,
+              stories: classes.storyListStories,
+            }}
+          />
         </Grid>
       </Section>
     </div>
@@ -98,7 +124,16 @@ function FeatureStories({ description, stories, title, ...props }) {
 }
 
 FeatureStories.propTypes = {
-  stories: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  featuredStories: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    link_label: PropTypes.string,
+    stories: PropTypes.arrayOf(PropTypes.shape({})),
+  }),
+};
+
+FeatureStories.defaultProps = {
+  featuredStories: undefined,
 };
 
 export default FeatureStories;

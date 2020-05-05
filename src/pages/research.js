@@ -7,6 +7,8 @@ import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
 import ProfileList from "components/Research/ProfileList";
 
+import config from "config";
+import { getSitePage } from "cms";
 import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,12 +39,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Research() {
-  const classes = useStyles();
+function Research({ outbreak, ...props }) {
+  const classes = useStyles(props);
+  const {
+    page: { hero_carousel: heroCarousel },
+  } = outbreak;
   const profiles = getProfiles();
+
   return (
-    <Page classes={{ section: classes.section }}>
-      <Hero classes={{ section: classes.section }} />
+    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+      <Hero
+        heroCarousel={heroCarousel}
+        classes={{ section: classes.section }}
+      />
       <ProfileList
         profiles={profiles}
         classes={{
@@ -59,5 +68,17 @@ function Research() {
     </Page>
   );
 }
+
+Research.getInitialProps = async (props) => {
+  const {
+    query: { lang: pageLanguage },
+  } = props;
+  const lang = pageLanguage || config.DEFAULT_LANG;
+  const outbreak = await getSitePage("index", lang);
+
+  return {
+    outbreak,
+  };
+};
 
 export default Research;

@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { PropTypes } from "prop-types";
 
-import clsx from "clsx";
+import classNames from "classnames";
 
 import { Section } from "@commons-ui/core";
 
@@ -39,7 +39,7 @@ function ProfileList({
               <Profile
                 key={profile.title}
                 classes={{
-                  root: clsx(classes.profile, {
+                  root: classNames(classes.profile, {
                     [`${profileClassPrefix}${
                       index % profileClassCount
                     }`]: profileClassCount,

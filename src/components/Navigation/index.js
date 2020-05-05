@@ -94,7 +94,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ takwimu: { country, countries }, ...props }) {
+function Navigation({
+  outbreak: {
+    page: { navigation },
+    country,
+    countries,
+  },
+  ...props
+}) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -104,11 +111,19 @@ function Navigation({ takwimu: { country, countries }, ...props }) {
       <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
-            <DesktopNavigation country={country} countries={countries} />
+            <DesktopNavigation
+              country={country}
+              countries={countries}
+              navigation={navigation}
+            />
           ) : (
             <>
               <div className={classes.grow} />
-              <MobileNavigation country={country} countries={countries} />
+              <MobileNavigation
+                country={country}
+                countries={countries}
+                navigation={navigation}
+              />
             </>
           )}
         </Toolbar>
@@ -121,13 +136,11 @@ function Navigation({ takwimu: { country, countries }, ...props }) {
 
 Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  takwimu: PropTypes.shape({
-    country: PropTypes.shape({}).isRequired,
-    countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-    page: PropTypes.shape({}).isRequired,
-    settings: PropTypes.shape({
-      navigation: PropTypes.shape({}),
-    }).isRequired,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      navigation: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+    countries: PropTypes.arrayOf(PropTypes.shape({})),
   }).isRequired,
 };
 

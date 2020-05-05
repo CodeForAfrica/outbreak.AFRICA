@@ -1,10 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
-
-import RichTypography from "components/RichTypography";
+import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
@@ -51,6 +50,11 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   title: {
     width: "100%",
     paddingTop: typography.pxToRem(29),
+    "& .highlight": {
+      display: "inline-block",
+      background:
+        "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
+    },
     [breakpoints.up("md")]: {
       paddingTop: "4.625rem",
     },
@@ -72,7 +76,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Hero(props) {
+function Hero({ heroCarousel, ...props }) {
   const classes = useStyles(props);
   return (
     <div className={classes.root}>
@@ -90,9 +94,9 @@ function Hero(props) {
                 component="div"
                 classes={{ root: classes.title }}
               >
-                {
-                  "<span class='highlight'>Contextual</span> data <br /> \n with <span class='highlight'>actionable</span>  \n insights"
-                }
+                {`<span class='highlight'>Contextual</span> data <br /> 
+                  with <span class='highlight'>actionable</span>  
+                  insights`}
               </RichTypography>
             </Grid>
             <Grid item xs={12}>
@@ -100,19 +104,34 @@ function Hero(props) {
                 variant="subtitle1"
                 classes={{ root: classes.description }}
               >
-                {
-                  "Data driven analysis on  <span class='highlight'>COVID-19</span> in more than 10 African countries. Find out more about us."
-                }
+                {`Data driven analysis on  
+                <span class='highlight'>COVID-19</span> in more than 
+                10 African countries. Find out more about us.`}
               </RichTypography>
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
-            <HeroCarousel />
+            {heroCarousel && (
+              <HeroCarousel
+                carouselItems={heroCarousel.carousel_items}
+                carouselLinkTitle={heroCarousel.link_title}
+              />
+            )}
           </Grid>
         </Grid>
       </Section>
     </div>
   );
 }
+Hero.propTypes = {
+  heroCarousel: PropTypes.shape({
+    carousel_items: PropTypes.arrayOf(PropTypes.shape({})),
+    link_title: PropTypes.string,
+  }),
+};
+
+Hero.defaultProps = {
+  heroCarousel: undefined,
+};
 
 export default Hero;

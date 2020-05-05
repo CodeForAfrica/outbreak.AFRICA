@@ -1,15 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-
-import africaarxiv from "assets/partnerLogos/africaarxiv/africaarxiv.png";
-import africapractice from "assets/partnerLogos/africapractice/africapractice.png";
-import aosh from "assets/partnerLogos/aosh/aosh.png";
-import asi from "assets/partnerLogos/asi/asi.png";
-import asln from "assets/partnerLogos/asln/asln.png";
-import pesacheck from "assets/partnerLogos/pesacheck/pesacheck.png";
-import takwimu from "assets/partnerLogos/takwimu/takwimu.png";
-import wanadata from "assets/partnerLogos/wanadata/wanadata.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -43,58 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const partners = [
-  {
-    name: "Africa Ar Xiv",
-    image: `${africaarxiv}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "Takwimu",
-    image: `${takwimu}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "Africa Practice",
-    image: `${africapractice}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "PesaCheck",
-    image: `${pesacheck}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "African Science Initiative",
-    image: `${asi}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "Africa Open Science Hardware",
-    image: `${aosh}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "African Science Literacy Network",
-    image: `${asln}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-  {
-    name: "Wanadata",
-    image: `${wanadata}`,
-    description:
-      "Lorem ipsum is simply dummy text of the printing and typeseting industry",
-  },
-];
-
-function PartnersGrid({ ...props }) {
+function PartnersGrid({ partners, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -118,12 +60,12 @@ function PartnersGrid({ ...props }) {
               src={partner.image}
               alt={partner.name}
               className={
-                partner.image === `${africaarxiv}` ? classes.image : classes.img
+                partner.name === "Africa Ar Xiv" ? classes.image : classes.img
               }
             />
             <div
               className={
-                partner.image === `${africaarxiv}`
+                partner.name === "Africa Ar Xiv"
                   ? classes.descGrid
                   : classes.divGrid
               }
@@ -138,5 +80,9 @@ function PartnersGrid({ ...props }) {
     </Grid>
   );
 }
+
+PartnersGrid.propTypes = {
+  partners: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 
 export default PartnersGrid;

@@ -58,17 +58,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CarouselCard({ item }) {
+function CarouselCard({ item, linkTitle }) {
   const classes = useStyles();
+
+  if (!item) {
+    return null;
+  }
+
+  const { title, brief, image, link_url: link } = item;
 
   return (
     <Card className={classes.root}>
       <CardActionArea style={{ height: "100%" }}>
-        <CardMedia
-          className={classes.media}
-          image={item.mediaLink}
-          title="Item"
-        />
+        <CardMedia className={classes.media} image={image} title="Item" />
         <Grid
           container
           item
@@ -76,19 +78,21 @@ function CarouselCard({ item }) {
           className={classes.contentRoot}
           alignItems="flex-start"
         >
-          <Typography variant="subtitle2" className={classes.bodyTitle}>
-            {item.title}
-          </Typography>
-          <Typography variant="caption" className={classes.bodyText}>
-            {item.brief}
-          </Typography>
-          <Button
-            variant="outlined"
-            href={item.link}
-            className={classes.cardLink}
-          >
-            {item.linkTitle}
-          </Button>
+          {title && (
+            <Typography variant="subtitle2" className={classes.bodyTitle}>
+              {title}
+            </Typography>
+          )}
+          {brief && (
+            <Typography variant="caption" className={classes.bodyText}>
+              {brief}
+            </Typography>
+          )}
+          {link && (
+            <Button variant="outlined" href={link} className={classes.cardLink}>
+              {linkTitle}
+            </Button>
+          )}
         </Grid>
       </CardActionArea>
     </Card>
@@ -96,7 +100,18 @@ function CarouselCard({ item }) {
 }
 
 CarouselCard.propTypes = {
-  item: PropTypes.shape().isRequired,
+  item: PropTypes.shape({
+    title: PropTypes.string,
+    brief: PropTypes.string,
+    image: PropTypes.string,
+    link_url: PropTypes.string,
+  }),
+  linkTitle: PropTypes.string,
+};
+
+CarouselCard.defaultProps = {
+  linkTitle: "Learn More",
+  item: undefined,
 };
 
 export default CarouselCard;

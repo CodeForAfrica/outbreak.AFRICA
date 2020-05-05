@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   profileListProfiles: {},
 }));
 
-function FeatureResearchers({ description, profiles, title, ...props }) {
+function FeatureResearchers({ featuredExperts, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -66,6 +66,26 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
   if (isUpLg) {
     cellHeight = isLg ? 438 : 637;
   }
+
+  if (!featuredExperts) {
+    return null;
+  }
+
+  const { brief: description, experts, title } = featuredExperts;
+
+  const profiles =
+    experts &&
+    experts.map((profile, index) => {
+      return {
+        id: index,
+        name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
+        image: {
+          url: profile.image,
+        },
+      };
+    });
 
   return (
     <div className={classes.root}>
@@ -82,7 +102,7 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
           <Grid item xs={12}>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
-                'Connect with <span class="highlight">African scientists</span> and other experts who are at the forefront of efforts to understand coronavirus on the continent.'}
+                "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
             </RichTypography>
           </Grid>
           <Grid item xs={12}>
@@ -104,7 +124,14 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
 }
 
 FeatureResearchers.propTypes = {
-  profiles: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  featuredExperts: PropTypes.shape({
+    experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+    title: PropTypes.string,
+    brief: PropTypes.string,
+  }),
 };
 
+FeatureResearchers.defaultProps = {
+  featuredExperts: undefined,
+};
 export default FeatureResearchers;

@@ -3,8 +3,6 @@ import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import config from "config";
-
 import Footer from "./Footer";
 import Navigation from "./Navigation";
 import SEO from "./SEO";
@@ -16,20 +14,16 @@ const useStyles = makeStyles(() => ({
   section: {},
 }));
 
-function Page({ children, classes: classesProp, takwimu, ...props }) {
+function Page({ children, classes: classesProp, outbreak, ...props }) {
   const classes = useStyles({ classes: classesProp });
+
   return (
     <div className={classes.root}>
       <SEO {...props} />
-      <Navigation
-        takwimu={takwimu || config}
-        classes={{ section: classes.section }}
-      />
+      <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
+
       {children}
-      <Footer
-        takwimu={takwimu || config}
-        classes={{ section: classes.section }}
-      />
+      <Footer outbreak={outbreak} classes={{ section: classes.section }} />
     </div>
   );
 }
@@ -39,13 +33,7 @@ Page.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  takwimu: PropTypes.shape({}),
-  title: PropTypes.string,
-};
-
-Page.defaultProps = {
-  takwimu: undefined,
-  title: undefined,
+  outbreak: PropTypes.shape({}).isRequired,
 };
 
 export default Page;

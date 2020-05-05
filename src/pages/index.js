@@ -1,6 +1,9 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
+import config from "config";
+import { getSitePage } from "cms";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -11,8 +14,6 @@ import MythBusting from "components/MythBusting";
 import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
-
-import { getProfiles, getStories } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -72,14 +73,28 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home(props) {
+function Home({ outbreak, ...props }) {
   const classes = useStyles(props);
-  const profiles = getProfiles();
-  const stories = getStories();
+
+  const {
+    page: {
+      myth,
+      partners,
+      subscribe,
+      hero_carousel: heroCarousel,
+      documents_and_datasets: documentsAndDatasets,
+      featured_stories: featuredStories,
+      featured_experts: featuredExperts,
+      join_us: joinUs,
+    },
+  } = outbreak;
 
   return (
-    <Page classes={{ section: classes.section }}>
-      <Hero classes={{ section: classes.section }} />
+    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+      <Hero
+        heroCarousel={heroCarousel}
+        classes={{ section: classes.section }}
+      />
       <Ticker
         source={{
           title: "openAFRICA",
@@ -115,45 +130,57 @@ function Home(props) {
         classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch
+        documentsAndDatasets={documentsAndDatasets}
         classes={{
           root: classes.featuredResearch,
           section: classes.section,
         }}
+        heroCarousel
       />
       <FeaturedResearchers
-        profiles={profiles}
+        featuredExperts={featuredExperts}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
         }}
       />
-
       <MythBusting
-        title="Myth-busting"
-        description={`
-              A searchable database of
-              <span class="highlight">debunked misinformation</span>
-               <br />
-              backed up by a transnational team of expert
-              <span class="highlight">
-              African fact-
-              <br />
-              checkers
-              </span>
-              to help you test new questionable claims.
-        `}
-        linkText="LEARN MORE"
+        myth={myth}
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
-        stories={stories}
+        featuredStories={featuredStories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
       <Partners
+        partners={partners}
+        subscribe={subscribe}
+        joinUs={joinUs}
         classes={{ root: classes.partners, section: classes.section }}
       />
     </Page>
   );
 }
+
+Home.propTypes = {
+  outbreak: PropTypes.shape({
+    language: PropTypes.string,
+    page: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+  }).isRequired,
+};
+
+Home.getInitialProps = async (props) => {
+  const {
+    query: { lang: pageLanguage },
+  } = props;
+  const lang = pageLanguage || config.DEFAULT_LANG;
+  const outbreak = await getSitePage("index", lang);
+
+  return {
+    outbreak,
+  };
+};
 
 export default Home;

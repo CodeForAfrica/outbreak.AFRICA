@@ -117,6 +117,20 @@ const theme = createTheme({
       textTransform: "none",
     },
   },
+  overrides: {
+    MuiCssBaseline: {
+      "@global": {
+        ".wp-block-columns": {
+          display: "flex",
+          width: "calc(100% + 16px)",
+          margin: "-8px",
+        },
+        ".wp-block-column": {
+          padding: "8px",
+        },
+      },
+    },
+  },
 });
 
 // ## RESPONSIVE FONTS

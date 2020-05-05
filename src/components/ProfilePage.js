@@ -162,7 +162,13 @@ const overrideTypePropsFor = (chartType) => {
   }
 };
 
-function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
+function ProfilePage({
+  indicatorId,
+  geoId,
+  language,
+  outbreak,
+  sectionedCharts,
+}) {
   const router = useRouter();
 
   const [activeTab, setActiveTab] = useState(
@@ -441,7 +447,7 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
   }
   return (
     <Page
-      takwimu={{ ...config, country, language }}
+      outbreak={{ ...outbreak, country, language }}
       indicatorId={indicatorId}
       title={title}
       classes={{ section: classes.section }}
@@ -477,6 +483,7 @@ function ProfilePage({ indicatorId, sectionedCharts, language, geoId }) {
 ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
   language: PropTypes.string.isRequired,
+  outbreak: PropTypes.shape({}).isRequired,
   sectionedCharts: PropTypes.arrayOf(
     PropTypes.shape({
       charts: PropTypes.arrayOf(

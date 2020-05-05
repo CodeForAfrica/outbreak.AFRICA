@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Grid, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
@@ -7,9 +9,6 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import carousel1 from "assets/images/carusel-1.png";
-import carousel2 from "assets/images/carusel-2.png";
-import carousel3 from "assets/images/carousel3.png";
 import CarouselCard from "./CarouselCard";
 
 const responsive = {
@@ -74,34 +73,10 @@ function CustomArrowButtons({ next, previous }) {
   );
 }
 
-const carouselItems = [
-  {
-    title: "Coronavirus update",
-    brief:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    link: "#",
-    linkTitle: "Learn More",
-    mediaLink: carousel1,
-  },
-  {
-    title: "A new drug",
-    brief:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    link: "#",
-    linkTitle: "Learn More",
-    mediaLink: carousel2,
-  },
-  {
-    title: "Stay healthy",
-    brief:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    link: "#",
-    linkTitle: "Learn More",
-    mediaLink: carousel3,
-  },
-];
-
-function HeroCarousel({ deviceType }) {
+function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
+  if (!carouselItems || carouselItems.length === 0) {
+    return null;
+  }
   return (
     <Carousel
       swipeable
@@ -121,10 +96,28 @@ function HeroCarousel({ deviceType }) {
       itemClass="carousel-item-padding-40-px"
     >
       {carouselItems.map((item) => (
-        <CarouselCard key={item.title} item={item} />
+        <CarouselCard
+          key={item.title}
+          item={item}
+          linkTitle={carouselLinkTitle}
+        />
       ))}
     </Carousel>
   );
 }
+
+HeroCarousel.propTypes = {
+  carouselItems: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string,
+    })
+  ),
+  carouselLinkTitle: PropTypes.string,
+};
+
+HeroCarousel.defaultProps = {
+  carouselItems: undefined,
+  carouselLinkTitle: undefined,
+};
 
 export default HeroCarousel;

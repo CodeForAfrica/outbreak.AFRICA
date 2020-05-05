@@ -1,6 +1,14 @@
 import fetch from "isomorphic-unfetch";
 import config from "config";
 
+export async function getSiteOptions(lang) {
+  const res = await fetch(
+    `${config.WP_BACKEND_URL}/wp-json/acf/v3/options/hurumap-site?lang=${lang}`
+  );
+  const data = res.ok ? await res.json() : {};
+  return data.acf;
+}
+
 export async function getPage(type) {
   const res = await fetch(
     `${config.WP_BACKEND_URL}/api/v2/pages/?type=${type}&fields=*&format=json`
@@ -25,13 +33,15 @@ export async function getSitePage(slug, lang) {
   const res = await fetch(
     `${config.WP_BACKEND_URL}/wp-json/wp/v2/pages?slug=${slug}&lang=${lang}`
   );
-
   const data = res.ok ? await res.json() : {};
+
+  const options = await getSiteOptions(lang);
 
   Object.assign(
     config.page,
     { rendered: data[0].content.rendered },
-    data[0].acf
+    data[0].acf,
+    options
   );
 
   config.language = lang;
