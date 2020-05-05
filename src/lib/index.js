@@ -60,6 +60,71 @@ export function getProfiles() {
       name: "Wandia Njoya",
       title: "Daystar University",
     },
+    {
+      id: 6,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person1Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
+    {
+      id: 7,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person2Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
+    {
+      id: 8,
+      description:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      image: {
+        url: person3Image,
+      },
+      name: "Wandia Njoya",
+      title: "Daystar University",
+    },
+  ];
+}
+
+export function getFilterData() {
+  return [
+    {
+      id: 1,
+      topic: "Lorem",
+      slug: "lorem",
+    },
+    {
+      id: 2,
+      topic: "Ipsum",
+      slug: "ipsum",
+    },
+    {
+      id: 3,
+      topic: "Dolor",
+      slug: "dolor",
+    },
+    {
+      id: 4,
+      topic: "Sit",
+      slug: "sit",
+    },
+    {
+      id: 5,
+      topic: "Amet",
+      slug: "amet",
+    },
+    {
+      id: 6,
+      topic: "Sed",
+      slug: "sed",
+    },
   ];
 }
 
