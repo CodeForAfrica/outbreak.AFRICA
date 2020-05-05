@@ -89,9 +89,13 @@ function CarouselCard({ item, linkTitle }) {
             </Typography>
           )}
           {link && (
-            <A href={link} className={classes.cardLink}>
-              {linkTitle}
-            </A>
+            <Button
+            variant="outlined"
+            href={item.link}
+            className={classes.cardLink}
+          >
+            {item.linkTitle}
+          </Button>
           )}
         </Grid>
       </CardActionArea>
