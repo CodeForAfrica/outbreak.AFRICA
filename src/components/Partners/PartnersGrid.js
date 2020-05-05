@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
   imageGrid: {
-    marginTop: '2rem',
+    marginTop: "2rem",
     [theme.breakpoints.up("md")]: {
       marginTop: "4rem",
     },
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   descGrid: {
-    marginTop: '-0.25rem',
+    marginTop: "-0.25rem",
   },
   divGrid: {
     marginTop: "2rem",
@@ -102,9 +102,7 @@ function PartnersGrid({ ...props }) {
   return (
     <Grid container direction="column" className={classes.root}>
       <Grid item>
-        <Typography variant="h2">
-          Our Partners
-        </Typography>
+        <Typography variant="h2">Our Partners</Typography>
       </Grid>
       <Grid
         item
@@ -130,9 +128,9 @@ function PartnersGrid({ ...props }) {
                   : classes.divGrid
               }
             >
-              {isDesktop &&
+              {isDesktop && (
                 <Typography variant="body2">{partner.description}</Typography>
-              }
+              )}
             </div>
           </Grid>
         ))}

@@ -98,7 +98,7 @@ function Navigation({ takwimu: { countries }, ...props }) {
 
   return (
     <>
-      <AppBar position="fixed" color="default" className={classes.root}>
+      <AppBar position="fixed" color="inherit" className={classes.root}>
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
             <DesktopNavigation countries={countries} />

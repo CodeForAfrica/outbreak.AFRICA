@@ -79,7 +79,7 @@ function Home(props) {
 
   return (
     <Page classes={{ section: classes.section }}>
-      <Hero classes={{ section: classes.section }}/>
+      <Hero classes={{ section: classes.section }} />
       <Ticker
         source={{
           title: "openAFRICA",
@@ -116,7 +116,7 @@ function Home(props) {
       />
       <FeaturedResearch
         classes={{
-          root: classes.featuredResearchers,
+          root: classes.featuredResearch,
           section: classes.section,
         }}
       />
@@ -149,7 +149,9 @@ function Home(props) {
         stories={stories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
-      <Partners classes={{ root: classes.partners, section: classes.section }} />
+      <Partners
+        classes={{ root: classes.partners, section: classes.section }}
+      />
     </Page>
   );
 }

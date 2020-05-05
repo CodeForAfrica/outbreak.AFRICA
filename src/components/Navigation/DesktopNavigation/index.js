@@ -7,9 +7,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Link from "components/Link";
 
+import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
+
+import DataMenuList from "./DataMenuList";
+import MenuButton from "./MenuButton";
 import Search from "./Search";
-import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -37,28 +40,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DesktopNavigation() {
-  const classes = useStyles();
+function DesktopNavigation(props) {
+  const classes = useStyles(props);
+
   return (
     <Grid container justify="flex-start" alignItems="center">
       <Grid item md={3}>
         <Logo />
       </Grid>
-      {/* <div className={classes.grow} /> */}
+      <div className={classes.grow} />
       <Grid item md={5} container justify="flex-end">
         <Grid item>
-          <Button size="large" className={classes.button}>
-            <Menu title="DATA" />
-          </Button>
+          <MenuButton
+            color="secondary"
+            size="large"
+            title="DATA"
+            variant="outlined"
+          >
+            <DataMenuList dense />
+          </MenuButton>
+        </Grid>
+        <Grid item>
+          <LinkButton href="/research" size="large" className={classes.button}>
+            RESEARCH
+          </LinkButton>
         </Grid>
         <Grid item>
           <Button size="large" className={classes.button}>
-            <Menu title="INSIGHT" />
-          </Button>
-        </Grid>
-        <Grid item>
-          <Button size="large" className={classes.button}>
-            <Menu title="RESOURCES" />
+            INSIGHT
           </Button>
         </Grid>
       </Grid>

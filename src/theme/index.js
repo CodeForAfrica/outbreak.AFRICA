@@ -120,7 +120,7 @@ const theme = createTheme({
 });
 
 // ## RESPONSIVE FONTS
-const { breakpoints, typography } = theme;
+const { breakpoints, palette, typography } = theme;
 const { pxToRem } = typography;
 deepmerge(
   typography,
@@ -253,7 +253,7 @@ deepmerge(
     MuiButton: {
       // Name of the rule
       contained: {
-        color: theme.palette.secondary.main,
+        color: palette.secondary.main,
         border: "none",
         borderRadius: 0,
         boxShadow: "none",
@@ -266,7 +266,7 @@ deepmerge(
         },
       },
       containedPrimary: {
-        color: theme.palette.secondary.main,
+        color: palette.secondary.main,
         border: "none",
         boxShadow: "none",
         paddingLeft: 0,
@@ -287,30 +287,39 @@ deepmerge(
         paddingRight: 0,
         paddingTop: 0,
         border: "none",
-        borderBottom: `2px solid ${theme.palette.highlight.main}`,
-        color: theme.palette.highlight.main,
+        borderBottom: `2px solid ${palette.highlight.main}`,
+        color: palette.highlight.main,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${theme.palette.highlight.main}`,
+          borderBottom: `2px solid ${palette.highlight.main}`,
         },
       },
       outlinedPrimary: {
         border: "none",
-        borderBottom: `2px solid ${theme.palette.highlight.main}`,
-        color: theme.palette.highlight.main,
+        borderBottom: `2px solid ${palette.highlight.main}`,
+        color: palette.highlight.main,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${theme.palette.highlight.main}`,
+          borderBottom: `2px solid ${palette.highlight.main}`,
         },
       },
       outlinedSecondary: {
         border: "none",
-        color: theme.palette.secondary.main,
-        borderBottom: `2px solid ${theme.palette.secondary.main}`,
+        color: palette.secondary.main,
+        borderBottom: `2px solid ${palette.secondary.main}`,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${theme.palette.secondary.main}`,
+          borderBottom: `2px solid ${palette.primary.main}`,
+          color: palette.primary.main,
         },
+      },
+      outlinedSizeSmall: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      outlinedSizeLarge: {
+        paddingLeft: 0,
+        paddingRight: 0,
       },
       sizeLarge: {
         // Some CSS
@@ -329,6 +338,11 @@ deepmerge(
         letterSpacing: 0,
         [breakpoints.up("xl")]: {
           letterSpacing: pxToRem(2.4),
+        },
+      },
+      text: {
+        "&:hover": {
+          color: palette.primary.main,
         },
       },
     },

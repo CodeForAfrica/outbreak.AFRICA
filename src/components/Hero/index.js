@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
@@ -61,8 +61,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1.0625rem",
     marginBottom: "3rem",
     width: "100%",
-    '& .highlight': {
-      background: "linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )",
     },
     [theme.breakpoints.up("md")]: {
       maxWidth: "41.12rem",
@@ -83,16 +84,24 @@ function Hero(props) {
         >
           <Grid item container md={7}>
             <Grid item xs={12}>
-              <RichTypography variant="h1" component="div" classes={{ root: classes.title}}>
-                {"<span class='highlight'>Contextual</span> data <br /> \n with <span class='highlight'>actionable</span>  \n insights"}
+              <RichTypography
+                variant="h1"
+                component="div"
+                classes={{ root: classes.title }}
+              >
+                {
+                  "<span class='highlight'>Contextual</span> data <br /> \n with <span class='highlight'>actionable</span>  \n insights"
+                }
               </RichTypography>
             </Grid>
             <Grid item xs={12}>
               <RichTypography
                 variant="subtitle1"
-                classes={{ root: classes.description}}
+                classes={{ root: classes.description }}
               >
-                {"Data driven analysis on  <span class='highlight'>COVID-19</span> in more than 10 African countries. Find out more about us."}
+                {
+                  "Data driven analysis on  <span class='highlight'>COVID-19</span> in more than 10 African countries. Find out more about us."
+                }
               </RichTypography>
             </Grid>
           </Grid>
