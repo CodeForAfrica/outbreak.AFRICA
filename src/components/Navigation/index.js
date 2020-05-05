@@ -4,7 +4,6 @@ import { PropTypes } from "prop-types";
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import config from "config";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 
@@ -92,7 +91,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Navigation({ navigation, ...props }) {
+function Navigation({ outbreak: { page: { navigation} , countries }, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -103,14 +102,14 @@ function Navigation({ navigation, ...props }) {
         <Toolbar disableGutters className={classes.section}>
           {isDesktop ? (
             <DesktopNavigation
-              countries={config.countries}
+              countries={countries}
               navigation={navigation}
             />
           ) : (
             <>
               <div className={classes.grow} />
               <MobileNavigation
-                countries={config.countries}
+                countries={countries}
                 navigation={navigation}
               />
             </>
@@ -125,7 +124,12 @@ function Navigation({ navigation, ...props }) {
 
 Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
-  navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      navigation: PropTypes.arrayOf(PropTypes.shape({})),
+    }),
+    countries: PropTypes.arrayOf(PropTypes.shape({})),
+  })
 };
 
 export default Navigation;

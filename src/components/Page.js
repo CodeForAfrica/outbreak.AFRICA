@@ -17,12 +17,7 @@ const useStyles = makeStyles(() => ({
 function Page({
   children,
   classes: classesProp,
-  about,
-  organizationLogo,
-  initiativeLogo,
-  quickLinks,
-  legalLinks,
-  navigation,
+  outbreak,
   ...props
 }) {
   const classes = useStyles({ classes: classesProp });
@@ -31,17 +26,13 @@ function Page({
     <div className={classes.root}>
       <SEO {...props} />
       <Navigation
-        navigation={navigation}
+        outbreak={outbreak}
         classes={{ section: classes.section }}
       />
 
       {children}
       <Footer
-        about={about}
-        organizationLogo={organizationLogo}
-        initiativeLogo={initiativeLogo}
-        quickLinks={quickLinks}
-        legalLinks={legalLinks}
+        outbreak={outbreak}
         classes={{ section: classes.section }}
       />
     </div>
@@ -53,23 +44,7 @@ Page.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node,
   ]).isRequired,
-  navigation: PropTypes.shape({}),
-  about: PropTypes.shape({}),
-  organizationLogo: PropTypes.shape({}),
-  initiativeLogo: PropTypes.shape({}),
-  quickLinks: PropTypes.shape({}),
-  legalLinks: PropTypes.shape({}),
-  title: PropTypes.string,
-};
-
-Page.defaultProps = {
-  title: undefined,
-  navigation: undefined,
-  about: undefined,
-  organizationLogo: undefined,
-  initiativeLogo: undefined,
-  quickLinks: undefined,
-  legalLinks: undefined,
+  outbreak: PropTypes.shape({}).isRequired,
 };
 
 export default Page;

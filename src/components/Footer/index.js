@@ -84,15 +84,18 @@ const useStyles = makeStyles((theme) => ({
 
 function MainFooter({
   classes: classesProp,
-  about,
-  organizationLogo,
-  initiativeLogo,
-  quickLinks,
-  legalLinks,
+  outbreak: {
+    page: {
+      about,
+      initiative_logo: initiativeLogo,
+      legal_links: legalLinks,
+      organization_logo: organizationLogo,
+      quick_links: quickLinks,
+    },
+  },
   ...props
 }) {
   const classes = useStyles({ classes: classesProp });
-
   return (
     <Footer
       {...props}
@@ -119,19 +122,15 @@ function MainFooter({
 }
 
 MainFooter.propTypes = {
-  about: PropTypes.shape({}),
-  organizationLogo: PropTypes.shape({}),
-  initiativeLogo: PropTypes.shape({}),
-  quickLinks: PropTypes.shape({}),
-  legalLinks: PropTypes.shape({}),
-};
-
-MainFooter.defaultProps = {
-  about: undefined,
-  organizationLogo: undefined,
-  initiativeLogo: undefined,
-  quickLinks: undefined,
-  legalLinks: undefined,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      about: PropTypes.shape({}),
+      organization_logo: PropTypes.shape({}),
+      initiative_logo: PropTypes.shape({}),
+      quick_links: PropTypes.shape({}),
+      legal_links: PropTypes.shape({}),
+    })
+  }).isRequired,
 };
 
 export default MainFooter;

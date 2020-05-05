@@ -3,7 +3,7 @@ import config from "config";
 
 export async function getSiteOptions(lang) {
   const res = await fetch(
-    `${config.WP_BACKEND_URL}/wp-json/acf/v3/options/hurumap-config?lang=${lang}`
+    `${config.WP_BACKEND_URL}/wp-json/acf/v3/options/hurumap-site?lang=${lang}`
   );
   const data = res.ok ? await res.json() : {};
   return data.acf;

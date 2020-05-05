@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import config from "config";
 import { getSitePage } from "cms";
+
+import renderBlocks from '@hurumap-ui/content/renderBlocks';
+import logo from 'assets/images/logo/logo-outbreak.svg';
+import { Section } from "@commons-ui/core";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -72,14 +77,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Home(props) {
+function Home({ outbreak, ...props}) {
   const classes = useStyles(props);
 
   const {
-    pageContent: {
-      about,
+    language,
+    page: {
+      rendered,
       myth,
-      navigation,
       partners,
       subscribe,
       hero_carousel: heroCarousel,
@@ -87,21 +92,36 @@ function Home(props) {
       featured_stories: featuredStories,
       featured_experts: featuredExperts,
       join_us: joinUs,
-      organization_logo: organizationLogo,
-      initiative_logo: initiativeLogo,
-      quick_links: quickLinks,
-      legal_links: legalLinks,
-    },
-  } = props;
+    }
+  } = outbreak;
+
+  const [blocks, setBlocks] = useState();
+  useEffect(
+    () =>
+      setBlocks(
+        renderBlocks({
+          logo,
+          flourishURL: id =>
+            `${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/?lang=${language}`,
+          fetchDefinitionUrl: (type, id) => {
+            switch (type) {
+              case 'flourish':
+              case 'hurumap':
+                return `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}?lang=${language}`;
+              case 'snippet':
+                return `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}/${id}?lang=${language}`;
+              default:
+                return '';
+            }
+          }
+        })
+      ),
+    [language]
+  );
 
   return (
     <Page
-      navigation={navigation}
-      about={about}
-      organizationLogo={organizationLogo}
-      initiativeLogo={initiativeLogo}
-      quickLinks={quickLinks}
-      legalLinks={legalLinks}
+      outbreak={outbreak}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -139,6 +159,15 @@ function Home(props) {
         title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
       />
+      <Section title="Featured Data" classes={{ root: classes.section }}>
+        <div
+          // eslint-disable-next-line react/no-danger
+          dangerouslySetInnerHTML={{
+            __html: rendered
+          }}
+        />
+        {blocks}
+      </Section>
       <FeaturedData
         classes={{ root: classes.featuredData, section: classes.section }}
       />
@@ -175,15 +204,24 @@ function Home(props) {
   );
 }
 
+Home.propTypes = {
+  outbreak: PropTypes.shape({
+    language: PropTypes.string,
+    page: PropTypes.shape({
+      rendered: PropTypes.string,
+    })
+  }).isRequired
+};
+
 Home.getInitialProps = async (props) => {
   const {
     query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const { page: pageContent } = await getSitePage("index", lang);
+  const outbreak = await getSitePage("index", lang);
 
   return {
-    pageContent,
+    outbreak
   };
 };
 
