@@ -2,15 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-  makeStyles,
+  Button,
   Card,
   CardActionArea,
   CardMedia,
   Grid,
   Typography,
+  makeStyles,
 } from "@material-ui/core";
-
-import A from "@hurumap-ui/core/A";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,17 +46,7 @@ const useStyles = makeStyles((theme) => ({
       minHeight: "30rem",
     },
   },
-  cardLink: {
-    textDecoration: "underline",
-    letterSpacing: "2.4px",
-    fontFamily: theme.typography.button.fontFamily,
-    color: "#F9FF71",
-    fontSize: "1rem",
-    fontWeight: "bold",
-    [theme.breakpoints.up("md")]: {
-      textTransform: "uppercase",
-    },
-  },
+  cardLink: {},
   bodyTitle: {
     color: "#fff",
     fontWeight: "bold",
@@ -93,9 +82,13 @@ function CarouselCard({ item }) {
           <Typography variant="caption" className={classes.bodyText}>
             {item.brief}
           </Typography>
-          <A href={item.link} className={classes.cardLink}>
+          <Button
+            variant="outlined"
+            href={item.link}
+            className={classes.cardLink}
+          >
             {item.linkTitle}
-          </A>
+          </Button>
         </Grid>
       </CardActionArea>
     </Card>

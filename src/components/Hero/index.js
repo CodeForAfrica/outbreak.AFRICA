@@ -10,7 +10,7 @@ import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     backgroundImage: `url(${heroImage})`,
     backgroundRepeat: "no-repeat",
@@ -24,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "90% 2%",
     backgroundSize: "50%",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       backgroundPosition: "20% 30%",
       backgroundSize: "75% 55%",
     },
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       backgroundPosition: "20% 90%",
       backgroundSize: "70% 75%",
     },
@@ -39,21 +39,22 @@ const useStyles = makeStyles((theme) => ({
     },
     width: "calc(((100vw - 100%) / 2) + 100%)",
     zIndex: 1,
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       paddingTop: "2.625rem",
       position: "relative",
       right: "-366px",
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("xl")]: {
       right: "-244px",
     },
   },
   title: {
     width: "100%",
-    [theme.breakpoints.up("md")]: {
+    paddingTop: typography.pxToRem(29),
+    [breakpoints.up("md")]: {
       paddingTop: "4.625rem",
     },
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       paddingTop: "8.125rem",
     },
   },
@@ -65,7 +66,7 @@ const useStyles = makeStyles((theme) => ({
       background:
         "linear-gradient(180deg,rgba(255,255,255,0) 50%, #ccdcff 30% )",
     },
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       maxWidth: "41.12rem",
     },
   },
