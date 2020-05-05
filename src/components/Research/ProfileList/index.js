@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger, jsx-a11y/control-has-associated-label */
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { PropTypes } from "prop-types";
 
 import clsx from "clsx";
@@ -7,9 +7,9 @@ import clsx from "clsx";
 import { Section } from "@commons-ui/core";
 
 import { Grid } from "@material-ui/core";
-import Profile from "../ListItem";
-import useStyles from "./useStyles";
-import Filter from '../Filter';
+import Profile from "components/Research/ListItem";
+import useStyles from "components/Research/ProfileList/useStyles";
+import Filter from "components/Research/Filter";
 
 function ProfileList({
   cellHeight,
@@ -42,7 +42,7 @@ function ProfileList({
                   root: clsx(classes.profile, {
                     [`${profileClassPrefix}${
                       index % profileClassCount
-                      }`]: profileClassCount,
+                    }`]: profileClassCount,
                   }),
                   description: classes.profileDescription,
                   link: classes.profileLink,

@@ -98,33 +98,33 @@ export function getFilterData() {
     {
       id: 1,
       topic: "Lorem",
-      slug: 'lorem'
+      slug: "lorem",
     },
     {
       id: 2,
       topic: "Ipsum",
-      slug: 'ipsum'
+      slug: "ipsum",
     },
     {
       id: 3,
       topic: "Dolor",
-      slug: 'dolor'
+      slug: "dolor",
     },
     {
       id: 4,
       topic: "Sit",
-      slug: 'sit'
+      slug: "sit",
     },
     {
       id: 5,
       topic: "Amet",
-      slug: 'amet'
+      slug: "amet",
     },
     {
       id: 6,
       topic: "Sed",
-      slug: 'sed'
-    }
+      slug: "sed",
+    },
   ];
 }
 

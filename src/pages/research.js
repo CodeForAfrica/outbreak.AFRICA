@@ -1,11 +1,11 @@
-import React from 'react'
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from 'components/Page';
+import Page from "components/Page";
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
-import ProfileList from 'components/Research/ProfileList'
+import ProfileList from "components/Research/ProfileList";
 
 import { getProfiles } from "lib";
 
@@ -50,12 +50,14 @@ function Research() {
           section: classes.section,
         }}
       />
-      <Subscribe classes={{
-        root: classes.subscribe,
-        section: classes.section,
-      }} />
+      <Subscribe
+        classes={{
+          root: classes.subscribe,
+          section: classes.section,
+        }}
+      />
     </Page>
-  )
+  );
 }
 
 export default Research;
