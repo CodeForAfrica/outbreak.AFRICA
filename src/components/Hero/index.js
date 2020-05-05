@@ -49,6 +49,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
   title: {
     width: "100%",
+    paddingTop: typography.pxToRem(29),
     "& .highlight": {
       display: "inline-block",
       background:
