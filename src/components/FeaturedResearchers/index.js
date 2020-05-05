@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: "visible",
   },
   section: {},
+  description: {
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
+  },
   profileList: {
     color: "white",
     marginTop: "2.375rem",
@@ -63,20 +69,20 @@ function FeatureResearchers({ description, profiles, title, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
+      <Section
+        title={title || "Featured Researchers"}
+        classes={{ root: classes.section }}
+      >
         <Grid
           container
           className={classes.heading}
           justify="flex-start"
           alignItems="center"
         >
-          <Grid item xs={12} container>
-            <RichTypography variant="h2" className={classes.title}>
-              {title || "Featured Researchers"}
-            </RichTypography>
+          <Grid item xs={12}>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
-                "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
+                'Connect with <span class="highlight">African scientists</span> and other experts who are at the forefront of efforts to understand coronavirus on the continent.'}
             </RichTypography>
           </Grid>
           <Grid item xs={12}>

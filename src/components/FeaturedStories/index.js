@@ -13,6 +13,12 @@ const useStyles = makeStyles((theme) => ({
     overflow: "visible",
   },
   section: {},
+  description: {
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
+  },
   storyList: {
     color: "white",
     marginTop: "2.375rem",
@@ -57,20 +63,20 @@ function FeatureStories({ description, stories, title, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
+      <Section
+        classes={{ root: classes.section }}
+        title={title || "Featured Stories"}
+      >
         <Grid
           container
           className={classes.heading}
           justify="flex-start"
           alignItems="center"
         >
-          <Grid item xs={12} container>
-            <RichTypography variant="h2" className={classes.title}>
-              {title || "Featured Stories"}
-            </RichTypography>
+          <Grid item xs={12}>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
-                "View and explore how we visualise Kenya’s budget data to show how much money each county has received from the national government, and how the money is allocated and utilized based on each county’s priorities"}
+                'A selection of the African best <span class="highlight">data-driven</span> reportage or evidence-based analysis of coronavirus.'}
             </RichTypography>
           </Grid>
           <Grid item xs={12}>
