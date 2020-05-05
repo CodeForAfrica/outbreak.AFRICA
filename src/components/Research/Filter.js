@@ -25,11 +25,14 @@ const useStyles = makeStyles((theme) => ({
   },
   filter: {
     display: 'flex',
+    padding: '2rem 0rem',
     flexDirection: 'row',
     alignItems: 'center',
     flexGrow: 1,
+    flexWrap: "wrap",
     [theme.breakpoints.up("md")]: {
-      flexGrow: 0
+      flexGrow: 0,
+      padding: 0
     },
 
   }
@@ -45,17 +48,16 @@ function Filter() {
       </Grid>
 
       <Grid container direction="row" justify="space-between" alignItems="center">
-        <div className={classes.filter} >
+        <div className={classes.filter}>
           <Typography variant="caption"> Filter: </Typography>
-          {filterData.map(data =>
-            <Grid item xs={12} md={3}>
+          <Grid item >
+            {filterData.map(data =>
               <Button size="small" rounded className={classes.button}>
                 <Typography variant="caption" className={classes.caption}>{data.topic}</Typography>
               </Button>
-            </Grid>
-          )}
+            )}
+          </Grid>
         </div>
-
 
         <Grid item>
           <Typography variant="caption" style={{ textDecoration: 'underline' }}>Clear all</Typography>
