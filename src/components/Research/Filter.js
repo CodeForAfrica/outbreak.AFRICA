@@ -8,7 +8,8 @@ import { getFilterData } from 'lib'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '4rem 0rem'
+    padding: '4rem 0rem',
+    flexGrow: 1
   },
   button: {
     border: '1px solid grey',
@@ -20,13 +21,18 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   lastTypo: {
-    marginLeft: '42rem'
+    //marginLeft: '20rem'
   },
   caption: {
     fontSize: '1rem'
   },
   filterGrid: {
     padding: '0rem 1rem'
+  },
+  filter: {
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   }
 }));
 
@@ -39,20 +45,25 @@ function Filter() {
         <RichTypography variant="h2">Featured Experts</RichTypography>
       </Grid>
 
-      <Grid container item xs={12} direction="row" justify="flex-start" alignItems="center" spacing={3} className={classes.filterGrid}>
-        <Typography variant="caption"> Filter: </Typography>
-        {filterData.map(data =>
-          <Grid item xs={3} sm={6} md={1}>
-            <Button size="small" rounded className={classes.button}>
-              <Typography variant="caption" className={classes.caption}>{data.topic}</Typography>
-            </Button>
-          </Grid>
-        )}
-        <Grid item className={classes.lastTypo}>
+      <Grid container direction="row" justify="space-between" alignItems="center" className={classes.filterGrid}>
+        <div className={classes.filter} >
+          <Typography variant="caption"> Filter: </Typography>
+          {filterData.map(data =>
+            <Grid item xs={12} md={4}>
+              <Button size="small" rounded className={classes.button}>
+                <Typography variant="caption" className={classes.caption}>{data.topic}</Typography>
+              </Button>
+            </Grid>
+          )}
+        </div>
+
+
+        <Grid item>
           <Typography variant="caption" style={{ textDecoration: 'underline' }}>Clear all</Typography>
         </Grid>
       </Grid>
-    </div>
+
+    </div >
   )
 }
 export default Filter

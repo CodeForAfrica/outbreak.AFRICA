@@ -2,7 +2,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: '5rem 7rem'
+    padding: '5rem'
   },
   profile: {},
   profileDescription: {},
