@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -9,6 +10,7 @@ import classNames from "classnames";
 import Subscribe from "./Subscribe";
 import PartnerGrid from "./PartnersGrid";
 import JoinUs from "./JoinUs";
+import { join } from "upath";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -85,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Partners(props) {
+function Partners({ partners, subscribe, joinUs, ...props}) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -111,20 +113,40 @@ function Partners(props) {
             className={classes.bannerContainer}
           >
             <Grid item className={classes.subscribe}>
-              <Subscribe />
+              { subscribe && 
+              <Subscribe title={subscribe.title} description={subscribe.description} />}
             </Grid>
             <Grid item className={classes.joinUs}>
-              <JoinUs />
+              { joinUs && <JoinUs title={joinUs.title} description={joinUs.description} linkLabel={joinUs.link_label} /> }
             </Grid>
           </Grid>
 
           <Grid md={7} sm={12} className={classes.partnerContainer}>
-            <PartnerGrid />
+            <PartnerGrid partners={partners}/>
           </Grid>
         </Grid>
       </Section>
     </div>
   );
 }
+
+Partners.propTypes = {
+  partners: PropTypes.arrayOf(PropTypes.shape({})),
+  subscribe: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+  }),
+  joinUs: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    link_label: PropTypes.string,
+  }),
+};
+
+Partners.defaultProps = {
+  partners: [],
+  subscribe: undefined,
+  joinUs: undefined
+};
 
 export default Partners;

@@ -1,4 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
+
 import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -19,21 +21,34 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-function JoinUs() {
+function JoinUs({ title, description, linkLabel }) {
   const classes = useStyles();
   return (
     <Grid item className={classes.root}>
       <Typography variant="h2" className={classes.title}>
-        Join us
+        {title}
       </Typography>
       <Typography variant="subtitle1" className={classes.brief}>
-        Be part of the initiative
+        {description}
       </Typography>
       <Button variant="outline" color="secondary" className={classes.link}>
-        Learn More
+        {linkLabel}
       </Button>
     </Grid>
   );
 }
 
+JoinUs.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  linkLabel: PropTypes.string,
+  link: PropTypes.string,
+};
+
+JoinUs.defaultProps = {
+  title: 'Join Us',
+  description: 'Be part of the initiative',
+  linkLabel: 'Learn More',
+  link: '#'
+};
 export default JoinUs;
