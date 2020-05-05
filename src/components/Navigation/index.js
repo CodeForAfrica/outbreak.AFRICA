@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   section: {
     height: "4.375rem",
+    [theme.breakpoints.up("md")]: {
+      height: "6.375rem",
+    },
     [theme.breakpoints.up("xl")]: {
       height: "9.375rem",
     },
