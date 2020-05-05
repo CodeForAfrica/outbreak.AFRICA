@@ -8,15 +8,16 @@ import ContentLoader from "@hurumap-ui/core/ContentLoader";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: "1.5rem",
+    marginTop: "3rem",
     width: "100%",
   },
   title: {
-    color: theme.palette.text.secondary,
-    backgroundColor: theme.palette.primary.main,
-    fontWeight: "bold",
-    padding: "0.75rem 0 0.75rem 1.875rem",
-    textTransform: "capitalize",
+    margin: "1.5rem 3rem 1.5rem 0",
+  },
+  grow: {
+    flexGrow: 1,
+    height: 2,
+    backgroundColor: theme.palette.secondary.main,
   },
 }));
 
@@ -24,15 +25,18 @@ function ProfileSectionTitle({ loading, tab: { name }, ...props }) {
   const classes = useStyles(props);
 
   return (
-    <Grid item className={classes.root}>
+    <Grid item xs={12} container alignItems="center" className={classes.root}>
       {loading ? (
         <ContentLoader primaryOpacity={1} secondaryOpacity={0.5} height={48}>
           <rect x="0" y="0" height={48} width="100%" />
         </ContentLoader>
       ) : (
-        <Typography variant="body1" className={classes.title}>
-          {name}
-        </Typography>
+        <>
+          <Typography variant="h3" className={classes.title}>
+            {name}
+          </Typography>
+          <div className={classes.grow} />
+        </>
       )}
     </Grid>
   );

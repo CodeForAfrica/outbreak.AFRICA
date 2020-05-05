@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import classNames from "classnames";
-
-import { Typography, ButtonBase, Grid } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import downArrow from "assets/images/down-arrow-green.svg";
-import flags from "flags";
+import DataMenuList from "components/Navigation/DesktopNavigation/DataMenuList";
+import MenuButton from "components/Navigation/DesktopNavigation//MenuButton";
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: "flex",
+    alignItems: "center",
+  },
   label: {
     color: "#231f20",
     fontWeight: "normal",
@@ -17,10 +19,7 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "normal",
   },
   countryName: {
-    fontSize: "1.75rem",
-    fontFamily: theme.typography.fontHeading,
     marginLeft: "1.125rem",
-    marginRight: "1.125rem",
     textAlign: "start",
   },
   chooserButton: {
@@ -32,41 +31,38 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "0.8125rem",
     color: "#848484",
   },
+  menuButton: {
+    backgroundColor: "white",
+    height: 32,
+    width: 32,
+  },
+  menuButtonPopper: {
+    marginTop: theme.spacing(4),
+    [theme.breakpoints.up("md")]: {
+      marginTop: theme.spacing(4),
+      marginLeft: theme.spacing(2),
+    },
+  },
 }));
 
-export default function CountrySelector({ context, country }) {
-  const classes = useStyles();
+export default function CountrySelector({ context, country, ...props }) {
+  const classes = useStyles(props);
 
   return (
-    <Grid container direction="column">
-      <Grid item>
-        <Typography
-          variant="caption"
-          className={classNames([classes.label, classes.changeCountryLabel])}
-        >
-          Change Country
-        </Typography>
-      </Grid>
-      <Grid item>
-        <ButtonBase
-          disableRipple
-          disableTouchRipple
-          style={{ outline: "none" }}
-          className={classes.chooserButton}
-          onClick={
-            process.browser &&
-            window.toggleDrawer &&
-            window.toggleDrawer(context)
-          }
-        >
-          <img alt="" height="37" src={flags[country.isoCode]} />
-          <Typography variant="subtitle2" className={classes.countryName}>
-            {country.shortName}
-          </Typography>
-          <img alt="" src={downArrow} />
-        </ButtonBase>
-      </Grid>
-    </Grid>
+    <div className={classes.root}>
+      <MenuButton
+        color="secondary"
+        size="large"
+        variant="outlined"
+        popperProps={{ placement: "right-start" }}
+        classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}
+      >
+        <DataMenuList country={country} dense />
+      </MenuButton>
+      <Typography variant="h2" className={classes.countryName}>
+        {country.shortName}
+      </Typography>
+    </div>
   );
 }
 

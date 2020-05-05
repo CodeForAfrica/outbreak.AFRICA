@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
@@ -40,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function DesktopNavigation(props) {
+function DesktopNavigation({ country, ...props }) {
   const classes = useStyles(props);
 
   return (
@@ -57,7 +58,7 @@ function DesktopNavigation(props) {
             title="DATA"
             variant="outlined"
           >
-            <DataMenuList dense />
+            <DataMenuList country={country} dense />
           </MenuButton>
         </Grid>
         <Grid item>
@@ -111,5 +112,9 @@ function DesktopNavigation(props) {
     </Grid>
   );
 }
+
+DesktopNavigation.propTypes = {
+  country: PropTypes.shape({}).isRequired,
+};
 
 export default DesktopNavigation;
