@@ -1,53 +1,10 @@
 import React from "react";
 
-// const useStyles = makeStyles((theme) => ({
-//   root: {
-//     position: "relative",
-//     height: "2rem",
-//     borderRadius: "none",
-//     backgroundColor: fade("#C0C0C0", 0.25),
-//     "&:hover": {
-//       backgroundColor: fade("#C0C0C0", 0.25),
-//     },
-//     marginRight: theme.spacing(2),
-//     marginLeft: 0,
-//     width: "100%",
-//     [theme.breakpoints.up("sm")]: {
-//       marginLeft: theme.spacing(3),
-//       width: "auto",
-//     },
-//   },
-//   icon: {
-//     padding: theme.spacing(0, 2),
-//     height: "100%",
-//     position: "absolute",
-//     pointerEvents: "none",
-//     display: "flex",
-//     alignItems: "center",
-//     justifyContent: "center",
-//   },
-//   inputRoot: {
-//     color: "inherit",
-//     fontSize: "0.8rem",
-//   },
-//   inputInput: {
-//     padding: theme.spacing(1, 1, 1, 0),
-//     fontSize: "0.8rem",
-//     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`, // vertical padding + font size from searchIcon
-//     transition: theme.transitions.create("width"),
-//     width: "100%",
-//     [theme.breakpoints.up("md")]: {
-//       maxWidth: "100%",
-//       width: "15rem",
-//     },
-//   },
-// }));
-
 import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, InputBase, Paper } from "@material-ui/core";
 import { Search as SearchIcon } from "@material-ui/icons";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ typography }) => ({
   root: {
     alignItems: "center",
     backgroundColor: "#EEEEEE",
