@@ -184,7 +184,7 @@ function MobileMenu({ countries }) {
               toName={({ name }) => name}
             />
             <NavigationList
-              title="INSIGHT"
+              title="INSIGHTS"
               items={[]}
               toAs={() => undefined}
               toHref={() => "#"}

@@ -81,7 +81,7 @@ function DesktopNavigation({ country, ...props }) {
         </Grid>
         <Grid item>
           <Button size="large" className={classes.button}>
-            INSIGHT
+            INSIGHTS
           </Button>
         </Grid>
       </Grid>
