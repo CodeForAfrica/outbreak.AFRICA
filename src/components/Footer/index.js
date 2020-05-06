@@ -98,7 +98,6 @@ function MainFooter({
   ...props
 }) {
   const classes = useStyles({ classes: classesProp });
-  console.log("BOOM", { initiativeLogoProp, organizationLogoProp });
   const initiativeLogo = {
     image: { url: initiativeLogoProp.image, alt: organizationLogoProp.alt },
     url: initiativeLogoProp.link,
