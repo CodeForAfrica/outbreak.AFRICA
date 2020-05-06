@@ -15,60 +15,60 @@ import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       margin: "0 auto",
       width: "78.5rem",
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
       width: "102.5rem",
     },
   },
   featuredData: {
-    marginTop: "2.875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "9.92125rem",
+    marginTop: typography.pxToRem(46),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(78.74),
     },
   },
   featuredResearch: {
-    marginTop: "4.375rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "4.375rem",
+    marginTop: typography.pxToRem(71),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(104),
     },
   },
   featuredResearchers: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
+    marginTop: typography.pxToRem(56),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(133),
     },
   },
   featuredStories: {
-    marginTop: "3rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "8.3125rem",
+    marginTop: typography.pxToRem(58),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(133),
     },
   },
   mythBusting: {
-    marginTop: "6.375rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "11.75rem",
+    marginTop: typography.pxToRem(56.5),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(142.5),
     },
   },
   partners: {
-    marginTop: "4.96875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "11.75rem",
+    marginTop: typography.pxToRem(79.5),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(155.5),
     },
   },
   ticker: {
-    marginTop: "6.1875rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
+    marginTop: typography.pxToRem(53.5),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(61),
     },
   },
 }));
