@@ -1005,10 +1005,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@commons-ui/core@^0.0.1-alpha.15":
-  version "0.0.1-alpha.15"
-  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.15.tgz#f2c5700836783e02786d05583ce7cf20a43c8c9c"
-  integrity sha512-zW+AjF6Vf+t3ZaikaKPnvbn/GoA5A2iauZdVtwtjGUhtVUvBHTJYCbgsMKZLulNiJQ9dMhS24T3Bz2JEAdrKfw==
+"@commons-ui/core@^0.0.1-alpha.16":
+  version "0.0.1-alpha.16"
+  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.16.tgz#02a43d1a2684cdf8eb214f80aa16e5ba8901a07c"
+  integrity sha512-XG8ym3vVo8L3rTR3nHmwyRm52aA/1irp0fsZHxi4tbhos43VVB4rPGiDIn5IMu86FncFpK3UcT2yhz7iINCOqw==
   dependencies:
     classnames "^2.2.6"
     clsx "^1.1.0"
