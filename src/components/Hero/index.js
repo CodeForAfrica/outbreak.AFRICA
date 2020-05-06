@@ -40,11 +40,10 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     zIndex: 1,
     [breakpoints.up("md")]: {
       paddingTop: "2.625rem",
-      position: "relative",
-      //right: "-366px",
+      position: "relative"
     },
     [breakpoints.up("xl")]: {
-      //right: "-244px",
+      right: "-244px",
     },
   },
   title: {
