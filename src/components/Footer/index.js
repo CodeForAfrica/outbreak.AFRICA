@@ -15,9 +15,11 @@ import Twitter from "assets/Icon awesome-twitter.svg";
 import cc from "assets/cc.svg";
 
 const COPYRIGHT_LOGO = {
-  image: cc,
-  alt: "Creative Commons",
-  link: "#",
+  image: {
+    alt: "Creative Commons",
+    url: cc,
+  },
+  url: "/#",
 };
 
 const SOCIAL_MEDIA = {
@@ -87,15 +89,25 @@ function MainFooter({
   outbreak: {
     page: {
       about,
-      initiative_logo: initiativeLogo,
+      initiative_logo: initiativeLogoProp,
       legal_links: legalLinks,
-      organization_logo: organizationLogo,
+      organization_logo: organizationLogoProp,
       quick_links: quickLinks,
     },
   },
   ...props
 }) {
   const classes = useStyles({ classes: classesProp });
+  console.log("BOOM", { initiativeLogoProp, organizationLogoProp });
+  const initiativeLogo = {
+    image: { url: initiativeLogoProp.image, alt: organizationLogoProp.alt },
+    url: initiativeLogoProp.link,
+  };
+  const organizationLogo = {
+    image: { url: organizationLogoProp.image, alt: organizationLogoProp.alt },
+    url: organizationLogoProp.link,
+  };
+
   return (
     <Footer
       {...props}
