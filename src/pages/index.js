@@ -81,6 +81,7 @@ function Home({ outbreak, ...props }) {
       myth,
       partners,
       subscribe,
+      rendered,
       hero_carousel: heroCarousel,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
@@ -127,6 +128,7 @@ function Home({ outbreak, ...props }) {
         classes={{ root: classes.ticker, section: classes.section }}
       />
       <FeaturedData
+        featuredContent={rendered}
         classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch

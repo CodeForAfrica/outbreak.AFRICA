@@ -1,7 +1,18 @@
 import React from "react";
+import dynamic from 'next/dynamic';
 
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { ChartFactory } from "@hurumap-ui/charts";
+import { useProfileLoader } from "@hurumap-ui/core";
+
+import logo from 'assets/images/logo/logo-outbreak.svg';
+const ChartContainer = dynamic(
+  () => import('@hurumap-ui/core/ChartContainer'),
+  {
+    ssr: false
+  }
+);
 
 import { RichTypography } from "@commons-ui/core";
 
@@ -58,4 +69,4 @@ function Container({ action, children, description, ...props }) {
   );
 }
 
-export default Container;
+export default withApollo(Container);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Button, Grid } from "@material-ui/core";
@@ -47,8 +47,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeaturedData({ description, title, ...props }) {
+function FeaturedData({ description, title, featuredContent, ...props }) {
   const classes = useStyles(props);
+
+  const [featuredCharts, setFeaturedCharts ] = useState();
+  useEffect(()=> {
+    const tmp = document.createElement( 'div' );
+    tmp.innerHTML = featuredContent;
+
+    const chardIds = [];
+
+    Array.from(
+      tmp.querySelectorAll(`div[id^=indicator-`)
+    ).map((el) => {
+      const chartId = el.getAttribute('id').split('-');
+      const geoId = el.getAttribute('data-geo-id');
+
+      const type = chartId[1];
+      const id = chartId[0];
+
+      let url = "";
+
+
+
+    });
+
+  }, [featuredContent]);
   return (
     <div className={classes.root}>
       <Section title={title} classes={{ root: classes.section }}>
@@ -104,6 +128,7 @@ function FeaturedData({ description, title, ...props }) {
 }
 
 FeaturedData.propTypes = {
+  featuredContent: PropTypes.string.isRequired,
   description: PropTypes.string,
   title: PropTypes.string,
 };
