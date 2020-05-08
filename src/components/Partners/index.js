@@ -64,11 +64,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   joinUs: {
-    padding: "4rem 1.25rem 3rem 1.375rem",
+    padding: "2rem 1.25rem 3rem 1.375rem",
     backgroundColor: "#cbdbfb",
     [theme.breakpoints.up("md")]: {
       background: "transparent",
-      paddingTop: "25%",
+      //paddingTop: "25%",
       paddingRight: 0,
       paddingLeft: 0,
     },
