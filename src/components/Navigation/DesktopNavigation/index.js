@@ -80,9 +80,9 @@ function DesktopNavigation({ country, ...props }) {
           </LinkButton>
         </Grid>
         <Grid item>
-          <Button size="large" className={classes.button}>
+          <LinkButton href="/insights" size="large" className={classes.button}>
             INSIGHTS
-          </Button>
+          </LinkButton>
         </Grid>
       </Grid>
       <Grid item md={3}>
