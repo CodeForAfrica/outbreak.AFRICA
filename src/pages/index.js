@@ -22,11 +22,11 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     width: "auto",
     [breakpoints.up("lg")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: "82.5rem",
     },
     [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "120.5rem",
+      width: "102.5rem",
     },
   },
   featuredData: {
