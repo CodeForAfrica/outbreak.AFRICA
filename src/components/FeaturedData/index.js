@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section, RichTypography } from "@commons-ui/core";
+import config from 'config';
 
 import chart1 from "assets/chart-1.png";
 import chart2 from "assets/chart-2.png";
@@ -50,12 +51,13 @@ const useStyles = makeStyles((theme) => ({
 function FeaturedData({ description, title, featuredContent, ...props }) {
   const classes = useStyles(props);
 
-  const [featuredCharts, setFeaturedCharts ] = useState();
+  const [featuredCharts, setFeaturedCharts ] = useState([]);
   useEffect(()=> {
     const tmp = document.createElement( 'div' );
     tmp.innerHTML = featuredContent;
 
     const chardIds = [];
+    const charts = [];
 
     Array.from(
       tmp.querySelectorAll(`div[id^=indicator-`)
@@ -64,15 +66,20 @@ function FeaturedData({ description, title, featuredContent, ...props }) {
       const geoId = el.getAttribute('data-geo-id');
 
       const type = chartId[1];
-      const id = chartId[0];
+      const id = chartId[2];
 
-      let url = "";
+      //let url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}`;
+      // if(type == 'hurumap') {
+      //   url =  `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
+      // }
 
-
-
+     // fetch(url).then((res) => res.json()).then(data => charts.push({ ...data, geoId}) );
+     charts.push({ id, type, geoId })
     });
+    setFeaturedCharts(charts);
 
   }, [featuredContent]);
+
   return (
     <div className={classes.root}>
       <Section title={title} classes={{ root: classes.section }}>
@@ -89,14 +96,15 @@ function FeaturedData({ description, title, featuredContent, ...props }) {
           </Grid>
           <Grid item xs={12} container spacing={2}>
             <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-              <Container
+              { featuredCharts.length && <Container
                 action="Explore"
                 description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+                featuredChart={featuredCharts[0]}
               >
                 <img src={chart1} alt="chart1" />
-              </Container>
+              </Container>}
             </Grid>
-            <Grid item xs={12} lg={8} className={classes.chart01}>
+            {/* <Grid item xs={12} lg={8} className={classes.chart01}>
               <Container
                 action="Explore"
                 description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
@@ -119,7 +127,7 @@ function FeaturedData({ description, title, featuredContent, ...props }) {
               >
                 <img src={chart1} alt="chart1" />
               </Container>
-            </Grid>
+            </Grid> */}
           </Grid>
         </Grid>
       </Section>
