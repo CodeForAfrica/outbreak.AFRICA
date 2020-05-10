@@ -1,76 +1,3 @@
-// import React from "react";
-// import dynamic from 'next/dynamic';
-
-// import { Button } from "@material-ui/core";
-// import { makeStyles } from "@material-ui/core/styles";
-// import { ChartFactory } from "@hurumap-ui/charts";
-// import { useProfileLoader } from "@hurumap-ui/core";
-// import withApollo from 'lib/withApollo';
-
-// import logo from 'assets/images/logo/logo-outbreak.svg';
-// const ChartContainer = dynamic(
-//   () => import('@hurumap-ui/core/ChartContainer'),
-//   {
-//     ssr: false
-//   }
-// );
-
-// import { RichTypography } from "@commons-ui/core";
-
-// import shareIcon from "assets/icon-share.svg";
-
-// const useStyles = makeStyles(() => ({
-//   root: {
-//     width: "100%",
-//   },
-//   chart: {
-//     boxShadow: "0px 4px 4px #00000029",
-//     border: "1px solid #D6D6D6",
-//     marginBottom: "1.3125rem",
-//     marginTop: "2.5rem",
-//     padding: "42px 38px 33px 38px",
-//     position: "relative",
-//     width: "100%",
-//     "& img": {
-//       height: "auto",
-//       width: "100%",
-//     },
-//   },
-//   icon: {
-//     position: "absolute",
-//     right: 38,
-//     top: 42,
-//     "& img": {
-//       height: "auto",
-//       width: "2rem",
-//     },
-//   },
-// }));
-
-// function Container({ action, children, description, ...props }) {
-//   const classes = useStyles(props);
-
-//   return (
-//     <div className={classes.root}>
-//       <div className={classes.chart}>
-//         <div className={classes.icon}>
-//           <img src={shareIcon} alt="share" />
-//         </div>
-//         {children}
-//       </div>
-//       <div className={classes.description}>
-//         <RichTypography variant="body2">{description}</RichTypography>
-//       </div>
-//       <div className={classes.description}>
-//         <Button variant="contained" size="large">
-//           {action}
-//         </Button>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default withApollo(Container);
 import React, {useEffect, useMemo, useState} from "react";
 import dynamic from 'next/dynamic';
 import PropTypes from 'prop-types';
@@ -81,12 +8,16 @@ import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography } from "@commons-ui/core";
 import withApollo from 'lib/withApollo';
 
-import shareIcon from "assets/icon-share.svg";
+import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
 
 import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 
 import logo from 'assets/images/logo/logo-outbreak.svg';
+
 const ChartContainer = dynamic(
   () => import('@hurumap-ui/core/ChartContainer'),
   {
@@ -94,11 +25,8 @@ const ChartContainer = dynamic(
   }
 );
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({typography}) => ({
   root: {
-    width: "100%",
-  },
-  chart: {
     boxShadow: "0px 4px 4px #00000029",
     border: "1px solid #D6D6D6",
     marginBottom: "1.3125rem",
@@ -106,10 +34,16 @@ const useStyles = makeStyles(() => ({
     padding: "42px 38px 33px 38px",
     position: "relative",
     width: "100%",
-    "& img": {
-      height: "auto",
-      width: "100%",
-    },
+  },
+  containerRoot: {
+    width: "100%",
+    backgroundColor: "#EEEEEE !important",
+  },
+  chart: {
+    margin: '0.5rem !important',
+  },
+  content: {
+    paddingBottom: 0,
   },
   icon: {
     position: "absolute",
@@ -119,6 +53,19 @@ const useStyles = makeStyles(() => ({
       height: "auto",
       width: "2rem",
     },
+  },
+  actionIcon: {
+    width: "2rem",
+    height: "auto"
+  },
+  title: {
+    fontSize: typography.subtitle2.fontSize,
+    fontWeight: typography.subtitle2.fontWeight,
+  },
+  source: {
+    color: "#9D9C9C",
+    marginLeft: '0 !important',
+    textDecoration: 'none'
   },
 }));
 
@@ -154,8 +101,6 @@ function Container({ action, children, description, featuredChart, ...props }) {
 
   const { profiles, chartData } = useProfileLoader({ geoId, visuals });
 
-  console.log(chart);
-
   const source = useMemo(() => {
     const { isLoading, profileVisualsData } = chartData;
 
@@ -172,6 +117,8 @@ function Container({ action, children, description, featuredChart, ...props }) {
       ? sourceResult.nodes[0]
       : null;
   }, [chart, chartData]);
+
+  console.log(source);
 
   if (
     !chart ||
@@ -194,18 +141,38 @@ function Container({ action, children, description, featuredChart, ...props }) {
         title={chart.title}
         subtitle={chart.subtitle}
         description={chart.description}
-        sourceLink={chart.sourceTitle}
-        sourceTitle={chart.sourceTitle}
-        content={{
-          height: 330
-        }}
-        actions={{
-          handleShare: () => {},
-          handleShowData: () => {},
-          handleCompare: () => {}
-        }}
+        sourceLink={source && source.href}
+        sourceTitle={source && source.title}
+        content={{}}
         loading={chartData.isLoading}
-        variant="analysis"
+        groupActions
+        variant="data"
+        classes={{
+          chart: classes.chart,
+          content: classes.content,
+          title: classes.title,
+          root: classes.root,
+          containerRoot: classes.containerRoot,
+          sourceLink: classes.source,
+          groupActionsButton: classes.actionIcon,
+        }}
+        groupIcons={{
+          facebook: {
+            icon: <img src={FacebookIcon} />,
+          },
+          twitter: {
+            icon: <img src={TwitterIcon} />,
+          },
+          linkedin: {
+            icon: <img src={LinkedInIcon} />,
+          },
+          instagram: {
+            icon: <img src={InstagramIcon} />,
+          },
+          embed: {},
+          link: {},
+          download: {}
+        }}
       >
         {!chartData.isLoading && (
           <ChartFactory
