@@ -24,24 +24,8 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  },
-  iframeContainer: {
-    width: '100vw',
-    height: '100vh',
-    overflow: 'hidden',
-    position: 'relative'
-  },
-  iframe: {
-    position: 'absolute',
-    //top: '-100px',
-    //left: '-100px',
-    //width: '1280px',
-    //height: '1200px'
   }
 }));
-
-
-
 
 
 function Research({ outbreak, ...props }) {
@@ -50,27 +34,18 @@ function Research({ outbreak, ...props }) {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
 
-  if (process.browser) {
-    const nodes = (url) => {
-      return document.getElementsByClassName("col-xs-12 paddingLeftHack paddingRightHack")
-    }
-    console.log(nodes("https://data.humdata.org/event/covid-19"))
-  }
-
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <Grid item className={classes.iframeContainer}>
+      <Grid container justify="center">
         <IframeComponent
-          title="Map section"
+          title="Data section"
           src={`https://data.humdata.org/event/covid-19`}
-          height="1000"
-          width="100%"
           frameBorder="0"
           scrolling="yes"
-          className={classes.iframe}
+          height="500"
+          width='85%'
         />
       </Grid>
-
     </Page>
   );
 }
