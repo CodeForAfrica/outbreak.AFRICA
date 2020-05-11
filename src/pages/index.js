@@ -15,18 +15,24 @@ import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [breakpoints.up("lg")]: {
+    /** Since our design if of XL, we're going to optimize for space in
+     * MD & LG i.e. minimize margins
+     */
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
   featuredData: {

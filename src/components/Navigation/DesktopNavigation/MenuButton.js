@@ -62,6 +62,7 @@ function MenuButton({
       endIcon={<Icon fontSize={size} />}
       size={size}
       {...props}
+      variant={open ? "outlined" : undefined}
       ref={buttonRef}
     >
       {title}
