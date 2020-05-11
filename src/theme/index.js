@@ -131,6 +131,13 @@ const theme = createTheme({
       },
     },
   },
+  widths: {
+    values: {
+      md: 948, // 0, 6, 0, 6 margins
+      lg: 1272, // 0, 6, 0, 6 margins
+      xl: 1640, // 0, 140, 0, 140 margins DESIGNS
+    },
+  },
 });
 
 // ## RESPONSIVE FONTS
@@ -301,29 +308,29 @@ deepmerge(
         paddingRight: 0,
         paddingTop: 0,
         border: "none",
-        borderBottom: `2px solid ${palette.highlight.main}`,
+        borderBottom: `4px solid ${palette.highlight.main}`,
         color: palette.highlight.main,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${palette.highlight.main}`,
+          borderBottom: `4px solid ${palette.highlight.main}`,
         },
       },
       outlinedPrimary: {
         border: "none",
-        borderBottom: `2px solid ${palette.highlight.main}`,
+        borderBottom: `4px solid ${palette.highlight.main}`,
         color: palette.highlight.main,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${palette.highlight.main}`,
+          borderBottom: `4px solid ${palette.highlight.main}`,
         },
       },
       outlinedSecondary: {
         border: "none",
         color: palette.secondary.main,
-        borderBottom: `2px solid ${palette.secondary.main}`,
+        borderBottom: `4px solid ${palette.secondary.main}`,
         "&:hover": {
           border: "none",
-          borderBottom: `2px solid ${palette.primary.main}`,
+          borderBottom: `4px solid ${palette.primary.main}`,
           color: palette.primary.main,
         },
       },
