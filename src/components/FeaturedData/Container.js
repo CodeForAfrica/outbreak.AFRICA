@@ -118,8 +118,6 @@ function Container({ action, children, description, featuredChart, ...props }) {
       : null;
   }, [chart, chartData]);
 
-  console.log(source);
-
   if (
     !chart ||
     (!chartData.isLoading &&

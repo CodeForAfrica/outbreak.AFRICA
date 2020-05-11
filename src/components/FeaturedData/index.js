@@ -48,33 +48,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeaturedData({ description, title, featuredContent, ...props }) {
+function FeaturedData({ featuredContent, ...props }) {
   const classes = useStyles(props);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
 
   const [featuredCharts, setFeaturedCharts ] = useState([]);
   useEffect(()=> {
     const tmp = document.createElement( 'div' );
     tmp.innerHTML = featuredContent;
 
-    const chardIds = [];
-    const charts = [];
+    const featureDiv = tmp.querySelector('div[id=featured-data]');
+    setTitle(featureDiv.getAttribute('data-title'));
+    console.log(featureDiv.getAttribute('data-description'));
+    setDescription(featureDiv.getAttribute('data-description'));
 
+    const charts = [];
     Array.from(
       tmp.querySelectorAll(`div[id^=indicator-`)
     ).map((el) => {
       const chartId = el.getAttribute('id').split('-');
-      const geoId = el.getAttribute('data-geo-id');
+      const geoId = el.getAttribute('data-geo-id') || "";
 
       const type = chartId[1];
       const id = chartId[2];
-
-      //let url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}`;
-      // if(type == 'hurumap') {
-      //   url =  `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
-      // }
-
-     // fetch(url).then((res) => res.json()).then(data => charts.push({ ...data, geoId}) );
-     charts.push({ id, type, geoId })
+      charts.push({ id, type, geoId })
     });
     setFeaturedCharts(charts);
 
@@ -137,12 +135,5 @@ function FeaturedData({ description, title, featuredContent, ...props }) {
 
 FeaturedData.propTypes = {
   featuredContent: PropTypes.string.isRequired,
-  description: PropTypes.string,
-  title: PropTypes.string,
-};
-FeaturedData.defaultProps = {
-  description:
-    'Comparative <span class="highlight">data insights</span>, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.',
-  title: "Featured Data",
 };
 export default FeaturedData;
