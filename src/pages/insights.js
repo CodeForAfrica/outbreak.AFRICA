@@ -40,11 +40,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+
+
+
+
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
+
+  if (process.browser) {
+    const nodes = (url) => {
+      return document.getElementsByClassName("col-xs-12 paddingLeftHack paddingRightHack")
+    }
+    console.log(nodes("https://data.humdata.org/event/covid-19"))
+  }
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
@@ -67,9 +78,11 @@ function Research({ outbreak, ...props }) {
 Research.getInitialProps = async (props) => {
   const {
     query: { lang: pageLanguage },
+    url
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("index", lang);
+
 
   return {
     outbreak,
