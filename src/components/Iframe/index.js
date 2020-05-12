@@ -7,7 +7,9 @@ const useStyles = makeStyles({
   fullHeight: {
     display: 'inline-block',
     margin: '0 auto',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    transformOrigin: '0 -1',
+    transform: 'scale(1.15)'
   }
 });
 
@@ -23,8 +25,7 @@ function IframeComponent({ title, src, height, width, frameBorder, scrolling }) 
       width={width}
       frameBorder={frameBorder}
       className={classes.fullHeight}
-      scrolling={scrolling}
-      //onLoad={document.getElementsByClassName()}
+      scrolling={!scrolling}
     />
   );
 }
