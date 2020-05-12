@@ -10,6 +10,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
+import ChartContainer from "@hurumap-ui/core/ChartContainer";
 import InsightContainer from "@hurumap-ui/core/InsightContainer";
 import { shareIndicator } from "@hurumap-ui/core/utils";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
@@ -167,6 +168,7 @@ function ProfilePage({
   geoId,
   language,
   outbreak,
+  country,
   sectionedCharts,
 }) {
   const router = useRouter();
@@ -214,18 +216,6 @@ function ProfilePage({
   );
 
   const classes = useStyles({ loading: chartData.isLoading });
-
-  const country = useMemo(() => {
-    if (!profiles.profile || !profiles.profile.geoLevel) {
-      return {};
-    }
-    if (profiles.profile.geoLevel === "country") {
-      return config.countries.find(
-        (c) => c.isoCode === profiles.profile.geoCode
-      );
-    }
-    return config.countries.find((c) => c.isoCode === profiles.parent.geoCode);
-  }, [profiles]);
 
   const onClickGeoLayer = useCallback(
     (area) => {
@@ -314,7 +304,7 @@ function ProfilePage({
                     key={chart.id}
                     className={classes.container}
                   >
-                    <InsightContainer
+                    <ChartContainer
                       key={chart.id}
                       actions={{
                         handleShare: shareIndicator.bind(
@@ -417,7 +407,7 @@ function ProfilePage({
                               src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
                             />,
                           ]}
-                    </InsightContainer>
+                    </ChartContainer>
                   </Grid>
                 );
               })}
@@ -457,6 +447,7 @@ function ProfilePage({
           profile={{
             geo: profiles.profile,
           }}
+          country={country}
           classes={{ section: classes.section }}
         />
       )}

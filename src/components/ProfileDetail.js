@@ -86,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
+  country,
   ...props
 }) {
   const classes = useStyles({ ...props, comparable });
@@ -106,14 +107,6 @@ function ProfileDetail({
   const { squareKms, geoLevel, totalPopulation, parentCode } = geo;
   const population = totalPopulation.toFixed(0);
   const populationDensity = (population / squareKms).toFixed(1);
-  let country;
-  if (geoLevel === "country") {
-    const { geoCode } = geo;
-    country = config.countries.find((c) => c.isoCode === geoCode);
-  } else {
-    // if level is not country, then we are in level 1
-    country = config.countries.find((c) => c.isoCode === parentCode);
-  }
 
   return (
     <Grid container className={classes.root}>
@@ -266,6 +259,9 @@ ProfileDetail.propTypes = {
       squareKms: PropTypes.number,
       totalPopulation: PropTypes.number,
     }),
+  }).isRequired,
+  country: PropTypes.shape({
+    
   }).isRequired,
 };
 
