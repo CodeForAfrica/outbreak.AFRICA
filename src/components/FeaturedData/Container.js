@@ -58,6 +58,9 @@ const useStyles = makeStyles(({typography}) => ({
     width: "2rem",
     height: "auto"
   },
+  descriptionWrapper: {
+    position: 'absolute',
+  },
   title: {
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
@@ -138,7 +141,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
         key={chart.id}
         title={chart.title}
         subtitle={chart.subtitle}
-        description={chart.description}
+        description={chart.description || "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
         sourceLink={source && source.href}
         sourceTitle={source && source.title}
         content={{}}
@@ -153,6 +156,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
           containerRoot: classes.containerRoot,
           sourceLink: classes.source,
           groupActionsButton: classes.actionIcon,
+          descriptionWrapper: classes.descriptionWrapper
         }}
         groupIcons={{
           facebook: {
@@ -177,6 +181,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
             profiles={profiles}
             definition={chart.visual}
             data={rawData}
+            disableShowMore
           />
           )}
     </ChartContainer>
