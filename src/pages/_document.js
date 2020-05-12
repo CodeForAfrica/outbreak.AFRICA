@@ -105,6 +105,21 @@ class CustomDocument extends Document {
 
           <link rel="manifest" href="/manifest.json" />
 
+          {/* Ckan scripts  */}
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"
+          />
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"
+          />
+          <script
+            src="https://cdn.rawgit.com/okfn/ckan.js/master/ckan.js"
+          />
+
+          <script
+            src="https://cdn.rawgit.com/opendata-swiss/ckan-embed/1.0.0/dist/ckan-embed.min.js"
+          />
+
           {/* <!-- Google Analytics --> */}
           <script
             // eslint-disable-next-line react/no-danger

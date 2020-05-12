@@ -18,11 +18,13 @@ function IframeComponent({ title, src, height, width, frameBorder, scrolling }) 
       title={title}
       key={src}
       src={src}
+      zoom={5}
       height={height}
       width={width}
       frameBorder={frameBorder}
       className={classes.fullHeight}
       scrolling={scrolling}
+      //onLoad={document.getElementsByClassName()}
     />
   );
 }
