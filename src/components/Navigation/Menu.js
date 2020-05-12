@@ -2,6 +2,7 @@ import React from "react";
 
 import {
   Grow,
+  Grid,
   Typography,
   Paper,
   Popper,
@@ -10,8 +11,11 @@ import {
   ClickAwayListener,
 } from "@material-ui/core";
 
+import Link from 'next/Link'
+import LinkButton from 'components/Link/Button';
 import { makeStyles } from "@material-ui/core/styles";
 import DataMenu from "./DataMenu";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,16 +25,44 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   popper: {
-    paddingTop: "1.5rem",
+    paddingTop: "1.8rem",
     zIndex: 9999,
+    width: '100vw'
   },
+  button: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: "0.5rem",
+    width: "auto",
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginRight: "4rem",
+    },
+  },
+  menu: {
+    padding: '1.5rem 2rem'
+  },
+  menuLink: {
+    "&:hover": {
+      textDecoration: 'none'
+    }
+  },
+  menuText: {
+    color: '#9D9C9C',
+    textTransform: 'Uppercase',
+    "&:hover": {
+      color: '#0050FF'
+    }
+  }
 }));
 
 function MenuItemLink(props) {
   return <MenuItem button component="a" {...props} />;
 }
 
-function Menu({ title, countries }) {
+function Menu({ title, countries, href }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -65,44 +97,76 @@ function Menu({ title, countries }) {
 
   const renderInsightMenu = () => {
     return (
-      <MenuList
+      <Grid
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
         autoFocusItem={open}
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
-      >
-        <MenuItemLink href="/">Analysis</MenuItemLink>
-        <MenuItemLink href="/">Misinformation</MenuItemLink>
-        <MenuItemLink href="/">Frontline Reportange</MenuItemLink>
-        <MenuItemLink href="/">Multimedia resources</MenuItemLink>
-      </MenuList>
+        className={classes.menu}>
+        <Grid item>
+          <Link href="/featured-experts" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>Analysis</Typography>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/featured-research" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>FMisinformation</Typography>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/institutions" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>Frontline Reportange</Typography>
+          </Link>
+        </Grid>
+      </Grid>
     );
   };
 
   const renderResourcesMenu = () => {
     return (
-      <MenuList
+      <Grid
+        container
+        direction="row"
+        justify="space-around"
+        alignItems="center"
         autoFocusItem={open}
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
-      >
-        <MenuItemLink href="/">African Experts</MenuItemLink>
-        <MenuItemLink href="/">Published Research</MenuItemLink>
-        <MenuItemLink href="/">Scientific Institutions</MenuItemLink>
-      </MenuList>
+        className={classes.menu}>
+        <Grid item>
+          <Link href="/featured-experts" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>FEATURED EXPERTS</Typography>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/featured-research" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>FEATURED RESEARCH</Typography>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/institutions" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>INSTITUTIONS</Typography>
+          </Link>
+        </Grid>
+      </Grid>
     );
   };
 
   return (
     <>
-      <Typography
-        variant="h6"
+      <LinkButton
+        href={href}
+        size="large"
+        className={classes.button}
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
-        onClick={handleToggle}
-      >
+        onClick={handleToggle}>
         {title}
-      </Typography>
+      </LinkButton>
       <Popper
         open={open}
         anchorEl={anchorRef.current}
@@ -121,22 +185,7 @@ function Menu({ title, countries }) {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === "DATA" ? (
-                  <MenuList
-                    autoFocusItem={open}
-                    id="menu-list-grow"
-                    onKeyDown={handleListKeyDown}
-                  >
-                    <DataMenu
-                      countries={countries}
-                      profile={({ isoCode }) => `country-${isoCode}`}
-                    />
-                  </MenuList>
-                ) : title === "INSIGHT" ? (
-                  renderInsightMenu()
-                ) : (
-                  renderResourcesMenu()
-                )}
+                {title === "INSIGHT" ? renderInsightMenu() : renderResourcesMenu()}
               </ClickAwayListener>
             </Paper>
           </Grow>

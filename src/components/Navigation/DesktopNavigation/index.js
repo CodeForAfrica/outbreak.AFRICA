@@ -11,6 +11,7 @@ import Link from "components/Link";
 import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
 import Search from "components/Navigation/Search";
+import Menu from 'components/Navigation/Menu'
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
@@ -75,14 +76,10 @@ function DesktopNavigation({ country, ...props }) {
           </MenuButton>
         </Grid>
         <Grid item>
-          <LinkButton href="/research" size="large" className={classes.button}>
-            RESEARCH
-          </LinkButton>
+          <Menu title="Research" href="/research" />
         </Grid>
         <Grid item>
-          <Button size="large" className={classes.button}>
-            INSIGHTS
-          </Button>
+          <Menu title="Insights" href="/insights" />
         </Grid>
       </Grid>
       <Grid item md={3}>
