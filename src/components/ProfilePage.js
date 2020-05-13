@@ -56,14 +56,14 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     width: "100%",
   },
   chart: {
-    margin: '0.5rem !important',
+    margin: "0.5rem !important",
   },
   content: {
     paddingBottom: 0,
   },
   actionIcon: {
     width: "2rem",
-    height: "auto"
+    height: "auto",
   },
   title: {
     fontSize: typography.subtitle2.fontSize,
@@ -71,8 +71,8 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
   source: {
     color: "#9D9C9C",
-    marginLeft: '0 !important',
-    textDecoration: 'none'
+    marginLeft: "0 !important",
+    textDecoration: "none",
   },
 }));
 
@@ -282,15 +282,15 @@ function ProfilePage({
                         groupActionsButton: classes.actionIcon,
                       }}
                       embed={{
-                        title: 'Embed code for this chart',
+                        title: "Embed code for this chart",
                         subtitle:
-                          'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
+                          "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
                         code: `<iframe
                         id="${chart.id}"
                         src="${config.url}/embed/${embedPath}"
                         title="${chart.title}"
                         allowFullScreen
-                      />`
+                      />`,
                       }}
                       loading={chartData.isLoading}
                       logo={logo}
@@ -300,47 +300,46 @@ function ProfilePage({
                       groupActions
                       groupIcons={{
                         facebook: {
-                          icon: <img src={FacebookIcon} />,
+                          icon: <img src={FacebookIcon} alt="Facebook" />,
                         },
                         twitter: {
-                          icon: <img src={TwitterIcon} />,
+                          icon: <img src={TwitterIcon} alt="Twitter" />,
                         },
                         linkedin: {
-                          icon: <img src={LinkedInIcon} />,
+                          icon: <img src={LinkedInIcon} alt="LinkedIn" />,
                         },
                         instagram: {
-                          icon: <img src={InstagramIcon} />,
+                          icon: <img src={InstagramIcon} alt="Instagram" />,
                         },
                         embed: {},
                         link: {},
-                        download: {}
+                        download: {},
                       }}
                     >
-                      {chart.type === "hurumap"
-                        ? 
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.visual,
-                                typeProps: {
-                                  ...chart.visual.typeProps,
-                                  ...overrideTypePropsFor(chart.visual.type),
-                                },
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />
-                        : 
-                            <iframe
-                              key={chart.id}
-                              width="100%"
-                              scrolling="no"
-                              frameBorder="0"
-                              title={chart.title}
-                              src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                            />
-                          }
+                      {chart.type === "hurumap" ? (
+                        <Chart
+                          key={chart.id}
+                          chartData={chartData}
+                          definition={{
+                            ...chart.visual,
+                            typeProps: {
+                              ...chart.visual.typeProps,
+                              ...overrideTypePropsFor(chart.visual.type),
+                            },
+                          }}
+                          profiles={profiles}
+                          classes={classes}
+                        />
+                      ) : (
+                        <iframe
+                          key={chart.id}
+                          width="100%"
+                          scrolling="no"
+                          frameBorder="0"
+                          title={chart.title}
+                          src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
+                        />
+                      )}
                     </ChartContainer>
                   </Grid>
                 );

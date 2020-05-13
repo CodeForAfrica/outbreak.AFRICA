@@ -17,7 +17,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
-import config from "config";
 import searchIcon from "assets/images/icon-search.svg";
 
 import CountrySelector from "./CountrySelector";
@@ -104,7 +103,7 @@ function ProfileDetail({
     }
   };
 
-  const { squareKms, geoLevel, totalPopulation, parentCode } = geo;
+  const { squareKms, totalPopulation } = geo;
   const population = totalPopulation.toFixed(0);
   const populationDensity = (population / squareKms).toFixed(1);
 
@@ -260,9 +259,7 @@ ProfileDetail.propTypes = {
       totalPopulation: PropTypes.number,
     }),
   }).isRequired,
-  country: PropTypes.shape({
-    
-  }).isRequired,
+  country: PropTypes.shape({}).isRequired,
 };
 
 export default ProfileDetail;
