@@ -95,7 +95,7 @@ function Menu({ title, countries, href }) {
     prevOpen.current = open;
   }, [open]);
 
-  const renderInsightMenu = () => {
+  const renderInsightsMenu = () => {
     return (
       <Grid
         container
@@ -113,7 +113,7 @@ function Menu({ title, countries, href }) {
         </Grid>
         <Grid item>
           <Link href="/featured-research" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>FMisinformation</Typography>
+            <Typography variant="subtitle2" className={classes.menuText}>Misinformation</Typography>
           </Link>
         </Grid>
         <Grid item>
@@ -185,7 +185,11 @@ function Menu({ title, countries, href }) {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === "INSIGHT" ? renderInsightMenu() : renderResourcesMenu()}
+                {title === "Research" ? (
+                  renderResourcesMenu()
+                ) : (
+                    renderInsightsMenu()
+                  )}
               </ClickAwayListener>
             </Paper>
           </Grow>
