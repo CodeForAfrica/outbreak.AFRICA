@@ -1,7 +1,4 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
-
-// import _debounce from "lodash/debounce";
-
 import PropTypes from "prop-types";
 
 import { useRouter } from "next/router";
@@ -11,21 +8,23 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import ChartContainer from "@hurumap-ui/core/ChartContainer";
-import InsightContainer from "@hurumap-ui/core/InsightContainer";
-import { shareIndicator } from "@hurumap-ui/core/utils";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
 
 import config from "config";
 import logo from "assets/images/logo-white-all.png";
+import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
 
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -234,6 +233,8 @@ function ProfilePage({
     ]
   );
 
+  console.log(chartData);
+
   const charts = useMemo(
     () =>
       profileTabs.map(
@@ -294,15 +295,22 @@ function ProfilePage({
                       sourceTitle={source && source.title}
                       title={chart.title}
                       groupActions
-                      dataTable={{
-                        tableTitle: chart.visual.table.slice(3),
-                        dataValueTitle: chart.visual.y,
-                        dataLabelTitle: chart.visual.x,
-                        groupByTitle: chart.visual.groupBy,
-                        rawData:
-                          !chartData.isLoading &&
-                          chartData.profileVisualsData[chart.visual.queryAlias]
-                            .nodes,
+                      groupIcons={{
+                        facebook: {
+                          icon: <img src={FacebookIcon} />,
+                        },
+                        twitter: {
+                          icon: <img src={TwitterIcon} />,
+                        },
+                        linkedin: {
+                          icon: <img src={LinkedInIcon} />,
+                        },
+                        instagram: {
+                          icon: <img src={InstagramIcon} />,
+                        },
+                        embed: {},
+                        link: {},
+                        download: {}
                       }}
                     >
                       {chart.type === "hurumap"
