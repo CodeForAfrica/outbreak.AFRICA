@@ -8,7 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Link from "components/Link";
 
-import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
 import Search from "components/Navigation/Search";
 import Menu from 'components/Navigation/Menu'

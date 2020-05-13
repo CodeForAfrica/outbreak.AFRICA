@@ -35,6 +35,39 @@ Disallow:
   MAPIT_URL: "https://dev.mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
+  resourceMenu: [
+    {
+      name: "Featured Expert",
+      href: '/featured-experts'
+    },
+    {
+      name: "Featured Resources",
+      href: '/featured-resources'
+    },
+    {
+      name: "Instutitions",
+      href: '/institutions'
+    },
+  ],
+  insightsMenu: [
+    {
+      name: "Analysis",
+      href: '/analysis'
+    },
+    {
+      name: "Misinformation",
+      href: '/misinformation'
+    },
+    {
+      name: "Featured Stories",
+      href: '/featured-stories'
+    },
+    {
+      name: "Resources",
+      href: '/resources'
+    },
+  ],
+
   tileData: [
     {
       index: 0,

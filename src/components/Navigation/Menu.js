@@ -6,17 +6,14 @@ import {
   Typography,
   Paper,
   Popper,
-  MenuItem,
-  MenuList,
   ClickAwayListener,
 } from "@material-ui/core";
 
-import Link from 'next/Link'
+import Link from 'components/Link'
 import LinkButton from 'components/Link/Button';
 import { makeStyles } from "@material-ui/core/styles";
-import DataMenu from "./DataMenu";
 
-
+import config from '../../config'
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -44,25 +41,17 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     padding: '1.5rem 2rem'
   },
-  menuLink: {
-    "&:hover": {
-      textDecoration: 'none'
-    }
-  },
   menuText: {
     color: '#9D9C9C',
     textTransform: 'Uppercase',
     "&:hover": {
-      color: '#0050FF'
+      color: '#0050FF',
+      textDecoration: 'none'
     }
   }
 }));
 
-function MenuItemLink(props) {
-  return <MenuItem button component="a" {...props} />;
-}
-
-function Menu({ title, countries, href }) {
+function Menu({ title, href }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -106,26 +95,13 @@ function Menu({ title, countries, href }) {
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
         className={classes.menu}>
-        <Grid item>
-          <Link href="/featured-experts" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>Analysis</Typography>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href="/featured-research" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>Misinformation</Typography>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href="/institutions" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>Featured stories</Typography>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href="/institutions" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>Resources</Typography>
-          </Link>
-        </Grid>
+        {config.insightsMenu.map(menu =>
+          <Grid item>
+            <Link href={menu.href}>
+              <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
+            </Link>
+          </Grid>
+        )}
       </Grid>
     );
   };
@@ -141,21 +117,13 @@ function Menu({ title, countries, href }) {
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
         className={classes.menu}>
-        <Grid item>
-          <Link href="/featured-experts" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>FEATURED EXPERTS</Typography>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href="/featured-research" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>FEATURED RESEARCH</Typography>
-          </Link>
-        </Grid>
-        <Grid item>
-          <Link href="/institutions" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>INSTITUTIONS</Typography>
-          </Link>
-        </Grid>
+        {config.resourceMenu.map(menu =>
+          <Grid item>
+            <Link href={menu.href} className={classes.MenuLink}>
+              <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
+            </Link>
+          </Grid>
+        )}
       </Grid>
     );
   };
