@@ -74,8 +74,12 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     marginLeft: "0 !important",
     textDecoration: "none",
   },
+  embedRoot: {
+    zIndex: 1000,
+  },
   embedSubtitle: {
-   color: palette.text.primary,
+    color: palette.text.primary,
+    fontSize: typography.subtitle2.fontSize,
   },
 }));
 
@@ -284,6 +288,7 @@ function ProfilePage({
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
                         embedSubtitle: classes.embedSubtitle,
+                        embedRoot: classes.embedRoot,
                       }}
                       embed={{
                         title: "Embed code for this chart",

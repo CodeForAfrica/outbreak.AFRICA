@@ -119,7 +119,11 @@ function ProfileDetail({
           >
             <Grid item container direction="column" justify="flex-start">
               <Grid item className={classes.geo}>
-                <CountrySelector country={country} geoName={name} context="topic" />
+                <CountrySelector
+                  country={country}
+                  geoName={name}
+                  context="topic"
+                />
               </Grid>
               <Grid item className={classes.geoInfo}>
                 <Grid container direction="row" wrap="nowrap">
