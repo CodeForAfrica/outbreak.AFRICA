@@ -233,8 +233,6 @@ function ProfilePage({
     ]
   );
 
-  console.log(chartData);
-
   const charts = useMemo(
     () =>
       profileTabs.map(
@@ -283,12 +281,17 @@ function ProfilePage({
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
                       }}
-                      embedCode={`<iframe
-                  id="${chart.id}"
-                  src="${config.url}/embed/${embedPath}"
-                  title="${chart.title}"
-                  allowFullScreen
-                />`}
+                      embed={{
+                        title: 'Embed code for this chart',
+                        subtitle:
+                          'Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.',
+                        code: `<iframe
+                        id="${chart.id}"
+                        src="${config.url}/embed/${embedPath}"
+                        title="${chart.title}"
+                        allowFullScreen
+                      />`
+                      }}
                       loading={chartData.isLoading}
                       logo={logo}
                       sourceLink={source && source.href}
