@@ -120,6 +120,7 @@ function Chart({ chartData, definition, profiles, classes }) {
       definition={definition}
       data={chartData.profileVisualsData[definition.queryAlias].nodes}
       profiles={profiles}
+      disableShowMore
       classes={classes}
     />
   );
@@ -352,6 +353,7 @@ function ProfilePage({
                       logo={logo}
                       source={source}
                       title={chart.title}
+                      groupActions
                       dataTable={{
                         tableTitle: chart.visual.table.slice(3),
                         dataValueTitle: chart.visual.y,
