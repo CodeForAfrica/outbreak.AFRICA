@@ -1,6 +1,4 @@
 import React, {useEffect, useMemo, useState} from "react";
-import dynamic from 'next/dynamic';
-import PropTypes from 'prop-types';
 import config from 'config';
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,16 +15,13 @@ import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 
 import logo from 'assets/images/logo/logo-outbreak.svg';
-
-const ChartContainer = dynamic(
-  () => import('@hurumap-ui/core/ChartContainer'),
-  {
-    ssr: false
-  }
-);
+import ChartContainer from '@hurumap-ui/core/ChartContainer';
 
 const useStyles = makeStyles(({typography}) => ({
   root: {
+    width: "100%",
+  },
+  chartRoot: {
     boxShadow: "0px 4px 4px #00000029",
     border: "1px solid #D6D6D6",
     marginBottom: "1.3125rem",
@@ -61,9 +56,16 @@ const useStyles = makeStyles(({typography}) => ({
   descriptionWrapper: {
     position: 'absolute',
   },
+  description: {
+    width: '100%',
+  },
   title: {
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
+  },
+  iframe:{
+    width: '100%',
+    height: '100%',
   },
   source: {
     color: "#9D9C9C",
@@ -80,25 +82,86 @@ function Container({ action, children, description, featuredChart, ...props }) {
   const [ chart, setChart ] = useState();
 
   useEffect(() => {
-      let url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}`;
       if (type === 'hurumap') {
-        url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
-      }
-      fetch(url)
-      .then((res) => res.json())
-      .then(data => setChart(data && {
-        ...data,
-        visual: {
-          ...data.visual,
-          queryAlias: data.visual.queryAlias || `viz${id}`,
-        },
-        stat: {
-          ...data.stat,
-          queryAlias: data.visual.queryAlias || `viz${id}`,
-        },
-    }));
-
+        const url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
+        fetch(url)
+        .then((res) => res.json())
+        .then(data => setChart(data && {
+          ...data,
+          visual: {
+            ...data.visual,
+            queryAlias: data.visual.queryAlias || `viz${id}`,
+          },
+          stat: {
+            ...data.stat,
+            queryAlias: data.visual.queryAlias || `viz${id}`,
+          },
+      }));
+    }
   }, [id, type ]);
+
+  if (type === 'flourish') {
+
+    return (
+      <div>
+      <ChartContainer
+         logo={logo}
+         key={`${type}-${id}`}
+         title={""}
+         groupActions
+         variant="data"
+         content={{}}
+         classes={{
+           chart: classes.chart,
+           content: classes.content,
+           title: classes.title,
+           root: classes.chartRoot,
+           containerRoot: classes.containerRoot,
+           sourceLink: classes.source,
+           groupActionsButton: classes.actionIcon,
+           descriptionWrapper: classes.descriptionWrapper,
+           description: classes.description,
+         }}
+         groupIcons={{
+           facebook: {
+             icon: <img src={FacebookIcon} />,
+           },
+           twitter: {
+             icon: <img src={TwitterIcon} />,
+           },
+           linkedin: {
+             icon: <img src={LinkedInIcon} />,
+           },
+           instagram: {
+             icon: <img src={InstagramIcon} />,
+           },
+           embed: {},
+           link: {},
+           download: {}
+         }}
+       >
+          <iframe
+            key={id}
+            width="100%"
+            scrolling="no"
+            frameBorder="0"
+            className={classes.iframe}
+            title="flourish"
+            src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/`} />
+     </ChartContainer>
+     <div className={classes.description}>
+         <RichTypography variant="body2">{""}</RichTypography>
+       </div>
+       <div className={classes.description}>
+         <Button variant="contained" size="large">
+           {action}
+         </Button>
+       </div>
+       </div>
+
+    )
+
+  }
     
   const visuals = useMemo(() => (chart ? [chart.visual] : []), [chart]);
 
@@ -107,7 +170,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
   const source = useMemo(() => {
     const { isLoading, profileVisualsData } = chartData;
 
-    if (!chart || isLoading) {
+    if (!chart || isLoading){
       return null;
     }
 
@@ -136,12 +199,12 @@ function Container({ action, children, description, featuredChart, ...props }) {
   : [];
 
   return (
+    <div>
      <ChartContainer
         logo={logo}
-        key={chart.id}
+        key={`${type}-${id}`}
         title={chart.title}
         subtitle={chart.subtitle}
-        description={chart.description || "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}
         sourceLink={source && source.href}
         sourceTitle={source && source.title}
         content={{}}
@@ -152,11 +215,12 @@ function Container({ action, children, description, featuredChart, ...props }) {
           chart: classes.chart,
           content: classes.content,
           title: classes.title,
-          root: classes.root,
+          root: classes.chartRoot,
           containerRoot: classes.containerRoot,
           sourceLink: classes.source,
           groupActionsButton: classes.actionIcon,
-          descriptionWrapper: classes.descriptionWrapper
+          descriptionWrapper: classes.descriptionWrapper,
+          description: classes.description,
         }}
         groupIcons={{
           facebook: {
@@ -176,15 +240,35 @@ function Container({ action, children, description, featuredChart, ...props }) {
           download: {}
         }}
       >
-        {!chartData.isLoading && (
+        {!chartData.isLoading && type === 'hurumap' ? (
           <ChartFactory
             profiles={profiles}
             definition={chart.visual}
             data={rawData}
             disableShowMore
           />
+          ): (
+            <div>
+                Heyyy
+            <iframe
+              key={id}
+              width="100%"
+              scrolling="no"
+              frameBorder="0"
+              //title={chart.title}
+              src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}`} />
+              </div>
           )}
     </ChartContainer>
+    <div className={classes.description}>
+        <RichTypography variant="body2">{chart.description}</RichTypography>
+      </div>
+      <div className={classes.description}>
+        <Button variant="contained" size="large">
+          {action}
+        </Button>
+      </div>
+      </div>
   );
 }
 

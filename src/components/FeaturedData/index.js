@@ -56,7 +56,7 @@ function FeaturedData({ featuredContent, ...props }) {
 
     const featureDiv = tmp.querySelector('div[id=featured-data]');
     setTitle(featureDiv.getAttribute('data-title'));
-    setDescription(featureDiv.getAttribute('data-description').replace('” class=”wp-block-hurumap-section-block highlight”>', ''));
+    setDescription(featureDiv.getAttribute('data-description').replace('” class=”wp-block-hurumap-section-block”>', ''));
 
     const charts = [];
     Array.from(
