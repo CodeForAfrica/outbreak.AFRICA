@@ -39,76 +39,41 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
       width: "102.5rem",
     },
   },
-  actionsShareButton: {
-    minWidth: "4rem",
-  },
-  actionsRoot: {
-    border: "solid 1px #eaeaea",
-  },
   container: {
     marginBottom: "0.625rem",
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
     minHeight: loading && "300px",
-    backgroundColor: "#f6f6f6",
     margin: 0,
   }),
-  containerInsightAnalysisLink: {
-    padding: 0,
+  chartRoot: {
+    boxShadow: "0px 4px 4px #00000029",
+    border: "1px solid #D6D6D6",
+    marginBottom: "1.3125rem",
+    marginTop: "2.5rem",
+    padding: "42px 38px 33px 38px",
+    position: "relative",
+    width: "100%",
   },
-  containerInsightDataLink: {
-    backgroundColor: "white",
-    borderRadius: "12px",
-    border: `solid 2px ${palette.primary.main}`,
-    padding: 0,
+  chart: {
+    margin: '0.5rem !important',
   },
-  containerSourceGrid: {
-    [breakpoints.up("md")]: {
-      whiteSpace: "nowrap",
-    },
+  content: {
+    paddingBottom: 0,
   },
-  containerSourceLink: {
-    fontSize: typography.caption.fontSize,
-    color: palette.text.primary,
-  },
-  insight: {
-    paddingTop: "1.275rem",
-  },
-  insightGrid: {
-    [breakpoints.up("lg")]: {
-      maxWidth: "23.6875rem",
-    },
-  },
-  numberTitle: {
-    fontWeight: "bold",
-  },
-  hideHighlightGrid: {
-    display: "none",
-  },
-  statDescription: {
-    fontWeight: 600,
-    fontSize: "1.5rem",
-    lineHeight: 1.71,
-    wordBreak: "break-word",
-  },
-  statStatistic: {
-    fontWeight: "bold",
-    fontSize: "2.5rem",
-    lineHeight: 1.03,
-    marginBottom: "0.6875rem",
-    marginTop: "1.125rem",
-  },
-  statSubtitle: {
-    fontWeight: "bold",
-    fontSize: "1.25rem",
-    marginTop: "1rem",
-    paddingRight: "1.25rem", // On the same line as chart title hence better to have spacing between them
+  actionIcon: {
+    width: "2rem",
+    height: "auto"
   },
   title: {
-    fontFamily: typography.fontText,
-    lineHeight: 2.05,
-    marginTop: "1rem",
+    fontSize: typography.subtitle2.fontSize,
+    fontWeight: typography.subtitle2.fontWeight,
+  },
+  source: {
+    color: "#9D9C9C",
+    marginLeft: '0 !important',
+    textDecoration: 'none'
   },
 }));
 
@@ -307,33 +272,15 @@ function ProfilePage({
                   >
                     <ChartContainer
                       key={chart.id}
-                      actions={{
-                        handleShare: shareIndicator.bind(
-                          null,
-                          id,
-                          null,
-                          "/api/share"
-                        ),
-                        handleShowData: null,
-                        handleCompare: null,
-                      }}
+                      variant="data"
                       classes={{
-                        insight: classes.insight,
-                        actionsCompareButton: classes.actionsCompareButton,
-                        actionsShareButton: classes.actionsShareButton,
-                        actionsShowDataButton: classes.actionsShowDataButton,
-                        actionsRoot: classes.actionsRoot,
-                        root: classes.containerRoot,
-                        sourceGrid: classes.containerSourceGrid,
-                        sourceLink: classes.containerSourceLink,
-                        insightAnalysisLink:
-                          classes.containerInsightAnalysisLink,
-                        insightDataLink: classes.containerInsightDataLink,
-                        insightGrid: classes.insightGrid,
-                        highlightGrid:
-                          chart.type === "flourish" &&
-                          classes.hideHighlightGrid,
+                        chart: classes.chart,
+                        content: classes.content,
                         title: classes.title,
+                        root: classes.chartRoot,
+                        containerRoot: classes.containerRoot,
+                        sourceLink: classes.source,
+                        groupActionsButton: classes.actionIcon,
                       }}
                       embedCode={`<iframe
                   id="${chart.id}"
@@ -341,17 +288,10 @@ function ProfilePage({
                   title="${chart.title}"
                   allowFullScreen
                 />`}
-                      insight={
-                        {
-                          // dataLink: {
-                          //   href: `/profiles/${country.slug}`,
-                          //   title: 'Read the country analysis'
-                          // }
-                        }
-                      }
                       loading={chartData.isLoading}
                       logo={logo}
-                      source={source}
+                      sourceLink={source && source.href}
+                      sourceTitle={source && source.title}
                       title={chart.title}
                       groupActions
                       dataTable={{
@@ -366,24 +306,7 @@ function ProfilePage({
                       }}
                     >
                       {chart.type === "hurumap"
-                        ? [
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.stat,
-                                typeProps: {
-                                  ...chart.stat.typeProps,
-                                  classes: {
-                                    description: classes.statDescription,
-                                    statistic: classes.statStatistic,
-                                    subtitle: classes.statSubtitle,
-                                  },
-                                },
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />,
+                        ? 
                             <Chart
                               key={chart.id}
                               chartData={chartData}
@@ -396,10 +319,8 @@ function ProfilePage({
                               }}
                               profiles={profiles}
                               classes={classes}
-                            />,
-                          ]
-                        : [
-                            <div key={chart.id} />,
+                            />
+                        : 
                             <iframe
                               key={chart.id}
                               width="100%"
@@ -407,8 +328,8 @@ function ProfilePage({
                               frameBorder="0"
                               title={chart.title}
                               src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                            />,
-                          ]}
+                            />
+                          }
                     </ChartContainer>
                   </Grid>
                 );
