@@ -118,7 +118,12 @@ function Menu({ title, countries, href }) {
         </Grid>
         <Grid item>
           <Link href="/institutions" className={classes.MenuLink}>
-            <Typography variant="subtitle2" className={classes.menuText}>Frontline Reportange</Typography>
+            <Typography variant="subtitle2" className={classes.menuText}>Featured stories</Typography>
+          </Link>
+        </Grid>
+        <Grid item>
+          <Link href="/institutions" className={classes.MenuLink}>
+            <Typography variant="subtitle2" className={classes.menuText}>Resources</Typography>
           </Link>
         </Grid>
       </Grid>
