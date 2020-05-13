@@ -103,7 +103,7 @@ function ProfileDetail({
     }
   };
 
-  const { squareKms, totalPopulation } = geo;
+  const { squareKms, totalPopulation, name } = geo;
   const population = totalPopulation.toFixed(0);
   const populationDensity = (population / squareKms).toFixed(1);
 
@@ -119,7 +119,7 @@ function ProfileDetail({
           >
             <Grid item container direction="column" justify="flex-start">
               <Grid item className={classes.geo}>
-                <CountrySelector country={country} context="topic" />
+                <CountrySelector country={country} geoName={name} context="topic" />
               </Grid>
               <Grid item className={classes.geoInfo}>
                 <Grid container direction="row" wrap="nowrap">

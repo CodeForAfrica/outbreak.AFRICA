@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CountrySelector({ context, country, ...props }) {
+export default function CountrySelector({ context, country, geoName, ...props }) {
   const classes = useStyles(props);
 
   return (
@@ -60,7 +60,7 @@ export default function CountrySelector({ context, country, ...props }) {
         <DataMenuList country={country} dense />
       </MenuButton>
       <Typography variant="h2" className={classes.countryName}>
-        {country.shortName}
+        { geoName? geoName : country.shortName }
       </Typography>
     </div>
   );
@@ -68,9 +68,14 @@ export default function CountrySelector({ context, country, ...props }) {
 
 CountrySelector.propTypes = {
   context: PropTypes.string.isRequired,
+  geoName: PropTypes.string,
   country: PropTypes.shape({
     isoCode: PropTypes.string,
     slug: PropTypes.string,
     shortName: PropTypes.string,
   }).isRequired,
 };
+
+CountrySelector.defaultProps = {
+  geoName: undefined,
+}

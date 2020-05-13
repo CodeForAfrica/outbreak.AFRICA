@@ -24,7 +24,7 @@ import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -73,6 +73,9 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     color: "#9D9C9C",
     marginLeft: "0 !important",
     textDecoration: "none",
+  },
+  embedSubtitle: {
+   color: palette.text.primary,
   },
 }));
 
@@ -280,6 +283,7 @@ function ProfilePage({
                         containerRoot: classes.containerRoot,
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
+                        embedSubtitle: classes.embedSubtitle,
                       }}
                       embed={{
                         title: "Embed code for this chart",
