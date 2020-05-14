@@ -8,11 +8,15 @@ import { RichTypography, StoryList, Section } from "@commons-ui/core";
 
 import "simplebar/dist/simplebar.min.css";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     overflow: "visible",
   },
   section: {},
+  sectionTitle: {
+    margin: "unset",
+    marginBottom: typography.pxToRem(16),
+  },
   description: {
     "& .highlight": {
       background:
@@ -25,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     "& .simplebar-track": {
       backgroundColor: "#D6D6D6",
       width: "30%",
-      [theme.breakpoints.up("lg")]: {
+      [breakpoints.up("lg")]: {
         width: "20%",
       },
     },
