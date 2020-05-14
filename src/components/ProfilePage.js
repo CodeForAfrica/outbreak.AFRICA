@@ -373,9 +373,15 @@ function ProfilePage({
     }
   }, [indicatorId]);
 
-  let title;
-  if (country) {
-    title = country.shortName;
+  let title = 'outbreak.AFRICA';
+  if (!profiles.loading && country) {
+    const { name, geoLevel } = profiles.profile || {};
+
+    if (geoLevel !== 'country') {
+      title = `${name} | ${country.shortName} | ${title}`;
+    } else {
+      title = name;
+    }
   }
   return (
     <Page
