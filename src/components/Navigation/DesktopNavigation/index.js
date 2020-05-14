@@ -5,6 +5,7 @@ import classNames from "classnames";
 
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import LinkButton from "components/Link/Button";
 
 import Link from "components/Link";
 
@@ -57,63 +58,69 @@ function DesktopNavigation({ country, ...props }) {
   const classes = useStyles(props);
 
   return (
-    <Grid container justify="flex-start" alignItems="center">
-      <Grid item md={3}>
-        <Logo />
-      </Grid>
-      <div className={classes.grow} />
-      <Grid item md={5} container justify="flex-end">
-        <Grid item>
-          <MenuButton
-            color="secondary"
-            size="large"
-            title="DATA"
-            variant="outlined"
-            className={classes.button}
+    <>
+      <Grid container justify="flex-start" alignItems="center">
+        <Grid item md={3}>
+          <Logo />
+        </Grid>
+        <div className={classes.grow} />
+        <Grid item md={5} container justify="flex-end">
+          <Grid item>
+            <MenuButton
+              color="secondary"
+              size="large"
+              title="DATA"
+              variant="outlined"
+              className={classes.button}
+            >
+              <DataMenuList country={country} dense />
+            </MenuButton>
+          </Grid>
+          <Grid item>
+            <LinkButton href="/research" size="large" className={classes.button}>
+              RESEARCH
+          </LinkButton>
+          </Grid>
+          <Grid item>
+            <LinkButton href="/insights" size="large" className={classes.button}>
+              INSIGHTS
+          </LinkButton>
+          </Grid>
+        </Grid>
+        <Grid item md={3}>
+          <Search size="large" />
+        </Grid>
+        <Grid item md={1} container justify="flex-start">
+          <Link
+            href="/#"
+            underline="none"
+            variant="overline"
+            className={classNames(classes.buttonLanguage, "active")}
           >
-            <DataMenuList country={country} dense />
-          </MenuButton>
-        </Grid>
-        <Grid item>
-          <Menu title="Research" href="/research" />
-        </Grid>
-        <Grid item>
-          <Menu title="Insights" href="/insights" />
+            En
+        </Link>
+          <Link
+            href="/#"
+            underline="none"
+            variant="overline"
+            className={classNames(classes.buttonLanguage)}
+          >
+            Fr
+        </Link>
+          <Link
+            href="/#"
+            underline="none"
+            variant="overline"
+            className={classNames(
+              classes.buttonLanguage,
+              classes.buttonLanguageLast
+            )}
+          >
+            عربى
+        </Link>
         </Grid>
       </Grid>
-      <Grid item md={3}>
-        <Search size="large" />
-      </Grid>
-      <Grid item md={1} container justify="flex-start">
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(classes.buttonLanguage, "active")}
-        >
-          En
-        </Link>
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(classes.buttonLanguage)}
-        >
-          Fr
-        </Link>
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(
-            classes.buttonLanguage,
-            classes.buttonLanguageLast
-          )}
-        >
-          عربى
-        </Link>
-      </Grid>
-    </Grid>
+    </>
   );
 }
 

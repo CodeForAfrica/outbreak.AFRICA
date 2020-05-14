@@ -48,12 +48,16 @@ const useStyles = makeStyles((theme) => ({
       color: '#0050FF',
       textDecoration: 'none'
     }
+  },
+  activeText: {
+    borderBottom: '3px solid #0050FF'
   }
 }));
 
 function Menu({ title, href }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const [active, setActive] = React.useState({});
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -73,6 +77,7 @@ function Menu({ title, href }) {
       setOpen(false);
     }
   }
+
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -168,7 +173,7 @@ function Menu({ title, href }) {
           </Grow>
         )}
       </Popper>
-    </>
+    </ >
   );
 }
 

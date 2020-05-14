@@ -4,6 +4,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from 'components/Page';
 import Hero from "components/Hero";
+import InsightsMenu from 'components/Navigation/DesktopNavigation/InsightsMenu';
+import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -33,6 +35,9 @@ function Insights({ outbreak, ...props }) {
   const profiles = getProfiles();
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
+      <SecondaryNavBar>
+        <InsightsMenu />
+      </SecondaryNavBar>
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}

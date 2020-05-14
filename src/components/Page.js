@@ -29,7 +29,6 @@ function Page({ children, classes: classesProp, outbreak, ...props }) {
     <div className={classes.root}>
       <SEO {...props} />
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
-
       {children}
       <Footer
         outbreak={outbreak}
