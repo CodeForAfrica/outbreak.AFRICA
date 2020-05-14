@@ -185,6 +185,8 @@ function ProfilePage({
     indexField: config.colorIndexField,
   });
 
+  console.log(geoIndeces);
+  
   const filterByChartData = useCallback(
     ({ visual: { queryAlias } }) =>
       // Data is loading or available

@@ -43,13 +43,6 @@ function MapIt({ classes: classesProps, geoId, geoIndeces, height, width, ...pro
           opacity: 1.0,
           fillOpacity: 0.3,
         }}
-        geoLayerFocusStyle={{
-          color: "#D6D6D6",
-          fillColor: theme.palette.primary.main,
-          weight: 2.0,
-          opacity: 1.0,
-          fillOpacity: 0.5,
-        }}
         geoLayerHoverStyle={{
           fillColor: theme.palette.primary.main,
           fillOpacity: 0.4,
