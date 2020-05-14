@@ -15,21 +15,13 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     padding: '1.5rem 2rem'
   },
-  menuLink: {
-    "&.active": {
-      color: '#0050FF',
-    }
-  },
   menuText: {
     color: '#9D9C9C',
     textTransform: 'Uppercase',
     "&:hover": {
       color: '#0050FF',
       textDecoration: 'none'
-    },
-    "&.active": {
-      color: 'black',
-    },
+    }
   }
 }));
 
@@ -44,7 +36,7 @@ export default function ResearchMenu() {
       className={classes.menu}>
       {config.researchMenu.map(menu =>
         <Grid item>
-          <Link href={menu.href} className={classes.MenuLink}>
+          <Link href={`research/${menu.href}`}>
             <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
           </Link>
         </Grid>

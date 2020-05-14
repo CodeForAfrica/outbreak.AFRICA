@@ -14,11 +14,6 @@ const useStyles = makeStyles((theme) => ({
   menu: {
     padding: '1.5rem 2rem'
   },
-  menuLink: {
-    "&.active": {
-      color: '#0050FF',
-    }
-  },
   menuText: {
     color: '#9D9C9C',
     textTransform: 'Uppercase',
@@ -41,7 +36,7 @@ export default function InsightsMenu() {
       className={classes.menu}>
       {config.insightsMenu.map(menu =>
         <Grid item>
-          <Link href={menu.href} className={classes.MenuLink}>
+          <Link href={`insights/${menu.href}`}>
             <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
           </Link>
         </Grid>

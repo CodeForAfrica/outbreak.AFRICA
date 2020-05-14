@@ -41,12 +41,12 @@ Disallow:
       href: 'featured-experts'
     },
     {
-      name: "Featured Resources",
-      href: 'featured-resources'
+      name: "Featured Documents",
+      href: 'featured-documents'
     },
     {
-      name: "Instutitions",
-      href: 'institutions'
+      name: "Featured Datasets",
+      href: 'featured-datasets'
     },
   ],
   insightsMenu: [
@@ -55,8 +55,8 @@ Disallow:
       href: 'analysis'
     },
     {
-      name: "Misinformation",
-      href: 'misinformation'
+      name: "Myth-Busters",
+      href: 'mythbusters'
     },
     {
       name: "Featured Stories",
