@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   profile: (props) => ({
     [theme.breakpoints.up("md")]: {
       height: props.comparable ? "30rem" : "25.5rem",
-    }
+    },
   }),
   geo: {
     pointerEvents: "all",
@@ -133,9 +133,16 @@ function ProfileDetail({
                   context="topic"
                 />
               </Grid>
-              {isMobile && mapit }
+              {isMobile && mapit}
               <Grid item container className={classes.geoInfo}>
-                <Grid item container direction="row" wrap="nowrap" xs={6} md={12}>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  wrap="nowrap"
+                  xs={6}
+                  md={12}
+                >
                   <Grid
                     item
                     container
@@ -193,18 +200,20 @@ function ProfileDetail({
                   </Grid>
                 </Grid>
                 <Grid item xs={6}>
-                  {colorIndex}
+                  {isMobile && colorIndex}
                 </Grid>
-               {!isMobile && <Grid item>
-                  <Button
-                    href="#"
-                    variant="outlined"
-                    color="secondary"
-                    className={classes.link}
-                  >
-                    LEARN MORE
-                  </Button>
-                </Grid>}
+                {!isMobile && (
+                  <Grid item>
+                    <Button
+                      href="#"
+                      variant="outlined"
+                      color="secondary"
+                      className={classes.link}
+                    >
+                      LEARN MORE
+                    </Button>
+                  </Grid>
+                )}
               </Grid>
               {comparable && (
                 <Grid item>
@@ -289,6 +298,6 @@ ProfileDetail.propTypes = {
 ProfileDetail.defaultProps = {
   colorIndex: undefined,
   mapit: undefined,
-}
+};
 
 export default ProfileDetail;

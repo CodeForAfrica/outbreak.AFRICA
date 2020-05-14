@@ -22,7 +22,6 @@ import LinkIcon from "assets/icon web.svg";
 import DownloadIcon from "assets/icon download.svg";
 import EmbedIcon from "assets/icon embed.svg";
 
-
 import ColorIndex from "./ColorIndex";
 import MapIt from "./MapIt";
 import Page from "./Page";
@@ -184,7 +183,7 @@ function ProfilePage({
     indexTable: config.colorIndexTable,
     indexField: config.colorIndexField,
   });
-  
+
   const filterByChartData = useCallback(
     ({ visual: { queryAlias } }) =>
       // Data is loading or available
@@ -387,11 +386,11 @@ function ProfilePage({
     }
   }, [indicatorId]);
 
-  let title = 'outbreak.AFRICA';
+  let title = "outbreak.AFRICA";
   if (!profiles.loading && country) {
     const { name, geoLevel } = profiles.profile || {};
 
-    if (geoLevel !== 'country') {
+    if (geoLevel !== "country") {
       title = `${name} | ${country.shortName} | ${title}`;
     } else {
       title = name;
@@ -413,26 +412,30 @@ function ProfilePage({
           }}
           country={country}
           classes={{ section: classes.section }}
-          mapit={<MapIt
-            geoId={geoId}
-            height="300px"
-            onClickGeoLayer={onClickGeoLayer}
-            geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
-            width="100%"
-          />}
+          mapit={
+            <MapIt
+              geoId={geoId}
+              height="300px"
+              onClickGeoLayer={onClickGeoLayer}
+              geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+              width="100%"
+            />
+          }
           colorIndex={<ColorIndex />}
         />
       )}
-      {isDesktop && <>
-        <ColorIndex />
-        <MapIt
-          geoId={geoId}
-          height="500px"
-          onClickGeoLayer={onClickGeoLayer}
-          geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
-          width="100%"
-        />
-      </>}
+      {isDesktop && (
+        <>
+          <ColorIndex />
+          <MapIt
+            geoId={geoId}
+            height="500px"
+            onClickGeoLayer={onClickGeoLayer}
+            geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+            width="100%"
+          />
+        </>
+      )}
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}

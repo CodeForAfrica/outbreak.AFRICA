@@ -24,7 +24,14 @@ const useStyles = makeStyles(() => ({
   }),
 }));
 
-function MapIt({ classes: classesProps, geoId, geoIndeces, height, width, ...props }) {
+function MapIt({
+  classes: classesProps,
+  geoId,
+  geoIndeces,
+  height,
+  width,
+  ...props
+}) {
   const classes = useStyles({ classes: classesProps, height, width });
   const theme = useTheme();
 

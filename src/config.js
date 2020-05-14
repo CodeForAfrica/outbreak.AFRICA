@@ -183,8 +183,8 @@ Disallow:
     "allPopulationResidence2009S",
     "allPopulationZa2016S",
   ],
-  colorIndexTable: 'allFinalVulnerabilityIndices',
-  colorIndexField: 'rating',
+  colorIndexTable: "allFinalVulnerabilityIndices",
+  colorIndexField: "rating",
   vulnerabilityIndexColor: {
     "very high": "#266cff",
     high: "#004cff",
