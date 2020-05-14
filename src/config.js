@@ -183,6 +183,15 @@ Disallow:
     "allPopulationResidence2009S",
     "allPopulationZa2016S",
   ],
+  colorIndexTable: 'allFinalVulnerabilityIndices',
+  colorIndexField: 'rating',
+  vulnerabilityIndexColor: {
+    "very high": "#266cff",
+    high: "#004cff",
+    moderate: "#4d8cff",
+    low: "#73acff",
+    "very low": "#9cf",
+  },
 };
 
 if (typeof document !== "undefined") {

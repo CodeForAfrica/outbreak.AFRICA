@@ -24,7 +24,7 @@ const useStyles = makeStyles(() => ({
   }),
 }));
 
-function MapIt({ classes: classesProps, geoId, height, width, ...props }) {
+function MapIt({ classes: classesProps, geoId, geoIndeces, height, width, ...props }) {
   const classes = useStyles({ classes: classesProps, height, width });
   const theme = useTheme();
 
@@ -55,6 +55,8 @@ function MapIt({ classes: classesProps, geoId, height, width, ...props }) {
           fillOpacity: 0.4,
         }}
         geoLevel={geoId.split("-")[0]}
+        geoIndexMapping={geoIndeces}
+        indexColor={config.vulnerabilityIndexColor}
         {...props}
       />
     </div>
@@ -65,11 +67,13 @@ MapIt.propTypes = {
   geoId: PropTypes.string.isRequired,
   height: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
   width: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
+  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 MapIt.defaultProps = {
   height: "500px",
   width: "100%",
+  geoIndeces: undefined,
 };
 
 export default MapIt;

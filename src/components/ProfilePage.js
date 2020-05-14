@@ -176,7 +176,7 @@ function ProfilePage({
     [filterByGeography, sectionedCharts]
   );
 
-  const { profiles, chartData } = useProfileLoader({
+  const { profiles, chartData, geoIndeces } = useProfileLoader({
     geoId,
     visuals,
     populationTables: config.populationTables,
@@ -417,6 +417,7 @@ function ProfilePage({
         geoId={geoId}
         height="500px"
         onClickGeoLayer={onClickGeoLayer}
+        geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
         width="100%"
       />
       {!profiles.isLoading && (
