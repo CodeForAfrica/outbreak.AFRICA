@@ -22,7 +22,7 @@ import LinkIcon from "assets/icon web.svg";
 import DownloadIcon from "assets/icon download.svg";
 import EmbedIcon from "assets/icon embed.svg";
 
-import ColorIndex from "./ColorIndex";
+import MapColorIndex from "./MapColorIndex";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
@@ -412,21 +412,14 @@ function ProfilePage({
           }}
           country={country}
           classes={{ section: classes.section }}
-          mapit={
-            <MapIt
-              geoId={geoId}
-              height="300px"
-              onClickGeoLayer={onClickGeoLayer}
-              geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
-              width="100%"
-            />
-          }
-          colorIndex={<ColorIndex />}
+          geoId={geoId}
+          geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+          onClickGeoLayer={onClickGeoLayer}
         />
       )}
       {isDesktop && (
         <>
-          <ColorIndex />
+          <MapColorIndex />
           <MapIt
             geoId={geoId}
             height="500px"

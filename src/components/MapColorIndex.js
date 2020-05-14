@@ -39,7 +39,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function ColorIndex() {
+function MapColorIndex() {
   const classes = useStyles();
 
   return (
@@ -89,4 +89,4 @@ function ColorIndex() {
   );
 }
 
-export default ColorIndex;
+export default MapColorIndex;

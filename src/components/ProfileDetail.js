@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import classNames from "classnames";
+import MapIt from "./MapIt";
+import MapColorIndex from "./MapColorIndex";
 
 import {
   Grid,
@@ -90,8 +92,9 @@ const useStyles = makeStyles((theme) => ({
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
   country,
-  mapit,
-  colorIndex,
+  geoId,
+  geoIndeces,
+  onClickGeoLayer,
   ...props
 }) {
   const classes = useStyles({ ...props, comparable });
@@ -133,7 +136,15 @@ function ProfileDetail({
                   context="topic"
                 />
               </Grid>
-              {isMobile && mapit}
+              {isMobile && 
+              <MapIt
+                geoId={geoId}
+                height="300px"
+                onClickGeoLayer={onClickGeoLayer}
+                geoIndeces={geoIndeces}
+                width="100%"
+              />
+              }
               <Grid item container className={classes.geoInfo}>
                 <Grid
                   item
@@ -199,9 +210,11 @@ function ProfileDetail({
                     )}
                   </Grid>
                 </Grid>
-                {isMobile && <Grid item xs={6}>
-                   {colorIndex}
-                </Grid>}
+                {isMobile && (
+                  <Grid item xs={6}>
+                    <MapColorIndex />
+                  </Grid>
+                )}
                 {!isMobile && (
                   <Grid item>
                     <Button
@@ -285,19 +298,15 @@ ProfileDetail.propTypes = {
     }),
   }).isRequired,
   country: PropTypes.shape({}).isRequired,
-  mapit: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
-  colorIndex: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]),
+  geoId: PropTypes.string,
+  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
+  onClickGeoLayer: PropTypes.func,
 };
 
 ProfileDetail.defaultProps = {
-  colorIndex: undefined,
-  mapit: undefined,
+  geoId: undefined,
+  geoIndeces: undefined,
+  onClickGeoLayer: null,
 };
 
 export default ProfileDetail;
