@@ -19,11 +19,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-
-
 export default function SecondaryNavBar({ children }) {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static">
