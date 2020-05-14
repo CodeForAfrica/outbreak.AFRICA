@@ -8,11 +8,15 @@ import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 
 import "simplebar/dist/simplebar.min.css";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     overflow: "visible",
   },
   section: {},
+  sectionTitle: {
+    margin: "unset",
+    marginBottom: typography.pxToRem(16),
+  },
   description: {
     "& .highlight": {
       background:
@@ -25,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     "& .simplebar-track": {
       backgroundColor: "#D6D6D6",
       width: "30%",
-      [theme.breakpoints.up("lg")]: {
+      [breakpoints.up("lg")]: {
         width: "20%",
       },
     },
@@ -44,13 +48,13 @@ const useStyles = makeStyles((theme) => ({
       mixBlendMode: "overlay",
     },
     "&.profile-0:after": {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: palette.primary.main,
     },
     "&.profile-1:after": {
       backgroundColor: `#000000`,
     },
     "&.profile-2:after": {
-      backgroundColor: theme.palette.highlight.main,
+      backgroundColor: palette.highlight.main,
     },
   },
   profileListProfiles: {},
@@ -91,7 +95,7 @@ function FeatureResearchers({ featuredExperts, ...props }) {
     <div className={classes.root}>
       <Section
         title={title || "Featured Researchers"}
-        classes={{ root: classes.section }}
+        classes={{ root: classes.section, title: classes.sectionTitle }}
       >
         <Grid
           container
