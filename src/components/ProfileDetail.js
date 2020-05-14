@@ -2,8 +2,6 @@ import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
 import classNames from "classnames";
-import MapIt from "./MapIt";
-import MapColorIndex from "./MapColorIndex";
 
 import {
   Grid,
@@ -22,6 +20,8 @@ import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
 import searchIcon from "assets/images/icon-search.svg";
+import MapColorIndex from "./MapColorIndex";
+import MapIt from "./MapIt";
 
 import CountrySelector from "./CountrySelector";
 
@@ -136,15 +136,15 @@ function ProfileDetail({
                   context="topic"
                 />
               </Grid>
-              {isMobile && 
-              <MapIt
-                geoId={geoId}
-                height="300px"
-                onClickGeoLayer={onClickGeoLayer}
-                geoIndeces={geoIndeces}
-                width="100%"
-              />
-              }
+              {isMobile && (
+                <MapIt
+                  geoId={geoId}
+                  height="300px"
+                  onClickGeoLayer={onClickGeoLayer}
+                  geoIndeces={geoIndeces}
+                  width="100%"
+                />
+              )}
               <Grid item container className={classes.geoInfo}>
                 <Grid
                   item
