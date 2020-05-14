@@ -11,6 +11,8 @@ import {
   Paper,
   Popper,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -38,7 +40,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   profile: (props) => ({
-    height: props.comparable ? "30rem" : "25.5rem",
+    [theme.breakpoints.up("md")]: {
+      height: props.comparable ? "30rem" : "25.5rem",
+    }
   }),
   geo: {
     pointerEvents: "all",
@@ -46,9 +50,10 @@ const useStyles = makeStyles((theme) => ({
   geoInfo: () => ({
     backgroundColor: "rgba(255, 255, 255, 0.63)",
     lineHeight: "normal",
-    padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
     width: "100%",
+    padding: "1rem 0",
     [theme.breakpoints.up("md")]: {
+      padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
       width: theme.typography.pxToRem(375),
       border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
       borderRadius: 0,
@@ -61,7 +66,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
   },
   valueLabel: {
-    fontSize: "2rem",
     fontWeight: 600,
   },
   searchBar: {
@@ -86,9 +90,13 @@ const useStyles = makeStyles((theme) => ({
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
   country,
+  mapit,
+  colorIndex,
   ...props
 }) {
   const classes = useStyles({ ...props, comparable });
+  const theme = useTheme();
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
   const searchBarRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -125,8 +133,9 @@ function ProfileDetail({
                   context="topic"
                 />
               </Grid>
-              <Grid item className={classes.geoInfo}>
-                <Grid container direction="row" wrap="nowrap">
+              {isMobile && mapit }
+              <Grid item container className={classes.geoInfo}>
+                <Grid item container direction="row" wrap="nowrap" xs={6} md={12}>
                   <Grid
                     item
                     container
@@ -135,11 +144,11 @@ function ProfileDetail({
                   >
                     {population && (
                       <Grid item>
-                        <Typography variant="body1" className={classes.label}>
+                        <Typography variant="body2" className={classes.label}>
                           Population
                         </Typography>
                         <Typography
-                          variant="body1"
+                          variant="body2"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -151,11 +160,11 @@ function ProfileDetail({
                     )}
                     {squareKms && (
                       <Grid item>
-                        <Typography variant="body1" className={classes.label}>
+                        <Typography variant="body2" className={classes.label}>
                           Square kilometres
                         </Typography>
                         <Typography
-                          variant="body1"
+                          variant="body2"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -167,11 +176,11 @@ function ProfileDetail({
                     )}
                     {populationDensity && (
                       <Grid item>
-                        <Typography variant="body1" className={classes.label}>
+                        <Typography variant="body2" className={classes.label}>
                           People per km<sup>2</sup>
                         </Typography>
                         <Typography
-                          variant="body1"
+                          variant="body2"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -183,7 +192,10 @@ function ProfileDetail({
                     )}
                   </Grid>
                 </Grid>
-                <Grid item>
+                <Grid item xs={6}>
+                  {colorIndex}
+                </Grid>
+               {!isMobile && <Grid item>
                   <Button
                     href="#"
                     variant="outlined"
@@ -192,7 +204,7 @@ function ProfileDetail({
                   >
                     LEARN MORE
                   </Button>
-                </Grid>
+                </Grid>}
               </Grid>
               {comparable && (
                 <Grid item>
@@ -264,6 +276,19 @@ ProfileDetail.propTypes = {
     }),
   }).isRequired,
   country: PropTypes.shape({}).isRequired,
+  mapit: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
+  colorIndex: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]),
 };
+
+ProfileDetail.defaultProps = {
+  colorIndex: undefined,
+  mapit: undefined,
+}
 
 export default ProfileDetail;

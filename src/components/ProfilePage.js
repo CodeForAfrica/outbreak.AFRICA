@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { useRouter } from "next/router";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
@@ -33,7 +33,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
-    width: "auto",
+    width: "100%",
     [breakpoints.up("lg")]: {
       margin: "0 auto",
       width: "78.5rem",
@@ -184,8 +184,6 @@ function ProfilePage({
     indexTable: config.colorIndexTable,
     indexField: config.colorIndexField,
   });
-
-  console.log(geoIndeces);
   
   const filterByChartData = useCallback(
     ({ visual: { queryAlias } }) =>
@@ -399,6 +397,8 @@ function ProfilePage({
       title = name;
     }
   }
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Page
       outbreak={{ ...outbreak, country, language }}
@@ -413,16 +413,26 @@ function ProfilePage({
           }}
           country={country}
           classes={{ section: classes.section }}
+          mapit={<MapIt
+            geoId={geoId}
+            height="300px"
+            onClickGeoLayer={onClickGeoLayer}
+            geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+            width="100%"
+          />}
+          colorIndex={<ColorIndex />}
         />
       )}
-      <ColorIndex />
-      <MapIt
-        geoId={geoId}
-        height="500px"
-        onClickGeoLayer={onClickGeoLayer}
-        geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
-        width="100%"
-      />
+      {isDesktop && <>
+        <ColorIndex />
+        <MapIt
+          geoId={geoId}
+          height="500px"
+          onClickGeoLayer={onClickGeoLayer}
+          geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+          width="100%"
+        />
+      </>}
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}
