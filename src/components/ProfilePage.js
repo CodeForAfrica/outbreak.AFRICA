@@ -23,7 +23,7 @@ import DownloadIcon from "assets/icon download.svg";
 import EmbedIcon from "assets/icon embed.svg";
 
 
-
+import ColorIndex from "./ColorIndex";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
@@ -415,6 +415,7 @@ function ProfilePage({
           classes={{ section: classes.section }}
         />
       )}
+      <ColorIndex />
       <MapIt
         geoId={geoId}
         height="500px"

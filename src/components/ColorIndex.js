@@ -1,0 +1,81 @@
+import React from "react";
+
+import { Grid, List, ListItem, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { Section } from "@commons-ui/core";
+
+import config from 'config';
+import MapKey from "assets/map-key.svg";
+
+
+const useStyles = makeStyles(({breakpoints}) => ({
+  root: {},
+  section: {
+    position: "relative",
+  },
+  container: {
+    zIndex: 999,
+   // position: "initial",
+   display: "flex",
+   // justifyContent: "flex-start",
+   [breakpoints.up("md")]: {
+     position: "absolute",
+     pointerEvents: "none",
+     right: '10%',
+     marginTop: '10%',
+    },
+  },
+  geo: {
+    display: 'flex',
+    pointerEvents: "all",
+  },
+  itemText: {
+    textTransform: 'capitalize',
+    [breakpoints.up("lg")]: {
+      lineHeight: 40 / 20,
+    },
+    [breakpoints.up("xl")]: {
+      lineHeight: 30 / 20,
+    }
+  }
+}));
+
+function ColorIndex() {
+  const classes = useStyles();
+
+  return (
+    <Grid container className={classes.root}>
+      <Section classes={{ root: classes.section }}>
+        <div className={classes.container}>
+          <Grid
+            container
+            direction="column"
+            justify="space-between"
+            className={classes.profile}
+          >
+            <Grid item container direction="column" justify="flex-start" spacing={2}>
+              <Grid item alignItems="center">
+                <Typography variant="subtitle2">
+                  COVID-19 <br/>
+                  Vulnerability Index
+                </Typography>
+              </Grid>
+              <Grid item container className={classes.geoInfo}>
+                <img src={MapKey} alt="Map Index" />
+                <List dense={true}>
+                  {Object.keys(config.vulnerabilityIndexColor).map(item =>
+                    <ListItem>
+                      <Typography variant="caption" className={classes.itemText}> {item}</Typography>
+                    </ListItem>
+                  )}
+                </List>
+              </Grid>
+            </Grid>
+          </Grid>
+        </div>
+      </Section>
+    </Grid>
+  );
+}
+
+export default ColorIndex;
