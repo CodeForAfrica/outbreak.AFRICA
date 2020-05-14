@@ -151,11 +151,11 @@ function ProfileDetail({
                   >
                     {population && (
                       <Grid item>
-                        <Typography variant="body2" className={classes.label}>
+                        <Typography variant="body1" className={classes.label}>
                           Population
                         </Typography>
                         <Typography
-                          variant="body2"
+                          variant="body1"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -167,11 +167,11 @@ function ProfileDetail({
                     )}
                     {squareKms && (
                       <Grid item>
-                        <Typography variant="body2" className={classes.label}>
+                        <Typography variant="body1" className={classes.label}>
                           Square kilometres
                         </Typography>
                         <Typography
-                          variant="body2"
+                          variant="body1"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -183,11 +183,11 @@ function ProfileDetail({
                     )}
                     {populationDensity && (
                       <Grid item>
-                        <Typography variant="body2" className={classes.label}>
+                        <Typography variant="body1" className={classes.label}>
                           People per km<sup>2</sup>
                         </Typography>
                         <Typography
-                          variant="body2"
+                          variant="body1"
                           className={classNames([
                             classes.label,
                             classes.valueLabel,
@@ -199,9 +199,9 @@ function ProfileDetail({
                     )}
                   </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                  {isMobile && colorIndex}
-                </Grid>
+                {isMobile && <Grid item xs={6}>
+                   {colorIndex}
+                </Grid>}
                 {!isMobile && (
                   <Grid item>
                     <Button
