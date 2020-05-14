@@ -35,36 +35,36 @@ Disallow:
   MAPIT_URL: "https://dev.mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
-  resourceMenu: [
+  researchMenu: [
     {
       name: "Featured Expert",
-      href: '/featured-experts'
+      href: 'featured-experts'
     },
     {
       name: "Featured Resources",
-      href: '/featured-resources'
+      href: 'featured-resources'
     },
     {
       name: "Instutitions",
-      href: '/institutions'
+      href: 'institutions'
     },
   ],
   insightsMenu: [
     {
       name: "Analysis",
-      href: '/analysis'
+      href: 'analysis'
     },
     {
       name: "Misinformation",
-      href: '/misinformation'
+      href: 'misinformation'
     },
     {
       name: "Featured Stories",
-      href: '/featured-stories'
+      href: 'featured-stories'
     },
     {
       name: "Resources",
-      href: '/resources'
+      href: 'resources'
     },
   ],
 

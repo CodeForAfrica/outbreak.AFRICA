@@ -21,7 +21,10 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: '#0050FF',
       textDecoration: 'none'
-    }
+    },
+    "&.active": {
+      color: 'black',
+    },
   }
 }));
 
@@ -34,9 +37,9 @@ export default function ResearchMenu() {
       justify="space-around"
       alignItems="center"
       className={classes.menu}>
-      {config.resourceMenu.map(menu =>
+      {config.researchMenu.map(menu =>
         <Grid item>
-          <Link href={menu.href} className={classes.MenuLink}>
+          <Link href={`research/${menu.href}`} className={classes.MenuLink}>
             <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
           </Link>
         </Grid>

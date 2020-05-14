@@ -20,12 +20,16 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: '#0050FF',
       textDecoration: 'none'
-    }
+    },
+    "&.active": {
+      color: 'black',
+    },
   }
 }));
 
 export default function InsightsMenu() {
   const classes = useStyles()
+
   return (
     <Grid
       container
@@ -35,7 +39,7 @@ export default function InsightsMenu() {
       className={classes.menu}>
       {config.insightsMenu.map(menu =>
         <Grid item>
-          <Link href={menu.href} className={classes.MenuLink}>
+          <Link href={`insights/${menu.href}`} className={classes.MenuLink}>
             <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
           </Link>
         </Grid>

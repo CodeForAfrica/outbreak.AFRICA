@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LinkButton from "components/Link/Button";
 
@@ -24,6 +24,13 @@ const useStyles = makeStyles((theme) => ({
     paddingLeft: 0,
     paddingRight: 0,
     marginRight: "0.5rem",
+    "&:hover": {
+      backgroundColor: "white"
+    },
+    "&.active": {
+      borderRadius: '0px',
+      borderBottom: '2px solid #170F49',
+    },
     width: "auto",
     [theme.breakpoints.up("lg")]: {
       marginRight: "2rem",

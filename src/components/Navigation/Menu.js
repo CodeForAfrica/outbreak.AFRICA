@@ -57,7 +57,7 @@ const useStyles = makeStyles((theme) => ({
 function Menu({ title, href }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const [active, setActive] = React.useState({});
+  
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
