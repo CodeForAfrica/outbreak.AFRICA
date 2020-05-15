@@ -1,5 +1,6 @@
 import React from "react";
-import classnames from "classnames";
+
+import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, Grid, Typography } from "@material-ui/core";
@@ -10,54 +11,80 @@ import illo from "assets/images/illo-03.png";
 import illoMobile from "assets/images/illo-03-mobile.png";
 import PropTypes from "prop-types";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: "#170F49",
-  },
-  section: {},
-  description: {
-    paddingTop: "12rem",
-    paddingBottom: "12rem",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    [theme.breakpoints.down("sm")]: {
-      paddingBottom: "3rem",
-      paddingTop: "1rem",
+const useStyles = makeStyles(
+  ({ breakpoints, palette, typography, widths }) => ({
+    root: {
+      backgroundColor: "#170F49",
+      color: palette.text.secondary,
     },
-  },
-  title: {
-    color: "white",
-  },
-  linkContainer: {
-    [theme.breakpoints.down("sm")]: {
-      paddingBottom: "3rem",
+    section: {},
+    description: {},
+    title: {},
+    link: {
+      marginBottom: typography.pxToRem(58),
+      marginTop: typography.pxToRem(42),
+      [breakpoints.up("md")]: {
+        marginBotton: "unset",
+        marginTop: "unset",
+      },
     },
-  },
-  link: {},
-  subtitle: {
-    "&.subtitle": {
-      color: "white",
+    subtitle: {
+      marginTop: typography.pxToRem(16),
+      "&.subtitle": {},
+      "& .highlight": {
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+      },
+      [breakpoints.up("md")]: {
+        marginTop: "unset",
+      },
     },
-    "& .highlight": {
-      background:
-        "url(\"data:image/svg+xml;charset=utf8,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='1px' height='1px' viewBox='0 0 1 1' preserveAspectRatio='none'%3E%3Crect x='0' y='0' width='1' height='1' fill='white' fill-opacity='0.5' /%3E%3C/svg%3E\") no-repeat 100% 100%",
-      backgroundSize: "100% 50%",
+    hightlightHeight: {
+      height: "auto",
+      [breakpoints.up("md")]: {
+        height: typography.pxToRem((800 * widths.values.md) / widths.values.xl),
+      },
+      [breakpoints.up("lg")]: {
+        height: typography.pxToRem((800 * widths.values.lg) / widths.values.xl),
+      },
+      [breakpoints.up("xl")]: {
+        height: typography.pxToRem(800),
+      },
     },
-  },
-  imgContainer: {
-    [theme.breakpoints.down("sm")]: {
+    hightlightWidth: {
+      width: "100%",
+      [breakpoints.up("md")]: {
+        width: typography.pxToRem((966 * widths.values.md) / widths.values.xl),
+      },
+      [breakpoints.up("lg")]: {
+        width: typography.pxToRem((966 * widths.values.lg) / widths.values.xl),
+      },
+      [breakpoints.up("xl")]: {
+        width: typography.pxToRem(966),
+      },
+    },
+    img: {
+      left: 0,
+      position: "absolute",
+      top: 0,
+    },
+    highlight: {
       display: "none",
+      [breakpoints.up("md")]: {
+        display: "initial",
+        position: "relative",
+        overflow: "visible",
+      },
     },
-  },
-  mobileImgContainer: {
-    display: "none",
-    [theme.breakpoints.down("sm")]: {
+    mobileImgContainer: {
       display: "block",
       maxWidth: "100%",
+      [breakpoints.up("md")]: {
+        display: "none",
+      },
     },
-  },
-}));
+  })
+);
 
 function MythBursting({ myth, ...props }) {
   const classes = useStyles(props);
@@ -67,13 +94,20 @@ function MythBursting({ myth, ...props }) {
   }
 
   const { title, description, link_url: link, link_label: linkLabel } = myth;
-
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
-        <Grid container>
+        <Grid container className={classes.grid}>
           <Grid item xs={12} md={6}>
-            <div className={classes.description}>
+            <Grid
+              container
+              direction="column"
+              justify="space-around"
+              className={classNames(
+                classes.hightlightHeight,
+                classes.description
+              )}
+            >
               <div>
                 <img
                   src={illoMobile}
@@ -85,25 +119,42 @@ function MythBursting({ myth, ...props }) {
                 </Typography>
                 <RichTypography
                   variant="subtitle1"
-                  className={classnames(classes.subtitle, "subtitle")}
+                  className={classNames(classes.subtitle, "subtitle")}
                 >
                   {description}
                 </RichTypography>
               </div>
-            </div>
-            <div className={classes.linkContainer}>
-              <Button
-                variant="outlined"
-                color="primary"
-                href={link}
-                className={classes.link}
-              >
-                {linkLabel}
-              </Button>
-            </div>
+              <div>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  href={link}
+                  className={classes.link}
+                >
+                  {linkLabel}
+                </Button>
+              </div>
+            </Grid>
           </Grid>
-          <Grid item xs={12} md={6} className={classes.imgContainer}>
-            <img src={illo} alt="Corona virus" />
+          <Grid
+            item
+            xs={12}
+            md={6}
+            className={classNames(
+              classes.hightlightHeight,
+              classes.hightlightWidth,
+              classes.highlight
+            )}
+          >
+            <img
+              src={illo}
+              alt="Corona virus"
+              className={classNames(
+                classes.hightlightHeight,
+                classes.hightlightWidth,
+                classes.img
+              )}
+            />
           </Grid>
         </Grid>
       </Section>

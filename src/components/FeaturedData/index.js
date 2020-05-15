@@ -7,26 +7,30 @@ import { Section, RichTypography } from "@commons-ui/core";
 
 import Container from "./Container";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
   section: {},
+  sectionTitle: {
+    margin: "unset",
+    marginBottom: typography.pxToRem(16),
+  },
   chart00: {
-    [theme.breakpoints.only("md")]: {
+    [breakpoints.only("md")]: {
       order: 2,
     },
   },
   chart01: {
-    [theme.breakpoints.only("md")]: {
+    [breakpoints.only("md")]: {
       order: 1,
     },
   },
   chart02: {
-    [theme.breakpoints.only("md")]: {
+    [breakpoints.only("md")]: {
       order: 4,
     },
   },
   chart03: {
-    [theme.breakpoints.only("md")]: {
+    [breakpoints.only("md")]: {
       order: 3,
     },
   },
@@ -37,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   insight: {
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       alignItems: "flex-start",
       justifyContent: "flex-end",
     },
@@ -77,7 +81,10 @@ function FeaturedData({ featuredContent, ...props }) {
 
   return (
     <div className={classes.root}>
-      <Section title={title} classes={{ root: classes.section }}>
+      <Section
+        title={title}
+        classes={{ root: classes.section, title: classes.sectionTitle }}
+      >
         <Grid container>
           <Grid item xs={12} md={8}>
             <RichTypography variant="subtitle1" className={classes.description}>

@@ -136,8 +136,8 @@ const theme = createTheme({
   },
   widths: {
     values: {
-      md: 948, // 0, 6, 0, 6 margins
-      lg: 1272, // 0, 6, 0, 6 margins
+      md: 936, // 0, 12, 0, 12 margins
+      lg: 1224, // 0, 28, 0, 28 margins
       xl: 1640, // 0, 140, 0, 140 margins DESIGNS
     },
   },

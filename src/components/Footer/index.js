@@ -63,9 +63,12 @@ const SOCIAL_MEDIA = {
 };
 
 const useStyles = makeStyles((theme) => ({
-  typography: {
-    fontWeight: 700,
-    lineHeight: 69 / 27,
+  initiative: {
+    [theme.breakpoints.up("md")]: {
+      "& img": {
+        width: "100%",
+      },
+    },
   },
   legalLinks: {
     marginTop: "3.09375",
@@ -74,6 +77,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   legalLinksLink: {},
+  organizationLogo: {
+    [theme.breakpoints.up("md")]: {
+      width: "100%",
+    },
+  },
   stayInTouchLinks: {
     marginTop: "2.215rem",
     [theme.breakpoints.up("md")]: {
@@ -82,6 +90,10 @@ const useStyles = makeStyles((theme) => ({
   },
   stayInTouchText: {},
   text: {},
+  typography: {
+    fontWeight: 700,
+    lineHeight: 69 / 27,
+  },
 }));
 
 function MainFooter({
@@ -118,8 +130,10 @@ function MainFooter({
       quickLinks={quickLinks}
       organizationLogo={organizationLogo}
       classes={{
+        initiative: classes.initiative,
         legalLinks: classes.legalLinks,
         legalLinksLink: classNames(classes.typography, classes.legalLinksLink),
+        organizationLogo: classes.organizationLogo,
         stayInTouchLinks: classes.stayInTouchLinks,
         stayInTouchText: classNames(
           classes.typography,

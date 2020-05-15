@@ -92,6 +92,16 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       marginLeft: 0,
     },
   },
+  subtitle: {
+    marginTop: typography.pxToRem(16),
+    "& .highlight": {
+      background:
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+    },
+    [breakpoints.up("md")]: {
+      marginTop: "unset",
+    },
+  },
 }));
 
 function FeaturedResearch({ documentsAndDatasets, ...props }) {
@@ -150,6 +160,7 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
         documentsLink: classes.documentsAndDatasetsLink,
         heading: classes.heading,
         highlight: classNames(classes.highlightSize, classes.highlight),
+        subtitle: classes.subtitle,
       }}
     >
       <img
