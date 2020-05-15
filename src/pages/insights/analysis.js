@@ -5,8 +5,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-import InsightsMenu from 'components/Navigation/DesktopNavigation/InsightsMenu';
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -51,9 +49,6 @@ function Analysis({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <SecondaryNavBar>
-        <InsightsMenu />
-      </SecondaryNavBar>
       <div>Analysis</div>
     </Page>
   );

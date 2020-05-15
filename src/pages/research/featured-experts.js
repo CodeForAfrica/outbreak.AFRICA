@@ -4,8 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -48,9 +46,6 @@ function FeaturedExperts({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <SecondaryNavBar>
-        <ResearchMenu />
-      </SecondaryNavBar>
       <div>Featured experts</div>
     </Page>
   );

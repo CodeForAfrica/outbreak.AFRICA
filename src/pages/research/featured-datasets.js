@@ -4,8 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -39,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeaturedDocuments({ outbreak, ...props }) {
+function FeaturedDatasets({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: { hero_carousel: heroCarousel },
@@ -48,15 +46,12 @@ function FeaturedDocuments({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <SecondaryNavBar>
-        <ResearchMenu />
-      </SecondaryNavBar>
-      <div>Featured documents</div>
+      <div>Featured datasets</div>
     </Page>
   );
 }
 
-FeaturedDocuments.getInitialProps = async (props) => {
+FeaturedDatasets.getInitialProps = async (props) => {
   const {
     query: { lang: pageLanguage },
   } = props;
@@ -68,4 +63,4 @@ FeaturedDocuments.getInitialProps = async (props) => {
   };
 };
 
-export default FeaturedDocuments;
+export default FeaturedDatasets;

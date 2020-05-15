@@ -12,6 +12,8 @@ import InsightsMenu from 'components/Navigation/DesktopNavigation/InsightsMenu';
 import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
 
+import config from '../../config'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,7 +114,7 @@ function Navigation({
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter()
-
+  console.log(router)
   return (
     <>
       <>
@@ -140,16 +142,11 @@ function Navigation({
         <Toolbar className={classes.section} />
       </>
 
-      {router.pathname == "/insights" ? (
-        <SecondaryNavBar>
-          <InsightsMenu />
-        </SecondaryNavBar>
-      ) : router.pathname === "/research" ? (
-        <SecondaryNavBar>
-          <ResearchMenu />
-        </SecondaryNavBar>
+      {router.pathname === "/insights" || router.pathname == `/insights/analysis` || router.pathname == `/insights/featured-stories` || router.pathname == `/insights/mythbusters` || router.pathname == `/insights/resources` ? (
+        <SecondaryNavBar><InsightsMenu /></SecondaryNavBar>
+      ) : router.pathname === "/research" || router.pathname == `/research/featured-datasets` || router.pathname == `/research/featured-documents` || router.pathname == `/research/featured-experts` ? (
+        <SecondaryNavBar><ResearchMenu /></SecondaryNavBar>
       ) : null}
-
     </>
 
   );
