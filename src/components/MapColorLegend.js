@@ -18,8 +18,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     [breakpoints.up("md")]: {
       position: "absolute",
       pointerEvents: "none",
-      right: "10%",
-      marginTop: "10%",
+      right: "7rem",
+      marginTop: "10rem",
     },
   },
   itemText: {
