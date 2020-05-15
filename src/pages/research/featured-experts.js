@@ -1,5 +1,6 @@
 import React from "react";
 
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
@@ -22,19 +23,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  },
-  featuredExperts: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
-  subscribe: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
+  }
 }));
 
 function FeaturedExperts({ outbreak, ...props }) {
@@ -46,7 +35,7 @@ function FeaturedExperts({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <div>Featured experts</div>
+      <Grid classes={{ section: classes.section }}>Featured experts</Grid>
     </Page>
   );
 }

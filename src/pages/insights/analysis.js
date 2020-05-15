@@ -1,5 +1,6 @@
 import React from "react";
 import { useRouter } from 'next/router'
+import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -23,19 +24,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  },
-  featuredExperts: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
-  subscribe: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
+  }
 }));
 
 function Analysis({ outbreak, ...props }) {
@@ -49,7 +38,7 @@ function Analysis({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <div>Analysis</div>
+      <Grid classes={{ section: classes.section }}>Analysis</Grid>
     </Page>
   );
 }

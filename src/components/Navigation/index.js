@@ -114,7 +114,6 @@ function Navigation({
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter()
-  console.log(router)
   return (
     <>
       <>

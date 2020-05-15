@@ -22,19 +22,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  },
-  featuredExperts: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
-  subscribe: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
+  }
 }));
 
 function FeaturedStories({ outbreak, ...props }) {
@@ -46,7 +34,7 @@ function FeaturedStories({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <div>Featured stories</div>
+      <Grid classes={{ section: classes.section }}>Featured stories</Grid>
     </Page>
   );
 }
