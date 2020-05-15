@@ -1,69 +1,55 @@
 import React from "react";
 
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
+import { makeStyles } from "@material-ui/core/styles";
+import { IconButton, InputBase, Paper } from "@material-ui/core";
+import { Search as SearchIcon } from "@material-ui/icons";
 
-import { fade, makeStyles } from "@material-ui/core/styles";
-
-const useStyles = makeStyles((theme) => ({
-  search: {
-    position: "relative",
-    height: "2rem",
-    borderRadius: "none",
-    backgroundColor: fade("#C0C0C0", 0.25),
-    "&:hover": {
-      backgroundColor: fade("#C0C0C0", 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(3),
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
+const useStyles = makeStyles(({ typography }) => ({
+  root: {
     alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: "#EEEEEE",
+    boxShadow: "none",
+    display: "flex",
+    width: "100%",
   },
-  inputRoot: {
-    color: "inherit",
-    fontSize: "0.8rem",
+  input: {
+    color: "#9D9C9C",
+    flex: 1,
+    fontSize: typography.pxToRem(20),
   },
   inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    fontSize: "0.8rem",
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`, // vertical padding + font size from searchIcon
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      maxWidth: "100%",
-      width: "15rem",
-    },
+    flex: 1,
+    paddingBottom: typography.pxToRem(15),
+    paddingLeft: typography.pxToRem(19),
+    paddingRight: typography.pxToRem(19),
+    paddingTop: typography.pxToRem(13),
+  },
+  iconButton: {
+    color: "#9D9C9C",
   },
 }));
 
-function Search() {
-  const classes = useStyles();
+function Search(props) {
+  const classes = useStyles(props);
+
   return (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon size="small" />
-      </div>
+    <Paper square component="form" className={classes.root}>
       <InputBase
-        placeholder="Search for issues,topics,etc..."
+        placeholder="Search for issues, topics, etc…"
+        inputProps={{ "aria-label": "search for issues, topics, etc…" }}
         classes={{
-          root: classes.inputRoot,
+          root: classes.input,
           input: classes.inputInput,
         }}
-        inputProps={{ "aria-label": "search" }}
       />
-    </div>
+      <IconButton
+        type="submit"
+        className={classes.iconButton}
+        aria-label="search"
+      >
+        <SearchIcon style={{ fontSize: 42 }} />
+      </IconButton>
+    </Paper>
   );
 }
 

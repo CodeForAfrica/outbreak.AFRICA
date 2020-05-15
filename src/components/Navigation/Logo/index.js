@@ -27,9 +27,12 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: 1,
     verticalAlign: "middle",
     width: "4.4375rem",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1.35rem",
+      width: "auto",
+    },
     [theme.breakpoints.up("xl")]: {
       fontSize: "2.25rem",
-      width: "10rem",
     },
   },
   titleLink: {
@@ -50,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
 function Logo(props) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const isDesktop = useMediaQuery(theme.breakpoints.up("xl"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const src = isDesktop ? logoDesktop : logo;
 
   return (

@@ -10,28 +10,40 @@ import Link from "components/Link";
 
 import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
+import Search from "components/Navigation/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
-import Search from "./Search";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: "0rem 6rem",
-    [theme.breakpoints.up("md")]: {
-      // margin: '2rem'
-    },
   },
   button: {
-    // marginRight: '4rem',
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: "0.5rem",
     width: "auto",
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginRight: "4rem",
+    },
   },
   buttonLanguage: {
     color: "#9D9C9C",
     "&.active": {
       color: "#D6D6D6",
     },
-    marginLeft: "2rem",
+    marginLeft: "0.75rem",
+    width: "auto",
+    [theme.breakpoints.up("lg")]: {
+      marginLeft: "1.25rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginLeft: "2rem",
+    },
   },
   buttonLanguageLast: {
     marginRight: "-5.5rem",
@@ -57,6 +69,7 @@ function DesktopNavigation({ country, ...props }) {
             size="large"
             title="DATA"
             variant="outlined"
+            className={classes.button}
           >
             <DataMenuList country={country} dense />
           </MenuButton>
@@ -68,23 +81,19 @@ function DesktopNavigation({ country, ...props }) {
         </Grid>
         <Grid item>
           <Button size="large" className={classes.button}>
-            INSIGHT
+            INSIGHTS
           </Button>
         </Grid>
       </Grid>
       <Grid item md={3}>
-        <Search size="large" style={{ fontSize: 20 }} />
+        <Search size="large" />
       </Grid>
       <Grid item md={1} container justify="flex-start">
         <Link
           href="/#"
           underline="none"
           variant="overline"
-          className={classNames(
-            classes.button,
-            classes.buttonLanguage,
-            "active"
-          )}
+          className={classNames(classes.buttonLanguage, "active")}
         >
           En
         </Link>
@@ -92,7 +101,7 @@ function DesktopNavigation({ country, ...props }) {
           href="/#"
           underline="none"
           variant="overline"
-          className={classNames(classes.button, classes.buttonLanguage)}
+          className={classNames(classes.buttonLanguage)}
         >
           Fr
         </Link>
@@ -101,7 +110,6 @@ function DesktopNavigation({ country, ...props }) {
           underline="none"
           variant="overline"
           className={classNames(
-            classes.button,
             classes.buttonLanguage,
             classes.buttonLanguageLast
           )}

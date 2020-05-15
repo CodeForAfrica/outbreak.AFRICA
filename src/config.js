@@ -181,8 +181,7 @@ Disallow:
   populationTables: [
     "allPopulationSex2019S",
     "allPopulationResidence2009S",
-    "allPopulationGroup2016S",
-    "allPopulationZA2016S",
+    "allPopulationZa2016S",
   ],
 };
 

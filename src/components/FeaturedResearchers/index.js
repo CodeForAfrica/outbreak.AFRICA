@@ -102,7 +102,7 @@ function FeatureResearchers({ featuredExperts, ...props }) {
           <Grid item xs={12}>
             <RichTypography variant="subtitle1" className={classes.description}>
               {description ||
-                "Connect with African scientists and other experts who are at the forefront of efforts to understand coronavirus on the continent."}
+                'Connect with <span class="highlight">African scientists</span> and other experts who are at the forefront of efforts to understand coronavirus on the continent.'}
             </RichTypography>
           </Grid>
           <Grid item xs={12}>

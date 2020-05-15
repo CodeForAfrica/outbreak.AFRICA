@@ -7,11 +7,19 @@ import Footer from "./Footer";
 import Navigation from "./Navigation";
 import SEO from "./SEO";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     overflowX: "hidden",
   },
-  section: {},
+  section: {
+    paddingTop: 0,
+  },
+  footer: {
+    marginTop: typography.pxToRem(91.82),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(81.39),
+    },
+  },
 }));
 
 function Page({ children, classes: classesProp, outbreak, ...props }) {
@@ -23,7 +31,10 @@ function Page({ children, classes: classesProp, outbreak, ...props }) {
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
 
       {children}
-      <Footer outbreak={outbreak} classes={{ section: classes.section }} />
+      <Footer
+        outbreak={outbreak}
+        classes={{ root: classes.footer, section: classes.section }}
+      />
     </div>
   );
 }

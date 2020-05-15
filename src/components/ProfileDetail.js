@@ -17,7 +17,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
-import config from "config";
 import searchIcon from "assets/images/icon-search.svg";
 
 import CountrySelector from "./CountrySelector";
@@ -86,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
+  country,
   ...props
 }) {
   const classes = useStyles({ ...props, comparable });
@@ -103,17 +103,9 @@ function ProfileDetail({
     }
   };
 
-  const { squareKms, geoLevel, totalPopulation, parentCode } = geo;
+  const { squareKms, totalPopulation, name } = geo;
   const population = totalPopulation.toFixed(0);
   const populationDensity = (population / squareKms).toFixed(1);
-  let country;
-  if (geoLevel === "country") {
-    const { geoCode } = geo;
-    country = config.countries.find((c) => c.isoCode === geoCode);
-  } else {
-    // if level is not country, then we are in level 1
-    country = config.countries.find((c) => c.isoCode === parentCode);
-  }
 
   return (
     <Grid container className={classes.root}>
@@ -127,7 +119,11 @@ function ProfileDetail({
           >
             <Grid item container direction="column" justify="flex-start">
               <Grid item className={classes.geo}>
-                <CountrySelector country={country} context="topic" />
+                <CountrySelector
+                  country={country}
+                  geoName={name}
+                  context="topic"
+                />
               </Grid>
               <Grid item className={classes.geoInfo}>
                 <Grid container direction="row" wrap="nowrap">
@@ -267,6 +263,7 @@ ProfileDetail.propTypes = {
       totalPopulation: PropTypes.number,
     }),
   }).isRequired,
+  country: PropTypes.shape({}).isRequired,
 };
 
 export default ProfileDetail;
