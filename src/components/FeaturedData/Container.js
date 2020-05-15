@@ -47,30 +47,6 @@ Chart.propTypes = {
   profiles: PropTypes.shape({}).isRequired,
 };
 
-const overrideTypePropsFor = (chartType) => {
-  switch (chartType) {
-    case "pie":
-      return {
-        legend: {
-          labelWidth: 80,
-          x: 0,
-          y: 0,
-          orientation: "horizontal",
-          height: 150,
-          style: { 
-            title: { 
-              fontSize: 16, 
-              fontFamily: '"Open Sans", sans-serif'
-            }
-          },
-        },
-      };
-    default:
-      return {};
-  }
-};
-
-
 function Container({ action, children, description, featuredChart, ...props }) {
   const classes = useStyles(props);
   const { type, id, geoId, title: flourishTitle, description: flourishDescription } = featuredChart;
@@ -183,13 +159,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
               key={id}
               isLoading={chartData.isLoading}
               data={rawData}
-              definition={{
-                ...chart.visual,
-                typeProps: {
-                  ...chart.visual.typeProps,
-                  ...overrideTypePropsFor(chart.visual.type),
-                },
-              }}
+              definition={chart.visual}
               profiles={profiles}
             />
            ): (

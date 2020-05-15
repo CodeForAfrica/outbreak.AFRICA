@@ -6,20 +6,21 @@
 export default function createChart({ colorScale }, { labelStyle }) {
   return {
     pie: {
-      width: 320,
-      height: 320,
+      width: 450,
+      height: 350,
       padding: 0,
       colorScale,
       legend: {
-        labelWidth: 80,
+        labelWidth: 150,
+        orientation: "orizontal",
         x: 0,
         y: 0,
-        orientation: "orizontal",
-        height: 150,
         style: { 
-          title: { 
-            fontSize: 16, 
-            fontFamily: '"Open Sans", sans-serif'
+          labels: {
+            title: { 
+              fontSize: 16, 
+              fontFamily: '"Open Sans", sans-serif'
+            }
           }
         },
       },
