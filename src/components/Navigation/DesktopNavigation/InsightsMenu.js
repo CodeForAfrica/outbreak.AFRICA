@@ -1,5 +1,5 @@
-import React from 'react'
-import PropTypes from "prop-types";
+import React, { useState } from 'react'
+import classNames from "classnames";
 
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,11 +20,15 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       color: '#0050FF',
       textDecoration: 'none'
+    },
+    "&.visited": {
+      color: 'black',
     }
   }
 }));
 
 export default function InsightsMenu() {
+  const { active, setActive } = useState(false)
   const classes = useStyles()
 
   return (
@@ -36,11 +40,12 @@ export default function InsightsMenu() {
       className={classes.menu}>
       {config.insightsMenu.map(menu =>
         <Grid item>
-          <Link href={`insights/${menu.href}`}>
-            <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
+          <Link href={`/insights/${menu.href}`}>
+            <Typography variant="subtitle2" className={classNames(classes.menuText)}>{menu.name}</Typography>
           </Link>
-        </Grid>
-      )}
-    </Grid>
+        </Grid >
+      )
+      }
+    </Grid >
   );
 };

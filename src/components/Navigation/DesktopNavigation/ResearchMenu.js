@@ -36,7 +36,7 @@ export default function ResearchMenu() {
       className={classes.menu}>
       {config.researchMenu.map(menu =>
         <Grid item>
-          <Link href={`research/${menu.href}`}>
+          <Link href={`/research/${menu.href}`}>
             <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
           </Link>
         </Grid>
