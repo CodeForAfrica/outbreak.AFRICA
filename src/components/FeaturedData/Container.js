@@ -55,7 +55,7 @@ const overrideTypePropsFor = (chartType) => {
           labelWidth: 80,
           x: 0,
           y: 0,
-          orientation: "orizontal",
+          orientation: "horizontal",
           height: 150,
           style: { 
             title: { 
@@ -78,7 +78,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
   const [ chart, setChart ] = useState();
   useEffect(() => {
       if (type === 'hurumap') {
-        const url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
+        const url = `${config.WP_HURUMAP_DATA_API}/charts/${id}`
         fetch(url)
         .then((res) => res.json())
         .then(data => setChart(data && {
@@ -96,6 +96,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
       setChart({
         id,
         title: flourishTitle,
+        visual: {},
         description: flourishDescription,
       })
     }
@@ -198,7 +199,7 @@ function Container({ action, children, description, featuredChart, ...props }) {
               scrolling="no"
               frameBorder="0"
               title={chart.title}
-              src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/`} />
+              src={`${config.WP_HURUMAP_DATA_API}/flourish/${id}/`} />
           )}
       </ChartContainer>
       <div className={classes.description}>
