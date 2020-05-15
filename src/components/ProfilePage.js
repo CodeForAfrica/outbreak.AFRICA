@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { useRouter } from "next/router";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
@@ -18,7 +18,11 @@ import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
 import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
+import LinkIcon from "assets/icon web.svg";
+import DownloadIcon from "assets/icon download.svg";
+import EmbedIcon from "assets/icon embed.svg";
 
+import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
@@ -28,7 +32,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
-    width: "auto",
+    width: "100%",
     [breakpoints.up("lg")]: {
       margin: "0 auto",
       width: "78.5rem",
@@ -171,10 +175,13 @@ function ProfilePage({
     [filterByGeography, sectionedCharts]
   );
 
-  const { profiles, chartData } = useProfileLoader({
+  const { profiles, chartData, geoIndeces } = useProfileLoader({
     geoId,
     visuals,
     populationTables: config.populationTables,
+    countryCode: country.isoCode,
+    indexTable: config.colorIndexTable,
+    indexField: config.colorIndexField,
   });
 
   const filterByChartData = useCallback(
@@ -320,9 +327,15 @@ function ProfilePage({
                         instagram: {
                           icon: <img src={InstagramIcon} alt="Instagram" />,
                         },
-                        embed: {},
-                        link: {},
-                        download: {},
+                        embed: {
+                          icon: <img src={EmbedIcon} alt="Embed" />,
+                        },
+                        link: {
+                          icon: <img src={LinkIcon} alt="Link" />,
+                        },
+                        download: {
+                          icon: <img src={DownloadIcon} alt="Download" />,
+                        },
                       }}
                     >
                       {chart.type === "hurumap" ? (
@@ -373,16 +386,18 @@ function ProfilePage({
     }
   }, [indicatorId]);
 
-  let title = 'outbreak.AFRICA';
+  let title = "outbreak.AFRICA";
   if (!profiles.loading && country) {
     const { name, geoLevel } = profiles.profile || {};
 
-    if (geoLevel !== 'country') {
+    if (geoLevel !== "country") {
       title = `${name} | ${country.shortName} | ${title}`;
     } else {
       title = name;
     }
   }
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <Page
       outbreak={{ ...outbreak, country, language }}
@@ -397,14 +412,23 @@ function ProfilePage({
           }}
           country={country}
           classes={{ section: classes.section }}
+          geoId={geoId}
+          geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+          onClickGeoLayer={onClickGeoLayer}
         />
       )}
-      <MapIt
-        geoId={geoId}
-        height="500px"
-        onClickGeoLayer={onClickGeoLayer}
-        width="100%"
-      />
+      {isDesktop && (
+        <>
+          <MapColorLegend />
+          <MapIt
+            geoId={geoId}
+            height="500px"
+            onClickGeoLayer={onClickGeoLayer}
+            geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+            width="100%"
+          />
+        </>
+      )}
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}

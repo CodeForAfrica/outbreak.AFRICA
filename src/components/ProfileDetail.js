@@ -11,6 +11,8 @@ import {
   Paper,
   Popper,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -18,6 +20,8 @@ import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
 import searchIcon from "assets/images/icon-search.svg";
+import MapColorLegend from "./MapColorLegend";
+import MapIt from "./MapIt";
 
 import CountrySelector from "./CountrySelector";
 
@@ -38,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   profile: (props) => ({
-    height: props.comparable ? "30rem" : "25.5rem",
+    [theme.breakpoints.up("md")]: {
+      height: props.comparable ? "30rem" : "25.5rem",
+    },
   }),
   geo: {
     pointerEvents: "all",
@@ -46,9 +52,10 @@ const useStyles = makeStyles((theme) => ({
   geoInfo: () => ({
     backgroundColor: "rgba(255, 255, 255, 0.63)",
     lineHeight: "normal",
-    padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
     width: "100%",
+    padding: "1rem 0",
     [theme.breakpoints.up("md")]: {
+      padding: "0.875rem 1.438rem 1.5625rem 1.438rem",
       width: theme.typography.pxToRem(375),
       border: "solid 0.063rem rgba(0, 0, 0, 0.19)",
       borderRadius: 0,
@@ -61,7 +68,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "2rem",
   },
   valueLabel: {
-    fontSize: "2rem",
     fontWeight: 600,
   },
   searchBar: {
@@ -86,9 +92,14 @@ const useStyles = makeStyles((theme) => ({
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
   country,
+  geoId,
+  geoIndeces,
+  onClickGeoLayer,
   ...props
 }) {
   const classes = useStyles({ ...props, comparable });
+  const theme = useTheme();
+  const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
   const searchBarRef = useRef(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [showSearchResults, setShowSearchResults] = useState(false);
@@ -125,8 +136,24 @@ function ProfileDetail({
                   context="topic"
                 />
               </Grid>
-              <Grid item className={classes.geoInfo}>
-                <Grid container direction="row" wrap="nowrap">
+              {isMobile && (
+                <MapIt
+                  geoId={geoId}
+                  height="300px"
+                  onClickGeoLayer={onClickGeoLayer}
+                  geoIndeces={geoIndeces}
+                  width="100%"
+                />
+              )}
+              <Grid item container className={classes.geoInfo}>
+                <Grid
+                  item
+                  container
+                  direction="row"
+                  wrap="nowrap"
+                  xs={6}
+                  md={12}
+                >
                   <Grid
                     item
                     container
@@ -183,16 +210,23 @@ function ProfileDetail({
                     )}
                   </Grid>
                 </Grid>
-                <Grid item>
-                  <Button
-                    href="#"
-                    variant="outlined"
-                    color="secondary"
-                    className={classes.link}
-                  >
-                    LEARN MORE
-                  </Button>
-                </Grid>
+                {isMobile && (
+                  <Grid item xs={6}>
+                    <MapColorLegend />
+                  </Grid>
+                )}
+                {!isMobile && (
+                  <Grid item>
+                    <Button
+                      href="#"
+                      variant="outlined"
+                      color="secondary"
+                      className={classes.link}
+                    >
+                      LEARN MORE
+                    </Button>
+                  </Grid>
+                )}
               </Grid>
               {comparable && (
                 <Grid item>
@@ -264,6 +298,15 @@ ProfileDetail.propTypes = {
     }),
   }).isRequired,
   country: PropTypes.shape({}).isRequired,
+  geoId: PropTypes.string,
+  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
+  onClickGeoLayer: PropTypes.func,
+};
+
+ProfileDetail.defaultProps = {
+  geoId: undefined,
+  geoIndeces: undefined,
+  onClickGeoLayer: null,
 };
 
 export default ProfileDetail;
