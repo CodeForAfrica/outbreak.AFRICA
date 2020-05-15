@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { useRouter } from 'next/router'
 import classNames from "classnames";
 
 import { Grid, Typography } from "@material-ui/core";
@@ -21,15 +22,24 @@ const useStyles = makeStyles((theme) => ({
       color: '#0050FF',
       textDecoration: 'none'
     },
-    "&.visited": {
+    "&.active": {
       color: 'black',
     }
-  }
+  },
 }));
 
 export default function InsightsMenu() {
-  const { active, setActive } = useState(false)
   const classes = useStyles()
+  const router = useRouter()
+  console.log(router)
+
+  const [active, setActive] = useState('active')
+
+  function onActiveClick() {
+    if (router.asPath == config.insightsMenu.map(menu => `insights/${menu.href}`)) {
+      setActive(!active)
+    }
+  }
 
   return (
     <Grid
@@ -41,7 +51,11 @@ export default function InsightsMenu() {
       {config.insightsMenu.map(menu =>
         <Grid item>
           <Link href={`/insights/${menu.href}`}>
-            <Typography variant="subtitle2" className={classNames(classes.menuText)}>{menu.name}</Typography>
+            <Typography
+              variant="subtitle2"
+              className={classNames(classes.menuText, onActiveClick())}>
+              {menu.name}
+            </Typography>
           </Link>
         </Grid >
       )
