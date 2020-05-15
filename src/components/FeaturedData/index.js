@@ -64,10 +64,12 @@ function FeaturedData({ featuredContent, ...props }) {
     ).map((el) => {
       const chartId = el.getAttribute('id').split('-');
       const geoId = el.getAttribute('data-geo-id') || "";
+      const title = el.getAttribute('data-title') || "";
+      const description = el.getAttribute('data-description') || "";
 
       const type = chartId[1];
       const id = chartId[2];
-      charts.push({ id, type, geoId })
+      charts.push({ id, type, geoId, title, description })
     });
     setFeaturedCharts(charts);
 
@@ -87,32 +89,34 @@ function FeaturedData({ featuredContent, ...props }) {
               See Insights
             </Button>
           </Grid>
-          <Grid item xs={12} container spacing={2}>
-            <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-              { featuredCharts.length && <Container
-                action="Explore"
-                featuredChart={featuredCharts[0]}
-              />}
+          { featuredCharts.length > 0 &&  (
+            <Grid item xs={12} container spacing={2}>
+              <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
+                <Container
+                  action="Explore"
+                  featuredChart={featuredCharts[0]}
+                />
+              </Grid>
+              <Grid item xs={12} lg={8} className={classes.chart01}>
+                <Container
+                  action="Explore"
+                  featuredChart={featuredCharts[1]}
+                />
+              </Grid>
+              <Grid item xs={12} lg={8} className={classes.chart02}>
+              <Container
+                  action="Explore"
+                  featuredChart={featuredCharts[2]}
+                />
+              </Grid>
+              <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
+              <Container
+                  action="Explore"
+                  featuredChart={featuredCharts[3]}
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} lg={8} className={classes.chart01}>
-              { featuredCharts.length && <Container
-                action="Explore"
-                featuredChart={featuredCharts[1]}
-              />}
-            </Grid>
-            <Grid item xs={12} lg={8} className={classes.chart02}>
-             { featuredCharts.length && <Container
-                action="Explore"
-                featuredChart={featuredCharts[2]}
-              />}
-            </Grid>
-            <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
-             { featuredCharts.length && <Container
-                action="Explore"
-                featuredChart={featuredCharts[3]}
-              />}
-            </Grid>
-          </Grid>
+          )}
         </Grid>
       </Section>
     </div>

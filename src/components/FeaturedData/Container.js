@@ -1,7 +1,8 @@
 import React, {useEffect, useMemo, useState} from "react";
+import PropTypes from 'prop-types';
 import config from 'config';
+import dynamic from 'next/dynamic';
 import { Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography } from "@commons-ui/core";
 import withApollo from 'lib/withApollo';
@@ -15,72 +16,66 @@ import ChartFactory from '@hurumap-ui/charts/ChartFactory';
 import useProfileLoader from '@hurumap-ui/core/useProfileLoader';
 
 import logo from 'assets/images/logo/logo-outbreak.svg';
-import ChartContainer from '@hurumap-ui/core/ChartContainer';
+import useStyles from "./useStyles";
 
-const useStyles = makeStyles(({typography}) => ({
-  root: {
-    width: "100%",
-  },
-  chartRoot: {
-    boxShadow: "0px 4px 4px #00000029",
-    border: "1px solid #D6D6D6",
-    marginBottom: "1.3125rem",
-    marginTop: "2.5rem",
-    padding: "42px 38px 33px 38px",
-    position: "relative",
-    width: "100%",
-  },
-  containerRoot: {
-    width: "100%",
-    backgroundColor: "#EEEEEE !important",
-  },
-  chart: {
-    margin: '0.5rem !important',
-  },
-  content: {
-    paddingBottom: 0,
-  },
-  icon: {
-    position: "absolute",
-    right: 38,
-    top: 42,
-    "& img": {
-      height: "auto",
-      width: "2rem",
-    },
-  },
-  actionIcon: {
-    width: "2rem",
-    height: "auto"
-  },
-  descriptionWrapper: {
-    position: 'absolute',
-  },
-  description: {
-    width: '100%',
-  },
-  title: {
-    fontSize: typography.subtitle2.fontSize,
-    fontWeight: typography.subtitle2.fontWeight,
-  },
-  iframe:{
-    width: '100%',
-    height: '100%',
-  },
-  source: {
-    color: "#9D9C9C",
-    marginLeft: '0 !important',
-    textDecoration: 'none'
-  },
-}));
+const ChartContainer = dynamic(
+  () => import('@hurumap-ui/core/ChartContainer'),
+  {
+    ssr: false
+  }
+);
+
+function Chart({ data, definition, isLoading, profiles }) {
+  return isLoading ? (
+    <div />
+  ) : (
+    <ChartFactory
+      definition={definition}
+      data={data}
+      profiles={profiles}
+      disableShowMore
+    />
+  );
+}
+
+Chart.propTypes = {
+  data:  PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  definition: PropTypes.shape({
+    queryAlias: PropTypes.string,
+  }).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  profiles: PropTypes.shape({}).isRequired,
+};
+
+const overrideTypePropsFor = (chartType) => {
+  switch (chartType) {
+    case "pie":
+      return {
+        legend: {
+          labelWidth: 80,
+          x: 0,
+          y: 0,
+          orientation: "orizontal",
+          height: 150,
+          style: { 
+            title: { 
+              fontSize: 16, 
+              fontFamily: '"Open Sans", sans-serif'
+            }
+          },
+        },
+      };
+    default:
+      return {};
+  }
+};
 
 
 function Container({ action, children, description, featuredChart, ...props }) {
   const classes = useStyles(props);
+  const { type, id, geoId, title: flourishTitle, description: flourishDescription } = featuredChart;
 
-  const { type, id, geoId } = featuredChart;
   const [ chart, setChart ] = useState();
-
   useEffect(() => {
       if (type === 'hurumap') {
         const url = `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${id}`
@@ -97,74 +92,17 @@ function Container({ action, children, description, featuredChart, ...props }) {
             queryAlias: data.visual.queryAlias || `viz${id}`,
           },
       }));
+    } else {
+      setChart({
+        id,
+        title: flourishTitle,
+        description: flourishDescription,
+      })
     }
-  }, [id, type ]);
+  }, [id, type, flourishTitle, flourishDescription ]);
 
-  if (type === 'flourish') {
-
-    return (
-      <div>
-      <ChartContainer
-         logo={logo}
-         key={`${type}-${id}`}
-         title={""}
-         groupActions
-         variant="data"
-         content={{}}
-         classes={{
-           chart: classes.chart,
-           content: classes.content,
-           title: classes.title,
-           root: classes.chartRoot,
-           containerRoot: classes.containerRoot,
-           sourceLink: classes.source,
-           groupActionsButton: classes.actionIcon,
-           descriptionWrapper: classes.descriptionWrapper,
-           description: classes.description,
-         }}
-         groupIcons={{
-           facebook: {
-             icon: <img src={FacebookIcon} />,
-           },
-           twitter: {
-             icon: <img src={TwitterIcon} />,
-           },
-           linkedin: {
-             icon: <img src={LinkedInIcon} />,
-           },
-           instagram: {
-             icon: <img src={InstagramIcon} />,
-           },
-           embed: {},
-           link: {},
-           download: {}
-         }}
-       >
-          <iframe
-            key={id}
-            width="100%"
-            scrolling="no"
-            frameBorder="0"
-            className={classes.iframe}
-            title="flourish"
-            src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/`} />
-     </ChartContainer>
-     <div className={classes.description}>
-         <RichTypography variant="body2">{""}</RichTypography>
-       </div>
-       <div className={classes.description}>
-         <Button variant="contained" size="large">
-           {action}
-         </Button>
-       </div>
-       </div>
-
-    )
-
-  }
     
   const visuals = useMemo(() => (chart ? [chart.visual] : []), [chart]);
-
   const { profiles, chartData } = useProfileLoader({ geoId, visuals });
 
   const source = useMemo(() => {
@@ -200,75 +138,78 @@ function Container({ action, children, description, featuredChart, ...props }) {
 
   return (
     <div>
-     <ChartContainer
-        logo={logo}
-        key={`${type}-${id}`}
-        title={chart.title}
-        subtitle={chart.subtitle}
-        sourceLink={source && source.href}
-        sourceTitle={source && source.title}
-        content={{}}
-        loading={chartData.isLoading}
-        groupActions
-        variant="data"
-        classes={{
-          chart: classes.chart,
-          content: classes.content,
-          title: classes.title,
-          root: classes.chartRoot,
-          containerRoot: classes.containerRoot,
-          sourceLink: classes.source,
-          groupActionsButton: classes.actionIcon,
-          descriptionWrapper: classes.descriptionWrapper,
-          description: classes.description,
-        }}
-        groupIcons={{
-          facebook: {
-            icon: <img src={FacebookIcon} />,
-          },
-          twitter: {
-            icon: <img src={TwitterIcon} />,
-          },
-          linkedin: {
-            icon: <img src={LinkedInIcon} />,
-          },
-          instagram: {
-            icon: <img src={InstagramIcon} />,
-          },
-          embed: {},
-          link: {},
-          download: {}
-        }}
-      >
-        {!chartData.isLoading && type === 'hurumap' ? (
-          <ChartFactory
-            profiles={profiles}
-            definition={chart.visual}
-            data={rawData}
-            disableShowMore
-          />
-          ): (
-            <div>
-                Heyyy
+      <ChartContainer
+          logo={logo}
+          key={`indicator-${type}-${id}`}
+          title={chart.title}
+          sourceLink={source && source.href}
+          sourceTitle={source && source.title}
+          content={{}}
+          loading={chartData.isLoading && type === 'hurumap'}
+          groupActions
+          variant="data"
+          classes={{
+            chart: classes.chart,
+            content: classes.content,
+            title: classes.title,
+            root: classes.chartRoot,
+            containerRoot: classes.containerRoot,
+            sourceLink: classes.source,
+            groupActionsButton: classes.actionIcon,
+            descriptionWrapper: classes.descriptionWrapper,
+            description: classes.description,
+          }}
+          groupIcons={{
+            facebook: {
+              icon: <img src={FacebookIcon} />,
+            },
+            twitter: {
+              icon: <img src={TwitterIcon} />,
+            },
+            linkedin: {
+              icon: <img src={LinkedInIcon} />,
+            },
+            instagram: {
+              icon: <img src={InstagramIcon} />,
+            },
+            embed: {},
+            link: {},
+            download: {}
+          }}
+        >
+          {type === 'hurumap' ? (
+            <Chart
+              key={id}
+              isLoading={chartData.isLoading}
+              data={rawData}
+              definition={{
+                ...chart.visual,
+                typeProps: {
+                  ...chart.visual.typeProps,
+                  ...overrideTypePropsFor(chart.visual.type),
+                },
+              }}
+              profiles={profiles}
+            />
+           ): (
             <iframe
               key={id}
               width="100%"
               scrolling="no"
               frameBorder="0"
-              //title={chart.title}
-              src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}`} />
-              </div>
+              title={chart.title}
+              src={`${config.WP_BACKEND_URL}/wp-json/hurumap-data/flourish/${id}/`} />
           )}
-    </ChartContainer>
-    <div className={classes.description}>
+      </ChartContainer>
+      <div className={classes.description}>
         <RichTypography variant="body2">{chart.description}</RichTypography>
       </div>
       <div className={classes.description}>
         <Button variant="contained" size="large">
-          {action}
+            {action}
         </Button>
       </div>
-      </div>
+    </div>
   );
 }
 
