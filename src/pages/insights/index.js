@@ -35,9 +35,6 @@ function Insights({ outbreak, ...props }) {
   const profiles = getProfiles();
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <SecondaryNavBar>
-        <InsightsMenu />
-      </SecondaryNavBar>
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}

@@ -6,8 +6,6 @@ import Page from "components/Page";
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
 import ProfileList from "components/Research/ProfileList";
-import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -50,9 +48,6 @@ function Research({ outbreak, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <SecondaryNavBar>
-        <ResearchMenu />
-      </SecondaryNavBar>
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}

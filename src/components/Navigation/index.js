@@ -1,11 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useRouter } from 'next/router'
 
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
+
+import InsightsMenu from 'components/Navigation/DesktopNavigation/InsightsMenu';
+import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
+import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -105,32 +111,47 @@ function Navigation({
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const router = useRouter()
 
   return (
     <>
-      <AppBar position="fixed" color="inherit" className={classes.root}>
-        <Toolbar disableGutters className={classes.section}>
-          {isDesktop ? (
-            <DesktopNavigation
-              country={country}
-              countries={countries}
-              navigation={navigation}
-            />
-          ) : (
-            <>
-              <div className={classes.grow} />
-              <MobileNavigation
+      <>
+        <AppBar position="fixed" color="inherit" className={classes.root}>
+          <Toolbar disableGutters className={classes.section}>
+            {isDesktop ? (
+              <DesktopNavigation
                 country={country}
                 countries={countries}
                 navigation={navigation}
               />
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-      {/* https://material-ui.com/components/app-bar/#fixed-placement */}
-      <Toolbar className={classes.section} />
+            ) : (
+                <>
+                  <div className={classes.grow} />
+                  <MobileNavigation
+                    country={country}
+                    countries={countries}
+                    navigation={navigation}
+                  />
+                </>
+              )}
+          </Toolbar>
+        </AppBar>
+        {/* https://material-ui.com/components/app-bar/#fixed-placement */}
+        <Toolbar className={classes.section} />
+      </>
+
+      {router.pathname == "/insights" ? (
+        <SecondaryNavBar>
+          <InsightsMenu />
+        </SecondaryNavBar>
+      ) : router.pathname === "/research" ? (
+        <SecondaryNavBar>
+          <ResearchMenu />
+        </SecondaryNavBar>
+      ) : null}
+
     </>
+
   );
 }
 

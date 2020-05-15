@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
 export default function InsightsMenu() {
   const classes = useStyles()
   const router = useRouter()
-  console.log(router)
+  //console.log(router)
 
   const [active, setActive] = useState('active')
 
