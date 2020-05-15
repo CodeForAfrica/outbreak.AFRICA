@@ -20,7 +20,7 @@ import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
 import searchIcon from "assets/images/icon-search.svg";
-import MapColorIndex from "./MapColorIndex";
+import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 
 import CountrySelector from "./CountrySelector";
@@ -212,7 +212,7 @@ function ProfileDetail({
                 </Grid>
                 {isMobile && (
                   <Grid item xs={6}>
-                    <MapColorIndex />
+                    <MapColorLegend />
                   </Grid>
                 )}
                 {!isMobile && (

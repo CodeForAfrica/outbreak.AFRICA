@@ -14,19 +14,13 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   container: {
     zIndex: 999,
-    // position: "initial",
     display: "flex",
-    // justifyContent: "flex-start",
     [breakpoints.up("md")]: {
       position: "absolute",
       pointerEvents: "none",
       right: "10%",
       marginTop: "10%",
     },
-  },
-  geo: {
-    display: "flex",
-    pointerEvents: "all",
   },
   itemText: {
     textTransform: "capitalize",
@@ -39,7 +33,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function MapColorIndex() {
+function MapColorLegend() {
   const classes = useStyles();
 
   return (
@@ -65,7 +59,7 @@ function MapColorIndex() {
                   Vulnerability Index
                 </Typography>
               </Grid>
-              <Grid item container className={classes.geoInfo}>
+              <Grid item container>
                 <img src={MapKey} alt="Map Index" />
                 <List dense>
                   {Object.keys(config.vulnerabilityIndexColor).map((item) => (
@@ -89,4 +83,4 @@ function MapColorIndex() {
   );
 }
 
-export default MapColorIndex;
+export default MapColorLegend;

@@ -22,7 +22,7 @@ import LinkIcon from "assets/icon web.svg";
 import DownloadIcon from "assets/icon download.svg";
 import EmbedIcon from "assets/icon embed.svg";
 
-import MapColorIndex from "./MapColorIndex";
+import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
@@ -419,7 +419,7 @@ function ProfilePage({
       )}
       {isDesktop && (
         <>
-          <MapColorIndex />
+          <MapColorLegend />
           <MapIt
             geoId={geoId}
             height="500px"
