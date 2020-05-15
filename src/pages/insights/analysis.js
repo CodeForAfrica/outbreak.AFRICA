@@ -1,5 +1,4 @@
 import React from "react";
-import { useRouter } from 'next/router'
 import { Grid } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -29,8 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
-  //const router = useRouter()
-  //console.log(router.asPath == `/insight/${menu.href}"`)
   const {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
