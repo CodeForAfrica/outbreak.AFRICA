@@ -9,11 +9,12 @@ import {
   ClickAwayListener,
 } from "@material-ui/core";
 
-import Link from 'components/Link'
-import LinkButton from 'components/Link/Button';
+import Link from "components/Link";
+import LinkButton from "components/Link/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
-import config from '../../config'
+import config from "../../config";
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   popper: {
     paddingTop: "1.8rem",
     zIndex: 9999,
-    width: '100vw'
+    width: "100vw",
   },
   button: {
     paddingLeft: 0,
@@ -39,25 +40,25 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   menu: {
-    padding: '1.5rem 2rem'
+    padding: "1.5rem 2rem",
   },
   menuText: {
-    color: '#9D9C9C',
-    textTransform: 'Uppercase',
+    color: "#9D9C9C",
+    textTransform: "Uppercase",
     "&:hover": {
-      color: '#0050FF',
-      textDecoration: 'none'
-    }
+      color: "#0050FF",
+      textDecoration: "none",
+    },
   },
   activeText: {
-    borderBottom: '3px solid #0050FF'
-  }
+    borderBottom: "3px solid #0050FF",
+  },
 }));
 
 function Menu({ title, href }) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  
+
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -77,7 +78,6 @@ function Menu({ title, href }) {
       setOpen(false);
     }
   }
-
 
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -99,14 +99,17 @@ function Menu({ title, href }) {
         autoFocusItem={open}
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
-        className={classes.menu}>
-        {config.insightsMenu.map(menu =>
+        className={classes.menu}
+      >
+        {config.insightsMenu.map((menu) => (
           <Grid item>
             <Link href={menu.href}>
-              <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
+              <Typography variant="subtitle2" className={classes.menuText}>
+                {menu.name}
+              </Typography>
             </Link>
           </Grid>
-        )}
+        ))}
       </Grid>
     );
   };
@@ -121,14 +124,17 @@ function Menu({ title, href }) {
         autoFocusItem={open}
         id="menu-list-grow"
         onKeyDown={handleListKeyDown}
-        className={classes.menu}>
-        {config.resourceMenu.map(menu =>
+        className={classes.menu}
+      >
+        {config.resourceMenu.map((menu) => (
           <Grid item>
             <Link href={menu.href} className={classes.MenuLink}>
-              <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
+              <Typography variant="subtitle2" className={classes.menuText}>
+                {menu.name}
+              </Typography>
             </Link>
           </Grid>
-        )}
+        ))}
       </Grid>
     );
   };
@@ -142,7 +148,8 @@ function Menu({ title, href }) {
         ref={anchorRef}
         aria-controls={open ? "menu-list-grow" : undefined}
         aria-haspopup="true"
-        onClick={handleToggle}>
+        onClick={handleToggle}
+      >
         {title}
       </LinkButton>
       <Popper
@@ -163,17 +170,15 @@ function Menu({ title, href }) {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                {title === "Research" ? (
-                  renderResourcesMenu()
-                ) : (
-                    renderInsightsMenu()
-                  )}
+                {title === "Research"
+                  ? renderResourcesMenu()
+                  : renderInsightsMenu()}
               </ClickAwayListener>
             </Paper>
           </Grow>
         )}
       </Popper>
-    </ >
+    </>
   );
 }
 

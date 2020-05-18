@@ -1,15 +1,12 @@
-import React from 'react';
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from 'components/Page';
+import Page from "components/Page";
 import Hero from "components/Hero";
-import InsightsMenu from 'components/Navigation/DesktopNavigation/SecondaryMenus';
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 
 import config from "config";
 import { getSitePage } from "cms";
-import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -24,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  }
+  },
 }));
 
 function Insights({ outbreak, ...props }) {
@@ -32,7 +29,6 @@ function Insights({ outbreak, ...props }) {
   const {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
-  const profiles = getProfiles();
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
       <Hero
@@ -41,7 +37,7 @@ function Insights({ outbreak, ...props }) {
       />
       This is the insight page
     </Page>
-  )
+  );
 }
 
 Insights.getInitialProps = async (props) => {
@@ -56,4 +52,4 @@ Insights.getInitialProps = async (props) => {
   };
 };
 
-export default Insights
+export default Insights;

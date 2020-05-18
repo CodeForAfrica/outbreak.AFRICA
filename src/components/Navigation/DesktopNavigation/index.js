@@ -11,7 +11,6 @@ import Link from "components/Link";
 
 import Logo from "components/Navigation/Logo";
 import Search from "components/Navigation/Search";
-import Menu from 'components/Navigation/Menu'
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
@@ -25,11 +24,11 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: 0,
     marginRight: "0.5rem",
     "&:hover": {
-      backgroundColor: "white"
+      backgroundColor: "white",
     },
     "&.active": {
-      borderRadius: '0px',
-      borderBottom: '2px solid #170F49',
+      borderRadius: "0px",
+      borderBottom: "2px solid #170F49",
     },
     width: "auto",
     [theme.breakpoints.up("lg")]: {
@@ -84,14 +83,22 @@ function DesktopNavigation({ country, ...props }) {
             </MenuButton>
           </Grid>
           <Grid item>
-            <LinkButton href="/research" size="large" className={classes.button}>
+            <LinkButton
+              href="/research"
+              size="large"
+              className={classes.button}
+            >
               RESEARCH
-          </LinkButton>
+            </LinkButton>
           </Grid>
           <Grid item>
-            <LinkButton href="/insights" size="large" className={classes.button}>
+            <LinkButton
+              href="/insights"
+              size="large"
+              className={classes.button}
+            >
               INSIGHTS
-          </LinkButton>
+            </LinkButton>
           </Grid>
         </Grid>
         <Grid item md={3}>
@@ -105,7 +112,7 @@ function DesktopNavigation({ country, ...props }) {
             className={classNames(classes.buttonLanguage, "active")}
           >
             En
-        </Link>
+          </Link>
           <Link
             href="/#"
             underline="none"
@@ -113,7 +120,7 @@ function DesktopNavigation({ country, ...props }) {
             className={classNames(classes.buttonLanguage)}
           >
             Fr
-        </Link>
+          </Link>
           <Link
             href="/#"
             underline="none"
@@ -124,7 +131,7 @@ function DesktopNavigation({ country, ...props }) {
             )}
           >
             عربى
-        </Link>
+          </Link>
         </Grid>
       </Grid>
     </>

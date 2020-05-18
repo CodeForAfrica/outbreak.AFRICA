@@ -9,7 +9,6 @@ import Hero from "components/Hero";
 
 import config from "config";
 import { getSitePage } from "cms";
-import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -24,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  }
+  },
 }));
 
 function FeaturedStories({ outbreak, ...props }) {
@@ -32,10 +31,13 @@ function FeaturedStories({ outbreak, ...props }) {
   const {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
-  const profiles = getProfiles();
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
+      <Hero
+        heroCarousel={heroCarousel}
+        classes={{ section: classes.section }}
+      />
       <Grid classes={{ section: classes.section }}>Featured stories</Grid>
     </Page>
   );

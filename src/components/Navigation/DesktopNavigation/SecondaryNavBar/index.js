@@ -1,13 +1,13 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    color: 'white',
-    position: 'relative'
+    color: "white",
+    position: "relative",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    top: '6.4rem',
-    zIndex: 2
+    top: "6.4rem",
+    zIndex: 2,
   },
   toolBar: {
-    backgroundColor: 'white'
-  }
+    backgroundColor: "white",
+  },
 }));
 
 export default function SecondaryNavBar({ children }) {
@@ -29,9 +29,7 @@ export default function SecondaryNavBar({ children }) {
   return (
     <div className={classes.root}>
       <AppBar position="fixed" className={classes.appBar}>
-        <Toolbar className={classes.toolBar}>
-          {children}
-        </Toolbar>
+        <Toolbar className={classes.toolBar}>{children}</Toolbar>
       </AppBar>
     </div>
   );

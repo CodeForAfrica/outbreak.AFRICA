@@ -1,16 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
+import SecondaryMenus from "components/Navigation/DesktopNavigation/SecondaryMenus";
+import SecondaryNavBar from "components/Navigation/DesktopNavigation/SecondaryNavBar";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import SecondaryMenus from 'components/Navigation/DesktopNavigation/SecondaryMenus'
-import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
-import config from '../../config'
-
+import config from "../../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -109,9 +108,29 @@ function Navigation({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const { insightsMenu, researchMenu } = config
+  const { insightsMenu, researchMenu } = config;
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const router = useRouter()
+  const router = useRouter();
+
+  const getInsightPaths = () => {
+    return (
+      router.pathname === "/insights" ||
+      router.pathname === `/insights/analysis` ||
+      router.pathname === `/insights/featured-stories` ||
+      router.pathname === `/insights/mythbusters` ||
+      router.pathname === `/insights/resources`
+    );
+  };
+
+  const getResearchPaths = () => {
+    return (
+      router.pathname === "/research" ||
+      router.pathname === `/research/featured-datasets` ||
+      router.pathname === `/research/featured-documents` ||
+      router.pathname === `/research/featured-experts`
+    );
+  };
+
   return (
     <>
       <>
@@ -124,28 +143,31 @@ function Navigation({
                 navigation={navigation}
               />
             ) : (
-                <>
-                  <div className={classes.grow} />
-                  <MobileNavigation
-                    country={country}
-                    countries={countries}
-                    navigation={navigation}
-                  />
-                </>
-              )}
+              <>
+                <div className={classes.grow} />
+                <MobileNavigation
+                  country={country}
+                  countries={countries}
+                  navigation={navigation}
+                />
+              </>
+            )}
           </Toolbar>
         </AppBar>
         {/* https://material-ui.com/components/app-bar/#fixed-placement */}
         <Toolbar className={classes.section} />
       </>
 
-      {router.pathname === "/insights" || router.pathname == `/insights/analysis` || router.pathname == `/insights/featured-stories` || router.pathname == `/insights/mythbusters` || router.pathname == `/insights/resources` ? (
-        <SecondaryNavBar><SecondaryMenus menus={insightsMenu} /></SecondaryNavBar>
-      ) : router.pathname === "/research" || router.pathname == `/research/featured-datasets` || router.pathname == `/research/featured-documents` || router.pathname == `/research/featured-experts` ? (
-        <SecondaryNavBar><SecondaryMenus menus={researchMenu} /></SecondaryNavBar>
+      {getInsightPaths() ? (
+        <SecondaryNavBar>
+          <SecondaryMenus menus={insightsMenu} />
+        </SecondaryNavBar>
+      ) : getResearchPaths() ? (
+        <SecondaryNavBar>
+          <SecondaryMenus menus={researchMenu} />
+        </SecondaryNavBar>
       ) : null}
     </>
-
   );
 }
 
