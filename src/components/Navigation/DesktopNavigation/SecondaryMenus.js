@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function Menus({ menus }) {
+export default function SecondaryMenus({ menus }) {
   const classes = useStyles();
   return (
     <Grid

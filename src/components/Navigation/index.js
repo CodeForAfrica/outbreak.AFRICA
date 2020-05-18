@@ -7,8 +7,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import Menus from 'components/Navigation/DesktopNavigation/menus'
-
+import SecondaryMenus from 'components/Navigation/DesktopNavigation/SecondaryMenus'
 import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
 import config from '../../config'
 
@@ -141,9 +140,9 @@ function Navigation({
       </>
 
       {router.pathname === "/insights" || router.pathname == `/insights/analysis` || router.pathname == `/insights/featured-stories` || router.pathname == `/insights/mythbusters` || router.pathname == `/insights/resources` ? (
-        <SecondaryNavBar><Menus menus={insightsMenu} /></SecondaryNavBar>
+        <SecondaryNavBar><SecondaryMenus menus={insightsMenu} /></SecondaryNavBar>
       ) : router.pathname === "/research" || router.pathname == `/research/featured-datasets` || router.pathname == `/research/featured-documents` || router.pathname == `/research/featured-experts` ? (
-        <SecondaryNavBar><Menus menus={researchMenu} /></SecondaryNavBar>
+        <SecondaryNavBar><SecondaryMenus menus={researchMenu} /></SecondaryNavBar>
       ) : null}
     </>
 
