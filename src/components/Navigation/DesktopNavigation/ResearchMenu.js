@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import config from '../../../config'
-import Link from 'next/link'
+import LinkButton from 'components/Link/Button';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,6 +22,19 @@ const useStyles = makeStyles((theme) => ({
       color: '#0050FF',
       textDecoration: 'none'
     }
+  },
+  button: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: "0.5rem",
+    width: "auto",
+    color: '#9D9C9C',
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginRight: "4rem",
+    },
   }
 }));
 
@@ -36,10 +49,15 @@ export default function ResearchMenu() {
       className={classes.menu}>
       {config.researchMenu.map(menu =>
         <Grid item>
-          <Link href={`/research/${menu.href}`}>
-            <Typography variant="subtitle2" className={classes.menuText}>{menu.name}</Typography>
-          </Link>
-        </Grid>
+          <LinkButton
+            href={`/research/${menu.href}`}
+            size="small"
+            className={classes.button}
+            aria-haspopup="true"
+          >
+            {menu.name}
+          </LinkButton>
+        </Grid >
       )}
     </Grid>
   );

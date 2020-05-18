@@ -1,11 +1,9 @@
 import React from 'react';
 
-import classNames from "classnames";
-
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import config from '../../../config'
-import Link from 'next/link'
+import LinkButton from 'components/Link/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +24,19 @@ const useStyles = makeStyles((theme) => ({
       color: 'black',
     }
   },
+  button: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: "0.5rem",
+    width: "auto",
+    color: '#9D9C9C',
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginRight: "4rem",
+    },
+  }
 }));
 
 export default function InsightsMenu() {
@@ -38,15 +49,16 @@ export default function InsightsMenu() {
       justify="space-around"
       alignItems="center"
       className={classes.menu}>
+      
       {config.insightsMenu.map(menu =>
         <Grid item>
-          <Link href={`/insights/${menu.href}`}>
-            <Typography
-              variant="subtitle2"
-              className={classNames(classes.menuText, "active")}>
-              {menu.name}
-            </Typography>
-          </Link>
+          <LinkButton
+            href={`/insights/${menu.href}`}
+            size="small"
+            className={classes.button}
+            aria-haspopup="true">
+            {menu.name}
+          </LinkButton>
         </Grid >
       )}
     </Grid >
