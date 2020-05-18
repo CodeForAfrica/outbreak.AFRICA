@@ -7,11 +7,9 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
+import Menus from 'components/Navigation/DesktopNavigation/menus'
 
-import InsightsMenu from 'components/Navigation/DesktopNavigation/InsightsMenu';
 import SecondaryNavBar from 'components/Navigation/DesktopNavigation/SecondaryNavBar';
-import ResearchMenu from 'components/Navigation/DesktopNavigation/ResearchMenu';
-
 import config from '../../config'
 
 
@@ -112,6 +110,7 @@ function Navigation({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
+  const { insightsMenu, researchMenu } = config
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter()
   return (
@@ -142,9 +141,9 @@ function Navigation({
       </>
 
       {router.pathname === "/insights" || router.pathname == `/insights/analysis` || router.pathname == `/insights/featured-stories` || router.pathname == `/insights/mythbusters` || router.pathname == `/insights/resources` ? (
-        <SecondaryNavBar><InsightsMenu /></SecondaryNavBar>
+        <SecondaryNavBar><Menus menus={insightsMenu} /></SecondaryNavBar>
       ) : router.pathname === "/research" || router.pathname == `/research/featured-datasets` || router.pathname == `/research/featured-documents` || router.pathname == `/research/featured-experts` ? (
-        <SecondaryNavBar><ResearchMenu /></SecondaryNavBar>
+        <SecondaryNavBar><Menus menus={researchMenu} /></SecondaryNavBar>
       ) : null}
     </>
 

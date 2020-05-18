@@ -38,33 +38,33 @@ Disallow:
   researchMenu: [
     {
       name: "Featured Expert",
-      href: 'featured-experts'
+      href: '/research/featured-experts'
     },
     {
       name: "Featured Documents",
-      href: 'featured-documents'
+      href: '/research/featured-documents'
     },
     {
       name: "Featured Datasets",
-      href: 'featured-datasets'
+      href: '/research/featured-datasets'
     },
   ],
   insightsMenu: [
     {
       name: "Analysis",
-      href: 'analysis'
+      href: '/insights/analysis'
     },
     {
       name: "Myth-Busters",
-      href: 'mythbusters'
+      href: '/insights/mythbusters'
     },
     {
       name: "Featured Stories",
-      href: 'featured-stories'
+      href: '/insights/featured-stories'
     },
     {
       name: "Resources",
-      href: 'resources'
+      href: '/insights/resources'
     },
   ],
 

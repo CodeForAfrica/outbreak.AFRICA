@@ -2,7 +2,6 @@ import React from 'react';
 
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import config from '../../../config'
 import LinkButton from 'components/Link/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -39,9 +38,8 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function InsightsMenu() {
-  const classes = useStyles()
-
+export default function Menus({ menus }) {
+  const classes = useStyles();
   return (
     <Grid
       container
@@ -49,11 +47,10 @@ export default function InsightsMenu() {
       justify="space-around"
       alignItems="center"
       className={classes.menu}>
-      
-      {config.insightsMenu.map(menu =>
-        <Grid item>
+      {menus.map(menu =>
+        <Grid item key={menu.name}>
           <LinkButton
-            href={`/insights/${menu.href}`}
+            href={`${menu.href}`}
             size="small"
             className={classes.button}
             aria-haspopup="true">
