@@ -77,6 +77,8 @@ function Research({ outbreak, ...props }) {
           root: classes.joinUS,
           section: classes.section,
         }}
+        title="Join Us"
+        subtitle="Be part of our initiative"
       />
     </Page>
   );
