@@ -79,7 +79,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Home({ outbreak, ...props }) {
+function Home({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -90,7 +90,6 @@ function Home({ outbreak, ...props }) {
       hero_carousel: heroCarousel,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
-      featured_experts: featuredExperts,
       join_us: joinUs,
     },
   } = outbreak;
@@ -183,9 +182,11 @@ Home.getInitialProps = async (props) => {
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("index", lang);
+  const { page: { featured_experts: featuredExperts,} } = await getSitePage("featured-experts", lang);
 
   return {
     outbreak,
+    featuredExperts,
   };
 };
 
