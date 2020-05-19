@@ -78,7 +78,12 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 
 function Hero({ heroCarousel, ...props }) {
   const classes = useStyles(props);
-  const { tagline, title } = heroCarousel;
+  const {
+    tagline,
+    title,
+    carousel_items: carouselItems,
+    link_title: carouselLinkTitle,
+  } = heroCarousel;
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -110,8 +115,8 @@ function Hero({ heroCarousel, ...props }) {
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
             {heroCarousel && (
               <HeroCarousel
-                carouselItems={heroCarousel.carousel_items}
-                carouselLinkTitle={heroCarousel.link_title}
+                carouselItems={carouselItems}
+                carouselLinkTitle={carouselLinkTitle}
               />
             )}
           </Grid>
