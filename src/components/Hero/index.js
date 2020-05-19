@@ -78,6 +78,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 
 function Hero({ heroCarousel, ...props }) {
   const classes = useStyles(props);
+  const { tagline, title } = heroCarousel,
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -94,9 +95,7 @@ function Hero({ heroCarousel, ...props }) {
                 component="div"
                 classes={{ root: classes.title }}
               >
-                {`<span class='highlight'>Contextual</span> data <br /> 
-                  with <span class='highlight'>actionable</span>  
-                  insights`}
+                {title}
               </RichTypography>
             </Grid>
             <Grid item xs={12}>
@@ -104,9 +103,7 @@ function Hero({ heroCarousel, ...props }) {
                 variant="subtitle1"
                 classes={{ root: classes.description }}
               >
-                {`Data driven analysis on  
-                <span class='highlight'>COVID-19</span> in more than 
-                10 African countries. Find out more about us.`}
+                {tagline}
               </RichTypography>
             </Grid>
           </Grid>
@@ -127,6 +124,8 @@ Hero.propTypes = {
   heroCarousel: PropTypes.shape({
     carousel_items: PropTypes.arrayOf(PropTypes.shape({})),
     link_title: PropTypes.string,
+    tagline: PropTypes.string,
+    title: PropTypes.string,
   }),
 };
 
