@@ -78,7 +78,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 
 function Hero({ heroCarousel, ...props }) {
   const classes = useStyles(props);
-  const { tagline, title } = heroCarousel,
+  const { tagline, title } = heroCarousel;
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
