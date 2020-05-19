@@ -61,6 +61,9 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("lg")]: {
       paddingTop: "8.125rem",
     },
+    "& p": {
+      margin: 0,
+    }
   },
   description: {
     marginTop: "1.0625rem",
@@ -73,6 +76,9 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("md")]: {
       maxWidth: "41.12rem",
     },
+    "& p": {
+      margin: 0,
+    }
   },
 }));
 
