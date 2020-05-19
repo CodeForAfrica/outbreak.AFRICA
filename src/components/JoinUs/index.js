@@ -49,8 +49,8 @@ function JoinUs() {
               <img src={img1} alt="img2" className={classes.img1} />
             </div>
             <Grid item>
-              <Typography variant="h4">Join us</Typography>
-              <Typography variant="body1">Be part of the movement</Typography>
+              <Typography variant="h3" style={{ fontSize: '3rem' }}>Join us</Typography>
+              <Typography variant="body1" style={{ padding: '1rem 0rem' }}>Be part of the movement</Typography>
               <Button>Learn More</Button>
             </Grid>
           </Grid>
