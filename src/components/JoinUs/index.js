@@ -1,10 +1,11 @@
 import React from 'react'
 
-import { Grid, Typography, Button } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { Grid, Typography, Button } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import LinkButton from "components/Link/Button";
 
-import img2 from 'assets/joinus-illo-1.svg'
-import img1 from 'assets/joinus-illo-2.svg'
+import img2 from 'assets/joinus-illo-1.svg';
+import img1 from 'assets/joinus-illo-2.svg';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,7 +48,20 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       padding: 0,
     }
-  }
+  },
+  button: {
+    paddingLeft: 0,
+    paddingRight: 0,
+    marginRight: "0.5rem",
+    width: "auto",
+    borderBottom: "3px solid #170F49",
+    [theme.breakpoints.up("lg")]: {
+      marginRight: "2rem",
+    },
+    [theme.breakpoints.up("xl")]: {
+      marginRight: "4rem",
+    },
+  },
 }));
 
 function JoinUs({ title, subtitle }) {
@@ -68,7 +82,12 @@ function JoinUs({ title, subtitle }) {
             <div className={classes.divContainers}>
               <Typography variant="h3" className={classes.title}>{title}</Typography>
               <Typography variant="body1" className={classes.subtitle}>{subtitle}</Typography>
-              <Button>Learn More</Button>
+              <LinkButton
+                href="/research"
+                size="medium"
+                className={classes.button}>
+                Learn More
+          </LinkButton>
             </div>
           </Grid>
           <Grid item xs={12} md={5}>
