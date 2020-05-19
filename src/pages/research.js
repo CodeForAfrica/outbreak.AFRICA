@@ -6,6 +6,7 @@ import Page from "components/Page";
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
 import ProfileList from "components/Research/ProfileList";
+import JoinUs from 'components/JoinUs'
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -37,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
       marginTop: "3.8125rem",
     },
   },
+  joinUS: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    }
+  }
 }));
 
 function Research({ outbreak, ...props }) {
@@ -62,6 +69,12 @@ function Research({ outbreak, ...props }) {
       <Subscribe
         classes={{
           root: classes.subscribe,
+          section: classes.section,
+        }}
+      />
+      <JoinUs
+        classes={{
+          root: classes.joinUS,
           section: classes.section,
         }}
       />
