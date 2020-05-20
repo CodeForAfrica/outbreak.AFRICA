@@ -13,15 +13,16 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     border: "1px solid grey",
-    margin: "1rem",
-    padding: "0.5rem 1.5rem",
+    margin: "0.5rem",
+    fontSize: '14px',
+    textTransform: "capitalize",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",
     },
   },
   caption: {
-    fontSize: "1rem",
+    margin: '1rem'
   },
   filter: {
     display: "flex",
@@ -53,23 +54,22 @@ function Filter() {
         alignItems="center"
       >
         <div className={classes.filter}>
-          <Typography variant="caption"> Filter: </Typography>
-          <Grid item>
+          <Grid item xs={12}>
             {filterData.map((data) => (
               <Button size="small" rounded className={classes.button}>
-                <Typography variant="caption" className={classes.caption}>
-                  {data.topic}
-                </Typography>
+                {data.topic}
               </Button>
             ))}
           </Grid>
-        </div>
 
-        <Grid item>
-          <Typography variant="caption" style={{ textDecoration: "underline" }}>
-            Clear all
-          </Typography>
-        </Grid>
+          <Grid item xs={12} style={{ paddingTop: '1rem' }}>
+            {filterData.map((data) => (
+              <Typography variant="caption" className={classes.caption}>
+                {data.subtopic}
+              </Typography>
+            ))}
+          </Grid>
+        </div>
       </Grid>
     </div>
   );
