@@ -26,10 +26,6 @@ const useStyles = makeStyles((theme) => ({
     "&:hover": {
       backgroundColor: "white",
     },
-    "&.active": {
-      borderRadius: "0px",
-      borderBottom: "2px solid #170F49",
-    },
     width: "auto",
     [theme.breakpoints.up("lg")]: {
       marginRight: "2rem",
