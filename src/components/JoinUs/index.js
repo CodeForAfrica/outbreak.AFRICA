@@ -1,8 +1,10 @@
 import React from 'react'
 
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import LinkButton from "components/Link/Button";
+
+import { Section } from "@commons-ui/core";
 
 import img2 from 'assets/joinus-illo-1.svg';
 import img1 from 'assets/joinus-illo-2.svg';
@@ -22,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     justifyContent: "flex-start",
     alignItems: 'center',
+    marginTop: '3rem',
     [theme.breakpoints.up("md")]: {
       flexDirection: "row",
       justifyContent: "flex-start"
@@ -36,9 +39,6 @@ const useStyles = makeStyles((theme) => ({
     height: 'auto',
     width: '100%',
     maxHeight: '300px'
-  },
-  title: {
-    fontSize: '2rem'
   },
   subtitle: {
     padding: '1rem 0rem'
@@ -64,23 +64,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function JoinUs({ title, subtitle }) {
-  const classes = useStyles()
+function JoinUs({ title, subtitle, ...props }) {
+  const classes = useStyles(props)
   return (
     <div className={classes.root}>
-      <div classes={{ root: classes.section }}>
+      <Section classes={{ root: classes.section }}>
         <Grid
           container
           direction="row"
           justify="space-between"
           alignItems="center"
           className={classes.container}>
-          <Grid item xs={12} md={7} className={classes.contentContainer}>
+          <Grid item xs={12} md={6} className={classes.contentContainer}>
             <div className={classes.divContainers}>
               <img src={img1} alt="img2" className={classes.img1} />
             </div>
             <div className={classes.divContainers}>
-              <Typography variant="h3" className={classes.title}>{title}</Typography>
+              <Typography variant="h2">{title}</Typography>
               <Typography variant="body1" className={classes.subtitle}>{subtitle}</Typography>
               <LinkButton
                 href="/research"
@@ -90,13 +90,13 @@ function JoinUs({ title, subtitle }) {
           </LinkButton>
             </div>
           </Grid>
-          <Grid item xs={12} md={5}>
+          <Grid item xs={12} md={4}>
             <div className={classes.divContainers}>
               <img src={img2} alt="img1" className={classes.img2} />
             </div>
           </Grid>
         </Grid>
-      </div>
+      </Section>
     </div>
   )
 }
