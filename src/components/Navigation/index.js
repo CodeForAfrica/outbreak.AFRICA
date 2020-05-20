@@ -5,11 +5,8 @@ import { useRouter } from "next/router";
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import SecondaryMenus from "components/Navigation/DesktopNavigation/SecondaryMenus";
-import SecondaryNavBar from "components/Navigation/DesktopNavigation/SecondaryNavBar";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
-import config from "../../config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -108,65 +105,33 @@ function Navigation({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
-  const { insightsMenu, researchMenu } = config;
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const router = useRouter();
 
-  const getInsightPaths = () => {
-    return (
-      router.asPath === "/insights" ||
-      router.asPath === `/insights/analysis` ||
-      router.asPath === `/insights/featured-stories` ||
-      router.asPath === `/insights/mythbusters` ||
-      router.asPath === `/insights/resources`
-    );
-  };
-
-  const getResearchPaths = () => {
-    return (
-      router.asPath === "/research" ||
-      router.asPath === `/research/featured-datasets` ||
-      router.asPath === `/research/featured-documents` ||
-      router.asPath === `/research/featured-experts`
-    );
-  };
-
   return (
     <>
-      <>
-        <AppBar position="fixed" color="inherit" className={classes.root}>
-          <Toolbar disableGutters className={classes.section}>
-            {isDesktop ? (
-              <DesktopNavigation
-                country={country}
-                countries={countries}
-                navigation={navigation}
-              />
-            ) : (
-                <>
-                  <div className={classes.grow} />
-                  <MobileNavigation
-                    country={country}
-                    countries={countries}
-                    navigation={navigation}
-                  />
-                </>
-              )}
-          </Toolbar>
-        </AppBar>
-        {/* https://material-ui.com/components/app-bar/#fixed-placement */}
-        <Toolbar className={classes.section} />
-      </>
-
-      {getInsightPaths() ? (
-        <SecondaryNavBar>
-          <SecondaryMenus menus={insightsMenu} />
-        </SecondaryNavBar>
-      ) : getResearchPaths() ? (
-        <SecondaryNavBar>
-          <SecondaryMenus menus={researchMenu} />
-        </SecondaryNavBar>
-      ) : null}
+      <AppBar position="fixed" color="inherit" className={classes.root}>
+        <Toolbar disableGutters className={classes.section}>
+          {isDesktop ? (
+            <DesktopNavigation
+              country={country}
+              countries={countries}
+              navigation={navigation}
+            />
+          ) : (
+              <>
+                <div className={classes.grow} />
+                <MobileNavigation
+                  country={country}
+                  countries={countries}
+                  navigation={navigation}
+                />
+              </>
+            )}
+        </Toolbar>
+      </AppBar>
+      {/* https://material-ui.com/components/app-bar/#fixed-placement */}
+      <Toolbar className={classes.section} />
     </>
   );
 }

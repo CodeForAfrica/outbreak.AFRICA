@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 
 import classNames from "classnames";
 
@@ -14,6 +15,10 @@ import Search from "components/Navigation/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
+import config from "../../../config";
+
+import SecondaryMenus from "components/Navigation/DesktopNavigation/SecondaryMenus";
+import SecondaryNavBar from "components/Navigation/DesktopNavigation/SecondaryNavBar";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,8 +61,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 function DesktopNavigation({ country, ...props }) {
   const classes = useStyles(props);
+  const { insightsMenu, researchMenu } = config;
+  const router = useRouter();
+
+  const getInsightPaths = () => {
+    return (
+      router.asPath === "/insights" ||
+      router.asPath === `/insights/analysis` ||
+      router.asPath === `/insights/featured-stories` ||
+      router.asPath === `/insights/mythbusters` ||
+      router.asPath === `/insights/resources`
+    );
+  };
+
+  const getResearchPaths = () => {
+    return (
+      router.asPath === "/research" ||
+      router.asPath === `/research/featured-datasets` ||
+      router.asPath === `/research/featured-documents` ||
+      router.asPath === `/research/featured-experts`
+    );
+  };
 
   return (
     <>
@@ -130,6 +158,16 @@ function DesktopNavigation({ country, ...props }) {
           </Link>
         </Grid>
       </Grid>
+
+      {getInsightPaths() ? (
+        <SecondaryNavBar>
+          <SecondaryMenus menus={insightsMenu} />
+        </SecondaryNavBar>
+      ) : getResearchPaths() ? (
+        <SecondaryNavBar>
+          <SecondaryMenus menus={researchMenu} />
+        </SecondaryNavBar>
+      ) : null}
     </>
   );
 }
