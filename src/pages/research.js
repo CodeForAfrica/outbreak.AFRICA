@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   featuredExperts: {
     marginTop: "3.5rem",
     [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
+      marginTop: "0",
     },
   },
   subscribe: {
