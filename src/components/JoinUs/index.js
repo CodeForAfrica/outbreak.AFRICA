@@ -75,7 +75,7 @@ function JoinUs({ title, subtitle, ...props }) {
           justify="space-between"
           alignItems="center"
           className={classes.container}>
-          <Grid item xs={12} md={6} className={classes.contentContainer}>
+          <Grid item xs={12} md={8} className={classes.contentContainer}>
             <div className={classes.divContainers}>
               <img src={img1} alt="img2" className={classes.img1} />
             </div>
