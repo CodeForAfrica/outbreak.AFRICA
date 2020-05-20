@@ -114,20 +114,20 @@ function Navigation({
 
   const getInsightPaths = () => {
     return (
-      router.pathname === "/insights" ||
-      router.pathname === `/insights/analysis` ||
-      router.pathname === `/insights/featured-stories` ||
-      router.pathname === `/insights/mythbusters` ||
-      router.pathname === `/insights/resources`
+      router.asPath === "/insights" ||
+      router.asPath === `/insights/analysis` ||
+      router.asPath === `/insights/featured-stories` ||
+      router.asPath === `/insights/mythbusters` ||
+      router.asPath === `/insights/resources`
     );
   };
 
   const getResearchPaths = () => {
     return (
-      router.pathname === "/research" ||
-      router.pathname === `/research/featured-datasets` ||
-      router.pathname === `/research/featured-documents` ||
-      router.pathname === `/research/featured-experts`
+      router.asPath === "/research" ||
+      router.asPath === `/research/featured-datasets` ||
+      router.asPath === `/research/featured-documents` ||
+      router.asPath === `/research/featured-experts`
     );
   };
 
@@ -143,15 +143,15 @@ function Navigation({
                 navigation={navigation}
               />
             ) : (
-              <>
-                <div className={classes.grow} />
-                <MobileNavigation
-                  country={country}
-                  countries={countries}
-                  navigation={navigation}
-                />
-              </>
-            )}
+                <>
+                  <div className={classes.grow} />
+                  <MobileNavigation
+                    country={country}
+                    countries={countries}
+                    navigation={navigation}
+                  />
+                </>
+              )}
           </Toolbar>
         </AppBar>
         {/* https://material-ui.com/components/app-bar/#fixed-placement */}

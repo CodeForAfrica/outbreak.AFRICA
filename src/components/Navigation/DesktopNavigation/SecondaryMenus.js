@@ -14,18 +14,15 @@ const useStyles = makeStyles((theme) => ({
   },
   menuText: {
     color: "#9D9C9C",
-    textTransform: "Uppercase",
     "&:hover": {
       color: "#0050FF",
       textDecoration: "none",
     },
     "&:active": {
-      color: "black",
+      color: "#170F49",
     },
   },
   button: {
-    paddingLeft: 0,
-    paddingRight: 0,
     marginRight: "0.5rem",
     width: "auto",
     color: "#9D9C9C",
@@ -54,7 +51,6 @@ export default function SecondaryMenus({ menus }) {
             href={`${menu.href}`}
             size="small"
             className={classes.button}
-            aria-haspopup="true"
           >
             {menu.name}
           </LinkButton>
