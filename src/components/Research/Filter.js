@@ -25,6 +25,10 @@ const useStyles = makeStyles((theme) => ({
     margin: '0.6rem',
     color: '#9D9C9C'
   },
+  itemContainer: {
+    display: "flex",
+    flexDirection: 'column'
+  },
   filter: {
     display: "flex",
     padding: "2rem 0rem",
@@ -55,21 +59,16 @@ function Filter() {
         alignItems="center"
       >
         <div className={classes.filter}>
-          <Grid item xs={12}>
-            {filterData.map((data) => (
+          {filterData.map((data) => (
+            <Grid item className={classes.itemContainer}>
               <Button size="small" rounded className={classes.button}>
                 {data.topic}
               </Button>
-            ))}
-          </Grid>
-
-          <Grid item xs={12} style={{ paddingTop: '1rem' }}>
-            {filterData.map((data) => (
               <Typography variant="caption" className={classes.caption}>
                 {data.subtopic}
               </Typography>
-            ))}
-          </Grid>
+            </Grid>
+          ))}
         </div>
       </Grid>
     </div>
