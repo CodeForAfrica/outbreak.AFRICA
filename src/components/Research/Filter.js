@@ -22,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   caption: {
-    margin: '1rem'
+    margin: '0.6rem',
+    color: '#9D9C9C'
   },
   filter: {
     display: "flex",

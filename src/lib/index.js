@@ -99,37 +99,37 @@ export function getFilterData() {
       id: 1,
       topic: "All",
       slug: "all",
-      subtopic: 'All'
+      subtopic: 'Sub-topic'
     },
     {
       id: 2,
       topic: "Topic",
       slug: "topic",
-      subtopic: 'sub-topic'
+      subtopic: 'Sub-topic'
     },
     {
       id: 3,
       topic: "Topic",
       slug: "topic",
-      subtopic: 'sub-topic'
+      subtopic: 'Sub-topic'
     },
     {
       id: 4,
       topic: "Topic",
       slug: "topic",
-      subtopic: 'sub-topic'
+      subtopic: 'Sub-topic'
     },
     {
       id: 5,
       topic: "Topic",
       slug: "topic",
-      subtopic: 'sub-topic'
+      subtopic: 'Sub-topic'
     },
     {
       id: 6,
       topic: "Topic",
       slug: "topic",
-      subtopic: 'sub-topic'
+      subtopic: 'Sub-topic'
     },
   ];
 }
