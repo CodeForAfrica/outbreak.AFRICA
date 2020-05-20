@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   button: {
     border: "1px solid grey",
     margin: "0.5rem",
-    fontSize: '14px',
     textTransform: "capitalize",
     "&:hover": {
       backgroundColor: "#0050FF",
@@ -23,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     margin: '0.6rem',
+    fontWeight: 700,
     color: '#9D9C9C'
   },
   itemContainer: {

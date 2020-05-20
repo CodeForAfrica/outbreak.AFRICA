@@ -4,7 +4,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2rem",
     [theme.breakpoints.up("md")]: {
-      padding: "5rem",
+      padding: "2rem"
     },
   },
   profile: {},
