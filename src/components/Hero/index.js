@@ -26,12 +26,17 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("md")]: {
       backgroundPosition: "20% 30%",
       backgroundSize: "75% 55%",
+      padding: `${typography.pxToRem(20)} 0`,
     },
     [breakpoints.up("lg")]: {
       backgroundPosition: "20% 90%",
       backgroundSize: "70% 75%",
     },
+    [breakpoints.up("xl")]: {
+      padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
+    },
   },
+
   heroCarousel: {
     "& ul > li": {
       padding: "0 8px",
