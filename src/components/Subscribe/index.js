@@ -15,16 +15,15 @@ const useStyles = makeStyles((theme) => ({
   },
   section: {},
   subscribeGrid: {
-    padding: "8rem 0rem",
-  },
-  subtitle: {
     padding: "2rem 0rem",
   },
   title: {
     color: theme.palette.text.secondary,
-    padding: "2rem 0rem",
+    padding: "0.5rem 0rem",
   },
-  form: {},
+  form: {
+    width: '395px'
+  },
   input: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -37,7 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   subscribeImage: {
     height: "auto",
-    width: "80%",
+    maxWidth: '100%',
+    width: "448px",
   },
   button: {
     padding: 0,
@@ -50,8 +50,8 @@ function Subscribe() {
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
-        <Grid container direction="row" justify="center" spacing={5}>
-          <Grid item xs={12} md={6}>
+        <Grid container direction="row" justify="center">
+          <Grid item xs={12} md={5}>
             <img
               src={source}
               alt="Subscribe"
@@ -59,7 +59,7 @@ function Subscribe() {
             />
           </Grid>
 
-          <Grid item xs={8} md={6} className={classes.subscribeGrid}>
+          <Grid item xs={8} md={7} className={classes.subscribeGrid}>
             <Typography variant="h2" className={classes.title}>
               Subscribe
             </Typography>
