@@ -185,6 +185,8 @@ Disallow:
   ],
   colorIndexTable: "allFinalVulnerabilityIndices",
   colorIndexField: "rating",
+  colorScoreField: "score",
+  colorScoreLabel: "All Section Vulnerability Score",
   vulnerabilityIndexColor: {
     "very high": "#266cff",
     high: "#004cff",
