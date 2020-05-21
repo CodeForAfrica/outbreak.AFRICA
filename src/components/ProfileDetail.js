@@ -20,6 +20,7 @@ import { Section } from "@commons-ui/core";
 
 import Button from "components/Link/Button";
 import searchIcon from "assets/images/icon-search.svg";
+import config from "config";
 import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 
@@ -93,7 +94,7 @@ function ProfileDetail({
   profile: { comparable = false, geo = {} },
   country,
   geoId,
-  geoIndeces,
+  geoIndexMapping,
   onClickGeoLayer,
   ...props
 }) {
@@ -141,7 +142,8 @@ function ProfileDetail({
                   geoId={geoId}
                   height="300px"
                   onClickGeoLayer={onClickGeoLayer}
-                  geoIndeces={geoIndeces}
+                  geoIndexMapping={geoIndexMapping}
+                  scoreLabel={config.colorScoreLabel}
                   width="100%"
                 />
               )}
@@ -299,13 +301,13 @@ ProfileDetail.propTypes = {
   }).isRequired,
   country: PropTypes.shape({}).isRequired,
   geoId: PropTypes.string,
-  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
+  geoIndexMapping: PropTypes.arrayOf(PropTypes.shape({})),
   onClickGeoLayer: PropTypes.func,
 };
 
 ProfileDetail.defaultProps = {
   geoId: undefined,
-  geoIndeces: undefined,
+  geoIndexMapping: undefined,
   onClickGeoLayer: null,
 };
 

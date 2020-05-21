@@ -69,7 +69,7 @@ function MenuButton({
     </Button>
   ) : (
     <IconButton onClick={handleToggleOpen} {...props} ref={buttonRef}>
-      <Icon />
+      <Icon fontSize={size} />
     </IconButton>
   );
 
