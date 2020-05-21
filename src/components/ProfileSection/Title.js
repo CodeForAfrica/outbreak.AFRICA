@@ -18,8 +18,11 @@ import socioEconomicIcon from "assets/icon-socioeconomic.svg";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
-    marginTop: "3rem",
+    marginTop: typography.pxToRem(40),
     width: "100%",
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(100),
+    },
   },
   grow: {
     display: "none",

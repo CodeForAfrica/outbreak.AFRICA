@@ -9,7 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: "inherit",
     display: "flex",
     scrollBehavior: "smooth",
     width: "100%",
