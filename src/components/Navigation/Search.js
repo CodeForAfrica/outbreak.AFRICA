@@ -8,6 +8,8 @@ const useStyles = makeStyles(({ typography }) => ({
   root: {
     alignItems: "center",
     backgroundColor: "#EEEEEE",
+    border: "1px solid #9D9C9C",
+    borderRadius: 10,
     boxShadow: "none",
     display: "flex",
     width: "100%",
@@ -26,6 +28,7 @@ const useStyles = makeStyles(({ typography }) => ({
   },
   iconButton: {
     color: "#9D9C9C",
+    padding: 0,
   },
 }));
 
@@ -33,7 +36,7 @@ function Search(props) {
   const classes = useStyles(props);
 
   return (
-    <Paper square component="form" className={classes.root}>
+    <Paper component="form" className={classes.root}>
       <InputBase
         placeholder="Search for issues, topics, etc…"
         inputProps={{ "aria-label": "search for issues, topics, etc…" }}
