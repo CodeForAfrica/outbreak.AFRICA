@@ -22,14 +22,13 @@ const useStyles = makeStyles((theme) => ({
     padding: "0.5rem 0rem",
   },
   form: {
-    width: '395px'
+    width: '395px'// Use design width of form
   },
   input: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
     lineHeight: theme.typography.caption.lineHeight,
-    borderBottom: "1px solid white",
-    width: "80%",
+    borderBottom: "1px solid white"
   },
   img: {
     height: "2.5rem",
