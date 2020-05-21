@@ -36,7 +36,10 @@ const useStyles = makeStyles((theme) => ({
   subscribeImage: {
     height: "auto",
     maxWidth: '100%',
-    width: "448px",
+    width: '100%',
+    [theme.breakpoints.up("md")]: {
+      width: "448px"
+    }
   },
   button: {
     padding: 0,
