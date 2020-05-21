@@ -1,13 +1,15 @@
 import React from "react";
 
-import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
+import Subscribe from "components/Subscribe";
+import ProfileList from "components/Research/ProfileList";
 
 import config from "config";
 import { getSitePage } from "cms";
+import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -23,13 +25,26 @@ const useStyles = makeStyles((theme) => ({
       width: "102.5rem",
     },
   },
+  featuredExperts: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
+  },
+  subscribe: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
+  },
 }));
 
-function FeaturedExperts({ outbreak, ...props }) {
+function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: { hero_carousel: heroCarousel },
   } = outbreak;
+  const profiles = getProfiles();
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
@@ -37,12 +52,24 @@ function FeaturedExperts({ outbreak, ...props }) {
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <Grid classes={{ section: classes.section }}>Featured experts</Grid>
+      <ProfileList
+        profiles={profiles}
+        classes={{
+          root: classes.featuredExperts,
+          section: classes.section,
+        }}
+      />
+      <Subscribe
+        classes={{
+          root: classes.subscribe,
+          section: classes.section,
+        }}
+      />
     </Page>
   );
 }
 
-FeaturedExperts.getInitialProps = async (props) => {
+Research.getInitialProps = async (props) => {
   const {
     query: { lang: pageLanguage },
   } = props;
@@ -54,4 +81,4 @@ FeaturedExperts.getInitialProps = async (props) => {
   };
 };
 
-export default FeaturedExperts;
+export default Research;
