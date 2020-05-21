@@ -49,7 +49,9 @@ const useStyles = makeStyles((theme) => ({
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      join_us: joinUs, },
   } = outbreak;
   const profiles = getProfiles();
 
@@ -77,6 +79,7 @@ function Research({ outbreak, ...props }) {
           root: classes.joinUS,
           section: classes.section,
         }}
+        joinUs={joinUs}
         title="Join Us"
         subtitle="Be part of our initiative"
       />
