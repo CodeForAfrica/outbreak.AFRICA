@@ -32,12 +32,15 @@ function FeaturedDatasets({ outbreak, ...props }) {
   } = outbreak;
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      outbreak={outbreak}
+      title="Featured Datasets"
+      classes={{ section: classes.section }}
+    >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <Grid classes={{ section: classes.section }}>Featured datasets</Grid>
     </Page>
   );
 }

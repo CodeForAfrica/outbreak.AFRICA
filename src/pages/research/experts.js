@@ -47,7 +47,11 @@ function Research({ outbreak, ...props }) {
   const profiles = getProfiles();
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      outbreak={outbreak}
+      title="Featured Experts"
+      classes={{ section: classes.section }}
+    >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}

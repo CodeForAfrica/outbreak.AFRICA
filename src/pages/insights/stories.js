@@ -33,12 +33,15 @@ function FeaturedStories({ outbreak, ...props }) {
   } = outbreak;
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      outbreak={outbreak}
+      title="Featured Stories"
+      classes={{ section: classes.section }}
+    >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <Grid classes={{ section: classes.section }}>Featured stories</Grid>
     </Page>
   );
 }

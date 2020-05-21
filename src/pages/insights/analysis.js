@@ -32,12 +32,15 @@ function Analysis({ outbreak, ...props }) {
   } = outbreak;
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      outbreak={outbreak}
+      title="Analysis"
+      classes={{ section: classes.section }}
+    >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <Grid classes={{ section: classes.section }}>Analysis</Grid>
     </Page>
   );
 }
