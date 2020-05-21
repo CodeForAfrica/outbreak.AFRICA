@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useRouter } from "next/router";
 
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -8,20 +7,18 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     boxShadow: "0px 10px 40px #0000002E",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       boxShadow: "0px 5px 30px #0000002E",
     },
   },
-  section: {
+  section: {},
+  toolbar: {
     height: "4.375rem",
-    [theme.breakpoints.up("md")]: {
-      height: "6.375rem",
-    },
-    [theme.breakpoints.up("xl")]: {
-      height: "9.375rem",
+    [breakpoints.up("md")]: {
+      height: "auto",
     },
   },
   grow: {
@@ -38,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: "2rem",
     backgroundColor: "transparent",
     boxShadow: "0 2px 8px 0 rgba(0, 0, 0, 0.07)",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       padding: "0rem 8rem",
     },
   },
@@ -52,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   logoGrid: {
     marginRight: "3rem",
-    [theme.breakpoints.only("md")]: {
+    [breakpoints.only("md")]: {
       margin: "0rem",
     },
   },
@@ -68,10 +65,10 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: "1.5rem",
     fontWeight: "bolder",
     textDecoration: "none",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       margin: "0.625rem",
     },
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       margin: "1.375rem",
     },
   },
@@ -106,32 +103,31 @@ function Navigation({
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const router = useRouter();
 
   return (
     <>
-      <AppBar position="fixed" color="inherit" className={classes.root}>
-        <Toolbar disableGutters className={classes.section}>
+      <AppBar position="sticky" color="inherit" className={classes.root}>
+        <Toolbar disableGutters className={classes.toolbar}>
           {isDesktop ? (
             <DesktopNavigation
               country={country}
               countries={countries}
               navigation={navigation}
+              classes={{ section: classes.section }}
             />
           ) : (
-              <>
-                <div className={classes.grow} />
-                <MobileNavigation
-                  country={country}
-                  countries={countries}
-                  navigation={navigation}
-                />
-              </>
-            )}
+            <>
+              <div className={classes.grow} />
+              <MobileNavigation
+                country={country}
+                countries={countries}
+                navigation={navigation}
+                classes={{ section: classes.section }}
+              />
+            </>
+          )}
         </Toolbar>
       </AppBar>
-      {/* https://material-ui.com/components/app-bar/#fixed-placement */}
-      <Toolbar className={classes.section} />
     </>
   );
 }
