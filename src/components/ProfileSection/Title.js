@@ -16,18 +16,27 @@ import mobilityIcon from "assets/icon-mobility.svg";
 import safetyIcon from "assets/icon-safety.svg";
 import socioEconomicIcon from "assets/icon-socioeconomic.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     marginTop: "3rem",
     width: "100%",
   },
   grow: {
-    flexGrow: 1,
-    height: 2,
-    backgroundColor: theme.palette.secondary.main,
+    display: "none",
+    [breakpoints.up("md")]: {
+      display: "flex",
+      flexGrow: 1,
+      height: 2,
+      backgroundColor: palette.secondary.main,
+    },
   },
   icon: {
+    height: "auto",
     marginRight: "1rem",
+    width: typography.pxToRem(50),
+    [breakpoints.up("xl")]: {
+      width: typography.pxToRem(60),
+    },
   },
   title: {
     display: "flex",
