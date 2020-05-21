@@ -51,7 +51,7 @@ function Research({ outbreak, ...props }) {
   const {
     page: {
       hero_carousel: heroCarousel,
-      join_us: joinUs, },
+      join_us: joinUs },
   } = outbreak;
   const profiles = getProfiles();
 
@@ -80,8 +80,8 @@ function Research({ outbreak, ...props }) {
           section: classes.section,
         }}
         joinUs={joinUs}
-        title="Join Us"
-        subtitle="Be part of our initiative"
+        title={joinUs.title}
+        subtitle={joinUs.description}
       />
     </Page>
   );
