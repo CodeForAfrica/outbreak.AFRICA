@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SecondaryNavBar({ children }) {
+export default function PageNavigation({ children }) {
   const classes = useStyles();
   return (
     <div className={classes.root}>

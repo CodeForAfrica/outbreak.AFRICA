@@ -9,9 +9,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     color: "white",
   },
-  menu: {
-    padding: "1.5rem 2rem",
-  },
   menuText: {
     color: "#9D9C9C",
     "&:hover": {
@@ -35,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SecondaryMenus({ menus }) {
+export default function PageMenus({ menus }) {
   const classes = useStyles();
   return (
     <Grid
@@ -43,7 +40,6 @@ export default function SecondaryMenus({ menus }) {
       direction="row"
       justify="space-around"
       alignItems="center"
-      className={classes.menu}
     >
       {menus.map((menu) => (
         <Grid item key={menu.name}>

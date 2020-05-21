@@ -17,8 +17,8 @@ import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
 import config from "../../../config";
 
-import SecondaryMenus from "components/Navigation/DesktopNavigation/SecondaryMenus";
-import SecondaryNavBar from "components/Navigation/DesktopNavigation/SecondaryNavBar";
+import PageMenus from "components/Navigation/DesktopNavigation/PageMenus";
+import PageNavigation from "components/Navigation/DesktopNavigation/PageNavigation";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -60,8 +60,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-
-
 
 function DesktopNavigation({ country, ...props }) {
   const classes = useStyles(props);
@@ -160,13 +158,13 @@ function DesktopNavigation({ country, ...props }) {
       </Grid>
 
       {getInsightPaths() ? (
-        <SecondaryNavBar>
-          <SecondaryMenus menus={insightsMenu} />
-        </SecondaryNavBar>
+        <PageNavigation>
+          <PageMenus menus={insightsMenu} />
+        </PageNavigation>
       ) : getResearchPaths() ? (
-        <SecondaryNavBar>
-          <SecondaryMenus menus={researchMenu} />
-        </SecondaryNavBar>
+        <PageNavigation>
+          <PageMenus menus={researchMenu} />
+        </PageNavigation>
       ) : null}
     </>
   );
