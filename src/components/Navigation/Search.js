@@ -4,7 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, InputBase, Paper } from "@material-ui/core";
 import { Search as SearchIcon } from "@material-ui/icons";
 
-const useStyles = makeStyles(({ typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     alignItems: "center",
     backgroundColor: "#EEEEEE",
@@ -28,7 +28,14 @@ const useStyles = makeStyles(({ typography }) => ({
   },
   iconButton: {
     color: "#9D9C9C",
-    padding: 0,
+    [breakpoints.up("md")]: {
+      paddingBottom: `${typography.pxToRem(3)}`,
+      paddingTop: `${typography.pxToRem(3)}`,
+    },
+    [breakpoints.up("xl")]: {
+      paddingBottom: `${typography.pxToRem(7)}`,
+      paddingTop: `${typography.pxToRem(7)}`,
+    },
   },
 }));
 

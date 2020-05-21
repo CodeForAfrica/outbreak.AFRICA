@@ -1,34 +1,39 @@
 import React, { useEffect, useState, useMemo, useCallback } from "react";
-
-// import _debounce from "lodash/debounce";
-
 import PropTypes from "prop-types";
 
 import { useRouter } from "next/router";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
-import InsightContainer from "@hurumap-ui/core/InsightContainer";
-import { shareIndicator } from "@hurumap-ui/core/utils";
+import ChartContainer from "@hurumap-ui/core/ChartContainer";
+import useGeoIndexLoader from "@hurumap-ui/core/useGeoIndexLoader";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
 
 import config from "config";
 import logo from "assets/images/logo-white-all.png";
+import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
+import LinkIcon from "assets/icon web.svg";
+import DownloadIcon from "assets/icon download.svg";
+import EmbedIcon from "assets/icon embed.svg";
 
+import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
-    width: "auto",
+    width: "100%",
     [breakpoints.up("lg")]: {
       margin: "0 auto",
       width: "78.5rem",
@@ -38,76 +43,48 @@ const useStyles = makeStyles(({ palette, breakpoints, typography }) => ({
       width: "102.5rem",
     },
   },
-  actionsShareButton: {
-    minWidth: "4rem",
-  },
-  actionsRoot: {
-    border: "solid 1px #eaeaea",
-  },
   container: {
     marginBottom: "0.625rem",
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
     minHeight: loading && "300px",
-    backgroundColor: "#f6f6f6",
     margin: 0,
   }),
-  containerInsightAnalysisLink: {
-    padding: 0,
+  chartRoot: {
+    boxShadow: "0px 4px 4px #00000029",
+    border: "1px solid #D6D6D6",
+    marginBottom: "1.3125rem",
+    marginTop: "2.5rem",
+    padding: "42px 38px 33px 38px",
+    position: "relative",
+    width: "100%",
   },
-  containerInsightDataLink: {
-    backgroundColor: "white",
-    borderRadius: "12px",
-    border: `solid 2px ${palette.primary.main}`,
-    padding: 0,
+  chart: {
+    margin: "0.5rem !important",
   },
-  containerSourceGrid: {
-    [breakpoints.up("md")]: {
-      whiteSpace: "nowrap",
-    },
+  content: {
+    paddingBottom: 0,
   },
-  containerSourceLink: {
-    fontSize: typography.caption.fontSize,
-    color: palette.text.primary,
-  },
-  insight: {
-    paddingTop: "1.275rem",
-  },
-  insightGrid: {
-    [breakpoints.up("lg")]: {
-      maxWidth: "23.6875rem",
-    },
-  },
-  numberTitle: {
-    fontWeight: "bold",
-  },
-  hideHighlightGrid: {
-    display: "none",
-  },
-  statDescription: {
-    fontWeight: 600,
-    fontSize: "1.5rem",
-    lineHeight: 1.71,
-    wordBreak: "break-word",
-  },
-  statStatistic: {
-    fontWeight: "bold",
-    fontSize: "2.5rem",
-    lineHeight: 1.03,
-    marginBottom: "0.6875rem",
-    marginTop: "1.125rem",
-  },
-  statSubtitle: {
-    fontWeight: "bold",
-    fontSize: "1.25rem",
-    marginTop: "1rem",
-    paddingRight: "1.25rem", // On the same line as chart title hence better to have spacing between them
+  actionIcon: {
+    width: "2rem",
+    height: "auto",
   },
   title: {
-    fontFamily: typography.fontText,
-    lineHeight: 2.05,
-    marginTop: "1rem",
+    fontSize: typography.subtitle2.fontSize,
+    fontWeight: typography.subtitle2.fontWeight,
+  },
+  source: {
+    color: "#9D9C9C",
+    marginLeft: "0 !important",
+    textDecoration: "none",
+  },
+  embedRoot: {
+    zIndex: 1000,
+  },
+  embedSubtitle: {
+    color: palette.text.primary,
+    fontSize: typography.subtitle2.fontSize,
   },
 }));
 
@@ -119,6 +96,7 @@ function Chart({ chartData, definition, profiles, classes }) {
       definition={definition}
       data={chartData.profileVisualsData[definition.queryAlias].nodes}
       profiles={profiles}
+      disableShowMore
       classes={classes}
     />
   );
@@ -167,6 +145,7 @@ function ProfilePage({
   geoId,
   language,
   outbreak,
+  country,
   sectionedCharts,
 }) {
   const router = useRouter();
@@ -174,7 +153,7 @@ function ProfilePage({
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
       ? window.location.hash.slice(1)
-      : "demographics" // 'all'
+      : "all"
   );
 
   const filterByGeography = useCallback(
@@ -199,8 +178,14 @@ function ProfilePage({
 
   const { profiles, chartData } = useProfileLoader({
     geoId,
-    visuals,
     populationTables: config.populationTables,
+    visuals,
+  });
+  const geoIndeces = useGeoIndexLoader({
+    countryCode: country.isoCode,
+    indexField: config.colorIndexField,
+    indexTable: config.colorIndexTable,
+    scoreField: config.colorScoreField,
   });
 
   const filterByChartData = useCallback(
@@ -214,18 +199,6 @@ function ProfilePage({
   );
 
   const classes = useStyles({ loading: chartData.isLoading });
-
-  const country = useMemo(() => {
-    if (!profiles.profile || !profiles.profile.geoLevel) {
-      return {};
-    }
-    if (profiles.profile.geoLevel === "country") {
-      return config.countries.find(
-        (c) => c.isoCode === profiles.profile.geoCode
-      );
-    }
-    return config.countries.find((c) => c.isoCode === profiles.parent.geoCode);
-  }, [profiles]);
 
   const onClickGeoLayer = useCallback(
     (area) => {
@@ -255,6 +228,10 @@ function ProfilePage({
   useEffect(
     () =>
       debounceSetProfileTabs([
+        {
+          name: "All",
+          slug: "all",
+        },
         ...sectionedCharts
           // Filter empty sections
           .reduce((a, { charts, ...rest }) => {
@@ -280,7 +257,7 @@ function ProfilePage({
 
   const charts = useMemo(
     () =>
-      profileTabs.map(
+      profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
             <Grid item container id={tab.slug} key={tab.slug}>
@@ -314,110 +291,86 @@ function ProfilePage({
                     key={chart.id}
                     className={classes.container}
                   >
-                    <InsightContainer
+                    <ChartContainer
                       key={chart.id}
-                      actions={{
-                        handleShare: shareIndicator.bind(
-                          null,
-                          id,
-                          null,
-                          "/api/share"
-                        ),
-                        handleShowData: null,
-                        handleCompare: null,
-                      }}
+                      variant="data"
                       classes={{
-                        insight: classes.insight,
-                        actionsCompareButton: classes.actionsCompareButton,
-                        actionsShareButton: classes.actionsShareButton,
-                        actionsShowDataButton: classes.actionsShowDataButton,
-                        actionsRoot: classes.actionsRoot,
-                        root: classes.containerRoot,
-                        sourceGrid: classes.containerSourceGrid,
-                        sourceLink: classes.containerSourceLink,
-                        insightAnalysisLink:
-                          classes.containerInsightAnalysisLink,
-                        insightDataLink: classes.containerInsightDataLink,
-                        insightGrid: classes.insightGrid,
-                        highlightGrid:
-                          chart.type === "flourish" &&
-                          classes.hideHighlightGrid,
+                        chart: classes.chart,
+                        content: classes.content,
                         title: classes.title,
+                        root: classes.chartRoot,
+                        containerRoot: classes.containerRoot,
+                        sourceLink: classes.source,
+                        groupActionsButton: classes.actionIcon,
+                        embedSubtitle: classes.embedSubtitle,
+                        embedRoot: classes.embedRoot,
                       }}
-                      embedCode={`<iframe
-                  id="${chart.id}"
-                  src="${config.url}/embed/${embedPath}"
-                  title="${chart.title}"
-                  allowFullScreen
-                />`}
-                      insight={
-                        {
-                          // dataLink: {
-                          //   href: `/profiles/${country.slug}`,
-                          //   title: 'Read the country analysis'
-                          // }
-                        }
-                      }
+                      embed={{
+                        title: "Embed code for this chart",
+                        subtitle:
+                          "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
+                        code: `<iframe
+                        id="${chart.id}"
+                        src="${config.url}/embed/${embedPath}"
+                        title="${chart.title}"
+                        allowFullScreen
+                      />`,
+                      }}
                       loading={chartData.isLoading}
                       logo={logo}
-                      source={source}
+                      sourceLink={source && source.href}
+                      sourceTitle={source && source.title}
                       title={chart.title}
-                      dataTable={{
-                        tableTitle: chart.visual.table.slice(3),
-                        dataValueTitle: chart.visual.y,
-                        dataLabelTitle: chart.visual.x,
-                        groupByTitle: chart.visual.groupBy,
-                        rawData:
-                          !chartData.isLoading &&
-                          chartData.profileVisualsData[chart.visual.queryAlias]
-                            .nodes,
+                      groupActions
+                      groupIcons={{
+                        facebook: {
+                          icon: <img src={FacebookIcon} alt="Facebook" />,
+                        },
+                        twitter: {
+                          icon: <img src={TwitterIcon} alt="Twitter" />,
+                        },
+                        linkedin: {
+                          icon: <img src={LinkedInIcon} alt="LinkedIn" />,
+                        },
+                        instagram: {
+                          icon: <img src={InstagramIcon} alt="Instagram" />,
+                        },
+                        embed: {
+                          icon: <img src={EmbedIcon} alt="Embed" />,
+                        },
+                        link: {
+                          icon: <img src={LinkIcon} alt="Link" />,
+                        },
+                        download: {
+                          icon: <img src={DownloadIcon} alt="Download" />,
+                        },
                       }}
                     >
-                      {chart.type === "hurumap"
-                        ? [
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.stat,
-                                typeProps: {
-                                  ...chart.stat.typeProps,
-                                  classes: {
-                                    description: classes.statDescription,
-                                    statistic: classes.statStatistic,
-                                    subtitle: classes.statSubtitle,
-                                  },
-                                },
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />,
-                            <Chart
-                              key={chart.id}
-                              chartData={chartData}
-                              definition={{
-                                ...chart.visual,
-                                typeProps: {
-                                  ...chart.visual.typeProps,
-                                  ...overrideTypePropsFor(chart.visual.type),
-                                },
-                              }}
-                              profiles={profiles}
-                              classes={classes}
-                            />,
-                          ]
-                        : [
-                            <div key={chart.id} />,
-                            <iframe
-                              key={chart.id}
-                              width="100%"
-                              scrolling="no"
-                              frameBorder="0"
-                              title={chart.title}
-                              src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                            />,
-                          ]}
-                    </InsightContainer>
+                      {chart.type === "hurumap" ? (
+                        <Chart
+                          key={chart.id}
+                          chartData={chartData}
+                          definition={{
+                            ...chart.visual,
+                            typeProps: {
+                              ...chart.visual.typeProps,
+                              ...overrideTypePropsFor(chart.visual.type),
+                            },
+                          }}
+                          profiles={profiles}
+                          classes={classes}
+                        />
+                      ) : (
+                        <iframe
+                          key={chart.id}
+                          width="100%"
+                          scrolling="no"
+                          frameBorder="0"
+                          title={chart.title}
+                          src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
+                        />
+                      )}
+                    </ChartContainer>
                   </Grid>
                 );
               })}
@@ -442,9 +395,17 @@ function ProfilePage({
   }, [indicatorId]);
 
   let title;
-  if (country) {
-    title = country.shortName;
+  if (!profiles.loading && country) {
+    const { name, geoLevel } = profiles.profile || {};
+    if (geoLevel !== "country") {
+      title = `${name} | ${country.shortName}`;
+    } else {
+      title = name;
+    }
   }
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Page
       outbreak={{ ...outbreak, country, language }}
@@ -457,15 +418,28 @@ function ProfilePage({
           profile={{
             geo: profiles.profile,
           }}
+          country={country}
           classes={{ section: classes.section }}
+          geoId={geoId}
+          geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
+          onClickGeoLayer={onClickGeoLayer}
         />
       )}
-      <MapIt
-        geoId={geoId}
-        height="500px"
-        onClickGeoLayer={onClickGeoLayer}
-        width="100%"
-      />
+      {isDesktop && (
+        <>
+          {!geoIndeces.isLoading && geoIndeces.indeces.length > 0 && (
+            <MapColorLegend />
+          )}
+          <MapIt
+            geoId={geoId}
+            height="500px"
+            onClickGeoLayer={onClickGeoLayer}
+            geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
+            scoreLabel={config.colorScoreLabel}
+            width="100%"
+          />
+        </>
+      )}
       {!profiles.isLoading && (
         <ProfileSection
           profile={{ geo: profiles.profile }}

@@ -24,7 +24,14 @@ const useStyles = makeStyles(() => ({
   }),
 }));
 
-function MapIt({ classes: classesProps, geoId, height, width, ...props }) {
+function MapIt({
+  classes: classesProps,
+  geoId,
+  geoIndeces,
+  height,
+  width,
+  ...props
+}) {
   const classes = useStyles({ classes: classesProps, height, width });
   const theme = useTheme();
 
@@ -43,18 +50,13 @@ function MapIt({ classes: classesProps, geoId, height, width, ...props }) {
           opacity: 1.0,
           fillOpacity: 0.3,
         }}
-        geoLayerFocusStyle={{
-          color: "#D6D6D6",
-          fillColor: theme.palette.primary.main,
-          weight: 2.0,
-          opacity: 1.0,
-          fillOpacity: 0.5,
-        }}
         geoLayerHoverStyle={{
           fillColor: theme.palette.primary.main,
           fillOpacity: 0.4,
         }}
         geoLevel={geoId.split("-")[0]}
+        geoIndexMapping={geoIndeces}
+        indexColor={config.vulnerabilityIndexColor}
         {...props}
       />
     </div>
@@ -65,11 +67,13 @@ MapIt.propTypes = {
   geoId: PropTypes.string.isRequired,
   height: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
   width: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
+  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
 };
 
 MapIt.defaultProps = {
   height: "500px",
   width: "100%",
+  geoIndeces: undefined,
 };
 
 export default MapIt;

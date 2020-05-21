@@ -79,6 +79,7 @@ export async function getServerSideProps({
 
   return {
     props: {
+      country,
       errorCode,
       geoId,
       indicatorId,

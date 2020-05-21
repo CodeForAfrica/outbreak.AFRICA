@@ -7,7 +7,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import DataMenuList from "components/Navigation/DesktopNavigation/DataMenuList";
 import MenuButton from "components/Navigation/DesktopNavigation//MenuButton";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     display: "flex",
     alignItems: "center",
@@ -33,26 +33,36 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     backgroundColor: "white",
-    height: 32,
-    width: 32,
+    height: 50,
+    width: 50,
   },
   menuButtonPopper: {
-    marginTop: theme.spacing(4),
-    [theme.breakpoints.up("md")]: {
-      marginTop: theme.spacing(4),
-      marginLeft: theme.spacing(2),
+    marginTop: typography.pxToRem(32),
+    marginLeft: typography.pxToRem(20),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(40),
+      marginLeft: typography.pxToRem(20),
+    },
+    [breakpoints.up("xl")]: {
+      marginTop: typography.pxToRem(48),
+      marginLeft: typography.pxToRem(20),
     },
   },
 }));
 
-export default function CountrySelector({ context, country, ...props }) {
+export default function CountrySelector({
+  context,
+  country,
+  geoName,
+  ...props
+}) {
   const classes = useStyles(props);
 
   return (
     <div className={classes.root}>
       <MenuButton
         color="secondary"
-        size="large"
+        // size="large"
         variant="outlined"
         popperProps={{ placement: "right-start" }}
         classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}
@@ -60,7 +70,7 @@ export default function CountrySelector({ context, country, ...props }) {
         <DataMenuList country={country} dense />
       </MenuButton>
       <Typography variant="h2" className={classes.countryName}>
-        {country.shortName}
+        {geoName || country.shortName}
       </Typography>
     </div>
   );
@@ -68,9 +78,14 @@ export default function CountrySelector({ context, country, ...props }) {
 
 CountrySelector.propTypes = {
   context: PropTypes.string.isRequired,
+  geoName: PropTypes.string,
   country: PropTypes.shape({
     isoCode: PropTypes.string,
     slug: PropTypes.string,
     shortName: PropTypes.string,
   }).isRequired,
+};
+
+CountrySelector.defaultProps = {
+  geoName: undefined,
 };

@@ -11,15 +11,19 @@ const useStyles = makeStyles((theme) => ({
     padding: 0,
   },
   menuItem: {
+    "&.MuiListItem-button:hover": {
+      backgroundColor: theme.palette.text.secondary,
+      color: theme.palette.primary.main,
+    },
     // ListItem classes are set using .Mui-selected & hence we need to override
     // them the same way; Would have preferred via `selected` but alas!
     "&.Mui-selected": {
-      color: theme.palette.text.secondary,
       backgroundColor: theme.palette.primary.main,
+      color: theme.palette.text.secondary,
     },
     "&.Mui-selected:hover": {
-      color: theme.palette.text.secondary,
       backgroundColor: theme.palette.primary.main,
+      color: theme.palette.text.secondary,
     },
   },
 }));
