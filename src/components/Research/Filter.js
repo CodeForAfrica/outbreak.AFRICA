@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   caption: {
     fontWeight: 700,
     color: '#9D9C9C',
-    margin: '0.5rem',
+    margin: '1rem',
     textDecoration: 'none',
     "&:hover": {
       textDecoration: 'none'
