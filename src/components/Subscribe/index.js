@@ -6,6 +6,7 @@ import { Grid, TextField, IconButton, Typography, useMediaQuery } from "@materia
 import { Section } from "@commons-ui/core";
 
 import email from "assets/email.svg";
+import electricBlueEmail from "assets/electric-blue-email.svg";
 import source from "assets/subscribe-image.png";
 
 const useStyles = makeStyles((theme) => ({
@@ -54,6 +55,7 @@ function Subscribe({ props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -88,7 +90,14 @@ function Subscribe({ props }) {
               />
 
               <IconButton className={classes.button}>
-                <img src={email} alt="Arrow icon" className={classes.img} />
+
+                <img
+                  src={email}
+                  alt="Arrow icon"
+                  className={classes.img}
+                  onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
+                  onMouseOut={e => (e.currentTarget.src = email)}
+                />
               </IconButton>
             </form>
           </Grid>
