@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Subscribe({ ...props }) {
+function Subscribe({ props }) {
   const classes = useStyles(props);
   return (
     <div className={classes.root}>
