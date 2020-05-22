@@ -44,10 +44,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     padding: 0,
-    paddingTop: "1rem",
-    '&:hover': {
-      color: "#0050FF"
-    }
+    paddingTop: "1rem"
   },
 }));
 
