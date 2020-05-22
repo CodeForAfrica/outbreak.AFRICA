@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Box, Button } from "@material-ui/core";
 import { RichTypography } from "@commons-ui/core";
+import Link from "components/Link";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { getFilterData } from "lib";
@@ -21,9 +22,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   caption: {
-    margin: '0.6rem',
     fontWeight: 700,
-    color: '#9D9C9C'
+    color: '#9D9C9C',
+    margin: '0.5rem',
+    textDecoration: 'none',
+    "&:hover": {
+      textDecoration: 'none'
+    },
   },
   itemContainer: {
     display: "flex",
@@ -58,18 +63,21 @@ function Filter() {
         justify="space-between"
         alignItems="center"
       >
-        <div className={classes.filter}>
+        <Grid item xs={12} className={classes.filter}>
           {filterData.map((data) => (
-            <Grid item className={classes.itemContainer}>
-              <Button size="small" rounded className={classes.button}>
-                {data.topic}
-              </Button>
-              <Typography variant="caption" className={classes.caption}>
-                {data.subtopic}
-              </Typography>
-            </Grid>
+            <Button size="small" rounded className={classes.button}>
+              {data.topic}
+            </Button>
           ))}
-        </div>
+        </Grid>
+
+        <Grid item xs={12} className={classes.filter}>
+          {filterData.map((data) => (
+            <Link variant="caption" href="#" className={classes.caption}>
+              {data.subtopic}
+            </Link>
+          ))}
+        </Grid>
       </Grid>
     </div>
   );
