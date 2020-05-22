@@ -1,7 +1,7 @@
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { Grid, TextField, IconButton, Typography, useMediaQuery } from "@material-ui/core";
 
 import { Section } from "@commons-ui/core";
 
@@ -44,23 +44,27 @@ const useStyles = makeStyles((theme) => ({
   button: {
     padding: 0,
     paddingTop: "1rem",
+    '&:hover': {
+      color: "#0050FF"
+    }
   },
 }));
 
 function Subscribe({ props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
         <Grid container direction="row" justify="center">
-          <Grid item xs={12} md={5}>
+          {isDesktop ? <Grid item xs={12} md={5}>
             <img
               src={source}
               alt="Subscribe"
               className={classes.subscribeImage}
             />
-          </Grid>
-
+          </Grid> : null}
           <Grid item xs={8} md={7} className={classes.subscribeGrid}>
             <Typography variant="h2" className={classes.title}>
               Subscribe

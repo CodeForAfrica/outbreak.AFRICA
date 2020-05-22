@@ -104,6 +104,7 @@ function Navigation({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
+
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
@@ -117,15 +118,15 @@ function Navigation({
               navigation={navigation}
             />
           ) : (
-            <>
-              <div className={classes.grow} />
-              <MobileNavigation
-                country={country}
-                countries={countries}
-                navigation={navigation}
-              />
-            </>
-          )}
+              <>
+                <div className={classes.grow} />
+                <MobileNavigation
+                  country={country}
+                  countries={countries}
+                  navigation={navigation}
+                />
+              </>
+            )}
         </Toolbar>
       </AppBar>
       {/* https://material-ui.com/components/app-bar/#fixed-placement */}
