@@ -47,8 +47,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Subscribe() {
-  const classes = useStyles();
+function Subscribe({ ...props }) {
+  const classes = useStyles(props);
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
