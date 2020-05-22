@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Grid, Box, Button } from "@material-ui/core";
+import { Grid, Hidden, Button } from "@material-ui/core";
 import { RichTypography } from "@commons-ui/core";
 import Link from "components/Link";
 
@@ -51,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
 function Filter() {
   const classes = useStyles();
   const filterData = getFilterData();
+  console.log(filterData)
   return (
     <div className={classes.root}>
       <Grid item xs={12}>
@@ -65,18 +66,19 @@ function Filter() {
       >
         <Grid item xs={12} className={classes.filter}>
           {filterData.map((data) => (
-            <Button size="small" rounded className={classes.button}>
+            <Button
+              size="small"
+              rounded
+              className={classes.button}>
               {data.topic}
             </Button>
           ))}
         </Grid>
 
         <Grid item xs={12} className={classes.filter}>
-          {filterData.map((data) => (
-            <Link variant="caption" href="#" className={classes.caption}>
-              {data.subtopic}
+          <Link variant="caption" href="#" className={classes.caption}>
+            Sub-topic
             </Link>
-          ))}
         </Grid>
       </Grid>
     </div>
