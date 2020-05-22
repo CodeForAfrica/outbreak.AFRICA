@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     padding: 0,
-    paddingTop: "1rem"
+    paddingTop: "1rem",
+
   },
 }));
 
@@ -57,13 +58,13 @@ function Subscribe({ props }) {
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
         <Grid container direction="row" justify="center">
-          {isDesktop ? <Grid item xs={12} md={5}>
-            <img
+          <Grid item xs={12} md={5}>
+            {isDesktop ? <img
               src={source}
               alt="Subscribe"
               className={classes.subscribeImage}
-            />
-          </Grid> : null}
+            /> : null}
+          </Grid>
           <Grid item xs={8} md={7} className={classes.subscribeGrid}>
             <Typography variant="h2" className={classes.title}>
               Subscribe
