@@ -1,33 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { useRouter } from "next/router";
+
 import classNames from "classnames";
 
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { Section } from "@commons-ui/core";
 
 import Link from "components/Link";
-
 import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
 import Search from "components/Navigation/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
+import PageNavigation from "./PageNavigation";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    margin: "0rem 6rem",
-  },
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
+  root: {},
+  section: {},
   button: {
     paddingLeft: 0,
     paddingRight: 0,
     marginRight: "0.5rem",
+    "&:hover": {
+      backgroundColor: "white",
+    },
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       marginRight: "2rem",
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("xl")]: {
       marginRight: "4rem",
     },
   },
@@ -38,10 +43,10 @@ const useStyles = makeStyles((theme) => ({
     },
     marginLeft: "0.75rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       marginLeft: "1.25rem",
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("xl")]: {
       marginLeft: "2rem",
     },
   },
@@ -51,78 +56,116 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  navigation: {
+    height: typography.pxToRem(110),
+    [breakpoints.up("xl")]: {
+      height: typography.pxToRem(150),
+    },
+  },
 }));
 
-function DesktopNavigation({ country, ...props }) {
+function DesktopNavigation({ country, navigation, ...props }) {
   const classes = useStyles(props);
+  const router = useRouter();
+  const [dataNavigation, ...otherNavigations] = navigation || [];
+  const { asPath } = router;
+  const currentPageUrl = `/${asPath.split("/")[1]}`;
+  const pageNavigation = otherNavigations.find(
+    (otherNavigation) => otherNavigation.url === currentPageUrl
+  );
 
+  if (!dataNavigation) {
+    return null;
+  }
   return (
-    <Grid container justify="flex-start" alignItems="center">
-      <Grid item md={3}>
-        <Logo />
-      </Grid>
-      <div className={classes.grow} />
-      <Grid item md={5} container justify="flex-end">
-        <Grid item>
-          <MenuButton
-            color="secondary"
-            size="large"
-            title="DATA"
-            variant="outlined"
-            className={classes.button}
+    <Grid container className={classes.root}>
+      <Grid item xs={12}>
+        <Section classes={{ root: classes.section }}>
+          <Grid
+            container
+            justify="flex-start"
+            alignItems="center"
+            className={classes.navigation}
           >
-            <DataMenuList country={country} dense />
-          </MenuButton>
-        </Grid>
-        <Grid item>
-          <LinkButton href="/research" size="large" className={classes.button}>
-            RESEARCH
-          </LinkButton>
-        </Grid>
-        <Grid item>
-          <Button size="large" className={classes.button}>
-            INSIGHTS
-          </Button>
-        </Grid>
+            <Grid item md={3}>
+              <Logo />
+            </Grid>
+            <div className={classes.grow} />
+            <Grid item md={5} container justify="flex-end">
+              <Grid item>
+                <MenuButton
+                  color="secondary"
+                  size="large"
+                  title={dataNavigation.title}
+                  variant="outlined"
+                  className={classes.button}
+                >
+                  <DataMenuList country={country} dense />
+                </MenuButton>
+              </Grid>
+              {otherNavigations.map((otherNavigation) => (
+                <Grid item>
+                  <LinkButton
+                    href={otherNavigation.url}
+                    size="large"
+                    className={classes.button}
+                  >
+                    {otherNavigation.title}
+                  </LinkButton>
+                </Grid>
+              ))}
+            </Grid>
+            <Grid item md={3}>
+              <Search size="large" />
+            </Grid>
+            <Grid item md={1} container justify="flex-start">
+              <Link
+                href="/#"
+                underline="none"
+                variant="overline"
+                className={classNames(classes.buttonLanguage, "active")}
+              >
+                En
+              </Link>
+              <Link
+                href="/#"
+                underline="none"
+                variant="overline"
+                className={classNames(classes.buttonLanguage)}
+              >
+                Fr
+              </Link>
+              <Link
+                href="/#"
+                underline="none"
+                variant="overline"
+                className={classNames(
+                  classes.buttonLanguage,
+                  classes.buttonLanguageLast
+                )}
+              >
+                عربى
+              </Link>
+            </Grid>
+          </Grid>
+        </Section>
       </Grid>
-      <Grid item md={3}>
-        <Search size="large" />
-      </Grid>
-      <Grid item md={1} container justify="flex-start">
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(classes.buttonLanguage, "active")}
-        >
-          En
-        </Link>
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(classes.buttonLanguage)}
-        >
-          Fr
-        </Link>
-        <Link
-          href="/#"
-          underline="none"
-          variant="overline"
-          className={classNames(
-            classes.buttonLanguage,
-            classes.buttonLanguageLast
-          )}
-        >
-          عربى
-        </Link>
-      </Grid>
+      {pageNavigation && pageNavigation.subnav && (
+        <Grid item xs={12}>
+          <PageNavigation
+            pathname={asPath}
+            navigation={pageNavigation.subnav}
+            classes={{ section: classes.section }}
+          />
+        </Grid>
+      )}
     </Grid>
   );
 }
 
 DesktopNavigation.propTypes = {
   country: PropTypes.shape({}).isRequired,
+  navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 export default DesktopNavigation;

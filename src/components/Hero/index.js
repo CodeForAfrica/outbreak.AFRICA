@@ -26,12 +26,17 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("md")]: {
       backgroundPosition: "20% 30%",
       backgroundSize: "75% 55%",
+      padding: `${typography.pxToRem(20)} 0`,
     },
     [breakpoints.up("lg")]: {
       backgroundPosition: "20% 90%",
       backgroundSize: "70% 75%",
     },
+    [breakpoints.up("xl")]: {
+      padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
+    },
   },
+
   heroCarousel: {
     "& ul > li": {
       padding: "0 8px",
@@ -61,6 +66,9 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("lg")]: {
       paddingTop: "8.125rem",
     },
+    "& p": {
+      margin: 0,
+    }
   },
   description: {
     marginTop: "1.0625rem",
@@ -73,11 +81,20 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.up("md")]: {
       maxWidth: "41.12rem",
     },
+    "& p": {
+      margin: 0,
+    }
   },
 }));
 
 function Hero({ heroCarousel, ...props }) {
   const classes = useStyles(props);
+  const {
+    tagline,
+    title,
+    carousel_items: carouselItems,
+    link_title: carouselLinkTitle,
+  } = heroCarousel;
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -94,9 +111,7 @@ function Hero({ heroCarousel, ...props }) {
                 component="div"
                 classes={{ root: classes.title }}
               >
-                {`<span class='highlight'>Contextual</span> data <br /> 
-                  with <span class='highlight'>actionable</span>  
-                  insights`}
+                {title}
               </RichTypography>
             </Grid>
             <Grid item xs={12}>
@@ -104,17 +119,15 @@ function Hero({ heroCarousel, ...props }) {
                 variant="subtitle1"
                 classes={{ root: classes.description }}
               >
-                {`Data driven analysis on  
-                <span class='highlight'>COVID-19</span> in more than 
-                10 African countries. Find out more about us.`}
+                {tagline}
               </RichTypography>
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} className={classes.heroCarousel}>
             {heroCarousel && (
               <HeroCarousel
-                carouselItems={heroCarousel.carousel_items}
-                carouselLinkTitle={heroCarousel.link_title}
+                carouselItems={carouselItems}
+                carouselLinkTitle={carouselLinkTitle}
               />
             )}
           </Grid>
@@ -127,6 +140,8 @@ Hero.propTypes = {
   heroCarousel: PropTypes.shape({
     carousel_items: PropTypes.arrayOf(PropTypes.shape({})),
     link_title: PropTypes.string,
+    tagline: PropTypes.string,
+    title: PropTypes.string,
   }),
 };
 

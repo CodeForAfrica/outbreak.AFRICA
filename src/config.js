@@ -35,6 +35,39 @@ Disallow:
   MAPIT_URL: "https://dev.mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
+  researchMenu: [
+    {
+      name: "Featured Expert",
+      href: "/research/featured-experts",
+    },
+    {
+      name: "Featured Documents",
+      href: "/research/featured-documents",
+    },
+    {
+      name: "Featured Datasets",
+      href: "/research/featured-datasets",
+    },
+  ],
+  insightsMenu: [
+    {
+      name: "Analysis",
+      href: "/insights/analysis",
+    },
+    {
+      name: "Myth-Busters",
+      href: "/insights/mythbusters",
+    },
+    {
+      name: "Featured Stories",
+      href: "/insights/featured-stories",
+    },
+    {
+      name: "Resources",
+      href: "/insights/resources",
+    },
+  ],
+
   tileData: [
     {
       index: 0,
@@ -185,6 +218,8 @@ Disallow:
   ],
   colorIndexTable: "allFinalVulnerabilityIndices",
   colorIndexField: "rating",
+  colorScoreField: "score",
+  colorScoreLabel: "All Section Vulnerability Score",
   vulnerabilityIndexColor: {
     "very high": "#266cff",
     high: "#004cff",
