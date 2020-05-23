@@ -45,6 +45,8 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   container: {
     marginBottom: "0.625rem",
+    paddingTop: 0,    //grid spacing adds top & bottom padding thats not needed to grid items
+    paddingBottom: 0, //this is to cancel that
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
