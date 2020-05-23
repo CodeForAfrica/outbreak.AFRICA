@@ -181,10 +181,18 @@ function ProfilePage({
     populationTables: config.populationTables,
     visuals,
   });
+
+  console.log(activeTab);
+
+  const indexTable = useMemo(() => config.colorIndexTable[activeTab], [ activeTab] );
+  const scoreLabel = useMemo(() => config.colorScoreLabel[activeTab], [ activeTab] );
+
+  console.log(indexTable);
+
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
     indexField: config.colorIndexField,
-    indexTable: config.colorIndexTable,
+    indexTable: indexTable,
     scoreField: config.colorScoreField,
   });
 
@@ -423,6 +431,7 @@ function ProfilePage({
           geoId={geoId}
           geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
           onClickGeoLayer={onClickGeoLayer}
+          colorScoreLabel={scoreLabel}
         />
       )}
       {isDesktop && (
@@ -435,7 +444,7 @@ function ProfilePage({
             height="500px"
             onClickGeoLayer={onClickGeoLayer}
             geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
-            scoreLabel={config.colorScoreLabel}
+            scoreLabel={scoreLabel}
             width="100%"
           />
         </>
