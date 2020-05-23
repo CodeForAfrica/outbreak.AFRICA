@@ -41,7 +41,7 @@ export async function getSitePage(slug, lang) {
     config.page,
     options,
     { rendered: data[0].content.rendered },
-    data[0].acf,
+    data[0].acf
   );
 
   config.language = lang;

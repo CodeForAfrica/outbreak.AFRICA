@@ -68,7 +68,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
   description: {
     marginTop: "1.0625rem",
@@ -83,7 +83,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
 }));
 

@@ -182,13 +182,17 @@ function ProfilePage({
     visuals,
   });
 
-  const indexTable = useMemo(() => config.colorIndexTable[activeTab], [ activeTab] );
-  const scoreLabel = useMemo(() => config.colorScoreLabel[activeTab], [ activeTab] );
+  const indexTable = useMemo(() => config.colorIndexTable[activeTab], [
+    activeTab,
+  ]);
+  const scoreLabel = useMemo(() => config.colorScoreLabel[activeTab], [
+    activeTab,
+  ]);
 
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
     indexField: config.colorIndexField,
-    indexTable: indexTable,
+    indexTable,
     scoreField: config.colorScoreField,
   });
 
