@@ -182,12 +182,8 @@ function ProfilePage({
     visuals,
   });
 
-  console.log(activeTab);
-
   const indexTable = useMemo(() => config.colorIndexTable[activeTab], [ activeTab] );
   const scoreLabel = useMemo(() => config.colorScoreLabel[activeTab], [ activeTab] );
-
-  console.log(indexTable);
 
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
