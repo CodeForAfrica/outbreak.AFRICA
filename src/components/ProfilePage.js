@@ -74,6 +74,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
   },
+  sourceDiv: {
+    position: 'absolute',
+    bottom: 0,
+    paddingLeft: '38px', //similar to chartRoot
+  },
   source: {
     color: "#9D9C9C",
     marginLeft: "0 !important",
@@ -268,7 +273,7 @@ function ProfilePage({
       profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
-            <Grid item container id={tab.slug} key={tab.slug}>
+            <Grid item container id={tab.slug} key={tab.slug} spacing={2}>
               {(activeTab === "all" || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
@@ -297,6 +302,10 @@ function ProfilePage({
                     id={id}
                     xs={12}
                     key={chart.id}
+                    md={ chart.layout ?
+                      parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) *
+                      12 : 12
+                    }
                     className={classes.container}
                   >
                     <ChartContainer
@@ -308,6 +317,7 @@ function ProfilePage({
                         title: classes.title,
                         root: classes.chartRoot,
                         containerRoot: classes.containerRoot,
+                        source: classes.sourceDiv,
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
                         embedSubtitle: classes.embedSubtitle,
