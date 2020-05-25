@@ -48,6 +48,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     paddingRight: typography.pxToRem(16),
     "&:last-of-type": {
       paddingRight: 0,
+    },
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
@@ -190,17 +191,10 @@ function ProfilePage({
     visuals,
   });
 
-  const indexTable = useMemo(() => config.colorIndexTable[activeTab], [
-    activeTab,
-  ]);
-  const scoreLabel = useMemo(() => config.colorScoreLabel[activeTab], [
-    activeTab,
-  ]);
-
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
     indexField: config.colorIndexField,
-    indexTable,
+    indexTable: config.colorIndexTable[activeTab],
     scoreField: config.colorScoreField,
   });
 
@@ -444,7 +438,7 @@ function ProfilePage({
           geoId={geoId}
           geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
           onClickGeoLayer={onClickGeoLayer}
-          colorScoreLabel={scoreLabel}
+          colorScoreLabel={config.colorScoreLabel[activeTab]}
         />
       )}
       {isDesktop && (
@@ -457,7 +451,7 @@ function ProfilePage({
             height="500px"
             onClickGeoLayer={onClickGeoLayer}
             geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
-            scoreLabel={scoreLabel}
+            scoreLabel={config.colorScoreLabel[activeTab]}
             width="100%"
           />
         </>
