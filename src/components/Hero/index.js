@@ -7,7 +7,8 @@ import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
-import HeroCarousel from "./HeroCarousel";
+
+import Carousel from "./Carousel";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
@@ -36,21 +37,11 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
     },
   },
-
-  heroCarousel: {
-    "& ul > li": {
-      padding: "0 8px",
-    },
+  carousel: {
     width: "calc(((100vw - 100%) / 2) + 100%)",
     zIndex: 1,
-    [breakpoints.up("md")]: {
-      paddingTop: "2.625rem",
-      position: "relative",
-      right: "-100px",
-    },
-    [breakpoints.up("xl")]: {
-      right: "-244px",
-    },
+    [breakpoints.up("md")]: {},
+    [breakpoints.up("xl")]: {},
   },
   title: {
     width: "100%",
@@ -68,7 +59,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
   description: {
     marginTop: "1.0625rem",
@@ -83,7 +74,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
 }));
 
@@ -95,6 +86,7 @@ function Hero({ heroCarousel, ...props }) {
     carousel_items: carouselItems,
     link_title: carouselLinkTitle,
   } = heroCarousel;
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -104,7 +96,7 @@ function Hero({ heroCarousel, ...props }) {
           alignItems="flex-start"
           className={classes.hero}
         >
-          <Grid item container md={7}>
+          <Grid item container md={8}>
             <Grid item xs={12}>
               <RichTypography
                 variant="h1"
@@ -123,11 +115,12 @@ function Hero({ heroCarousel, ...props }) {
               </RichTypography>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={5} className={classes.heroCarousel}>
+          <Grid item xs={12} md={4}>
             {heroCarousel && (
-              <HeroCarousel
+              <Carousel
                 carouselItems={carouselItems}
                 carouselLinkTitle={carouselLinkTitle}
+                classes={{ root: classes.carousel }}
               />
             )}
           </Grid>
