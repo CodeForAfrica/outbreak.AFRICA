@@ -276,7 +276,7 @@ function ProfilePage({
       profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
-            <Grid item container id={tab.slug} key={tab.slug} spacing={2}>
+            <Grid item container id={tab.slug} key={tab.slug}>
               {(activeTab === "all" || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
