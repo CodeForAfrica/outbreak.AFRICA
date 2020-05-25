@@ -216,16 +216,28 @@ Disallow:
     "allPopulationResidence2009S",
     "allPopulationZa2016S",
   ],
-  colorIndexTable: "allFinalVulnerabilityIndices",
+  colorIndexTable: {
+    all: "allFinalVulnerabilityIndices",
+    "demographic-vulnerability": "allDemographicsVulnerabilityIndices",
+    "epidemiological-factors": "allEpidemiologicalFactorsVulnerabilityIndices",
+    "healthcare-system-factors": "allHealthcareSystemsVulnerabilityIndices",
+    "wash-basic-services": "allWashVulnerabilityIndices",
+  },
   colorIndexField: "rating",
   colorScoreField: "score",
-  colorScoreLabel: "All Section Vulnerability Score",
+  colorScoreLabel: {
+    all: "All Section Vulnerability Score",
+    "demographic-vulnerability": "Demographics Vulnerability Score",
+    "epidemiological-factors": "Epidemiological Factors Vulnerability Score",
+    "healthcare-system-factors": "Healthcare Systems Factors Vulnerability Score",
+    "wash-basic-services": "WASH/ Basic Services Vulnerability Score",
+  },
   vulnerabilityIndexColor: {
-    "very high": "#266cff",
-    high: "#004cff",
+    "very high": "#004cff",
+    high: "#266cff",
     moderate: "#4d8cff",
     low: "#73acff",
-    "very low": "#9cf",
+    "very low": "#99ccff",
   },
 };
 

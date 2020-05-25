@@ -45,6 +45,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   container: {
     marginBottom: "0.625rem",
+    paddingRight: typography.pxToRem(16),
+    "&:last-of-type": {
+      paddingRight: 0,
+    },
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
@@ -73,6 +77,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   title: {
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
+  },
+  sourceDiv: {
+    position: 'absolute',
+    bottom: 0,
+    paddingLeft: '38px', //similar to chartRoot
   },
   source: {
     color: "#9D9C9C",
@@ -181,10 +190,11 @@ function ProfilePage({
     populationTables: config.populationTables,
     visuals,
   });
+
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
     indexField: config.colorIndexField,
-    indexTable: config.colorIndexTable,
+    indexTable: config.colorIndexTable[activeTab],
     scoreField: config.colorScoreField,
   });
 
@@ -289,6 +299,10 @@ function ProfilePage({
                     id={id}
                     xs={12}
                     key={chart.id}
+                    md={ chart.layout ?
+                      parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) *
+                      12 : 12
+                    }
                     className={classes.container}
                   >
                     <ChartContainer
@@ -300,6 +314,7 @@ function ProfilePage({
                         title: classes.title,
                         root: classes.chartRoot,
                         containerRoot: classes.containerRoot,
+                        source: classes.sourceDiv,
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
                         embedSubtitle: classes.embedSubtitle,
@@ -423,6 +438,7 @@ function ProfilePage({
           geoId={geoId}
           geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
           onClickGeoLayer={onClickGeoLayer}
+          colorScoreLabel={config.colorScoreLabel[activeTab]}
         />
       )}
       {isDesktop && (
@@ -435,7 +451,7 @@ function ProfilePage({
             height="500px"
             onClickGeoLayer={onClickGeoLayer}
             geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
-            scoreLabel={config.colorScoreLabel}
+            scoreLabel={config.colorScoreLabel[activeTab]}
             width="100%"
           />
         </>
