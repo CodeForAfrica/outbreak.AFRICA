@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import {
   Button,
   Card,
@@ -11,11 +13,8 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {
-    width: "100%",
-    minHeight: "21rem",
-    height: "100%",
     backgroundColor: "#fafafa",
     border: "1px solid #eeeeee",
     opacity: 0.9,
@@ -23,29 +22,18 @@ const useStyles = makeStyles((theme) => ({
       opacity: 1,
       backgroundColor: "#fff",
     },
-    [theme.breakpoints.up("md")]: {
-      marginRight: "1.25rem",
-      minHeight: "30rem",
-    },
   },
   contentRoot: {
     position: "absolute",
     top: "50%",
     left: "35px",
     width: "90%",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       top: "62.5%",
       left: "15px",
     },
   },
-  media: {
-    minHeight: "21rem",
-    height: "100%",
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      minHeight: "30rem",
-    },
-  },
+  media: {},
   cardLink: {},
   bodyTitle: {
     color: "#fff",
@@ -56,21 +44,39 @@ const useStyles = makeStyles((theme) => ({
     color: "#fff",
     marginBottom: "2rem",
   },
+  cardSize: {
+    height: "auto",
+    width: "100%",
+    [breakpoints.up("md")]: {
+      height: (props) => (widths.values.md * props.height) / widths.values.xl,
+      width: (props) => (widths.values.md * props.width) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      height: (props) => (widths.values.lg * props.height) / widths.values.xl,
+      width: (props) => (widths.values.lg * props.width) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      height: (props) => props.height,
+      width: (props) => props.width,
+    },
+  },
 }));
 
-function CarouselCard({ item, linkTitle }) {
-  const classes = useStyles();
+function CarouselCard({ item, linkTitle, ...props }) {
+  const classes = useStyles(props);
 
   if (!item) {
     return null;
   }
-
   const { title, brief, image, link_url: link } = item;
-
   return (
-    <Card className={classes.root}>
+    <Card className={classNames(classes.cardSize, classes.root)}>
       <CardActionArea style={{ height: "100%" }}>
-        <CardMedia className={classes.media} image={image} title="Item" />
+        <CardMedia
+          className={classNames(classes.cardSize, classes.media)}
+          image={image}
+          title="Item"
+        />
         <Grid
           container
           item
@@ -100,6 +106,7 @@ function CarouselCard({ item, linkTitle }) {
 }
 
 CarouselCard.propTypes = {
+  height: PropTypes.number.isRequired,
   item: PropTypes.shape({
     title: PropTypes.string,
     brief: PropTypes.string,
@@ -107,11 +114,12 @@ CarouselCard.propTypes = {
     link_url: PropTypes.string,
   }),
   linkTitle: PropTypes.string,
+  width: PropTypes.number.isRequired,
 };
 
 CarouselCard.defaultProps = {
-  linkTitle: "Learn More",
   item: undefined,
+  linkTitle: "Learn More",
 };
 
 export default CarouselCard;
