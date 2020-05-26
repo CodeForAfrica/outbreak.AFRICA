@@ -47,16 +47,16 @@ function FeaturedDatasets({ outbreak, ...props }) {
   );
 }
 
-FeaturedDatasets.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-datasets", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default FeaturedDatasets;

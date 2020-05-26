@@ -47,16 +47,16 @@ function Resources({ outbreak, ...props }) {
   );
 }
 
-Resources.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("insights-resources", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default Resources;

@@ -47,16 +47,16 @@ function FeaturedDocuments({ outbreak, ...props }) {
   );
 }
 
-FeaturedDocuments.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-documents", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default FeaturedDocuments;
