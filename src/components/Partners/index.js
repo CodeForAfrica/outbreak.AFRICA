@@ -108,6 +108,7 @@ function Partners({ partners, subscribe, joinUs, ...props }) {
             item
             md={5}
             sm={12}
+            container
             direction="column"
             className={classes.bannerContainer}
           >
@@ -129,8 +130,7 @@ function Partners({ partners, subscribe, joinUs, ...props }) {
               )}
             </Grid>
           </Grid>
-
-          <Grid md={7} sm={12} className={classes.partnerContainer}>
+          <Grid item md={7} sm={12} className={classes.partnerContainer}>
             <PartnerGrid partners={partners} />
           </Grid>
         </Grid>
