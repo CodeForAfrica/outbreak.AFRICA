@@ -13,6 +13,7 @@ import Filter from "components/Research/Filter";
 
 function ProfileList({
   cellHeight,
+  experts,
   height,
   onSelectedIndexChanged,
   linkComponent,
@@ -20,7 +21,6 @@ function ProfileList({
   md,
   profileClassCount,
   profileClassPrefix,
-  profiles,
   selectedIndex: selectedIndexProp,
   sm,
   xs,
@@ -28,6 +28,20 @@ function ProfileList({
 }) {
   const classes = useStyles(props);
   const rootRef = useRef(null);
+
+  const profiles =
+    experts &&
+    experts.map((profile, index) => {
+      return {
+        id: index,
+        name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
+        image: {
+          url: profile.image,
+        },
+      };
+    });
 
   return (
     <div className={classes.root} ref={rootRef}>
@@ -70,6 +84,9 @@ function ProfileList({
 
 ProfileList.propTypes = {
   cellHeight: PropTypes.number,
+  experts: PropTypes.arrayOf(
+    PropTypes.shape({})
+    ).isRequired,
   height: PropTypes.number,
   linkComponent: PropTypes.elementType,
   lg: PropTypes.number,
@@ -77,21 +94,6 @@ ProfileList.propTypes = {
   onSelectedIndexChanged: PropTypes.func,
   profileClassCount: PropTypes.number,
   profileClassPrefix: PropTypes.string,
-  profiles: PropTypes.arrayOf(
-    PropTypes.shape({
-      description: PropTypes.string,
-      image: PropTypes.shape({
-        description: PropTypes.string,
-        url: PropTypes.string.isRequired,
-      }),
-      link: PropTypes.shape({
-        title: PropTypes.string,
-        url: PropTypes.string.isRequired,
-      }),
-      name: PropTypes.string,
-      title: PropTypes.string,
-    })
-  ).isRequired,
   selectedIndex: PropTypes.number,
   sm: PropTypes.number,
   xs: PropTypes.number,

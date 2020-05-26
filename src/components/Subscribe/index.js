@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
@@ -45,8 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Subscribe() {
-  const classes = useStyles();
+function Subscribe({ subscribe, ...props}) {
+  const classes = useStyles(props);
+  const { title, description } = subscribe;
+  
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -61,14 +64,14 @@ function Subscribe() {
 
           <Grid item xs={8} md={6} className={classes.subscribeGrid}>
             <Typography variant="h2" className={classes.title}>
-              Subscribe
+              {title}
             </Typography>
             <Typography
               variant="subtitle1"
               color="textSecondary"
               className={classes.subtitle}
             >
-              Stay updated with the latest News, Research and Analysis
+              {description}
             </Typography>
 
             <form className={classes.form}>
@@ -92,4 +95,17 @@ function Subscribe() {
   );
 }
 
+Subscribe.propTypes = {
+  subscribe: PropTypes.shape({
+    description: PropTypes.string,
+    title: PropTypes.string,
+  })
+};
+
+Subscribe.defaultProps = {
+  subscribe: {
+    title: "Subscribe",
+    description: "Stay updated with the latest News, Research and Analysis",
+  }
+};
 export default Subscribe;
