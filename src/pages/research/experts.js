@@ -79,7 +79,7 @@ Research.getInitialProps = async (props) => {
     query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("featured-experts", lang);
+  const outbreak = await getSitePage("research-experts", lang);
 
   return {
     outbreak,

@@ -7,9 +7,13 @@ import classNames from "classnames";
 import { Section } from "@commons-ui/core";
 
 import { Grid } from "@material-ui/core";
-import Profile from "components/Research/ListItem";
+import { A, ListItem } from "@commons-ui/core";
 import useStyles from "components/Research/ProfileList/useStyles";
 import Filter from "components/Research/Filter";
+
+import linkedIn from "assets/Icon awesome-linkedin-in.svg";
+import twitter from "assets/Icon awesome-twitter.svg";
+import website from "assets/icon web-white.svg";
 
 function ProfileList({
   cellHeight,
@@ -40,6 +44,47 @@ function ProfileList({
         image: {
           url: profile.image,
         },
+        itemChildren: <Grid className={classes.profileItemChildren}>
+          {profile.linkedin_profile_url && (
+            <A
+              href={profile.linkedin_profile_url}
+              color="textSecondary"
+              className={classes.link}
+            >
+              <img
+                src={linkedIn}
+                alt="LinkedIn Profile"
+                className={classes.icon}
+              />
+            </A>
+          )}
+          {profile.twitter_profile_url && (
+            <A
+              href={profile.twitter_profile_url}
+              color="textSecondary"
+              className={classes.link}
+            >
+              <img
+                src={twitter}
+                alt="Twitter Profile"
+                className={classes.icon}
+              />
+            </A>
+          )}
+          {profile.website_url && (
+            <A
+              href={profile.website_url}
+              color="textSecondary"
+              className={classes.link}
+            >
+              <img
+                src={website}
+                alt="Website"
+                className={classes.icon}
+              />
+            </A>
+          )}
+        </Grid>
       };
     });
 
@@ -47,10 +92,10 @@ function ProfileList({
     <div className={classes.root} ref={rootRef}>
       <Section classes={{ root: classes.section }}>
         <Filter />
-        <Grid container direction="row" justify="center" spacing={2}>
+        <Grid container direction="row" spacing={2}>
           {profiles.map((profile, index) => (
-            <Grid item xs={12} md={3} key={profile.id}>
-              <Profile
+            <Grid item xs={12} md={3} key={profile.id} className={classes.profilesGridList}>
+              <ListItem
                 key={profile.title}
                 classes={{
                   root: classNames(classes.profile, {
@@ -69,8 +114,7 @@ function ProfileList({
                 height={cellHeight}
                 description={profile.description}
                 image={profile.image}
-                link={profile.link}
-                linkComponent={linkComponent}
+                itemChildren={profile.itemChildren}
                 name={profile.name}
                 title={profile.title}
               />

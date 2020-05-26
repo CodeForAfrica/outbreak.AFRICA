@@ -1,22 +1,56 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({breakpoints, palette}) => ({
   root: {
     padding: "2rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       padding: "5rem",
     },
   },
+  icon: {
+    width: "1.375rem",
+    height: "1.375rem",
+    objectFit: "contain",
+  },
+  link: {
+    display: "inline-block",
+    padding: "0 0.625rem",
+  },
   profile: {},
-  profileDescription: {},
+  profileDescription: {
+    color: palette.text.secondary,
+    zIndex: 1,
+  },
   profileLink: {},
-  profileName: {},
+  profileItemChildren: {
+    zIndex: 1,
+  },
+  profileName: {
+    color: palette.text.secondary,
+    zIndex: 1,
+  },
   profileNameSelected: {},
   profilePicture: {},
   profilePictureSelected: {},
-  profileTitle: {},
+  profileTitle: {
+    color: palette.text.secondary,
+    zIndex: 1,
+  },
   profiles: {},
-  profilesGridList: {},
+  profilesGridList: {
+    "&:after": {
+      mixBlendMode: "overlay",
+    },
+    "&.profile-0:after": {
+      backgroundColor: palette.primary.main,
+    },
+    "&.profile-1:after": {
+      backgroundColor: `#000000`,
+    },
+    "&.profile-2:after": {
+      backgroundColor: palette.highlight.main,
+    },
+  },
   profilesScrollBar: {},
 }));
 
