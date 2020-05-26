@@ -152,8 +152,8 @@ MainFooter.propTypes = {
       about: PropTypes.shape({}),
       organization_logo: PropTypes.shape({}),
       initiative_logo: PropTypes.shape({}),
-      quick_links: PropTypes.shape({}),
-      legal_links: PropTypes.shape({}),
+      quick_links: PropTypes.arrayOf(PropTypes.shape({})),
+      legal_links: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }).isRequired,
 };
