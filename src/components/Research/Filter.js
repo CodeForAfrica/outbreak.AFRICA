@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import { PropTypes } from "prop-types";
 
 import { Grid, Typography, Button } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { getFilterData } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -12,15 +12,27 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     border: "1px solid grey",
-    margin: "1rem",
-    padding: "0.5rem 1.5rem",
+    fontFamily: theme.typography.fontFamily,
+    padding: "auto 1rem",
+    textTransform: "capitalize",
+    minWidth: "100px",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",
     },
   },
   caption: {
-    fontSize: "1rem",
+    fontWeight: 500,
+    color: '#9D9C9C',
+    margin: '1rem',
+    textDecoration: 'none',
+    "&:hover": {
+      textDecoration: 'none'
+    },
+  },
+  itemContainer: {
+    display: "flex",
+    flexDirection: 'column'
   },
   filter: {
     display: "flex",
@@ -36,37 +48,54 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Filter() {
+function Filter({ topics }) {
   const classes = useStyles();
-  const filterData = getFilterData();
-  return (
-    <div className={classes.root}>
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <div className={classes.filter}>
-          <Typography variant="caption"> Filter: </Typography>
-          <Grid item>
-            {filterData.map((data) => (
-              <Button size="small" rounded className={classes.button}>
-                <Typography variant="caption" className={classes.caption}>
-                  {data.topic}
-                </Typography>
-              </Button>
-            ))}
-          </Grid>
-        </div>
-
-        <Grid item>
-          <Typography variant="caption" style={{ textDecoration: "underline" }}>
-            Clear all
-          </Typography>
-        </Grid>
-      </Grid>
-    </div>
+  const [ subTopics, setSubTopics ] = useState(
+    topics.filter(topic => topic.parent !== 0)
   );
+  const [showSubTopic, setShowSubTopic] = useState(false);
+
+  const onButtonClick = () => {
+    setShowSubTopic(() => !subTopics);
+  };
+
+  const [activeTopic, setActiveTopic] = useState(
+    process.browser && window.location.hash.slice(1)
+      ? window.location.hash.slice(1)
+      : "all"
+  );
+
+  const parentTopics = [ { name: 'All', slug: 'all'}, ...topics.filter(topic => topic.parent === 0)];
+  return (
+    <Grid container className={classes.root}>
+      <Grid
+        item
+        container
+        spacing={2}
+        classes={classes.filter}
+      >
+      {parentTopics.map(item => (
+        <Grid item>
+          <Button rounded className={classes.button}>
+              {item.name}
+          </Button>
+        </Grid>
+      ))}
+      </Grid>
+      {showSubTopic &&
+        <Grid item xs={12} className={classes.filter}>
+          {subTopics.map(item =>
+            <Link variant="caption" href="#" className={classes.caption}>
+              {item.name}
+            </Link>
+          )}
+        </Grid>
+      }
+    </Grid>
+  );
+}
+
+Filter.propTypes = {
+  topics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 export default Filter;

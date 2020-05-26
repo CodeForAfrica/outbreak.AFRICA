@@ -9,7 +9,6 @@ import ExpertList from "components/Research/ExpertList";
 
 import config from "config";
 import { getSitePage } from "cms";
-import { getProfiles } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {},

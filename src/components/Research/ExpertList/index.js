@@ -86,11 +86,25 @@ function ExpertList({
       };
     });
 
+  const topics = experts
+  .reduce((a, b) => a.concat(b.topic), []);
+
+  const uniqueTopics = topics.reduce((acc, current) => {
+    const x = acc.find(item => item.term_id === current.term_id);
+    if (!x) {
+      return acc.concat([current]);
+    } else {
+      return acc;
+    }
+  }, []);  
+
   return (
     <div className={classes.root} ref={rootRef}>
       <Section classes={{ root: classes.section }}>
         <RichTypography variant="h2">{title}</RichTypography>
-        <Filter />
+
+        <Filter 
+          topics={uniqueTopics} />
         <Grid container direction="row" spacing={2}>
           {profiles.map((profile, index) => (
             <Grid item xs={12} md={3} key={profile.id} className={classes.profilesGridList}>
