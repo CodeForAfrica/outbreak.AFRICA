@@ -99,153 +99,37 @@ export function getFilterData() {
       id: 1,
       topic: "All",
       slug: "all",
-      subtopics: [
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-      ]
+      subtopics: "Sub-topics"
     },
     {
       id: 2,
       topic: "Topic",
       slug: "topic",
-      ssubtopics: [
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-      ]
+      subtopics: "Sub-topics"
     },
     {
       id: 3,
       topic: "Topic",
       slug: "topic",
-      subtopics: [
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-      ]
+      subtopics: "Sub-topics"
     },
     {
       id: 4,
       topic: "Topic",
       slug: "topic",
-      subtopics: [{}]
+      subtopics: "Sub-topics"
     },
     {
       id: 5,
       topic: "Topic",
       slug: "topic",
-      subtopics: [{}]
+      subtopics: "Sub-topics"
     },
     {
       id: 6,
       topic: "Topic",
       slug: "topic",
-      subtopics: [
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-        {
-          name: "Sub-topic",
-          slug: 'subtopic'
-        },
-      ]
+      subtopics: "Sub-topics"
     },
   ];
 }

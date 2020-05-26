@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import { Grid, Button } from "@material-ui/core";
+import { Grid, Button, Typography } from "@material-ui/core";
 import { RichTypography } from "@commons-ui/core";
 import Link from "components/Link";
 
@@ -48,11 +48,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 function Filter() {
   const classes = useStyles();
   const filterData = getFilterData();
   const [hidden, setHidden] = useState(true);
-  console.log(filterData)
 
   const onButtonClick = () => {
     setHidden(!hidden);
@@ -73,6 +74,7 @@ function Filter() {
         <Grid item xs={12} className={classes.filter}>
           {filterData.map((data) => (
             <Button
+              key={data.topic}
               size="small"
               rounded
               className={classes.button}
@@ -80,12 +82,15 @@ function Filter() {
               {data.topic}
             </Button>
           ))}
+          {!hidden ?
+            <Grid item xs={12} className={classes.filter}>
+              {filterData.map((data) =>
+                <Link variant="caption" href="#" className={classes.caption}>
+                  {data.subtopics}
+                </Link>
+              )}
+            </Grid> : <Grid />}
         </Grid>
-        {!hidden ? <Grid item xs={12} className={classes.filter}>
-          <Link variant="caption" href="#" className={classes.caption}>
-            Sub-topic
-            </Link>
-        </Grid> : null}
       </Grid>
     </div>
   );
