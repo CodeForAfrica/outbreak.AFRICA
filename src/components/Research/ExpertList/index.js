@@ -4,19 +4,20 @@ import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
-import { A, ListItem, Section } from "@commons-ui/core";
+import { A, ListItem, RichTypography, Section } from "@commons-ui/core";
 
-import useStyles from "components/Research/ProfileList/useStyles";
+import useStyles from "components/Research/ExpertList/useStyles";
 import Filter from "components/Research/Filter";
 
 import linkedIn from "assets/Icon awesome-linkedin-in.svg";
 import twitter from "assets/Icon awesome-twitter.svg";
 import website from "assets/icon web-white.svg";
 
-function ProfileList({
+function ExpertList({
   experts,
   profileClassCount,
   profileClassPrefix,
+  title,
   ...props
 }) {
   const classes = useStyles(props);
@@ -88,6 +89,7 @@ function ProfileList({
   return (
     <div className={classes.root} ref={rootRef}>
       <Section classes={{ root: classes.section }}>
+        <RichTypography variant="h2">{title}</RichTypography>
         <Filter />
         <Grid container direction="row" spacing={2}>
           {profiles.map((profile, index) => (
@@ -123,17 +125,19 @@ function ProfileList({
   );
 }
 
-ProfileList.propTypes = {
+ExpertList.propTypes = {
   experts: PropTypes.arrayOf(
     PropTypes.shape({})
     ).isRequired,
   profileClassCount: PropTypes.number,
   profileClassPrefix: PropTypes.string,
+  title: PropTypes.string,
 };
 
-ProfileList.defaultProps = {
+ExpertList.defaultProps = {
   profileClassCount: 3,
   profileClassPrefix: "profile-",
+  title: "Featured Experts",
 };
 
-export default ProfileList;
+export default ExpertList;

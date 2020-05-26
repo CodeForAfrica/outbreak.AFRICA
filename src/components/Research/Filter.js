@@ -1,14 +1,13 @@
 import React from "react";
 
 import { Grid, Typography, Button } from "@material-ui/core";
-import { RichTypography } from "@commons-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { getFilterData } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "4rem 0rem",
+    paddingBottom: "3rem",
     flexGrow: 1,
   },
   button: {
@@ -42,10 +41,6 @@ function Filter() {
   const filterData = getFilterData();
   return (
     <div className={classes.root}>
-      <Grid item xs={12}>
-        <RichTypography variant="h2">Featured Experts</RichTypography>
-      </Grid>
-
       <Grid
         container
         direction="row"

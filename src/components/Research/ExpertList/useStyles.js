@@ -4,7 +4,7 @@ const useStyles = makeStyles(({breakpoints, palette}) => ({
   root: {
     padding: "2rem",
     [breakpoints.up("md")]: {
-      padding: "5rem",
+      padding: 0,
     },
   },
   icon: {
