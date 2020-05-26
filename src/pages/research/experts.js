@@ -42,14 +42,17 @@ const useStyles = makeStyles((theme) => ({
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
   const profiles = getProfiles();
 
   return (
     <Page
       outbreak={outbreak}
-      title="Featured Experts"
+      title={pageTitle || "Featured Experts"}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -73,16 +76,16 @@ function Research({ outbreak, ...props }) {
   );
 }
 
-Research.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("research-experts", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default Research;
