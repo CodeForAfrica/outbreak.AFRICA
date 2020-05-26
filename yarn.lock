@@ -1005,12 +1005,11 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@commons-ui/core@^0.0.1-alpha.18":
-  version "0.0.1-alpha.18"
-  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.18.tgz#95686370a2d7493939ba6d5de4c9d0c5846fbbc7"
-  integrity sha512-szQbMPF2m+Jg5bPmhMqdgMuvNzpPtj4hEypGhT9D8Fgytyr4FlUUQjIFhFmzT5VtmwO38i1oc7hDr65fBcLbMA==
+"@commons-ui/core@^0.0.1-alpha.20":
+  version "0.0.1-alpha.20"
+  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.20.tgz#fb159fa05bb960ae7e67ac24dcf43aab28024576"
+  integrity sha512-AqUgW5NNQa86gCaXW5gsErALY1k6BLTbCT0OrL9lSROEyEmfyxjfk23uWBuBnO14Y49mv5NNpxRLO5bnlgEY4A==
   dependencies:
-    classnames "^2.2.6"
     clsx "^1.1.0"
     prop-types "^15.7.2"
     simplebar "^5.1.0"
