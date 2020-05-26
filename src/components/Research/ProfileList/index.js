@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { Section } from "@commons-ui/core";
 
 import { Grid } from "@material-ui/core";
-import Profile from "components/Research/ListItem";
+import ListItem from "components/Research/ListItem";
 import useStyles from "components/Research/ProfileList/useStyles";
 import Filter from "components/Research/Filter";
 
@@ -36,13 +36,13 @@ function ProfileList({
         <Grid container direction="row" justify="center" spacing={2}>
           {profiles.map((profile, index) => (
             <Grid item xs={12} md={3} key={profile.id}>
-              <Profile
+              <ListItem
                 key={profile.title}
                 classes={{
                   root: classNames(classes.profile, {
                     [`${profileClassPrefix}${
                       index % profileClassCount
-                    }`]: profileClassCount,
+                      }`]: profileClassCount,
                   }),
                   description: classes.profileDescription,
                   link: classes.profileLink,

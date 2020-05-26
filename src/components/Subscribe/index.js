@@ -7,7 +7,7 @@ import { Section } from "@commons-ui/core";
 
 import email from "assets/email.svg";
 import electricBlueEmail from "assets/electric-blue-email.svg";
-import source from "assets/subscribe-image.png";
+import source from "assets/subscribe.png";
 
 const useStyles = makeStyles((theme) => ({
   root: {
