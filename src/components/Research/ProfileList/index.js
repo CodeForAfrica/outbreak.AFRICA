@@ -3,11 +3,9 @@ import React, { useRef } from "react";
 import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
+import { A, ListItem, Section } from "@commons-ui/core";
 
-import { Section } from "@commons-ui/core";
-
-import { Grid } from "@material-ui/core";
-import { A, ListItem } from "@commons-ui/core";
 import useStyles from "components/Research/ProfileList/useStyles";
 import Filter from "components/Research/Filter";
 
@@ -16,22 +14,21 @@ import twitter from "assets/Icon awesome-twitter.svg";
 import website from "assets/icon web-white.svg";
 
 function ProfileList({
-  cellHeight,
   experts,
-  height,
-  onSelectedIndexChanged,
-  linkComponent,
-  lg,
-  md,
   profileClassCount,
   profileClassPrefix,
-  selectedIndex: selectedIndexProp,
-  sm,
-  xs,
   ...props
 }) {
   const classes = useStyles(props);
   const rootRef = useRef(null);
+  const theme = useTheme();
+  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
+  const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
+  const isLg = isUpLg && !isUpXl;
+  let cellHeight;
+  if (isUpLg) {
+    cellHeight = isLg ? 438 : 637;
+  }
 
   const profiles =
     experts &&
@@ -127,34 +124,16 @@ function ProfileList({
 }
 
 ProfileList.propTypes = {
-  cellHeight: PropTypes.number,
   experts: PropTypes.arrayOf(
     PropTypes.shape({})
     ).isRequired,
-  height: PropTypes.number,
-  linkComponent: PropTypes.elementType,
-  lg: PropTypes.number,
-  md: PropTypes.number,
-  onSelectedIndexChanged: PropTypes.func,
   profileClassCount: PropTypes.number,
   profileClassPrefix: PropTypes.string,
-  selectedIndex: PropTypes.number,
-  sm: PropTypes.number,
-  xs: PropTypes.number,
 };
 
 ProfileList.defaultProps = {
-  cellHeight: 320,
-  height: 370, // 23.125rem
-  linkComponent: undefined,
-  lg: undefined,
-  md: 4.3,
-  onSelectedIndexChanged: undefined,
   profileClassCount: 3,
   profileClassPrefix: "profile-",
-  selectedIndex: 0,
-  sm: undefined,
-  xs: 1,
 };
 
 export default ProfileList;

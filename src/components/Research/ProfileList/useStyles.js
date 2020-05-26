@@ -14,11 +14,12 @@ const useStyles = makeStyles(({breakpoints, palette}) => ({
   },
   link: {
     display: "inline-block",
-    padding: "0 0.625rem",
+    paddingRight: "1rem",
   },
   profile: {},
   profileDescription: {
     color: palette.text.secondary,
+    margin: "0.6875rem 0",
     zIndex: 1,
   },
   profileLink: {},
@@ -38,16 +39,16 @@ const useStyles = makeStyles(({breakpoints, palette}) => ({
   },
   profiles: {},
   profilesGridList: {
-    "&:after": {
-      mixBlendMode: "overlay",
-    },
-    "&.profile-0:after": {
+    // "&:after": {
+    //  // mixBlendMode: "overlay",
+    // },
+    "& .profile-0:after": {
       backgroundColor: palette.primary.main,
     },
-    "&.profile-1:after": {
+    "& .profile-1:after": {
       backgroundColor: `#000000`,
     },
-    "&.profile-2:after": {
+    "& .profile-2:after": {
       backgroundColor: palette.highlight.main,
     },
   },
