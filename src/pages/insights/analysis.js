@@ -2,8 +2,9 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from "components/Page";
 import Hero from "components/Hero";
+import JoinUs from "components/JoinUs";
+import Page from "components/Page";
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -22,23 +23,42 @@ const useStyles = makeStyles((theme) => ({
       width: "102.5rem",
     },
   },
+  joinUs: {
+    marginTop: "3.5rem",
+    [theme.breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
+  },
 }));
 
 function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      join_us: joinUs,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title="Analysis"
+      title={pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
+      />
+      <JoinUs
+        classes={{
+          root: classes.joinUs,
+          section: classes.section,
+        }}
+        joinUs={joinUs}
+        title={joinUs.title}
+        subtitle={joinUs.description}
       />
     </Page>
   );
@@ -49,7 +69,7 @@ Analysis.getInitialProps = async (props) => {
     query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("insights-analysis", lang);
 
   return {
     outbreak,

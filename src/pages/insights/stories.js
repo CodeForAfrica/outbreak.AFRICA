@@ -27,13 +27,16 @@ const useStyles = makeStyles((theme) => ({
 function FeaturedStories({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title="Featured Stories"
+      title={pageTitle || "Featured Stories"}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -49,7 +52,7 @@ FeaturedStories.getInitialProps = async (props) => {
     query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("insights-stories", lang);
 
   return {
     outbreak,

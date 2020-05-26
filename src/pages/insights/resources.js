@@ -27,13 +27,16 @@ const useStyles = makeStyles((theme) => ({
 function Resources({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title="Resources"
+      title={pageTitle || "Resources"}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -49,7 +52,7 @@ Resources.getInitialProps = async (props) => {
     query: { lang: pageLanguage },
   } = props;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("insights-resources", lang);
 
   return {
     outbreak,
