@@ -3,9 +3,11 @@ import React from "react";
 import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import { RichTypography, Section } from "@commons-ui/core";
+
+import LinkButton from "components/Link/Button";
 
 import illo from "assets/images/illo-03.png";
 import illoMobile from "assets/images/illo-03-mobile.png";
@@ -19,7 +21,11 @@ const useStyles = makeStyles(
     },
     section: {},
     description: {},
-    title: {},
+    img: {
+      left: 0,
+      position: "absolute",
+      top: 0,
+    },
     link: {
       marginBottom: typography.pxToRem(58),
       marginTop: typography.pxToRem(42),
@@ -28,15 +34,12 @@ const useStyles = makeStyles(
         marginTop: "unset",
       },
     },
-    subtitle: {
-      marginTop: typography.pxToRem(16),
-      "&.subtitle": {},
-      "& .highlight": {
-        background:
-          "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
-      },
+    highlight: {
+      display: "none",
       [breakpoints.up("md")]: {
-        marginTop: "unset",
+        display: "initial",
+        position: "relative",
+        overflow: "visible",
       },
     },
     hightlightHeight: {
@@ -63,19 +66,6 @@ const useStyles = makeStyles(
         width: typography.pxToRem(966),
       },
     },
-    img: {
-      left: 0,
-      position: "absolute",
-      top: 0,
-    },
-    highlight: {
-      display: "none",
-      [breakpoints.up("md")]: {
-        display: "initial",
-        position: "relative",
-        overflow: "visible",
-      },
-    },
     mobileImgContainer: {
       display: "block",
       maxWidth: "100%",
@@ -83,6 +73,18 @@ const useStyles = makeStyles(
         display: "none",
       },
     },
+    subtitle: {
+      marginTop: typography.pxToRem(16),
+      "&.subtitle": {},
+      "& .highlight": {
+        background:
+          "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+      },
+      [breakpoints.up("md")]: {
+        marginTop: "unset",
+      },
+    },
+    title: {},
   })
 );
 
@@ -92,7 +94,6 @@ function MythBursting({ myth, ...props }) {
   if (!myth) {
     return null;
   }
-
   const { title, description, link_url: link, link_label: linkLabel } = myth;
   return (
     <div className={classes.root}>
@@ -125,14 +126,14 @@ function MythBursting({ myth, ...props }) {
                 </RichTypography>
               </div>
               <div>
-                <Button
-                  variant="outlined"
-                  color="primary"
+                <LinkButton
                   href={link}
+                  color="primary"
+                  variant="outlined"
                   className={classes.link}
                 >
                   {linkLabel}
-                </Button>
+                </LinkButton>
               </div>
             </Grid>
           </Grid>
