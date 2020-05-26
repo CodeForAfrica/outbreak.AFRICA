@@ -48,6 +48,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   carousel: {
+    width: "100%",
     [breakpoints.up("md")]: {
       width: (props) =>
         (widths.values.md * props.width) / widths.values.xl +
@@ -67,27 +68,26 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
 function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
   const partialVisibilityGutter = usePartialVisibilityGutter();
   const classes = useStyles({ ...props, partialVisibilityGutter });
-  const [centerMode, setCenterMode] = useState(true);
   const [partialVisible, setPartialVisible] = useState(false);
   const [responsive, setResponsive] = useState({
-    xl: {
-      breakpoint: { max: 3000, min: 1920 },
+    xs: {
+      breakpoint: { max: 599, min: 0 },
+      items: 1.2,
+    },
+    sm: {
+      breakpoint: { max: 959, min: 600 },
+      items: 2.2,
+    },
+    md: {
+      breakpoint: { max: 1279, min: 960 },
       items: 1,
     },
     lg: {
       breakpoint: { max: 1919, min: 1280 },
       items: 1,
     },
-    md: {
-      breakpoint: { max: 1279, min: 960 },
-      items: 1,
-    },
-    sm: {
-      breakpoint: { max: 959, min: 600 },
-      items: 1,
-    },
-    xs: {
-      breakpoint: { max: 599, min: 0 },
+    xl: {
+      breakpoint: { max: 3000, min: 1920 },
       items: 1,
     },
   });
@@ -101,10 +101,8 @@ function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
           partialVisibilityGutter,
         },
       }));
-      setCenterMode(false);
       setPartialVisible(true);
     } else {
-      setCenterMode(true);
       setPartialVisible(false);
     }
   }, [breakpoint, partialVisibilityGutter]);
@@ -116,16 +114,9 @@ function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
   return (
     <div className={classes.root}>
       <ReactMultiCarousel
-        centerMode={centerMode}
-        swipeable
-        draggable={false}
-        showDots={false}
-        responsive={responsive}
-        ssr // means to render carousel on server-side.
-        infinite
         autoPlay={false}
-        keyBoardControl
-        renderButtonGroupOutside
+        autoPlaySpeed={5000}
+        className={classes.carousel}
         customButtonGroup={
           <ButtonGroup
             classes={{
@@ -134,12 +125,17 @@ function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
             }}
           />
         }
-        autoPlaySpeed={5000}
         deviceType={deviceType || breakpoint}
+        draggable={false}
+        infinite
+        keyBoardControl
         partialVisible={partialVisible}
         removeArrowOnDeviceType={["xl", "lg", "md", "sm", "xs"]}
-        itemClass="carousel-item"
-        className={classes.carousel}
+        responsive={responsive}
+        renderButtonGroupOutside
+        showDots={false}
+        ssr // means to render carousel on server-side.
+        swipeable
       >
         {carouselItems.map((item) => (
           <CarouselCard

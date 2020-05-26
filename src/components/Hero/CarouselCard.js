@@ -13,7 +13,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-const useStyles = makeStyles(({ breakpoints, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     backgroundColor: "#fafafa",
     border: "1px solid #eeeeee",
@@ -45,8 +45,8 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
     marginBottom: "2rem",
   },
   cardSize: {
-    height: "auto",
-    width: "100%",
+    height: (props) => props.height,
+    width: (props) => props.width,
     [breakpoints.up("md")]: {
       height: (props) => (widths.values.md * props.height) / widths.values.xl,
       width: (props) => (widths.values.md * props.width) / widths.values.xl,
