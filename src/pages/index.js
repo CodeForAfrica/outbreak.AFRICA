@@ -183,7 +183,7 @@ Home.getInitialProps = async (props) => {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const {
     page: { featured_experts: featuredExperts },
-  } = await getSitePage("featured-experts", lang);
+  } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
 
   return {
