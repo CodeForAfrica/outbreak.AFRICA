@@ -91,9 +91,10 @@ const useStyles = makeStyles((theme) => ({
 
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
+  colorScoreLabel,
   country,
   geoId,
-  geoIndeces,
+  geoIndexMapping,
   onClickGeoLayer,
   ...props
 }) {
@@ -141,7 +142,8 @@ function ProfileDetail({
                   geoId={geoId}
                   height="300px"
                   onClickGeoLayer={onClickGeoLayer}
-                  geoIndeces={geoIndeces}
+                  geoIndexMapping={geoIndexMapping}
+                  scoreLabel={colorScoreLabel}
                   width="100%"
                 />
               )}
@@ -297,16 +299,18 @@ ProfileDetail.propTypes = {
       totalPopulation: PropTypes.number,
     }),
   }).isRequired,
+  colorScoreLabel: PropTypes.string,
   country: PropTypes.shape({}).isRequired,
   geoId: PropTypes.string,
-  geoIndeces: PropTypes.arrayOf(PropTypes.shape({})),
+  geoIndexMapping: PropTypes.arrayOf(PropTypes.shape({})),
   onClickGeoLayer: PropTypes.func,
 };
 
 ProfileDetail.defaultProps = {
   geoId: undefined,
-  geoIndeces: undefined,
+  geoIndexMapping: undefined,
   onClickGeoLayer: null,
+  colorScoreLabel: undefined,
 };
 
 export default ProfileDetail;

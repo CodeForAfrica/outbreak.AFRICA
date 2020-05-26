@@ -8,14 +8,20 @@ import { Section } from "@commons-ui/core";
 
 import Tabs from "./Tabs";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(({ breakpoints, palette }) => ({
   root: {
-    border: "1px solid #f6f6f6",
+    backgroundColor: "#EEEEEE",
+    border: "1px solid #707070",
+    borderLeft: "none",
+    borderRight: "none",
+    [breakpoints.up("md")]: {
+      backgroundColor: palette.background.default,
+    },
   },
   section: {},
   tabs: {},
   fix: {},
-});
+}));
 
 function ProfileSection({ profile, tabs, activeTab, setActiveTab, ...props }) {
   const classes = useStyles(props);

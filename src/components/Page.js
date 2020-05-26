@@ -9,6 +9,9 @@ import SEO from "./SEO";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
+    // Seems like you need height defined for AppBar position="sticky" to work
+    // see: https://github.com/mui-org/material-ui/issues/16186
+    height: "100vh",
     overflowX: "hidden",
   },
   section: {

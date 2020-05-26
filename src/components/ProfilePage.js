@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import ChartContainer from "@hurumap-ui/core/ChartContainer";
+import useGeoIndexLoader from "@hurumap-ui/core/useGeoIndexLoader";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
@@ -44,6 +45,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   container: {
     marginBottom: "0.625rem",
+    paddingRight: typography.pxToRem(16),
+    "&:last-of-type": {
+      paddingRight: 0,
+    },
   },
   containerRoot: ({ loading }) => ({
     width: "100%",
@@ -72,6 +77,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   title: {
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
+  },
+  sourceDiv: {
+    position: 'absolute',
+    bottom: 0,
+    paddingLeft: '38px', //similar to chartRoot
   },
   source: {
     color: "#9D9C9C",
@@ -152,7 +162,7 @@ function ProfilePage({
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
       ? window.location.hash.slice(1)
-      : "demographics" // 'all'
+      : "all"
   );
 
   const filterByGeography = useCallback(
@@ -175,13 +185,17 @@ function ProfilePage({
     [filterByGeography, sectionedCharts]
   );
 
-  const { profiles, chartData, geoIndeces } = useProfileLoader({
+  const { profiles, chartData } = useProfileLoader({
     geoId,
-    visuals,
     populationTables: config.populationTables,
+    visuals,
+  });
+
+  const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
-    indexTable: config.colorIndexTable,
     indexField: config.colorIndexField,
+    indexTable: config.colorIndexTable[activeTab],
+    scoreField: config.colorScoreField,
   });
 
   const filterByChartData = useCallback(
@@ -224,6 +238,10 @@ function ProfilePage({
   useEffect(
     () =>
       debounceSetProfileTabs([
+        {
+          name: "All",
+          slug: "all",
+        },
         ...sectionedCharts
           // Filter empty sections
           .reduce((a, { charts, ...rest }) => {
@@ -249,7 +267,7 @@ function ProfilePage({
 
   const charts = useMemo(
     () =>
-      profileTabs.map(
+      profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
             <Grid item container id={tab.slug} key={tab.slug}>
@@ -281,6 +299,10 @@ function ProfilePage({
                     id={id}
                     xs={12}
                     key={chart.id}
+                    md={ chart.layout ?
+                      parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) *
+                      12 : 12
+                    }
                     className={classes.container}
                   >
                     <ChartContainer
@@ -292,6 +314,7 @@ function ProfilePage({
                         title: classes.title,
                         root: classes.chartRoot,
                         containerRoot: classes.containerRoot,
+                        source: classes.sourceDiv,
                         sourceLink: classes.source,
                         groupActionsButton: classes.actionIcon,
                         embedSubtitle: classes.embedSubtitle,
@@ -386,18 +409,18 @@ function ProfilePage({
     }
   }, [indicatorId]);
 
-  let title = "outbreak.AFRICA";
+  let title;
   if (!profiles.loading && country) {
     const { name, geoLevel } = profiles.profile || {};
-
     if (geoLevel !== "country") {
-      title = `${name} | ${country.shortName} | ${title}`;
+      title = `${name} | ${country.shortName}`;
     } else {
       title = name;
     }
   }
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
   return (
     <Page
       outbreak={{ ...outbreak, country, language }}
@@ -413,18 +436,22 @@ function ProfilePage({
           country={country}
           classes={{ section: classes.section }}
           geoId={geoId}
-          geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+          geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
           onClickGeoLayer={onClickGeoLayer}
+          colorScoreLabel={config.colorScoreLabel[activeTab]}
         />
       )}
       {isDesktop && (
         <>
-          <MapColorLegend />
+          {!geoIndeces.isLoading && geoIndeces.indeces.length > 0 && (
+            <MapColorLegend />
+          )}
           <MapIt
             geoId={geoId}
             height="500px"
             onClickGeoLayer={onClickGeoLayer}
-            geoIndeces={!geoIndeces.isLoading && geoIndeces.indeces}
+            geoIndexMapping={!geoIndeces.isLoading && geoIndeces.indeces}
+            scoreLabel={config.colorScoreLabel[activeTab]}
             width="100%"
           />
         </>
