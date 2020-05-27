@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger, jsx-a11y/control-has-associated-label */
-import React, { useRef } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
@@ -22,6 +22,9 @@ function ExpertList({
 }) {
   const classes = useStyles(props);
   const rootRef = useRef(null);
+
+  const [activeTopic, setActiveTopic] = useState("all");
+
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
@@ -96,7 +99,25 @@ function ExpertList({
     } else {
       return acc;
     }
-  }, []);  
+  }, []);
+
+  const [ subTopics, setSubTopics ] = useState([]);
+
+  const onButtonClick = (value) => {
+    setActiveTopic(value);
+  };
+
+  const parentTopics = [ 
+    { name: 'All', slug: 'all'}, 
+    ...uniqueTopics.filter(topic => topic.parent === 0)];
+
+  useEffect(() => {
+    const foundActiveTopic = uniqueTopics.find(a => a.slug === activeTopic);
+    if (foundActiveTopic) {
+      setSubTopics(
+        foundActiveTopic.slug === 'all'? [] : uniqueTopics.filter(top => top.parent === foundActiveTopic.term_id));
+    }
+  }, [activeTopic]);
 
   return (
     <div className={classes.root} ref={rootRef}>
@@ -104,7 +125,11 @@ function ExpertList({
         <RichTypography variant="h2">{title}</RichTypography>
 
         <Filter 
-          topics={uniqueTopics} />
+          activeTopic={activeTopic}
+          onButtonClick={onButtonClick}
+          parentTopics={parentTopics}
+          subTopics={subTopics} />
+
         <Grid container direction="row" spacing={2}>
           {profiles.map((profile, index) => (
             <Grid item xs={12} md={3} key={profile.id} className={classes.profilesGridList}>

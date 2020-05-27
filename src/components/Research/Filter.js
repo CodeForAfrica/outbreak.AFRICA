@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { PropTypes } from "prop-types";
+import classNames from 'classnames';
 
-import { Grid, Typography, Button } from "@material-ui/core";
+import { Grid, Button, ButtonBase } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -9,6 +10,10 @@ const useStyles = makeStyles((theme) => ({
   root: {
     paddingBottom: "3rem",
     flexGrow: 1,
+  },
+  activeButton: {
+    backgroundColor: "#0050FF",
+    color: "white",
   },
   button: {
     border: "1px solid grey",
@@ -48,24 +53,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Filter({ topics }) {
+function Filter({ activeTopic, onButtonClick, parentTopics, subTopics }) {
   const classes = useStyles();
-  const [ subTopics, setSubTopics ] = useState(
-    topics.filter(topic => topic.parent !== 0)
-  );
-  const [showSubTopic, setShowSubTopic] = useState(false);
 
-  const onButtonClick = () => {
-    setShowSubTopic(() => !subTopics);
-  };
-
-  const [activeTopic, setActiveTopic] = useState(
-    process.browser && window.location.hash.slice(1)
-      ? window.location.hash.slice(1)
-      : "all"
-  );
-
-  const parentTopics = [ { name: 'All', slug: 'all'}, ...topics.filter(topic => topic.parent === 0)];
   return (
     <Grid container className={classes.root}>
       <Grid
@@ -76,18 +66,21 @@ function Filter({ topics }) {
       >
       {parentTopics.map(item => (
         <Grid item>
-          <Button rounded className={classes.button}>
+          <Button 
+            rounded
+            className={classNames(classes.button, {[classes.activeButton]: item.slug === activeTopic })}
+            onClick={() => onButtonClick(item.slug)}>
               {item.name}
           </Button>
         </Grid>
       ))}
       </Grid>
-      {showSubTopic &&
+      {subTopics.length > 0 &&
         <Grid item xs={12} className={classes.filter}>
           {subTopics.map(item =>
-            <Link variant="caption" href="#" className={classes.caption}>
+            <ButtonBase variant="caption" href="#" className={classes.caption}>
               {item.name}
-            </Link>
+            </ButtonBase>
           )}
         </Grid>
       }
@@ -96,6 +89,8 @@ function Filter({ topics }) {
 }
 
 Filter.propTypes = {
-  topics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  onButtonClick: PropTypes.func,
+  parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  subTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 }
 export default Filter;
