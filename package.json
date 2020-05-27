@@ -55,7 +55,7 @@
     "eslint-plugin-react-hooks": "^2.5.0",
     "husky": "^4.2.3",
     "lint-staged": "^10.0.8",
-    "now": "^18.0.0",
+    "now": "^19.0.1",
     "prettier": "^2.0.4",
     "redux": "^4.0.5"
   },

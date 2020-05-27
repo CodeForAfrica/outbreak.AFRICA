@@ -56,6 +56,7 @@ function Research({ outbreak, ...props }) {
       subscribe,
       featured_experts: { experts },
       section_title: title,
+      title: { rendered: pageTitle },
     },
   } = outbreak;
 
@@ -116,7 +117,7 @@ function Research({ outbreak, ...props }) {
   return (
     <Page
       outbreak={outbreak}
-      title="Featured Experts"
+      title={pageTitle || "Featured Experts"}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -142,16 +143,16 @@ function Research({ outbreak, ...props }) {
   );
 }
 
-Research.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-experts", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default Research;
