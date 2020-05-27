@@ -17,10 +17,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   section: {},
   subscribeGrid: {
-    padding: "3rem 0rem",
+    padding: "3rem 0rem 5rem",
   },
   subtitle: {
-    padding: "2rem 0rem",
+    paddingBottom: "2rem",
   },
   title: {
     color: palette.text.secondary,
@@ -32,7 +32,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     fontSize: typography.caption.fontSize,
     lineHeight: typography.caption.lineHeight,
     borderBottom: "1px solid white",
-    width: "80%",
+    width: "100%",
+    [breakpoints.up("md")]: {
+      width: "80%",
+    },
   },
   img: {
     height: "2.5rem",
@@ -40,15 +43,19 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   subscribeImage: {
     display: "none",
     [breakpoints.up("md")]: {
-      display: "flex",
-      height: '448px',
+      display: "initial",
+      height: '445px',
+      position: "absolute",
+      top: 0,
+      left: '-110px',
     },
   },
   subscribeImageDiv: {
     display: "none",
     [breakpoints.up("md")]: {
-      display: "flex",
+      display: "initial",
       position: 'relative',
+      overflow: "visible",
     },
   },
   button: {

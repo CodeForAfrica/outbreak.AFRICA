@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A } from "@commons-ui/core";
 
@@ -51,6 +51,8 @@ const useStyles = makeStyles((theme) => ({
 
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
       hero_carousel: heroCarousel,
@@ -121,10 +123,12 @@ function Research({ outbreak, ...props }) {
       title={pageTitle || "Featured Experts"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        classes={{ section: classes.section }}
-      />
+      {isDesktop && (
+        <Hero
+          heroCarousel={heroCarousel}
+          classes={{ section: classes.section }}
+        />
+      )}
       <ExpertList
         experts={profiles}
         title={title}
