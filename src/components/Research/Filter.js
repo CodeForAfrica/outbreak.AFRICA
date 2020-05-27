@@ -39,6 +39,10 @@ const useStyles = makeStyles((theme) => ({
       textDecoration: "none",
     },
     fontSize: "0.75rem",
+    paddingRight: theme.typography.pxToRem(16),
+    "&:last-of-type": {
+      paddingRight: 0,
+    },
     [theme.breakpoints.up("md")]: {
       fontSize: "initial",
     },
