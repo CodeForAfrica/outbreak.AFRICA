@@ -41,6 +41,7 @@ function FeaturedDocuments({ outbreak, ...props }) {
     >
       <Hero
         heroCarousel={heroCarousel}
+        isResearch
         classes={{ section: classes.section }}
       />
     </Page>

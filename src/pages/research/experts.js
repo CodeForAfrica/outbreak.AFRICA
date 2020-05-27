@@ -139,6 +139,7 @@ function Research({ outbreak, ...props }) {
       {isDesktop && (
         <Hero
           heroCarousel={heroCarousel}
+          isResearch
           classes={{ section: classes.section }}
         />
       )}

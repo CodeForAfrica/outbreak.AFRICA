@@ -40,6 +40,7 @@ function FeaturedDatasets({ outbreak, ...props }) {
       classes={{ section: classes.section }}
     >
       <Hero
+        isResearch
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
