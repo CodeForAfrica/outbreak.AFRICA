@@ -38,13 +38,14 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   icon: {
-    width: "1.375rem",
-    height: "1.375rem",
     objectFit: "contain",
   },
   link: {
     display: "inline-block",
     paddingRight: "1rem",
+  },
+  profileItemChildren: {
+    zIndex: 1,
   },
 }));
 

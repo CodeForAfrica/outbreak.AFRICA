@@ -14,9 +14,6 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
     zIndex: 1,
   },
   profileLink: {},
-  profileItemChildren: {
-    zIndex: 1,
-  },
   profileName: {
     color: palette.text.secondary,
     zIndex: 1,
@@ -30,9 +27,9 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   },
   profiles: {},
   profilesGridList: {
-    // "&:after": {
-    //  // mixBlendMode: "overlay",
-    // },
+    "&:after": {
+      mixBlendMode: "overlay",
+    },
     "& .profile-0:after": {
       backgroundColor: palette.primary.main,
     },
