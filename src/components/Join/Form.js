@@ -14,7 +14,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 const useStyles = makeStyles((theme) => ({
   expansionPanel: {
     backgroundColor: '#C1D5FF'
-  }
+  },
+  input: {
+    color: 'white',
+    //fontSize: theme.typography.caption.fontSize,
+    //lineHeight: theme.typography.caption.lineHeight,
+    //borderBottom: "1px solid white",
+  },
 }));
 
 function Form() {
@@ -48,12 +54,13 @@ function Form() {
                 <InputLabel varian="standard" style={{ color: 'black' }}>Field descriptor</InputLabel>
                 <TextField
                   id="standard-full-width"
-                  style={{ margin: 8 }}
+                  style={{ margin: 8, color: 'white' }}
                   fullWidth
                   margin="normal"
                   InputLabelProps={{
-                    shrink: true,
+                    shrink: true
                   }}
+                  InputProps={{ className: classes.input }}
                   variant="filled"
                 />
               </div>
@@ -68,6 +75,7 @@ function Form() {
                     shrink: true,
                   }}
                   variant="filled"
+                  InputProps={{ className: classes.input }}
                 />
               </div>
             </Grid>
