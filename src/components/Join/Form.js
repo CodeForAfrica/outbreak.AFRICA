@@ -18,7 +18,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     width: "100%",
     [breakpoints.up("md")]: {
-      width: '812px'
+      paddingRight: '5rem'
     }
   },
   expansionPanel: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     padding: '3rem 0rem',
   },
   inputGrid: {
-    padding: '2rem 0rem'
+    padding: '1rem 0rem'
   },
   inputLabel: {
     color: 'black',
@@ -90,14 +90,14 @@ function Form() {
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>
-          <Grid container direction="column">
-            <Grid item>
+          <div>
+            <div item>
               <Typography variant="subtitle1">
                 Contrary to popular belief, Lorem Ipsum is not simply random text.
                 It has roots in a piece of classical Latin literature from 45 BC,
                 making it over 2000 years old.
               </Typography>
-            </Grid>
+            </div>
 
             <form item className={classes.formGrid}>
               <div className={classes.inputGrid}>
@@ -251,7 +251,7 @@ function Form() {
                   </Button>
               </Link>
             </form>
-          </Grid>
+          </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div >

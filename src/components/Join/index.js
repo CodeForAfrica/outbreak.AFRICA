@@ -10,11 +10,12 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   subscribeGrid: {
     backgroundColor: '#170F49',
-    height: '614px',
+    height: 'auto',
     padding: '4rem',
     width: '100%',
     [breakpoints.up("md")]: {
       padding: '1.5rem',
+      height: '614px',
     }
   },
   formGrid: {
