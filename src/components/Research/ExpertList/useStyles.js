@@ -11,7 +11,6 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     margin: "unset",
     marginBottom: typography.pxToRem(16),
   },
-  profile: {},
   profileDescription: {
     color: palette.text.secondary,
     margin: "0.6875rem 0",
@@ -22,14 +21,30 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     color: palette.text.secondary,
     zIndex: 1,
   },
-  profileNameSelected: {},
-  profilePicture: {},
-  profilePictureSelected: {},
   profileTitle: {
     color: palette.text.secondary,
     zIndex: 1,
   },
   profiles: {},
+  picture: {
+    position: 'relative',
+    "&:after": {
+      backgroundColor: `${palette.primary.main}`,
+      bottom: 0,
+      content: '""',
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.3,
+      position: "absolute",
+      right: 0,
+      top: 0,
+    },
+  },
+  mobileImg: {
+    height: "auto",
+    width: "100%",
+  },
+
   profilesGridList: {
     "&:after": {
       mixBlendMode: "overlay",

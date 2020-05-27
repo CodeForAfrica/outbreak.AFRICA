@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
-import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { ListItem, Section } from "@commons-ui/core";
 
 import useStyles from "components/Research/ExpertList/useStyles";
@@ -20,6 +20,7 @@ function ExpertList({
   const rootRef = useRef(null);
 
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
   const isLg = isUpLg && !isUpXl;
@@ -111,25 +112,22 @@ function ExpertList({
           {topicExperts.map((profile, index) => (
             <Grid
               item
+              container
               xs={12}
               md={3}
               key={profile.id}
               className={classes.profilesGridList}
             >
-              <ListItem
+              {isDesktop ? (<ListItem
                 key={profile.title}
                 classes={{
-                  root: classNames(classes.profile, {
-                    [`${profileClassPrefix}${
+                  root:`${profileClassPrefix}${
                       index % profileClassCount
-                    }`]: profileClassCount,
-                  }),
+                    }`
+                  ,
                   description: classes.profileDescription,
                   link: classes.profileLink,
                   name: classes.profileName,
-                  nameSelected: classes.profileNameSelected,
-                  picture: classes.profilePicture,
-                  pictureSelected: classes.profilePictureSelected,
                   title: classes.profileTitle,
                 }}
                 height={cellHeight}
@@ -138,7 +136,32 @@ function ExpertList({
                 itemChildren={profile.itemChildren}
                 name={profile.name}
                 title={profile.title}
-              />
+              />): (
+                <>
+                  <Grid item xs={6} >
+                    <Typography variant="h3">
+                      {profile.name}
+                    </Typography>
+                    <Typography variant="subtitle2" className={classes.title}>
+                      {profile.title}
+                    </Typography>
+                    <Typography variant="caption" className={classes.description}>
+                      {profile.description}
+                    </Typography>
+                      {profile.itemChildren && <>{profile.itemChildren}</>}
+                  </Grid>
+                  <Grid item xs={6} className={classNames(classes.picture, `${profileClassPrefix}${
+                      index % profileClassCount
+                    }`)
+                  }>
+                    <img
+                      alt={profile.name}
+                      src={profile.image.url}
+                      className={classes.mobileImg} 
+                    />
+                  </Grid>
+                </>
+              )}
             </Grid>
           ))}
         </Grid>

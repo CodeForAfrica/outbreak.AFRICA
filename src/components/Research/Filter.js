@@ -18,21 +18,29 @@ const useStyles = makeStyles((theme) => ({
   button: {
     border: "1px solid grey",
     fontFamily: theme.typography.fontFamily,
-    padding: "auto 1rem",
     textTransform: "capitalize",
-    minWidth: "100px",
+    fontSize: "0.75rem",
+    minWidth: "57px",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",
+    },
+    [theme.breakpoints.up("md")]: {
+      fontSize: "1rem",
+      padding: "auto 1rem",
+      minWidth: "100px",
     },
   },
   caption: {
     fontWeight: 700,
     color: "#9D9C9C",
-    margin: "1rem",
     textDecoration: "none",
     "&:hover": {
       textDecoration: "none",
+    },
+    fontSize: "0.75rem",
+    [theme.breakpoints.up("md")]: {
+      fontSize: "initial",
     },
   },
   itemContainer: {

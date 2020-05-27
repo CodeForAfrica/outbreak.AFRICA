@@ -16,6 +16,10 @@ import linkedIn from "assets/Icon awesome-linkedin-in.svg";
 import twitter from "assets/Icon awesome-twitter.svg";
 import website from "assets/icon web-white.svg";
 
+import linkedInBlue from "assets/Icon awesome-linkedin-in-b.svg";
+import twitterBlue from "assets/Icon awesome-twitter-b.svg";
+import websiteBlue from "assets/icon web.svg";
+
 const useStyles = makeStyles((theme) => ({
   root: {},
   section: {
@@ -39,6 +43,12 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     objectFit: "contain",
+    height: "1rem",
+    width: "1rem",
+    [theme.breakpoints.up("md")]: {
+      height: "1.375rem",
+      width: "1.375rem",
+    },
   },
   link: {
     display: "inline-block",
@@ -84,7 +94,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={linkedIn}
+                  src={isDesktop? linkedIn: linkedInBlue}
                   alt="LinkedIn Profile"
                   className={classes.icon}
                 />
@@ -97,7 +107,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={twitter}
+                  src={isDesktop? twitter: twitterBlue}
                   alt="Twitter Profile"
                   className={classes.icon}
                 />
@@ -109,7 +119,10 @@ function Research({ outbreak, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img src={website} alt="Website" className={classes.icon} />
+                <img 
+                  src={isDesktop? website: websiteBlue} 
+                  alt="Website"
+                  className={classes.icon} />
               </A>
             )}
           </Grid>
