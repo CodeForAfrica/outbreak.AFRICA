@@ -25,13 +25,13 @@ function Form() {
   };
   return (
     <Grid container style={{ width: '812px' }}>
-      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.expansionPanel}>
+      <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')} className={classes.expansionPanel} style={{ padding: '1.5rem' }}>
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
         >
-          <Typography variant="body1">Application Form</Typography>
+          <Typography variant="h6" style={{ fontWeight: 700 }}>Application Form</Typography>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails>

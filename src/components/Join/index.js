@@ -10,9 +10,9 @@ const useStyles = makeStyles((theme) => ({
 
 function Content({ title, subtitle }) {
   return (
-    <div>
-      <Typography variant="h5" style={{ fontWeight: 500 }}>{title}</Typography>
-      <Typography variant="body2">
+    <div style={{ margin: '5rem' }}>
+      <Typography variant="h2" >{title}</Typography>
+      <Typography variant="body1">
         {subtitle}
       </Typography>
     </div>
