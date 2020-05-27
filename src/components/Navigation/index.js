@@ -102,7 +102,6 @@ function Navigation({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
-
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
@@ -117,16 +116,16 @@ function Navigation({
               classes={{ section: classes.section }}
             />
           ) : (
-              <>
-                <div className={classes.grow} />
-                <MobileNavigation
-                  country={country}
-                  countries={countries}
-                  navigation={navigation}
-                  classes={{ section: classes.section }}
-                />
-              </>
-            )}
+            <>
+              <div className={classes.grow} />
+              <MobileNavigation
+                country={country}
+                countries={countries}
+                navigation={navigation}
+                classes={{ section: classes.section }}
+              />
+            </>
+          )}
         </Toolbar>
       </AppBar>
     </>
