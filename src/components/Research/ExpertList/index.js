@@ -1,5 +1,5 @@
 /* eslint-disable react/no-danger, jsx-a11y/control-has-associated-label */
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
@@ -19,8 +19,6 @@ function ExpertList({
   const classes = useStyles(props);
   const rootRef = useRef(null);
 
-  const [activeTopic, setActiveTopic] = useState("all");
-
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
@@ -30,21 +28,21 @@ function ExpertList({
     cellHeight = isLg ? 438 : 637;
   }
 
+  const [activeTopic, setActiveTopic] = useState("all");
+  const [subTopics, setSubTopics] = useState([]);
   const [topicExperts, setTopicExperts] = useState(experts);
 
-  const topics = experts.reduce((a, b) => a.concat(b.topic), []);
-
-  const uniqueTopics =
-    topics &&
-    topics.reduce((acc, current) => {
+  const uniqueTopics = useMemo(() =>
+    experts &&
+    experts.reduce((a, b) => a.concat(b.topic), [])
+    .reduce((acc, current) => {
       const x = acc.find((item) => item.term_id === current.term_id);
       if (!x) {
         return acc.concat([current]);
       }
       return acc;
-    }, []);
+    }, []), [experts]);
 
-  const [subTopics, setSubTopics] = useState([]);
 
   const onButtonClick = (value) => {
     setActiveTopic(value);
@@ -79,6 +77,8 @@ function ExpertList({
       setTopicExperts(experts);
     }
   }, [activeTopic, experts, uniqueTopics]);
+
+  console.log(topicExperts);
 
   return (
     <div className={classes.root} ref={rootRef}>
