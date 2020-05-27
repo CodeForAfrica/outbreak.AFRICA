@@ -53,10 +53,16 @@ const useStyles = makeStyles((theme) => ({
   },
   subtopic: {
     paddingTop: "1rem",
-  }
+  },
 }));
 
-function Filter({ activeTopic, onButtonClick, onSubTopicButtonClick, parentTopics, subTopics }) {
+function Filter({
+  activeTopic,
+  onButtonClick,
+  onSubTopicButtonClick,
+  parentTopics,
+  subTopics,
+}) {
   const classes = useStyles();
 
   return (
@@ -79,11 +85,12 @@ function Filter({ activeTopic, onButtonClick, onSubTopicButtonClick, parentTopic
       {subTopics.length > 0 && (
         <Grid item xs={12} className={classes.subtopic}>
           {subTopics.map((item) => (
-            <ButtonBase 
+            <ButtonBase
               variant="caption"
-              href="#" 
+              href="#"
               onClick={() => onSubTopicButtonClick(item.slug)}
-              className={classes.caption}>
+              className={classes.caption}
+            >
               {item.name}
             </ButtonBase>
           ))}

@@ -4,7 +4,7 @@ import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
-import { ListItem, RichTypography, Section } from "@commons-ui/core";
+import { ListItem, Section } from "@commons-ui/core";
 
 import useStyles from "components/Research/ExpertList/useStyles";
 import Filter from "components/Research/Filter";
@@ -32,17 +32,20 @@ function ExpertList({
   const [subTopics, setSubTopics] = useState([]);
   const [topicExperts, setTopicExperts] = useState(experts);
 
-  const uniqueTopics = useMemo(() =>
-    experts &&
-    experts.reduce((a, b) => a.concat(b.topic), [])
-    .reduce((acc, current) => {
-      const x = acc.find((item) => item.term_id === current.term_id);
-      if (!x) {
-        return acc.concat([current]);
-      }
-      return acc;
-    }, []), [experts]);
-
+  const uniqueTopics = useMemo(
+    () =>
+      experts &&
+      experts
+        .reduce((a, b) => a.concat(b.topic), [])
+        .reduce((acc, current) => {
+          const x = acc.find((item) => item.term_id === current.term_id);
+          if (!x) {
+            return acc.concat([current]);
+          }
+          return acc;
+        }, []),
+    [experts]
+  );
 
   const onButtonClick = (value) => {
     setActiveTopic(value);
@@ -51,17 +54,14 @@ function ExpertList({
   const onSubTopicButtonClick = (value) => {
     setTopicExperts(
       experts.filter(({ topic: t }) => {
-        const found = t.find(
-          (x) =>
-            x.slug === value
-        );
+        const found = t.find((x) => x.slug === value);
         if (found) {
           return true;
         }
         return false;
       })
     );
-  }
+  };
 
   const parentTopics = [
     { name: "All", slug: "all" },
@@ -95,7 +95,10 @@ function ExpertList({
 
   return (
     <div className={classes.root} ref={rootRef}>
-      <Section title={title} classes={{ root: classes.section, title: classes.sectionTitle }}>
+      <Section
+        title={title}
+        classes={{ root: classes.section, title: classes.sectionTitle }}
+      >
         <Filter
           activeTopic={activeTopic}
           onButtonClick={onButtonClick}
