@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    paddingBottom: "3rem",
+    paddingBottom: "1rem",
     flexGrow: 1,
   },
   activeButton: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   caption: {
-    fontWeight: 500,
+    fontWeight: 700,
     color: "#9D9C9C",
     margin: "1rem",
     textDecoration: "none",
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
   filter: {
     display: "flex",
-    padding: "2rem 0rem",
+    padding: "1.5rem 0rem",
     flexDirection: "row",
     alignItems: "center",
     flexGrow: 1,
@@ -51,9 +51,12 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
     },
   },
+  subtopic: {
+    paddingTop: "1rem",
+  }
 }));
 
-function Filter({ activeTopic, onButtonClick, parentTopics, subTopics }) {
+function Filter({ activeTopic, onButtonClick, onSubTopicButtonClick, parentTopics, subTopics }) {
   const classes = useStyles();
 
   return (
@@ -74,9 +77,13 @@ function Filter({ activeTopic, onButtonClick, parentTopics, subTopics }) {
         ))}
       </Grid>
       {subTopics.length > 0 && (
-        <Grid item xs={12} className={classes.filter}>
+        <Grid item xs={12} className={classes.subtopic}>
           {subTopics.map((item) => (
-            <ButtonBase variant="caption" href="#" className={classes.caption}>
+            <ButtonBase 
+              variant="caption"
+              href="#" 
+              onClick={() => onSubTopicButtonClick(item.slug)}
+              className={classes.caption}>
               {item.name}
             </ButtonBase>
           ))}
@@ -88,6 +95,7 @@ function Filter({ activeTopic, onButtonClick, parentTopics, subTopics }) {
 
 Filter.propTypes = {
   onButtonClick: PropTypes.func.isRequired,
+  onSubTopicButtonClick: PropTypes.func.isRequired,
   parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   subTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };

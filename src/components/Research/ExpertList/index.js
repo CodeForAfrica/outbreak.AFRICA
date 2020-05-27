@@ -48,6 +48,21 @@ function ExpertList({
     setActiveTopic(value);
   };
 
+  const onSubTopicButtonClick = (value) => {
+    setTopicExperts(
+      experts.filter(({ topic: t }) => {
+        const found = t.find(
+          (x) =>
+            x.slug === value
+        );
+        if (found) {
+          return true;
+        }
+        return false;
+      })
+    );
+  }
+
   const parentTopics = [
     { name: "All", slug: "all" },
     ...uniqueTopics.filter((topic) => topic.parent === 0),
@@ -88,6 +103,7 @@ function ExpertList({
         <Filter
           activeTopic={activeTopic}
           onButtonClick={onButtonClick}
+          onSubTopicButtonClick={onSubTopicButtonClick}
           parentTopics={parentTopics}
           subTopics={subTopics}
         />
