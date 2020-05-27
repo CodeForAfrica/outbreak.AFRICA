@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  Grid,
   Button,
   Typography,
+  IconButton,
   FilledInput,
   InputLabel,
   FormControl,
@@ -12,13 +12,14 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MessageIcon from '@material-ui/icons/Message';
 import Link from 'components/Link';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     width: "100%",
     [breakpoints.up("md")]: {
-      paddingRight: '5rem'
+      paddingRight: '8rem'
     }
   },
   expansionPanel: {
@@ -26,7 +27,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     padding: '1.5rem'
   },
   title: {
-    fontWeight: 500
+    fontWeight: 700
   },
   formGrid: {
     padding: '3rem 0rem',
@@ -83,8 +84,12 @@ function Form() {
           id="panel1bh-header"
         >
           <Typography
-            variant="h6"
+            variant="h5"
             className={classes.title}>
+
+            <IconButton aria-label="delete">
+              <MessageIcon size="medium" />
+            </IconButton>
             Application Form
             </Typography>
         </ExpansionPanelSummary>
