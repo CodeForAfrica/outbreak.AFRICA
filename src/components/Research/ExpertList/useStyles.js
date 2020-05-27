@@ -12,9 +12,13 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     marginBottom: typography.pxToRem(16),
   },
   profileDescription: {
-    color: palette.text.secondary,
-    margin: "0.6875rem 0",
-    zIndex: 1,
+    margin: "1.125rem 0",
+    fontSize: typography.caption.fontSize,
+    [breakpoints.up("md")]: {
+      margin: "0.6875rem 0",
+      color: palette.text.secondary,
+      zIndex: 1,
+    },
   },
   profileLink: {},
   profileName: {
@@ -58,8 +62,18 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     "& .profile-2:after": {
       backgroundColor: palette.highlight.main,
     },
+    borderTop: "1px solid #9D9C9C",
+    paddingTop: typography.pxToRem(16),
+    paddingBottom: typography.pxToRem(16),
+    [breakpoints.up("md")]: {
+      border: 0,
+      paddingRight: typography.pxToRem(16),
+      paddingTop: 0,
+      "&:last-of-type": {
+        paddingRight: 0,
+      },
+    },
   },
-  profilesScrollBar: {},
 }));
 
 export default useStyles;

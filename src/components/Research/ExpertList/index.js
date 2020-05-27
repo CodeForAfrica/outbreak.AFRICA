@@ -108,7 +108,7 @@ function ExpertList({
           subTopics={subTopics}
         />
 
-        <Grid container direction="row" spacing={2}>
+        <Grid container direction="row">
           {topicExperts.map((profile, index) => (
             <Grid
               item
@@ -145,7 +145,7 @@ function ExpertList({
                     <Typography variant="subtitle2" className={classes.title}>
                       {profile.title}
                     </Typography>
-                    <Typography variant="caption" className={classes.description}>
+                    <Typography className={classes.profileDescription}>
                       {profile.description}
                     </Typography>
                       {profile.itemChildren && <>{profile.itemChildren}</>}
