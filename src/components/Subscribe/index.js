@@ -96,7 +96,13 @@ function Subscribe({ subscribe, ...props }) {
               />
 
               <IconButton className={classes.button}>
-                <img src={email} alt="Arrow icon" className={classes.img} />
+              <img
+                  src={email}
+                  alt="Arrow icon"
+                  className={classes.img}
+                  onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
+                  onMouseOut={e => (e.currentTarget.src = email)}
+                />
               </IconButton>
             </form>
           </Grid>
