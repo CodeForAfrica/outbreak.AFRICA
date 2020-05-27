@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function JoinUs({ outbreak, ...props }) {
+function Subscibe({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -50,7 +50,7 @@ function JoinUs({ outbreak, ...props }) {
   );
 }
 
-JoinUs.propTypes = {
+Subscibe.propTypes = {
   outbreak: PropTypes.shape({
     language: PropTypes.string,
     page: PropTypes.shape({
@@ -59,7 +59,7 @@ JoinUs.propTypes = {
   }).isRequired,
 };
 
-JoinUs.getInitialProps = async (props) => {
+Subscibe.getInitialProps = async (props) => {
   const {
     query: { lang: pageLanguage },
   } = props;
@@ -75,4 +75,4 @@ JoinUs.getInitialProps = async (props) => {
   };
 };
 
-export default JoinUs;
+export default Subscibe;
