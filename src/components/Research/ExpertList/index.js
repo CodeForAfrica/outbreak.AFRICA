@@ -4,14 +4,10 @@ import { PropTypes } from "prop-types";
 
 import classNames from "classnames";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
-import { A, ListItem, RichTypography, Section } from "@commons-ui/core";
+import { ListItem, RichTypography, Section } from "@commons-ui/core";
 
 import useStyles from "components/Research/ExpertList/useStyles";
 import Filter from "components/Research/Filter";
-
-import linkedIn from "assets/Icon awesome-linkedin-in.svg";
-import twitter from "assets/Icon awesome-twitter.svg";
-import website from "assets/icon web-white.svg";
 
 function ExpertList({
   experts,
@@ -34,65 +30,12 @@ function ExpertList({
     cellHeight = isLg ? 438 : 637;
   }
 
-  const profiles =
-    experts &&
-    experts.map((profile, index) => {
-      return {
-        id: index,
-        name: profile.name,
-        title: profile.affiliation,
-        description: profile.biography,
-        image: {
-          url: profile.image,
-        },
-        itemChildren: <Grid className={classes.profileItemChildren}>
-          {profile.linkedin_profile_url && (
-            <A
-              href={profile.linkedin_profile_url}
-              color="textSecondary"
-              className={classes.link}
-            >
-              <img
-                src={linkedIn}
-                alt="LinkedIn Profile"
-                className={classes.icon}
-              />
-            </A>
-          )}
-          {profile.twitter_profile_url && (
-            <A
-              href={profile.twitter_profile_url}
-              color="textSecondary"
-              className={classes.link}
-            >
-              <img
-                src={twitter}
-                alt="Twitter Profile"
-                className={classes.icon}
-              />
-            </A>
-          )}
-          {profile.website_url && (
-            <A
-              href={profile.website_url}
-              color="textSecondary"
-              className={classes.link}
-            >
-              <img
-                src={website}
-                alt="Website"
-                className={classes.icon}
-              />
-            </A>
-          )}
-        </Grid>
-      };
-    });
+  const [topicExperts, setTopicExperts] = useState(experts);
 
   const topics = experts
   .reduce((a, b) => a.concat(b.topic), []);
 
-  const uniqueTopics = topics.reduce((acc, current) => {
+  const uniqueTopics = topics && topics.reduce((acc, current) => {
     const x = acc.find(item => item.term_id === current.term_id);
     if (!x) {
       return acc.concat([current]);
@@ -114,10 +57,19 @@ function ExpertList({
   useEffect(() => {
     const foundActiveTopic = uniqueTopics.find(a => a.slug === activeTopic);
     if (foundActiveTopic) {
-      setSubTopics(
-        foundActiveTopic.slug === 'all'? [] : uniqueTopics.filter(top => top.parent === foundActiveTopic.term_id));
+      setSubTopics(uniqueTopics.filter(top => top.parent === foundActiveTopic.term_id));
+      setTopicExperts(experts.filter(({topic: t}) => {
+        const found = t.find(x => x.term_id === foundActiveTopic.term_id || x.parent === foundActiveTopic.term_id);       
+        if (found) {
+          return true;
+        };
+        return false;
+      }));
+    } else {
+      setSubTopics([]);
+      setTopicExperts(experts);
     }
-  }, [activeTopic]);
+  }, [activeTopic, experts, uniqueTopics]);
 
   return (
     <div className={classes.root} ref={rootRef}>
@@ -131,7 +83,7 @@ function ExpertList({
           subTopics={subTopics} />
 
         <Grid container direction="row" spacing={2}>
-          {profiles.map((profile, index) => (
+          {topicExperts.map((profile, index) => (
             <Grid item xs={12} md={3} key={profile.id} className={classes.profilesGridList}>
               <ListItem
                 key={profile.title}

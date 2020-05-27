@@ -7,15 +7,6 @@ const useStyles = makeStyles(({breakpoints, palette}) => ({
       padding: 0,
     },
   },
-  icon: {
-    width: "1.375rem",
-    height: "1.375rem",
-    objectFit: "contain",
-  },
-  link: {
-    display: "inline-block",
-    paddingRight: "1rem",
-  },
   profile: {},
   profileDescription: {
     color: palette.text.secondary,
