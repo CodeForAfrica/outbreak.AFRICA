@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
+import { PropTypes } from "prop-types";
+import classNames from "classnames";
 
-import { Grid, Button, Typography } from "@material-ui/core";
-import { RichTypography } from "@commons-ui/core";
-import Link from "components/Link";
+import { Grid, Button, ButtonBase } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { getFilterData } from "lib";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: "4rem 0rem",
+    paddingBottom: "1rem",
     flexGrow: 1,
+  },
+  activeButton: {
+    backgroundColor: "#0050FF",
+    color: "white",
   },
   button: {
     border: "1px solid grey",
-    margin: "0.5rem",
+    fontFamily: theme.typography.fontFamily,
+    padding: "auto 1rem",
     textTransform: "capitalize",
+    minWidth: "100px",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",
@@ -23,20 +28,20 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     fontWeight: 700,
-    color: '#9D9C9C',
-    margin: '1rem',
-    textDecoration: 'none',
+    color: "#9D9C9C",
+    margin: "1rem",
+    textDecoration: "none",
     "&:hover": {
-      textDecoration: 'none'
+      textDecoration: "none",
     },
   },
   itemContainer: {
     display: "flex",
-    flexDirection: 'column'
+    flexDirection: "column",
   },
   filter: {
     display: "flex",
-    padding: "2rem 0rem",
+    padding: "1.5rem 0rem",
     flexDirection: "row",
     alignItems: "center",
     flexGrow: 1,
@@ -46,53 +51,59 @@ const useStyles = makeStyles((theme) => ({
       padding: 0,
     },
   },
+  subtopic: {
+    paddingTop: "1rem",
+  },
 }));
 
-
-
-function Filter() {
+function Filter({
+  activeTopic,
+  onButtonClick,
+  onSubTopicButtonClick,
+  parentTopics,
+  subTopics,
+}) {
   const classes = useStyles();
-  const filterData = getFilterData();
-  const [hidden, setHidden] = useState(true);
-
-  const onButtonClick = () => {
-    setHidden(!hidden);
-  };
 
   return (
-    <div className={classes.root}>
-      <Grid item xs={12}>
-        <RichTypography variant="h2">Featured Experts</RichTypography>
-      </Grid>
-
-      <Grid
-        container
-        direction="row"
-        justify="space-between"
-        alignItems="center"
-      >
-        <Grid item xs={12} className={classes.filter}>
-          {filterData.map((data) => (
+    <Grid container className={classes.root}>
+      <Grid item container spacing={2} classes={classes.filter}>
+        {parentTopics.map((item) => (
+          <Grid item>
             <Button
-              key={data.topic}
-              size="small"
               rounded
-              className={classes.button}
-              onClick={onButtonClick}>
-              {data.topic}
+              className={classNames(classes.button, {
+                [classes.activeButton]: item.slug === activeTopic,
+              })}
+              onClick={() => onButtonClick(item.slug)}
+            >
+              {item.name}
             </Button>
-          ))}
-          {!hidden ?
-            <Grid item xs={12} className={classes.filter}>
-              {filterData.map((data) =>
-                <Link variant="caption" href="#" className={classes.caption}>
-                  {data.subtopics}
-                </Link>
-              )}
-            </Grid> : <Grid />}
-        </Grid>
+          </Grid>
+        ))}
       </Grid>
-    </div>
+      {subTopics.length > 0 && (
+        <Grid item xs={12} className={classes.subtopic}>
+          {subTopics.map((item) => (
+            <ButtonBase
+              variant="caption"
+              href="#"
+              onClick={() => onSubTopicButtonClick(item.slug)}
+              className={classes.caption}
+            >
+              {item.name}
+            </ButtonBase>
+          ))}
+        </Grid>
+      )}
+    </Grid>
   );
 }
+
+Filter.propTypes = {
+  onButtonClick: PropTypes.func.isRequired,
+  onSubTopicButtonClick: PropTypes.func.isRequired,
+  parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  subTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
 export default Filter;
