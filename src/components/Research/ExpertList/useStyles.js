@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(({breakpoints, palette}) => ({
+const useStyles = makeStyles(({ breakpoints, palette }) => ({
   root: {
     padding: "2rem",
     [breakpoints.up("md")]: {

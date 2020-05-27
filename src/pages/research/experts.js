@@ -51,70 +51,67 @@ const useStyles = makeStyles((theme) => ({
 function Research({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { 
+    page: {
       hero_carousel: heroCarousel,
       subscribe,
       featured_experts: { experts },
-      section_title: title
-     },
+      section_title: title,
+    },
   } = outbreak;
 
   const profiles =
-  experts &&
-  experts.map((profile, index) => {
-    return {
-      id: index,
-      name: profile.name,
-      title: profile.affiliation,
-      description: profile.biography,
-      image: {
-        url: profile.image,
-      },
-      topic: profile.topic,
-      itemChildren: <Grid className={classes.profileItemChildren}>
-        {profile.linkedin_profile_url && (
-          <A
-            href={profile.linkedin_profile_url}
-            color="textSecondary"
-            className={classes.link}
-          >
-            <img
-              src={linkedIn}
-              alt="LinkedIn Profile"
-              className={classes.icon}
-            />
-          </A>
-        )}
-        {profile.twitter_profile_url && (
-          <A
-            href={profile.twitter_profile_url}
-            color="textSecondary"
-            className={classes.link}
-          >
-            <img
-              src={twitter}
-              alt="Twitter Profile"
-              className={classes.icon}
-            />
-          </A>
-        )}
-        {profile.website_url && (
-          <A
-            href={profile.website_url}
-            color="textSecondary"
-            className={classes.link}
-          >
-            <img
-              src={website}
-              alt="Website"
-              className={classes.icon}
-            />
-          </A>
-        )}
-      </Grid>,
-      
-    };
-  });
+    experts &&
+    experts.map((profile, index) => {
+      return {
+        id: index,
+        name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
+        image: {
+          url: profile.image,
+        },
+        topic: profile.topic,
+        itemChildren: (
+          <Grid className={classes.profileItemChildren}>
+            {profile.linkedin_profile_url && (
+              <A
+                href={profile.linkedin_profile_url}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img
+                  src={linkedIn}
+                  alt="LinkedIn Profile"
+                  className={classes.icon}
+                />
+              </A>
+            )}
+            {profile.twitter_profile_url && (
+              <A
+                href={profile.twitter_profile_url}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img
+                  src={twitter}
+                  alt="Twitter Profile"
+                  className={classes.icon}
+                />
+              </A>
+            )}
+            {profile.website_url && (
+              <A
+                href={profile.website_url}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img src={website} alt="Website" className={classes.icon} />
+              </A>
+            )}
+          </Grid>
+        ),
+      };
+    });
 
   return (
     <Page

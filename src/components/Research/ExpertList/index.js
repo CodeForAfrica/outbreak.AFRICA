@@ -32,39 +32,48 @@ function ExpertList({
 
   const [topicExperts, setTopicExperts] = useState(experts);
 
-  const topics = experts
-  .reduce((a, b) => a.concat(b.topic), []);
+  const topics = experts.reduce((a, b) => a.concat(b.topic), []);
 
-  const uniqueTopics = topics && topics.reduce((acc, current) => {
-    const x = acc.find(item => item.term_id === current.term_id);
-    if (!x) {
-      return acc.concat([current]);
-    } else {
+  const uniqueTopics =
+    topics &&
+    topics.reduce((acc, current) => {
+      const x = acc.find((item) => item.term_id === current.term_id);
+      if (!x) {
+        return acc.concat([current]);
+      }
       return acc;
-    }
-  }, []);
+    }, []);
 
-  const [ subTopics, setSubTopics ] = useState([]);
+  const [subTopics, setSubTopics] = useState([]);
 
   const onButtonClick = (value) => {
     setActiveTopic(value);
   };
 
-  const parentTopics = [ 
-    { name: 'All', slug: 'all'}, 
-    ...uniqueTopics.filter(topic => topic.parent === 0)];
+  const parentTopics = [
+    { name: "All", slug: "all" },
+    ...uniqueTopics.filter((topic) => topic.parent === 0),
+  ];
 
   useEffect(() => {
-    const foundActiveTopic = uniqueTopics.find(a => a.slug === activeTopic);
+    const foundActiveTopic = uniqueTopics.find((a) => a.slug === activeTopic);
     if (foundActiveTopic) {
-      setSubTopics(uniqueTopics.filter(top => top.parent === foundActiveTopic.term_id));
-      setTopicExperts(experts.filter(({topic: t}) => {
-        const found = t.find(x => x.term_id === foundActiveTopic.term_id || x.parent === foundActiveTopic.term_id);       
-        if (found) {
-          return true;
-        };
-        return false;
-      }));
+      setSubTopics(
+        uniqueTopics.filter((top) => top.parent === foundActiveTopic.term_id)
+      );
+      setTopicExperts(
+        experts.filter(({ topic: t }) => {
+          const found = t.find(
+            (x) =>
+              x.term_id === foundActiveTopic.term_id ||
+              x.parent === foundActiveTopic.term_id
+          );
+          if (found) {
+            return true;
+          }
+          return false;
+        })
+      );
     } else {
       setSubTopics([]);
       setTopicExperts(experts);
@@ -76,15 +85,22 @@ function ExpertList({
       <Section classes={{ root: classes.section }}>
         <RichTypography variant="h2">{title}</RichTypography>
 
-        <Filter 
+        <Filter
           activeTopic={activeTopic}
           onButtonClick={onButtonClick}
           parentTopics={parentTopics}
-          subTopics={subTopics} />
+          subTopics={subTopics}
+        />
 
         <Grid container direction="row" spacing={2}>
           {topicExperts.map((profile, index) => (
-            <Grid item xs={12} md={3} key={profile.id} className={classes.profilesGridList}>
+            <Grid
+              item
+              xs={12}
+              md={3}
+              key={profile.id}
+              className={classes.profilesGridList}
+            >
               <ListItem
                 key={profile.title}
                 classes={{
@@ -117,9 +133,7 @@ function ExpertList({
 }
 
 ExpertList.propTypes = {
-  experts: PropTypes.arrayOf(
-    PropTypes.shape({})
-    ).isRequired,
+  experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   profileClassCount: PropTypes.number,
   profileClassPrefix: PropTypes.string,
   title: PropTypes.string,

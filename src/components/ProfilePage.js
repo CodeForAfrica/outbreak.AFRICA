@@ -79,9 +79,9 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     fontWeight: typography.subtitle2.fontWeight,
   },
   sourceDiv: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
-    paddingLeft: '38px', //similar to chartRoot
+    paddingLeft: "38px", // similar to chartRoot
   },
   source: {
     color: "#9D9C9C",
@@ -299,9 +299,12 @@ function ProfilePage({
                     id={id}
                     xs={12}
                     key={chart.id}
-                    md={ chart.layout ?
-                      parseFloat(chart.layout.split('/').reduce((a, b) => a / b)) *
-                      12 : 12
+                    md={
+                      chart.layout
+                        ? parseFloat(
+                            chart.layout.split("/").reduce((a, b) => a / b)
+                          ) * 12
+                        : 12
                     }
                     className={classes.container}
                   >

@@ -1,6 +1,6 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import classNames from 'classnames';
+import classNames from "classnames";
 
 import { Grid, Button, ButtonBase } from "@material-ui/core";
 
@@ -28,16 +28,16 @@ const useStyles = makeStyles((theme) => ({
   },
   caption: {
     fontWeight: 500,
-    color: '#9D9C9C',
-    margin: '1rem',
-    textDecoration: 'none',
+    color: "#9D9C9C",
+    margin: "1rem",
+    textDecoration: "none",
     "&:hover": {
-      textDecoration: 'none'
+      textDecoration: "none",
     },
   },
   itemContainer: {
     display: "flex",
-    flexDirection: 'column'
+    flexDirection: "column",
   },
   filter: {
     display: "flex",
@@ -58,39 +58,37 @@ function Filter({ activeTopic, onButtonClick, parentTopics, subTopics }) {
 
   return (
     <Grid container className={classes.root}>
-      <Grid
-        item
-        container
-        spacing={2}
-        classes={classes.filter}
-      >
-      {parentTopics.map(item => (
-        <Grid item>
-          <Button 
-            rounded
-            className={classNames(classes.button, {[classes.activeButton]: item.slug === activeTopic })}
-            onClick={() => onButtonClick(item.slug)}>
+      <Grid item container spacing={2} classes={classes.filter}>
+        {parentTopics.map((item) => (
+          <Grid item>
+            <Button
+              rounded
+              className={classNames(classes.button, {
+                [classes.activeButton]: item.slug === activeTopic,
+              })}
+              onClick={() => onButtonClick(item.slug)}
+            >
               {item.name}
-          </Button>
-        </Grid>
-      ))}
+            </Button>
+          </Grid>
+        ))}
       </Grid>
-      {subTopics.length > 0 &&
+      {subTopics.length > 0 && (
         <Grid item xs={12} className={classes.filter}>
-          {subTopics.map(item =>
+          {subTopics.map((item) => (
             <ButtonBase variant="caption" href="#" className={classes.caption}>
               {item.name}
             </ButtonBase>
-          )}
+          ))}
         </Grid>
-      }
+      )}
     </Grid>
   );
 }
 
 Filter.propTypes = {
-  onButtonClick: PropTypes.func,
+  onButtonClick: PropTypes.func.isRequired,
   parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   subTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-}
+};
 export default Filter;

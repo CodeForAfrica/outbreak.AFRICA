@@ -46,10 +46,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Subscribe({ subscribe, ...props}) {
+function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);
   const { title, description } = subscribe;
-  
+
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -99,13 +99,13 @@ Subscribe.propTypes = {
   subscribe: PropTypes.shape({
     description: PropTypes.string,
     title: PropTypes.string,
-  })
+  }),
 };
 
 Subscribe.defaultProps = {
   subscribe: {
     title: "Subscribe",
     description: "Stay updated with the latest News, Research and Analysis",
-  }
+  },
 };
 export default Subscribe;

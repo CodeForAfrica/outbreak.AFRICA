@@ -30,14 +30,12 @@ export async function getPostBySlug(type, slug, lang) {
 }
 
 export async function getSitePage(slug, lang) {
-
   const options = await getSiteOptions(lang);
-  
+
   const res = await fetch(
     `${config.WP_BACKEND_URL}/wp-json/wp/v2/pages?slug=${slug}&lang=${lang}`
   );
   const data = res.ok ? await res.json() : {};
-
 
   Object.assign(
     config.page,
