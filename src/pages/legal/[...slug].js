@@ -2,41 +2,33 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Hero from "components/Hero";
-import JoinUs from "components/JoinUs";
 import Page from "components/Page";
+import Hero from "components/Hero";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: {
       margin: "0 auto",
       width: "78.5rem",
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
       width: "102.5rem",
     },
   },
-  joinUs: {
-    marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
 }));
 
-function Analysis({ outbreak, ...props }) {
+function Legal({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
       hero_carousel: heroCarousel,
-      join_us: joinUs,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -44,36 +36,26 @@ function Analysis({ outbreak, ...props }) {
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Analysis"}
+      title={pageTitle || "Legal"}
       classes={{ section: classes.section }}
     >
       <Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <JoinUs
-        classes={{
-          root: classes.joinUs,
-          section: classes.section,
-        }}
-        joinUs={joinUs}
-        title={joinUs.title}
-        subtitle={joinUs.description}
-      />
     </Page>
   );
 }
 
 export async function getServerSideProps({ query }) {
-  const { lang: pageLanguage } = query;
+  const { lang: pageLanguage, slug: pageSlug } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("insights-analysis", lang);
+  const outbreak = await getSitePage("legal", lang);
+  const slug = pageSlug || null;
 
   return {
-    props: {
-      outbreak,
-    },
+    props: { outbreak, slug },
   };
 }
 
-export default Analysis;
+export default Legal;

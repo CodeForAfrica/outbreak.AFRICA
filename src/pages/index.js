@@ -176,20 +176,20 @@ Home.propTypes = {
   }).isRequired,
 };
 
-Home.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const {
     page: { featured_experts: featuredExperts },
-  } = await getSitePage("featured-experts", lang);
+  } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
 
   return {
-    outbreak,
-    featuredExperts,
+    props: {
+      outbreak,
+      featuredExperts,
+    },
   };
-};
+}
 
 export default Home;

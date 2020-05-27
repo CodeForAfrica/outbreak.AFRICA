@@ -10,31 +10,41 @@ import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
-  root: {
-    backgroundImage: `url(${heroImage})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "0% 0%",
-    backgroundSize: "cover",
+  root: (props) => {
+    if (!props.hasCarousel) {
+      return {};
+    }
+    return {
+      backgroundImage: `url(${heroImage})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "0% 0%",
+      backgroundSize: "cover",
+    };
   },
   section: {},
-  hero: {
-    flexGrow: 1,
-    backgroundImage: `url(${coronaImage})`,
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "90% 2%",
-    backgroundSize: "50%",
-    [breakpoints.up("md")]: {
-      backgroundPosition: "20% 30%",
-      backgroundSize: "75% 55%",
-      padding: `${typography.pxToRem(20)} 0`,
-    },
-    [breakpoints.up("lg")]: {
-      backgroundPosition: "20% 90%",
-      backgroundSize: "70% 75%",
-    },
-    [breakpoints.up("xl")]: {
-      padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
-    },
+  hero: (props) => {
+    if (!props.hasCarousel) {
+      return {};
+    }
+    return {
+      flexGrow: 1,
+      backgroundImage: `url(${coronaImage})`,
+      backgroundRepeat: "no-repeat",
+      backgroundPosition: "90% 2%",
+      backgroundSize: "50%",
+      [breakpoints.up("md")]: {
+        backgroundPosition: "20% 30%",
+        backgroundSize: "75% 55%",
+        padding: `${typography.pxToRem(20)} 0`,
+      },
+      [breakpoints.up("lg")]: {
+        backgroundPosition: "20% 90%",
+        backgroundSize: "70% 75%",
+      },
+      [breakpoints.up("xl")]: {
+        padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
+      },
+    };
   },
 
   heroCarousel: {
@@ -68,7 +78,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
   description: {
     marginTop: "1.0625rem",
@@ -83,18 +93,23 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
-    }
+    },
   },
 }));
 
 function Hero({ heroCarousel, ...props }) {
-  const classes = useStyles(props);
-  const {
-    tagline,
-    title,
-    carousel_items: carouselItems,
-    link_title: carouselLinkTitle,
-  } = heroCarousel;
+  const hasCarousel =
+    heroCarousel &&
+    heroCarousel.carousel_items &&
+    heroCarousel.carousel_items.length;
+  const classes = useStyles({ ...props, hasCarousel });
+
+  if (!heroCarousel) {
+    return null;
+  }
+  const { tagline, title } = heroCarousel;
+  const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
+    (hasCarousel && heroCarousel) || {};
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -104,7 +119,7 @@ function Hero({ heroCarousel, ...props }) {
           alignItems="flex-start"
           className={classes.hero}
         >
-          <Grid item container md={7}>
+          <Grid item container md={hasCarousel ? 7 : 12}>
             <Grid item xs={12}>
               <RichTypography
                 variant="h1"
@@ -123,14 +138,14 @@ function Hero({ heroCarousel, ...props }) {
               </RichTypography>
             </Grid>
           </Grid>
-          <Grid item xs={12} md={5} className={classes.heroCarousel}>
-            {heroCarousel && (
+          {hasCarousel && (
+            <Grid item xs={12} md={5} className={classes.heroCarousel}>
               <HeroCarousel
                 carouselItems={carouselItems}
                 carouselLinkTitle={carouselLinkTitle}
               />
-            )}
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       </Section>
     </div>
