@@ -93,13 +93,9 @@ function ExpertList({
     }
   }, [activeTopic, experts, uniqueTopics]);
 
-  console.log(topicExperts);
-
   return (
     <div className={classes.root} ref={rootRef}>
-      <Section classes={{ root: classes.section }}>
-        <RichTypography variant="h2">{title}</RichTypography>
-
+      <Section title={title} classes={{ root: classes.section, title: classes.sectionTitle }}>
         <Filter
           activeTopic={activeTopic}
           onButtonClick={onButtonClick}
