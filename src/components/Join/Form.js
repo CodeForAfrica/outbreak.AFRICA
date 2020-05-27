@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Grid,
+  Button,
   Typography,
   FilledInput,
   InputLabel,
@@ -11,10 +12,14 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from 'components/Link';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    width: "812px"
+    width: "100%",
+    [breakpoints.up("md")]: {
+      width: '812px'
+    }
   },
   expansionPanel: {
     backgroundColor: '#C1D5FF',
@@ -30,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '2rem 0rem'
   },
   inputLabel: {
-    color: 'black'
+    color: 'black',
+    padding: '1.5rem 0rem'
   },
   formControl: {
     backgroundColor: '#FFFFFF;',
@@ -47,7 +53,11 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#fff'
     }
   },
-  focussed: {}
+  focussed: {},
+  button: {
+    color: '#170F49',
+    borderBottomColor: '#170F49'
+  }
 }));
 
 function Form() {
@@ -62,7 +72,7 @@ function Form() {
     setExpanded(isExpanded ? panel : false);
   };
   return (
-    <Grid container classNamw={classes.root}>
+    <div className={classes.root}>
       <ExpansionPanel
         expanded={expanded === 'panel1'}
         onChange={handleChange('panel1')}
@@ -88,6 +98,7 @@ function Form() {
                 making it over 2000 years old.
               </Typography>
             </Grid>
+
             <form item className={classes.formGrid}>
               <div className={classes.inputGrid}>
                 <InputLabel
@@ -184,7 +195,7 @@ function Form() {
                   <FilledInput
                     disableUnderline={true}
                     value={name}
-                    style={{ height: '500px' }}
+                    style={{ height: '180px' }}
                     onChange={formHandleChange}
                     className={classes.filledInput} />
                 </FormControl>
@@ -229,11 +240,21 @@ function Form() {
                     className={classes.filledInput} />
                 </FormControl>
               </div>
+
+              <Link href="#">
+                <Button
+                  variant="outlined"
+                  size="large"
+                  className={classes.button}
+                >
+                  Submit
+                  </Button>
+              </Link>
             </form>
           </Grid>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-    </Grid >
+    </div >
   )
 }
 
