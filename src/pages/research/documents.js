@@ -1,6 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
@@ -26,6 +27,8 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedDocuments({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
       hero_carousel: heroCarousel,
@@ -39,11 +42,13 @@ function FeaturedDocuments({ outbreak, ...props }) {
       title={pageTitle || "Featured Documents"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        isResearch
-        classes={{ section: classes.section }}
-      />
+      {isDesktop && (
+        <Hero
+          heroCarousel={heroCarousel}
+          isResearch
+          classes={{ section: classes.section }}
+        />
+      )}
     </Page>
   );
 }
