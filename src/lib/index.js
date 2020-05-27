@@ -97,33 +97,39 @@ export function getFilterData() {
   return [
     {
       id: 1,
-      topic: "Lorem",
-      slug: "lorem",
+      topic: "All",
+      slug: "all",
+      subtopics: "Sub-topics"
     },
     {
       id: 2,
-      topic: "Ipsum",
-      slug: "ipsum",
+      topic: "Topic",
+      slug: "topic",
+      subtopics: "Sub-topics"
     },
     {
       id: 3,
-      topic: "Dolor",
-      slug: "dolor",
+      topic: "Topic",
+      slug: "topic",
+      subtopics: "Sub-topics"
     },
     {
       id: 4,
-      topic: "Sit",
-      slug: "sit",
+      topic: "Topic",
+      slug: "topic",
+      subtopics: "Sub-topics"
     },
     {
       id: 5,
-      topic: "Amet",
-      slug: "amet",
+      topic: "Topic",
+      slug: "topic",
+      subtopics: "Sub-topics"
     },
     {
       id: 6,
-      topic: "Sed",
-      slug: "sed",
+      topic: "Topic",
+      slug: "topic",
+      subtopics: "Sub-topics"
     },
   ];
 }

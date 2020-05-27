@@ -7,29 +7,30 @@ import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
 import { Section } from "@commons-ui/core";
 
 import email from "assets/email.svg";
-import source from "assets/subscribe-image.png";
+import electricBlueEmail from "assets/electric-blue-email.svg";
+import source from "assets/subscribe.png";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     backgroundColor: "#170f49",
     color: "white",
   },
   section: {},
   subscribeGrid: {
-    padding: "8rem 0rem",
+    padding: "3rem 0rem",
   },
   subtitle: {
     padding: "2rem 0rem",
   },
   title: {
-    color: theme.palette.text.secondary,
+    color: palette.text.secondary,
     padding: "2rem 0rem",
   },
   form: {},
   input: {
-    color: theme.palette.text.secondary,
-    fontSize: theme.typography.caption.fontSize,
-    lineHeight: theme.typography.caption.lineHeight,
+    color: palette.text.secondary,
+    fontSize: typography.caption.fontSize,
+    lineHeight: typography.caption.lineHeight,
     borderBottom: "1px solid white",
     width: "80%",
   },
@@ -37,8 +38,18 @@ const useStyles = makeStyles((theme) => ({
     height: "2.5rem",
   },
   subscribeImage: {
-    height: "auto",
-    width: "80%",
+    display: "none",
+    [breakpoints.up("md")]: {
+      display: "flex",
+      height: '448px',
+    },
+  },
+  subscribeImageDiv: {
+    display: "none",
+    [breakpoints.up("md")]: {
+      display: "flex",
+      position: 'relative',
+    },
   },
   button: {
     padding: 0,
@@ -48,21 +59,21 @@ const useStyles = makeStyles((theme) => ({
 
 function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);
+
   const { title, description } = subscribe;
 
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
-        <Grid container direction="row" justify="center" spacing={5}>
-          <Grid item xs={12} md={6}>
+        <Grid container direction="row">
+          <Grid item md={5} className={classes.subscribeImageDiv}>
             <img
               src={source}
               alt="Subscribe"
               className={classes.subscribeImage}
             />
           </Grid>
-
-          <Grid item xs={8} md={6} className={classes.subscribeGrid}>
+          <Grid item xs={12} md={7} className={classes.subscribeGrid}>
             <Typography variant="h2" className={classes.title}>
               {title}
             </Typography>
