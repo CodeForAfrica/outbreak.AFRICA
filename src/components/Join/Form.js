@@ -43,28 +43,33 @@ function Form() {
                 making it over 2000 years old.
               </Typography>
             </Grid>
-            <Grid item>
-              <InputLabel>hellow</InputLabel>
-              <TextField
-                id="standard-full-width"
-                style={{ margin: 8 }}
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="filled"
-              />
-              <TextField
-                id="standard-full-width"
-                style={{ margin: 8 }}
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                variant="filled"
-              />
+            <Grid item style={{ padding: '3rem 0rem' }}>
+              <div>
+                <InputLabel varian="standard" style={{ color: 'black' }}>Field descriptor</InputLabel>
+                <TextField
+                  id="standard-full-width"
+                  style={{ margin: 8 }}
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="filled"
+                />
+              </div>
+              <div>
+                <InputLabel varian="standard" style={{ color: 'black' }}>Field descriptor</InputLabel>
+                <TextField
+                  id="standard-full-width"
+                  style={{ margin: 8 }}
+                  fullWidth
+                  margin="normal"
+                  InputLabelProps={{
+                    shrink: true,
+                  }}
+                  variant="filled"
+                />
+              </div>
             </Grid>
           </Grid>
         </ExpansionPanelDetails>
