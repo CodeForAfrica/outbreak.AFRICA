@@ -97,7 +97,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Hero({ heroCarousel, ...props }) {
+function Hero({ heroCarousel, isResearch, ...props }) {
   const hasCarousel =
     heroCarousel &&
     heroCarousel.carousel_items &&
@@ -143,6 +143,7 @@ function Hero({ heroCarousel, ...props }) {
               <HeroCarousel
                 carouselItems={carouselItems}
                 carouselLinkTitle={carouselLinkTitle}
+                isResearch={isResearch}
               />
             </Grid>
           )}
@@ -158,10 +159,12 @@ Hero.propTypes = {
     tagline: PropTypes.string,
     title: PropTypes.string,
   }),
+  isResearch: PropTypes.bool,
 };
 
 Hero.defaultProps = {
   heroCarousel: undefined,
+  isResearch: false,
 };
 
 export default Hero;
