@@ -12,8 +12,9 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MessageIcon from '@material-ui/icons/Message';
 import Link from 'components/Link';
+
+//import iconBox from 'assets/icon-infobox.svg'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -88,7 +89,7 @@ function Form() {
             className={classes.title}>
 
             <IconButton aria-label="delete">
-              <MessageIcon size="medium" />
+              {/*<img src={iconBox} alt="icon box" />*/}
             </IconButton>
             Application Form
             </Typography>

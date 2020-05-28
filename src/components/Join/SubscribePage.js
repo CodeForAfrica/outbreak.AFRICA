@@ -6,7 +6,7 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import Form from 'components/Join/Form';
+import Form from 'components/Form';
 import Subscribe from 'components/Partners/Subscribe'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
