@@ -112,7 +112,7 @@ function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
       )}
       <Grid item xs={6} md={12} className={classes.contentDiv}>
         {title && (
-          <Typography variant="subtitle1" className={classes.title}>
+          <Typography variant="subtitle2" className={classes.title}>
             {title}
           </Typography>
         )}
