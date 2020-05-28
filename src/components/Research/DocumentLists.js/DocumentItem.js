@@ -67,7 +67,7 @@ const useStyles = makeStyles(
     },
     contentDiv: {
       [breakpoints.up("md")]: {
-        marginTop: "1.375rem",
+        paddingTop: "1.375rem",
       },
     },
     documentDiv: {

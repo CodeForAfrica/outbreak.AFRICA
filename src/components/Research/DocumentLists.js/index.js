@@ -30,7 +30,7 @@ function DocumentLists({ documents, title, ...props }) {
         title={title}
         classes={{ root: classes.section, title: classes.sectionTitle }}
       >
-        <Grid container direction="row">
+        <Grid container direction="row" alignItems="flex-start">
           {documents &&
             documents.map(
               ({
