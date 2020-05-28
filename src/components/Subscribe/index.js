@@ -10,77 +10,78 @@ import email from "assets/email.svg";
 import electricBlueEmail from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
 
-const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
-  root: {
-    backgroundColor: "#170f49",
-    color: "white",
-  },
-  section: {},
-  subscribeGrid: {
-    padding: "5.625rem 0rem",
-    [breakpoints.up("md")]: {
-      padding: "2rem",
+const useStyles = makeStyles(
+  ({ breakpoints, palette, typography, widths }) => ({
+    root: {
+      backgroundColor: "#170f49",
+      color: "white",
     },
-    [breakpoints.up("lg")]: {
-      padding: "3rem 0rem 4rem",
+    section: {},
+    subscribeGrid: {
+      padding: "5.625rem 0rem",
+      [breakpoints.up("md")]: {
+        padding: "2rem",
+      },
+      [breakpoints.up("lg")]: {
+        padding: "3rem 0rem 4rem",
+      },
+      [breakpoints.up("xl")]: {
+        padding: "4rem 0rem 5rem",
+      },
     },
-    [breakpoints.up("xl")]: {
-      padding: "4rem 0rem 5rem",
+    subtitle: {
+      paddingBottom: "2rem",
     },
-  
-  },
-  subtitle: {
-    paddingBottom: "2rem",
-  },
-  title: {
-    color: palette.text.secondary,
-    paddingBottom: "2rem",
-  },
-  form: {},
-  input: {
-    color: palette.text.secondary,
-    fontSize: typography.caption.fontSize,
-    lineHeight: typography.caption.lineHeight,
-    borderBottom: "1px solid white",
-    width: "100%",
-    [breakpoints.up("md")]: {
-      width: "80%",
+    title: {
+      color: palette.text.secondary,
+      paddingBottom: "2rem",
     },
-  },
-  img: {
-    height: "2.5rem",
-  },
-  subscribeImage: {
-    display: "none",
-    [breakpoints.up("md")]: {
-      display: "initial",
-      margin: "2rem",
-      height: (widths.values.md * 448) / widths.values.xl,
+    form: {},
+    input: {
+      color: palette.text.secondary,
+      fontSize: typography.caption.fontSize,
+      lineHeight: typography.caption.lineHeight,
+      borderBottom: "1px solid white",
+      width: "100%",
+      [breakpoints.up("md")]: {
+        width: "80%",
+      },
     },
-    [breakpoints.up("lg")]: {
-      height: (widths.values.lg * 448) / widths.values.xl,
-      left: "-110px",
-      position: "absolute",
-      top: 0,
+    img: {
+      height: "2.5rem",
     },
-    [breakpoints.up("xl")]: {
-      height: "448px",
-      margin: 0,
+    subscribeImage: {
+      display: "none",
+      [breakpoints.up("md")]: {
+        display: "initial",
+        margin: "2rem",
+        height: (widths.values.md * 448) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        height: (widths.values.lg * 448) / widths.values.xl,
+        left: "-110px",
+        position: "absolute",
+        top: 0,
+      },
+      [breakpoints.up("xl")]: {
+        height: "448px",
+        margin: 0,
+      },
     },
-  },
-  subscribeImageDiv: {
-    display: "none",
-    [breakpoints.up("md")]: {
-      display: "initial",
-      position: "relative",
-      overflow: "visible",
+    subscribeImageDiv: {
+      display: "none",
+      [breakpoints.up("md")]: {
+        display: "initial",
+        position: "relative",
+        overflow: "visible",
+      },
     },
-  },
-  button: {
-    padding: 0,
-    paddingTop: "1rem",
-  },
-}));
+    button: {
+      padding: 0,
+      paddingTop: "1rem",
+    },
+  })
+);
 
 function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);

@@ -5,7 +5,7 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import DocumentItem from './DocumentItem';
+import DocumentItem from "./DocumentItem";
 
 const useStyles = makeStyles(({ typography }) => ({
   root: {
@@ -49,7 +49,8 @@ function DocumentLists({ documents, title, ...props }) {
                     description={description}
                     documentUrl={url}
                     imageUrl={imageUrl}
-                    title={documentTitle} />
+                    title={documentTitle}
+                  />
                 );
               }
             )}
