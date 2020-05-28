@@ -22,10 +22,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   expansionPanel: {
     backgroundColor: '#C1D5FF',
-    padding: '1.5rem'
+    padding: '1rem',
+    [breakpoints.up("md")]: {
+      padding: '1.5rem',
+    }
   },
+  expansionPanelSummary: {},
   title: {
-    fontWeight: 700
+    fontWeight: 700,
   },
   formGrid: {
     padding: '3rem 0rem',
@@ -80,11 +84,11 @@ function Form() {
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
+          className={classes.expansionPanelSummary}
         >
           <Typography
             variant="h5"
             className={classes.title}>
-
             <IconButton aria-label="delete">
               <img src={iconBox} alt="icon box" />
             </IconButton>
