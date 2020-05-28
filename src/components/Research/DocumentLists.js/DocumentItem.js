@@ -23,7 +23,7 @@ const useStyles = makeStyles(
       },
     },
     image: {
-      width: "100%",
+      width: "auto",
       height: 180,
       [breakpoints.up("md")]: {
         height: (widths.values.md * 460) / widths.values.xl,
