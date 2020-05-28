@@ -103,12 +103,16 @@ function Subscribe({ subscribe, ...props }) {
                 InputProps={{ className: classes.input }}
               />
 
-              <IconButton className={classes.button}>
+              <IconButton 
+                className={classes.button} 
+                onFocus={() => setIconSrc(electricBlueEmail)}
+                onMouseOver={() => setIconSrc(electricBlueEmail)}
+                onBlur={() => setIconSrc(email)}
+                onMouseOut={() => setIconSrc(email)}>
                 <img
                   src={iconSrc}
                   alt="Arrow icon"
                   className={classes.img}
-                  onFocus={() => setIconSrc(electricBlueEmail)}
                 />
               </IconButton>
             </form>
