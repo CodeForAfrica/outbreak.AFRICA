@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CarouselCard({ item, linkTitle }) {
-  const classes = useStyles();
+function CarouselCard({ item, linkTitle, ...props }) {
+  const classes = useStyles(props);
 
   if (!item) {
     return null;

@@ -1,6 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
@@ -33,9 +34,12 @@ const useStyles = makeStyles(({ breakpoints, widths}) => ({
 
 function FeaturedDocuments({ count, documents, outbreak, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
       hero_carousel: heroCarousel,
+      subscribe,
       section_title: title,
       title: { rendered: pageTitle },
     },
@@ -47,16 +51,27 @@ function FeaturedDocuments({ count, documents, outbreak, ...props }) {
       title={pageTitle || "Featured Documents"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        classes={{ section: classes.section }}
-      />
+       {isDesktop && (
+        <Hero
+          heroCarousel={heroCarousel}
+          isResearch
+          classes={{ section: classes.section }}
+        />
+      )}
 
       <Documents
         documents={documents}
         count={count}
         title={title}
         classes={{ section: classes.section }} />
+
+      <Subscribe
+        classes={{
+          root: classes.subscribe,
+          section: classes.section,
+        }}
+        subscribe={subscribe}
+      />
     </Page>
   );
 }
