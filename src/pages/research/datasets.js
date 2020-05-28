@@ -9,18 +9,21 @@ import Hero from "components/Hero";
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, widths}) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
 }));

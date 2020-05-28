@@ -20,24 +20,27 @@ import linkedInBlue from "assets/Icon awesome-linkedin-in-b.svg";
 import twitterBlue from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, widths}) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
   featuredExperts: {},
   subscribe: {
     marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
   },
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "contain",
     height: "1rem",
     width: "1rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       height: "1.375rem",
       width: "1.375rem",
     },

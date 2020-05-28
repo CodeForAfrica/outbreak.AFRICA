@@ -6,6 +6,7 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 import Page from "components/Page";
 import Hero from "components/Hero";
 import Documents from "components/Research/Documents";
+import Subscribe from "components/Subscribe";
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -15,9 +16,6 @@ const useStyles = makeStyles(({ breakpoints, widths}) => ({
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    /** Since our design if of XL, we're going to optimize for space in
-     * MD & LG i.e. minimize margins
-     */
     [breakpoints.up("md")]: {
       margin: "0 auto",
       width: widths.values.md,
@@ -28,6 +26,12 @@ const useStyles = makeStyles(({ breakpoints, widths}) => ({
     [breakpoints.up("xl")]: {
       margin: "0 auto",
       width: widths.values.xl,
+    },
+  },
+  subscribe: {
+    marginTop: "3.5rem",
+    [breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
     },
   },
 }));
@@ -82,9 +86,8 @@ export async function getServerSideProps({ query }) {
   const outbreak = await getSitePage("research-documents", lang);
 
   //https://corsanywhere.devops.codeforafrica.org
-  const projectId = '462-Dominion-AFRICA';
   const response = await fetch(
-    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
+    'https://dc.sourceafrica.net/api/search.json?q=coronavirus&per_page=40&sections=true&mentions=3&contributor=true'
   );
   const { documents, total: count} = response.ok ? await response.json() : {};
 
