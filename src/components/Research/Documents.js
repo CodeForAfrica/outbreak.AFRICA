@@ -73,13 +73,17 @@ const useStyles = makeStyles(({ breakpoints, typography, palette, widths }) => (
     },
   },
   documentDiv: {
-    borderTop: "1px solid #9D9C9C",
+    borderTop: "1px solid #D6D6D6",
     paddingTop: typography.pxToRem(16),
     paddingBottom: typography.pxToRem(16),
     [breakpoints.up("md")]: {
       border: 0,
       paddingTop: 0,
-      paddingBottom: 0,
+      paddingBottom: typography.pxToRem(50),
+      paddingRight: typography.pxToRem(16),
+      "&:last-of-type": {
+        paddingRight: 0,
+      },
     },
   },
   section: {},
@@ -104,7 +108,7 @@ function Documents({ documents, title, ...props }) {
         title={title}
         classes={{ root: classes.section, title: classes.sectionTitle }}
       >
-        <Grid container direction="row" spacing={2}>
+        <Grid container direction="row">
           {documents &&
             documents.map(
               ({

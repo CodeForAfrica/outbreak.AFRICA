@@ -62,7 +62,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     "& .profile-2:after": {
       backgroundColor: palette.highlight.main,
     },
-    borderTop: "1px solid #9D9C9C",
+    borderTop: "1px solid #D6D6D6",
     paddingTop: typography.pxToRem(16),
     paddingBottom: typography.pxToRem(16),
     [breakpoints.up("md")]: {
