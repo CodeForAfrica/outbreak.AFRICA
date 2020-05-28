@@ -7,7 +7,7 @@ import { A, Section } from "@commons-ui/core";
 
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles(({ breakpoints, typography, palette }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, palette, widths }) => ({
   root: {
     marginTop: "0.85rem",
   },
@@ -25,14 +25,24 @@ const useStyles = makeStyles(({ breakpoints, typography, palette }) => ({
     },
   },
   image: {
-    width: '100%',
+    width: "100%",
+    height: 180,
+    [breakpoints.up("md")]: {
+      height: widths.values.md * 460 / widths.values.xl
+    },
+    [breakpoints.up("lg")]: {
+      height: widths.values.lg * 460 / widths.values.xl
+    },
+    [breakpoints.up("xl")]: {
+      height: 460,
+    },
   },
   imageDiv: {
     width: "100%",
-    height: 220,
+    height: 221,
+    padding: "1rem 0.6875rem 1rem 0.8125rem",
     overflow: "hidden",
     position: "relative",
-    padding: "1rem 0.6875rem",
     "&:after": {
       backgroundColor: palette.primary.main,
       bottom: 0,
@@ -45,21 +55,22 @@ const useStyles = makeStyles(({ breakpoints, typography, palette }) => ({
       top: 0,
     },
     [breakpoints.up("md")]: {
-      padding: "1rem",
-      height: 340,
+      height: widths.values.md * 546 / widths.values.xl,
+      padding: "1.5rem 1rem",
     },
     [breakpoints.up("lg")]: {
-      padding: "1rem",
-      height: 440,
+      height: widths.values.lg * 546 / widths.values.xl,
+      padding: "2rem 1.5rem",
     },
     [breakpoints.up("xl")]: {
-      height: 500,
+      height: 546,
+      padding: "2.6875rem 1.875rem 2.6875rem 2rem"
     },
   },
   contentDiv: {
     [breakpoints.up("md")]: {
-      marginTop: '1.375rem',
-    }
+      marginTop: "1.375rem",
+    },
   },
   documentDiv: {
     borderTop: "1px solid #9D9C9C",
@@ -86,16 +97,6 @@ function Documents({ documents, title, ...props }) {
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
-  const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
-  const isLg = isUpLg && !isUpXl;
-  let imageHeight = 180;
-  if (isUpLg) {
-    imageHeight = isLg ? 400 : 460;
-  }
-  if (isDesktop && !isUpLg && !isUpXl) {
-    imageHeight = 300;
-  }
 
   return (
     <div className={classes.root}>
@@ -131,7 +132,6 @@ function Documents({ documents, title, ...props }) {
                         src={imageUrl}
                         alt=""
                         className={classes.image}
-                        height={imageHeight}
                       />
                     </Grid>
                     <Grid item xs={6} md={12} className={classes.contentDiv}>
