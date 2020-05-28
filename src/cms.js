@@ -6,18 +6,8 @@ export async function getSiteOptions(lang) {
     `${config.WP_BACKEND_URL}/wp-json/acf/v3/options/hurumap-site?lang=${lang}`
   );
   const data = res.ok ? await res.json() : {};
+
   return data.acf;
-}
-
-export async function getPage(type) {
-  const res = await fetch(
-    `${config.WP_BACKEND_URL}/api/v2/pages/?type=${type}&fields=*&format=json`
-  );
-  const data = res.ok ? await res.json() : {};
-
-  Object.assign(config.page, data.items[0]);
-
-  return config;
 }
 
 export async function getPostBySlug(type, slug, lang) {
@@ -29,21 +19,24 @@ export async function getPostBySlug(type, slug, lang) {
   return data;
 }
 
-export async function getSitePage(slug, lang) {
+export async function getPostById(type, id, lang) {
   const res = await fetch(
-    `${config.WP_BACKEND_URL}/wp-json/wp/v2/pages?slug=${slug}&lang=${lang}`
+    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}/${id}?lang=${lang}`
   );
-  const data = res.ok ? await res.json() : {};
+  return res.ok ? res.json() : null;
+}
 
+export async function getSitePage(slug, lang) {
+  const pages = await getPostBySlug("pages", slug, lang);
+  const page = pages.length ? pages[0] : {};
   const options = await getSiteOptions(lang);
-
   Object.assign(
     config.page,
-    { rendered: data[0].content.rendered },
-    data[0].acf,
-    options
+    page,
+    options,
+    { rendered: page.content.rendered },
+    page.acf
   );
-
   config.language = lang;
 
   return config;
@@ -59,13 +52,6 @@ export async function getSectionedCharts(lang) {
 export async function getChartDefinition(chartId, lang) {
   const res = await fetch(
     `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts/${chartId}?lang=${lang}`
-  );
-  return res.ok ? res.json() : null;
-}
-
-export async function getPostById(type, id, lang) {
-  const res = await fetch(
-    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}/${id}?lang=${lang}`
   );
   return res.ok ? res.json() : null;
 }

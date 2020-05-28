@@ -79,7 +79,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Home({ outbreak, ...props }) {
+function Home({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -91,7 +91,6 @@ function Home({ outbreak, ...props }) {
       hero_carousel: heroCarousel,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
-      featured_experts: featuredExperts,
       join_us: joinUs,
     },
   } = outbreak;
@@ -179,16 +178,20 @@ Home.propTypes = {
   }).isRequired,
 };
 
-Home.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
+  const {
+    page: { featured_experts: featuredExperts },
+  } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+      featuredExperts,
+    },
   };
-};
+}
 
 export default Home;

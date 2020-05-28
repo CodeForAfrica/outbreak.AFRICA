@@ -43,6 +43,36 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "0px 3px 6px #00000029",
   },
   carousel: {},
+  carouselBodyText: {
+    display: 'none',
+  },
+  carouselCardLink: {
+    display: 'none',
+  },
+  carouselBodyTitle: {
+    color: 'initial',
+    margin: 0,
+  },
+  carouselMedia: {
+    height: '18rem',
+    minHeight: '18rem',
+  },
+  carouselRoot: {
+    height: '23rem',
+    minHeight: '23rem',
+    border: 0,
+    backgroundColor: 'unset',
+    borderRadius: 0,
+    boxShadow: 'unset',
+  },
+  carouselContentRoot: {
+    display:'block',
+    height: '5rem',
+    paddingTop: '1rem',
+    position: "relative",
+    top: 'initial',
+    left: 'initial',
+  },
 }));
 
 function CustomArrowButtons({ next, previous }) {
@@ -73,7 +103,8 @@ function CustomArrowButtons({ next, previous }) {
   );
 }
 
-function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
+function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle, isResearch }) {
+  const classes = useStyles();
   if (!carouselItems || carouselItems.length === 0) {
     return null;
   }
@@ -100,6 +131,14 @@ function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle }) {
           key={item.title}
           item={item}
           linkTitle={carouselLinkTitle}
+          classes={isResearch && {
+            media: classes.carouselMedia,
+            bodyTitle: classes.carouselBodyTitle,
+            bodyText: classes.carouselBodyText,
+            cardLink: classes.carouselCardLink,
+            root: classes.carouselRoot,
+            contentRoot: classes.carouselContentRoot,
+          }}
         />
       ))}
     </Carousel>
@@ -113,6 +152,7 @@ HeroCarousel.propTypes = {
     })
   ),
   carouselLinkTitle: PropTypes.string,
+  isResearch: PropTypes.bool.isRequired,
 };
 
 HeroCarousel.defaultProps = {
