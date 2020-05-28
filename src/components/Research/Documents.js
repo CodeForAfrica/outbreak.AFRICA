@@ -7,7 +7,7 @@ import { A, Section } from "@commons-ui/core";
 
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, palette }) => ({
   root: {
     marginTop: "0.85rem",
   },
@@ -24,12 +24,43 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       width: "1.375rem",
     },
   },
-  image: {},
+  image: {
+    width: '100%',
+  },
   imageDiv: {
     width: "100%",
+    height: 220,
     overflow: "hidden",
+    position: "relative",
+    padding: "1rem 0.6875rem",
+    "&:after": {
+      backgroundColor: palette.primary.main,
+      bottom: 0,
+      content: '""',
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.3,
+      position: "absolute",
+      right: 0,
+      top: 0,
+    },
+    [breakpoints.up("md")]: {
+      padding: "1rem",
+      height: 340,
+    },
+    [breakpoints.up("lg")]: {
+      padding: "1rem",
+      height: 440,
+    },
+    [breakpoints.up("xl")]: {
+      height: 500,
+    },
   },
-  contentDiv: {},
+  contentDiv: {
+    [breakpoints.up("md")]: {
+      marginTop: '1.375rem',
+    }
+  },
   documentDiv: {
     borderTop: "1px solid #9D9C9C",
     paddingTop: typography.pxToRem(16),
@@ -58,9 +89,12 @@ function Documents({ documents, title, ...props }) {
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
   const isLg = isUpLg && !isUpXl;
-  let imageHeight = 300;
+  let imageHeight = 180;
   if (isUpLg) {
-    imageHeight = isLg ? 400 : 500;
+    imageHeight = isLg ? 400 : 460;
+  }
+  if (isDesktop && !isUpLg && !isUpXl) {
+    imageHeight = 300;
   }
 
   return (
