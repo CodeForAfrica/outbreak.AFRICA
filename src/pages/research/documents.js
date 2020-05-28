@@ -4,31 +4,39 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
+import Documents from "components/Research/Documents";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, widths}) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    /** Since our design if of XL, we're going to optimize for space in
+     * MD & LG i.e. minimize margins
+     */
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
 }));
 
-function FeaturedDocuments({ outbreak, ...props }) {
+function FeaturedDocuments({ count, documents, outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
       hero_carousel: heroCarousel,
+      section_title: title,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -43,6 +51,12 @@ function FeaturedDocuments({ outbreak, ...props }) {
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
+
+      <Documents
+        documents={documents}
+        count={count}
+        title={title}
+        classes={{ section: classes.section }} />
     </Page>
   );
 }
@@ -52,9 +66,18 @@ export async function getServerSideProps({ query }) {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-documents", lang);
 
+  //https://corsanywhere.devops.codeforafrica.org
+  const projectId = '462-Dominion-AFRICA';
+  const response = await fetch(
+    `https://dc.sourceafrica.net/api/search.json?q=projectid:${projectId}`
+  );
+  const { documents, total: count} = response.ok ? await response.json() : {};
+
   return {
     props: {
       outbreak,
+      documents,
+      count,
     },
   };
 }
