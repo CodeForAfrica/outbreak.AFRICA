@@ -229,7 +229,8 @@ Disallow:
     all: "All Section Vulnerability Score",
     "demographic-vulnerability": "Demographics Vulnerability Score",
     "epidemiological-factors": "Epidemiological Factors Vulnerability Score",
-    "healthcare-system-factors": "Healthcare Systems Factors Vulnerability Score",
+    "healthcare-system-factors":
+      "Healthcare Systems Factors Vulnerability Score",
     "wash-basic-services": "WASH/ Basic Services Vulnerability Score",
   },
   vulnerabilityIndexColor: {

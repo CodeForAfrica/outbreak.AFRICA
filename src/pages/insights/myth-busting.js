@@ -27,13 +27,16 @@ const useStyles = makeStyles((theme) => ({
 function MythBusters({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title="Myth-Busting"
+      title={pageTitle || "Myth-Busting"}
       classes={{ section: classes.section }}
     >
       <Hero
@@ -44,16 +47,16 @@ function MythBusters({ outbreak, ...props }) {
   );
 }
 
-MythBusters.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("insights-myth-busting", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default MythBusters;

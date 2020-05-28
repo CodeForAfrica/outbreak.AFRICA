@@ -1,6 +1,7 @@
 import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
@@ -26,34 +27,42 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedDocuments({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
-    page: { hero_carousel: heroCarousel },
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title="Featured Documents"
+      title={pageTitle || "Featured Documents"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        classes={{ section: classes.section }}
-      />
+      {isDesktop && (
+        <Hero
+          heroCarousel={heroCarousel}
+          isResearch
+          classes={{ section: classes.section }}
+        />
+      )}
     </Page>
   );
 }
 
-FeaturedDocuments.getInitialProps = async (props) => {
-  const {
-    query: { lang: pageLanguage },
-  } = props;
+export async function getServerSideProps({ query }) {
+  const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("index", lang);
+  const outbreak = await getSitePage("research-documents", lang);
 
   return {
-    outbreak,
+    props: {
+      outbreak,
+    },
   };
-};
+}
 
 export default FeaturedDocuments;
