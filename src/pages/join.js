@@ -5,6 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from "components/Page";
 import Hero from "components/Hero";
 
+import Content from 'components/Content'
 import JoinUsPage from 'components/JoinUsPage'
 
 import config from "config";
@@ -45,7 +46,16 @@ function JoinUs({ outbreak, ...props }) {
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
-      <JoinUsPage />
+      <Content
+        title="Join Us"
+        ubtitle="Lorem Ipsum is simply dummy text of the printing 
+        and typesetting industry. It was popularised in the 1960s 
+        with the release of Letraset sheets containing Lorem Ipsum"
+        classes={{ section: classes.section }}
+      />
+      <JoinUsPage
+        classes={{ section: classes.section }}
+      />
     </Page>
   );
 }

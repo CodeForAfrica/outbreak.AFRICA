@@ -5,11 +5,15 @@ import classNames from "classnames";
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
+import Content from 'components/Content'
 
 import Form from 'components/Form';
 import Subscribe from 'components/Partners/Subscribe'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    flexGrow: 1
+  },
   containerGrid: {
     padding: '3rem 0rem'
   },
@@ -32,35 +36,18 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   }
 }));
 
-function Content({ title, subtitle }) {
-  const classes = useStyles();
-  return (
-    <div className={classes.contentGrid}>
-      <Typography variant="h2">{title}</Typography>
-      <Typography variant="body1">
-        {subtitle}
-      </Typography>
-    </div>
-  )
-}
 
 function JoinUsPage() {
   const classes = useStyles();
   return (
-    <div>
+    <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
-        <Content
-          title="JOIN US"
-          subtitle="Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. It was popularised in the 1960s 
-        with the release of Letraset sheets containing Lorem Ipsum"
-        />
         <Grid
           container
           direction="row"
           justify="space-between"
           className={classes.containerGrid}>
-          <Grid
+          {/*<Grid
             item
             xs={12}
             md={3}
@@ -69,7 +56,7 @@ function JoinUsPage() {
           </Grid>
           <Grid item xs={12} md={8} className={classes.formGrid}>
             <Form />
-          </Grid>
+          </Grid>*/}
         </Grid>
       </Section>
     </div>

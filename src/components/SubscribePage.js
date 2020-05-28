@@ -2,9 +2,10 @@ import React from 'react';
 
 import classNames from "classnames";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
+import Content from 'components/Content';
 
 import Form from 'components/Form';
 import Subscribe from 'components/Partners/Subscribe'
@@ -31,18 +32,6 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     width: '100%'
   }
 }));
-
-function Content({ title, subtitle }) {
-  const classes = useStyles();
-  return (
-    <div className={classes.contentGrid}>
-      <Typography variant="h2">{title}</Typography>
-      <Typography variant="body1">
-        {subtitle}
-      </Typography>
-    </div>
-  )
-}
 
 function SubscribePage() {
   const classes = useStyles();
