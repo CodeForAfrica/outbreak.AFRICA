@@ -1,20 +1,13 @@
 import React from 'react';
 
-import classNames from "classnames";
-
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
-import Content from 'components/Content';
-
 import Form from 'components/Form';
 import Subscribe from 'components/Partners/Subscribe'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    flexGrow: 1
-  },
-  containerGrid: {
+    flexGrow: 1,
     padding: '3rem 0rem'
   },
   subscribeGrid: {
@@ -47,26 +40,22 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 function SubscribePage() {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      <Section>
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          className={classes.containerGrid}>
-          <Grid
-            item
-            xs={12}
-            md={3}
-            className={classes.subscribeGrid}>
-            <Subscribe />
-          </Grid>
-          <Grid item xs={12} md={6} className={classes.formGrid}>
-            <Form />
-          </Grid>
-        </Grid>
-      </Section>
-    </div>
+    <Grid
+      container
+      direction="row"
+      justify="flex-start"
+      className={classes.root}>
+      <Grid
+        item
+        xs={12}
+        md={3}
+        className={classes.subscribeGrid}>
+        <Subscribe />
+      </Grid>
+      <Grid item xs={12} md={6} className={classes.formGrid}>
+        <Form />
+      </Grid>
+    </Grid>
   )
 }
 

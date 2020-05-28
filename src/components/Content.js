@@ -5,7 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: '1.5rem 0rem'
   },
   section: {},
   contentGrid: {
