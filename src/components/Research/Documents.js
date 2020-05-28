@@ -4,10 +4,8 @@ import PropTypes from "prop-types";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A, Section } from "@commons-ui/core";
-import { Document, Page, pdfjs } from 'react-pdf';
 
 import websiteBlue from "assets/icon web.svg";
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
@@ -73,31 +71,33 @@ function Documents({ documents, title, ...props }) {
         classes={{ root: classes.section, title: classes.sectionTitle }}
       >
         <Grid container direction="row" spacing={2}>
-          {documents && documents.map(({ title, description, canonical_url: url, resources: { thumbnail, pdf }}) => (
-            <Grid item container xs={12} md={3} direction={isDesktop? 'row': 'row-reverse'} className={classes.documentDiv}>
-              <Grid item xs={6} md={12} className={classes.imageDiv}>
-              <Document
-                  file={`https://cors-anywhere.herokuapp.com/${pdf}`}
-                ><Page pageNumber={1} height={imageHeight} /></Document>
-                {/* <img src={thumbnail} alt={""} className={classes.image} height={imageHeight} /> */}
+          {documents && documents.map(({ title, description, canonical_url: url, resources: { page: { image } }}) => {
+            const imageUrl = image.replace('{page}', '1').replace('{size}', 'large');
+            return (
+              <Grid item container xs={12} md={3} direction={isDesktop? 'row': 'row-reverse'} className={classes.documentDiv}>
+                <Grid item xs={6} md={12} className={classes.imageDiv}>
+                  <img src={imageUrl} alt={""} className={classes.image} height={imageHeight} />
+                </Grid>
+                <Grid item xs={6} md={12} className={classes.contentDiv}>
+                  <Typography variant="subtitle1" className={classes.title}>{title}</Typography>
+                  <Typography variant="caption">{description}</Typography>
+                  <A
+                    href={url}
+                    color="textSecondary"
+                    className={classes.link}
+                    >
+                    <img
+                      src={websiteBlue}
+                      alt={title}
+                      className={classes.icon}
+                    />
+                  </A>
+                </Grid>
               </Grid>
-              <Grid item xs={6} md={12} className={classes.contentDiv}>
-                <Typography variant="subtitle1" className={classes.title}>{title}</Typography>
-                <Typography variant="caption">{description}</Typography>
-                <A
-                  href={url}
-                  color="textSecondary"
-                  className={classes.link}
-                  >
-                  <img
-                    src={websiteBlue}
-                    alt={title}
-                    className={classes.icon}
-                  />
-                </A>
-              </Grid>
-            </Grid>
-          ))}
+
+            )
+          }
+          )}
         </Grid>
       </Section>
     </div>
