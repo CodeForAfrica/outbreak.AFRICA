@@ -10,21 +10,31 @@ import email from "assets/email.svg";
 import electricBlueEmail from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
 
-const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
   root: {
     backgroundColor: "#170f49",
     color: "white",
   },
   section: {},
   subscribeGrid: {
-    padding: "3rem 0rem 5rem",
+    padding: "5.625rem 0rem",
+    [breakpoints.up("md")]: {
+      padding: "2rem",
+    },
+    [breakpoints.up("lg")]: {
+      padding: "3rem 0rem 4rem",
+    },
+    [breakpoints.up("xl")]: {
+      padding: "4rem 0rem 5rem",
+    },
+  
   },
   subtitle: {
     paddingBottom: "2rem",
   },
   title: {
     color: palette.text.secondary,
-    padding: "2rem 0rem",
+    paddingBottom: "2rem",
   },
   form: {},
   input: {
@@ -44,10 +54,18 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     display: "none",
     [breakpoints.up("md")]: {
       display: "initial",
-      height: "445px",
+      margin: "2rem",
+      height: (widths.values.md * 448) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      height: (widths.values.lg * 448) / widths.values.xl,
+      left: "-110px",
       position: "absolute",
       top: 0,
-      left: "-110px",
+    },
+    [breakpoints.up("xl")]: {
+      height: "448px",
+      margin: 0,
     },
   },
   subscribeImageDiv: {
