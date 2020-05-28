@@ -5,7 +5,7 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-import Documents from "components/Research/Documents";
+import DocumentLists from "components/Research/DocumentLists.js";
 import Subscribe from "components/Subscribe";
 
 import config from "config";
@@ -63,9 +63,8 @@ function FeaturedDocuments({ count, documents, outbreak, ...props }) {
         />
       )}
 
-      <Documents
+      <DocumentLists
         documents={documents}
-        count={count}
         title={title}
         classes={{ section: classes.section }}
       />
