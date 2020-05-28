@@ -20,7 +20,7 @@ import linkedInBlue from "assets/Icon awesome-linkedin-in-b.svg";
 import twitterBlue from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles(({ breakpoints, widths}) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -97,7 +97,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? linkedIn: linkedInBlue}
+                  src={isDesktop ? linkedIn : linkedInBlue}
                   alt="LinkedIn Profile"
                   className={classes.icon}
                 />
@@ -110,7 +110,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? twitter: twitterBlue}
+                  src={isDesktop ? twitter : twitterBlue}
                   alt="Twitter Profile"
                   className={classes.icon}
                 />
@@ -122,10 +122,11 @@ function Research({ outbreak, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img 
-                  src={isDesktop? website: websiteBlue} 
+                <img
+                  src={isDesktop ? website : websiteBlue}
                   alt="Website"
-                  className={classes.icon} />
+                  className={classes.icon}
+                />
               </A>
             )}
           </Grid>

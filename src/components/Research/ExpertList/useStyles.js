@@ -31,7 +31,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   profiles: {},
   picture: {
-    position: 'relative',
+    position: "relative",
     "&:after": {
       backgroundColor: `${palette.primary.main}`,
       bottom: 0,

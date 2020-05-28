@@ -9,7 +9,7 @@ import Hero from "components/Hero";
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints, widths}) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",

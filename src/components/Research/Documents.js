@@ -9,11 +9,11 @@ import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
-    marginTop: '0.85rem',
+    marginTop: "0.85rem",
   },
   link: {
-    display: 'flex',
-    paddingTop: '1rem',
+    display: "flex",
+    paddingTop: "1rem",
   },
   icon: {
     objectFit: "contain",
@@ -26,11 +26,10 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
   image: {},
   imageDiv: {
-    width: '100%',
-    overflow: 'hidden',
+    width: "100%",
+    overflow: "hidden",
   },
-  contentDiv: {
-  },
+  contentDiv: {},
   documentDiv: {
     borderTop: "1px solid #9D9C9C",
     paddingTop: typography.pxToRem(16),
@@ -47,8 +46,8 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     marginBottom: typography.pxToRem(16),
   },
   title: {
-    fontWeight: 'bold',
-  }
+    fontWeight: "bold",
+  },
 }));
 
 function Documents({ documents, title, ...props }) {
@@ -63,7 +62,7 @@ function Documents({ documents, title, ...props }) {
   if (isUpLg) {
     imageHeight = isLg ? 400 : 500;
   }
-  
+
   return (
     <div className={classes.root}>
       <Section
@@ -71,33 +70,57 @@ function Documents({ documents, title, ...props }) {
         classes={{ root: classes.section, title: classes.sectionTitle }}
       >
         <Grid container direction="row" spacing={2}>
-          {documents && documents.map(({ title, description, canonical_url: url, resources: { page: { image } }}) => {
-            const imageUrl = image.replace('{page}', '1').replace('{size}', 'large');
-            return (
-              <Grid item container xs={12} md={3} direction={isDesktop? 'row': 'row-reverse'} className={classes.documentDiv}>
-                <Grid item xs={6} md={12} className={classes.imageDiv}>
-                  <img src={imageUrl} alt={""} className={classes.image} height={imageHeight} />
-                </Grid>
-                <Grid item xs={6} md={12} className={classes.contentDiv}>
-                  <Typography variant="subtitle1" className={classes.title}>{title}</Typography>
-                  <Typography variant="caption">{description}</Typography>
-                  <A
-                    href={url}
-                    color="textSecondary"
-                    className={classes.link}
-                    >
-                    <img
-                      src={websiteBlue}
-                      alt={title}
-                      className={classes.icon}
-                    />
-                  </A>
-                </Grid>
-              </Grid>
-
-            )
-          }
-          )}
+          {documents &&
+            documents.map(
+              ({
+                title: documentTitle,
+                description,
+                canonical_url: url,
+                resources: {
+                  page: { image },
+                },
+              }) => {
+                const imageUrl = image
+                  .replace("{page}", "1")
+                  .replace("{size}", "large");
+                return (
+                  <Grid
+                    item
+                    container
+                    xs={12}
+                    md={3}
+                    direction={isDesktop ? "row" : "row-reverse"}
+                    className={classes.documentDiv}
+                  >
+                    <Grid item xs={6} md={12} className={classes.imageDiv}>
+                      <img
+                        src={imageUrl}
+                        alt=""
+                        className={classes.image}
+                        height={imageHeight}
+                      />
+                    </Grid>
+                    <Grid item xs={6} md={12} className={classes.contentDiv}>
+                      <Typography variant="subtitle1" className={classes.title}>
+                        {documentTitle}
+                      </Typography>
+                      <Typography variant="caption">{description}</Typography>
+                      <A
+                        href={url}
+                        color="textSecondary"
+                        className={classes.link}
+                      >
+                        <img
+                          src={websiteBlue}
+                          alt={title}
+                          className={classes.icon}
+                        />
+                      </A>
+                    </Grid>
+                  </Grid>
+                );
+              }
+            )}
         </Grid>
       </Section>
     </div>

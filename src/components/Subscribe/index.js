@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -44,17 +44,17 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     display: "none",
     [breakpoints.up("md")]: {
       display: "initial",
-      height: '445px',
+      height: "445px",
       position: "absolute",
       top: 0,
-      left: '-110px',
+      left: "-110px",
     },
   },
   subscribeImageDiv: {
     display: "none",
     [breakpoints.up("md")]: {
       display: "initial",
-      position: 'relative',
+      position: "relative",
       overflow: "visible",
     },
   },
@@ -66,6 +66,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
 
 function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);
+  const [iconSrc, setIconSrc] = useState(email);
 
   const { title, description } = subscribe;
 
@@ -103,12 +104,11 @@ function Subscribe({ subscribe, ...props }) {
               />
 
               <IconButton className={classes.button}>
-              <img
-                  src={email}
+                <img
+                  src={iconSrc}
                   alt="Arrow icon"
                   className={classes.img}
-                  onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
-                  onMouseOut={e => (e.currentTarget.src = email)}
+                  onFocus={() => setIconSrc(electricBlueEmail)}
                 />
               </IconButton>
             </form>

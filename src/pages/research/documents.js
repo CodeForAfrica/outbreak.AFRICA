@@ -11,7 +11,7 @@ import Subscribe from "components/Subscribe";
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints, widths}) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -55,7 +55,7 @@ function FeaturedDocuments({ count, documents, outbreak, ...props }) {
       title={pageTitle || "Featured Documents"}
       classes={{ section: classes.section }}
     >
-       {isDesktop && (
+      {isDesktop && (
         <Hero
           heroCarousel={heroCarousel}
           isResearch
@@ -67,7 +67,8 @@ function FeaturedDocuments({ count, documents, outbreak, ...props }) {
         documents={documents}
         count={count}
         title={title}
-        classes={{ section: classes.section }} />
+        classes={{ section: classes.section }}
+      />
 
       <Subscribe
         classes={{
@@ -85,11 +86,11 @@ export async function getServerSideProps({ query }) {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-documents", lang);
 
-  //https://corsanywhere.devops.codeforafrica.org
+  // https://corsanywhere.devops.codeforafrica.org
   const response = await fetch(
-    'https://dc.sourceafrica.net/api/search.json?q=coronavirus&per_page=40&sections=true&mentions=3&contributor=true'
+    "https://dc.sourceafrica.net/api/search.json?q=coronavirus&per_page=40&sections=true&mentions=3&contributor=true"
   );
-  const { documents, total: count} = response.ok ? await response.json() : {};
+  const { documents, total: count } = response.ok ? await response.json() : {};
 
   return {
     props: {
