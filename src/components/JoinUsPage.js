@@ -44,7 +44,7 @@ function Content({ title, subtitle }) {
   )
 }
 
-function Join() {
+function JoinUsPage() {
   const classes = useStyles();
   return (
     <div>
@@ -76,4 +76,4 @@ function Join() {
   )
 }
 
-export default Join
+export default JoinUsPage

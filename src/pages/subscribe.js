@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from "components/Page";
 import Hero from "components/Hero";
 
+import SubscribePage from 'components/SubscribePage'
+
 import config from "config";
 import { getSitePage } from "cms";
 
@@ -24,7 +26,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function JoinUs({ outbreak, ...props }) {
+function Subscribe({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
@@ -43,6 +45,7 @@ function JoinUs({ outbreak, ...props }) {
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
       />
+      <SubscribePage />
     </Page>
   );
 }
@@ -59,4 +62,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default JoinUs;
+export default Subscribe;
