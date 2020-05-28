@@ -5,6 +5,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from "components/Page";
 import Hero from "components/Hero";
 
+import Content from 'components/Content'
+
 import SubscribePage from 'components/SubscribePage'
 
 import config from "config";
@@ -43,6 +45,13 @@ function Subscribe({ outbreak, ...props }) {
     >
       <Hero
         heroCarousel={heroCarousel}
+        classes={{ section: classes.section }}
+      />
+      <Content
+        title="Subscribe"
+        subtitle="Lorem Ipsum is simply dummy text of the printing 
+        and typesetting industry. It was popularised in the 1960s 
+        with the release of Letraset sheets containing Lorem Ipsum"
         classes={{ section: classes.section }}
       />
       <SubscribePage />

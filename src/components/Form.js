@@ -18,10 +18,7 @@ import iconBox from 'assets/icon-infobox.svg'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    width: "100%",
-    [breakpoints.up("md")]: {
-      paddingRight: '8rem'
-    }
+    width: "100%"
   },
   expansionPanel: {
     backgroundColor: '#C1D5FF',
@@ -95,7 +92,7 @@ function Form() {
             </Typography>
         </ExpansionPanelSummary>
 
-        <ExpansionPanelDetails>
+        <ExpansionPanelDetails fullWidth>
           <div>
             <div item>
               <Typography variant="subtitle1">

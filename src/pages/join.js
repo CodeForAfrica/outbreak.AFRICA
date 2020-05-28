@@ -24,7 +24,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
-  },
+  }
 }));
 
 function JoinUs({ outbreak, ...props }) {
@@ -48,14 +48,12 @@ function JoinUs({ outbreak, ...props }) {
       />
       <Content
         title="Join Us"
-        ubtitle="Lorem Ipsum is simply dummy text of the printing 
+        subtitle="Lorem Ipsum is simply dummy text of the printing 
         and typesetting industry. It was popularised in the 1960s 
         with the release of Letraset sheets containing Lorem Ipsum"
         classes={{ section: classes.section }}
       />
-      <JoinUsPage
-        classes={{ section: classes.section }}
-      />
+      <JoinUsPage />
     </Page>
   );
 }

@@ -11,6 +11,9 @@ import Form from 'components/Form';
 import Subscribe from 'components/Partners/Subscribe'
 
 const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    flexGrow: 1
+  },
   containerGrid: {
     padding: '3rem 0rem'
   },
@@ -19,9 +22,13 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     height: 'auto',
     padding: '4rem',
     width: '100%',
+    marginRight: 0,
+    order: 2,
     [breakpoints.up("md")]: {
       padding: '1.5rem',
       height: '614px',
+      marginRight: '10rem',
+      order: 1,
     }
   },
   contentGrid: {
@@ -29,25 +36,23 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     marginLeft: '5rem'
   },
   formGrid: {
-    width: '100%'
+    width: '100%',
+    order: 1,
+    [breakpoints.up("md")]: {
+      order: 2
+    }
   }
 }));
 
 function SubscribePage() {
   const classes = useStyles();
   return (
-    <div>
-      <Section classes={{ root: classes.section }}>
-        <Content
-          title="Subscribe"
-          subtitle="Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. It was popularised in the 1960s 
-        with the release of Letraset sheets containing Lorem Ipsum"
-        />
+    <div className={classes.root}>
+      <Section>
         <Grid
           container
           direction="row"
-          justify="space-between"
+          justify="flex-start"
           className={classes.containerGrid}>
           <Grid
             item
@@ -56,7 +61,7 @@ function SubscribePage() {
             className={classes.subscribeGrid}>
             <Subscribe />
           </Grid>
-          <Grid item xs={12} md={8} className={classes.formGrid}>
+          <Grid item xs={12} md={6} className={classes.formGrid}>
             <Form />
           </Grid>
         </Grid>
