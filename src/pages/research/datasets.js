@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,9 +30,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FeaturedDatasets({ ckanQuery, count, results, outbreak, ...props }) {
+function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
   const classes = useStyles(props);
   const router = useRouter();
+  const { q, rows, sort } = router.query;
+
+  const reload = (name, value) => {
+    const { query, pathname } = router;
+    query[name] = value;
+    router.push({ pathname, query });
+  };
+  const handlePageSize = (newRows) => {
+    reload("rows", newRows);
+  };
+
+  const handleSearch = (e) => {
+    if (e) {
+      reload("q", e.target.value);
+    }
+  };
+
+  const handleSort = (e) => {
+    if (e) {
+      reload("sort", e.target.value);
+    }
+  };
+
   const {
     page: {
       hero_carousel: heroCarousel,
@@ -57,6 +80,12 @@ function FeaturedDatasets({ ckanQuery, count, results, outbreak, ...props }) {
       />
       <Datasets
         count={count}
+        onPageSize={handlePageSize}
+        onSearch={handleSearch}
+        onSort={handleSort}
+        rows={rows}
+        sort={sort}
+        q={q}
         results={results}
         classes={{ section: classes.section }}
       />
@@ -64,6 +93,10 @@ function FeaturedDatasets({ ckanQuery, count, results, outbreak, ...props }) {
   );
 }
 
+/**
+ * We are using getInitialProps and not the recommended getServerSideProps
+ * because getServerSideProps does not support asPath as of yet.
+ */
 FeaturedDatasets.getInitialProps = async ({ query, asPath }) => {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
@@ -79,10 +112,10 @@ FeaturedDatasets.getInitialProps = async ({ query, asPath }) => {
   const outbreak = await getSitePage("research-datasets", lang);
 
   return {
-    count,
-    results,
-    outbreak,
     ckanQuery,
+    count,
+    outbreak,
+    results,
   };
 };
 
