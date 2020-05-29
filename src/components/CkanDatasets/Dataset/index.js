@@ -1,27 +1,41 @@
 import React, { useState, useRef } from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import { Avatar, Button, Grid, Tooltip } from "@material-ui/core";
 import { BarChart, Check } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Truncate from "react-truncate";
 
-import { RichTypography } from "@commons-ui/core";
+import { A, RichTypography } from "@commons-ui/core";
 
 import config from "config";
+import shareIcon from "assets/icon-share.svg";
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
   root: {
     boxShadow: "0px 4px 4px #00000029",
     border: "1px solid #D6D6D6",
     padding: 54,
+    position: "relative",
   },
   avatar: {
     display: "inline-flex",
     height: spacing(3),
-    marginRight: spacing(1),
+    marginLeft: "0.5rem",
     width: spacing(3),
+    "&:first-of-type": {
+      marginLeft: 0,
+    },
+  },
+  format: {
+    backgroundColor: palette.primary.main,
+    borderRadius: 2,
+    color: "#fff",
+    padding: "0 1rem",
+    marginRight: "0.25rem",
   },
   toggleLines: {
     textTransform: "unset",
@@ -31,6 +45,22 @@ const useStyles = makeStyles(({ spacing }) => ({
     // these line breaks
     // see: https://stackoverflow.com/a/32351302
     whiteSpace: "pre-line",
+  },
+  share: {
+    position: "absolute",
+    right: 16,
+    top: 16,
+    "& img": {
+      height: "auto",
+      width: "1.5rem",
+      [breakpoints.up("xl")]: {
+        width: "2rem",
+      },
+    },
+  },
+  subnational: {
+    borderLeft: "1px solid #D6D6D6",
+    paddingLeft: "0.25rem",
   },
 }));
 
@@ -111,6 +141,7 @@ function Dataset({ dataset, lines, ...props }) {
     data_update_frequency: dataUpdateFrequency,
     has_quickcharts: hasQuickCharts,
     last_modified: lastModified,
+    name,
     notes,
     organization,
     overdue_date: overdueDate,
@@ -130,17 +161,29 @@ function Dataset({ dataset, lines, ...props }) {
   const hasHxlTags =
     tags && tags.find((tag) => tag.name.toLowerCase() === "hxl");
   return (
-    <Grid container className={classes.root} spacing={2}>
+    <Grid container className={classes.root}>
       <Grid item xs={12} md={6}>
-        <RichTypography variant="subtitle2" className={classes.title}>
+        <A
+          href={`${config.CKAN_BACKEND_URL}/dataset/${name}`}
+          className={classes.share}
+        >
+          <img src={shareIcon} alt="share" />
+        </A>
+        <A
+          color="secondary"
+          href={`${config.CKAN_BACKEND_URL}/dataset/${name}`}
+          underline="none"
+          variant="subtitle2"
+          className={classes.title}
+        >
           {title}
-        </RichTypography>
+        </A>
         {organization && (
           <RichTypography variant="body2" className={classes.title}>
             {organization.title}
           </RichTypography>
         )}
-        <Grid item xs={12} container alignItems="baseline" spacing={1}>
+        <Grid item xs={12} container alignItems="center">
           {hasHxlTags && (
             <Tooltip title="Dataset has HXL tags" placement="top">
               <Avatar variant="square" className={classes.avatar}>
@@ -208,11 +251,24 @@ function Dataset({ dataset, lines, ...props }) {
           </RichTypography>
           <Grid item xs={12} container alignItems="baseline">
             {Object.keys(formats).map((format) => (
-              <RichTypography variant="caption">{format}</RichTypography>
+              <RichTypography
+                variant="caption"
+                className={classNames(
+                  classes.format,
+                  format.toLocaleLowerCase()
+                )}
+              >
+                {format}
+              </RichTypography>
             ))}
             {subnational === "1" && (
               <Tooltip title="Sub-National Data" placement="top">
-                <RichTypography variant="caption">SN</RichTypography>
+                <RichTypography
+                  variant="caption"
+                  className={classes.subnational}
+                >
+                  SN
+                </RichTypography>
               </Tooltip>
             )}
           </Grid>
@@ -228,6 +284,7 @@ Dataset.propTypes = {
     dataset_date: PropTypes.string,
     has_quickcharts: PropTypes.bool,
     last_modified: PropTypes.string,
+    name: PropTypes.string,
     notes: PropTypes.string,
     organization: PropTypes.shape({
       title: PropTypes.string.isRequired,
