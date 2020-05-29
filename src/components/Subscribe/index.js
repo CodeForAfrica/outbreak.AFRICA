@@ -7,7 +7,7 @@ import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
 import { Section } from "@commons-ui/core";
 
 import email from "assets/email.svg";
-import electricBlueEmail from "assets/electric-blue-email.svg";
+import emailFocus from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
@@ -44,17 +44,17 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     display: "none",
     [breakpoints.up("md")]: {
       display: "initial",
-      height: '445px',
+      height: "445px",
       position: "absolute",
       top: 0,
-      left: '-110px',
+      left: "-110px",
     },
   },
   subscribeImageDiv: {
     display: "none",
     [breakpoints.up("md")]: {
       display: "initial",
-      position: 'relative',
+      position: "relative",
       overflow: "visible",
     },
   },
@@ -66,8 +66,15 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
 
 function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);
-
   const { title, description } = subscribe;
+  const handleEvent = (e) => {
+    if (e.type === "mouseout" || e.type === "blur") {
+      e.currentTarget.src = email;
+    }
+    if (e.type === "mouseover" || e.type === "focus") {
+      e.currentTarget.src = emailFocus;
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -103,12 +110,14 @@ function Subscribe({ subscribe, ...props }) {
               />
 
               <IconButton className={classes.button}>
-              <img
+                <img
                   src={email}
                   alt="Arrow icon"
                   className={classes.img}
-                  onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
-                  onMouseOut={e => (e.currentTarget.src = email)}
+                  onMouseOver={handleEvent}
+                  onFocus={handleEvent}
+                  onMouseOut={handleEvent}
+                  onBlur={handleEvent}
                 />
               </IconButton>
             </form>

@@ -94,7 +94,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? linkedIn: linkedInBlue}
+                  src={isDesktop ? linkedIn : linkedInBlue}
                   alt="LinkedIn Profile"
                   className={classes.icon}
                 />
@@ -107,7 +107,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? twitter: twitterBlue}
+                  src={isDesktop ? twitter : twitterBlue}
                   alt="Twitter Profile"
                   className={classes.icon}
                 />
@@ -119,10 +119,11 @@ function Research({ outbreak, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img 
-                  src={isDesktop? website: websiteBlue} 
+                <img
+                  src={isDesktop ? website : websiteBlue}
                   alt="Website"
-                  className={classes.icon} />
+                  className={classes.icon}
+                />
               </A>
             )}
           </Grid>
