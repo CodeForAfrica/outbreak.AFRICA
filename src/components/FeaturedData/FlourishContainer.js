@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import config from "config";
 import dynamic from "next/dynamic";
 import { Button } from "@material-ui/core";
@@ -55,13 +54,13 @@ function FlourishContainer({ action, children, featuredChart, ...props }) {
             icon: <img src={FacebookIcon} alt="Facebook" />,
           },
           twitter: {
-            icon: <img src={TwitterIcon}  alt="Twitter" />,
+            icon: <img src={TwitterIcon} alt="Twitter" />,
           },
           linkedin: {
-            icon: <img src={LinkedInIcon}  alt="LinkedIn" />,
+            icon: <img src={LinkedInIcon} alt="LinkedIn" />,
           },
           instagram: {
-            icon: <img src={InstagramIcon}  alt="Instagram" />,
+            icon: <img src={InstagramIcon} alt="Instagram" />,
           },
           embed: {},
           link: {},

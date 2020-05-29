@@ -68,6 +68,7 @@ function FeaturedData({ featuredContent, ...props }) {
     );
 
     const charts = [];
+    // eslint-disable-next-line array-callback-return
     Array.from(tmp.querySelectorAll(`div[id^=indicator-`)).map((el) => {
       const chartId = el.getAttribute("id").split("-");
       const geoId = el.getAttribute("data-geo-id") || "";
@@ -76,7 +77,13 @@ function FeaturedData({ featuredContent, ...props }) {
 
       const type = chartId[1];
       const id = chartId[2];
-      charts.push({ id, type, geoId, title: chartTitle, description:chartDescription });
+      charts.push({
+        id,
+        type,
+        geoId,
+        title: chartTitle,
+        description: chartDescription,
+      });
     });
     setFeaturedCharts(charts);
   }, [featuredContent]);
