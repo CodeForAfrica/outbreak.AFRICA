@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, InputBase, Paper } from "@material-ui/core";
@@ -39,7 +40,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Search({ onClick, onChange, ...props }) {
+function Search({ ariaLabel, onClick, onChange, placeholder, ...props }) {
   const classes = useStyles(props);
   const [term, setTerm] = useState();
   const handleChange = (e) => {
@@ -68,10 +69,10 @@ function Search({ onClick, onChange, ...props }) {
   return (
     <Paper component="form" className={classes.root}>
       <InputBase
-        inputProps={{ "aria-label": "search al datasets" }}
+        inputProps={{ "aria-label": ariaLabel }}
         onChange={handleChange}
         onKeyPress={handleKeyPress}
-        placeholder="Search all datasets ..."
+        placeholder={placeholder}
         classes={{
           root: classes.input,
           input: classes.inputInput,
@@ -89,4 +90,13 @@ function Search({ onClick, onChange, ...props }) {
   );
 }
 
+Search.propTypes = {
+  ariaLabel: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+
+Search.defaultProps = {
+  ariaLabel: "search al datasets",
+  placeholder: "Search for issues, topics, etc…",
+};
 export default Search;

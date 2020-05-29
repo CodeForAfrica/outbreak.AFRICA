@@ -56,7 +56,12 @@ function ActionBar({
             </RichTypography>
           </Grid>
           <Grid item md={3}>
-            <Search onClick={onSearch} defaultValue={q} />
+            <Search
+              onClick={onSearch}
+              defaultValue={q}
+              ariaLabel="search all datasets"
+              placeholder="Search all datasets ..."
+            />
           </Grid>
           <Grid item md={3} container alignItems="baseline">
             <Rows
