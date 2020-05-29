@@ -6,7 +6,9 @@ import TextField from "@material-ui/core/TextField";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+
 import email from "assets/email.svg";
+import electricBlueEmail from "assets/electric-blue-email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +74,11 @@ function Subscribe({ title, description }) {
         />
 
         <IconButton className={classes.button}>
-          <img src={email} alt="Arrow icon" className={classes.img} />
+          <img src={email}
+            alt="Arrow icon"
+            className={classes.img}
+            onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
+            onMouseOut={e => (e.currentTarget.src = email)} />
         </IconButton>
       </form>
     </Grid>
