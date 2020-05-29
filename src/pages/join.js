@@ -39,7 +39,6 @@ function JoinUs({ outbreak, ...props }) {
       content: { rendered: subtitle }
     },
   } = outbreak;
-  console.log(outbreak.page)
 
   return (
     <Page
