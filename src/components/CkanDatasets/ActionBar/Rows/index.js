@@ -25,7 +25,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function Rows({ label, onClick, options, value, ...props }) {
+function Rows({ count, label, onClick, options, value, ...props }) {
   const classes = useStyles(props);
   const handleClick = (rows) => {
     if (onClick) {
@@ -44,7 +44,10 @@ function Rows({ label, onClick, options, value, ...props }) {
         <>
           <Button
             data-rows={option.value}
-            disabled={option.value === value}
+            disabled={
+              option.value === value ||
+              count <= Number.parseInt(option.value, 10)
+            }
             onClick={() => handleClick(option.value)}
             size="small"
             className={classes.button}
@@ -65,6 +68,7 @@ function Rows({ label, onClick, options, value, ...props }) {
 }
 
 Rows.propTypes = {
+  count: PropTypes.number.isRequired,
   label: PropTypes.string,
   onClick: PropTypes.func,
   options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
