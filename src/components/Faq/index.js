@@ -3,6 +3,9 @@ import { Grid, Typography } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
 import Services from 'components/Faq/FaqTopics/Services';
+import About from 'components/Faq/FaqTopics/About';
+import NewTopic from 'components/Faq/FaqTopics/NewTopic';
+import Topic from 'components/Faq/FaqTopics/Topic';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -51,12 +54,15 @@ function FaqSection() {
             <Typography variant="subtitle2">three</Typography>
             <Typography variant="subtitle2">four</Typography>
           </div>
-          {/*<div className={classes.subscribeGrid}>
+          <div className={classes.subscribeGrid}>
             <Subscribe />
-          </div>*/}
+          </div>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={6} style={{ flexGrow: 1 }}>
+          <About />
           <Services />
+          <NewTopic />
+          <Topic />
         </Grid>
       </Grid>
 

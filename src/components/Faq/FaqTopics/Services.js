@@ -39,14 +39,14 @@ const useStyles = makeStyles(({ theme }) => ({
 }));
 
 export default function Services() {
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = React.useState();
   const classes = useStyles();
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
   return (
-    <div >
+    <div style={{ padding: '2rem 0rem' }}>
       <Grid
         container
         item xs={12}
@@ -67,7 +67,7 @@ export default function Services() {
         </Grid>
       </Grid>
 
-      <div>
+      <div >
         <ExpansionPanel
           square
           expanded={expanded === 'panel1'}
