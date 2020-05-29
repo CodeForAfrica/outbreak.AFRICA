@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -14,6 +15,15 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   sectionTitle: {
     margin: "unset",
     marginBottom: typography.pxToRem(16),
+  },
+  actionGrid: {
+    height: "20%",
+    display: "flex",
+    alignItems: "flex-end",
+  },
+  actionIcon: {
+    width: "2rem",
+    height: "auto",
   },
   chart0: {
     [breakpoints.only("md")]: {
@@ -34,6 +44,14 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     [breakpoints.only("md")]: {
       order: 3,
     },
+  },
+  chartGrid: {
+    marginTop: "2.5rem",
+  },
+  chartShadow: {
+    boxShadow: "0px 4px 4px #00000029",
+    border: "1px solid #D6D6D6",
+    height: "80%",
   },
   description: {
     "& .highlight": {
@@ -105,7 +123,7 @@ function FeaturedData({ featuredContent, ...props }) {
               See Insights
             </Button>
           </Grid>
-          <Grid item xs={12} container spacing={2}>
+          <Grid item xs={12} container spacing={2} justify="flex-start" alignItems="stretch">
             {featuredCharts.length > 0 &&
               featuredCharts.map((chart, index) => (
                 <Grid
@@ -113,14 +131,22 @@ function FeaturedData({ featuredContent, ...props }) {
                   xs={12}
                   md={6}
                   lg={index === 0 || index === 3 ? 4 : 8}
-                  className={`chart${index}`}
+                  className={classNames(classes.chartGrid, `chart${index}`)}
                   key={chart.id}
                 >
+                <Grid className={classes.chartShadow}>
                   {chart.type === "hurumap" ? (
                     <Container action="Explore" featuredChart={chart} />
                   ) : (
                     <FlourishContainer action="Explore" featuredChart={chart} />
                   )}
+                  </Grid>
+                  <Grid className={classes.actionGrid}>
+                    <RichTypography variant="body2" className={classes.description} >{chart.description}</RichTypography>
+                    <Button variant="contained" size="large">
+                      Explore
+                    </Button>
+                  </Grid>
                 </Grid>
               ))}
           </Grid>

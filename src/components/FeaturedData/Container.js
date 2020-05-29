@@ -127,8 +127,6 @@ function Container({ action, children, featuredChart, ...props }) {
           containerRoot: classes.containerRoot,
           sourceLink: classes.source,
           groupActionsButton: classes.actionIcon,
-          descriptionWrapper: classes.descriptionWrapper,
-          description: classes.description,
         }}
         groupIcons={{
           facebook: {
@@ -158,11 +156,6 @@ function Container({ action, children, featuredChart, ...props }) {
       </ChartContainer>
       <div className={classes.description}>
         <RichTypography variant="body2">{chart.description}</RichTypography>
-      </div>
-      <div className={classes.description}>
-        <Button variant="contained" size="large">
-          {action}
-        </Button>
       </div>
     </div>
   );

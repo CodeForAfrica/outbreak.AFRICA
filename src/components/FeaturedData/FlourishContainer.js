@@ -1,9 +1,6 @@
 import React from "react";
 import config from "config";
 import dynamic from "next/dynamic";
-import { Button } from "@material-ui/core";
-
-import { RichTypography } from "@commons-ui/core";
 
 import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
@@ -26,11 +23,9 @@ function FlourishContainer({ action, children, featuredChart, ...props }) {
     type,
     id,
     title: flourishTitle,
-    description: flourishDescription,
   } = featuredChart;
 
   return (
-    <div>
       <ChartContainer
         logo={logo}
         key={`indicator-${type}-${id}`}
@@ -46,8 +41,6 @@ function FlourishContainer({ action, children, featuredChart, ...props }) {
           root: classes.chartRoot,
           containerRoot: classes.containerRoot,
           groupActionsButton: classes.actionIcon,
-          descriptionWrapper: classes.descriptionWrapper,
-          description: classes.description,
         }}
         groupIcons={{
           facebook: {
@@ -76,15 +69,6 @@ function FlourishContainer({ action, children, featuredChart, ...props }) {
           src={`${config.WP_HURUMAP_DATA_API}/flourish/${id}/`}
         />
       </ChartContainer>
-      <div className={classes.description}>
-        <RichTypography variant="body2">{flourishDescription}</RichTypography>
-      </div>
-      <div className={classes.description}>
-        <Button variant="contained" size="large">
-          {action}
-        </Button>
-      </div>
-    </div>
   );
 }
 
