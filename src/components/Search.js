@@ -61,7 +61,7 @@ function Search({ ariaLabel, onClick, onChange, placeholder, ...props }) {
       // Do code here
       e.preventDefault();
       if (onClick) {
-        return onClick(e);
+        onClick(e);
       }
     }
   };
