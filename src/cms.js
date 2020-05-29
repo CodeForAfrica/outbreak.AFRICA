@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import config from "config";
 
 export async function getSiteOptions(lang) {

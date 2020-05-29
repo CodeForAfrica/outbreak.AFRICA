@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
@@ -7,7 +7,7 @@ import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
 import { Section } from "@commons-ui/core";
 
 import email from "assets/email.svg";
-import electricBlueEmail from "assets/electric-blue-email.svg";
+import emailFocus from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
 
 const useStyles = makeStyles(
@@ -17,6 +17,24 @@ const useStyles = makeStyles(
       color: "white",
     },
     section: {},
+    button: {
+      padding: 0,
+      paddingTop: "1rem",
+    },
+    form: {},
+    img: {
+      height: "2.5rem",
+    },
+    input: {
+      color: palette.text.secondary,
+      fontSize: typography.caption.fontSize,
+      lineHeight: typography.caption.lineHeight,
+      borderBottom: "1px solid white",
+      width: "100%",
+      [breakpoints.up("md")]: {
+        width: "80%",
+      },
+    },
     subscribeGrid: {
       padding: "5.625rem 0rem",
       [breakpoints.up("md")]: {
@@ -28,27 +46,6 @@ const useStyles = makeStyles(
       [breakpoints.up("xl")]: {
         padding: "4rem 0rem 5rem",
       },
-    },
-    subtitle: {
-      paddingBottom: "2rem",
-    },
-    title: {
-      color: palette.text.secondary,
-      paddingBottom: "2rem",
-    },
-    form: {},
-    input: {
-      color: palette.text.secondary,
-      fontSize: typography.caption.fontSize,
-      lineHeight: typography.caption.lineHeight,
-      borderBottom: "1px solid white",
-      width: "100%",
-      [breakpoints.up("md")]: {
-        width: "80%",
-      },
-    },
-    img: {
-      height: "2.5rem",
     },
     subscribeImage: {
       display: "none",
@@ -76,18 +73,27 @@ const useStyles = makeStyles(
         overflow: "visible",
       },
     },
-    button: {
-      padding: 0,
-      paddingTop: "1rem",
+    subtitle: {
+      paddingBottom: "2rem",
+    },
+    title: {
+      color: palette.text.secondary,
+      paddingBottom: "2rem",
     },
   })
 );
 
 function Subscribe({ subscribe, ...props }) {
   const classes = useStyles(props);
-  const [iconSrc, setIconSrc] = useState(email);
-
   const { title, description } = subscribe;
+  const handleEvent = (e) => {
+    if (e.type === "mouseout" || e.type === "blur") {
+      e.currentTarget.src = email;
+    }
+    if (e.type === "mouseover" || e.type === "focus") {
+      e.currentTarget.src = emailFocus;
+    }
+  };
 
   return (
     <div className={classes.root}>
@@ -121,15 +127,16 @@ function Subscribe({ subscribe, ...props }) {
                 fullWidth
                 InputProps={{ className: classes.input }}
               />
-
-              <IconButton
-                className={classes.button}
-                onFocus={() => setIconSrc(electricBlueEmail)}
-                onMouseOver={() => setIconSrc(electricBlueEmail)}
-                onBlur={() => setIconSrc(email)}
-                onMouseOut={() => setIconSrc(email)}
-              >
-                <img src={iconSrc} alt="Arrow icon" className={classes.img} />
+              <IconButton className={classes.button}>
+                <img
+                  src={email}
+                  alt="Arrow icon"
+                  className={classes.img}
+                  onMouseOver={handleEvent}
+                  onFocus={handleEvent}
+                  onMouseOut={handleEvent}
+                  onBlur={handleEvent}
+                />
               </IconButton>
             </form>
           </Grid>
