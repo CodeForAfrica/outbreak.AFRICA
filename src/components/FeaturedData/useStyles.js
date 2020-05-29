@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(({typography}) => ({
+const useStyles = makeStyles(({ typography }) => ({
   root: {
     width: "100%",
   },
@@ -18,33 +18,33 @@ const useStyles = makeStyles(({typography}) => ({
     backgroundColor: "#EEEEEE !important",
   },
   chart: {
-    margin: '0.5rem !important',
+    margin: "0.5rem !important",
   },
   content: {
     paddingBottom: 0,
   },
   actionIcon: {
     width: "2rem",
-    height: "auto"
+    height: "auto",
   },
   descriptionWrapper: {
-    position: 'absolute',
+    position: "absolute",
   },
   description: {
-    width: '100%',
+    width: "100%",
   },
   title: {
     fontSize: typography.subtitle2.fontSize,
     fontWeight: typography.subtitle2.fontWeight,
   },
-  iframe:{
-    width: '100%',
-    height: '100%',
+  iframe: {
+    width: "100%",
+    height: "100%",
   },
   source: {
     color: "#9D9C9C",
-    marginLeft: '0 !important',
-    textDecoration: 'none'
+    marginLeft: "0 !important",
+    textDecoration: "none",
   },
 }));
 

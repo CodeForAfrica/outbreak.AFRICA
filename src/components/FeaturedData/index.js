@@ -53,31 +53,32 @@ function FeaturedData({ featuredContent, ...props }) {
   const classes = useStyles(props);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [featuredCharts, setFeaturedCharts ] = useState([]);
+  const [featuredCharts, setFeaturedCharts] = useState([]);
 
-  useEffect(()=> {
-    const tmp = document.createElement( 'div' );
+  useEffect(() => {
+    const tmp = document.createElement("div");
     tmp.innerHTML = featuredContent;
 
-    const featureDiv = tmp.querySelector('div[id=featured-data]');
-    setTitle(featureDiv.getAttribute('data-title'));
-    setDescription(featureDiv.getAttribute('data-description').replace('” class=”wp-block-hurumap-section-block”>', ''));
+    const featureDiv = tmp.querySelector("div[id=featured-data]");
+    setTitle(featureDiv.getAttribute("data-title"));
+    setDescription(
+      featureDiv
+        .getAttribute("data-description")
+        .replace("” class=”wp-block-hurumap-section-block”>", "")
+    );
 
     const charts = [];
-    Array.from(
-      tmp.querySelectorAll(`div[id^=indicator-`)
-    ).map((el) => {
-      const chartId = el.getAttribute('id').split('-');
-      const geoId = el.getAttribute('data-geo-id') || "";
-      const title = el.getAttribute('data-title') || "";
-      const description = el.getAttribute('data-description') || "";
+    Array.from(tmp.querySelectorAll(`div[id^=indicator-`)).map((el) => {
+      const chartId = el.getAttribute("id").split("-");
+      const geoId = el.getAttribute("data-geo-id") || "";
+      const chartTitle = el.getAttribute("data-title") || "";
+      const chartDescription = el.getAttribute("data-description") || "";
 
       const type = chartId[1];
       const id = chartId[2];
-      charts.push({ id, type, geoId, title, description })
+      charts.push({ id, type, geoId, title: chartTitle, description:chartDescription });
     });
     setFeaturedCharts(charts);
-
   }, [featuredContent]);
 
   return (
@@ -98,21 +99,23 @@ function FeaturedData({ featuredContent, ...props }) {
             </Button>
           </Grid>
           <Grid item xs={12} container spacing={2}>
-            { featuredCharts.length > 0 && featuredCharts.map((chart, index) => (
-              <Grid item xs={12} md={6} lg={index === 0 || index === 3 ? 4: 8} className={`chart${index}`} key={chart.id}>
-                { chart.type === 'hurumap' ? ( 
-                    <Container
-                      action="Explore"
-                      featuredChart={chart}
-                    /> 
-                ) : (
-                    <FlourishContainer
-                        action="Explore"
-                      featuredChart={chart}
-                    /> 
-                )}
-              </Grid>
-            ))}
+            {featuredCharts.length > 0 &&
+              featuredCharts.map((chart, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={index === 0 || index === 3 ? 4 : 8}
+                  className={`chart${index}`}
+                  key={chart.id}
+                >
+                  {chart.type === "hurumap" ? (
+                    <Container action="Explore" featuredChart={chart} />
+                  ) : (
+                    <FlourishContainer action="Explore" featuredChart={chart} />
+                  )}
+                </Grid>
+              ))}
           </Grid>
         </Grid>
       </Section>

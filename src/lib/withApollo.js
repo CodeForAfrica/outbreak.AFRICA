@@ -1,35 +1,35 @@
 /* eslint-disable no-console */
-import React from 'react';
+import React from "react";
 
-import fetch from 'isomorphic-unfetch';
+import fetch from "isomorphic-unfetch";
 
-import Head from 'next/head';
+import Head from "next/head";
 
-import { getDataFromTree } from '@apollo/react-ssr';
-import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
-import { ApolloProvider } from '@apollo/react-hooks';
+import { getDataFromTree } from "@apollo/react-ssr";
+import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+import { ApolloProvider } from "@apollo/react-hooks";
 
 let reusableApolloClient = null;
 
 function create(initialState) {
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
-  const isBrowser = typeof window !== 'undefined';
+  const isBrowser = typeof window !== "undefined";
   return new ApolloClient({
     connectToDevTools: isBrowser,
     ssrMode: !isBrowser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'https://graphql.hurumap.org/graphql', // Server URL (must be absolute)
+      uri: "https://graphql.hurumap.org/graphql", // Server URL (must be absolute)
       // Use fetch() polyfill on the server
-      fetch: !isBrowser && fetch
+      fetch: !isBrowser && fetch,
     }),
-    cache: new InMemoryCache().restore(initialState || {})
+    cache: new InMemoryCache().restore(initialState || {}),
   });
 }
 
 export function initApollo(initialState) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
-  if (typeof window === 'undefined') {
+  if (typeof window === "undefined") {
     return create(initialState);
   }
 
@@ -42,10 +42,10 @@ export function initApollo(initialState) {
 }
 
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
-const withApollo = PageComponent => {
+const withApollo = (PageComponent) => {
   return class extends React.Component {
     static get displayName() {
       return `withApollo(${getDisplayName(PageComponent)})`;
@@ -62,14 +62,14 @@ const withApollo = PageComponent => {
       // Run all GraphQL queries in the component tree
       // and extract the resulting data
       const apolloClient = initApollo();
-      if (typeof window === 'undefined') {
+      if (typeof window === "undefined") {
         try {
           // Run all GraphQL queries
           await getDataFromTree(
             <AppTree
               pageProps={{
                 ...pageProps,
-                apolloClient
+                apolloClient,
               }}
             />
           );
@@ -77,7 +77,7 @@ const withApollo = PageComponent => {
           // Prevent Apollo Client GraphQL errors from crashing SSR.
           // Handle them in components via the data.error prop:
           // https://www.apollographql.com/docs/react/api/react-apollo.html#graphql-query-data-error
-          console.error('Error while running `getDataFromTree`', error);
+          console.error("Error while running `getDataFromTree`", error);
         }
 
         // getDataFromTree does not call componentWillUnmount
@@ -90,7 +90,7 @@ const withApollo = PageComponent => {
 
       return {
         ...pageProps,
-        apolloState
+        apolloState,
       };
     }
 

@@ -15,13 +15,13 @@ export default function createChart({ colorScale }, { labelStyle }) {
         orientation: "orizontal",
         x: 0,
         y: 0,
-        style: { 
+        style: {
           labels: {
-            title: { 
-              fontSize: 16, 
-              fontFamily: '"Open Sans", sans-serif'
-            }
-          }
+            title: {
+              fontSize: 16,
+              fontFamily: '"Open Sans", sans-serif',
+            },
+          },
         },
       },
     },
