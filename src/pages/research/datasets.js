@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
+import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import { useRouter } from "next/router";
 
@@ -32,6 +33,14 @@ const useStyles = makeStyles((theme) => ({
 
 function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const {
+    page: {
+      hero_carousel: heroCarousel,
+      title: { rendered: pageTitle },
+    },
+  } = outbreak;
   const router = useRouter();
   const { q, rows, sort } = router.query;
 
@@ -56,12 +65,6 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
     }
   };
 
-  const {
-    page: {
-      hero_carousel: heroCarousel,
-      title: { rendered: pageTitle },
-    },
-  } = outbreak;
   useEffect(() => {
     const { asPath } = router;
     const pathname = asPath.split("?")[0];
@@ -74,10 +77,13 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
       title={pageTitle || "Featured Datasets"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        classes={{ section: classes.section }}
-      />
+      {isDesktop && (
+        <Hero
+          heroCarousel={heroCarousel}
+          isResearch
+          classes={{ section: classes.section }}
+        />
+      )}
       <Datasets
         count={count}
         onPageSize={handlePageSize}
