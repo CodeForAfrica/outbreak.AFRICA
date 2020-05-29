@@ -12,7 +12,7 @@ import { Section } from "@commons-ui/core";
 import Link from "components/Link";
 import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
-import Search from "components/Navigation/Search";
+import Search from "components/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
