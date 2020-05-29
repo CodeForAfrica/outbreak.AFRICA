@@ -73,6 +73,7 @@ function ActionBar({
           </Grid>
           <Grid item xs={12} md={3} container alignItems="baseline">
             <Rows
+              count={count}
               label="Show"
               onClick={handlePageSize}
               options={[{ value: "10" }, { value: "25" }, { value: "50" }]}
