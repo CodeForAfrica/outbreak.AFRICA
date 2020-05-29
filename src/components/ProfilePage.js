@@ -29,22 +29,32 @@ import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
-    width: "100%",
-    [breakpoints.up("lg")]: {
+    width: "auto",
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
+  chartShadow: {
+    boxShadow: "0px 4px 4px #00000029",
+    border: "1px solid #D6D6D6",
+    height: "100%",
+  },
   container: {
-    marginBottom: "0.625rem",
+    marginBottom: "1.675rem",
+    marginTop: "2.5rem",
+    position: "relative",
     paddingRight: typography.pxToRem(16),
     "&:last-of-type": {
       paddingRight: 0,
@@ -56,16 +66,12 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     margin: 0,
   }),
   chartRoot: {
-    boxShadow: "0px 4px 4px #00000029",
-    border: "1px solid #D6D6D6",
-    marginBottom: "1.3125rem",
-    marginTop: "2.5rem",
     padding: "42px 38px 33px 38px",
     position: "relative",
     width: "100%",
   },
   chart: {
-    margin: "0.5rem !important",
+    margin: "0rem !important",
   },
   content: {
     paddingBottom: 0,
@@ -270,7 +276,7 @@ function ProfilePage({
       profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
-            <Grid item container id={tab.slug} key={tab.slug}>
+            <Grid item container id={tab.slug} key={tab.slug} justify="flex-start" alignItems="stretch">
               {(activeTab === "all" || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
@@ -308,6 +314,7 @@ function ProfilePage({
                     }
                     className={classes.container}
                   >
+                  <div className={classes.chartShadow}>
                     <ChartContainer
                       key={chart.id}
                       variant="data"
@@ -389,6 +396,7 @@ function ProfilePage({
                         />
                       )}
                     </ChartContainer>
+                    </div>
                   </Grid>
                 );
               })}
