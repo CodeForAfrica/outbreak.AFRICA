@@ -47,36 +47,27 @@ Chart.propTypes = {
   profiles: PropTypes.shape({}).isRequired,
 };
 
-function Container({ action, children, description, featuredChart, ...props }) {
+function Container({ action, children, featuredChart, ...props }) {
   const classes = useStyles(props);
-  const { type, id, geoId, title: flourishTitle, description: flourishDescription } = featuredChart;
+  const { type, id, geoId } = featuredChart;
 
   const [ chart, setChart ] = useState();
   useEffect(() => {
-      if (type === 'hurumap') {
-        const url = `${config.WP_HURUMAP_DATA_API}/charts/${id}`
-        fetch(url)
-        .then((res) => res.json())
-        .then(data => setChart(data && {
-          ...data,
-          visual: {
-            ...data.visual,
-            queryAlias: data.visual.queryAlias || `viz${id}`,
-          },
-          stat: {
-            ...data.stat,
-            queryAlias: data.visual.queryAlias || `viz${id}`,
-          },
-      }));
-    } else {
-      setChart({
-        id,
-        title: flourishTitle,
-        visual: {},
-        description: flourishDescription,
-      })
-    }
-  }, [id, type, flourishTitle, flourishDescription ]);
+      const url = `${config.WP_HURUMAP_DATA_API}/charts/${id}`
+      fetch(url)
+      .then((res) => res.json())
+      .then(data => setChart(data && {
+        ...data,
+        visual: {
+          ...data.visual,
+          queryAlias: data.visual.queryAlias || `viz${id}`,
+        },
+        stat: {
+          ...data.stat,
+          queryAlias: data.visual.queryAlias || `viz${id}`,
+        },
+    }));
+  }, [id]);
 
     
   const visuals = useMemo(() => (chart ? [chart.visual] : []), [chart]);
@@ -154,7 +145,6 @@ function Container({ action, children, description, featuredChart, ...props }) {
             download: {}
           }}
         >
-          {type === 'hurumap' ? (
             <Chart
               key={id}
               isLoading={chartData.isLoading}
@@ -162,15 +152,6 @@ function Container({ action, children, description, featuredChart, ...props }) {
               definition={chart.visual}
               profiles={profiles}
             />
-           ): (
-            <iframe
-              key={id}
-              width="100%"
-              scrolling="no"
-              frameBorder="0"
-              title={chart.title}
-              src={`${config.WP_HURUMAP_DATA_API}/flourish/${id}/`} />
-          )}
       </ChartContainer>
       <div className={classes.description}>
         <RichTypography variant="body2">{chart.description}</RichTypography>

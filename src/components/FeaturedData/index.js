@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Section, RichTypography } from "@commons-ui/core";
 
 import Container from "./Container";
+import FlourishContainer from "./FlourishContainer";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
@@ -14,22 +15,22 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     margin: "unset",
     marginBottom: typography.pxToRem(16),
   },
-  chart00: {
+  chart0: {
     [breakpoints.only("md")]: {
       order: 2,
     },
   },
-  chart01: {
+  chart1: {
     [breakpoints.only("md")]: {
       order: 1,
     },
   },
-  chart02: {
+  chart2: {
     [breakpoints.only("md")]: {
       order: 4,
     },
   },
-  chart03: {
+  chart3: {
     [breakpoints.only("md")]: {
       order: 3,
     },
@@ -96,34 +97,23 @@ function FeaturedData({ featuredContent, ...props }) {
               See Insights
             </Button>
           </Grid>
-          { featuredCharts.length > 0 &&  (
-            <Grid item xs={12} container spacing={2}>
-              <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-                <Container
-                  action="Explore"
-                  featuredChart={featuredCharts[0]}
-                />
+          <Grid item xs={12} container spacing={2}>
+            { featuredCharts.length > 0 && featuredCharts.map((chart, index) => (
+              <Grid item xs={12} md={6} lg={index === 0 || index === 3 ? 4: 8} className={`chart${index}`} key={chart.id}>
+                { chart.type === 'hurumap' ? ( 
+                    <Container
+                      action="Explore"
+                      featuredChart={chart}
+                    /> 
+                ) : (
+                    <FlourishContainer
+                        action="Explore"
+                      featuredChart={chart}
+                    /> 
+                )}
               </Grid>
-              <Grid item xs={12} lg={8} className={classes.chart01}>
-                <Container
-                  action="Explore"
-                  featuredChart={featuredCharts[1]}
-                />
-              </Grid>
-              <Grid item xs={12} lg={8} className={classes.chart02}>
-              <Container
-                  action="Explore"
-                  featuredChart={featuredCharts[2]}
-                />
-              </Grid>
-              <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
-              <Container
-                  action="Explore"
-                  featuredChart={featuredCharts[3]}
-                />
-              </Grid>
-            </Grid>
-          )}
+            ))}
+          </Grid>
         </Grid>
       </Section>
     </div>
