@@ -6,8 +6,14 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography } from "@commons-ui/core";
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {
+    margin: "0.5rem 0",
+    [breakpoints.up("md")]: {
+      margin: 0,
+      justifyContent: "flex-end",
+    },
+  },
   formControl: {
     display: "flex",
     justifyContent: "space between",
@@ -38,12 +44,7 @@ function Sort({ label, onChange, options, value, ...props }) {
   };
 
   return (
-    <Grid
-      container
-      justify="flex-end"
-      alignItems="center"
-      className={classes.root}
-    >
+    <Grid container alignItems="center" className={classes.root}>
       {label && (
         <Grid item>
           <RichTypography variant="caption" className={classes.label}>

@@ -8,9 +8,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography } from "@commons-ui/core";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    margin: "0 1rem",
+    margin: "0.5rem 0",
+    [breakpoints.up("md")]: {
+      margin: "0 1rem",
+    },
   },
   button: {
     marginLeft: "1rem",

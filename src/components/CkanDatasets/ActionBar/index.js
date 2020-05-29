@@ -11,7 +11,7 @@ import Search from "components/Search";
 import Rows from "./Rows";
 import Sort from "./Sort";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     boxShadow: "0px 5px 30px #00000029",
     color: "#9D9C9C",
@@ -22,6 +22,12 @@ const useStyles = makeStyles(() => ({
     color: "#9D9C9C",
     "& .count": {
       fontWeight: "bold",
+    },
+  },
+  search: {
+    margin: "0.5rem 0",
+    [breakpoints.up("md")]: {
+      margin: "unset",
     },
   },
 }));
@@ -50,20 +56,22 @@ function ActionBar({
     <Paper square className={classes.root}>
       <Section classes={{ root: classes.section }}>
         <Grid container alignItems="center">
-          <Grid item md={2}>
+          <Grid item xs={12} md={2}>
             <RichTypography variant="subtitle1" className={classes.label}>
               Data <span className="count">{count}</span>
             </RichTypography>
           </Grid>
-          <Grid item md={3}>
-            <Search
-              onClick={onSearch}
-              defaultValue={q}
-              ariaLabel="search all datasets"
-              placeholder="Search all datasets ..."
-            />
+          <Grid item xs={12} md={3}>
+            <div className={classes.search}>
+              <Search
+                onClick={onSearch}
+                defaultValue={q}
+                ariaLabel="search all datasets"
+                placeholder="Search all datasets ..."
+              />
+            </div>
           </Grid>
-          <Grid item md={3} container alignItems="baseline">
+          <Grid item xs={12} md={3} container alignItems="baseline">
             <Rows
               label="Show"
               onClick={handlePageSize}
@@ -71,7 +79,7 @@ function ActionBar({
               value={rows}
             />
           </Grid>
-          <Grid item md={4}>
+          <Grid item xs={12} md={4}>
             <Sort
               label="Order by"
               onChange={onSort}
