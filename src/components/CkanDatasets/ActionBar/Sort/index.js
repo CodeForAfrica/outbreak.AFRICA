@@ -29,6 +29,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   select: {
     "& select": {
+      height: "1.6rem",
       paddingBottom: "0.9375rem",
       paddingTop: "0.8375rem",
     },
