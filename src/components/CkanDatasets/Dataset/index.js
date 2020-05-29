@@ -12,22 +12,31 @@ import Truncate from "react-truncate";
 import { A, RichTypography } from "@commons-ui/core";
 
 import config from "config";
-import shareIcon from "assets/icon-share.svg";
+import icon from "assets/icon web.svg";
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
   root: {
-    boxShadow: "0px 4px 4px #00000029",
-    border: "1px solid #D6D6D6",
-    padding: 54,
+    borderTop: "1px solid #D6D6D6",
+    paddingTop: "1rem",
+    paddingBottom: "3.5rem",
     position: "relative",
+    [breakpoints.up("md")]: {
+      boxShadow: "0px 4px 4px #00000029",
+      border: "1px solid #D6D6D6",
+      padding: "16px 16px 56px 16px",
+    },
   },
   avatar: {
+    backgroundColor: palette.primary.main,
+    borderRadius: 2,
+    color: palette.text.main,
     display: "inline-flex",
+    fontWeight: 700,
     height: spacing(3),
     marginLeft: "0.5rem",
     width: spacing(3),
     "&:first-of-type": {
-      marginLeft: 0,
+      marginLeft: "unset",
     },
   },
   format: {
@@ -37,19 +46,29 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
     padding: "0 1rem",
     marginRight: "0.25rem",
   },
+  formats: {
+    marginTop: "1rem",
+    [breakpoints.up("md")]: {
+      marginTop: "unset",
+    },
+  },
   toggleLines: {
     textTransform: "unset",
   },
   notes: {
+    marginTop: "1rem",
     // ckan seem to use line-breaks & we're only concerned w/ displaying
     // these line breaks
     // see: https://stackoverflow.com/a/32351302
     whiteSpace: "pre-line",
+    [breakpoints.up("md")]: {
+      marginTop: "unset",
+    },
   },
-  share: {
+  link: {
+    bottom: 16,
     position: "absolute",
-    right: 16,
-    top: 16,
+    left: 16,
     "& img": {
       height: "auto",
       width: "1.5rem",
@@ -165,9 +184,9 @@ function Dataset({ dataset, lines, ...props }) {
       <Grid item xs={12} md={6}>
         <A
           href={`${config.CKAN_BACKEND_URL}/dataset/${name}`}
-          className={classes.share}
+          className={classes.link}
         >
-          <img src={shareIcon} alt="share" />
+          <img src={icon} alt="link" />
         </A>
         <A
           color="secondary"
@@ -249,7 +268,13 @@ function Dataset({ dataset, lines, ...props }) {
               </div>
             )}
           </RichTypography>
-          <Grid item xs={12} container alignItems="baseline">
+          <Grid
+            item
+            xs={12}
+            container
+            alignItems="baseline"
+            className={classes.formats}
+          >
             {Object.keys(formats).map((format) => (
               <RichTypography
                 variant="caption"

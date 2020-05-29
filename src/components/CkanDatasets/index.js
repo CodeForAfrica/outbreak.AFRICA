@@ -9,7 +9,7 @@ import { Section } from "@commons-ui/core";
 import ActionBar from "./ActionBar";
 import Dataset from "./Dataset";
 
-const useStyles = makeStyles(({ typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
   section: {},
   sectionTitle: {
@@ -17,7 +17,9 @@ const useStyles = makeStyles(({ typography }) => ({
     marginBottom: typography.pxToRem(16),
   },
   dataset: {
-    marginBottom: "2rem",
+    [breakpoints.up("md")]: {
+      marginBottom: "2rem",
+    },
   },
   datasets: {
     marginTop: "1rem",
