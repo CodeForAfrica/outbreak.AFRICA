@@ -24,6 +24,9 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       margin: "0 auto",
       width: "102.5rem",
     },
+    "& p": {// //since <p/> has default margin 
+      margin: 0,
+    },
   }
 }));
 
@@ -33,8 +36,10 @@ function JoinUs({ outbreak, ...props }) {
     page: {
       hero_carousel: heroCarousel,
       title: { rendered: pageTitle },
+      content: { rendered: subtitle }
     },
   } = outbreak;
+  console.log(outbreak.page)
 
   return (
     <Page
@@ -47,10 +52,8 @@ function JoinUs({ outbreak, ...props }) {
         classes={{ section: classes.section }}
       />
       <Content
-        title="Join Us"
-        subtitle="Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. It was popularised in the 1960s 
-        with the release of Letraset sheets containing Lorem Ipsum"
+        title={pageTitle || "Join us"}
+        subtitle={subtitle}
         classes={{ section: classes.section }}
       />
       <JoinUsPage />

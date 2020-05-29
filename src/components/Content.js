@@ -1,7 +1,7 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 import { Section } from "@commons-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import { RichTypography } from "@commons-ui/core";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -21,10 +21,10 @@ function Content({ title, subtitle, ...props }) {
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
-        <Typography variant="h2">{title}</Typography>
-        <Typography variant="body1">
+        <RichTypography variant="h2">{title}</RichTypography>
+        <RichTypography variant="body1">
           {subtitle}
-        </Typography>
+        </RichTypography>
       </Section>
     </div>
   )
