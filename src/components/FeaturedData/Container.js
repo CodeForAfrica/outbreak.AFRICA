@@ -2,7 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 import config from "config";
 import dynamic from "next/dynamic";
-import { Button } from "@material-ui/core";
 
 import { RichTypography } from "@commons-ui/core";
 import withApollo from "lib/withApollo";

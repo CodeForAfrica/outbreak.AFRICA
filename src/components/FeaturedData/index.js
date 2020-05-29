@@ -123,7 +123,14 @@ function FeaturedData({ featuredContent, ...props }) {
               See Insights
             </Button>
           </Grid>
-          <Grid item xs={12} container spacing={2} justify="flex-start" alignItems="stretch">
+          <Grid
+            item
+            xs={12}
+            container
+            spacing={2}
+            justify="flex-start"
+            alignItems="stretch"
+          >
             {featuredCharts.length > 0 &&
               featuredCharts.map((chart, index) => (
                 <Grid
@@ -134,15 +141,23 @@ function FeaturedData({ featuredContent, ...props }) {
                   className={classNames(classes.chartGrid, `chart${index}`)}
                   key={chart.id}
                 >
-                <Grid className={classes.chartShadow}>
-                  {chart.type === "hurumap" ? (
-                    <Container action="Explore" featuredChart={chart} />
-                  ) : (
-                    <FlourishContainer action="Explore" featuredChart={chart} />
-                  )}
+                  <Grid className={classes.chartShadow}>
+                    {chart.type === "hurumap" ? (
+                      <Container action="Explore" featuredChart={chart} />
+                    ) : (
+                      <FlourishContainer
+                        action="Explore"
+                        featuredChart={chart}
+                      />
+                    )}
                   </Grid>
                   <Grid className={classes.actionGrid}>
-                    <RichTypography variant="body2" className={classes.description} >{chart.description}</RichTypography>
+                    <RichTypography
+                      variant="body2"
+                      className={classes.description}
+                    >
+                      {chart.description}
+                    </RichTypography>
                     <Button variant="contained" size="large">
                       Explore
                     </Button>
