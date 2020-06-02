@@ -1,17 +1,15 @@
 import React from 'react';
 import {
   Grid,
-  Typography,
   List,
   ListItem,
   ListItemText
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
-import Services from 'components/Faq/FaqTopics/Services';
-import About from 'components/Faq/FaqTopics/About';
-import NewTopic from 'components/Faq/FaqTopics/NewTopic';
-import Topic from 'components/Faq/FaqTopics/Topic';
+import FaqContent from 'components/Faq/FaqTopics/FaqContent';
+
+import config from '../../config';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -33,17 +31,34 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     padding: '4rem',
     width: '100%',
     marginRight: 0,
-    order: 2,
     [breakpoints.up("md")]: {
       padding: '1.5rem',
       marginRight: '10rem',
       height: '614px',
-      order: 1,
     }
   },
   contentGrid: {
     padding: "1rem 0rem",
     marginLeft: '5rem'
+  },
+  topic: {
+    paddingTop: '10rem',
+    '&:hover': {
+      textDecoration: "none"
+    }
+  },
+  list: {
+    padding: '3rem 2rem',
+    height: '334px',
+    backgroundColor: '#eee'
+  },
+  listItemText: {
+    color: '#170F49'
+  },
+  faqGrid: {
+    height: 'auto',
+    marginLeft: '5rem',
+    padding: 0
   }
 }));
 
@@ -53,37 +68,33 @@ function ListItemLink(props) {
 
 function FaqSection() {
   const classes = useStyles();
+  console.log(config.faqTopics)
   return (
     <div className={classes.root}>
       <Grid
         container
         direction="row"
         justify="flex-start">
-        <Grid item xs={3}>
-          <List component="nav" aria-label="secondary mailbox folders" style={{ padding: '3rem 2rem', height: '334px', backgroundColor: '#eee' }}>
-            <ListItemLink href="#topic-1">
-              <ListItemText primary="Topic 1" style={{ color: '#170F49' }} />
-            </ListItemLink>
-            <ListItemLink href="#topic-2">
-              <ListItemText primary="Topic 2" style={{ color: '#170F49' }} />
-            </ListItemLink>
-            <ListItemLink href="#topic-3">
-              <ListItemText primary="Topic 3" style={{ color: '#170F49' }} />
-            </ListItemLink>
-            <ListItemLink href="#topic-4">
-              <ListItemText primary="Topic 4" style={{ color: '#170F49' }} />
-            </ListItemLink>
+        <Grid item xs={12} md={3}>
+          <List
+            component="nav"
+            aria-label="secondary mailbox folders"
+            className={classes.list}>
+            {config.faqTopics.map(topic =>
+              <ListItemLink href={`#${topic.slug}`}>
+                <ListItemText
+                  primary={topic.title}
+                  className={classes.listItemText} />
+              </ListItemLink>
+            )}
           </List>
-          <Grid item style={{ backgroundColor: '#170F49', padding: '2rem' }}>
+          <Grid item className={classes.subscribeGrid}>
             <Subscribe />
           </Grid>
         </Grid>
 
-        <Grid item xs={6} style={{ height: 'auto', marginLeft: '5rem', padding: 0 }}>
-          <About />
-          <Services />
-          <NewTopic />
-          <Topic />
+        <Grid item xs={12} md={6} className={classes.faqGrid}>
+          <FaqContent />
         </Grid>
       </Grid>
     </div>
