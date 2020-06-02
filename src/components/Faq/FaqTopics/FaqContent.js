@@ -12,11 +12,13 @@ import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import iconBox from 'assets/icon-infobox.svg';
-
 import config from '../../../config';
 
 const useStyles = makeStyles(({ theme }) => ({
   root: {
+    padding: '2rem 0rem'
+  },
+  link: {
     '&:hover': {
       textDecoration: "none"
     }
@@ -64,63 +66,65 @@ export default function FaqContent({ title, subtitle, content }) {
   return (
     <>
       {config.faqTopics.map(topic =>
-        <a id={topic.slug} className={classes.root}>
-          <Grid
-            container
-            item xs={12}
-            direction="row"
-            alignItems="baseline"
-            className={classes.organization}
-          >
-            <Grid item >
-              <IconButton>
-                <img src={iconBox} alt="example" />
-              </IconButton>
-            </Grid>
-            <Grid item>
-              <Typography
-                variant="h3"
-                className={classes.title}>
-                {topic.title}
-              </Typography>
-            </Grid>
+        <div className={classes.root} id={topic.slug}>
+          <a id={topic.slug} className={classes.link}>
             <Grid
-              item
-              xs={8}
-              className={classes.dividerGrid}>
-              <Divider
-                variant=" fullWidth"
-                className={classes.divider} />
+              container
+              item xs={12}
+              direction="row"
+              alignItems="baseline"
+              className={classes.organization}
+            >
+              <Grid item >
+                <IconButton>
+                  <img src={iconBox} alt="example" />
+                </IconButton>
+              </Grid>
+              <Grid item>
+                <Typography
+                  variant="h3"
+                  className={classes.title}>
+                  {topic.title}
+                </Typography>
+              </Grid>
+              <Grid
+                item
+                xs={8}
+                className={classes.dividerGrid}>
+                <Divider
+                  variant=" fullWidth"
+                  className={classes.divider} />
+              </Grid>
             </Grid>
-          </Grid>
 
-          <div>
-            {topic.topics.map(content =>
-              <ExpansionPanel
-                square
-                expanded={expanded === content.panel}
-                onChange={handleChange(content.panel)}
-                className={classes.expansionPanel}
-              >
-                <ExpansionPanelSummary
-                  expandIcon={<ExpandMoreIcon />}
-                  aria-controls="panel1d-content"
-                  id="panel1d-header"
+            <div>
+              {topic.topics.map(content =>
+                <ExpansionPanel
+                  square
+                  expanded={expanded === content.panel}
+                  onChange={handleChange(content.panel)}
+                  className={classes.expansionPanel}
                 >
-                  <Typography
-                    variant="h6">
-                    {content.subtitle}
-                  </Typography>
-                </ExpansionPanelSummary>
-                <ExpansionPanelDetails>
-                  <Typography variant="body2">
-                    {content.content}
-                  </Typography>
-                </ExpansionPanelDetails>
-              </ExpansionPanel>
-            )}
-          </div>
-        </a>
+                  <ExpansionPanelSummary
+                    expandIcon={<ExpandMoreIcon />}
+                    aria-controls="panel1d-content"
+                    id="panel1d-header"
+                  >
+                    <Typography
+                      variant="h6">
+                      {content.subtitle}
+                    </Typography>
+                  </ExpansionPanelSummary>
+                  <ExpansionPanelDetails>
+                    <Typography variant="body2">
+                      {content.content}
+                    </Typography>
+                  </ExpansionPanelDetails>
+                </ExpansionPanel>
+              )}
+            </div>
+          </a>
+        </div>
       )}
     </>
   );
