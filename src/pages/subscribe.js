@@ -2,47 +2,53 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from "components/Page";
+import Content from "components/Content";
+import Form from "components/Form";
 import Hero from "components/Hero";
-
-import Content from 'components/Content'
-
-import SubscribePage from 'components/SubscribePage'
+import Page from "components/Page";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
-      margin: "0 auto",
-      width: "102.5rem",
-    },
-    "& p": {
-      margin: 0,//since <p/> has default margin 
+      width: widths.values.xl,
     },
   },
+  content: {},
+  form: {
+    marginBottom: typography.pxToRem(50),
+    [breakpoints.up("md")]: {
+      marginBottom: 0,
+    },
+  },
+  subscribe: {},
 }));
 
-function Subscribe({ outbreak, ...props }) {
+function About({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
       hero_carousel: heroCarousel,
+      subscribe,
       title: { rendered: pageTitle },
-      content: { rendered: subtitle }
     },
   } = outbreak;
 
   return (
     <Page
+      errorCode={errorCode}
       outbreak={outbreak}
       title={pageTitle || "Subscribe"}
       classes={{ section: classes.section }}
@@ -52,11 +58,14 @@ function Subscribe({ outbreak, ...props }) {
         classes={{ section: classes.section }}
       />
       <Content
-        title={pageTitle || "Join us"}
-        subtitle={subtitle}
-        classes={{ section: classes.section }}
-      />
-      <SubscribePage />
+        subscribe={subscribe}
+        classes={{
+          root: classes.content,
+          section: classes.section,
+        }}
+      >
+        <Form classes={{ root: classes.form }} />
+      </Content>
     </Page>
   );
 }
@@ -67,10 +76,8 @@ export async function getServerSideProps({ query }) {
   const outbreak = await getSitePage("subscribe", lang);
 
   return {
-    props: {
-      outbreak,
-    },
+    props: { outbreak },
   };
 }
 
-export default Subscribe;
+export default About;
