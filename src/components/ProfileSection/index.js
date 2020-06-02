@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import Tabs from "./Tabs";
+import Tabs from "components/Tabs";
 
 const useStyles = makeStyles(({ breakpoints, palette }) => ({
   root: {
@@ -23,7 +23,13 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   fix: {},
 }));
 
-function ProfileSection({ profile, tabs, activeTab, setActiveTab, ...props }) {
+function ProfileSection({
+  profile,
+  tabs: tabsProp,
+  activeTab,
+  setActiveTab,
+  ...props
+}) {
   const classes = useStyles(props);
   const sectionRef = useRef();
   const [fixToTop, setFixToTop] = useState(false);
@@ -54,6 +60,10 @@ function ProfileSection({ profile, tabs, activeTab, setActiveTab, ...props }) {
       }
     }, 200);
   };
+  const tabs = tabsProp.map((tab) => ({
+    ...tab,
+    href: `#${tab.slug}`,
+  }));
 
   return (
     <div className={classes.root}>
@@ -64,12 +74,7 @@ function ProfileSection({ profile, tabs, activeTab, setActiveTab, ...props }) {
               [classes.fix]: fixToTop,
             })}
           >
-            <Tabs
-              handleChange={handleChange}
-              profile={profile}
-              tabs={tabs}
-              value={activeTab}
-            />
+            <Tabs handleChange={handleChange} tabs={tabs} value={activeTab} />
           </div>
         </div>
       </Section>
