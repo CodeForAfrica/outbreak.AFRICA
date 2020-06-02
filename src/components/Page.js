@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Error from "next/error";
+
 import { makeStyles } from "@material-ui/core/styles";
 
 import Footer from "./Footer";
@@ -25,9 +27,18 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Page({ children, classes: classesProp, outbreak, ...props }) {
+function Page({
+  children,
+  classes: classesProp,
+  errorCode,
+  outbreak,
+  ...props
+}) {
   const classes = useStyles({ classes: classesProp });
 
+  if (errorCode) {
+    return <Error statusCode={errorCode} />;
+  }
   return (
     <div className={classes.root}>
       <SEO {...props} />
