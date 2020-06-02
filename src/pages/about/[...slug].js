@@ -47,14 +47,6 @@ function About({ errorCode, outbreak, slug, ...props }) {
       children: childPages,
     },
   } = outbreak;
-  useEffect(() => {
-    if (slug) {
-      const sub = document.getElementById(`#${slug}`);
-      if (sub) {
-        sub.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [slug]);
   const contents =
     (childPages &&
       childPages.map((page) => ({
@@ -64,6 +56,17 @@ function About({ errorCode, outbreak, slug, ...props }) {
         name: page.title.rendered,
       }))) ||
     [];
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (slug) {
+        const sub = document.getElementById(slug);
+        if (sub) {
+          sub.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [slug]);
 
   return (
     <Page
@@ -78,6 +81,7 @@ function About({ errorCode, outbreak, slug, ...props }) {
       />
       <Content
         contents={contents}
+        current={slug}
         subscribe={subscribe}
         classes={{
           root: classes.content,
