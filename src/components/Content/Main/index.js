@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -61,5 +62,9 @@ function Main({ classes: classesProp, content, ...props }) {
     </div>
   );
 }
+
+Main.propTypes = {
+  content: PropTypes.shape({}).isRequired,
+};
 
 export default Main;
