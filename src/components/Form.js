@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from "react";
+
 import {
   Button,
   Typography,
@@ -8,261 +9,236 @@ import {
   FormControl,
   ExpansionPanel,
   ExpansionPanelDetails,
-  ExpansionPanelSummary
+  ExpansionPanelSummary,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import Link from 'components/Link';
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import iconBox from 'assets/icon-infobox.svg'
+import iconBox from "assets/icon-infobox.svg";
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
-    width: "100%"
+    width: "100%",
   },
   expansionPanel: {
-    backgroundColor: '#C1D5FF',
-    padding: '1rem',
+    backgroundColor: "#C1D5FF",
+    padding: "1rem",
     [breakpoints.up("md")]: {
-      padding: '1.5rem',
-    }
+      padding: "1.5rem",
+    },
   },
   expansionPanelSummary: {},
   title: {
     fontWeight: 700,
   },
   formGrid: {
-    padding: '3rem 0rem',
+    padding: "3rem 0rem",
+  },
+  icon: {
+    "& img": {
+      height: 40,
+      width: 40,
+      [breakpoints.up("xl")]: {
+        height: 48,
+        width: 48,
+      },
+    },
   },
   inputGrid: {
-    padding: '1rem 0rem'
+    padding: "1rem 0rem",
   },
   inputLabel: {
-    color: 'black',
-    padding: '1.5rem 0rem'
+    paddingBottom: typography.pxToRem(12),
+    paddingTop: typography.pxToRem(30),
+    [breakpoints.up("md")]: {
+      paddingBottom: typography.pxToRem(10),
+      paddingTop: typography.pxToRem(50),
+    },
   },
   formControl: {
-    backgroundColor: '#FFFFFF;',
-    border: '1px solid #9D9C9C',
+    border: "1px solid #9D9C9C",
     borderRadius: 10,
-    '&:focus': {
-      backgroundColor: '#fff'
-    }
   },
   filledInput: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    '&:focus': {
-      backgroundColor: '#fff'
-    }
+    "&:hover": {
+      backgroundColor: "#fff",
+    },
+    "&.Mui-focused": {
+      backgroundColor: "#fff",
+    },
   },
   focussed: {},
   button: {
-    color: '#170F49',
-    borderBottomColor: '#170F49'
-  }
+    color: "#170F49",
+    borderBottomColor: "#170F49",
+  },
 }));
 
-function Form() {
-  const classes = useStyles();
-  const [expanded, setExpanded] = React.useState('panel1');
-  const [name, setName] = React.useState();
+function Form(props) {
+  const classes = useStyles(props);
+  const [expanded, setExpanded] = useState(true);
+  const handleChange = (e, newExpanded) => setExpanded(newExpanded);
 
-  const formHandleChange = (event) => {
-    setName(event.target.value);
-  };
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
   return (
     <div className={classes.root}>
       <ExpansionPanel
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-        className={classes.expansionPanel}>
+        square
+        expanded={expanded}
+        onChange={handleChange}
+        className={classes.expansionPanel}
+      >
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1bh-content"
           id="panel1bh-header"
           className={classes.expansionPanelSummary}
         >
-          <Typography
-            variant="h5"
-            className={classes.title}>
-            <IconButton aria-label="delete">
+          <Typography variant="subtitle2" className={classes.title}>
+            <IconButton aria-label="delete" className={classes.icon}>
               <img src={iconBox} alt="icon box" />
             </IconButton>
             Application Form
-            </Typography>
+          </Typography>
         </ExpansionPanelSummary>
 
         <ExpansionPanelDetails fullWidth>
           <div>
             <div item>
-              <Typography variant="subtitle1">
-                Contrary to popular belief, Lorem Ipsum is not simply random text.
-                It has roots in a piece of classical Latin literature from 45 BC,
-                making it over 2000 years old.
+              <Typography variant="caption">
+                Contrary to popular belief, Lorem Ipsum is not simply random
+                text. It has roots in a piece of classical Latin literature from
+                45 BC, making it over 2000 years old.
               </Typography>
             </div>
 
             <form item className={classes.formGrid}>
               <div className={classes.inputGrid}>
                 <InputLabel
+                  color="primary"
                   variant="standard"
                   className={classes.inputLabel}
                 >
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    style={{ height: '180px' }}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    multiline
+                    rows={4}
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
               <div className={classes.inputGrid}>
-                <InputLabel
-                  variant="standard"
-                  className={classes.inputLabel}
-                >
+                <InputLabel variant="standard" className={classes.inputLabel}>
                   Field descriptor
-                  </InputLabel>
+                </InputLabel>
                 <FormControl
                   variant="filled"
                   fullWidth
                   className={classes.formControl}
                 >
                   <FilledInput
-                    disableUnderline={true}
-                    value={name}
-                    onChange={formHandleChange}
-                    className={classes.filledInput} />
+                    disableUnderline
+                    className={classes.filledInput}
+                  />
                 </FormControl>
               </div>
 
-              <Link href="#">
-                <Button
-                  variant="outlined"
-                  size="large"
-                  className={classes.button}
-                >
-                  Submit
-                  </Button>
-              </Link>
+              <Button variant="outlined" className={classes.button}>
+                Submit
+              </Button>
             </form>
           </div>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-    </div >
-  )
+    </div>
+  );
 }
 
-export default Form
+export default Form;
