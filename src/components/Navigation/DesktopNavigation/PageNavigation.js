@@ -13,6 +13,7 @@ import LinkButton from "components/Link/Button";
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     boxShadow: "0px 5px 30px #00000029",
+    width: "100%",
   },
   section: {},
   button: {

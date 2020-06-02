@@ -118,46 +118,47 @@ function ExpertList({
               key={profile.id}
               className={classes.profilesGridList}
             >
-              {isDesktop ? (<ListItem
-                key={profile.title}
-                classes={{
-                  root:`${profileClassPrefix}${
-                      index % profileClassCount
-                    }`
-                  ,
-                  description: classes.profileDescription,
-                  link: classes.profileLink,
-                  name: classes.profileName,
-                  title: classes.profileTitle,
-                }}
-                height={cellHeight}
-                description={profile.description}
-                image={profile.image}
-                itemChildren={profile.itemChildren}
-                name={profile.name}
-                title={profile.title}
-              />): (
+              {isDesktop ? (
+                <ListItem
+                  key={profile.title}
+                  classes={{
+                    root: `${profileClassPrefix}${index % profileClassCount}`,
+                    description: classes.profileDescription,
+                    link: classes.profileLink,
+                    name: classes.profileName,
+                    title: classes.profileTitle,
+                  }}
+                  height={cellHeight}
+                  description={profile.description}
+                  image={profile.image}
+                  itemChildren={profile.itemChildren}
+                  name={profile.name}
+                  title={profile.title}
+                />
+              ) : (
                 <>
-                  <Grid item xs={6} >
-                    <Typography variant="h3">
-                      {profile.name}
-                    </Typography>
+                  <Grid item xs={6}>
+                    <Typography variant="h3">{profile.name}</Typography>
                     <Typography variant="subtitle2" className={classes.title}>
                       {profile.title}
                     </Typography>
                     <Typography className={classes.profileDescription}>
                       {profile.description}
                     </Typography>
-                      {profile.itemChildren && <>{profile.itemChildren}</>}
+                    {profile.itemChildren && <>{profile.itemChildren}</>}
                   </Grid>
-                  <Grid item xs={6} className={classNames(classes.picture, `${profileClassPrefix}${
-                      index % profileClassCount
-                    }`)
-                  }>
+                  <Grid
+                    item
+                    xs={6}
+                    className={classNames(
+                      classes.picture,
+                      `${profileClassPrefix}${index % profileClassCount}`
+                    )}
+                  >
                     <img
                       alt={profile.name}
                       src={profile.image.url}
-                      className={classes.mobileImg} 
+                      className={classes.mobileImg}
                     />
                   </Grid>
                 </>

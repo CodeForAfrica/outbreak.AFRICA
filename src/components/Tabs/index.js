@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
-import { Button, Tab, Tabs } from "@material-ui/core";
+import { Tab, Tabs } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import LinkButton from "components/Link/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     paddingRight: theme.spacing(4),
     minWidth: 0, // Mui-Tab has min-width
     maxWidth: "none", // Mui-Tab has a fixed max-width
-    "&$tabSelected": {
+    "&.Mui-selected": {
       color: theme.palette.secondary.main,
       backgroundColor: "inherit",
     },
@@ -31,16 +33,15 @@ const useStyles = makeStyles((theme) => ({
   tabLast: {
     paddingRight: 0,
   },
-  tabSelected: {},
 }));
 
-function LinkTab(props) {
-  /* eslint-disable-next-line react/jsx-props-no-spreading */
-  return <Tab component={Button} {...props} />;
+function ButtonTab(props) {
+  return <Tab component={LinkButton} {...props} />;
 }
 
-function ProfileTabs({ handleChange, tabs, value }) {
-  const classes = useStyles();
+function MainTabs({ handleChange, tabs, value, ...props }) {
+  const classes = useStyles(props);
+
   return (
     <div className={classes.root}>
       <Tabs
@@ -50,17 +51,15 @@ function ProfileTabs({ handleChange, tabs, value }) {
         variant="scrollable"
       >
         {tabs.map((tab, index) => (
-          <LinkTab
+          <ButtonTab
             key={tab.slug}
             value={tab.slug}
-            href={`#${tab.slug}`} // Always show the tabs on click
+            href={`${tab.href}`}
+            as={`${tab.as}`}
             label={tab.name}
             className={classNames(classes.tab, {
               [classes.tabLast]: index === tabs.length - 1,
             })}
-            classes={{
-              selected: classes.tabSelected,
-            }}
             underline="none"
           />
         ))}
@@ -69,19 +68,20 @@ function ProfileTabs({ handleChange, tabs, value }) {
   );
 }
 
-ProfileTabs.propTypes = {
+MainTabs.propTypes = {
   handleChange: PropTypes.func,
   tabs: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,
+      href: PropTypes.string.isRequired,
       slug: PropTypes.string.isRequired,
     })
   ).isRequired,
   value: PropTypes.string.isRequired,
 };
 
-ProfileTabs.defaultProps = {
+MainTabs.defaultProps = {
   handleChange: null,
 };
 
-export default ProfileTabs;
+export default MainTabs;
