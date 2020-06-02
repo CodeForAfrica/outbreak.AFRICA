@@ -5,27 +5,31 @@ import { makeStyles } from "@material-ui/core/styles";
 import Hero from "components/Hero";
 import JoinUs from "components/JoinUs";
 import Page from "components/Page";
+import FeaturedCard from "components/Insights/FeaturedCard";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({breakpoints, widths}) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
   joinUs: {
     marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
   },
@@ -35,7 +39,7 @@ function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
-      hero_carousel: heroCarousel,
+      posts,
       join_us: joinUs,
       title: { rendered: pageTitle },
     },
@@ -47,10 +51,13 @@ function Analysis({ outbreak, ...props }) {
       title={pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
+      <FeaturedCard
+        title={posts[0].post_title}
+        description={posts[0].post_content}
+        image={posts[0].feature_imaged}
+        date={posts[0].post_date}
         classes={{ section: classes.section }}
-      />
+        />
       <JoinUs
         classes={{
           root: classes.joinUs,
