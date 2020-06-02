@@ -6,9 +6,8 @@ import TextField from "@material-ui/core/TextField";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-
 import email from "assets/email.svg";
-import electricBlueEmail from "assets/electric-blue-email.svg";
+import emailFocus from "assets/electric-blue-email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,8 +47,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Subscribe({ title, description }) {
-  const classes = useStyles();
+function Subscribe({ title, description, ...props }) {
+  const classes = useStyles(props);
+  const handleEvent = (e) => {
+    if (e.type === "mouseout" || e.type === "blur") {
+      e.currentTarget.src = email;
+    }
+    if (e.type === "mouseover" || e.type === "focus") {
+      e.currentTarget.src = emailFocus;
+    }
+  };
+
   return (
     <Grid item className={classes.root}>
       <Typography variant="h2" className={classes.title}>
@@ -74,11 +82,15 @@ function Subscribe({ title, description }) {
         />
 
         <IconButton className={classes.button}>
-          <img src={email}
+          <img
+            src={email}
             alt="Arrow icon"
             className={classes.img}
-            onMouseOver={e => (e.currentTarget.src = electricBlueEmail)}
-            onMouseOut={e => (e.currentTarget.src = email)} />
+            onMouseOver={handleEvent}
+            onFocus={handleEvent}
+            onMouseOut={handleEvent}
+            onBlur={handleEvent}
+          />
         </IconButton>
       </form>
     </Grid>
