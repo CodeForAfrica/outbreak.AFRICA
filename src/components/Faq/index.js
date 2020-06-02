@@ -1,5 +1,11 @@
 import React from 'react';
-import { Grid, Typography } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  ListItemText
+} from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
 import Services from 'components/Faq/FaqTopics/Services';
@@ -41,31 +47,41 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   }
 }));
 
+function ListItemLink(props) {
+  return <ListItem button component="a" {...props} />;
+}
+
 function FaqSection() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-
-      <Grid container direction="row" justify="flex-start" alignItems="center" spacing={10}>
-        <Grid item xs={12} md={3}>
-          <div className={classes.navGrid}>
-            <Typography variant="subtitle2">one</Typography>
-            <Typography variant="subtitle2">two</Typography>
-            <Typography variant="subtitle2">three</Typography>
-            <Typography variant="subtitle2">four</Typography>
-          </div>
-          <div className={classes.subscribeGrid}>
-            <Subscribe />
-          </div>
+      <Grid
+        container
+        direction="row"
+        justify="flex-start">
+        <Grid item xs={3} style={{ height: '334px', backgroundColor: '#eee' }}>
+          <List component="nav" aria-label="secondary mailbox folders" style={{ padding: '3rem 0rem' }}>
+            <ListItem button>
+              <ListItemText primary="Topic 1" style={{ color: '#170F49' }} />
+            </ListItem>
+            <ListItemLink href="#simple-list">
+              <ListItemText primary="Topic 2" style={{ color: '#170F49' }} />
+            </ListItemLink>
+            <ListItemLink href="#simple-list">
+              <ListItemText primary="Topic 3" style={{ color: '#170F49' }} />
+            </ListItemLink>
+            <ListItemLink href="#simple-list">
+              <ListItemText primary="Topic 4" style={{ color: '#170F49' }} />
+            </ListItemLink>
+          </List>
         </Grid>
-        <Grid item xs={12} md={6} style={{ flexGrow: 1 }}>
+        <Grid item xs={6} style={{ height: 'auto', marginLeft: '5rem' }}>
           <About />
           <Services />
           <NewTopic />
           <Topic />
         </Grid>
       </Grid>
-
     </div>
   )
 }
