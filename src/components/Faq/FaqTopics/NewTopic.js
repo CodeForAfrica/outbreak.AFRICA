@@ -52,7 +52,7 @@ export default function NewTopic() {
   };
 
   return (
-    <Link href="topic-3" className={classes.root}>
+    <a id="topic-3" className={classes.root}>
       <div style={{ padding: '2rem 0rem' }}>
         <Grid
           container
@@ -67,7 +67,7 @@ export default function NewTopic() {
             </IconButton>
           </Grid>
           <Grid item>
-            <Typography variant="h3">Topic 3</Typography>
+            <Typography variant="h3" style={{ color: '#170F49' }}>Topic 3</Typography>
           </Grid>
           <Grid item xs={8} style={{ marginLeft: '1rem' }}>
             <Divider variant=" fullWidth" style={{ border: '0.8px solid #170F49' }} />
@@ -168,6 +168,6 @@ export default function NewTopic() {
           </ExpansionPanel>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }

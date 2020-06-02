@@ -52,7 +52,7 @@ export default function Services() {
   };
 
   return (
-    <Link href="topic-1" className={classes.root}>
+    <a id="topic-2" className={classes.root}>
       <div style={{ padding: '2rem 0rem' }}>
         <Grid
           container
@@ -67,7 +67,7 @@ export default function Services() {
             </IconButton>
           </Grid>
           <Grid item>
-            <Typography variant="h3">Topic 2</Typography>
+            <Typography variant="h3" style={{ color: '#170F49' }}>Topic 2</Typography>
           </Grid>
           <Grid item xs={8} style={{ marginLeft: '1rem' }}>
             <Divider variant=" fullWidth" style={{ border: '0.8px solid #170F49' }} />
@@ -168,6 +168,6 @@ export default function Services() {
           </ExpansionPanel>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }

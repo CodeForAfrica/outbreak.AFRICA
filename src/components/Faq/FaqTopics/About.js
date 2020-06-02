@@ -52,7 +52,7 @@ export default function About() {
   };
 
   return (
-    <Link href="topic-1" className={classes.root}>
+    <a id="topic-1" className={classes.root}>
       <Grid
         container
         item xs={12}
@@ -66,7 +66,7 @@ export default function About() {
           </IconButton>
         </Grid>
         <Grid item>
-          <Typography variant="h3">Topic 1</Typography>
+          <Typography variant="h3" style={{ color: '#170F49' }}>Topic 1</Typography>
         </Grid>
         <Grid item xs={8} style={{ marginLeft: '1rem' }}>
           <Divider variant=" fullWidth" style={{ border: '0.8px solid #170F49' }} />
@@ -166,6 +166,6 @@ export default function About() {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
-    </Link>
+    </a>
   );
 }
