@@ -60,7 +60,7 @@ function FaqSection() {
         direction="row"
         justify="flex-start">
         <Grid item xs={3}>
-          <List component="nav" aria-label="secondary mailbox folders" style={{ padding: '3rem 0rem', height: '334px', backgroundColor: '#eee' }}>
+          <List component="nav" aria-label="secondary mailbox folders" style={{ padding: '3rem 2rem', height: '334px', backgroundColor: '#eee' }}>
             <ListItem button>
               <ListItemText primary="Topic 1" style={{ color: '#170F49' }} />
             </ListItem>
@@ -74,7 +74,7 @@ function FaqSection() {
               <ListItemText primary="Topic 4" style={{ color: '#170F49' }} />
             </ListItemLink>
           </List>
-          <Grid item style={{ backgroundColor: '#170F49' }}>
+          <Grid item style={{ backgroundColor: '#170F49', padding: '2rem' }}>
             <Subscribe />
           </Grid>
         </Grid>
