@@ -7,41 +7,43 @@ import { makeStyles } from "@material-ui/core/styles";
 import Link from "components/Link";
 import Tabs from "components/Tabs";
 
-const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
-  root: {
-    backgroundColor: "#EEEEEE",
-    border: "1px solid #707070",
-    borderLeft: "none",
-    borderRight: "none",
-    width: "100%",
-    [breakpoints.up("md")]: {
-      border: "none",
-      paddingBottom: typography.pxToRem(75),
-      paddingLeft: typography.pxToRem(
-        (67 * widths.values.md) / widths.values.xl
-      ),
-      paddingRight: typography.pxToRem(
-        (53 * widths.values.md) / widths.values.xl
-      ),
-      paddingTop: typography.pxToRem(40),
+const useStyles = makeStyles(
+  ({ breakpoints, palette, typography, widths }) => ({
+    root: {
+      backgroundColor: "#EEEEEE",
+      width: "100%",
+      [breakpoints.up("md")]: {
+        border: "none",
+        paddingBottom: typography.pxToRem(75),
+        paddingLeft: typography.pxToRem(
+          (67 * widths.values.md) / widths.values.xl
+        ),
+        paddingRight: typography.pxToRem(
+          (53 * widths.values.md) / widths.values.xl
+        ),
+        paddingTop: typography.pxToRem(40),
+      },
+      [breakpoints.up("lg")]: {
+        paddingLeft: typography.pxToRem(
+          (67 * widths.values.lg) / widths.values.xl
+        ),
+        paddingRight: typography.pxToRem(
+          (53 * widths.values.lg) / widths.values.xl
+        ),
+      },
+      [breakpoints.up("xl")]: {
+        paddingLeft: typography.pxToRem(67),
+        paddingRight: typography.pxToRem(53),
+      },
     },
-    [breakpoints.up("lg")]: {
-      paddingLeft: typography.pxToRem(
-        (67 * widths.values.lg) / widths.values.xl
-      ),
-      paddingRight: typography.pxToRem(
-        (53 * widths.values.lg) / widths.values.xl
-      ),
+    link: {
+      lineHeight: 60 / 24,
+      "&:hover": {
+        color: palette.primary.main,
+      },
     },
-    [breakpoints.up("xl")]: {
-      paddingLeft: typography.pxToRem(67),
-      paddingRight: typography.pxToRem(53),
-    },
-  },
-  link: {
-    lineHeight: 60 / 24,
-  },
-}));
+  })
+);
 
 function TableOfContents({ contents, handleChange, value, ...props }) {
   const classes = useStyles(props);
@@ -60,10 +62,12 @@ function TableOfContents({ contents, handleChange, value, ...props }) {
       {contents.map((content) => (
         <Grid item key={content.as || content.href}>
           <Link
+            color={content.slug === value ? "primary" : "secondary"}
             as={content.as}
             href={content.href}
             onClick={handleChange}
             variant="subtitle2"
+            underline="none"
             className={classes.link}
           >
             {content.name}
