@@ -462,7 +462,7 @@ Disallow:
         }
       ]
     }
-  ]
+  ],
   CKAN_BACKEND_URL: "https://data.humdata.org",
   DATA_OPTIONS: {
     day: "short",
