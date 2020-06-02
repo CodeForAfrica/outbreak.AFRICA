@@ -11,8 +11,17 @@ import economicIcon from "assets/icon-economic.svg";
 import epidemiologicalIcon from "assets/icon-epidemiological.svg";
 import safetyIcon from "assets/icon-safety.svg";
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
+  root: {
+    // When scrolled, leave the height of AppBar from the top
+    scrollMargin: typography.pxToRem(70),
+    [breakpoints.up("md")]: {
+      scrollMargin: typography.pxToRem(110),
+    },
+    [breakpoints.up("xl")]: {
+      scrollMargin: typography.pxToRem(150),
+    },
+  },
   content: {},
   sectionSubtitle: {
     "&:first-of-type": {

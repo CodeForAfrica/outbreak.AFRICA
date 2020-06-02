@@ -29,7 +29,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   // Since we're absolute position aside to get the design effect, we don't
   // know how tall it will end up being and hence this trick of adding another
   // aside with the same size but hidden from view without being absolute
-  // positioned & hence forcing parent to take the actual height
+  // positioned & hence forcing parent to take the height of aside
   asideHidden: {
     display: "none",
     [breakpoints.up("md")]: {
@@ -39,6 +39,13 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       visibility: "hidden",
       zIndex: -1,
     },
+  },
+  asideMobile: {
+    backgroundColor: "#EEEEEE",
+    border: "1px solid #707070",
+    borderLeft: "none",
+    borderRight: "none",
+    width: "100%",
   },
   joinUs: {},
   subscribe: {},
@@ -50,6 +57,7 @@ function Content({
   children,
   classes: classesProp,
   contents,
+  current,
   main,
   variant,
   ...props
@@ -60,20 +68,28 @@ function Content({
   return (
     <div className={classes.root}>
       <Hidden mdUp>
-        <Aside contents={contents} classes={{ root: classes.aside }}>
-          <SupportComponent
-            {...props}
-            variant="compact"
-            classes={{
-              root: classNames(
-                classes.support,
-                { [classes.subscribe]: variant === "join" },
-                { [classes.joinUs]: variant === "join" }
-              ),
-              section: classes.section,
-            }}
-          />
-        </Aside>
+        <div className={classes.asideMobile}>
+          <Section classes={{ root: classes.section }}>
+            <Aside
+              contents={contents}
+              current={current}
+              classes={{ root: classes.aside }}
+            >
+              <SupportComponent
+                {...props}
+                variant="compact"
+                classes={{
+                  root: classNames(
+                    classes.support,
+                    { [classes.subscribe]: variant === "join" },
+                    { [classes.joinUs]: variant === "join" }
+                  ),
+                  section: classes.section,
+                }}
+              />
+            </Aside>
+          </Section>
+        </div>
       </Hidden>
       <Section classes={{ root: classes.section }}>
         <Grid container>
@@ -86,7 +102,11 @@ function Content({
             component={Hidden}
             className={classes.asideContainer}
           >
-            <Aside contents={contents} classes={{ root: classes.aside }}>
+            <Aside
+              contents={contents}
+              current={current}
+              classes={{ root: classes.aside }}
+            >
               <SupportComponent
                 {...props}
                 variant="compact"
@@ -102,6 +122,7 @@ function Content({
             </Aside>
             <Aside
               contents={contents}
+              current={current}
               classes={{
                 root: classNames(classes.aside, classes.asideHidden),
               }}
@@ -150,12 +171,14 @@ function Content({
 
 Content.propTypes = {
   aside: PropTypes.number,
+  current: PropTypes.string,
   main: PropTypes.number,
   variant: PropTypes.oneOf(["subscribe", "join"]),
 };
 
 Content.defaultProps = {
   aside: 3,
+  current: undefined,
   main: 6,
   variant: "subscribe",
 };
