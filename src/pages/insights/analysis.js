@@ -2,10 +2,8 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Hero from "components/Hero";
-import JoinUs from "components/JoinUs";
+import InsightPage from "components/Insights/InsightPage";
 import Page from "components/Page";
-import FeaturedCard from "components/Insights/FeaturedCard";
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -27,12 +25,6 @@ const useStyles = makeStyles(({breakpoints, widths}) => ({
       width: widths.values.xl,
     },
   },
-  joinUs: {
-    marginTop: "3.5rem",
-    [breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
 }));
 
 function Analysis({ outbreak, ...props }) {
@@ -41,6 +33,7 @@ function Analysis({ outbreak, ...props }) {
     page: {
       posts,
       join_us: joinUs,
+      subscribe,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -51,22 +44,12 @@ function Analysis({ outbreak, ...props }) {
       title={pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
-      <FeaturedCard
-        title={posts[0].post_title}
-        description={posts[0].post_content}
-        image={posts[0].feature_imaged}
-        date={posts[0].post_date}
-        classes={{ section: classes.section }}
-        />
-      <JoinUs
-        classes={{
-          root: classes.joinUs,
-          section: classes.section,
-        }}
+      <InsightPage
+        posts={posts}
         joinUs={joinUs}
-        title={joinUs.title}
-        subtitle={joinUs.description}
-      />
+        subscribe={subscribe}
+        title={pageTitle}
+        classes={{ section: classes.section }} />
     </Page>
   );
 }
