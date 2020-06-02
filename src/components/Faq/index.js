@@ -57,7 +57,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     marginLeft: 0,
     paddingTop: '2rem',
     [breakpoints.up("md")]: {
-      marginLeft: '3rem',
+      marginLeft: '5rem',
       paddingTop: 0
     }
   }
@@ -93,7 +93,11 @@ function FaqSection() {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} md={6} className={classes.faqGrid}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          className={classes.faqGrid}>
           <FaqContent />
         </Grid>
       </Grid>

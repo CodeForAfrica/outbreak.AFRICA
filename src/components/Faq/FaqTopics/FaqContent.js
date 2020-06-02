@@ -14,7 +14,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import iconBox from 'assets/icon-infobox.svg';
 import config from '../../../config';
 
-const useStyles = makeStyles(({ theme }) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
     paddingBottom: '3rem'
   },
