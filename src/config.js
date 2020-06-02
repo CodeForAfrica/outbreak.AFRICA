@@ -240,6 +240,7 @@ Disallow:
     low: "#73acff",
     "very low": "#99ccff",
   },
+
   faqTopics: [
     {
       title: 'Topic 1',
@@ -462,6 +463,13 @@ Disallow:
       ]
     }
   ]
+  CKAN_BACKEND_URL: "https://data.humdata.org",
+  DATA_OPTIONS: {
+    day: "short",
+    month: "long",
+    year: "numeric",
+  },
+
 };
 
 if (typeof document !== "undefined") {

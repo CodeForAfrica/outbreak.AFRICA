@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, InputBase, Paper } from "@material-ui/core";
@@ -39,21 +40,47 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Search(props) {
+function Search({ ariaLabel, onClick, onChange, placeholder, ...props }) {
   const classes = useStyles(props);
+  const [term, setTerm] = useState();
+  const handleChange = (e) => {
+    setTerm(e.target.value);
+    if (onChange) {
+      onChange(e);
+    }
+  };
+  const handleClick = (e) => {
+    if (onClick) {
+      const ev = e;
+      ev.target.value = term;
+      onClick(ev);
+    }
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      // Do code here
+      e.preventDefault();
+      if (onClick) {
+        onClick(e);
+      }
+    }
+  };
 
   return (
     <Paper component="form" className={classes.root}>
       <InputBase
-        placeholder="Search for issues, topics, etc…"
-        inputProps={{ "aria-label": "search for issues, topics, etc…" }}
+        inputProps={{ "aria-label": ariaLabel }}
+        onChange={handleChange}
+        onKeyPress={handleKeyPress}
+        placeholder={placeholder}
         classes={{
           root: classes.input,
           input: classes.inputInput,
         }}
+        {...props}
       />
       <IconButton
-        type="submit"
+        onClick={handleClick}
         className={classes.iconButton}
         aria-label="search"
       >
@@ -63,4 +90,13 @@ function Search(props) {
   );
 }
 
+Search.propTypes = {
+  ariaLabel: PropTypes.string,
+  placeholder: PropTypes.string,
+};
+
+Search.defaultProps = {
+  ariaLabel: "search al datasets",
+  placeholder: "Search for issues, topics, etc…",
+};
 export default Search;

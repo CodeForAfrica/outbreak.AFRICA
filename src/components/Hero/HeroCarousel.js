@@ -44,34 +44,34 @@ const useStyles = makeStyles((theme) => ({
   },
   carousel: {},
   carouselBodyText: {
-    display: 'none',
+    display: "none",
   },
   carouselCardLink: {
-    display: 'none',
+    display: "none",
   },
   carouselBodyTitle: {
-    color: 'initial',
+    color: "initial",
     margin: 0,
   },
   carouselMedia: {
-    height: '18rem',
-    minHeight: '18rem',
+    height: "18rem",
+    minHeight: "18rem",
   },
   carouselRoot: {
-    height: '23rem',
-    minHeight: '23rem',
+    height: "23rem",
+    minHeight: "23rem",
     border: 0,
-    backgroundColor: 'unset',
+    backgroundColor: "unset",
     borderRadius: 0,
-    boxShadow: 'unset',
+    boxShadow: "unset",
   },
   carouselContentRoot: {
-    display:'block',
-    height: '5rem',
-    paddingTop: '1rem',
+    display: "block",
+    height: "5rem",
+    paddingTop: "1rem",
     position: "relative",
-    top: 'initial',
-    left: 'initial',
+    top: "initial",
+    left: "initial",
   },
 }));
 
@@ -103,7 +103,12 @@ function CustomArrowButtons({ next, previous }) {
   );
 }
 
-function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle, isResearch }) {
+function HeroCarousel({
+  deviceType,
+  carouselItems,
+  carouselLinkTitle,
+  isResearch,
+}) {
   const classes = useStyles();
   if (!carouselItems || carouselItems.length === 0) {
     return null;
@@ -131,14 +136,16 @@ function HeroCarousel({ deviceType, carouselItems, carouselLinkTitle, isResearch
           key={item.title}
           item={item}
           linkTitle={carouselLinkTitle}
-          classes={isResearch && {
-            media: classes.carouselMedia,
-            bodyTitle: classes.carouselBodyTitle,
-            bodyText: classes.carouselBodyText,
-            cardLink: classes.carouselCardLink,
-            root: classes.carouselRoot,
-            contentRoot: classes.carouselContentRoot,
-          }}
+          classes={
+            isResearch && {
+              media: classes.carouselMedia,
+              bodyTitle: classes.carouselBodyTitle,
+              bodyText: classes.carouselBodyText,
+              cardLink: classes.carouselCardLink,
+              root: classes.carouselRoot,
+              contentRoot: classes.carouselContentRoot,
+            }
+          }
         />
       ))}
     </Carousel>
