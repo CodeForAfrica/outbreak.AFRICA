@@ -46,7 +46,7 @@ export default function About() {
   };
 
   return (
-    <div style={{ padding: '2rem 0rem' }}>
+    <>
       <Grid
         container
         item xs={12}
@@ -160,6 +160,6 @@ export default function About() {
           </ExpansionPanelDetails>
         </ExpansionPanel>
       </div>
-    </div>
+    </>
   );
 }
