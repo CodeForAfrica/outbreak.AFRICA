@@ -56,11 +56,14 @@ function Aside({ children, contents, current, ...props }) {
 }
 
 Aside.propTypes = {
-  contents: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  children: PropTypes.node,
+  contents: PropTypes.arrayOf(PropTypes.shape({})),
   current: PropTypes.string,
 };
 
 Aside.defaultProps = {
+  children: undefined,
+  contents: undefined,
   current: undefined,
 };
 
