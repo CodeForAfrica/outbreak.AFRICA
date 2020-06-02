@@ -26,7 +26,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   contents: {},
 }));
 
-function Aside({ children, contents, ...props }) {
+function Aside({ children, contents, current, ...props }) {
   const classes = useStyles(props);
 
   if (!contents && !children) {
@@ -36,7 +36,7 @@ function Aside({ children, contents, ...props }) {
     <Grid container className={classes.root}>
       {contents && (
         <Grid item xs={12} className={classes.contents}>
-          <TableOfContents contents={contents} {...props} />
+          <TableOfContents {...props} contents={contents} value={current} />
         </Grid>
       )}
       {children && (
@@ -57,7 +57,11 @@ function Aside({ children, contents, ...props }) {
 
 Aside.propTypes = {
   contents: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  value: PropTypes.string.isRequired,
+  current: PropTypes.string,
+};
+
+Aside.defaultProps = {
+  current: undefined,
 };
 
 export default Aside;
