@@ -61,16 +61,16 @@ function FaqSection() {
         justify="flex-start">
         <Grid item xs={3}>
           <List component="nav" aria-label="secondary mailbox folders" style={{ padding: '3rem 2rem', height: '334px', backgroundColor: '#eee' }}>
-            <ListItem button>
+            <ListItemLink href="#topic-1" id="topic-1">
               <ListItemText primary="Topic 1" style={{ color: '#170F49' }} />
-            </ListItem>
-            <ListItemLink href="#simple-list">
+            </ListItemLink>
+            <ListItemLink href="#topic-2" id="topic-2">
               <ListItemText primary="Topic 2" style={{ color: '#170F49' }} />
             </ListItemLink>
-            <ListItemLink href="#simple-list">
+            <ListItemLink href="#topic-3" id="topic-3">
               <ListItemText primary="Topic 3" style={{ color: '#170F49' }} />
             </ListItemLink>
-            <ListItemLink href="#simple-list">
+            <ListItemLink href="#topic-4" id="topic-4">
               <ListItemText primary="Topic 4" style={{ color: '#170F49' }} />
             </ListItemLink>
           </List>

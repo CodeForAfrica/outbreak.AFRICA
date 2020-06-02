@@ -10,10 +10,16 @@ import {
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import Link from 'components/Link'
 
 import iconBox from 'assets/icon-infobox.svg'
 
 const useStyles = makeStyles(({ theme }) => ({
+  root: {
+    '&:hover': {
+      textDecoration: "none"
+    }
+  },
   expansionPanel: {
     backgroundColor: '#C1D5FF',
     boxShadow: 'none',
@@ -46,120 +52,122 @@ export default function NewTopic() {
   };
 
   return (
-    <div style={{ padding: '2rem 0rem' }}>
-      <Grid
-        container
-        item xs={12}
-        direction="row"
-        alignItems="baseline"
-        className={classes.organization}
-      >
-        <Grid item >
-          <IconButton>
-            <img src={iconBox} alt="example" />
-          </IconButton>
-        </Grid>
-        <Grid item>
-          <Typography variant="h3">Topic</Typography>
-        </Grid>
-        <Grid item xs={8} style={{ marginLeft: '1rem' }}>
-          <Divider variant=" fullWidth" style={{ border: '0.8px solid #170F49' }} />
-        </Grid>
-      </Grid>
-
-      <div >
-        <ExpansionPanel
-          square
-          expanded={expanded === 'panel1'}
-          onChange={handleChange('panel1')}
-          className={classes.expansionPanel}
+    <Link href="topic-3" className={classes.root}>
+      <div style={{ padding: '2rem 0rem' }}>
+        <Grid
+          container
+          item xs={12}
+          direction="row"
+          alignItems="baseline"
+          className={classes.organization}
         >
-          <ExpansionPanelSummary
-            expandIcon={<ExpandMoreIcon />}
-            aria-controls="panel1d-content"
-            id="panel1d-header"
+          <Grid item >
+            <IconButton>
+              <img src={iconBox} alt="example" />
+            </IconButton>
+          </Grid>
+          <Grid item>
+            <Typography variant="h3">Topic 3</Typography>
+          </Grid>
+          <Grid item xs={8} style={{ marginLeft: '1rem' }}>
+            <Divider variant=" fullWidth" style={{ border: '0.8px solid #170F49' }} />
+          </Grid>
+        </Grid>
+
+        <div >
+          <ExpansionPanel
+            square
+            expanded={expanded === 'panel1'}
+            onChange={handleChange('panel1')}
+            className={classes.expansionPanel}
           >
-            <Typography
-              variant="h6">
-              Question
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel1d-content"
+              id="panel1d-header"
+            >
+              <Typography
+                variant="h6">
+                Question
               </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography variant="body2">
-              Contrary to popular belief, Lorem Ipsum is not simply
-              random text. It has roots in a piece of classical Latin
-              literature from 45 BC, making it over 2000 years old.
-              Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure
-              Latin words, consectetur, from a Lorem Ipsum passage,
-              and going through the cites of the word in classical
-              literature, discovered the undoubtable source.
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+                Contrary to popular belief, Lorem Ipsum is not simply
+                random text. It has roots in a piece of classical Latin
+                literature from 45 BC, making it over 2000 years old.
+                Richard McClintock, a Latin professor at Hampden-Sydney
+                College in Virginia, looked up one of the more obscure
+                Latin words, consectetur, from a Lorem Ipsum passage,
+                and going through the cites of the word in classical
+                literature, discovered the undoubtable source.
           </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
 
-        <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className={classes.expansionPanel}>
-          <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header" expandIcon={<ExpandMoreIcon />}>
-            <Typography
-              variant="h6">
-              Question
+          <ExpansionPanel square expanded={expanded === 'panel2'} onChange={handleChange('panel2')} className={classes.expansionPanel}>
+            <ExpansionPanelSummary aria-controls="panel2d-content" id="panel2d-header" expandIcon={<ExpandMoreIcon />}>
+              <Typography
+                variant="h6">
+                Question
               </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography variant="body2">
-              Contrary to popular belief, Lorem Ipsum is not simply
-              random text. It has roots in a piece of classical Latin
-              literature from 45 BC, making it over 2000 years old.
-              Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure
-              Latin words, consectetur, from a Lorem Ipsum passage,
-              and going through the cites of the word in classical
-              literature, discovered the undoubtable source.
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+                Contrary to popular belief, Lorem Ipsum is not simply
+                random text. It has roots in a piece of classical Latin
+                literature from 45 BC, making it over 2000 years old.
+                Richard McClintock, a Latin professor at Hampden-Sydney
+                College in Virginia, looked up one of the more obscure
+                Latin words, consectetur, from a Lorem Ipsum passage,
+                and going through the cites of the word in classical
+                literature, discovered the undoubtable source.
           </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
 
-        <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className={classes.expansionPanel}>
-          <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header" expandIcon={<ExpandMoreIcon />}>
-            <Typography
-              variant="h6">
-              Question
+          <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className={classes.expansionPanel}>
+            <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header" expandIcon={<ExpandMoreIcon />}>
+              <Typography
+                variant="h6">
+                Question
               </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography variant="body2">
-              Contrary to popular belief, Lorem Ipsum is not simply
-              random text. It has roots in a piece of classical Latin
-              literature from 45 BC, making it over 2000 years old.
-              Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure
-              Latin words, consectetur, from a Lorem Ipsum passage,
-              and going through the cites of the word in classical
-              literature, discovered the undoubtable source.
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+                Contrary to popular belief, Lorem Ipsum is not simply
+                random text. It has roots in a piece of classical Latin
+                literature from 45 BC, making it over 2000 years old.
+                Richard McClintock, a Latin professor at Hampden-Sydney
+                College in Virginia, looked up one of the more obscure
+                Latin words, consectetur, from a Lorem Ipsum passage,
+                and going through the cites of the word in classical
+                literature, discovered the undoubtable source.
           </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
-        <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className={classes.expansionPanel}>
-          <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header" expandIcon={<ExpandMoreIcon />}>
-            <Typography
-              variant="h6">
-              Question
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+          <ExpansionPanel square expanded={expanded === 'panel3'} onChange={handleChange('panel3')} className={classes.expansionPanel}>
+            <ExpansionPanelSummary aria-controls="panel3d-content" id="panel3d-header" expandIcon={<ExpandMoreIcon />}>
+              <Typography
+                variant="h6">
+                Question
               </Typography>
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <Typography variant="body2">
-              Contrary to popular belief, Lorem Ipsum is not simply
-              random text. It has roots in a piece of classical Latin
-              literature from 45 BC, making it over 2000 years old.
-              Richard McClintock, a Latin professor at Hampden-Sydney
-              College in Virginia, looked up one of the more obscure
-              Latin words, consectetur, from a Lorem Ipsum passage,
-              and going through the cites of the word in classical
-              literature, discovered the undoubtable source.
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Typography variant="body2">
+                Contrary to popular belief, Lorem Ipsum is not simply
+                random text. It has roots in a piece of classical Latin
+                literature from 45 BC, making it over 2000 years old.
+                Richard McClintock, a Latin professor at Hampden-Sydney
+                College in Virginia, looked up one of the more obscure
+                Latin words, consectetur, from a Lorem Ipsum passage,
+                and going through the cites of the word in classical
+                literature, discovered the undoubtable source.
           </Typography>
-          </ExpansionPanelDetails>
-        </ExpansionPanel>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
