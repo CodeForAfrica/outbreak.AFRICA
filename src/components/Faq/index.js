@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Grid,
+  Typography,
   List,
   ListItem,
   ListItemText
@@ -8,7 +9,6 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
 import FaqContent from 'components/Faq/FaqTopics/FaqContent';
-
 import config from '../../config';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
@@ -52,13 +52,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     height: '334px',
     backgroundColor: '#eee'
   },
-  listItemText: {
-    color: '#170F49'
-  },
   faqGrid: {
     height: 'auto',
-    marginLeft: '5rem',
-    padding: 0
+    marginLeft: 0,
+    paddingTop: '2rem',
+    [breakpoints.up("md")]: {
+      marginLeft: '3rem',
+      paddingTop: 0
+    }
   }
 }));
 
@@ -68,7 +69,6 @@ function ListItemLink(props) {
 
 function FaqSection() {
   const classes = useStyles();
-  console.log(config.faqTopics)
   return (
     <div className={classes.root}>
       <Grid
@@ -83,8 +83,8 @@ function FaqSection() {
             {config.faqTopics.map(topic =>
               <ListItemLink href={`#${topic.slug}`}>
                 <ListItemText
-                  primary={topic.title}
-                  className={classes.listItemText} />
+                  primary={<Typography type="body1" style={{ fontWeight: 700 }}>{topic.title}</Typography>}
+                />
               </ListItemLink>
             )}
           </List>

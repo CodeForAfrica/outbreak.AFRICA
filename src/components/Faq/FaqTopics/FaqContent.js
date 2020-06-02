@@ -16,7 +16,7 @@ import config from '../../../config';
 
 const useStyles = makeStyles(({ theme }) => ({
   root: {
-    padding: '2rem 0rem'
+    paddingBottom: '3rem'
   },
   link: {
     '&:hover': {
@@ -45,7 +45,11 @@ const useStyles = makeStyles(({ theme }) => ({
     },
   },
   title: {
-    color: '#170F49'
+    color: '#170F49',
+    fontWeight: 600
+  },
+  subtitle: {
+    fontWeight: 600
   },
   divider: {
     border: '0.8px solid #170F49'
@@ -89,7 +93,8 @@ export default function FaqContent({ title, subtitle, content }) {
               </Grid>
               <Grid
                 item
-                xs={8}
+                xs={4}
+                md={8}
                 className={classes.dividerGrid}>
                 <Divider
                   variant=" fullWidth"
@@ -111,7 +116,8 @@ export default function FaqContent({ title, subtitle, content }) {
                     id="panel1d-header"
                   >
                     <Typography
-                      variant="h6">
+                      variant="h6"
+                      className={classes.subtitle}>
                       {content.subtitle}
                     </Typography>
                   </ExpansionPanelSummary>
