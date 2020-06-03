@@ -120,6 +120,9 @@ const theme = createTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
+        ".flourish-embed": {
+          width: "100%",
+        },
         ".wp-block-columns": {
           display: "flex",
           width: "calc(100% + 16px)",

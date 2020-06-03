@@ -12,6 +12,17 @@ export default function createChart({ colorScale }, { labelStyle }) {
       colorScale,
       legend: {
         labelWidth: 150,
+        orientation: "orizontal",
+        x: 0,
+        y: 0,
+        style: {
+          labels: {
+            title: {
+              fontSize: 16,
+              fontFamily: '"Open Sans", sans-serif',
+            },
+          },
+        },
       },
     },
     area: {

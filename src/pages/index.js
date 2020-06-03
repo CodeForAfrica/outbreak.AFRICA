@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
-import config from "config";
-import { getSitePage } from "cms";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
@@ -14,6 +12,10 @@ import MythBusting from "components/MythBusting";
 import Page from "components/Page";
 import Partners from "components/Partners";
 import Ticker from "components/Ticker";
+
+import config from "config";
+import { getSitePage } from "cms";
+import { withApollo } from "lib/apollo";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -78,7 +80,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Home({ outbreak, featuredExperts, ...props }) {
+function Index({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -86,6 +88,7 @@ function Home({ outbreak, featuredExperts, ...props }) {
       myth,
       partners,
       subscribe,
+      rendered,
       hero_carousel: heroCarousel,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
@@ -131,6 +134,7 @@ function Home({ outbreak, featuredExperts, ...props }) {
         classes={{ root: classes.ticker, section: classes.section }}
       />
       <FeaturedData
+        featuredContent={rendered}
         classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch
@@ -166,7 +170,7 @@ function Home({ outbreak, featuredExperts, ...props }) {
   );
 }
 
-Home.propTypes = {
+Index.propTypes = {
   outbreak: PropTypes.shape({
     language: PropTypes.string,
     page: PropTypes.shape({
@@ -175,7 +179,9 @@ Home.propTypes = {
   }).isRequired,
 };
 
-export async function getServerSideProps({ query }) {
+// withApollo uses page component's getInitialProps to supply GraphQL data &
+// hence we must not use getServerSideProps where we're using withApollo.
+Index.getInitialProps = async ({ query }) => {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const {
@@ -184,11 +190,9 @@ export async function getServerSideProps({ query }) {
   const outbreak = await getSitePage("index", lang);
 
   return {
-    props: {
-      outbreak,
-      featuredExperts,
-    },
+    outbreak,
+    featuredExperts,
   };
-}
+};
 
-export default Home;
+export default withApollo({ ssr: true })(Index);
