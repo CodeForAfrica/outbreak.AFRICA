@@ -5,7 +5,7 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-import DocumentLists from "components/Research/DocumentLists";
+import DocumentLists from "components/DocumentLists";
 import Subscribe from "components/Subscribe";
 
 import config from "config";

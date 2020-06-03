@@ -7,8 +7,8 @@ import { Section } from "@commons-ui/core";
 
 import JoinUs from "components/JoinUs";
 import Link from "components/Link";
-import PostItem from "components/Research/DocumentLists/DocumentItem";
-import Filter from "components/Research/Filter";
+import PostItem from "components/DocumentLists/DocumentItem";
+import Filter from "components/Filter";
 import Subscribe from "components/Subscribe";
 import FeaturedCard from "./FeaturedCard";
 
