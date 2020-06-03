@@ -31,7 +31,6 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
-      margin: "0 auto",
       width: widths.values.xl,
     },
   },

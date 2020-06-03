@@ -365,9 +365,35 @@ deepmerge(
         },
       },
       text: {
+        minWidth: "unset",
+        paddingLeft: 0,
+        paddingRight: 0,
         "&:hover": {
           color: palette.primary.main,
         },
+      },
+      textSizeSmall: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      textSizeLarge: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+    },
+    MuiFilledInput: {
+      root: {
+        backgroundColor: "#fff",
+        borderRadius: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+      },
+    },
+    MuiFormControl: {},
+    MuiFormLabel: {
+      root: {
+        color: palette.secondary.main,
+        ...typography.caption,
       },
     },
   },
