@@ -7,7 +7,7 @@ import { A } from "@commons-ui/core";
 import Page from "components/Page";
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
-import ExpertList from "components/Research/ExpertList";
+import ExpertList from "components/ExpertList";
 
 import config from "config";
 import { getSitePage } from "cms";

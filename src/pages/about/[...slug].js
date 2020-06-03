@@ -93,8 +93,7 @@ function About({ errorCode, outbreak, slug, ...props }) {
           root: classes.joinUs,
           section: classes.section,
         }}
-        title={joinUs.title}
-        subtitle={joinUs.description}
+        joinUs={joinUs}
       />
     </Page>
   );

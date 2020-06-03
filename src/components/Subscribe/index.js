@@ -100,14 +100,20 @@ const useStyles = makeStyles(
         margin: 0,
       },
     },
-    subscribeImageDiv: {
-      display: "none",
-      [breakpoints.up("md")]: (props) =>
-        props.variant === "full" && {
-          display: "initial",
-          position: "relative",
-          overflow: "visible",
-        },
+    subscribeImageDiv: (props) => {
+      if (props.variant === "full") {
+        return {
+          display: "none",
+          [breakpoints.up("md")]: {
+            display: "initial",
+            position: "relative",
+            overflow: "visible",
+          },
+        };
+      }
+      return {
+        display: "none",
+      };
     },
     subtitle: {
       paddingBottom: "2rem",

@@ -6,8 +6,8 @@ import classNames from "classnames";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { ListItem, Section } from "@commons-ui/core";
 
-import useStyles from "components/Research/ExpertList/useStyles";
-import Filter from "components/Research/Filter";
+import useStyles from "components/ExpertList/useStyles";
+import Filter from "components/Filter";
 
 function ExpertList({
   experts,
