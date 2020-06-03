@@ -59,8 +59,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     }
   },
   list: {
-    padding: '3rem 2rem',
-    height: '334px',
+    padding: '2rem 2rem',
     backgroundColor: '#eee'
   },
   faqGrid: {
@@ -71,7 +70,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       marginLeft: '5rem',
       paddingTop: 0
     }
-  }
+  },
+  listTitle: { fontWeight: 700 }
 }));
 
 function FaqSection() {
@@ -86,8 +86,14 @@ function FaqSection() {
         <Grid item xs={12} md={3}>
           <div component="nav" className={classes.list}>
             {config.faqTopics.map(topic =>
-              <Link href={`#${topic.slug}`} className={classes.link}>
-                <Typography variant="subtitle1">{topic.title}</Typography>
+              <Link
+                href={`#${topic.slug}`}
+                className={classes.link}>
+                <Typography
+                  variant="subtitle2"
+                  className={classes.listTitle}>
+                  {topic.title}
+                </Typography>
               </Link>
             )}
           </div>
