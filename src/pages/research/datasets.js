@@ -12,8 +12,7 @@ import Page from "components/Page";
 import config from "config";
 import { getSitePage } from "cms";
 
-const DEFAULT_QUERY =
-  "fq=vocab_Topics:covid-19&rows=10&sort=pageviews_last_14_days desc";
+const GROUP_QUERY = "fq=groups:covid-19&rows=10&sort=score desc";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -111,7 +110,7 @@ FeaturedDatasets.getInitialProps = async ({ query, asPath }) => {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const asPaths = asPath.split("?");
   const ckanQuery =
-    asPaths.length === 2 && asPaths[1] ? asPaths[1] : DEFAULT_QUERY;
+    asPaths.length === 2 && asPaths[1] ? asPaths[1] : GROUP_QUERY;
   const response = await fetch(
     `${config.CKAN_BACKEND_URL}/api/3/action/package_search?${ckanQuery}`
   );

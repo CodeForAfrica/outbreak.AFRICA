@@ -159,7 +159,7 @@ function Dataset({ dataset, lines, ...props }) {
   const {
     data_update_frequency: dataUpdateFrequency,
     has_quickcharts: hasQuickCharts,
-    last_modified: lastModified,
+    metadata_modified: lastModified,
     name,
     notes,
     organization,
@@ -218,7 +218,7 @@ function Dataset({ dataset, lines, ...props }) {
             </Tooltip>
           )}
           <RichTypography variant="caption" className={classes.title}>
-            {downloads}+ Downloads
+            {downloads > 0 ? `${downloads}+` : downloads} Downloads
           </RichTypography>
         </Grid>
         <Grid item xs={12}>
@@ -226,12 +226,15 @@ function Dataset({ dataset, lines, ...props }) {
             Updated: {textifyUpdated(lastModified, dataUpdateFrequency)}
           </RichTypography>
         </Grid>
-        <Grid item xs={12} container alignItems="center">
-          <RichTypography variant="overline" className={classes.title}>
-            This dataset updates: {textifyUpdateFrequency(dataUpdateFrequency)}
-          </RichTypography>
-          <DatasetStatus overdueDate={overdueDate} />
-        </Grid>
+        {dataUpdateFrequency && (
+          <Grid item xs={12} container alignItems="center">
+            <RichTypography variant="overline" className={classes.title}>
+              This dataset updates:{" "}
+              {textifyUpdateFrequency(dataUpdateFrequency)}
+            </RichTypography>
+            <DatasetStatus overdueDate={overdueDate} />
+          </Grid>
+        )}
       </Grid>
       {notes && (
         <Grid item xs={12} md={6} ref={notesRef} container>

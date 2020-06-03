@@ -240,7 +240,6 @@ Disallow:
     low: "#73acff",
     "very low": "#99ccff",
   },
-
   faqTopics: [
     {
       title: 'Topic 1',

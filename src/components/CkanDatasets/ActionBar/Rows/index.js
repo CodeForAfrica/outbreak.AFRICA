@@ -33,6 +33,20 @@ function Rows({ count, label, onClick, options, value, ...props }) {
     }
   };
 
+  const disable = (i) => {
+    if (count < 1) {
+      return true;
+    }
+    if (i === 0) {
+      return false;
+    }
+    const prevValueNum = Number.parseInt(options[i - 1].value, 10);
+    if (prevValueNum >= count) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Grid container alignItems="center" className={classes.root}>
       {label && (
@@ -41,13 +55,10 @@ function Rows({ count, label, onClick, options, value, ...props }) {
         </Grid>
       )}
       {options.map((option, i) => (
-        <>
+        <div key={option.value}>
           <Button
             data-rows={option.value}
-            disabled={
-              option.value === value ||
-              count <= Number.parseInt(option.value, 10)
-            }
+            disabled={disable(i)}
             onClick={() => handleClick(option.value)}
             size="small"
             className={classes.button}
@@ -61,7 +72,7 @@ function Rows({ count, label, onClick, options, value, ...props }) {
               [classes.dividerLast]: i === options.length - 1,
             })}
           />
-        </>
+        </div>
       ))}
     </Grid>
   );
