@@ -24,7 +24,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     [breakpoints.up("xl")]: {
       scrollMargin: typography.pxToRem(140),
-    },
+    }
   },
   link: {
     '&:hover': {

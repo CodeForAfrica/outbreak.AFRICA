@@ -30,6 +30,7 @@ function FAQ({ outbreak, ...props }) {
   const {
     page: {
       hero_carousel: heroCarousel,
+      faq,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -45,11 +46,11 @@ function FAQ({ outbreak, ...props }) {
         classes={{ section: classes.section }}
       />
       <Content
-        title="FAQ"
-        subtitle="Lorem Ipsum is simply dummy text of the printing 
-        and typesetting industry. It was popularised in the 1960s 
-        with the release of Letraset sheets containing Lorem Ipsum"
-        classes={{ section: classes.section }}
+        faq={faq}
+        classes={{
+          root: classes.content,
+          section: classes.section,
+        }}
       />
       <FaqSection />
     </Page>
