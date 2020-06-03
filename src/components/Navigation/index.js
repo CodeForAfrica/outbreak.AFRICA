@@ -106,7 +106,7 @@ function Navigation({
 
   return (
     <>
-      <AppBar position="sticky" color="inherit" className={classes.root}>
+      <AppBar color="inherit" position="sticky" className={classes.root}>
         <Toolbar disableGutters className={classes.toolbar}>
           {isDesktop ? (
             <DesktopNavigation

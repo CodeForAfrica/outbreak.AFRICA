@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
 
@@ -13,10 +15,14 @@ import source from "assets/subscribe.png";
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
     root: {
-      backgroundColor: "#170f49",
-      color: "white",
+      backgroundColor: palette.secondary.main,
+      color: palette.text.secondary,
     },
     section: {},
+    sectionCompact: {
+      margin: "0 auto",
+      width: "100 %",
+    },
     button: {
       padding: 0,
       paddingTop: "1rem",
@@ -31,21 +37,50 @@ const useStyles = makeStyles(
       lineHeight: typography.caption.lineHeight,
       borderBottom: "1px solid white",
       width: "100%",
-      [breakpoints.up("md")]: {
-        width: "80%",
-      },
+      [breakpoints.up("md")]: (props) =>
+        props.variant === "full" && {
+          width: "80%",
+        },
     },
-    subscribeGrid: {
-      padding: "5.625rem 0rem",
-      [breakpoints.up("md")]: {
-        padding: "2rem",
-      },
-      [breakpoints.up("lg")]: {
-        padding: "3rem 0rem 4rem",
-      },
-      [breakpoints.up("xl")]: {
-        padding: "4rem 0rem 5rem",
-      },
+    subscribeGrid: (props) => {
+      if (props.variant === "compact") {
+        return {
+          [breakpoints.up("md")]: {
+            paddingBottom: typography.pxToRem(75),
+            paddingLeft: typography.pxToRem(
+              (67 * widths.values.md) / widths.values.xl
+            ),
+            paddingRight: typography.pxToRem(
+              (53 * widths.values.md) / widths.values.xl
+            ),
+            paddingTop: typography.pxToRem(40),
+          },
+          [breakpoints.up("lg")]: {
+            paddingLeft: typography.pxToRem(
+              (67 * widths.values.lg) / widths.values.xl
+            ),
+            paddingRight: typography.pxToRem(
+              (53 * widths.values.lg) / widths.values.xl
+            ),
+          },
+          [breakpoints.up("xl")]: {
+            paddingLeft: typography.pxToRem(67),
+            paddingRight: typography.pxToRem(53),
+          },
+        };
+      }
+      return {
+        padding: "5.625rem 0rem",
+        [breakpoints.up("md")]: {
+          padding: "2rem",
+        },
+        [breakpoints.up("lg")]: {
+          padding: "3rem 0rem 4rem",
+        },
+        [breakpoints.up("xl")]: {
+          padding: "4rem 0rem 5rem",
+        },
+      };
     },
     subscribeImage: {
       display: "none",
@@ -67,24 +102,24 @@ const useStyles = makeStyles(
     },
     subscribeImageDiv: {
       display: "none",
-      [breakpoints.up("md")]: {
-        display: "initial",
-        position: "relative",
-        overflow: "visible",
-      },
+      [breakpoints.up("md")]: (props) =>
+        props.variant === "full" && {
+          display: "initial",
+          position: "relative",
+          overflow: "visible",
+        },
     },
     subtitle: {
       paddingBottom: "2rem",
     },
     title: {
-      color: palette.text.secondary,
       paddingBottom: "2rem",
     },
   })
 );
 
-function Subscribe({ subscribe, ...props }) {
-  const classes = useStyles(props);
+function Subscribe({ subscribe, variant, ...props }) {
+  const classes = useStyles({ ...props, variant });
   const { title, description } = subscribe;
   const handleEvent = (e) => {
     if (e.type === "mouseout" || e.type === "blur") {
@@ -94,24 +129,54 @@ function Subscribe({ subscribe, ...props }) {
       e.currentTarget.src = emailFocus;
     }
   };
+  // Default is variant = "full"
+  let highlightColumns = 5;
+  let descriptionColumns = 7;
+  let descriptionVariant = "subtitle1";
+  if (variant === "compact") {
+    highlightColumns = undefined; // We could also set to 12 but xs=12 already
+    descriptionColumns = undefined;
+    descriptionVariant = "caption";
+  }
 
   return (
     <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
+      <Section
+        classes={{
+          root: classNames(
+            { [classes.section]: variant === "full" },
+            { [classes.sectionCompact]: variant === "compact" }
+          ),
+        }}
+      >
         <Grid container direction="row">
-          <Grid item md={5} className={classes.subscribeImageDiv}>
+          <Grid
+            item
+            xs={12}
+            md={highlightColumns}
+            className={classes.subscribeImageDiv}
+          >
             <img
               src={source}
               alt="Subscribe"
               className={classes.subscribeImage}
             />
           </Grid>
-          <Grid item xs={12} md={7} className={classes.subscribeGrid}>
-            <Typography variant="h2" className={classes.title}>
+          <Grid
+            item
+            xs={12}
+            md={descriptionColumns}
+            className={classes.subscribeGrid}
+          >
+            <Typography
+              color="textSecondary"
+              variant="h2"
+              className={classes.title}
+            >
               {title}
             </Typography>
             <Typography
-              variant="subtitle1"
+              variant={descriptionVariant}
               color="textSecondary"
               className={classes.subtitle}
             >
@@ -151,6 +216,7 @@ Subscribe.propTypes = {
     description: PropTypes.string,
     title: PropTypes.string,
   }),
+  variant: PropTypes.oneOf(["compact", "full"]),
 };
 
 Subscribe.defaultProps = {
@@ -158,5 +224,6 @@ Subscribe.defaultProps = {
     title: "Subscribe",
     description: "Stay updated with the latest News, Research and Analysis",
   },
+  variant: "full",
 };
 export default Subscribe;
