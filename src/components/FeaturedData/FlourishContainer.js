@@ -35,6 +35,7 @@ function FlourishContainer({ action, children, featuredChart, ...props }) {
         content: classes.content,
         title: classes.title,
         root: classes.chartRoot,
+        container: classes.containerGrid,
         containerRoot: classes.containerRoot,
         groupActionsButton: classes.actionIcon,
       }}
