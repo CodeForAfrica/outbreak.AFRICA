@@ -1,15 +1,13 @@
 import React from 'react';
 import {
   Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemText
+  Typography
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
 import FaqContent from 'components/Faq/FaqTopics/FaqContent';
 import config from '../../config';
+import Link from 'components/Link';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -47,6 +45,19 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       textDecoration: "none"
     }
   },
+  link: {
+    padding: '4rem',
+    color: '#170F49',
+    textDecoration: "none",
+    '&:hover': {
+      color: 'blue',
+      textDecoration: "none"
+    },
+    '&:active': {
+      color: 'blue',
+      textDecoration: "none"
+    }
+  },
   list: {
     padding: '3rem 2rem',
     height: '334px',
@@ -63,10 +74,6 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   }
 }));
 
-function ListItemLink(props) {
-  return <ListItem button component="a" {...props} />;
-}
-
 function FaqSection() {
   const classes = useStyles();
   return (
@@ -77,18 +84,13 @@ function FaqSection() {
         justify="flex-start"
       >
         <Grid item xs={12} md={3}>
-          <List
-            component="nav"
-            aria-label="secondary mailbox folders"
-            className={classes.list}>
+          <div component="nav" className={classes.list}>
             {config.faqTopics.map(topic =>
-              <ListItemLink href={`#${topic.slug}`}>
-                <ListItemText
-                  primary={<Typography type="body1" style={{ fontWeight: 700 }}>{topic.title}</Typography>}
-                />
-              </ListItemLink>
+              <Link href={`#${topic.slug}`} className={classes.link}>
+                <Typography variant="subtitle1">{topic.title}</Typography>
+              </Link>
             )}
-          </List>
+          </div>
           <Grid item className={classes.subscribeGrid}>
             <Subscribe />
           </Grid>
