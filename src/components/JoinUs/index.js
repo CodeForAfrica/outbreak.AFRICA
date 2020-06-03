@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import classNames from "classnames";
 
@@ -84,13 +85,14 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   link: {},
 }));
 
-function JoinUs({
-  title,
-  subtitle,
-  link_url: link = "/contact/join",
-  link_label: linkLabel = "Join Us",
-  ...props
-}) {
+function JoinUs({ joinUs, ...props}) {
+  const {
+    title,
+    description,
+    link,
+    link_label: linkLabel
+  } = joinUs;
+
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -134,7 +136,7 @@ function JoinUs({
           >
             <Typography variant="h2">{title}</Typography>
             <Typography variant="body1" className={classes.subtitle}>
-              {subtitle}
+              {description}
             </Typography>
             <div>
               <LinkButton
@@ -160,4 +162,22 @@ function JoinUs({
   );
 }
 
+JoinUs.propTypes = {
+  joinUs: PropTypes.shape({
+    description: PropTypes.string,
+    title: PropTypes.string,
+    link_label: PropTypes.string,
+  }),
+  variant: PropTypes.oneOf(["compact", "full"]),
+};
+
+JoinUs.defaultProps = {
+  joinUs: {
+    title: "Join Us",
+    description: "Be part of our initative.",
+    link_label: "Learn More",
+    link: "/contact/join/"
+  },
+  variant: "full",
+};
 export default JoinUs;
