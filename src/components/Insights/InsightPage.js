@@ -5,12 +5,12 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import FeaturedCard from "./FeaturedCard";
 import JoinUs from "components/JoinUs";
 import Link from "components/Link";
 import PostItem from "components/Research/DocumentLists/DocumentItem";
 import Filter from "components/Research/Filter";
 import Subscribe from "components/Subscribe";
+import FeaturedCard from "./FeaturedCard";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -33,33 +33,33 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     padding: 0,
     backgroundColor: "unset",
     "&:after": {
-        backgroundColor: "unset",
+      backgroundColor: "unset",
     },
     [breakpoints.up("md")]: {
-        height: (widths.values.md * 288) / widths.values.xl,
-      },
-      [breakpoints.up("lg")]: {
-        height: (widths.values.lg * 288) / widths.values.xl,
-      },
-      [breakpoints.up("xl")]: {
-        height: 208,
-      },
+      height: (widths.values.md * 288) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      height: (widths.values.lg * 288) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      height: 208,
+    },
   },
   postAuthor: {
     fontSize: 12,
   },
   postItem: {
     [breakpoints.up("md")]: {
-        paddingRight: typography.pxToRem(16),
-        "&:last-of-type": {
+      paddingRight: typography.pxToRem(16),
+      "&:last-of-type": {
         paddingRight: 0,
-        },
+      },
     },
   },
   postDescription: {
     display: "none",
     [breakpoints.up("md")]: {
-        display: "inherit",
+      display: "inherit",
     },
   },
   postContentDiv: {
@@ -86,20 +86,15 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
     setActiveTopic(value);
   };
 
-  const onSubTopicButtonClick = () => { 
+  const onSubTopicButtonClick = () => {
     setSubTopics([]);
   };
 
-  const parentTopics = [
-    { name: "All", slug: "all" },
-  ];
+  const parentTopics = [{ name: "All", slug: "all" }];
 
   return (
     <div className={classes.root}>
-        <Section 
-          title={title}
-          classes={{ root: classes.section }}
-        >
+      <Section title={title} classes={{ root: classes.section }}>
         <Filter
           activeTopic={activeTopic}
           onButtonClick={onButtonClick}
@@ -108,7 +103,11 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
           subTopics={subTopics}
         />
         {posts && posts.length > 0 && (
-          <Link as={`#${posts[0].post_name}`} href={`#${posts[0].post_name}`} className={classes.link}>
+          <Link
+            as={`#${posts[0].post_name}`}
+            href={`#${posts[0].post_name}`}
+            className={classes.link}
+          >
             <FeaturedCard
               title={posts[0].post_title}
               description={posts[0].post_content}
@@ -118,25 +117,32 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
           </Link>
         )}
         <Grid container>
-          {posts && posts.length > 1 && posts.slice(1, 4).map(post => (
-            <Grid item md={4} className={classes.postItem}>
-              <Link as={`#${post.post_name}`} href={`#${post.post_name}`} className={classes.link}>
-                <PostItem
+          {posts &&
+            posts.length > 1 &&
+            posts.slice(1, 4).map((post) => (
+              <Grid item md={4} className={classes.postItem}>
+                <Link
+                  as={`#${post.post_name}`}
+                  href={`#${post.post_name}`}
+                  className={classes.link}
+                >
+                  <PostItem
                     description={post.post_content}
                     imageUrl={post.feature_imaged}
                     title={post.post_title}
                     md={12}
                     isStory
-                    classes={{ 
-                        imageDiv: classes.imageDiv,
-                        description: classes.postDescription,
-                        title: classes.postTitle,
-                        author: classes.postAuthor,
-                        contentDiv: classes.postContentDiv
-                    }} />
+                    classes={{
+                      imageDiv: classes.imageDiv,
+                      description: classes.postDescription,
+                      title: classes.postTitle,
+                      author: classes.postAuthor,
+                      contentDiv: classes.postContentDiv,
+                    }}
+                  />
                 </Link>
-            </Grid>
-          ))}
+              </Grid>
+            ))}
         </Grid>
       </Section>
       <JoinUs
@@ -146,44 +152,49 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
         }}
         joinUs={joinUs}
       />
-       <Section classes={{ root: classes.section }}>
-          <Grid container>
-          {posts && posts.length > 4 && posts.slice(4).map(post => (
-            <Grid item md={4} className={classes.postItem}>
-             <Link as={`#${post.post_name}`} href={`#${post.post_name}`} className={classes.link}>
-              <PostItem
-                  description={post.post_content}
-                  imageUrl={post.feature_imaged}
-                  title={post.post_title}
-                  md={12}
-                  isStory
-                  classes={{ 
+      <Section classes={{ root: classes.section }}>
+        <Grid container>
+          {posts &&
+            posts.length > 4 &&
+            posts.slice(4).map((post) => (
+              <Grid item md={4} className={classes.postItem}>
+                <Link
+                  as={`#${post.post_name}`}
+                  href={`#${post.post_name}`}
+                  className={classes.link}
+                >
+                  <PostItem
+                    description={post.post_content}
+                    imageUrl={post.feature_imaged}
+                    title={post.post_title}
+                    md={12}
+                    isStory
+                    classes={{
                       imageDiv: classes.imageDiv,
                       description: classes.postDescription,
                       title: classes.postTitle,
                       author: classes.postAuthor,
-                      contentDiv: classes.postContentDiv
-                  }} />
-                  </Link>
-            </Grid>
-          ))}
+                      contentDiv: classes.postContentDiv,
+                    }}
+                  />
+                </Link>
+              </Grid>
+            ))}
         </Grid>
-        </Section>
+      </Section>
       <Subscribe
         classes={{
-            root: classes.joinUs,
-            section: classes.section,
-          }}
-        subscribe={subscribe} />
-
+          root: classes.joinUs,
+          section: classes.section,
+        }}
+        subscribe={subscribe}
+      />
     </div>
   );
 }
 
 InsightPage.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({
-
-  })).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   joinUs: PropTypes.shape({}).isRequired,
   subscribe: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,

@@ -92,7 +92,15 @@ const useStyles = makeStyles(
   })
 );
 
-function DocumentItem({ description, title, imageUrl, isStory, documentUrl, md, ...props }) {
+function DocumentItem({
+  description,
+  title,
+  imageUrl,
+  isStory,
+  documentUrl,
+  md,
+  ...props
+}) {
   const classes = useStyles(props);
 
   const theme = useTheme();
@@ -108,18 +116,20 @@ function DocumentItem({ description, title, imageUrl, isStory, documentUrl, md, 
       className={classes.documentDiv}
     >
       {imageUrl && (
-        <Grid item xs={isStory? 3: 6} md={12} className={classes.imageDiv}>
+        <Grid item xs={isStory ? 3 : 6} md={12} className={classes.imageDiv}>
           <img src={imageUrl} alt="" className={classes.image} />
         </Grid>
       )}
-      <Grid item xs={isStory? 9: 6} md={12} className={classes.contentDiv}>
+      <Grid item xs={isStory ? 9 : 6} md={12} className={classes.contentDiv}>
         {title && (
           <Typography variant="subtitle2" className={classes.title}>
             {title}
           </Typography>
         )}
         {description && (
-          <RichTypography variant="caption" className={classes.description}>{description}</RichTypography>
+          <RichTypography variant="caption" className={classes.description}>
+            {description}
+          </RichTypography>
         )}
         {documentUrl && (
           <A href={documentUrl} color="textSecondary" className={classes.link}>
@@ -128,8 +138,8 @@ function DocumentItem({ description, title, imageUrl, isStory, documentUrl, md, 
         )}
         {isStory && !isDesktop && (
           <Typography variant="caption" className={classes.author}>
-          Code For Africa
-        </Typography>
+            Code For Africa
+          </Typography>
         )}
       </Grid>
     </Grid>
@@ -146,8 +156,8 @@ DocumentItem.propTypes = {
 };
 
 DocumentItem.defaultProps = {
-  md : 3,
+  md: 3,
   isStory: false,
-}
+};
 
 export default DocumentItem;

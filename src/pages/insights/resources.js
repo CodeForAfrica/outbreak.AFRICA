@@ -2,12 +2,13 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import InsightPage from "components/Insights/InsightPage";
 import Page from "components/Page";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({breakpoints, widths}) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -30,12 +31,7 @@ function Resources({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
-    page: {
-      posts,
-      join_us: joinUs,
-      subscribe,
-      title: pageTitle
-    },
+    page: { posts, join_us: joinUs, subscribe, title: pageTitle },
   } = outbreak;
 
   return (
@@ -49,7 +45,8 @@ function Resources({ outbreak, ...props }) {
         joinUs={joinUs}
         subscribe={subscribe}
         title={pageTitle}
-        classes={{ section: classes.section }} />
+        classes={{ section: classes.section }}
+      />
     </Page>
   );
 }
