@@ -41,10 +41,10 @@ function FAQ({ outbreak, ...props }) {
       title={pageTitle || "FAQ"}
       classes={{ section: classes.section }}
     >
-      <Hero
+      {/*<Hero
         heroCarousel={heroCarousel}
         classes={{ section: classes.section }}
-      />
+      />*/}
       <Content
         faq={faq}
         classes={{
