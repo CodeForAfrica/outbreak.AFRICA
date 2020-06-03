@@ -2,7 +2,7 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import InsightPage from "components/Insights/InsightPage";
+import InsightPage from "components/InsightPage";
 import Page from "components/Page";
 
 import config from "config";
