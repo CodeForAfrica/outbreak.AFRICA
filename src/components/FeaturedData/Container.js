@@ -1,20 +1,21 @@
 import React, { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
-import config from "config";
+
 import dynamic from "next/dynamic";
 
 import { RichTypography } from "@commons-ui/core";
-import withApollo from "lib/withApollo";
+
+import ChartFactory from "@hurumap-ui/charts/ChartFactory";
+import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
+
+import config from "config";
 
 import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
 import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
-
-import ChartFactory from "@hurumap-ui/charts/ChartFactory";
-import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
-
 import logo from "assets/images/logo/logo-outbreak.svg";
+
 import useStyles from "./useStyles";
 
 const ChartContainer = dynamic(
@@ -160,4 +161,4 @@ function Container({ action, children, featuredChart, ...props }) {
   );
 }
 
-export default withApollo(Container);
+export default Container;
