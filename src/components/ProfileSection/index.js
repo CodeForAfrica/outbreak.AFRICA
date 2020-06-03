@@ -1,7 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
-
-import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
@@ -20,7 +18,6 @@ const useStyles = makeStyles(({ breakpoints, palette }) => ({
   },
   section: {},
   tabs: {},
-  fix: {},
 }));
 
 function ProfileSection({
@@ -32,33 +29,15 @@ function ProfileSection({
 }) {
   const classes = useStyles(props);
   const sectionRef = useRef();
-  const [fixToTop, setFixToTop] = useState(false);
-  useEffect(() => {
-    function handleScroll() {
-      const el = sectionRef.current;
-      if (el) {
-        const rect = el.getBoundingClientRect();
-        const shouldFixToTop =
-          (rect.y <= 0 && !fixToTop) || !(rect.y > 0 && fixToTop);
-        setFixToTop(shouldFixToTop);
-      }
-    }
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [fixToTop]);
 
-  const handleChange = (_event, v) => {
+  const handleChange = (e, v) => {
+    if (e) {
+      e.preventDefault();
+    }
+
     if (setActiveTab) {
       setActiveTab(v);
     }
-
-    setTimeout(() => {
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ behavior: "smooth" });
-      }
-    }, 200);
   };
   const tabs = tabsProp.map((tab) => ({
     ...tab,
@@ -69,11 +48,7 @@ function ProfileSection({
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
         <div ref={sectionRef} className={classes.tabs}>
-          <div
-            className={classNames(classes.tabs, {
-              [classes.fix]: fixToTop,
-            })}
-          >
+          <div className={classes.tabs}>
             <Tabs handleChange={handleChange} tabs={tabs} value={activeTab} />
           </div>
         </div>
