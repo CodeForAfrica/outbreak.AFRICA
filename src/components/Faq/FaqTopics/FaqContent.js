@@ -60,11 +60,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   expanded: {}
 }));
 
-export default function FaqContent({ title, subtitle, content }) {
+export default function FaqContent() {
   const [expanded, setExpanded] = React.useState('panel1');
   const classes = useStyles();
+  console.log(config.faqTopics.map(topic => topic.topics.map(content => content)))
+
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
+    event.stopPropagation();
   };
 
   return (
@@ -112,8 +115,8 @@ export default function FaqContent({ title, subtitle, content }) {
                 >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1d-content"
-                    id="panel1d-header"
+                    aria-controls={`${content.panel}d-content`}
+                    id={`${content.panel}d-header`}
                   >
                     <Typography
                       variant="h6"

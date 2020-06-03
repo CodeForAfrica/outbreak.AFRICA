@@ -260,6 +260,7 @@ Disallow:
 
         },
         {
+          panel: 'panel2',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -272,6 +273,7 @@ Disallow:
 
         },
         {
+          panel: 'panel3',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -284,6 +286,7 @@ Disallow:
 
         },
         {
+          panel: 'panel4',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -302,7 +305,7 @@ Disallow:
       slug: 'topic-2',
       topics: [
         {
-          panel: 'panel2',
+          panel: 'panel5',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -315,6 +318,7 @@ Disallow:
 
         },
         {
+          panel: 'panel6',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -327,6 +331,7 @@ Disallow:
 
         },
         {
+          panel: 'panel7',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -339,6 +344,7 @@ Disallow:
 
         },
         {
+          panel: 'panel8',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -357,7 +363,7 @@ Disallow:
       slug: 'topic-3',
       topics: [
         {
-          panel: 'panel3',
+          panel: 'panel9',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -370,6 +376,7 @@ Disallow:
 
         },
         {
+          panel: 'panel10',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -382,6 +389,7 @@ Disallow:
 
         },
         {
+          panel: 'panel11',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -394,6 +402,7 @@ Disallow:
 
         },
         {
+          panel: 'panel12',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -412,7 +421,7 @@ Disallow:
       slug: 'topic-4',
       topics: [
         {
-          panel: 'panel4',
+          panel: 'panel13',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -425,6 +434,7 @@ Disallow:
 
         },
         {
+          panel: 'panel14',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -437,6 +447,7 @@ Disallow:
 
         },
         {
+          panel: 'panel15',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -449,6 +460,7 @@ Disallow:
 
         },
         {
+          panel: 'panel16',
           subtitle: 'Question',
           content: `Contrary to popular belief, Lorem Ipsum is not simply
                 random text. It has roots in a piece of classical Latin
@@ -463,7 +475,7 @@ Disallow:
       ]
     }
   ],
-  CKAN_BACKEND_URL: "https://data.humdata.org",
+  CKAN_BACKEND_URL: "https://openafrica.net",
   DATA_OPTIONS: {
     day: "short",
     month: "long",
