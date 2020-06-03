@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -29,14 +29,21 @@ const useStyles = makeStyles(({breakpoints, widths}) => ({
 
 function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const [ insightStorySlug, setInsightStorySlug ] = useState(null);
   const {
     page: {
       posts,
       join_us: joinUs,
       subscribe,
-      title: { rendered: pageTitle },
+      title: pageTitle
     },
   } = outbreak;
+
+
+  useEffect(() => {
+    const postSlug = window.location.hash && window.location.hash.split('#')[1];
+    setInsightStorySlug(postSlug);
+  }, []);
 
   return (
     <Page
@@ -44,12 +51,16 @@ function Analysis({ outbreak, ...props }) {
       title={pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
-      <InsightPage
-        posts={posts}
-        joinUs={joinUs}
-        subscribe={subscribe}
-        title={pageTitle}
-        classes={{ section: classes.section }} />
+      {insightStorySlug ? (
+        <StoryPage />
+      ): (
+        <InsightPage
+          posts={posts}
+          joinUs={joinUs}
+          subscribe={subscribe}
+          title={pageTitle}
+          classes={{ section: classes.section }} />
+      )}
     </Page>
   );
 }
@@ -59,6 +70,7 @@ export async function getServerSideProps({ query }) {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("insights-analysis", lang);
 
+  console.log(outbreak);
   return {
     props: {
       outbreak,

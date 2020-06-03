@@ -3,13 +3,23 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section, RichTypography } from "@commons-ui/core";
+import { RichTypography } from "@commons-ui/core";
 
 import logo from "assets/logo-C4A.svg";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
-  root: {},
-  section: {},
+  root: {
+    marginBottom: 37.5,
+    [breakpoints.up("md")]: {
+        marginBottom: (widths.values.md * 59) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        marginBottom: (widths.values.lg * 59) / widths.values.xl,
+      },
+      [breakpoints.up("xl")]: {
+        marginBottom: 59,
+      },
+  },
   attributes: {
     display: "flex",
     alignItems: "flex-end",
@@ -96,9 +106,7 @@ function FeaturedCard({ date, description, image, title, ...props }) {
   const thisDate = new Date(date).toDateString().slice(4,10);
 
   return (
-    <div className={classes.root}>
-      <Section classes={{ root: classes.section }}>
-        <Grid container>
+        <Grid container className={classes.root}>
           <Grid item xs={12} md={8}>
             <img src={image} alt={title} className={classes.featuredImage} />
           </Grid>
@@ -120,8 +128,6 @@ function FeaturedCard({ date, description, image, title, ...props }) {
             </div>
           </Grid>
         </Grid>
-      </Section>
-    </div>
   );
 }
 
