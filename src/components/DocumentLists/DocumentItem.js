@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { A } from "@commons-ui/core";
+import { A, RichTypography } from "@commons-ui/core";
 
 import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(
-  ({ breakpoints, typography, palette, widths }) => ({
+  ({ breakpoints, palette, typography, widths }) => ({
     link: {
       display: "flex",
       paddingTop: "1rem",
@@ -22,9 +22,11 @@ const useStyles = makeStyles(
         width: "1.375rem",
       },
     },
+    author: {},
     image: {
-      width: "auto",
+      filter: "grayscale(100%)",
       height: 180,
+      width: "auto",
       [breakpoints.up("md")]: {
         height: (widths.values.md * 460) / widths.values.xl,
       },
@@ -70,6 +72,7 @@ const useStyles = makeStyles(
         paddingTop: "1.375rem",
       },
     },
+    description: {},
     documentDiv: {
       borderTop: "1px solid #D6D6D6",
       paddingTop: typography.pxToRem(16),
@@ -90,9 +93,16 @@ const useStyles = makeStyles(
   })
 );
 
-function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
+function DocumentItem({
+  description,
+  title,
+  imageUrl,
+  isStory,
+  documentUrl,
+  md,
+  ...props
+}) {
   const classes = useStyles(props);
-
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -101,28 +111,35 @@ function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
       item
       container
       xs={12}
-      md={3}
+      md={md}
       direction={isDesktop ? "row" : "row-reverse"}
       className={classes.documentDiv}
     >
       {imageUrl && (
-        <Grid item xs={6} md={12} className={classes.imageDiv}>
+        <Grid item xs={isStory ? 3 : 6} md={12} className={classes.imageDiv}>
           <img src={imageUrl} alt="" className={classes.image} />
         </Grid>
       )}
-      <Grid item xs={6} md={12} className={classes.contentDiv}>
+      <Grid item xs={isStory ? 9 : 6} md={12} className={classes.contentDiv}>
         {title && (
           <Typography variant="subtitle2" className={classes.title}>
             {title}
           </Typography>
         )}
         {description && (
-          <Typography variant="caption">{description}</Typography>
+          <RichTypography variant="caption" className={classes.description}>
+            {description}
+          </RichTypography>
         )}
         {documentUrl && (
           <A href={documentUrl} color="textSecondary" className={classes.link}>
             <img src={websiteBlue} alt={title} className={classes.icon} />
           </A>
+        )}
+        {isStory && !isDesktop && (
+          <Typography variant="caption" className={classes.author}>
+            Code For Africa
+          </Typography>
         )}
       </Grid>
     </Grid>
@@ -130,10 +147,15 @@ function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
 }
 
 DocumentItem.propTypes = {
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
   documentUrl: PropTypes.string.isRequired,
+  md: PropTypes.number,
+  isStory: PropTypes.bool,
+};
+
+DocumentItem.defaultProps = {
+  md: 3,
+  isStory: false,
 };
 
 export default DocumentItem;

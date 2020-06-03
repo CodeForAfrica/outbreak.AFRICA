@@ -58,7 +58,7 @@ function ActionBar({
         <Grid container alignItems="center">
           <Grid item xs={12} md={2}>
             <RichTypography variant="subtitle1" className={classes.label}>
-              Data <span className="count">{count}</span>
+              Data <span className="count">{count || 0}</span>
             </RichTypography>
           </Grid>
           <Grid item xs={12} md={3}>
@@ -86,28 +86,20 @@ function ActionBar({
               onChange={onSort}
               options={[
                 {
-                  value:
-                    "if(gt(last_modified,review_date),last_modified,review_date) desc",
+                  value: "metadata_modified desc",
                   label: "Last Modified",
                 },
-                { value: "metadata_created desc", label: "Last created" },
                 {
-                  value:
-                    "score desc, if(gt(last_modified,review_date),last_modified,review_date) desc",
+                  value: "score desc",
                   label: "Relevance",
                 },
                 {
-                  value: "title_case_insensitive asc",
+                  value: "title_string asc",
                   label: "Name Ascending",
                 },
                 {
-                  value: "title_case_insensitive desc",
+                  value: "title_string desc",
                   label: "Name Descending",
-                },
-                { value: "pageviews_last_14_days desc", label: "Trending" },
-                {
-                  value: "total_res_downloads desc",
-                  label: "Most Downloads",
                 },
               ]}
               value={sort}

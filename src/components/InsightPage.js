@@ -179,7 +179,10 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
                       title: classes.postTitle,
                       author: classes.postAuthor,
                       contentDiv: classes.postContentDiv,
+<<<<<<< HEAD
                       image: classes.postImage,
+=======
+>>>>>>> master
                     }}
                   />
                 </Link>
