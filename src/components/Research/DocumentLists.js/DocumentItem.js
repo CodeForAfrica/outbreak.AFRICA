@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import { A } from "@commons-ui/core";
 
 import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(
-  ({ breakpoints, typography, palette, widths }) => ({
+  ({ breakpoints, palette, typography, widths }) => ({
     link: {
       display: "flex",
       paddingTop: "1rem",
@@ -23,8 +24,9 @@ const useStyles = makeStyles(
       },
     },
     image: {
-      width: "auto",
+      filter: "grayscale(100%)",
       height: 180,
+      width: "auto",
       [breakpoints.up("md")]: {
         height: (widths.values.md * 460) / widths.values.xl,
       },
@@ -92,16 +94,15 @@ const useStyles = makeStyles(
 
 function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
   const classes = useStyles(props);
-
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <Grid
       item
-      container
       xs={12}
       md={3}
+      container
       direction={isDesktop ? "row" : "row-reverse"}
       className={classes.documentDiv}
     >
@@ -130,10 +131,10 @@ function DocumentItem({ description, title, imageUrl, documentUrl, ...props }) {
 }
 
 DocumentItem.propTypes = {
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
   documentUrl: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default DocumentItem;
