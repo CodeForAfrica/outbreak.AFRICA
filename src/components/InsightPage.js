@@ -68,6 +68,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       paddingRight: 0,
     },
   },
+  postImage: {
+    filter: "unset",
+  },
   postTitle: {
     fontWeight: "normal",
     [breakpoints.up("md")]: {
@@ -138,6 +141,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
                       title: classes.postTitle,
                       author: classes.postAuthor,
                       contentDiv: classes.postContentDiv,
+                      image: classes.postImage
                     }}
                   />
                 </Link>
