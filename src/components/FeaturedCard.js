@@ -138,9 +138,15 @@ function FeaturedCard({ date, description, image, title, ...props }) {
 }
 
 FeaturedCard.propTypes = {
-  description: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  description: PropTypes.string,
+  title: PropTypes.string,
+  image: PropTypes.string,
+  date: PropTypes.string,
+};
+FeaturedCard.defaultProps = {
+  description: undefined,
+  title: undefined,
+  image: undefined,
+  date: undefined,
 };
 export default FeaturedCard;

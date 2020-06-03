@@ -101,16 +101,16 @@ const useStyles = makeStyles(
       },
     },
     subscribeImageDiv: (props) => {
-      if ( props.variant === "full") {
+      if (props.variant === "full") {
         return {
           display: "none",
           [breakpoints.up("md")]: {
             display: "initial",
             position: "relative",
             overflow: "visible",
-          }
+          },
         };
-      } 
+      }
       return {
         display: "none",
       };

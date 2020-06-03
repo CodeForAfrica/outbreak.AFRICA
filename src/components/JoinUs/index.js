@@ -85,13 +85,8 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   link: {},
 }));
 
-function JoinUs({ joinUs, ...props}) {
-  const {
-    title,
-    description,
-    link,
-    link_label: linkLabel
-  } = joinUs;
+function JoinUs({ joinUs, ...props }) {
+  const { title, description, link, link_label: linkLabel } = joinUs;
 
   const classes = useStyles(props);
   const theme = useTheme();
@@ -176,7 +171,7 @@ JoinUs.defaultProps = {
     title: "Join Us",
     description: "Be part of our initative.",
     link_label: "Learn More",
-    link: "/contact/join/"
+    link: "/contact/join/",
   },
   variant: "full",
 };
