@@ -11,6 +11,9 @@ const useStyles = makeStyles(({ typography }) => ({
   containerRoot: {
     backgroundColor: "#EEEEEE !important",
   },
+  containerGrid: {
+    width: "100%",
+  },
   chart: {
     margin: "0.5rem !important",
   },
