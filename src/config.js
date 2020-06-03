@@ -250,7 +250,11 @@ Disallow:
 
 if (typeof document !== "undefined") {
   // Same-Origin Policy
-  document.domain = window.location.hostname;
+  if (window.location.hostname.includes('now.sh')) {
+    document.domain = window.location.hostname;
+  } else {
+    document.domain = 'hurumap.org';
+  }
 }
 
 export default config;
