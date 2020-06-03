@@ -7,6 +7,7 @@ import { Section } from "@commons-ui/core";
 
 import FeaturedCard from "./FeaturedCard";
 import JoinUs from "components/JoinUs";
+import Link from "components/Link";
 import PostItem from "components/Research/DocumentLists/DocumentItem";
 import Filter from "components/Research/Filter";
 import Subscribe from "components/Subscribe";
@@ -14,6 +15,13 @@ import Subscribe from "components/Subscribe";
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {},
+  link: {
+    color: "unset",
+    "&:hover": {
+      textDecoration: "none",
+      color: "unset",
+    },
+  },
   joinUs: {
     marginTop: "3.5rem",
     [breakpoints.up("md")]: {
@@ -73,22 +81,13 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
 
   const [activeTopic, setActiveTopic] = useState("all");
   const [subTopics, setSubTopics] = useState([]);
-  const [topicStories, setTopicStories] = useState(posts);
 
   const onButtonClick = (value) => {
     setActiveTopic(value);
   };
 
-  const onSubTopicButtonClick = (value) => {
-    setTopicStories(
-      Stories.filter(({ topic: t }) => {
-        const found = t.find((x) => x.slug === value);
-        if (found) {
-          return true;
-        }
-        return false;
-      })
-    );
+  const onSubTopicButtonClick = () => { 
+    setSubTopics([]);
   };
 
   const parentTopics = [
@@ -108,28 +107,34 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
           parentTopics={parentTopics}
           subTopics={subTopics}
         />
-        <FeaturedCard
-          title={posts[0].post_title}
-          description={posts[0].post_content}
-          image={posts[0].feature_imaged}
-          date={posts[0].post_date}
-        />
+        {posts && posts.length > 0 && (
+          <Link as={`#${posts[0].post_name}`} href={`#${posts[0].post_name}`} className={classes.link}>
+            <FeaturedCard
+              title={posts[0].post_title}
+              description={posts[0].post_content}
+              image={posts[0].feature_imaged}
+              date={posts[0].post_date}
+            />
+          </Link>
+        )}
         <Grid container>
-          {posts.slice(1, 4).map(post => (
+          {posts && posts.length > 1 && posts.slice(1, 4).map(post => (
             <Grid item md={4} className={classes.postItem}>
-              <PostItem
-                  description={post.post_content}
-                  imageUrl={post.feature_imaged}
-                  title={post.post_title}
-                  md={12}
-                  isStory
-                  classes={{ 
-                      imageDiv: classes.imageDiv,
-                      description: classes.postDescription,
-                      title: classes.postTitle,
-                      author: classes.postAuthor,
-                      contentDiv: classes.postContentDiv
-                  }} />
+              <Link as={`#${post.post_name}`} href={`#${post.post_name}`} className={classes.link}>
+                <PostItem
+                    description={post.post_content}
+                    imageUrl={post.feature_imaged}
+                    title={post.post_title}
+                    md={12}
+                    isStory
+                    classes={{ 
+                        imageDiv: classes.imageDiv,
+                        description: classes.postDescription,
+                        title: classes.postTitle,
+                        author: classes.postAuthor,
+                        contentDiv: classes.postContentDiv
+                    }} />
+                </Link>
             </Grid>
           ))}
         </Grid>
@@ -143,8 +148,9 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
       />
        <Section classes={{ root: classes.section }}>
           <Grid container>
-          {posts.slice(4, 7).map(post => (
+          {posts && posts.length > 4 && posts.slice(4).map(post => (
             <Grid item md={4} className={classes.postItem}>
+             <Link as={`#${post.post_name}`} href={`#${post.post_name}`} className={classes.link}>
               <PostItem
                   description={post.post_content}
                   imageUrl={post.feature_imaged}
@@ -158,6 +164,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
                       author: classes.postAuthor,
                       contentDiv: classes.postContentDiv
                   }} />
+                  </Link>
             </Grid>
           ))}
         </Grid>

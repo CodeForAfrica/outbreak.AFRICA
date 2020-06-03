@@ -3,46 +3,53 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
-import Hero from "components/Hero";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({breakpoints, widths}) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
 }));
 
 function MythBusters({ outbreak, ...props }) {
   const classes = useStyles(props);
+
   const {
     page: {
-      hero_carousel: heroCarousel,
-      title: { rendered: pageTitle },
+      posts,
+      join_us: joinUs,
+      subscribe,
+      title: pageTitle
     },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Myth-Busting"}
+      title={pageTitle || "Myth Busting"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroCarousel={heroCarousel}
-        classes={{ section: classes.section }}
-      />
+      <InsightPage
+        posts={posts}
+        joinUs={joinUs}
+        subscribe={subscribe}
+        title={pageTitle}
+        classes={{ section: classes.section }} />
     </Page>
   );
 }
