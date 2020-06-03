@@ -14,12 +14,17 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import iconBox from 'assets/icon-infobox.svg';
 import config from '../../../config';
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     padding: '2rem 0rem',
+    // When scrolled, leave the height of AppBar from the top
+    scrollMargin: typography.pxToRem(60),
     [breakpoints.up("md")]: {
-      paddingTop: '6.5rem'
-    }
+      scrollMargin: typography.pxToRem(100),
+    },
+    [breakpoints.up("xl")]: {
+      scrollMargin: typography.pxToRem(140),
+    },
   },
   link: {
     '&:hover': {
