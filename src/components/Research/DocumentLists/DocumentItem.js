@@ -8,7 +8,7 @@ import { A, RichTypography } from "@commons-ui/core";
 import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(
-  ({ breakpoints, typography, palette, widths }) => ({
+  ({ breakpoints, palette, typography, widths }) => ({
     link: {
       display: "flex",
       paddingTop: "1rem",
@@ -24,8 +24,9 @@ const useStyles = makeStyles(
     },
     author: {},
     image: {
-      width: "auto",
+      filter: "grayscale(100%)",
       height: 180,
+      width: "auto",
       [breakpoints.up("md")]: {
         height: (widths.values.md * 460) / widths.values.xl,
       },
@@ -102,7 +103,6 @@ function DocumentItem({
   ...props
 }) {
   const classes = useStyles(props);
-
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
@@ -147,9 +147,7 @@ function DocumentItem({
 }
 
 DocumentItem.propTypes = {
-  title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  imageUrl: PropTypes.string.isRequired,
   documentUrl: PropTypes.string.isRequired,
   md: PropTypes.number,
   isStory: PropTypes.bool,

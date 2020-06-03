@@ -432,10 +432,12 @@ function ProfilePage({
   let title;
   if (!profiles.loading && country) {
     const { name, geoLevel } = profiles.profile || {};
-    if (geoLevel !== "country") {
-      title = `${name} | ${country.shortName}`;
-    } else {
-      title = name;
+    if (name) {
+      if (geoLevel !== "country") {
+        title = `${name} | ${country.shortName}`;
+      } else {
+        title = name;
+      }
     }
   }
   const theme = useTheme();

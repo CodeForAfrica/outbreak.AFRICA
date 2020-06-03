@@ -70,8 +70,9 @@ export async function getServerSideProps({
   const found = /-([a-zA-Z]{2})(_|$)/.exec(geoId);
   const countryCode = found && found[1];
   const country =
-    countryCode &&
-    config.countries.find((c) => c.isoCode === countryCode.toUpperCase());
+    (countryCode &&
+      config.countries.find((c) => c.isoCode === countryCode.toUpperCase())) ||
+    null;
   const lang = queryLang || (country && country.lang) || config.DEFAULT_LANG;
   const errorCode = country ? null : 404;
   const outbreak = country ? await getSitePage("index", lang) : {};
