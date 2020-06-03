@@ -55,7 +55,7 @@ function MainTabs({ handleChange, tabs, value, ...props }) {
             key={tab.slug}
             value={tab.slug}
             href={`${tab.href}`}
-            as={`${tab.as}`}
+            as={tab.as ? `${tab.as}` : undefined}
             label={tab.name}
             className={classNames(classes.tab, {
               [classes.tabLast]: index === tabs.length - 1,
