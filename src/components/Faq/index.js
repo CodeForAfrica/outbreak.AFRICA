@@ -74,7 +74,8 @@ function FaqSection() {
       <Grid
         container
         direction="row"
-        justify="flex-start">
+        justify="flex-start"
+      >
         <Grid item xs={12} md={3}>
           <List
             component="nav"

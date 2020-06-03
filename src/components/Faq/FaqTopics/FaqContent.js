@@ -16,7 +16,10 @@ import config from '../../../config';
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
-    paddingBottom: '3rem'
+    padding: '2rem 0rem',
+    [breakpoints.up("md")]: {
+      paddingTop: '6.5rem'
+    }
   },
   link: {
     '&:hover': {
