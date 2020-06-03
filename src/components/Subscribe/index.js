@@ -11,6 +11,7 @@ import { Section } from "@commons-ui/core";
 import email from "assets/email.svg";
 import emailFocus from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
+import blueCircles from "assets/blue-circles.svg";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
@@ -82,6 +83,24 @@ const useStyles = makeStyles(
         },
       };
     },
+    circlesImage:{
+      display: "none",
+      [breakpoints.up("md")]: {
+        display: "initial",
+        height: (widths.values.md * 389) / widths.values.xl,
+        position: "absolute",
+        left: "190px",
+      },
+      [breakpoints.up("lg")]: {
+        height: (widths.values.lg * 389) / widths.values.xl,
+        left: "150px",
+      },
+      [breakpoints.up("xl")]: {
+        height: "389px",
+        left: "190px",
+      },
+
+    },
     subscribeImage: {
       display: "none",
       [breakpoints.up("md")]: {
@@ -105,7 +124,7 @@ const useStyles = makeStyles(
         return {
           display: "none",
           [breakpoints.up("md")]: {
-            display: "initial",
+            display: "flex",
             position: "relative",
             overflow: "visible",
           },
@@ -160,6 +179,7 @@ function Subscribe({ subscribe, variant, ...props }) {
             item
             xs={12}
             md={highlightColumns}
+            alignItems="center"
             className={classes.subscribeImageDiv}
           >
             <img
@@ -167,6 +187,10 @@ function Subscribe({ subscribe, variant, ...props }) {
               alt="Subscribe"
               className={classes.subscribeImage}
             />
+            <img 
+              src={blueCircles} 
+              alt="Subscribe"
+              className={classes.circlesImage} />
           </Grid>
           <Grid
             item
