@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import ArticlePage from "components/ArticlePage";
 import InsightPage from "components/InsightPage";
 import Page from "components/Page";
 
@@ -30,6 +31,12 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
 function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
 
+  const [insightArticleSlug, setInsightArticleSlug] = useState(null);
+  useEffect(() => {
+    const postSlug = window.location.hash && window.location.hash.split('#')[1];
+    setInsightArticleSlug(postSlug);
+  }, []);
+
   const {
     page: { posts, join_us: joinUs, subscribe, title: pageTitle },
   } = outbreak;
@@ -40,13 +47,20 @@ function Analysis({ outbreak, ...props }) {
       title={pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
-      <InsightPage
-        posts={posts}
-        joinUs={joinUs}
-        subscribe={subscribe}
-        title={pageTitle}
-        classes={{ section: classes.section }}
-      />
+      {insightArticleSlug ? (
+        <ArticlePage 
+          slug={insightArticleSlug}
+          classes={{ section: classes.section }}
+        />
+      ): (
+        <InsightPage
+          posts={posts}
+          joinUs={joinUs}
+          subscribe={subscribe}
+          title={pageTitle}
+          classes={{ section: classes.section }}
+        />
+      )}
     </Page>
   );
 }

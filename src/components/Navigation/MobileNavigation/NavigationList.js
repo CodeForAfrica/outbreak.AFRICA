@@ -66,7 +66,7 @@ function NavigationList({ items, title, toAs, toHref, toName, ...props }) {
       className={classes.root}
     >
       <Grid item className={classes.title}>
-        <Typography variant="h3" className={classes.main}>
+        <Typography variant="h4" className={classes.main}>
           {title}
         </Typography>
       </Grid>
