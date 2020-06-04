@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Grid,
+  List,
   Typography
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
@@ -46,7 +47,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     }
   },
   link: {
-    padding: '4rem',
+    padding: '0.5rem',
     color: '#170F49',
     textDecoration: "none",
     '&:hover': {
@@ -59,7 +60,9 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     }
   },
   list: {
-    padding: '2rem 2rem',
+    display: 'flex',
+    padding: '2rem',
+    flexDirection: 'column',
     backgroundColor: '#eee'
   },
   faqGrid: {
@@ -84,19 +87,16 @@ function FaqSection() {
         justify="flex-start"
       >
         <Grid item xs={12} md={3}>
-          <div component="nav" className={classes.list}>
+          <List
+            component="nav"
+            aria-label="Navigation list"
+            className={classes.list}>
             {config.faqTopics.map(topic =>
-              <Link
-                href={`#${topic.slug}`}
-                className={classes.link}>
-                <Typography
-                  variant="subtitle2"
-                  className={classes.listTitle}>
-                  {topic.title}
-                </Typography>
+              <Link href={`#${topic.slug}`} className={classes.link}>
+                <Typography variant="caption" style={{ fontWeight: 700 }}>{topic.title}</Typography>
               </Link>
             )}
-          </div>
+          </List>
           <Grid item className={classes.subscribeGrid}>
             <Subscribe />
           </Grid>
