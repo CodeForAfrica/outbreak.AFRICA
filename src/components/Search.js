@@ -22,16 +22,24 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
   inputInput: {
     flex: 1,
-    paddingBottom: typography.pxToRem(15),
-    paddingLeft: typography.pxToRem(19),
-    paddingRight: typography.pxToRem(19),
-    paddingTop: typography.pxToRem(13),
+    [breakpoints.up("md")]: {
+      paddingBottom: typography.pxToRem(7),
+      paddingLeft: typography.pxToRem(9),
+      paddingRight: typography.pxToRem(9),
+      paddingTop: typography.pxToRem(7),
+    },
+    [breakpoints.up("xl")]: {
+      paddingBottom: typography.pxToRem(15),
+      paddingLeft: typography.pxToRem(19),
+      paddingRight: typography.pxToRem(19),
+      paddingTop: typography.pxToRem(13),
+    },
   },
   iconButton: {
     color: "#9D9C9C",
     [breakpoints.up("md")]: {
-      paddingBottom: `${typography.pxToRem(3)}`,
-      paddingTop: `${typography.pxToRem(3)}`,
+      paddingBottom: 0,
+      paddingTop: 0,
     },
     [breakpoints.up("xl")]: {
       paddingBottom: `${typography.pxToRem(7)}`,
