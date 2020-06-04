@@ -9,19 +9,19 @@ import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
-import { getPostById } from "cms"; 
+import { getPostById } from "cms";
 
 const useStyles = makeStyles(
-  ({ breakpoints, palette, typography, widths }) => ({
+  ({ breakpoints, palette, widths }) => ({
     icon: {
-        objectFit: "contain",
-        height: "1.375rem",
-        width: "1.375rem",
-      },
-      link: {
-        display: "inline-block",
-        paddingRight: "1rem",
-      },
+      objectFit: "contain",
+      height: "1.375rem",
+      width: "1.375rem",
+    },
+    link: {
+      display: "inline-block",
+      paddingRight: "1rem",
+    },
     author: {},
     image: {
       filter: "grayscale(100%)",
@@ -80,10 +80,7 @@ const useStyles = makeStyles(
   })
 );
 
-function Author({
-authorId,
-  ...props
-}) {
+function Author({ authorId, ...props }) {
   const classes = useStyles(props);
   const [author, setAuthor] = useState(null);
 
@@ -93,66 +90,38 @@ authorId,
       setAuthor(post);
     }
     fetchAuthor();
-   }, [authorId]);
+  }, [authorId]);
 
-
-   if(!author) {
-       return null;
-   }
-   const { name, description, avatar_urls: avatar } = author;
+  if (!author) {
+    return null;
+  }
+  const { name, description, avatar_urls: avatar } = author;
   return (
-    <Grid
-      container
-      className={classes.authorDiv}
-    >
-        <Grid item className={classes.imageDiv}>
-          <img src={avatar["96"]} alt="" className={classes.image} />
-        </Grid>
+    <Grid container className={classes.authorDiv}>
+      <Grid item className={classes.imageDiv}>
+        <img src={avatar["96"]} alt="" className={classes.image} />
+      </Grid>
       <Grid item className={classes.contentDiv}>
-          <Typography variant="subtitle2" className={classes.title}>
-            {name}
-          </Typography>
-          <Typography variant="caption" className={classes.organisation}>
-            Code For Africa
-          </Typography>
-          <Grid item className={classes.socialIcons}>
-          <A
-                href={""}
-                color="textSecondary"
-                className={classes.link}
-            >
-                <img
-                src={websiteBlue}
-                alt="Website"
-                className={classes.icon}
-                />
-            </A>
-            <A
-                href={""}
-                color="textSecondary"
-                className={classes.link}
-            >
-                <img
-                src={linkedIn}
-                alt="LinkedIn"
-                className={classes.icon}
-                />
-            </A>
-            <A
-                href={""}
-                color="textSecondary"
-                className={classes.link}
-            >
-                <img
-                src={twitter}
-                alt="Twitter"
-                className={classes.icon}
-                />
-            </A>
-            </Grid>
-          <RichTypography variant="caption" className={classes.description}>
-            {description}
-          </RichTypography>
+        <Typography variant="subtitle2" className={classes.title}>
+          {name}
+        </Typography>
+        <Typography variant="caption" className={classes.organisation}>
+          Code For Africa
+        </Typography>
+        <Grid item className={classes.socialIcons}>
+          <A href="" color="textSecondary" className={classes.link}>
+            <img src={websiteBlue} alt="Website" className={classes.icon} />
+          </A>
+          <A href="" color="textSecondary" className={classes.link}>
+            <img src={linkedIn} alt="LinkedIn" className={classes.icon} />
+          </A>
+          <A href="" color="textSecondary" className={classes.link}>
+            <img src={twitter} alt="Twitter" className={classes.icon} />
+          </A>
+        </Grid>
+        <RichTypography variant="caption" className={classes.description}>
+          {description}
+        </RichTypography>
       </Grid>
     </Grid>
   );

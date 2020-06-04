@@ -33,15 +33,13 @@ function Analysis({ outbreak, ...props }) {
 
   const [insightArticleSlug, setInsightArticleSlug] = useState(null);
   useEffect(() => {
-    const postSlug = window.location.hash && window.location.hash.split('#')[1];
+    const postSlug = window.location.hash && window.location.hash.split("#")[1];
     setInsightArticleSlug(postSlug);
   }, []);
 
   const {
     page: { posts, join_us: joinUs, subscribe, title: pageTitle },
   } = outbreak;
-
-  console.log(insightArticleSlug);
 
   return (
     <Page
@@ -50,11 +48,11 @@ function Analysis({ outbreak, ...props }) {
       classes={{ section: classes.section }}
     >
       {insightArticleSlug ? (
-        <ArticlePage 
+        <ArticlePage
           slug={insightArticleSlug}
           classes={{ section: classes.section }}
         />
-      ): (
+      ) : (
         <InsightPage
           posts={posts}
           joinUs={joinUs}
