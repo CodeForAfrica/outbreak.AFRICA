@@ -200,7 +200,7 @@ function MobileMenu({ countries }) {
                 ]
               }
               toAs={() => undefined}
-              toHref={() => "#"}
+              toHref={(href) => href}
               toName={({ name }) => name}
             />
           </DialogContent>
