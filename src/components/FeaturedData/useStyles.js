@@ -9,7 +9,7 @@ const useStyles = makeStyles(({ typography }) => ({
     marginBottom: "33px",
   },
   containerRoot: {
-    backgroundColor: "#EEEEEE !important",
+    //backgroundColor: "#EEEEEE !important",
   },
   containerGrid: {
     width: "100%",
