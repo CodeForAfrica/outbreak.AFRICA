@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
 function ListItemLink(props) {
   const classes = useStyles();
   return (
-    <Link {...props} variant="subtitle1" className={classes.listItemLink} />
+    <Link {...props} variant="subtitle2" className={classes.listItemLink} />
   );
 }
 
