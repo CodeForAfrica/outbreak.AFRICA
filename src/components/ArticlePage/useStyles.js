@@ -55,6 +55,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       "& .wp-block-quote": {
         marginLeft: (widths.values.md * 69) / widths.values.xl,
         marginBottom: (widths.values.md * 50) / widths.values.xl,
+        marginTop: (widths.values.md * 23) / widths.values.xl,
         paddingTop: (widths.values.md * 24) / widths.values.xl,
         "&:before": {
           top: "-10px !important",
@@ -70,10 +71,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
         marginBottom: (widths.values.md * 100) / widths.values.xl,
       },
     },
-    [breakpoints.up("lg")]: {
+    [breakpoints.up("lg")]: { 
       "& .wp-block-quote": {
         marginLeft: (widths.values.lg * 69) / widths.values.xl,
         marginBottom: (widths.values.lg * 50) / widths.values.xl,
+        marginTop: (widths.values.lg * 23) / widths.values.xl,
         paddingTop: (widths.values.lg * 24) / widths.values.xl,
         "& p": {
           paddingLeft: (widths.values.lg * 69) / widths.values.xl,
@@ -88,6 +90,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       "& .wp-block-quote": {
         marginLeft: "69px",
         marginBottom: "50px",
+        marginTop: "23px",
         paddingTop: "24px",
         "& p": {
           paddingLeft: "69px",
