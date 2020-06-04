@@ -2,7 +2,9 @@ import React from 'react';
 import {
   Grid,
   List,
-  Typography
+  Typography,
+  useTheme,
+  useMediaQuery
 } from '@material-ui/core';
 import { makeStyles } from "@material-ui/core/styles";
 import Subscribe from 'components/Partners/Subscribe';
@@ -79,6 +81,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 
 function FaqSection() {
   const classes = useStyles();
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   return (
     <div className={classes.root}>
       <Grid
@@ -97,9 +101,10 @@ function FaqSection() {
               </Link>
             )}
           </List>
-          <Grid item className={classes.subscribeGrid}>
-            <Subscribe />
-          </Grid>
+          {isDesktop ?
+            <Grid item className={classes.subscribeGrid}>
+              <Subscribe />
+            </Grid> : <div />}
         </Grid>
 
         <Grid
@@ -109,6 +114,10 @@ function FaqSection() {
           className={classes.faqGrid}>
           <FaqContent />
         </Grid>
+        {!isDesktop ?
+          <Grid item className={classes.subscribeGrid}>
+            <Subscribe />
+          </Grid> : null}
       </Grid>
     </div>
   )

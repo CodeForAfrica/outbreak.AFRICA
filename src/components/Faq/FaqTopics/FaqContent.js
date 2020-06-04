@@ -18,7 +18,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
     padding: '2rem 0rem',
     // When scrolled, leave the height of AppBar from the top
-    scrollMargin: typography.pxToRem(60),
+    scrollMargin: typography.pxToRem(50),
     [breakpoints.up("md")]: {
       scrollMargin: typography.pxToRem(100),
     },
@@ -71,8 +71,6 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 export default function FaqContent() {
   const [expanded, setExpanded] = React.useState('panel1');
   const classes = useStyles();
-  console.log(config.faqTopics.map(topic => topic.topics.map(content => content)))
-
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
     event.stopPropagation();
