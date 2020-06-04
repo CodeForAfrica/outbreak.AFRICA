@@ -136,8 +136,8 @@ const theme = createTheme({
   },
   widths: {
     values: {
-      md: 936, // 0, 12, 0, 12 margins
-      lg: 1224, // 0, 28, 0, 28 margins
+      md: 912, // 0, 24, 0, 24 margins
+      lg: 1200, // 0, 40, 0, 40 margins
       xl: 1640, // 0, 140, 0, 140 margins DESIGNS
     },
   },
@@ -198,7 +198,7 @@ deepmerge(
     subtitle2: {
       fontSize: pxToRem(16),
       lineHeight: 23 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -222,7 +222,7 @@ deepmerge(
     body2: {
       fontSize: pxToRem(18),
       lineHeight: 24 / 18,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -244,7 +244,7 @@ deepmerge(
     caption: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -256,7 +256,7 @@ deepmerge(
     overline: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
