@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import quote from "assets/quote.svg";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
   root: {},
@@ -25,7 +26,21 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       color: palette.primary.main,
       fontSize: typography.body1.fontSize,
       margin: 0,
+      marginTop: "85px",
       marginBottom: "21px",
+      position: "relative",
+      "&:before": {
+        content: `url(${quote})`,
+        color: palette.primary.main,
+        backgroundColor: "white",
+        height: "50px",
+        position: "absolute",
+        top: "-70px",
+        left: "-10px",
+      },
+      "& p": {
+        margin: 0,
+      },
     },
     "& img" : {
       width: "100%",
@@ -38,11 +53,17 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     },
     [breakpoints.up("md")]: {
       "& .wp-block-quote": {
-        borderLeft: "1px solid #0050FF",
         marginLeft: (widths.values.md * 69) / widths.values.xl,
         marginBottom: (widths.values.md * 50) / widths.values.xl,
-        paddingLeft: (widths.values.md * 69) / widths.values.xl,
         paddingTop: (widths.values.md * 24) / widths.values.xl,
+        "&:before": {
+          top: "-10px !important",
+          height: "70px !important",
+        },
+        "& p": {
+          paddingLeft: (widths.values.md * 69) / widths.values.xl,
+          borderLeft: "1px solid #0050FF",
+        }
       },
       "& figure": {
         marginTop: (widths.values.md * 86) / widths.values.xl,
@@ -53,8 +74,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       "& .wp-block-quote": {
         marginLeft: (widths.values.lg * 69) / widths.values.xl,
         marginBottom: (widths.values.lg * 50) / widths.values.xl,
-        paddingLeft: (widths.values.lg * 69) / widths.values.xl,
         paddingTop: (widths.values.lg * 24) / widths.values.xl,
+        "& p": {
+          paddingLeft: (widths.values.lg * 69) / widths.values.xl,
+        },
       },
       "& figure": {
         marginTop: (widths.values.lg * 86) / widths.values.xl,
@@ -65,8 +88,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       "& .wp-block-quote": {
         marginLeft: "69px",
         marginBottom: "50px",
-        paddingLeft: "69px",
         paddingTop: "24px",
+        "& p": {
+          paddingLeft: "69px",
+        },
       },
       "& figure": {
         marginTop: "5.375rem",

@@ -41,6 +41,8 @@ function Analysis({ outbreak, ...props }) {
     page: { posts, join_us: joinUs, subscribe, title: pageTitle },
   } = outbreak;
 
+  console.log(insightArticleSlug);
+
   return (
     <Page
       outbreak={outbreak}
