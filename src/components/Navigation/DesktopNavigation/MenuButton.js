@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Button, IconButton, Paper } from "@material-ui/core";
@@ -26,10 +26,17 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   title: {},
 }));
 
-function MenuButton({ children, open: openProp, size, title, ...props }) {
+function MenuButton({
+  children,
+  open: openProp,
+  size,
+  title,
+  popperProps,
+  ...props
+}) {
   const classes = useStyles(props);
-  const buttonRef = React.useRef();
-  const [open, setOpen] = React.useState(openProp);
+  const buttonRef = useRef();
+  const [open, setOpen] = useState(openProp);
   const handleToggleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -64,7 +71,7 @@ function MenuButton({ children, open: openProp, size, title, ...props }) {
       onClose={handleClose}
       open={open}
       title={title}
-      {...props}
+      popperProps={popperProps}
       classes={{
         root: classes.root,
         paper: classes.paper,

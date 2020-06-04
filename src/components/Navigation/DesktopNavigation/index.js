@@ -107,7 +107,7 @@ function DesktopNavigation({ country, navigation, ...props }) {
                 </MenuButton>
               </Grid>
               {otherNavigations.map((otherNavigation) => (
-                <Grid item>
+                <Grid item key={otherNavigation.title}>
                   <NavigationButton
                     color="secondary"
                     title={otherNavigation.title}
