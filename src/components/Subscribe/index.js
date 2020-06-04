@@ -83,7 +83,7 @@ const useStyles = makeStyles(
         },
       };
     },
-    circlesImage:{
+    circlesImage: {
       display: "none",
       [breakpoints.up("md")]: {
         display: "initial",
@@ -99,7 +99,6 @@ const useStyles = makeStyles(
         height: "389px",
         left: "190px",
       },
-
     },
     subscribeImage: {
       display: "none",
@@ -187,10 +186,11 @@ function Subscribe({ subscribe, variant, ...props }) {
               alt="Subscribe"
               className={classes.subscribeImage}
             />
-            <img 
-              src={blueCircles} 
+            <img
+              src={blueCircles}
               alt="Subscribe"
-              className={classes.circlesImage} />
+              className={classes.circlesImage}
+            />
           </Grid>
           <Grid
             item

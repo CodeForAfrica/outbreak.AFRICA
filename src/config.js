@@ -250,10 +250,10 @@ Disallow:
 
 if (typeof document !== "undefined") {
   // Same-Origin Policy
-  if (!window.location.hostname.includes('hurumap.org')) {
+  if (!window.location.hostname.includes("hurumap.org")) {
     document.domain = window.location.hostname;
   } else {
-    document.domain = 'hurumap.org';
+    document.domain = "hurumap.org";
   }
 }
 
