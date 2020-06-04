@@ -67,7 +67,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function DesktopNavigation({ country, navigation, ...props }) {
+function DesktopNavigation({ country, countries, navigation, ...props }) {
   const classes = useStyles(props);
   const router = useRouter();
   const [dataNavigation, ...otherNavigations] = navigation || [];
@@ -103,7 +103,7 @@ function DesktopNavigation({ country, navigation, ...props }) {
                   variant="outlined"
                   className={classes.button}
                 >
-                  <DataMenuList country={country} dense />
+                  <DataMenuList countries={countries} country={country} dense />
                 </MenuButton>
               </Grid>
               {otherNavigations.map((otherNavigation) => (
@@ -176,8 +176,13 @@ function DesktopNavigation({ country, navigation, ...props }) {
 }
 
 DesktopNavigation.propTypes = {
-  country: PropTypes.shape({}).isRequired,
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  country: PropTypes.shape({}),
   navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+DesktopNavigation.defaultProps = {
+  country: undefined,
 };
 
 export default DesktopNavigation;

@@ -92,6 +92,7 @@ const useStyles = makeStyles((theme) => ({
 function ProfileDetail({
   profile: { comparable = false, geo = {} },
   colorScoreLabel,
+  countries,
   country,
   geoId,
   geoIndexMapping,
@@ -132,6 +133,7 @@ function ProfileDetail({
             <Grid item container direction="column" justify="flex-start">
               <Grid item className={classes.geo}>
                 <CountrySelector
+                  countries={countries}
                   country={country}
                   geoName={name}
                   context="topic"
@@ -300,6 +302,7 @@ ProfileDetail.propTypes = {
     }),
   }).isRequired,
   colorScoreLabel: PropTypes.string,
+  countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   country: PropTypes.shape({}).isRequired,
   geoId: PropTypes.string,
   geoIndexMapping: PropTypes.arrayOf(PropTypes.shape({})),
