@@ -124,7 +124,6 @@ function Container({ action, children, featuredChart, ...props }) {
           content: classes.content,
           title: classes.title,
           root: classes.chartRoot,
-          containerRoot: classes.containerRoot,
           sourceLink: classes.source,
           groupActionsButton: classes.actionIcon,
         }}
