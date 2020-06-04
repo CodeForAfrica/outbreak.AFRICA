@@ -178,16 +178,29 @@ function MobileMenu({ countries }) {
             />
             <NavigationList
               title="Research"
-              items={[{ name: "Experts", href: "/research" }]}
+              items={
+                [
+                  { name: "Experts", href: "/research/experts" },
+                  { name: "Documents", href: "/research/documents" },
+                  { name: "Datasets", href: "/research/datasets" },
+                ]
+              }
               toAs={() => undefined}
               toHref={({ href }) => href}
               toName={({ name }) => name}
             />
             <NavigationList
               title="INSIGHTS"
-              items={[]}
+              items={
+                [
+                  { name: "Analysis", href: "/insights/analysis" },
+                  { name: "Mythbusters", href: "/insights/myth-busting" },
+                  { name: "Stories", href: "/insights/stories" },
+                  { name: "Resources", href: "/insights/resources" },
+                ]
+              }
               toAs={() => undefined}
-              toHref={() => "#"}
+              toHref={(href) => href}
               toName={({ name }) => name}
             />
           </DialogContent>
