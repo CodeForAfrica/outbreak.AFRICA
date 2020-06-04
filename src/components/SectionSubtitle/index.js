@@ -34,7 +34,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   title: {
     display: "flex",
     alignItems: "center",
-    margin: "1.5rem 3rem 1.5rem 0",
+    margin: "1.5rem 2rem 1.5rem 0",
+    [breakpoints.up("xl")]: {
+      margin: "1.5rem 3rem 1.5rem 0",
+    },
   },
 }));
 

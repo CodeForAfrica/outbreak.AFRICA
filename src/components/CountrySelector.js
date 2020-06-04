@@ -62,7 +62,6 @@ export default function CountrySelector({
     <div className={classes.root}>
       <MenuButton
         color="secondary"
-        // size="large"
         variant="outlined"
         popperProps={{ placement: "right-start" }}
         classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}

@@ -10,11 +10,10 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     [breakpoints.up("md")]: {
       position: "absolute",
-      right: "3.5rem",
+      right: "1rem",
       width: typography.pxToRem((widths.values.md * 481) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      right: "1rem",
       width: typography.pxToRem((widths.values.lg * 481) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
