@@ -103,9 +103,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     },
   },
   date: {
-    paddingLeft: 7,
     fontSize: 12,
+    display: "flex",
     [breakpoints.up("md")]: {
+      display: "initial",
       fontSize: "initial",
       paddingLeft: 0,
     },
@@ -127,12 +128,13 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     },
   },
   link: {
-    display: "inline-block",
+    display: "inline-flex",
     paddingRight: "1rem",
   },
   organization: {
     fontSize: 14,
     fontWeight: "bold",
+    display: "flex",
     [breakpoints.up("md")]: {
       display: "block",
       fontSize: "initial",
@@ -151,7 +153,9 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     },
   },
   socialIcons: {
+    paddingTop: "1rem",
       [breakpoints.up("md")]: {
+        display: "initial",
         position: "absolute",
         right: (widths.values.md * -307) / widths.values.xl ,
       },

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { A, RichTypography, Section } from "@commons-ui/core";
 
 import logo from "assets/logo-C4A.svg";
@@ -16,6 +16,9 @@ import useStyles from "./useStyles";
 function ArticlePage({ slug, ...props }) {
   const classes = useStyles(props);
   const [article, setArticle] = useState(null);
+
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
       async function fetchArticle() {
@@ -39,15 +42,19 @@ function ArticlePage({ slug, ...props }) {
                 <Typography variant="h3" className={classes.title}>
                     {article.title.rendered}
                 </Typography>
-                <Grid item container className={classes.attributes}>
-                    <img src={logo} alt="Code for Africa" className={classes.logo} />
-                    <Grid item className={classes.readAttr}>
-                        <Typography variant="caption" className={classes.organization}>
-                            Code for Africa
-                        </Typography>
-                        <Typography variant="caption" className={classes.date}>
-                        {date}
-                        </Typography>
+                <Grid item container className={classes.attributes} direction={isDesktop? "column": "row"} >
+                    <Grid item container direction={isDesktop? "row": "row-reverse"} alignItems="flex-end" justify={!isDesktop && "space-between"} >
+                        <Grid item xs={6}>
+                            <img src={logo} alt="Code for Africa" className={classes.logo} />
+                        </Grid>
+                        <Grid item container xs={6} className={classes.readAttr} direction={isDesktop? "column": "column-reverse"}>
+                            <Typography variant="caption" className={classes.organization}>
+                                Code for Africa
+                            </Typography>
+                            <Typography variant="caption" className={classes.date}>
+                            {date}
+                            </Typography>
+                        </Grid>
                     </Grid>
                     <Grid item className={classes.socialIcons}>
                         <A
