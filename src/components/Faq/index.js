@@ -26,6 +26,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       height: '362px'
     }
   },
+  listGrid: {
+    borderTop: '3px solid grey',
+    borderBottom: '3px solid grey',
+    [breakpoints.up("md")]: {
+      borderTop: 0,
+      borderBottom: 0,
+    }
+  },
   subscribeGrid: {
     backgroundColor: '#170F49',
     height: 'auto',
@@ -63,9 +71,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
   list: {
     display: 'flex',
-    padding: '2rem',
-    flexDirection: 'column',
-    backgroundColor: '#eee'
+    padding: '1rem 0rem',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#eee',
+    [breakpoints.up("md")]: {
+      padding: '2rem',
+      flexDirection: 'column',
+    }
   },
   faqGrid: {
     height: 'auto',
@@ -76,7 +89,26 @@ const useStyles = makeStyles(({ breakpoints }) => ({
       paddingTop: 0
     }
   },
-  listTitle: { fontWeight: 700 }
+  listTitle: { fontWeight: 700 },
+  captionTitle: {
+    fontWeight: 700,
+    fontSize: '1rem',
+    textTransform: 'Uppercase',
+    color: 'grey',
+    [breakpoints.up("md")]: {
+      textTransform: 'Capitalize',
+      color: '#170F49'
+    },
+    '&:hover': {
+      color: 'blue',
+      textDecoration: "none"
+    },
+    '&:active': {
+      color: 'blue',
+      textDecoration: "none"
+    }
+
+  }
 }));
 
 function FaqSection() {
@@ -90,14 +122,14 @@ function FaqSection() {
         direction="row"
         justify="flex-start"
       >
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} md={3} className={classes.listGrid}>
           <List
             component="nav"
             aria-label="Navigation list"
             className={classes.list}>
             {config.faqTopics.map(topic =>
               <Link href={`#${topic.slug}`} className={classes.link}>
-                <Typography variant="caption" style={{ fontWeight: 700 }}>{topic.title}</Typography>
+                <Typography className={classes.captionTitle}>{topic.title}</Typography>
               </Link>
             )}
           </List>
