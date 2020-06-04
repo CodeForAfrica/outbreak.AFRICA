@@ -17,7 +17,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     marginBottom: typography.pxToRem(16),
   },
   actionGrid: {
-    height: "20%",
+    height: "15%",
     display: "flex",
     alignItems: "flex-end",
   },
@@ -51,7 +51,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   chartShadow: {
     boxShadow: "0px 4px 4px #00000029",
     border: "1px solid #D6D6D6",
-    height: "80%",
+    height: "85%",
   },
   description: {
     "& .highlight": {

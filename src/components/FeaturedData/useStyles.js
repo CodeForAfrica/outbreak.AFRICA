@@ -8,14 +8,11 @@ const useStyles = makeStyles(({ typography }) => ({
     padding: "42px 38px 33px 38px",
     marginBottom: "33px",
   },
-  containerRoot: {
-    //backgroundColor: "#EEEEEE !important",
-  },
   containerGrid: {
     width: "100%",
   },
   chart: {
-    margin: "0.5rem !important",
+    margin: "0 !important",
   },
   content: {
     paddingBottom: 0,
