@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,7 +10,7 @@ import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: (props) => {
     if (!props.hasCarousel) {
       return {};
@@ -62,6 +63,22 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       right: "-244px",
     },
   },
+  heroImage: {
+    width: "315px",
+    height: "250px",
+    [breakpoints.up("md")]: {
+      width: (widths.values.md * 536) / widths.values.xl,
+      height: (widths.values.md * 426) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      width: (widths.values.lg * 536) / widths.values.xl,
+      height: (widths.values.lg * 426) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      width: "536px",
+      height: "426px",
+    },
+  },
   title: {
     width: "100%",
     paddingTop: typography.pxToRem(29),
@@ -78,6 +95,18 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
     "& p": {
       margin: 0,
+    },
+  },
+  notCarousel: {
+    paddingTop: typography.pxToRem(29),
+    [breakpoints.up("md")]: {
+      paddingTop: (widths.values.md * 58) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      paddingTop: (widths.values.md * 58) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      paddingTop: typography.pxToRem(58),
     },
   },
   description: {
@@ -119,6 +148,16 @@ function Hero({ heroContent, isResearch, ...props }) {
 
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
     (hasCarousel && component && component[0]) || {};
+
+  const { url: imageUrl} = (hasImage && component && component[0]) || {};
+
+  let md = 12;
+  if (hasCarousel) {
+    md = 7;
+  }
+  if (hasImage) {
+    md = 6;
+  }
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -128,12 +167,12 @@ function Hero({ heroContent, isResearch, ...props }) {
           alignItems="flex-start"
           className={classes.hero}
         >
-          <Grid item container md={hasCarousel ? 7 : 12}>
+          <Grid item container md={md}>
             <Grid item xs={12}>
               <RichTypography
                 variant="h1"
                 component="div"
-                classes={{ root: classes.title }}
+                classes={{ root: classNames(classes.title, { [classes.notCarousel ]: !hasCarousel}) }}
               >
                 {title}
               </RichTypography>
@@ -153,6 +192,15 @@ function Hero({ heroContent, isResearch, ...props }) {
                 carouselItems={carouselItems}
                 carouselLinkTitle={carouselLinkTitle}
                 isResearch={isResearch}
+              />
+            </Grid>
+          )}
+          {hasImage && (
+            <Grid item xs={12} md={6} className={classes.notCarousel}>
+              <img
+                className={classes.heroImage}
+                src={imageUrl}
+                alt="title"
               />
             </Grid>
           )}
