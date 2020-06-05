@@ -14,7 +14,7 @@ import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 import { Section } from "@commons-ui/core";
 
 import config from "config";
-import logo from "assets/images/logo-white-all.png";
+import logo from "assets/logo-outbreak-small.png";
 import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
@@ -45,6 +45,19 @@ const useStyles = makeStyles(
       [breakpoints.up("xl")]: {
         margin: "0 auto",
         width: widths.values.xl,
+      },
+    },
+    attribution: {
+      backgroundColor: palette.background.default,
+      borderBottom: `4px solid ${palette.primary.main}`,
+    },
+    attributionSource: {
+      "& div": {
+        color: "#9D9C9C",
+      },
+      "& .site": {
+        color: palette.secondary.main,
+        display: "block",
       },
     },
     chartShadow: {
@@ -326,8 +339,13 @@ function ProfilePage({
                     <div className={classes.chartShadow}>
                       <ChartContainer
                         key={chart.id}
+                        attribution={`Source: ${
+                          (source && source.href) || ""
+                        }<span class="site">${config.name}</span>`}
                         variant="data"
                         classes={{
+                          attribution: classes.attribution,
+                          attributionSource: classes.attributionSource,
                           chart: classes.chart,
                           content: classes.content,
                           title: classes.title,
