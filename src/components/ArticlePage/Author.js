@@ -24,12 +24,7 @@ const useStyles = makeStyles(
     image: {
       width: "200px",
       height: "200px",
-    },
-    imageDiv: {
-      width: "200px",
-      height: "200px",
       borderRadius: "100px",
-      overflow: "hidden",
       position: "relative",
       "&:after": {
         backgroundColor: palette.primary.main,
@@ -43,6 +38,9 @@ const useStyles = makeStyles(
         top: 0,
       },
     },
+    imageDiv: {
+      overflow: "hidden",
+    },
     contentDiv: {
       [breakpoints.up("md")]: {
         paddingTop: "1.375rem",
@@ -51,8 +49,6 @@ const useStyles = makeStyles(
       },
     },
     description: {
-      paddingTop: "3rem",
-      paddingBottom: "2rem",
     },
     root: {
       backgroundColor: "#EEEEEE",
@@ -73,22 +69,28 @@ const useStyles = makeStyles(
         marginBottom: "100px",
       },
     },
+    socialIcons: {
+      paddingTop: "2rem",
+    },
     title: {
       fontWeight: "bold",
       textTransform: "uppercase",
+      paddingBottom: "0.5rem",
     },
     organisation: {
       fontWeight: "bold",
       display: "flex",
+      paddingBottom: "3rem",
     },
     position: {
       fontWeight: "bold",
       display: "flex",
+      paddingBottom: "0.5rem",
     },
   })
 );
 
-function Author({ author, ...props }) {
+function Author({ author, variant, ...props }) {
   const classes = useStyles(props);
 
   if (!author) {
@@ -97,10 +99,10 @@ function Author({ author, ...props }) {
   const { name, description, avatar_urls: avatar, acf: {position} } = author;
   return (
     <Grid container direction="row" alignItems="flex-start" justify="center" className={classes.root}>
-      <Grid item className={classes.imageDiv}>
+      <Grid item className={classes.imageDiv} md={ variant === "full" && 5}>
         <img src={avatar["96"]} alt="" className={classes.image} />
       </Grid>
-      <Grid item xs={12} className={classes.contentDiv}>
+      <Grid item xs={12} className={classes.contentDiv} md={ variant ==="full" && 7}>
         <Typography variant="subtitle2" className={classes.title}>
           {name}
         </Typography>
@@ -110,9 +112,11 @@ function Author({ author, ...props }) {
         <Typography variant="caption" className={classes.organisation}>
           Code For Africa
         </Typography>
-        <RichTypography variant="caption" className={classes.description}>
-          {description}
-        </RichTypography>
+        { variant === "compact" && (
+          <RichTypography variant="caption" className={classes.description}>
+            {description}
+          </RichTypography>
+        )}
         <Grid item className={classes.socialIcons}>
           <A href="" color="textSecondary" className={classes.link}>
             <img src={websiteBlue} alt="Website" className={classes.icon} />
@@ -125,12 +129,24 @@ function Author({ author, ...props }) {
           </A>
         </Grid>
       </Grid>
+      { variant === "full" && (
+        <Grid item md={12}>
+          <RichTypography variant="caption" className={classes.description}>
+            {description}
+          </RichTypography>
+        </Grid>
+      )}
     </Grid>
   );
 }
 
 Author.propTypes = {
   author: PropTypes.shape({}).isRequired,
+  variant: PropTypes.oneOf(["compact", "full"]),
 };
+
+Author.defaultProps = {
+  variant: "compact",
+}
 
 export default Author;

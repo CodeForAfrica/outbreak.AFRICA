@@ -222,6 +222,13 @@ const useStyles = makeStyles(
     title: {
       marginBottom: "2rem",
     },
+    authorContentDiv: {
+      paddingTop: "0rem",
+    },
+    authorRoot: {
+      paddingLeft: "41px",
+      paddingRight: "41px",
+    }
   })
 );
 

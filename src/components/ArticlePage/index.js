@@ -140,7 +140,7 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
         </Grid>
         <Grid item container xs={12}>
           <Grid item md={3} className={classes.authorDiv}>
-              <Author author={author} />
+              <Author author={author} variant="compact" />
               <Aside classes={{ root: classes.aside }}>
                 <Subscribe subscribe={subscribe} variant="compact" />
               </Aside>
@@ -152,6 +152,14 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
             <RichTypography variant="body2" className={classes.content}>
               {article.content.rendered}
             </RichTypography>
+            <Author 
+              author={author} 
+              variant={isDesktop? "full" : "compact"}
+              classes={ isDesktop && {
+                contentDiv: classes.authorContentDiv,
+                root: classes.authorRoot,
+              }}
+            />
           </Grid>
           <Grid item md={3} />
         </Grid>
