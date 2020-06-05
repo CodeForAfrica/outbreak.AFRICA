@@ -6,7 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
-import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
@@ -28,7 +27,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${coronaImage})`,
+      backgroundImage: `url(${props.heroContent.background_image})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "90% 2%",
       backgroundSize: "50%",
@@ -97,19 +96,22 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function Hero({ heroCarousel, isResearch, ...props }) {
+function Hero({ heroContent, isResearch, ...props }) {
   const hasCarousel =
-    heroCarousel &&
-    heroCarousel.carousel_items &&
-    heroCarousel.carousel_items.length;
+    heroContent &&
+    heroContent.component &&
+    heroContent.component.length &&
+    heroContent.component[0]['acf_fc_layout'] === "carousel";
+
   const classes = useStyles({ ...props, hasCarousel });
 
-  if (!heroCarousel) {
+  if (!heroContent) {
     return null;
   }
-  const { tagline, title } = heroCarousel;
+  const { tagline, title, component: [ heroComponent ] } = heroContent;
+
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
-    (hasCarousel && heroCarousel) || {};
+    (hasCarousel && heroComponent) || {};
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -153,17 +155,17 @@ function Hero({ heroCarousel, isResearch, ...props }) {
   );
 }
 Hero.propTypes = {
-  heroCarousel: PropTypes.shape({
-    carousel_items: PropTypes.arrayOf(PropTypes.shape({})),
-    link_title: PropTypes.string,
+  heroContent: PropTypes.shape({
+    component: PropTypes.arrayOf(PropTypes.shape({})),
     tagline: PropTypes.string,
     title: PropTypes.string,
+    background_image: PropTypes.string,
   }),
   isResearch: PropTypes.bool,
 };
 
 Hero.defaultProps = {
-  heroCarousel: undefined,
+  heroContent: undefined,
   isResearch: false,
 };
 
