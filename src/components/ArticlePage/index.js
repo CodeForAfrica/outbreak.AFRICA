@@ -138,7 +138,7 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
           </Grid>
           <Grid item md={3} />
         </Grid>
-        <Grid item container xs={12}>
+        <Grid item container xs={12} className={classes.articleContent}>
           <Grid item md={3} className={classes.authorDiv}>
               <Author author={author} variant="compact" />
               <Aside classes={{ root: classes.aside }}>

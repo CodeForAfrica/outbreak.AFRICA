@@ -38,6 +38,18 @@ const useStyles = makeStyles(
         paddingRight: "73px",
       },
     },
+    articleContent: {
+      [breakpoints.up("md")]: {
+        minHeight: (widths.values.md * 1591) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        minHeight: (widths.values.lg * 1591) / widths.values.xl,
+      },
+      [breakpoints.up("xl")]: {
+        minHeight: "1591px",
+      },
+
+    },
     aside: {
       [breakpoints.up("md")]: {
         right: (widths.values.md * 73) / widths.values.xl,
