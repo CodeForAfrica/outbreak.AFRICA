@@ -10,12 +10,16 @@ import instagram from "assets/Icon awesome-instagram-b.svg";
 import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
-import { getPostBySlug } from "cms";
+import { getPostById, getPostBySlug } from "cms";
+import Author from "./Author";
 import useStyles from "./useStyles";
+import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 
 function ArticlePage({ slug, ...props }) {
   const classes = useStyles(props);
   const [article, setArticle] = useState(null);
+  const [author, setAuthor] = useState(null);
+  const [media, setMedia] = useState(null);
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -24,6 +28,14 @@ function ArticlePage({ slug, ...props }) {
     async function fetchArticle() {
       const [post] = await getPostBySlug("posts", slug);
       setArticle(post);
+      
+      if(post) {
+          const authorObject = await getPostById("users", post.author);
+          setAuthor(authorObject);
+
+          const { media_details: { sizes }} = await getPostById("media", post.featured_media);
+          setMedia(sizes);
+      }
     }
     fetchArticle();
   }, [slug]);
@@ -32,13 +44,19 @@ function ArticlePage({ slug, ...props }) {
     return null;
   }
   const date = new Date(article.date).toDateString().slice(4, 10);
+  let imageUrl = "";
+  if (media) {
+      imageUrl = isDesktop? media["full"]["source_url"] : media["medium_large"]["source_url"];
+  }
   return (
     <div className={classes.root}>
-      <img src="" alt="" />
+      <img src={imageUrl} alt="" className={classes.heroImage} />
       <Section classes={{ root: classes.section }}>
         <Grid container>
-          <Grid item container md={3} />
-          <Grid item container md={6}>
+          <Grid item container md={3} className={classes.authorDiv}>
+            <Author author={author} />
+          </Grid>
+          <Grid item container xs={12} md={6}>
             <Typography variant="h3" className={classes.title}>
               {article.title.rendered}
             </Typography>

@@ -21,6 +21,19 @@ const useStyles = makeStyles(
         marginBottom: "100px",
       },
     },
+    authorDiv: {
+      display: "none",
+      [breakpoints.up("md")]: {
+        display: "initial",
+        height: (widths.values.md * 839) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        height: (widths.values.lg * 839) / widths.values.xl,
+      },
+      [breakpoints.up("xl")]: {
+        height: "839px",
+      },
+    },
     content: {
       width: "inherit",
       "& .wp-block-quote": {
@@ -110,6 +123,19 @@ const useStyles = makeStyles(
         display: "initial",
         fontSize: "initial",
         paddingLeft: 0,
+      },
+    },
+    heroImage: {
+      width: "100%",
+      height: "119px",
+      [breakpoints.up("md")]: {
+        height: (widths.values.md * 633) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        height: (widths.values.lg * 633) / widths.values.xl,
+      },
+      [breakpoints.up("xl")]: {
+        height: "633px",
       },
     },
     highlight: {
