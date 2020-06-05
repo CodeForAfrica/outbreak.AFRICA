@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { A, RichTypography, Section } from "@commons-ui/core";
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 
 import logo from "assets/logo-C4A.svg";
 import facebook from "assets/Icon awesome-facebook-f-b.svg";
@@ -12,10 +13,10 @@ import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import { getPostById, getPostBySlug } from "cms";
 import Author from "./Author";
+import Link from "components/Link";
 import useStyles from "./useStyles";
-import { connectableObservableDescriptor } from "rxjs/internal/observable/ConnectableObservable";
 
-function ArticlePage({ slug, ...props }) {
+function ArticlePage({ link, pageTitle, slug, ...props }) {
   const classes = useStyles(props);
   const [article, setArticle] = useState(null);
   const [author, setAuthor] = useState(null);
@@ -50,6 +51,21 @@ function ArticlePage({ slug, ...props }) {
   }
   return (
     <div className={classes.root}>
+      {!isDesktop && (
+        <Section classes={{ root: classes.section }}>
+            <Link
+              href={link}
+              as={link}
+              underline="none"
+              color="secondary"
+              variant="subtitle2"
+              className={classes.topLink}
+            >
+              <ArrowBackIosIcon />
+              {pageTitle}
+            </Link>
+          </Section>
+      )}
       <img src={imageUrl} alt="" className={classes.heroImage} />
       <Section classes={{ root: classes.section }}>
       <Grid container>
@@ -141,7 +157,9 @@ function ArticlePage({ slug, ...props }) {
 }
 
 ArticlePage.propTypes = {
+  link: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string.isRequired,
 };
 
 export default ArticlePage;

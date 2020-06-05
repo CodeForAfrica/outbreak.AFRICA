@@ -35,7 +35,7 @@ function Analysis({ outbreak, ...props }) {
   useEffect(() => {
     const postSlug = window.location.hash && window.location.hash.split("#")[1];
     setInsightArticleSlug(postSlug);
-  }, []);
+  }, [window.location]);
 
   const {
     page: { posts, join_us: joinUs, subscribe, title: pageTitle },
@@ -50,6 +50,8 @@ function Analysis({ outbreak, ...props }) {
       {insightArticleSlug ? (
         <ArticlePage
           slug={insightArticleSlug}
+          pageTitle={pageTitle}
+          link={"/insights/analysis"}
           classes={{ section: classes.section }}
         />
       ) : (

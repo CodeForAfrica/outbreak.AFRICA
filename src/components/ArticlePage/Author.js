@@ -60,17 +60,14 @@ const useStyles = makeStyles(
       [breakpoints.up("md")]: {
         paddingTop: (widths.values.md * 48) / widths.values.xl,
         paddingBottom: (widths.values.md * 46) / widths.values.xl,
-        //marginRight: (widths.values.md * 73) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
         paddingTop: (widths.values.lg * 48) / widths.values.xl,
         paddingBottom: (widths.values.lg * 46) / widths.values.xl,
-        //marginRight: (widths.values.lg * 73) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
         paddingTop: "48px",
         paddingBottom: "46px",
-        //marginRight: "73px",
       },
     },
     title: {

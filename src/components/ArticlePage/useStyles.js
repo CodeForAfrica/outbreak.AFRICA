@@ -161,6 +161,16 @@ const useStyles = makeStyles(
       display: "inline-flex",
       paddingRight: "1rem",
     },
+    topLink: {
+      lineHeight: 60 / 24,
+      "&:hover": {
+        color: palette.primary.main,
+      },
+      "& svg": {
+        fontSize: "0.8rem",
+        marginRight: "0.8rem",
+      },
+    },
     organization: {
       fontSize: 14,
       fontWeight: "bold",
