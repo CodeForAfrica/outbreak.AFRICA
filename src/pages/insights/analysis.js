@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from 'next/router';
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -30,12 +31,18 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
 
 function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const router = useRouter();
 
   const [insightArticleSlug, setInsightArticleSlug] = useState(null);
   useEffect(() => {
-    const postSlug = window.location.hash && window.location.hash.split("#")[1];
-    setInsightArticleSlug(postSlug);
-  }, [window.location]);
+    const handleHash = () =>  setInsightArticleSlug(window.location.hash.slice(1))
+
+    handleHash();
+    router.events.on('hashChangeComplete', handleHash);
+    return () => {
+      router.events.off('hashChangeComplete', handleHash);
+    };
+  }, [router]);
 
   const {
     page: { posts, join_us: joinUs, subscribe, title: pageTitle },

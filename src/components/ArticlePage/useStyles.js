@@ -193,7 +193,7 @@ const useStyles = makeStyles(
       },
     },
     socialIcons: {
-      paddingTop: "1rem",
+      paddingTop: "3.125rem",
       [breakpoints.up("md")]: {
         paddingTop: "1.5rem",
         display: "initial",
