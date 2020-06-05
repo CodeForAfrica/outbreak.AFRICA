@@ -49,6 +49,7 @@ const useStyles = makeStyles(
       },
     },
     description: {
+      paddingTop: "1rem",
     },
     root: {
       backgroundColor: "#EEEEEE",
