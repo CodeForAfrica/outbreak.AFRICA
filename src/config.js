@@ -202,7 +202,7 @@ Disallow:
     },
   },
   page: {},
-  name: "outbreak.AFRICA",
+  name: "Outbreak.africa",
   legalName: "Code for Africa",
   description:
     "Data driven analysis on development policies, programmes & outcomes in 10 African countries.",
