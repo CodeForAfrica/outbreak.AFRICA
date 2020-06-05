@@ -45,25 +45,25 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   featuredResearch: {
     marginTop: typography.pxToRem(71),
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(104),
+      marginTop: typography.pxToRem(52)
     },
   },
   featuredResearchers: {
     marginTop: typography.pxToRem(56),
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(133),
+      marginTop: typography.pxToRem(66)
     },
   },
   featuredStories: {
     marginTop: typography.pxToRem(58),
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(133),
+      marginTop: typography.pxToRem(66)
     },
   },
   mythBusting: {
     marginTop: typography.pxToRem(56.5),
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(142.5),
+      marginTop: typography.pxToRem(71.25)
     },
   },
   partners: {
