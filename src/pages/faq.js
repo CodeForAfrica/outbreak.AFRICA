@@ -30,7 +30,6 @@ function FAQ({ outbreak, ...props }) {
   const {
     page: {
       hero_carousel: heroCarousel,
-      faq,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -46,7 +45,8 @@ function FAQ({ outbreak, ...props }) {
         classes={{ section: classes.section }}
       />*/}
       <Content
-        faq={faq}
+        title="FAQ"
+        subtitle="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
         classes={{
           root: classes.content,
           section: classes.section,
