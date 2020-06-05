@@ -228,7 +228,22 @@ const useStyles = makeStyles(
     authorRoot: {
       paddingLeft: "41px",
       paddingRight: "41px",
-    }
+      marginBottom: 0,
+    },
+    dataSource: {
+      backgroundColor: "#EEEEEE",
+      boxShadow: "0px 4px 4px #00000029",
+      padding: "58px 40px 40px",
+      [breakpoints.up("md")]: {
+        marginTop: (widths.values.md * 50) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        marginBottom: (widths.values.lg * 50) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        marginBottom: "50px",
+      },
+    },
   })
 );
 

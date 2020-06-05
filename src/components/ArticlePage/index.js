@@ -160,6 +160,21 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
                 root: classes.authorRoot,
               }}
             />
+            {article.acf.source_attribution && (
+            <Grid item container className={classes.dataSource}>
+              <Grid item md={6}>
+                <Typography variant="subtitle2">
+                  {article.acf.source_attribution.title}
+                </Typography>
+                <RichTypography variant="caption" className={classes.description}>
+                  {article.acf.source_attribution.description}
+                </RichTypography>
+              </Grid>
+              <Grid item md={6}>
+                <img src={article.acf.source_attribution.background_image} alt={article.acf.title}/>
+              </Grid>
+            </Grid>
+            )}
           </Grid>
           <Grid item md={3} />
         </Grid>
