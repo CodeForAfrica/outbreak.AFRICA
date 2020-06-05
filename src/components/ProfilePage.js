@@ -166,7 +166,7 @@ function ProfilePage({
   sectionedCharts,
 }) {
   const router = useRouter();
-
+  const { countries } = outbreak;
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
       ? window.location.hash.slice(1)
@@ -455,6 +455,7 @@ function ProfilePage({
           profile={{
             geo: profiles.profile,
           }}
+          countries={countries}
           country={country}
           classes={{ section: classes.section }}
           geoId={geoId}
@@ -495,7 +496,9 @@ function ProfilePage({
 ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
   language: PropTypes.string.isRequired,
-  outbreak: PropTypes.shape({}).isRequired,
+  outbreak: PropTypes.shape({
+    countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
   sectionedCharts: PropTypes.arrayOf(
     PropTypes.shape({
       charts: PropTypes.arrayOf(

@@ -138,7 +138,7 @@ Navigation.propTypes = {
     page: PropTypes.shape({
       navigation: PropTypes.arrayOf(PropTypes.shape({})),
     }),
-    countries: PropTypes.arrayOf(PropTypes.shape({})),
+    countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   }).isRequired,
 };
 

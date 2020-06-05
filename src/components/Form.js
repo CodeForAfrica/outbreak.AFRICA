@@ -82,6 +82,7 @@ function Form(props) {
   return (
     <div className={classes.root}>
       <ExpansionPanel
+        elevation={0}
         square
         expanded={expanded}
         onChange={handleChange}

@@ -68,7 +68,7 @@ function Research({ outbreak, ...props }) {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       subscribe,
       featured_experts: { experts },
       section_title: title,
@@ -142,7 +142,7 @@ function Research({ outbreak, ...props }) {
     >
       {isDesktop && (
         <Hero
-          heroCarousel={heroCarousel}
+          heroContent={heroContent}
           isResearch
           classes={{ section: classes.section }}
         />

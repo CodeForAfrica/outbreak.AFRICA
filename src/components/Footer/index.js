@@ -70,6 +70,12 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
+  copyright: {
+    "& img": {
+      height: theme.typography.caption.fontSize,
+      width: theme.typography.caption.fontSize,
+    },
+  },
   legalLinks: {
     marginTop: "3.09375",
     [theme.breakpoints.up("md")]: {
@@ -82,8 +88,28 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  primary: {
+    paddingBottom: theme.typography.pxToRem(50),
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: theme.typography.pxToRem(50),
+    },
+  },
+  secondary: {
+    [theme.breakpoints.up("md")]: {
+      paddingBottom: theme.typography.pxToRem(50),
+      paddingTop: theme.typography.pxToRem(50),
+    },
+    [theme.breakpoints.up("xl")]: {
+      paddingBottom: theme.typography.pxToRem(80.5),
+      paddingTop: theme.typography.pxToRem(86),
+    },
+  },
   stayInTouchLinks: {
     marginTop: "2.215rem",
+    "& img": {
+      height: theme.typography.caption.fontSize,
+      width: theme.typography.caption.fontSize,
+    },
     [theme.breakpoints.up("md")]: {
       marginTop: 0,
     },
@@ -131,9 +157,12 @@ function MainFooter({
       organizationLogo={organizationLogo}
       classes={{
         initiative: classes.initiative,
+        copyright: classes.copyright,
         legalLinks: classes.legalLinks,
         legalLinksLink: classNames(classes.typography, classes.legalLinksLink),
         organizationLogo: classes.organizationLogo,
+        primary: classes.primary,
+        secondary: classes.secondary,
         stayInTouchLinks: classes.stayInTouchLinks,
         stayInTouchText: classNames(
           classes.typography,
