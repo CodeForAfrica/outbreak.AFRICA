@@ -52,10 +52,9 @@ function ArticlePage({ slug, ...props }) {
     <div className={classes.root}>
       <img src={imageUrl} alt="" className={classes.heroImage} />
       <Section classes={{ root: classes.section }}>
-        <Grid container>
-          <Grid item container md={3} className={classes.authorDiv}>
-            <Author author={author} />
-          </Grid>
+      <Grid container>
+        <Grid item container xs={12}>
+          <Grid item md={3} />
           <Grid item container xs={12} md={6}>
             <Typography variant="h3" className={classes.title}>
               {article.title.rendered}
@@ -117,16 +116,26 @@ function ArticlePage({ slug, ...props }) {
                 </A>
               </Grid>
             </Grid>
+          </Grid>
+          <Grid item md={3} />
+        </Grid>
+        <Grid item container xs={12}>
+          <Grid item md={3} className={classes.authorDiv}>
+              <Author author={author} />
+            </Grid>
+          <Grid item md={6} >
             <RichTypography variant="subtitle1" className={classes.highlight}>
-              {article.excerpt.rendered}
+                {article.excerpt.rendered}
             </RichTypography>
             <RichTypography variant="body2" className={classes.content}>
               {article.content.rendered}
             </RichTypography>
           </Grid>
-          <Grid item container md={3} />
+          <Grid item md={3} />
+        </Grid>
         </Grid>
       </Section>
+      
     </div>
   );
 }

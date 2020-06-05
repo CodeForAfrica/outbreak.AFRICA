@@ -10,7 +10,7 @@ import twitter from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(
-  ({ breakpoints, palette }) => ({
+  ({ breakpoints, palette, widths }) => ({
     icon: {
       objectFit: "contain",
       height: "1.375rem",
@@ -46,9 +46,33 @@ const useStyles = makeStyles(
     contentDiv: {
       [breakpoints.up("md")]: {
         paddingTop: "1.375rem",
+        paddingLeft: "40px",
+        paddingRight: "40px",
       },
     },
-    description: {},
+    description: {
+      paddingTop: "3rem",
+      paddingBottom: "2rem",
+    },
+    root: {
+      backgroundColor: "#EEEEEE",
+      boxShadow: "0px 4px 4px #00000029",
+      [breakpoints.up("md")]: {
+        paddingTop: (widths.values.md * 48) / widths.values.xl,
+        paddingBottom: (widths.values.md * 46) / widths.values.xl,
+        //marginRight: (widths.values.md * 73) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        paddingTop: (widths.values.lg * 48) / widths.values.xl,
+        paddingBottom: (widths.values.lg * 46) / widths.values.xl,
+        //marginRight: (widths.values.lg * 73) / widths.values.xl,
+      },
+      [breakpoints.up("lg")]: {
+        paddingTop: "48px",
+        paddingBottom: "46px",
+        //marginRight: "73px",
+      },
+    },
     title: {
       fontWeight: "bold",
     },
@@ -63,7 +87,7 @@ function Author({ author, ...props }) {
   }
   const { name, description, avatar_urls: avatar } = author;
   return (
-    <Grid container direction="row" alignItems="flex-start">
+    <Grid container direction="row" alignItems="flex-start" justify="center" className={classes.root}>
       <Grid item className={classes.imageDiv}>
         <img src={avatar["96"]} alt="" className={classes.image} />
       </Grid>
@@ -74,6 +98,9 @@ function Author({ author, ...props }) {
         <Typography variant="caption" className={classes.organisation}>
           Code For Africa
         </Typography>
+        <RichTypography variant="caption" className={classes.description}>
+          {description}
+        </RichTypography>
         <Grid item className={classes.socialIcons}>
           <A href="" color="textSecondary" className={classes.link}>
             <img src={websiteBlue} alt="Website" className={classes.icon} />
@@ -85,9 +112,6 @@ function Author({ author, ...props }) {
             <img src={twitter} alt="Twitter" className={classes.icon} />
           </A>
         </Grid>
-        <RichTypography variant="caption" className={classes.description}>
-          {description}
-        </RichTypography>
       </Grid>
     </Grid>
   );
