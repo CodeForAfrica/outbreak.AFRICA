@@ -12,9 +12,13 @@ import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import { getPostById, getPostBySlug } from "cms";
+import getChartElements from "utils/getChartElements";
 import Aside from "components/Content/Aside";
 import Author from "./Author";
 import Link from "components/Link";
+import HURUmapContainer from "components/FeaturedData/Container";
+import FlourishContainer from "components/FeaturedData/FlourishContainer";
+import Portal from "components/Portal";
 import Subscribe from "components/Subscribe";
 import useStyles from "./useStyles";
 
@@ -23,6 +27,10 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
   const [article, setArticle] = useState(null);
   const [author, setAuthor] = useState(null);
   const [media, setMedia] = useState(null);
+  const [chartElements, setChartElements] = useState({
+    charts: []
+  });
+
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
@@ -35,7 +43,6 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
       if(post) {
           const authorObject = await getPostById("users", post.author);
           setAuthor(authorObject);
-          console.log(authorObject);
 
           const { media_details: { sizes }} = await getPostById("media", post.featured_media);
           setMedia(sizes);
@@ -43,6 +50,10 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
     }
     fetchArticle();
   }, [slug]);
+
+  useEffect(() => {
+    setChartElements(getChartElements(document, 'charts'));
+  }, [slug, article]);
 
   if (!article) {
     return null;
@@ -152,6 +163,31 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
             <RichTypography variant="body2" className={classes.content}>
               {article.content.rendered}
             </RichTypography>
+            {chartElements.charts.map(
+              (chart) => {
+                // eslint-disable-next-line no-param-reassign
+                chart.element.innerHTML = '';
+                if (chart.type === 'hurumap') {
+                  return (
+                    <Portal key={chart.element.id} element={chart.element}>
+                      <HURUmapContainer
+                        featuredChart={chart}
+                        classes={{ chartRoot: classes.chartShadow }}
+                      />
+                    </Portal>
+                  );
+                } else {
+                  return(
+                  <Portal key={chart.element.id} element={chart.element}>
+                      <FlourishContainer
+                        featuredChart={chart}
+                        classes={{ chartRoot: classes.chartShadow }}
+                      />
+                    </Portal>
+                  )
+                }
+              }
+            )}
             <Author 
               author={author} 
               variant={isDesktop? "full" : "compact"}

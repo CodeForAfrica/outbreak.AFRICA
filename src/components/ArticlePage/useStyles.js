@@ -143,6 +143,10 @@ const useStyles = makeStyles(
         },
       },
     },
+    chartShadow: {
+      boxShadow: "0px 4px 4px #00000029",
+      border: "1px solid #D6D6D6",
+    },
     date: {
       fontSize: 12,
       display: "flex",
