@@ -89,7 +89,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
       partners,
       subscribe,
       rendered,
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
       join_us: joinUs,
@@ -99,7 +99,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
       <Hero
-        heroCarousel={heroCarousel}
+        heroContent={heroContent}
         classes={{ section: classes.section }}
       />
       <Ticker
@@ -143,7 +143,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
           root: classes.featuredResearch,
           section: classes.section,
         }}
-        heroCarousel
+        heroContent
       />
       <FeaturedResearchers
         featuredExperts={featuredExperts}
