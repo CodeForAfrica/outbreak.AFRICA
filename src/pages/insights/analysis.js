@@ -58,6 +58,7 @@ function Analysis({ outbreak, ...props }) {
         <ArticlePage
           slug={insightArticleSlug}
           pageTitle={pageTitle}
+          subscribe={subscribe}
           link={"/insights/analysis"}
           classes={{ section: classes.section }}
         />

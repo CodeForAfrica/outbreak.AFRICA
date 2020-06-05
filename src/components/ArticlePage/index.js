@@ -12,11 +12,13 @@ import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import { getPostById, getPostBySlug } from "cms";
+import Aside from "components/Content/Aside";
 import Author from "./Author";
 import Link from "components/Link";
+import Subscribe from "components/Subscribe";
 import useStyles from "./useStyles";
 
-function ArticlePage({ link, pageTitle, slug, ...props }) {
+function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
   const classes = useStyles(props);
   const [article, setArticle] = useState(null);
   const [author, setAuthor] = useState(null);
@@ -33,6 +35,7 @@ function ArticlePage({ link, pageTitle, slug, ...props }) {
       if(post) {
           const authorObject = await getPostById("users", post.author);
           setAuthor(authorObject);
+          console.log(authorObject);
 
           const { media_details: { sizes }} = await getPostById("media", post.featured_media);
           setMedia(sizes);
@@ -138,6 +141,9 @@ function ArticlePage({ link, pageTitle, slug, ...props }) {
         <Grid item container xs={12}>
           <Grid item md={3} className={classes.authorDiv}>
               <Author author={author} />
+              <Aside classes={{ root: classes.aside }}>
+                <Subscribe subscribe={subscribe} variant="compact" />
+              </Aside>
             </Grid>
           <Grid item md={6} >
             <RichTypography variant="subtitle1" className={classes.highlight}>
@@ -160,6 +166,7 @@ ArticlePage.propTypes = {
   link: PropTypes.string.isRequired,
   slug: PropTypes.string.isRequired,
   pageTitle: PropTypes.string.isRequired,
+  subscribe: PropTypes.shape({}).isRequired,
 };
 
 export default ArticlePage;

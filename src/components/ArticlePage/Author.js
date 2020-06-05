@@ -72,6 +72,13 @@ const useStyles = makeStyles(
     },
     title: {
       fontWeight: "bold",
+      textTransform: "uppercase",
+    },
+    organisation: {
+      fontWeight: "bold",
+    },
+    position: {
+      fontWeight: "bold",
     },
   })
 );
@@ -82,7 +89,7 @@ function Author({ author, ...props }) {
   if (!author) {
     return null;
   }
-  const { name, description, avatar_urls: avatar } = author;
+  const { name, description, avatar_urls: avatar, acf: {position} } = author;
   return (
     <Grid container direction="row" alignItems="flex-start" justify="center" className={classes.root}>
       <Grid item className={classes.imageDiv}>
@@ -91,6 +98,9 @@ function Author({ author, ...props }) {
       <Grid item xs={12} className={classes.contentDiv}>
         <Typography variant="subtitle2" className={classes.title}>
           {name}
+        </Typography>
+        <Typography variant="caption" className={classes.position}>
+          {position}
         </Typography>
         <Typography variant="caption" className={classes.organisation}>
           Code For Africa
