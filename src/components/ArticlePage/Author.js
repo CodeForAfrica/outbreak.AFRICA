@@ -42,6 +42,7 @@ const useStyles = makeStyles(
       overflow: "hidden",
     },
     contentDiv: {
+      padding: "35px 27px 0",
       [breakpoints.up("md")]: {
         paddingTop: "1.375rem",
         paddingLeft: "40px",
@@ -54,6 +55,9 @@ const useStyles = makeStyles(
     root: {
       backgroundColor: "#EEEEEE",
       boxShadow: "0px 4px 4px #00000029",
+      marginBottom: "50px",
+      paddingTop: "48px",
+      paddingBottom: "46px",
       [breakpoints.up("md")]: {
         paddingTop: (widths.values.md * 48) / widths.values.xl,
         paddingBottom: (widths.values.md * 46) / widths.values.xl,

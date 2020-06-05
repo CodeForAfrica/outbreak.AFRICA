@@ -228,7 +228,7 @@ const useStyles = makeStyles(
     authorRoot: {
       paddingLeft: "41px",
       paddingRight: "41px",
-      marginBottom: 0,
+      marginBottom: "0 !important",
     },
     dataSource: {
       backgroundColor: "#EEEEEE",
@@ -238,10 +238,10 @@ const useStyles = makeStyles(
         marginTop: (widths.values.md * 50) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
-        marginBottom: (widths.values.lg * 50) / widths.values.xl,
+        marginTop: (widths.values.lg * 50) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
-        marginBottom: "50px",
+        marginTop: "50px",
       },
     },
   })
