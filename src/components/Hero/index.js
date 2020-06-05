@@ -6,6 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
+import coronaImage from "assets/images/coronavirus.svg";
 import HeroCarousel from "./HeroCarousel";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
@@ -27,7 +28,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${props.heroContent.background_image})`,
+      backgroundImage: `url(${coronaImage})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "90% 2%",
       backgroundSize: "50%",
