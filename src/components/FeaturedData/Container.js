@@ -14,7 +14,7 @@ import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
 import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
-import logo from "assets/images/logo/logo-outbreak.svg";
+import logo from "assets/logo-outbreak-small.png";
 
 import useStyles from "./useStyles";
 
@@ -110,6 +110,9 @@ function Container({ action, children, featuredChart, ...props }) {
   return (
     <div>
       <ChartContainer
+        attribution={`Source: ${
+          (source && source.href) || ""
+        }<span class="site">${config.name}</span>`}
         logo={logo}
         key={`indicator-${type}-${id}`}
         title={chart.title}
@@ -120,6 +123,8 @@ function Container({ action, children, featuredChart, ...props }) {
         groupActions
         variant="data"
         classes={{
+          attribution: classes.attribution,
+          attributionSource: classes.attributionSource,
           chart: classes.chart,
           content: classes.content,
           title: classes.title,
