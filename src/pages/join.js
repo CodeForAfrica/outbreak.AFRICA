@@ -40,7 +40,7 @@ function About({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       subscribe,
       title: { rendered: pageTitle },
     },
@@ -54,7 +54,7 @@ function About({ errorCode, outbreak, slug, ...props }) {
       classes={{ section: classes.section }}
     >
       <Hero
-        heroCarousel={heroCarousel}
+        heroContent={heroContent}
         classes={{ section: classes.section }}
       />
       <Content

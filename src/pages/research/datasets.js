@@ -39,7 +39,7 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -81,7 +81,7 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
     >
       {isDesktop && (
         <Hero
-          heroCarousel={heroCarousel}
+          heroContent={heroContent}
           isResearch
           classes={{ section: classes.section }}
         />
