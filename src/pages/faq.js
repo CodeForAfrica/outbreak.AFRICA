@@ -30,6 +30,7 @@ function FAQ({ outbreak, ...props }) {
   const {
     page: {
       hero_carousel: heroCarousel,
+      subscribe,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -40,13 +41,12 @@ function FAQ({ outbreak, ...props }) {
       title={pageTitle || "FAQ"}
       classes={{ section: classes.section }}
     >
-      {/*<Hero
-        heroCarousel={heroCarousel}
+      <Hero
+        heroContent={heroContent}
         classes={{ section: classes.section }}
-      />*/}
+      />
       <Content
-        title="FAQ"
-        subtitle="Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum"
+        subscribe={subscribe}
         classes={{
           root: classes.content,
           section: classes.section,
