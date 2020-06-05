@@ -104,15 +104,21 @@ function Hero({ heroContent, isResearch, ...props }) {
     heroContent.component.length &&
     heroContent.component[0]['acf_fc_layout'] === "carousel";
 
+  const hasImage =
+    heroContent &&
+    heroContent.component &&
+    heroContent.component.length &&
+    heroContent.component[0]['acf_fc_layout'] === "image";
+
   const classes = useStyles({ ...props, hasCarousel });
 
   if (!heroContent) {
     return null;
   }
-  const { tagline, title, component: [ heroComponent ] } = heroContent;
+  const { tagline, title, component } = heroContent;
 
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
-    (hasCarousel && heroComponent) || {};
+    (hasCarousel && component && component[0]) || {};
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
