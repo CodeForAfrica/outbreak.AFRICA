@@ -114,7 +114,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
             <FeaturedCard
               title={posts[0].post_title}
               description={posts[0].post_excerpt}
-              image={posts[0].feature_imaged}
+              image={posts[0].featured_image}
               date={posts[0].post_date}
             />
           </Link>
@@ -131,7 +131,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
                 >
                   <PostItem
                     description={post.post_excerpt}
-                    imageUrl={post.feature_imaged}
+                    imageUrl={post.featured_image}
                     title={post.post_title}
                     md={12}
                     isStory
@@ -169,7 +169,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
                 >
                   <PostItem
                     description={post.post_excerpt}
-                    imageUrl={post.feature_imaged}
+                    imageUrl={post.featured_image}
                     title={post.post_title}
                     md={12}
                     isStory
