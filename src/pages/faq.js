@@ -29,7 +29,7 @@ function FAQ({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       subscribe,
       title: { rendered: pageTitle },
     },
