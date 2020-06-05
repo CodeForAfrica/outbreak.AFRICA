@@ -28,17 +28,14 @@ const useStyles = makeStyles(
         display: "initial",
         height: (widths.values.md * 839) / widths.values.xl,
         paddingRight: (widths.values.md * 73) / widths.values.xl,
-        marginBottom: (widths.values.md * 100) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
         height: (widths.values.lg * 839) / widths.values.xl,
         paddingRight: (widths.values.lg * 73) / widths.values.xl,
-        marginBottom: (widths.values.lg * 100) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
         height: "839px",
         paddingRight: "73px",
-        marginBottom: "100px",
       },
     },
     aside: {

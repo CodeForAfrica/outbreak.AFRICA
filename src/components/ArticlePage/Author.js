@@ -60,14 +60,17 @@ const useStyles = makeStyles(
       [breakpoints.up("md")]: {
         paddingTop: (widths.values.md * 48) / widths.values.xl,
         paddingBottom: (widths.values.md * 46) / widths.values.xl,
+        marginBottom: (widths.values.md * 100) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
         paddingTop: (widths.values.lg * 48) / widths.values.xl,
         paddingBottom: (widths.values.lg * 46) / widths.values.xl,
+        marginBottom: (widths.values.lg * 100) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
         paddingTop: "48px",
         paddingBottom: "46px",
+        marginBottom: "100px",
       },
     },
     title: {
@@ -76,9 +79,11 @@ const useStyles = makeStyles(
     },
     organisation: {
       fontWeight: "bold",
+      display: "flex",
     },
     position: {
       fontWeight: "bold",
+      display: "flex",
     },
   })
 );
