@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
+import { useRouter } from 'next/router';
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -28,6 +29,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 
 function FAQ({ outbreak, ...props }) {
   const classes = useStyles(props);
+  const router = useRouter();
   const {
     page: {
       hero_content: heroContent,
@@ -36,6 +38,17 @@ function FAQ({ outbreak, ...props }) {
       title: { rendered: pageTitle },
     },
   } = outbreak;
+
+  const [currentTopicSlug, setCurrentTopicSlug] = useState(null);
+  useEffect(() => {
+    const handleHash = () =>  setCurrentTopicSlug(window.location.hash.slice(1))
+
+    handleHash();
+    router.events.on('hashChangeComplete', handleHash);
+    return () => {
+      router.events.off('hashChangeComplete', handleHash);
+    };
+  }, [router]);
 
   const slugify = (word) => {
     if (!word) return '';
@@ -49,6 +62,7 @@ function FAQ({ outbreak, ...props }) {
       .replace(/^-+/, '')
       .replace(/-+$/, '');
   }
+
   const contents =
   (faqs &&
     faqs.map((faq) => ({
@@ -70,7 +84,7 @@ function FAQ({ outbreak, ...props }) {
       />
       <Content 
         asideContents={contents}
-        current={""}
+        current={currentTopicSlug}
         classes={{ section: classes.section }} 
         subscribe={subscribe}
       >
