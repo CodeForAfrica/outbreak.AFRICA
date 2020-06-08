@@ -1,9 +1,6 @@
 import React from "react";
 import {
-  Grid,
   Typography,
-  IconButton,
-  Divider,
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
@@ -11,8 +8,6 @@ import {
 
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
-import iconBox from "assets/icon-infobox.svg";
 import { RichTypography } from "@commons-ui/core";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
@@ -64,7 +59,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   expanded: {},
 }));
 
-export default function FaqContent({ faqs, ...props }) {
+export default function FaqContent({ questionsAnswers, slug, ...props }) {
   const [expanded, setExpanded] = React.useState("");
   const classes = useStyles(props);
   const handleChange = (panel) => (event, newExpanded) => {
@@ -74,59 +69,29 @@ export default function FaqContent({ faqs, ...props }) {
 
   return (
     <>
-      {faqs &&
-        faqs.map(({ slug, topic, questions_answers: questionsAnswers }) => (
-          <div className={classes.root} id={slug}>
-              <Grid
-                container
-                item
-                xs={12}
-                direction="row"
-                alignItems="baseline"
-                className={classes.organization}
-              >
-                <Grid item>
-                  <IconButton>
-                    <img src={iconBox} alt="example" />
-                  </IconButton>
-                </Grid>
-                <Grid item>
-                  <Typography variant="h3" className={classes.title}>
-                    {topic}
-                  </Typography>
-                </Grid>
-                <Grid item xs={4} md={8} className={classes.dividerGrid}>
-                  <Divider variant=" fullWidth" className={classes.divider} />
-                </Grid>
-              </Grid>
-
-              <div>
-                {questionsAnswers &&
-                  questionsAnswers.map(({ question, answer }, index) => (
-                    <ExpansionPanel
-                      square
-                      expanded={expanded === `${slug}-panel${index}`}
-                      onChange={handleChange(`${slug}-panel${index}`)}
-                      className={classes.expansionPanel}
-                    >
-                      <ExpansionPanelSummary
-                        expandIcon={<ExpandMoreIcon />}
-                        aria-controls={`${slug}-panel${index}-d-content`}
-                        id={`${slug}-panel${index}d-header`}
-                      >
-                        <Typography variant="h6" className={classes.subtitle}>
-                          {question}
-                        </Typography>
-                      </ExpansionPanelSummary>
-                      <ExpansionPanelDetails>
-                        <RichTypography variant="body2">
-                          {answer}
-                        </RichTypography>
-                      </ExpansionPanelDetails>
-                    </ExpansionPanel>
-                  ))}
-              </div>
-          </div>
+      {questionsAnswers &&
+        questionsAnswers.map(({ question, answer }, index) => (
+          <ExpansionPanel
+            square
+            expanded={expanded === `${slug}-panel${index}`}
+            onChange={handleChange(`${slug}-panel${index}`)}
+            className={classes.expansionPanel}
+          >
+            <ExpansionPanelSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls={`${slug}-panel${index}-d-content`}
+              id={`${slug}-panel${index}d-header`}
+            >
+              <Typography variant="h6" className={classes.subtitle}>
+                {question}
+              </Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <RichTypography variant="body2">
+                {answer}
+              </RichTypography>
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
         ))}
     </>
   );

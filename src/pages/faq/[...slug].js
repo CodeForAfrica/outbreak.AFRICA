@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-
+import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Page from "components/Page";
 import Hero from "components/Hero";
-
 import Content from "components/Content";
 import FaqContent from "components/FaqContent";
+import iconBox from "assets/icon-infobox.svg";
+
 import config from "config";
 import { getSitePage } from "cms";
 
@@ -38,7 +37,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
       maxWidth: "86.5625rem",
     },
   },
-  contentMainGrid: {
+  contentMain: {
     [breakpoints.up("md")]: {
       paddingLeft: (widths.values.md * 73) / widths.values.xl,
     },
@@ -51,30 +50,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function FAQ({ outbreak, ...props }) {
-  const classes = useStyles(props);
-  const router = useRouter();
-  const {
-    page: {
-      hero_content: heroContent,
-      faqs,
-      subscribe,
-      title: { rendered: pageTitle },
-    },
-  } = outbreak;
-
-  const [currentTopicSlug, setCurrentTopicSlug] = useState(null);
-  useEffect(() => {
-    const handleHash = () => setCurrentTopicSlug(window.location.hash.slice(1));
-
-    handleHash();
-    router.events.on("hashChangeComplete", handleHash);
-    return () => {
-      router.events.off("hashChangeComplete", handleHash);
-    };
-  }, [router]);
-
-  const slugify = (word) => {
+function slugify (word) {
     if (!word) return "";
     return word
       .toString()
@@ -87,17 +63,49 @@ function FAQ({ outbreak, ...props }) {
       .replace(/-+$/, "");
   };
 
+function FAQ({ errorCode, outbreak, slug, ...props }) {
+  const classes = useStyles(props);
+
+  const {
+    page: {
+      hero_content: heroContent,
+      faqs,
+      subscribe,
+      title: { rendered: pageTitle },
+    },
+  } = outbreak;
+
   const contents =
     (faqs &&
-      faqs.map((faq) => ({
-        ...faq,
-        href: `#${slugify(faq.topic)}`,
-        slug: `${slugify(faq.topic)}`,
-        name: faq.topic,
+      faqs.map(({ topic, questions_answers: questionsAnswers}) => ({
+        as: `/faq/${slugify(topic)}`,
+        href: "/faq/[...slug]",
+        slug: `${slugify(topic)}`,
+        name: topic,
+        icon: iconBox,
+        title: {
+          rendered: topic
+        },
+        content: {
+          rendered: <FaqContent questionsAnswers={questionsAnswers} slug={`${slugify(topic)}`} />
+        }
       }))) ||
     [];
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+          if (slug) {
+            const sub = document.getElementById(slug);
+            if (sub) {
+              sub.scrollIntoView({ behavior: "smooth" });
+            }
+          }
+        }, 200);
+        return () => clearTimeout(timer);
+      }, [slug]);
   return (
     <Page
+    errorCode={errorCode}
       outbreak={outbreak}
       title={pageTitle || "FAQ"}
       classes={{ section: classes.section }}
@@ -110,29 +118,41 @@ function FAQ({ outbreak, ...props }) {
         }}
       />
       <Content
-        asideContents={contents}
-        current={currentTopicSlug}
+        contents={contents}
+        current={slug}
         classes={{
-          mainGrid: classes.contentMainGrid,
+          main: classes.contentMain,
           section: classes.section,
         }}
         main={9}
         subscribe={subscribe}
-      >
-        <FaqContent faqs={contents} />
-      </Content>
+      />
     </Page>
   );
 }
 
 export async function getServerSideProps({ query }) {
-  const { lang: pageLanguage } = query;
+  const { lang: pageLanguage, slug: pageSlug } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("faq", lang);
 
+  const [firstSlug] = pageSlug || [];
+  const slug = (firstSlug && firstSlug.toLowerCase()) || null;
+  let errorCode = null;
+  if (slug) {
+    const index = outbreak.page.faqs
+      ? outbreak.page.faqs.findIndex(({topic}) => slugify(topic) === slug)
+      : -1;
+    if (index === -1) {
+      errorCode = 404;
+    }
+  }
+
   return {
     props: {
+    errorCode,
       outbreak,
+      slug
     },
   };
 }

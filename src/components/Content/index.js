@@ -50,12 +50,11 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   joinUs: {},
   subscribe: {},
   support: {},
-  mainGrid: {},
+  main: {},
 }));
 
 function Content({
   aside,
-  asideContents,
   children,
   classes: classesProp,
   contents,
@@ -73,7 +72,7 @@ function Content({
         <div className={classes.asideMobile}>
           <Section classes={{ root: classes.section }}>
             <Aside
-              contents={asideContents || contents}
+              contents={contents}
               current={current}
               classes={{ root: classes.aside }}
             >
@@ -105,7 +104,7 @@ function Content({
             className={classes.asideContainer}
           >
             <Aside
-              contents={asideContents || contents}
+              contents={contents}
               current={current}
               classes={{ root: classes.aside }}
             >
@@ -123,7 +122,7 @@ function Content({
               />
             </Aside>
             <Aside
-              contents={asideContents || contents}
+              contents={contents}
               current={current}
               classes={{
                 root: classNames(classes.aside, classes.asideHidden),
@@ -144,10 +143,10 @@ function Content({
             </Aside>
           </Grid>
           {(contents || children) && (
-            <Grid item xs={12} md={main} className={classes.mainGrid}>
+            <Grid item xs={12} md={main}>
               {contents &&
                 contents.map((content) => (
-                  <Main key={content.slug} content={content} />
+                  <Main key={content.slug} content={content} classes={{ root: classes.main }} />
                 ))}
               {children}
             </Grid>
