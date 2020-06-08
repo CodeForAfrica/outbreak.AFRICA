@@ -38,6 +38,17 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
       maxWidth: "86.5625rem",
     },
   },
+  contentMainGrid: {
+    [breakpoints.up("md")]: {
+      paddingLeft: (widths.values.md * 73) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      paddingLeft: (widths.values.lg * 73) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      paddingLeft: "4.5625rem",
+    },
+  },
 }));
 
 function FAQ({ outbreak, ...props }) {
@@ -98,7 +109,7 @@ function FAQ({ outbreak, ...props }) {
       <Content 
         asideContents={contents}
         current={currentTopicSlug}
-        classes={{ section: classes.section }} 
+        classes={{ mainGrid: classes.contentMainGrid, section: classes.section }} 
         main={9}
         subscribe={subscribe}
       >
