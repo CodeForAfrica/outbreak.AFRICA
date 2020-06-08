@@ -8,11 +8,12 @@ import {
   ExpansionPanelSummary,
   ExpansionPanelDetails
 } from '@material-ui/core';
+
 import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import iconBox from 'assets/icon-infobox.svg';
-import config from '../../../config';
+import { RichTypography } from '@commons-ui/core';
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
@@ -68,9 +69,9 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   expanded: {}
 }));
 
-export default function FaqContent() {
-  const [expanded, setExpanded] = React.useState('panel1');
-  const classes = useStyles();
+export default function FaqContent({ faqs, ...props}) {
+  const [expanded, setExpanded] = React.useState("");
+  const classes = useStyles(props);
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
     event.stopPropagation();
@@ -78,9 +79,9 @@ export default function FaqContent() {
 
   return (
     <>
-      {config.faqTopics.map(topic =>
-        <div className={classes.root} id={topic.slug}>
-          <a id={topic.slug} className={classes.link}>
+      {faqs && faqs.map(({ slug, topic, questions_answers: questionsAnswers}) =>
+        <div className={classes.root} id={slug}>
+          <a id={slug} className={classes.link}>
             <Grid
               container
               item xs={12}
@@ -97,7 +98,7 @@ export default function FaqContent() {
                 <Typography
                   variant="h3"
                   className={classes.title}>
-                  {topic.title}
+                  {topic}
                 </Typography>
               </Grid>
               <Grid
@@ -112,28 +113,28 @@ export default function FaqContent() {
             </Grid>
 
             <div>
-              {topic.topics.map(content =>
+              {questionsAnswers && questionsAnswers.map(({ question, answer}, index) =>
                 <ExpansionPanel
                   square
-                  expanded={expanded === content.panel}
-                  onChange={handleChange(content.panel)}
+                  expanded={expanded === `${slug}-panel${index}`}
+                  onChange={handleChange(`${slug}-panel${index}`)}
                   className={classes.expansionPanel}
                 >
                   <ExpansionPanelSummary
                     expandIcon={<ExpandMoreIcon />}
-                    aria-controls={`${content.panel}d-content`}
-                    id={`${content.panel}d-header`}
+                    aria-controls={`${slug}-panel${index}-d-content`}
+                    id={`${slug}-panel${index}d-header`}
                   >
                     <Typography
                       variant="h6"
                       className={classes.subtitle}>
-                      {content.subtitle}
+                      {question}
                     </Typography>
                   </ExpansionPanelSummary>
                   <ExpansionPanelDetails>
-                    <Typography variant="body2">
-                      {content.content}
-                    </Typography>
+                    <RichTypography variant="body2">
+                      {answer}
+                    </RichTypography>
                   </ExpansionPanelDetails>
                 </ExpansionPanel>
               )}

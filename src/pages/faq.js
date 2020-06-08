@@ -5,10 +5,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Page from "components/Page";
 import Hero from "components/Hero";
 
-import Content from 'components/Content';
-import FaqSection from 'components/Faq'
+import Content from "components/Content";
+import FaqContent from "components/FaqContent";
 import config from "config";
 import { getSitePage } from "cms";
+
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},
   section: {
@@ -30,11 +31,33 @@ function FAQ({ outbreak, ...props }) {
   const {
     page: {
       hero_content: heroContent,
+      faqs,
       subscribe,
       title: { rendered: pageTitle },
     },
   } = outbreak;
 
+  const slugify = (word) => {
+    if (!word) return '';
+    return word
+      .toString()
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/-+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  }
+  const contents =
+  (faqs &&
+    faqs.map((faq) => ({
+      ...faq,
+      href: `#${slugify(faq.topic)}`,
+      slug: `${slugify(faq.topic)}`,
+      name: faq.topic,
+    }))) ||
+  [];
   return (
     <Page
       outbreak={outbreak}
@@ -45,14 +68,14 @@ function FAQ({ outbreak, ...props }) {
         heroContent={heroContent}
         classes={{ section: classes.section }}
       />
-      <Content
+      <Content 
+        asideContents={contents}
+        current={""}
+        classes={{ section: classes.section }} 
         subscribe={subscribe}
-        classes={{
-          root: classes.content,
-          section: classes.section,
-        }}
-      />
-      <FaqSection />
+      >
+        <FaqContent faqs={contents} />
+      </Content>
     </Page>
   );
 }

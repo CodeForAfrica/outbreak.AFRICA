@@ -54,12 +54,14 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 
 function Content({
   aside,
+  asideContents,
   children,
   classes: classesProp,
   contents,
   current,
   main,
   variant,
+  mainChildren,
   ...props
 }) {
   const classes = useStyles({ ...props, classes: classesProp });
@@ -71,7 +73,7 @@ function Content({
         <div className={classes.asideMobile}>
           <Section classes={{ root: classes.section }}>
             <Aside
-              contents={contents}
+              contents={asideContents || contents}
               current={current}
               classes={{ root: classes.aside }}
             >
@@ -103,7 +105,7 @@ function Content({
             className={classes.asideContainer}
           >
             <Aside
-              contents={contents}
+              contents={asideContents || contents}
               current={current}
               classes={{ root: classes.aside }}
             >
@@ -121,7 +123,7 @@ function Content({
               />
             </Aside>
             <Aside
-              contents={contents}
+              contents={asideContents || contents}
               current={current}
               classes={{
                 root: classNames(classes.aside, classes.asideHidden),
