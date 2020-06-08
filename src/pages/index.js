@@ -69,7 +69,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   partners: {
     marginTop: typography.pxToRem(79.5),
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(155.5),
+      marginTop: 0,
     },
   },
   ticker: {
