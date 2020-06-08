@@ -79,14 +79,13 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="left" ref={ref} {...props} />;
 });
 
-function MobileMenu({ countries }) {
-  const classes = useStyles();
+function MobileNavigation({ country, countries, navigation, ...props }) {
+  const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
-
+  const [dataNavigation, ...otherNavigations] = navigation || [];
   const handleClickOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
@@ -169,27 +168,29 @@ function MobileMenu({ countries }) {
           </DialogActions>
 
           <DialogContent className={classes.dialogContent}>
-            <NavigationList
-              title="DATA"
-              items={countries}
-              toAs={({ isoCode }) => `/country-${isoCode}`}
-              toHref={() => "/[geoIdOrSlug]"}
-              toName={({ shortName }) => shortName}
-            />
-            <NavigationList
-              title="Research"
-              items={[{ name: "Experts", href: "/research" }]}
-              toAs={() => undefined}
-              toHref={({ href }) => href}
-              toName={({ name }) => name}
-            />
-            <NavigationList
-              title="INSIGHTS"
-              items={[]}
-              toAs={() => undefined}
-              toHref={() => "#"}
-              toName={({ name }) => name}
-            />
+            {dataNavigation && (
+              <NavigationList
+                selected={({ isoCode }) =>
+                  country && country.isoCode === isoCode
+                }
+                title={dataNavigation.title}
+                items={countries}
+                toAs={({ isoCode }) => `/data/country-${isoCode}`}
+                toHref={() => "/data/[geoId]"}
+                toName={({ shortName }) => shortName}
+              />
+            )}
+            {otherNavigations &&
+              (console.log("BOOM", { otherNavigations }) ||
+                otherNavigations.map((otherNavigation) => (
+                  <NavigationList
+                    title={otherNavigation.title}
+                    items={otherNavigation.subnav}
+                    toAs={() => undefined}
+                    toHref={({ url }) => url}
+                    toName={({ title }) => title}
+                  />
+                )))}
           </DialogContent>
         </Dialog>
       </Grid>
@@ -197,8 +198,13 @@ function MobileMenu({ countries }) {
   );
 }
 
-MobileMenu.propTypes = {
+MobileNavigation.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  country: PropTypes.shape({}),
+  navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
-export default MobileMenu;
+MobileNavigation.defaultProps = {
+  country: undefined,
+};
+export default MobileNavigation;

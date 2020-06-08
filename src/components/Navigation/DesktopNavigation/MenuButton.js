@@ -1,51 +1,42 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 import PropTypes from "prop-types";
 
-import {
-  Box,
-  Button,
-  ClickAwayListener,
-  Collapse,
-  IconButton,
-  Paper,
-  Popper,
-} from "@material-ui/core";
+import { Button, IconButton, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
 
 import { RichTypography } from "@commons-ui/core";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: "flex",
-  },
-  paper: {
-    marginRight: theme.spacing(2),
-  },
+import NavigationButton from "./NavigationButton";
+
+const useStyles = makeStyles(({ breakpoints }) => ({
+  root: {},
+  paper: {},
   popper: {
     marginTop: "0.5rem",
-    zIndex: 9999,
+    width: "auto",
+    [breakpoints.up("xl")]: {
+      marginTop: "0.5rem",
+    },
   },
   subtitle: {
-    marginBottom: theme.spacing(1),
+    marginBottom: "0.5rem",
   },
-  title: {
-    fontWeight: 700,
-  },
+  title: {},
 }));
 
 function MenuButton({
   children,
   open: openProp,
-  popperProps,
   size,
   title,
+  popperProps,
   ...props
 }) {
   const classes = useStyles(props);
-  const buttonRef = React.useRef();
-  const [open, setOpen] = React.useState(openProp);
+  const buttonRef = useRef();
+  const [open, setOpen] = useState(openProp);
   const handleToggleOpen = () => {
     setOpen((prevOpen) => !prevOpen);
   };
@@ -74,35 +65,25 @@ function MenuButton({
   );
 
   return (
-    <>
-      {button}
-      <Popper
-        open={open}
-        anchorEl={buttonRef.current}
-        role={undefined}
-        transition
-        disablePortal
-        {...popperProps}
-        className={classes.popper}
-      >
-        {({ TransitionProps }) => (
-          <ClickAwayListener onClickAway={handleClose}>
-            <Collapse {...TransitionProps}>
-              {/* We need component that can forwardRef here */}
-              <Box>
-                <RichTypography
-                  variant="subtitle2"
-                  className={classes.subtitle}
-                >
-                  Select country
-                </RichTypography>
-                <Paper>{children}</Paper>
-              </Box>
-            </Collapse>
-          </ClickAwayListener>
-        )}
-      </Popper>
-    </>
+    <NavigationButton
+      anchorEl={buttonRef.current}
+      button={button}
+      onClose={handleClose}
+      open={open}
+      title={title}
+      popperProps={popperProps}
+      classes={{
+        root: classes.root,
+        paper: classes.paper,
+        popper: classes.popper,
+        title: classes.title,
+      }}
+    >
+      <RichTypography variant="subtitle2" className={classes.subtitle}>
+        Select country
+      </RichTypography>
+      <Paper>{children}</Paper>
+    </NavigationButton>
   );
 }
 

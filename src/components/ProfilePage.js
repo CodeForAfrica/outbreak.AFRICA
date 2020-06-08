@@ -14,7 +14,7 @@ import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 import { Section } from "@commons-ui/core";
 
 import config from "config";
-import logo from "assets/images/logo-white-all.png";
+import logo from "assets/logo-outbreak-small.png";
 import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
@@ -29,73 +29,94 @@ import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
 
-const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
-  root: {},
-  section: {
-    margin: "0 1.25rem 0 1.375rem",
-    width: "100%",
-    [breakpoints.up("lg")]: {
-      margin: "0 auto",
-      width: "78.5rem",
+const useStyles = makeStyles(
+  ({ breakpoints, palette, typography, widths }) => ({
+    root: {},
+    section: {
+      margin: "0 1.25rem 0 1.375rem",
+      width: "auto",
+      [breakpoints.up("md")]: {
+        margin: "0 auto",
+        width: widths.values.md,
+      },
+      [breakpoints.up("lg")]: {
+        width: widths.values.lg,
+      },
+      [breakpoints.up("xl")]: {
+        margin: "0 auto",
+        width: widths.values.xl,
+      },
     },
-    [breakpoints.up("xl")]: {
-      margin: "0 auto",
-      width: "102.5rem",
+    attribution: {
+      backgroundColor: palette.background.default,
+      borderBottom: `4px solid ${palette.primary.main}`,
     },
-  },
-  container: {
-    marginBottom: "0.625rem",
-    paddingRight: typography.pxToRem(16),
-    "&:last-of-type": {
-      paddingRight: 0,
+    attributionSource: {
+      "& div": {
+        color: "#9D9C9C",
+      },
+      "& .site": {
+        color: palette.secondary.main,
+        display: "block",
+      },
     },
-  },
-  containerRoot: ({ loading }) => ({
-    width: "100%",
-    minHeight: loading && "300px",
-    margin: 0,
-  }),
-  chartRoot: {
-    boxShadow: "0px 4px 4px #00000029",
-    border: "1px solid #D6D6D6",
-    marginBottom: "1.3125rem",
-    marginTop: "2.5rem",
-    padding: "42px 38px 33px 38px",
-    position: "relative",
-    width: "100%",
-  },
-  chart: {
-    margin: "0.5rem !important",
-  },
-  content: {
-    paddingBottom: 0,
-  },
-  actionIcon: {
-    width: "2rem",
-    height: "auto",
-  },
-  title: {
-    fontSize: typography.subtitle2.fontSize,
-    fontWeight: typography.subtitle2.fontWeight,
-  },
-  sourceDiv: {
-    position: "absolute",
-    bottom: 0,
-    paddingLeft: "38px", // similar to chartRoot
-  },
-  source: {
-    color: "#9D9C9C",
-    marginLeft: "0 !important",
-    textDecoration: "none",
-  },
-  embedRoot: {
-    zIndex: 1000,
-  },
-  embedSubtitle: {
-    color: palette.text.primary,
-    fontSize: typography.subtitle2.fontSize,
-  },
-}));
+    chartShadow: {
+      boxShadow: "0px 4px 4px #00000029",
+      border: "1px solid #D6D6D6",
+      height: "100%",
+    },
+    container: {
+      marginBottom: "1.675rem",
+      marginTop: "2.5rem",
+      position: "relative",
+      paddingRight: typography.pxToRem(16),
+      "&:last-of-type": {
+        paddingRight: 0,
+      },
+    },
+    containerRoot: ({ loading }) => ({
+      width: "100%",
+      minHeight: loading && "300px",
+      margin: 0,
+    }),
+    chartRoot: {
+      padding: "42px 38px 33px 38px",
+      position: "relative",
+      width: "100%",
+    },
+    chart: {
+      margin: "0rem !important",
+    },
+    content: {
+      paddingBottom: 0,
+    },
+    actionIcon: {
+      width: "2rem",
+      height: "auto",
+    },
+    title: {
+      fontSize: typography.subtitle2.fontSize,
+      fontWeight: typography.subtitle2.fontWeight,
+    },
+    sourceDiv: {
+      position: "absolute",
+      bottom: 0,
+      paddingLeft: "38px", // similar to chartRoot
+    },
+    source: {
+      color: "#9D9C9C",
+      marginLeft: "0 !important",
+      textDecoration: "none",
+    },
+    embedRoot: {
+      zIndex: 1000,
+    },
+    embedSubtitle: {
+      color: palette.text.primary,
+      fontSize: typography.subtitle2.fontSize,
+    },
+  })
+);
 
 function Chart({ chartData, definition, profiles, classes }) {
   return chartData.isLoading ? (
@@ -158,7 +179,7 @@ function ProfilePage({
   sectionedCharts,
 }) {
   const router = useRouter();
-
+  const { countries } = outbreak;
   const [activeTab, setActiveTab] = useState(
     process.browser && window.location.hash.slice(1)
       ? window.location.hash.slice(1)
@@ -270,7 +291,14 @@ function ProfilePage({
       profileTabs.slice(1).map(
         (tab) =>
           (activeTab === "all" || activeTab === tab.slug) && (
-            <Grid item container id={tab.slug} key={tab.slug}>
+            <Grid
+              item
+              container
+              id={tab.slug}
+              key={tab.slug}
+              justify="flex-start"
+              alignItems="stretch"
+            >
               {(activeTab === "all" || activeTab === tab.slug) && (
                 <ProfileSectionTitle loading={chartData.isLoading} tab={tab} />
               )}
@@ -308,87 +336,94 @@ function ProfilePage({
                     }
                     className={classes.container}
                   >
-                    <ChartContainer
-                      key={chart.id}
-                      variant="data"
-                      classes={{
-                        chart: classes.chart,
-                        content: classes.content,
-                        title: classes.title,
-                        root: classes.chartRoot,
-                        containerRoot: classes.containerRoot,
-                        source: classes.sourceDiv,
-                        sourceLink: classes.source,
-                        groupActionsButton: classes.actionIcon,
-                        embedSubtitle: classes.embedSubtitle,
-                        embedRoot: classes.embedRoot,
-                      }}
-                      embed={{
-                        title: "Embed code for this chart",
-                        subtitle:
-                          "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
-                        code: `<iframe
+                    <div className={classes.chartShadow}>
+                      <ChartContainer
+                        key={chart.id}
+                        attribution={`Source: ${
+                          (source && source.href) || ""
+                        }<span class="site">${config.name}</span>`}
+                        variant="data"
+                        classes={{
+                          attribution: classes.attribution,
+                          attributionSource: classes.attributionSource,
+                          chart: classes.chart,
+                          content: classes.content,
+                          title: classes.title,
+                          root: classes.chartRoot,
+                          containerRoot: classes.containerRoot,
+                          source: classes.sourceDiv,
+                          sourceLink: classes.source,
+                          groupActionsButton: classes.actionIcon,
+                          embedSubtitle: classes.embedSubtitle,
+                          embedRoot: classes.embedRoot,
+                        }}
+                        embed={{
+                          title: "Embed code for this chart",
+                          subtitle:
+                            "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
+                          code: `<iframe
                         id="${chart.id}"
                         src="${config.url}/embed/${embedPath}"
                         title="${chart.title}"
                         allowFullScreen
                       />`,
-                      }}
-                      loading={chartData.isLoading}
-                      logo={logo}
-                      sourceLink={source && source.href}
-                      sourceTitle={source && source.title}
-                      title={chart.title}
-                      groupActions
-                      groupIcons={{
-                        facebook: {
-                          icon: <img src={FacebookIcon} alt="Facebook" />,
-                        },
-                        twitter: {
-                          icon: <img src={TwitterIcon} alt="Twitter" />,
-                        },
-                        linkedin: {
-                          icon: <img src={LinkedInIcon} alt="LinkedIn" />,
-                        },
-                        instagram: {
-                          icon: <img src={InstagramIcon} alt="Instagram" />,
-                        },
-                        embed: {
-                          icon: <img src={EmbedIcon} alt="Embed" />,
-                        },
-                        link: {
-                          icon: <img src={LinkIcon} alt="Link" />,
-                        },
-                        download: {
-                          icon: <img src={DownloadIcon} alt="Download" />,
-                        },
-                      }}
-                    >
-                      {chart.type === "hurumap" ? (
-                        <Chart
-                          key={chart.id}
-                          chartData={chartData}
-                          definition={{
-                            ...chart.visual,
-                            typeProps: {
-                              ...chart.visual.typeProps,
-                              ...overrideTypePropsFor(chart.visual.type),
-                            },
-                          }}
-                          profiles={profiles}
-                          classes={classes}
-                        />
-                      ) : (
-                        <iframe
-                          key={chart.id}
-                          width="100%"
-                          scrolling="no"
-                          frameBorder="0"
-                          title={chart.title}
-                          src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                        />
-                      )}
-                    </ChartContainer>
+                        }}
+                        loading={chartData.isLoading}
+                        logo={logo}
+                        sourceLink={source && source.href}
+                        sourceTitle={source && source.title}
+                        title={chart.title}
+                        groupActions
+                        groupIcons={{
+                          facebook: {
+                            icon: <img src={FacebookIcon} alt="Facebook" />,
+                          },
+                          twitter: {
+                            icon: <img src={TwitterIcon} alt="Twitter" />,
+                          },
+                          linkedin: {
+                            icon: <img src={LinkedInIcon} alt="LinkedIn" />,
+                          },
+                          instagram: {
+                            icon: <img src={InstagramIcon} alt="Instagram" />,
+                          },
+                          embed: {
+                            icon: <img src={EmbedIcon} alt="Embed" />,
+                          },
+                          link: {
+                            icon: <img src={LinkIcon} alt="Link" />,
+                          },
+                          download: {
+                            icon: <img src={DownloadIcon} alt="Download" />,
+                          },
+                        }}
+                      >
+                        {chart.type === "hurumap" ? (
+                          <Chart
+                            key={chart.id}
+                            chartData={chartData}
+                            definition={{
+                              ...chart.visual,
+                              typeProps: {
+                                ...chart.visual.typeProps,
+                                ...overrideTypePropsFor(chart.visual.type),
+                              },
+                            }}
+                            profiles={profiles}
+                            classes={classes}
+                          />
+                        ) : (
+                          <iframe
+                            key={chart.id}
+                            width="100%"
+                            scrolling="no"
+                            frameBorder="0"
+                            title={chart.title}
+                            src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
+                          />
+                        )}
+                      </ChartContainer>
+                    </div>
                   </Grid>
                 );
               })}
@@ -415,10 +450,12 @@ function ProfilePage({
   let title;
   if (!profiles.loading && country) {
     const { name, geoLevel } = profiles.profile || {};
-    if (geoLevel !== "country") {
-      title = `${name} | ${country.shortName}`;
-    } else {
-      title = name;
+    if (name) {
+      if (geoLevel !== "country") {
+        title = `${name} | ${country.shortName}`;
+      } else {
+        title = name;
+      }
     }
   }
   const theme = useTheme();
@@ -436,6 +473,7 @@ function ProfilePage({
           profile={{
             geo: profiles.profile,
           }}
+          countries={countries}
           country={country}
           classes={{ section: classes.section }}
           geoId={geoId}
@@ -476,7 +514,9 @@ function ProfilePage({
 ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
   language: PropTypes.string.isRequired,
-  outbreak: PropTypes.shape({}).isRequired,
+  outbreak: PropTypes.shape({
+    countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  }).isRequired,
   sectionedCharts: PropTypes.arrayOf(
     PropTypes.shape({
       charts: PropTypes.arrayOf(

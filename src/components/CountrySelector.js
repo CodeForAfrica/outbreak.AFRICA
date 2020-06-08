@@ -52,6 +52,7 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 
 export default function CountrySelector({
   context,
+  countries,
   country,
   geoName,
   ...props
@@ -62,12 +63,11 @@ export default function CountrySelector({
     <div className={classes.root}>
       <MenuButton
         color="secondary"
-        // size="large"
         variant="outlined"
         popperProps={{ placement: "right-start" }}
         classes={{ root: classes.menuButton, popper: classes.menuButtonPopper }}
       >
-        <DataMenuList country={country} dense />
+        <DataMenuList countries={countries} country={country} dense />
       </MenuButton>
       <Typography variant="h2" className={classes.countryName}>
         {geoName || country.shortName}
@@ -79,6 +79,7 @@ export default function CountrySelector({
 CountrySelector.propTypes = {
   context: PropTypes.string.isRequired,
   geoName: PropTypes.string,
+  countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   country: PropTypes.shape({
     isoCode: PropTypes.string,
     slug: PropTypes.string,

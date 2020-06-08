@@ -1,4 +1,3 @@
-import fetch from "isomorphic-unfetch";
 import config from "config";
 
 export async function getSiteOptions(lang) {
@@ -26,6 +25,13 @@ export async function getPostById(type, id, lang) {
   return res.ok ? res.json() : null;
 }
 
+export async function getPostByParentId(type, parent, lang) {
+  const res = await fetch(
+    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}?parent=${parent}&lang=${lang}`
+  );
+  return res.ok ? res.json() : null;
+}
+
 export async function getSitePage(slug, lang) {
   const pages = await getPostBySlug("pages", slug, lang);
   const page = pages.length ? pages[0] : {};
@@ -40,6 +46,14 @@ export async function getSitePage(slug, lang) {
   config.language = lang;
 
   return config;
+}
+
+export async function getSitePageWithChildren(slug, lang) {
+  const site = await getSitePage(slug, lang);
+  if (site.page && site.page.id) {
+    site.page.children = await getPostByParentId("pages", config.page.id, lang);
+  }
+  return site;
 }
 
 export async function getSectionedCharts(lang) {

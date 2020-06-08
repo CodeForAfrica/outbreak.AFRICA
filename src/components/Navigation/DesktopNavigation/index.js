@@ -10,12 +10,12 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
 import Link from "components/Link";
-import LinkButton from "components/Link/Button";
 import Logo from "components/Navigation/Logo";
-import Search from "components/Navigation/Search";
+import Search from "components/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
+import NavigationButton from "./NavigationButton";
 import PageNavigation from "./PageNavigation";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
@@ -62,9 +62,12 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       height: typography.pxToRem(150),
     },
   },
+  pageNavigation: {
+    background: "#fff",
+  },
 }));
 
-function DesktopNavigation({ country, navigation, ...props }) {
+function DesktopNavigation({ country, countries, navigation, ...props }) {
   const classes = useStyles(props);
   const router = useRouter();
   const [dataNavigation, ...otherNavigations] = navigation || [];
@@ -100,18 +103,27 @@ function DesktopNavigation({ country, navigation, ...props }) {
                   variant="outlined"
                   className={classes.button}
                 >
-                  <DataMenuList country={country} dense />
+                  <DataMenuList countries={countries} country={country} dense />
                 </MenuButton>
               </Grid>
               {otherNavigations.map((otherNavigation) => (
-                <Grid item>
-                  <LinkButton
-                    href={otherNavigation.url}
+                <Grid item key={otherNavigation.title}>
+                  <NavigationButton
+                    color="secondary"
+                    title={otherNavigation.title}
                     size="large"
+                    active={otherNavigation.url === currentPageUrl}
                     className={classes.button}
                   >
-                    {otherNavigation.title}
-                  </LinkButton>
+                    <PageNavigation
+                      pathname={otherNavigation.url}
+                      navigation={otherNavigation.subnav}
+                      classes={{
+                        root: classes.pageNavigation,
+                        section: classes.section,
+                      }}
+                    />
+                  </NavigationButton>
                 </Grid>
               ))}
             </Grid>
@@ -164,8 +176,13 @@ function DesktopNavigation({ country, navigation, ...props }) {
 }
 
 DesktopNavigation.propTypes = {
-  country: PropTypes.shape({}).isRequired,
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
+  country: PropTypes.shape({}),
   navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+};
+
+DesktopNavigation.defaultProps = {
+  country: undefined,
 };
 
 export default DesktopNavigation;

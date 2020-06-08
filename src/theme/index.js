@@ -120,6 +120,9 @@ const theme = createTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
+        ".flourish-embed": {
+          width: "100%",
+        },
         ".wp-block-columns": {
           display: "flex",
           width: "calc(100% + 16px)",
@@ -133,8 +136,8 @@ const theme = createTheme({
   },
   widths: {
     values: {
-      md: 936, // 0, 12, 0, 12 margins
-      lg: 1224, // 0, 28, 0, 28 margins
+      md: 912, // 0, 24, 0, 24 margins
+      lg: 1200, // 0, 40, 0, 40 margins
       xl: 1640, // 0, 140, 0, 140 margins DESIGNS
     },
   },
@@ -195,7 +198,7 @@ deepmerge(
     subtitle2: {
       fontSize: pxToRem(16),
       lineHeight: 23 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -219,7 +222,7 @@ deepmerge(
     body2: {
       fontSize: pxToRem(18),
       lineHeight: 24 / 18,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -241,7 +244,7 @@ deepmerge(
     caption: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -253,7 +256,7 @@ deepmerge(
     overline: {
       fontSize: pxToRem(16),
       lineHeight: 24 / 16,
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("md")]: {
         fontSize: pxToRem(14),
         lineHeight: 20 / 14,
       },
@@ -362,9 +365,35 @@ deepmerge(
         },
       },
       text: {
+        minWidth: "unset",
+        paddingLeft: 0,
+        paddingRight: 0,
         "&:hover": {
           color: palette.primary.main,
         },
+      },
+      textSizeSmall: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+      textSizeLarge: {
+        paddingLeft: 0,
+        paddingRight: 0,
+      },
+    },
+    MuiFilledInput: {
+      root: {
+        backgroundColor: "#fff",
+        borderRadius: 10,
+        borderTopLeftRadius: 10,
+        borderTopRightRadius: 10,
+      },
+    },
+    MuiFormControl: {},
+    MuiFormLabel: {
+      root: {
+        color: palette.secondary.main,
+        ...typography.caption,
       },
     },
   },

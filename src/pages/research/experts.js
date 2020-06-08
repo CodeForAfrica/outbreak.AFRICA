@@ -7,7 +7,7 @@ import { A } from "@commons-ui/core";
 import Page from "components/Page";
 import Hero from "components/Hero";
 import Subscribe from "components/Subscribe";
-import ExpertList from "components/Research/ExpertList";
+import ExpertList from "components/ExpertList";
 
 import config from "config";
 import { getSitePage } from "cms";
@@ -20,24 +20,27 @@ import linkedInBlue from "assets/Icon awesome-linkedin-in-b.svg";
 import twitterBlue from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [theme.breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
     },
-    [theme.breakpoints.up("xl")]: {
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
   featuredExperts: {},
   subscribe: {
     marginTop: "3.5rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       marginTop: "3.8125rem",
     },
   },
@@ -45,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     objectFit: "contain",
     height: "1rem",
     width: "1rem",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       height: "1.375rem",
       width: "1.375rem",
     },
@@ -65,7 +68,7 @@ function Research({ outbreak, ...props }) {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       subscribe,
       featured_experts: { experts },
       section_title: title,
@@ -94,7 +97,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? linkedIn: linkedInBlue}
+                  src={isDesktop ? linkedIn : linkedInBlue}
                   alt="LinkedIn Profile"
                   className={classes.icon}
                 />
@@ -107,7 +110,7 @@ function Research({ outbreak, ...props }) {
                 className={classes.link}
               >
                 <img
-                  src={isDesktop? twitter: twitterBlue}
+                  src={isDesktop ? twitter : twitterBlue}
                   alt="Twitter Profile"
                   className={classes.icon}
                 />
@@ -119,10 +122,11 @@ function Research({ outbreak, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img 
-                  src={isDesktop? website: websiteBlue} 
+                <img
+                  src={isDesktop ? website : websiteBlue}
                   alt="Website"
-                  className={classes.icon} />
+                  className={classes.icon}
+                />
               </A>
             )}
           </Grid>
@@ -138,7 +142,7 @@ function Research({ outbreak, ...props }) {
     >
       {isDesktop && (
         <Hero
-          heroCarousel={heroCarousel}
+          heroContent={heroContent}
           isResearch
           classes={{ section: classes.section }}
         />

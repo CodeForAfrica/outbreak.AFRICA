@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section, RichTypography } from "@commons-ui/core";
 
-import chart1 from "assets/chart-1.png";
-import chart2 from "assets/chart-2.png";
-
 import Container from "./Container";
+import FlourishContainer from "./FlourishContainer";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
@@ -17,25 +16,42 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     margin: "unset",
     marginBottom: typography.pxToRem(16),
   },
-  chart00: {
+  actionGrid: {
+    height: "15%",
+    display: "flex",
+    alignItems: "flex-end",
+  },
+  actionIcon: {
+    width: "2rem",
+    height: "auto",
+  },
+  chart0: {
     [breakpoints.only("md")]: {
       order: 2,
     },
   },
-  chart01: {
+  chart1: {
     [breakpoints.only("md")]: {
       order: 1,
     },
   },
-  chart02: {
+  chart2: {
     [breakpoints.only("md")]: {
       order: 4,
     },
   },
-  chart03: {
+  chart3: {
     [breakpoints.only("md")]: {
       order: 3,
     },
+  },
+  chartGrid: {
+    marginTop: "2.5rem",
+  },
+  chartShadow: {
+    boxShadow: "0px 4px 4px #00000029",
+    border: "1px solid #D6D6D6",
+    height: "85%",
   },
   description: {
     "& .highlight": {
@@ -51,8 +67,45 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
 }));
 
-function FeaturedData({ description, title, ...props }) {
+function FeaturedData({ featuredContent, ...props }) {
   const classes = useStyles(props);
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [featuredCharts, setFeaturedCharts] = useState([]);
+
+  useEffect(() => {
+    const tmp = document.createElement("div");
+    tmp.innerHTML = featuredContent;
+
+    const featureDiv = tmp.querySelector("div[id=featured-data]");
+    setTitle(featureDiv.getAttribute("data-title"));
+    setDescription(
+      featureDiv
+        .getAttribute("data-description")
+        .replace("” class=”wp-block-hurumap-section-block”>", "")
+    );
+
+    const charts = [];
+    // eslint-disable-next-line array-callback-return
+    Array.from(tmp.querySelectorAll(`div[id^=indicator-`)).map((el) => {
+      const chartId = el.getAttribute("id").split("-");
+      const geoId = el.getAttribute("data-geo-id") || "";
+      const chartTitle = el.getAttribute("data-title") || "";
+      const chartDescription = el.getAttribute("data-description") || "";
+
+      const type = chartId[1];
+      const id = chartId[2];
+      charts.push({
+        id,
+        type,
+        geoId,
+        title: chartTitle,
+        description: chartDescription,
+      });
+    });
+    setFeaturedCharts(charts);
+  }, [featuredContent]);
+
   return (
     <div className={classes.root}>
       <Section
@@ -70,39 +123,47 @@ function FeaturedData({ description, title, ...props }) {
               See Insights
             </Button>
           </Grid>
-          <Grid item xs={12} container spacing={2}>
-            <Grid item xs={12} md={6} lg={4} className={classes.chart00}>
-              <Container
-                action="Explore"
-                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              >
-                <img src={chart1} alt="chart1" />
-              </Container>
-            </Grid>
-            <Grid item xs={12} lg={8} className={classes.chart01}>
-              <Container
-                action="Explore"
-                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              >
-                <img src={chart2} alt="chart1" />
-              </Container>
-            </Grid>
-            <Grid item xs={12} lg={8} className={classes.chart02}>
-              <Container
-                action="Explore"
-                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              >
-                <img src={chart2} alt="chart1" />
-              </Container>
-            </Grid>
-            <Grid item xs={12} md={6} lg={4} className={classes.chart03}>
-              <Container
-                action="Explore"
-                description="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-              >
-                <img src={chart1} alt="chart1" />
-              </Container>
-            </Grid>
+          <Grid
+            item
+            xs={12}
+            container
+            spacing={2}
+            justify="flex-start"
+            alignItems="stretch"
+          >
+            {featuredCharts.length > 0 &&
+              featuredCharts.map((chart, index) => (
+                <Grid
+                  item
+                  xs={12}
+                  md={6}
+                  lg={index === 0 || index === 3 ? 4 : 8}
+                  className={classNames(classes.chartGrid, `chart${index}`)}
+                  key={chart.id}
+                >
+                  <Grid className={classes.chartShadow}>
+                    {chart.type === "hurumap" ? (
+                      <Container action="Explore" featuredChart={chart} />
+                    ) : (
+                      <FlourishContainer
+                        action="Explore"
+                        featuredChart={chart}
+                      />
+                    )}
+                  </Grid>
+                  <Grid className={classes.actionGrid}>
+                    <RichTypography
+                      variant="body2"
+                      className={classes.description}
+                    >
+                      {chart.description}
+                    </RichTypography>
+                    <Button variant="contained" size="large">
+                      Explore
+                    </Button>
+                  </Grid>
+                </Grid>
+              ))}
           </Grid>
         </Grid>
       </Section>
@@ -111,12 +172,6 @@ function FeaturedData({ description, title, ...props }) {
 }
 
 FeaturedData.propTypes = {
-  description: PropTypes.string,
-  title: PropTypes.string,
-};
-FeaturedData.defaultProps = {
-  description:
-    'Comparative <span class="highlight">data insights</span>, from credible sources, in formats that are instantly re-usable and shareable as infographics or as raw data/research.',
-  title: "Featured Data",
+  featuredContent: PropTypes.string.isRequired,
 };
 export default FeaturedData;

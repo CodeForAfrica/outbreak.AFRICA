@@ -28,7 +28,7 @@ function Resources({ outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
       title: { rendered: pageTitle },
     },
   } = outbreak;
@@ -40,7 +40,7 @@ function Resources({ outbreak, ...props }) {
       classes={{ section: classes.section }}
     >
       <Hero
-        heroCarousel={heroCarousel}
+        heroContent={heroContent}
         classes={{ section: classes.section }}
       />
     </Page>

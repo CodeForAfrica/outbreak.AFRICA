@@ -1,15 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import config from "config";
-
 import MenuList from "./MenuList";
 
-function DataMenuList({ country, ...props }) {
-  const { countries } = config;
+function DataMenuList({ country, countries, ...props }) {
   const selected = ({ isoCode }) => country && country.isoCode === isoCode;
-  const toAs = ({ isoCode }) => `/country-${isoCode}`;
-  const toHref = () => "/[geoIdOrSlug]";
+  const toAs = ({ isoCode }) => `/data/country-${isoCode}`;
+  const toHref = () => "/data/[geoId]";
   const toName = ({ shortName }) => shortName;
 
   return (
@@ -26,6 +23,7 @@ function DataMenuList({ country, ...props }) {
 }
 
 DataMenuList.propTypes = {
+  countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
   country: PropTypes.shape({ isoCode: PropTypes.string }),
 };
 

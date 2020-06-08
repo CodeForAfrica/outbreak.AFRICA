@@ -2,47 +2,70 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from "components/Page";
+import Content from "components/Content";
+import Form from "components/Form";
 import Hero from "components/Hero";
+import Page from "components/Page";
 
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
-      margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
   },
+  content: {},
+  form: {
+    marginBottom: typography.pxToRem(50),
+    [breakpoints.up("md")]: {
+      marginBottom: 0,
+    },
+  },
+  subscribe: {},
 }));
 
-function JoinUs({ outbreak, ...props }) {
+function About({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
-      hero_carousel: heroCarousel,
+      hero_content: heroContent,
+      subscribe,
       title: { rendered: pageTitle },
     },
   } = outbreak;
 
   return (
     <Page
+      errorCode={errorCode}
       outbreak={outbreak}
       title={pageTitle || "Join us"}
       classes={{ section: classes.section }}
     >
       <Hero
-        heroCarousel={heroCarousel}
+        heroContent={heroContent}
         classes={{ section: classes.section }}
       />
+      <Content
+        subscribe={subscribe}
+        classes={{
+          root: classes.content,
+          section: classes.section,
+        }}
+      >
+        <Form classes={{ root: classes.form }} />
+      </Content>
     </Page>
   );
 }
@@ -53,10 +76,8 @@ export async function getServerSideProps({ query }) {
   const outbreak = await getSitePage("join", lang);
 
   return {
-    props: {
-      outbreak,
-    },
+    props: { outbreak },
   };
 }
 
-export default JoinUs;
+export default About;

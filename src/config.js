@@ -202,7 +202,7 @@ Disallow:
     },
   },
   page: {},
-  name: "outbreak.AFRICA",
+  name: "Outbreak.africa",
   legalName: "Code for Africa",
   description:
     "Data driven analysis on development policies, programmes & outcomes in 10 African countries.",
@@ -240,11 +240,21 @@ Disallow:
     low: "#73acff",
     "very low": "#99ccff",
   },
+  CKAN_BACKEND_URL: "https://openafrica.net",
+  DATA_OPTIONS: {
+    day: "short",
+    month: "long",
+    year: "numeric",
+  },
 };
 
 if (typeof document !== "undefined") {
   // Same-Origin Policy
-  document.domain = window.location.hostname;
+  if (!window.location.hostname.includes("hurumap.org")) {
+    document.domain = window.location.hostname;
+  } else {
+    document.domain = "hurumap.org";
+  }
 }
 
 export default config;
