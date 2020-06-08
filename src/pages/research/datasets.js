@@ -94,7 +94,10 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
         <Hero
           heroContent={heroContent}
           isResearch
-          classes={{ description: classes.heroDescription, section: classes.section }}
+          classes={{
+            description: classes.heroDescription,
+            section: classes.section,
+          }}
         />
       )}
       <Datasets

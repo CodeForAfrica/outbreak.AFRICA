@@ -39,10 +39,7 @@ function Resources({ outbreak, ...props }) {
       title={pageTitle || "Resources"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroContent={heroContent}
-        classes={{ section: classes.section }}
-      />
+      <Hero heroContent={heroContent} classes={{ section: classes.section }} />
     </Page>
   );
 }

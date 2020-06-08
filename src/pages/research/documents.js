@@ -70,7 +70,10 @@ function FeaturedDocuments({ count, documents, outbreak, ...props }) {
         <Hero
           heroContent={heroContent}
           isResearch
-          classes={{ description: classes.heroDescription, section: classes.section }}
+          classes={{
+            description: classes.heroDescription,
+            section: classes.section,
+          }}
         />
       )}
 

@@ -88,7 +88,10 @@ function About({ errorCode, outbreak, slug, ...props }) {
     >
       <Hero
         heroContent={heroContent}
-        classes={{ section: classes.section, description: classes.heroDescription }}
+        classes={{
+          section: classes.section,
+          description: classes.heroDescription,
+        }}
       />
       <Content
         contents={contents}

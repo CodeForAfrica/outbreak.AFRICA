@@ -1,5 +1,5 @@
-import React, {useState, useEffect } from "react";
-import { useRouter } from 'next/router';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -65,37 +65,37 @@ function FAQ({ outbreak, ...props }) {
 
   const [currentTopicSlug, setCurrentTopicSlug] = useState(null);
   useEffect(() => {
-    const handleHash = () =>  setCurrentTopicSlug(window.location.hash.slice(1))
+    const handleHash = () => setCurrentTopicSlug(window.location.hash.slice(1));
 
     handleHash();
-    router.events.on('hashChangeComplete', handleHash);
+    router.events.on("hashChangeComplete", handleHash);
     return () => {
-      router.events.off('hashChangeComplete', handleHash);
+      router.events.off("hashChangeComplete", handleHash);
     };
   }, [router]);
 
   const slugify = (word) => {
-    if (!word) return '';
+    if (!word) return "";
     return word
       .toString()
       .trim()
       .toLowerCase()
-      .replace(/\s+/g, '-')
-      .replace(/[^\w-]+/g, '')
-      .replace(/-+/g, '-')
-      .replace(/^-+/, '')
-      .replace(/-+$/, '');
-  }
+      .replace(/\s+/g, "-")
+      .replace(/[^\w-]+/g, "")
+      .replace(/-+/g, "-")
+      .replace(/^-+/, "")
+      .replace(/-+$/, "");
+  };
 
   const contents =
-  (faqs &&
-    faqs.map((faq) => ({
-      ...faq,
-      href: `#${slugify(faq.topic)}`,
-      slug: `${slugify(faq.topic)}`,
-      name: faq.topic,
-    }))) ||
-  [];
+    (faqs &&
+      faqs.map((faq) => ({
+        ...faq,
+        href: `#${slugify(faq.topic)}`,
+        slug: `${slugify(faq.topic)}`,
+        name: faq.topic,
+      }))) ||
+    [];
   return (
     <Page
       outbreak={outbreak}
@@ -104,12 +104,18 @@ function FAQ({ outbreak, ...props }) {
     >
       <Hero
         heroContent={heroContent}
-        classes={{ description: classes.heroDescription, section: classes.section }}
+        classes={{
+          description: classes.heroDescription,
+          section: classes.section,
+        }}
       />
-      <Content 
+      <Content
         asideContents={contents}
         current={currentTopicSlug}
-        classes={{ mainGrid: classes.contentMainGrid, section: classes.section }} 
+        classes={{
+          mainGrid: classes.contentMainGrid,
+          section: classes.section,
+        }}
         main={9}
         subscribe={subscribe}
       >
