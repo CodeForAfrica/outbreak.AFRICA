@@ -68,7 +68,7 @@ const useStyles = makeStyles(
         paddingBottom: (widths.values.lg * 46) / widths.values.xl,
         marginBottom: (widths.values.lg * 100) / widths.values.xl,
       },
-      [breakpoints.up("lg")]: {
+      [breakpoints.up("xl")]: {
         paddingTop: "48px",
         paddingBottom: "46px",
         marginBottom: "100px",

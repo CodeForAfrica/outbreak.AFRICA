@@ -237,6 +237,10 @@ const useStyles = makeStyles(
     },
     title: {
       marginBottom: "2rem",
+      paddingTop: "2.1rem",
+      [breakpoints.up("md")]: {
+        paddingTop: "1rem",
+      }
     },
     authorContentDiv: {
       paddingTop: "0rem",
