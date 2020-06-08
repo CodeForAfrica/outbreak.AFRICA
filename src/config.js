@@ -139,15 +139,6 @@ Disallow:
       published: true,
     },
     {
-      isoCode: "NG",
-      name: "Nigeria",
-      isoName: "Nigeria",
-      shortName: "Nigeria",
-      slug: "nigeria",
-      lang: "en",
-      published: true,
-    },
-    {
       isoCode: "ZA",
       name: "South Africa",
       isoName: "South Africa",
@@ -155,25 +146,7 @@ Disallow:
       slug: "south-africa",
       lang: "en",
       published: true,
-    },
-    {
-      isoCode: "GH",
-      name: "Ghana",
-      isoName: "Ghana",
-      shortName: "Ghana",
-      slug: "ghana",
-      lang: "en",
-      published: true,
-    },
-    {
-      isoCode: "MA",
-      name: "Morocco",
-      isoName: "Morocco",
-      shortName: "Morocco",
-      slug: "morocco",
-      lang: "en",
-      published: true,
-    },
+    }
   ],
   settings: {
     mailingList: {
