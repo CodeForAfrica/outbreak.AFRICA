@@ -60,6 +60,17 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   profileItemChildren: {
     zIndex: 1,
   },
+  heroDescription: {
+    [breakpoints.up("md")]: {
+      maxWidth: (widths.values.md * 536) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: (widths.values.lg * 536) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: "33.5rem",
+    },
+  },
 }));
 
 function Research({ outbreak, ...props }) {
@@ -144,7 +155,7 @@ function Research({ outbreak, ...props }) {
         <Hero
           heroContent={heroContent}
           isResearch
-          classes={{ section: classes.section }}
+          classes={{ description: classes.heroDescription, section: classes.section }}
         />
       )}
       <ExpertList

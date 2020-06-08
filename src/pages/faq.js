@@ -11,20 +11,33 @@ import FaqContent from "components/FaqContent";
 import config from "config";
 import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints }) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
-      margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
-  }
+  },
+  heroDescription: {
+    [breakpoints.up("md")]: {
+      maxWidth: (widths.values.md * 1385) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: (widths.values.lg * 1385) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: "86.5625rem",
+    },
+  },
 }));
 
 function FAQ({ outbreak, ...props }) {
@@ -80,7 +93,7 @@ function FAQ({ outbreak, ...props }) {
     >
       <Hero
         heroContent={heroContent}
-        classes={{ section: classes.section }}
+        classes={{ description: classes.heroDescription, section: classes.section }}
       />
       <Content 
         asideContents={contents}

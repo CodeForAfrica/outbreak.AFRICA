@@ -34,6 +34,17 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   subscribe: {},
+  heroDescription: {
+    [breakpoints.up("md")]: {
+      maxWidth: (widths.values.md * 812) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: (widths.values.lg * 812) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: "50.75rem",
+    },
+  },
 }));
 
 function About({ errorCode, outbreak, slug, ...props }) {
@@ -77,7 +88,7 @@ function About({ errorCode, outbreak, slug, ...props }) {
     >
       <Hero
         heroContent={heroContent}
-        classes={{ section: classes.section }}
+        classes={{ section: classes.section, description: classes.heroDescription }}
       />
       <Content
         contents={contents}

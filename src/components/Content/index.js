@@ -61,7 +61,6 @@ function Content({
   current,
   main,
   variant,
-  mainChildren,
   ...props
 }) {
   const classes = useStyles({ ...props, classes: classesProp });
