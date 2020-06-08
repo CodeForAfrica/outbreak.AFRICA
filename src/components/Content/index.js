@@ -50,6 +50,7 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   joinUs: {},
   subscribe: {},
   support: {},
+  mainGrid: {},
 }));
 
 function Content({
@@ -143,7 +144,7 @@ function Content({
             </Aside>
           </Grid>
           {(contents || children) && (
-            <Grid item xs={12} md={main}>
+            <Grid item xs={12} md={main} className={classes.mainGrid}>
               {contents &&
                 contents.map((content) => (
                   <Main key={content.slug} content={content} />

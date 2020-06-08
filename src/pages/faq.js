@@ -99,6 +99,7 @@ function FAQ({ outbreak, ...props }) {
         asideContents={contents}
         current={currentTopicSlug}
         classes={{ section: classes.section }} 
+        main={9}
         subscribe={subscribe}
       >
         <FaqContent faqs={contents} />
