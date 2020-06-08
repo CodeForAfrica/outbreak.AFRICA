@@ -240,6 +240,10 @@ const useStyles = makeStyles(
       paddingTop: "2.1rem",
       [breakpoints.up("md")]: {
         paddingTop: "1rem",
+      },
+      [breakpoints.up("xl")]: {
+        fontSize: "60px",
+        lineHeight: 80/60,
       }
     },
     authorContentDiv: {
