@@ -98,10 +98,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
 
   return (
     <Page outbreak={outbreak} classes={{ section: classes.section }}>
-      <Hero
-        heroContent={heroContent}
-        classes={{ section: classes.section }}
-      />
+      <Hero heroContent={heroContent} classes={{ section: classes.section }} />
       <Ticker
         source={{
           title: "openAFRICA",

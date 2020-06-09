@@ -131,13 +131,13 @@ function Hero({ heroContent, isResearch, ...props }) {
     heroContent &&
     heroContent.component &&
     heroContent.component.length &&
-    heroContent.component[0]['acf_fc_layout'] === "carousel";
+    heroContent.component[0].acf_fc_layout === "carousel";
 
   const hasImage =
     heroContent &&
     heroContent.component &&
     heroContent.component.length &&
-    heroContent.component[0]['acf_fc_layout'] === "image";
+    heroContent.component[0].acf_fc_layout === "image";
 
   const classes = useStyles({ ...props, hasCarousel });
 
@@ -149,7 +149,7 @@ function Hero({ heroContent, isResearch, ...props }) {
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
     (hasCarousel && component && component[0]) || {};
 
-  const { url: imageUrl} = (hasImage && component && component[0]) || {};
+  const { url: imageUrl } = (hasImage && component && component[0]) || {};
 
   let md = 12;
   if (hasCarousel) {
@@ -172,7 +172,11 @@ function Hero({ heroContent, isResearch, ...props }) {
               <RichTypography
                 variant={isResearch? "h3": "h1"}
                 component="div"
-                classes={{ root: classNames(classes.title, { [classes.notCarousel ]: !hasCarousel}) }}
+                classes={{
+                  root: classNames(classes.title, {
+                    [classes.notCarousel]: !hasCarousel,
+                  }),
+                }}
               >
                 {title}
               </RichTypography>
@@ -197,11 +201,7 @@ function Hero({ heroContent, isResearch, ...props }) {
           )}
           {hasImage && (
             <Grid item xs={12} md={6} className={classes.notCarousel}>
-              <img
-                className={classes.heroImage}
-                src={imageUrl}
-                alt="title"
-              />
+              <img className={classes.heroImage} src={imageUrl} alt="title" />
             </Grid>
           )}
         </Grid>

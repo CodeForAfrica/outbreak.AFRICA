@@ -20,11 +20,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     borderBottom: `1px solid ${palette.secondary.main}`,
     "&:last-of-type": {
       paddingBottom: typography.pxToRem(33),
-      borderBottom: `1px solid ${palette.secondary.main}`,
+      borderBottom: "unset",
     },
     [breakpoints.up("md")]: {
       paddingBottom: 0,
-      borderBottom: "none",
+      borderBottom: "unset",
       scrollMargin: typography.pxToRem(110),
     },
     [breakpoints.up("xl")]: {
@@ -49,7 +49,7 @@ const ICONS = {
 
 function Main({ classes: classesProp, content, ...props }) {
   const classes = useStyles({ ...props, classes: classesProp });
-  const iconSrc = ICONS[content.slug];
+  const iconSrc = content.icon || ICONS[content.slug];
   const icon = { src: iconSrc };
 
   return (
