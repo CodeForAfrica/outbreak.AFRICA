@@ -10,7 +10,7 @@ import twitter from "assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "assets/icon web.svg";
 
 const useStyles = makeStyles(
-  ({ breakpoints, palette, widths }) => ({
+  ({ breakpoints, palette, typography, widths }) => ({
     icon: {
       objectFit: "contain",
       height: "1.375rem",
