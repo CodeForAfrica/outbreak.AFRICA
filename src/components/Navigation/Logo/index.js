@@ -59,7 +59,7 @@ function Logo(props) {
   return (
     <>
       <IconButton href="/" className={classes.logo}>
-        <img src={src} alt="Outbreak COVID-19" />
+        <img src={src} alt="Outbreak Covid-19" />
       </IconButton>
       <Typography variant="h1" className={classes.title}>
         <Link

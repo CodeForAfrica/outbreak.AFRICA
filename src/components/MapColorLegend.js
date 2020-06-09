@@ -55,7 +55,7 @@ function MapColorLegend() {
             >
               <Grid item alignItems="center">
                 <Typography variant="subtitle2">
-                  COVID-19 <br />
+                  Covid-19 <br />
                   Vulnerability Index
                 </Typography>
               </Grid>

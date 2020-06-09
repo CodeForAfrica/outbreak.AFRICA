@@ -130,7 +130,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
             value: "730",
           },
         ]}
-        title="COVID-19 cases in Africa"
+        title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
       />
       <FeaturedData
