@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#cbdbfb",
     [theme.breakpoints.up("md")]: {
       background: "transparent",
-      paddingTop: "15%",
+      paddingTop: "25%",
       paddingRight: 0,
       paddingLeft: 0,
     },
