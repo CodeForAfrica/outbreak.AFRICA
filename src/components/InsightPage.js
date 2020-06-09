@@ -79,7 +79,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
+function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props }) {
   const classes = useStyles(props);
 
   const [activeTopic, setActiveTopic] = useState("all");
@@ -107,8 +107,8 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
         />
         {posts && posts.length > 0 && (
           <Link
-            as={`#${posts[0].post_name}`}
-            href={`#${posts[0].post_name}`}
+            as={`/${insightSlug}/${posts[0].post_name}`}
+            href={`/${insightSlug}/[...slug]`}
             className={classes.link}
           >
             <FeaturedCard
@@ -125,8 +125,8 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
             posts.slice(1, 4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
-                  as={`#${post.post_name}`}
-                  href={`#${post.post_name}`}
+                  as={`/${insightSlug}/${post.post_name}`}
+                  href={`/${insightSlug}/[...slug]`}
                   className={classes.link}
                 >
                   <PostItem
@@ -163,8 +163,8 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
             posts.slice(4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
-                  as={`#${post.post_name}`}
-                  href={`#${post.post_name}`}
+                  as={`/${insightSlug}/${post.post_name}`}
+                  href={`/${insightSlug}/[...slug]`}
                   className={classes.link}
                 >
                   <PostItem
@@ -200,6 +200,7 @@ function InsightPage({ posts, joinUs, subscribe, title, ...props }) {
 
 InsightPage.propTypes = {
   posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  insightSlug: PropTypes.oneOf(["analysis", "myth-busting", "resources", "stories"]).isRequired,
   joinUs: PropTypes.shape({}).isRequired,
   subscribe: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
