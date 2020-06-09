@@ -23,7 +23,7 @@ const useStyles = makeStyles(
     author: {},
     image: {
       width: "200px",
-      height: "200px",
+      height: typography.pxToRem(200),
       borderRadius: "100px",
       position: "relative",
       "&:after": {
