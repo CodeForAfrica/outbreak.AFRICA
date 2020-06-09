@@ -81,7 +81,7 @@ function Logo(props) {
             component="span"
             className={classes.titleSub}
           >
-            COVID-19
+            Covid-19
           </Typography>
         </Link>
       </Typography>
