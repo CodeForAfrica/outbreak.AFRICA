@@ -66,6 +66,13 @@ const theme = createTheme({
       fontStyle: "normal",
       fontWeight: 700,
       letterSpacing: 0,
+    },
+    h4: {
+      fontFamily: FONT_FAMILY_HEADING,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      fontWeight: 700,
+      letterSpacing: 0,
       textTransform: "uppercase",
     },
     subtitle1: {
@@ -174,6 +181,18 @@ deepmerge(
       },
     },
     h3: {
+      fontSize: pxToRem(30),
+      lineHeight: 40 / 30,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(40),
+        lineHeight: 40 / 40,
+      },
+      [breakpoints.up("xl")]: {
+        fontSize: pxToRem(50),
+        lineHeight: 60 / 50,
+      },
+    },
+    h4: {
       fontSize: pxToRem(20),
       lineHeight: 29 / 20,
       letterSpacing: pxToRem(2),

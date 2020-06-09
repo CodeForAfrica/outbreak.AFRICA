@@ -138,7 +138,7 @@ function ExpertList({
               ) : (
                 <>
                   <Grid item xs={6}>
-                    <Typography variant="h3">{profile.name}</Typography>
+                    <Typography variant="h4">{profile.name}</Typography>
                     <Typography variant="subtitle2" className={classes.title}>
                       {profile.title}
                     </Typography>

@@ -37,16 +37,17 @@ function Analysis({ outbreak, ...props }) {
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Analysis"}
+      title={pageTitle || "Featured Stories"}
       classes={{ section: classes.section }}
     >
-      <InsightPage
-        posts={posts}
-        joinUs={joinUs}
-        subscribe={subscribe}
-        title={pageTitle}
-        classes={{ section: classes.section }}
-      />
+        <InsightPage
+          posts={posts}
+          joinUs={joinUs}
+          subscribe={subscribe}
+          title={pageTitle}
+          insightSlug={"insights/analysis"}
+          classes={{ section: classes.section }}
+        />
     </Page>
   );
 }
@@ -54,7 +55,7 @@ function Analysis({ outbreak, ...props }) {
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("insights-analysis", lang);
+  const outbreak = await getSitePage("insights-stories", lang);
 
   return {
     props: {
