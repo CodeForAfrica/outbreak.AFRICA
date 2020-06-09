@@ -38,10 +38,20 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
 }));
 
-function PageNavigation({ navigation, pathname, ...props }) {
+function PageNavigation({
+  navigation,
+  pathname,
+  asPath: asPathProp,
+  ...props
+}) {
   const classes = useStyles(props);
-  // Remove query from pathname (if any)
-  const pageUrl = pathname && pathname.split("?")[0];
+  // Remove query from asPath (if any)
+  const asPath = (asPathProp && asPathProp.split("?")[0]) || undefined;
+  const asPathParts = asPath && asPath.split("/");
+  // Limit navigationUrl to only subnav level i.e. ignore item/story slug
+  const navigationUrl =
+    asPathParts && asPathParts.length > 2 && asPathParts.slice(0, 3).join("/");
+  console.log('BOOM', { asPathProp, asPathParts, pathname });
 
   if (!navigation || navigation.length < 1) {
     return null;
@@ -59,10 +69,11 @@ function PageNavigation({ navigation, pathname, ...props }) {
           {navigation.map((link) => (
             <Grid item key={link.url}>
               <LinkButton
-                href={`${link.url}`}
+                href={pathname || link.url}
+                as={pathname ? link.url : undefined}
                 size="small"
                 className={classNames(classes.button, {
-                  [classes.buttonCurrent]: link.url === pageUrl,
+                  [classes.buttonCurrent]: link.url.startsWith(navigationUrl),
                 })}
               >
                 {link.title}
@@ -76,7 +87,12 @@ function PageNavigation({ navigation, pathname, ...props }) {
 }
 
 PageNavigation.propTypes = {
-  navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  navigation: PropTypes.arrayOf(
+    PropTypes.shape({
+      title: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    })
+  ).isRequired,
   pathname: PropTypes.string,
 };
 

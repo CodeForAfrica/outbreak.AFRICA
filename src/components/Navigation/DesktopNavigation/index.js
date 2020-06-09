@@ -72,7 +72,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
   const router = useRouter();
   const [dataNavigation, ...otherNavigations] = navigation || [];
   const { asPath } = router;
-  const currentPageUrl = `/${asPath.split("/")[1]}`;
+  const currentPageUrl = asPath.split("/").slice(0, 2).join("/");
   const pageNavigation = otherNavigations.find(
     (otherNavigation) => otherNavigation.url === currentPageUrl
   );
@@ -116,7 +116,11 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
                     className={classes.button}
                   >
                     <PageNavigation
-                      pathname={otherNavigation.url}
+                      pathname={`${otherNavigation.url}/[...slug]`.replace(
+                        "//",
+                        "/"
+                      )} // Ensure single '/'
+                      asPath={otherNavigation.url}
                       navigation={otherNavigation.subnav}
                       classes={{
                         root: classes.pageNavigation,
@@ -165,7 +169,8 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
       {pageNavigation && pageNavigation.subnav && (
         <Grid item xs={12}>
           <PageNavigation
-            pathname={asPath}
+            pathname={`${currentPageUrl}/[...slug]`}
+            asPath={asPath}
             navigation={pageNavigation.subnav}
             classes={{ section: classes.section }}
           />
