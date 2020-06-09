@@ -11,52 +11,27 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { RichTypography } from "@commons-ui/core";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
-  root: {
-    padding: "2rem 0rem",
-    // When scrolled, leave the height of AppBar from the top
-    scrollMargin: typography.pxToRem(50),
-    [breakpoints.up("md")]: {
-      scrollMargin: typography.pxToRem(100),
-    },
-    [breakpoints.up("xl")]: {
-      scrollMargin: typography.pxToRem(140),
-    },
-  },
   expansionPanel: {
     backgroundColor: "#C1D5FF",
     boxShadow: "none",
-    "& .MuiExpansionPanel-root.Mui-expanded": {
-      margin: 0,
+    marginBottom: "0.125rem",
+  },
+  panelExpanded: {
+    marginBottom: "0.125rem !important",
+  },
+  panelSummary: {
+    paddingTop: "0.9375rem",
+    paddingLeft: "1.625rem",
+    paddingBottom: "1rem",
+    [breakpoints.up("xl")]: {
+      paddingTop: "1.8125rem",
+      paddingLeft: "2.25rem",
+      paddingBottom: "2.375rem",
     },
   },
-  expansionPanelSummary: {
-    backgroundColor: "rgba(0, 0, 0, .03)",
-    borderBottom: "1px solid rgba(0, 0, 0, .125)",
-    marginBottom: -1,
-    minHeight: 56,
-    "&$expanded": {
-      minHeight: 56,
-    },
+  panelContent: {
+    margin: 0,
   },
-  content: {
-    "&$expanded": {
-      margin: "12px 0",
-    },
-  },
-  title: {
-    color: "#170F49",
-    fontWeight: 600,
-  },
-  subtitle: {
-    fontWeight: 600,
-  },
-  divider: {
-    border: "0.8px solid #170F49",
-  },
-  dividerGrid: {
-    marginLeft: "1rem",
-  },
-  expanded: {},
 }));
 
 export default function FaqContent({ questionsAnswers, slug, ...props }) {
@@ -75,19 +50,21 @@ export default function FaqContent({ questionsAnswers, slug, ...props }) {
             square
             expanded={expanded === `${slug}-panel${index}`}
             onChange={handleChange(`${slug}-panel${index}`)}
+            classes={{ expanded: classes.panelExpanded }}
             className={classes.expansionPanel}
           >
             <ExpansionPanelSummary
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`${slug}-panel${index}-d-content`}
               id={`${slug}-panel${index}d-header`}
+              classes={{ root: classes.panelSummary, content: classes.panelContent }}
             >
-              <Typography variant="h6" className={classes.subtitle}>
+              <Typography variant="subtitle2">
                 {question}
               </Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <RichTypography variant="body2">
+              <RichTypography variant="caption">
                 {answer}
               </RichTypography>
             </ExpansionPanelDetails>
