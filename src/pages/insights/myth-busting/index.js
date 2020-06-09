@@ -27,7 +27,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function FeaturedStories({ outbreak, ...props }) {
+function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -37,16 +37,17 @@ function FeaturedStories({ outbreak, ...props }) {
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Featured Stories"}
+      title={pageTitle || "Misinformation"}
       classes={{ section: classes.section }}
     >
-      <InsightPage
-        posts={posts}
-        joinUs={joinUs}
-        subscribe={subscribe}
-        title={pageTitle}
-        classes={{ section: classes.section }}
-      />
+        <InsightPage
+          posts={posts}
+          joinUs={joinUs}
+          subscribe={subscribe}
+          title={pageTitle}
+          insightSlug={"insights/myth-busting"}
+          classes={{ section: classes.section }}
+        />
     </Page>
   );
 }
@@ -54,7 +55,7 @@ function FeaturedStories({ outbreak, ...props }) {
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("insights-stories", lang);
+  const outbreak = await getSitePage("insights-myth-busting", lang);
 
   return {
     props: {
@@ -63,4 +64,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default FeaturedStories;
+export default Analysis;
