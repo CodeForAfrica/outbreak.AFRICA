@@ -40,7 +40,11 @@ function ArticlePage({ article, author, link, media, pageTitle, subscribe, ...pr
   const date = new Date(article.date).toDateString().slice(4, 10);
   let imageUrl = "";
   if (media) {
-      imageUrl = isDesktop? media["full"]["source_url"] : media["medium_large"]["source_url"];
+      if (isDesktop) {
+        imageUrl = media["full"]["source_url"];
+      } else {
+        imageUrl = media["medium_large"] ? media["medium_large"]["source_url"] : media["medium"]["source_url"];
+      }
   }
   return (
     <div className={classes.root}>
