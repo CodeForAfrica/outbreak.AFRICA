@@ -39,10 +39,7 @@ function Legal({ outbreak, ...props }) {
       title={pageTitle || "Legal"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroContent={heroContent}
-        classes={{ section: classes.section }}
-      />
+      <Hero heroContent={heroContent} classes={{ section: classes.section }} />
     </Page>
   );
 }

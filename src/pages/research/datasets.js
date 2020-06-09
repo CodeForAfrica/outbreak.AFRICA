@@ -31,6 +31,17 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
       width: widths.values.xl,
     },
   },
+  heroDescription: {
+    [breakpoints.up("md")]: {
+      maxWidth: (widths.values.md * 536) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: (widths.values.lg * 536) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: "33.5rem",
+    },
+  },
 }));
 
 function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
@@ -83,7 +94,10 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
         <Hero
           heroContent={heroContent}
           isResearch
-          classes={{ section: classes.section }}
+          classes={{
+            description: classes.heroDescription,
+            section: classes.section,
+          }}
         />
       )}
       <Datasets
