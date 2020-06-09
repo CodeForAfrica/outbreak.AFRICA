@@ -11,7 +11,6 @@ import instagram from "assets/Icon awesome-instagram-b.svg";
 import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
-import { getPostById, getPostBySlug } from "cms";
 import getChartElements from "utils/getChartElements";
 import Aside from "components/Content/Aside";
 import Author from "./Author";
@@ -22,38 +21,18 @@ import Portal from "components/Portal";
 import Subscribe from "components/Subscribe";
 import useStyles from "./useStyles";
 
-function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
+function ArticlePage({ article, author, link, media, pageTitle, subscribe, ...props }) {
   const classes = useStyles(props);
-  const [article, setArticle] = useState(null);
-  const [author, setAuthor] = useState(null);
-  const [media, setMedia] = useState(null);
   const [chartElements, setChartElements] = useState({
     charts: []
   });
-
 
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   useEffect(() => {
-    async function fetchArticle() {
-      const [post] = await getPostBySlug("posts", slug);
-      setArticle(post);
-      
-      if(post) {
-          const authorObject = await getPostById("users", post.author);
-          setAuthor(authorObject);
-
-          const { media_details: { sizes }} = await getPostById("media", post.featured_media);
-          setMedia(sizes);
-      }
-    }
-    fetchArticle();
-  }, [slug]);
-
-  useEffect(() => {
     setChartElements(getChartElements(document, 'charts'));
-  }, [slug, article]);
+  }, [article]);
 
   if (!article) {
     return null;
@@ -222,8 +201,10 @@ function ArticlePage({ link, pageTitle, slug, subscribe, ...props }) {
 }
 
 ArticlePage.propTypes = {
+  article: PropTypes.shape({}).isRequired,
+  author: PropTypes.shape({}).isRequired,
   link: PropTypes.string.isRequired,
-  slug: PropTypes.string.isRequired,
+  media: PropTypes.shape({}).isRequired,
   pageTitle: PropTypes.string.isRequired,
   subscribe: PropTypes.shape({}).isRequired,
 };

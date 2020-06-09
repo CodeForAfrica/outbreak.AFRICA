@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useRouter } from 'next/router';
+import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
 import ArticlePage from "components/ArticlePage";
-import InsightPage from "components/InsightPage";
 import Page from "components/Page";
 
 import config from "config";
-import { getSitePage } from "cms";
+import { getSitePage, getPostBySlug, getPostById } from "cms";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -29,60 +27,63 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function Analysis({ outbreak, ...props }) {
+function Analysis({ outbreak, post, author, media, ...props }) {
   const classes = useStyles(props);
-  const router = useRouter();
-
-  const [insightArticleSlug, setInsightArticleSlug] = useState(null);
-  useEffect(() => {
-    const handleHash = () =>  setInsightArticleSlug(window.location.hash.slice(1))
-
-    handleHash();
-    router.events.on('hashChangeComplete', handleHash);
-    return () => {
-      router.events.off('hashChangeComplete', handleHash);
-    };
-  }, [router]);
 
   const {
-    page: { posts, join_us: joinUs, subscribe, title: pageTitle },
+    page: { subscribe, title: pageTitle },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Analysis"}
+      title={ pageTitle || "Analysis"}
       classes={{ section: classes.section }}
     >
-      {insightArticleSlug ? (
         <ArticlePage
-          slug={insightArticleSlug}
           pageTitle={pageTitle}
+          article={post}
+          media={media}
+          author={author}
           subscribe={subscribe}
           link={"/insights/analysis"}
           classes={{ section: classes.section }}
         />
-      ) : (
-        <InsightPage
-          posts={posts}
-          joinUs={joinUs}
-          subscribe={subscribe}
-          title={pageTitle}
-          classes={{ section: classes.section }}
-        />
-      )}
     </Page>
   );
 }
 
 export async function getServerSideProps({ query }) {
-  const { lang: pageLanguage } = query;
+  const { lang: pageLanguage, slug: pageSlug  } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("insights-analysis", lang);
 
+  const [firstSlug] = pageSlug || [];
+  const slug = (firstSlug && firstSlug.toLowerCase()) || null;
+  let errorCode = null;
+  let articlePost = {};
+  let author = {};
+  let media = {};
+
+  if (slug) {
+    const [post] = await getPostBySlug("posts", slug);
+    articlePost = post;
+    if(post) {
+        author = await getPostById("users", post.author);
+        const { media_details: { sizes }} = await getPostById("media", post.featured_media);
+        media = sizes;
+    } else {
+        errorCode = 404;
+    }
+  }
+
   return {
     props: {
+        errorCode,
       outbreak,
+      post: articlePost,
+      author,
+      media,
     },
   };
 }

@@ -150,7 +150,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
-    errorCode,
+      errorCode,
       outbreak,
       slug
     },
