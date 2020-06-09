@@ -22,9 +22,9 @@ const useStyles = makeStyles(
     },
     author: {},
     image: {
-      width: "200px",
+      width: typography.pxToRem(200),
       height: typography.pxToRem(200),
-      borderRadius: "100px",
+      borderRadius: typography.pxToRem(100),
       position: "relative",
       "&:after": {
         backgroundColor: palette.primary.main,
@@ -42,11 +42,11 @@ const useStyles = makeStyles(
       overflow: "hidden",
     },
     contentDiv: {
-      padding: "35px 27px 0",
+      padding: "2.1875rem 1.6875rem 0",
       [breakpoints.up("md")]: {
         paddingTop: "1.375rem",
-        paddingLeft: "40px",
-        paddingRight: "40px",
+        paddingLeft: typography.pxToRem(40),
+        paddingRight: typography.pxToRem(40),
       },
     },
     description: {
@@ -55,9 +55,9 @@ const useStyles = makeStyles(
     root: {
       backgroundColor: "#EEEEEE",
       boxShadow: "0px 4px 4px #00000029",
-      marginBottom: "50px",
-      paddingTop: "48px",
-      paddingBottom: "46px",
+      marginBottom: typography.pxToRem(50),
+      paddingTop: typography.pxToRem(48),
+      paddingBottom: typography.pxToRem(46),
       [breakpoints.up("md")]: {
         paddingTop: (widths.values.md * 48) / widths.values.xl,
         paddingBottom: (widths.values.md * 46) / widths.values.xl,
@@ -69,9 +69,9 @@ const useStyles = makeStyles(
         marginBottom: (widths.values.lg * 100) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        paddingTop: "48px",
-        paddingBottom: "46px",
-        marginBottom: "100px",
+        paddingTop: typography.pxToRem(48),
+        paddingBottom: typography.pxToRem(46),
+        marginBottom: typography.pxToRem(100),
       },
     },
     socialIcons: {

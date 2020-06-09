@@ -10,7 +10,7 @@ const useStyles = makeStyles(
       alignItems: "flex-end",
       width: "100%",
       position: "relative",
-      marginBottom: "50px",
+      marginBottom: typography.pxToRem(50),
       [breakpoints.up("md")]: {
         marginBottom: (widths.values.md * 100) / widths.values.xl,
       },
@@ -18,7 +18,7 @@ const useStyles = makeStyles(
         marginBottom: (widths.values.lg * 100) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        marginBottom: "100px",
+        marginBottom: typography.pxToRem(100),
       },
     },
     authorDiv: {
@@ -34,8 +34,8 @@ const useStyles = makeStyles(
         paddingRight: (widths.values.lg * 73) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        height: "839px",
-        paddingRight: "73px",
+        height: typography.pxToRem(839),
+        paddingRight: typography.pxToRem(73),
       },
     },
     articleContent: {
@@ -46,7 +46,7 @@ const useStyles = makeStyles(
         minHeight: (widths.values.lg * 1591) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        minHeight: "1591px",
+        minHeight: typography.pxToRem(1591),
       },
 
     },
@@ -58,7 +58,7 @@ const useStyles = makeStyles(
         right: (widths.values.lg * 73) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        right: "73px"
+        right: typography.pxToRem(73),
       },
     },
     content: {
@@ -67,17 +67,17 @@ const useStyles = makeStyles(
         color: palette.primary.main,
         fontSize: typography.body1.fontSize,
         margin: 0,
-        marginTop: "85px",
-        marginBottom: "21px",
+        marginTop: typography.pxToRem(85),
+        marginBottom: typography.pxToRem(21),
         position: "relative",
         "&:before": {
           content: `url(${quote})`,
           color: palette.primary.main,
           backgroundColor: "white",
-          height: "50px",
+          height: typography.pxToRem(50),
           position: "absolute",
-          top: "-70px",
-          left: "-10px",
+          top: typography.pxToRem(-70),
+          left: typography.pxToRem(-10),
         },
         "& p": {
           margin: 0,
@@ -129,12 +129,12 @@ const useStyles = makeStyles(
       },
       [breakpoints.up("xl")]: {
         "& .wp-block-quote": {
-          marginLeft: "69px",
-          marginBottom: "50px",
-          marginTop: "23px",
-          paddingTop: "24px",
+          marginLeft: typography.pxToRem(69),
+          marginBottom: typography.pxToRem(50),
+          marginTop: typography.pxToRem(23),
+          paddingTop: typography.pxToRem(24),
           "& p": {
-            paddingLeft: "69px",
+            paddingLeft: typography.pxToRem(69),
           },
         },
         "& figure": {
@@ -144,7 +144,7 @@ const useStyles = makeStyles(
       },
     },
     chartShadow: {
-      boxShadow: "0px 4px 4px #00000029",
+      boxShadow: "0rem 0.25rem 0.25rem #00000029",
       border: "1px solid #D6D6D6",
     },
     date: {
@@ -158,7 +158,7 @@ const useStyles = makeStyles(
     },
     heroImage: {
       width: "100%",
-      height: "119px",
+      height: typography.pxToRem(119),
       [breakpoints.up("md")]: {
         height: (widths.values.md * 633) / widths.values.xl,
       },
@@ -166,7 +166,7 @@ const useStyles = makeStyles(
         height: (widths.values.lg * 633) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        height: "633px",
+        height: typography.pxToRem(633),
       },
     },
     highlight: {
@@ -232,7 +232,7 @@ const useStyles = makeStyles(
         right: (widths.values.lg * -307) / widths.values.xl,
       },
       [breakpoints.up("xl")]: {
-        right: "-307px",
+        right: typography.pxToRem(-307),
       },
     },
     title: {
@@ -242,7 +242,7 @@ const useStyles = makeStyles(
         paddingTop: "1rem",
       },
       [breakpoints.up("xl")]: {
-        fontSize: "60px",
+        fontSize: typography.pxToRem(60),
         lineHeight: 80/60,
       }
     },
@@ -250,14 +250,14 @@ const useStyles = makeStyles(
       paddingTop: "0rem",
     },
     authorRoot: {
-      paddingLeft: "41px",
-      paddingRight: "41px",
+      paddingLeft: typography.pxToRem(41),
+      paddingRight: typography.pxToRem(41),
       marginBottom: "0 !important",
     },
     dataSource: {
       backgroundColor: "#EEEEEE",
-      boxShadow: "0px 4px 4px #00000029",
-      padding: "58px 40px 40px",
+      boxShadow: "0px 0.25rem 0.25rem #00000029",
+      padding: "3.625rem 2.5rem 2.5rem",
       [breakpoints.up("md")]: {
         marginTop: (widths.values.md * 50) / widths.values.xl,
       },
@@ -265,7 +265,7 @@ const useStyles = makeStyles(
         marginTop: (widths.values.lg * 50) / widths.values.xl,
       },
       [breakpoints.up("lg")]: {
-        marginTop: "50px",
+        marginTop: typography.pxToRem(50),
       },
     },
   })
