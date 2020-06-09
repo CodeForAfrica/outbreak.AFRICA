@@ -199,7 +199,9 @@ function ArticlePage({ article, author, link, media, pageTitle, subscribe, ...pr
         </Grid>
         </Grid>
       </Section>
-      
+      {!isDesktop && (
+        <Subscribe subscribe={subscribe} classes={{ section: classes.section}} />
+      )}
     </div>
   );
 }
