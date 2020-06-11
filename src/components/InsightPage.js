@@ -88,7 +88,7 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
 
   const uniqueTopics = useMemo(
     () =>
-      posts &&
+      posts ?
       posts
         .reduce((a, b) => a.concat(b.categories), [])
         .reduce((acc, current) => {
@@ -97,7 +97,7 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
             return acc.concat([current]);
           }
           return acc;
-        }, []),
+        }, []): [],
     [posts]
   );
 
@@ -119,11 +119,11 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
 
   const parentTopics = [
     { name: "All", slug: "all" },
-    ...uniqueTopics.filter((topic) => topic.parent === 0),
+    ...uniqueTopics && uniqueTopics.filter((topic) => topic.parent === 0),
   ];
 
   useEffect(() => {
-    const foundActiveTopic = uniqueTopics.find((a) => a.slug === activeTopic);
+    const foundActiveTopic = uniqueTopics && uniqueTopics.find((a) => a.slug === activeTopic);
     if (foundActiveTopic) {
       setSubTopics(
         uniqueTopics.filter((top) => top.parent === foundActiveTopic.term_id)
