@@ -44,7 +44,7 @@ function ExpertList({
             return acc.concat([current]);
           }
           return acc;
-        }, []): {},
+        }, []): [],
     [experts]
   );
 
