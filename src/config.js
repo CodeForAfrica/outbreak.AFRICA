@@ -185,8 +185,7 @@ Disallow:
     imageType: ".png",
   },
   populationTables: [
-    "allPopulationSex2019S",
-    "allPopulationResidence2009S",
+    "allPopulationKe2019S",
     "allPopulationZa2016S",
   ],
   colorIndexTable: {
