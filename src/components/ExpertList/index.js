@@ -35,7 +35,7 @@ function ExpertList({
 
   const uniqueTopics = useMemo(
     () =>
-      experts &&
+      experts ?
       experts
         .reduce((a, b) => a.concat(b.topic), [])
         .reduce((acc, current) => {
@@ -44,7 +44,7 @@ function ExpertList({
             return acc.concat([current]);
           }
           return acc;
-        }, []),
+        }, []): [],
     [experts]
   );
 
@@ -66,11 +66,11 @@ function ExpertList({
 
   const parentTopics = [
     { name: "All", slug: "all" },
-    ...uniqueTopics.filter((topic) => topic.parent === 0),
+    ...uniqueTopics && uniqueTopics.filter((topic) => topic.parent === 0),
   ];
 
   useEffect(() => {
-    const foundActiveTopic = uniqueTopics.find((a) => a.slug === activeTopic);
+    const foundActiveTopic = uniqueTopics && uniqueTopics.find((a) => a.slug === activeTopic);
     if (foundActiveTopic) {
       setSubTopics(
         uniqueTopics.filter((top) => top.parent === foundActiveTopic.term_id)

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Grid } from "@material-ui/core";
@@ -84,16 +84,68 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
 
   const [activeTopic, setActiveTopic] = useState("all");
   const [subTopics, setSubTopics] = useState([]);
+  const [topicPosts, setTopicPosts] = useState(posts);
+
+  const uniqueTopics = useMemo(
+    () =>
+      posts ?
+      posts
+        .reduce((a, b) => a.concat(b.categories), [])
+        .reduce((acc, current) => {
+          const x = acc.find((item) => item.term_id === current.term_id);
+          if (!x) {
+            return acc.concat([current]);
+          }
+          return acc;
+        }, []): [],
+    [posts]
+  );
 
   const onButtonClick = (value) => {
     setActiveTopic(value);
   };
 
-  const onSubTopicButtonClick = () => {
-    setSubTopics([]);
+  const onSubTopicButtonClick = (value) => {
+    setTopicPosts(
+      posts.filter(({ topic: t }) => {
+        const found = t.find((x) => x.slug === value);
+        if (found) {
+          return true;
+        }
+        return false;
+      })
+    );
   };
 
-  const parentTopics = [{ name: "All", slug: "all" }];
+  const parentTopics = [
+    { name: "All", slug: "all" },
+    ...uniqueTopics && uniqueTopics.filter((topic) => topic.parent === 0),
+  ];
+
+  useEffect(() => {
+    const foundActiveTopic = uniqueTopics && uniqueTopics.find((a) => a.slug === activeTopic);
+    if (foundActiveTopic) {
+      setSubTopics(
+        uniqueTopics.filter((top) => top.parent === foundActiveTopic.term_id)
+      );
+      setTopicPosts(
+        posts.filter(({ categories: t }) => {
+          const found = t.find(
+            (x) =>
+              x.term_id === foundActiveTopic.term_id ||
+              x.parent === foundActiveTopic.term_id
+          );
+          if (found) {
+            return true;
+          }
+          return false;
+        })
+      );
+    } else {
+      setSubTopics([]);
+      setTopicPosts(posts);
+    }
+  }, [activeTopic, posts, uniqueTopics]);
 
   return (
     <div className={classes.root}>
@@ -105,24 +157,24 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
           parentTopics={parentTopics}
           subTopics={subTopics}
         />
-        {posts && posts.length > 0 && (
+        {topicPosts && topicPosts.length > 0 && (
           <Link
-            as={`/${insightSlug}/${posts[0].post_name}`}
+            as={`/${insightSlug}/${topicPosts[0].post_name}`}
             href={`/${insightSlug}/[...slug]`}
             className={classes.link}
           >
             <FeaturedCard
-              title={posts[0].post_title}
-              description={posts[0].post_excerpt}
-              image={posts[0].featured_image}
-              date={posts[0].post_date}
+              title={topicPosts[0].post_title}
+              description={topicPosts[0].post_excerpt}
+              image={topicPosts[0].featured_image}
+              date={topicPosts[0].post_date}
             />
           </Link>
         )}
         <Grid container>
-          {posts &&
-            posts.length > 1 &&
-            posts.slice(1, 4).map((post) => (
+          {topicPosts &&
+            topicPosts.length > 1 &&
+            topicPosts.slice(1, 4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
                   as={`/${insightSlug}/${post.post_name}`}
@@ -158,9 +210,9 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
       />
       <Section classes={{ root: classes.section }}>
         <Grid container>
-          {posts &&
-            posts.length > 4 &&
-            posts.slice(4).map((post) => (
+          {topicPosts &&
+            topicPosts.length > 4 &&
+            topicPosts.slice(4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
                   as={`/${insightSlug}/${post.post_name}`}

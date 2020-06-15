@@ -179,7 +179,7 @@ function ArticlePage({ article, author, link, media, pageTitle, subscribe, ...pr
                 root: classes.authorRoot,
               }}
             />
-            {article.acf.source_attribution && (
+            {article.acf.source_attribution && article.acf.source_attribution.description !== "" && (
             <Grid item container className={classes.dataSource}>
               <Grid item md={6}>
                 <Typography variant="subtitle2">
