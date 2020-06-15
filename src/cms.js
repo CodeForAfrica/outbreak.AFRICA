@@ -33,7 +33,7 @@ export async function getPostByParentId(
   orderBy = "menu_order"
 ) {
   const res = await fetch(
-    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}?parent=${parent}&order=${order}&orderby=${orderBy}lang=${lang}`
+    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}?parent=${parent}&order=${order}&orderby=${orderBy}&lang=${lang}`
   );
   return res.ok ? res.json() : null;
 }
