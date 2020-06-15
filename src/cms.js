@@ -25,9 +25,15 @@ export async function getPostById(type, id, lang) {
   return res.ok ? res.json() : null;
 }
 
-export async function getPostByParentId(type, parent, lang) {
+export async function getPostByParentId(
+  type,
+  parent,
+  lang,
+  order = "asc",
+  orderBy = "menu_order"
+) {
   const res = await fetch(
-    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}?parent=${parent}&lang=${lang}`
+    `${config.WP_BACKEND_URL}/wp-json/wp/v2/${type}?parent=${parent}&order=${order}&orderby=${orderBy}&lang=${lang}`
   );
   return res.ok ? res.json() : null;
 }
