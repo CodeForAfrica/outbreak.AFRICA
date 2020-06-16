@@ -170,7 +170,7 @@ function MainFooter({
     links: legalLinksLinks.map((l) => ({
       ...l,
       as: l.href,
-      href: "/legal/[slug]",
+      href: "/legal/[...slug]",
     })),
   };
   const quickLinks = quickLinksLinks.map((q) => ({
