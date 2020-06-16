@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
     fontSize: "0.75rem",
     minWidth: "57px",
-    padding: '0.5rem',
+    padding: "0.5rem",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       fontSize: "1rem",
       padding: "auto 1rem",
-      minWidth: "100px"
+      minWidth: "100px",
     },
   },
   caption: {

@@ -50,18 +50,18 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function slugify (word) {
-    if (!word) return "";
-    return word
-      .toString()
-      .trim()
-      .toLowerCase()
-      .replace(/\s+/g, "-")
-      .replace(/[^\w-]+/g, "")
-      .replace(/-+/g, "-")
-      .replace(/^-+/, "")
-      .replace(/-+$/, "");
-  };
+function slugify(word) {
+  if (!word) return "";
+  return word
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+}
 
 function FAQ({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
@@ -77,35 +77,40 @@ function FAQ({ errorCode, outbreak, slug, ...props }) {
 
   const contents =
     (faqs &&
-      faqs.map(({ topic, questions_answers: questionsAnswers}) => ({
+      faqs.map(({ topic, questions_answers: questionsAnswers }) => ({
         as: `/faq/${slugify(topic)}`,
         href: "/faq/[...slug]",
         slug: `${slugify(topic)}`,
         name: topic,
         icon: iconBox,
         title: {
-          rendered: topic
+          rendered: topic,
         },
         content: {
-          rendered: <FaqContent questionsAnswers={questionsAnswers} slug={`${slugify(topic)}`} />
-        }
+          rendered: (
+            <FaqContent
+              questionsAnswers={questionsAnswers}
+              slug={`${slugify(topic)}`}
+            />
+          ),
+        },
       }))) ||
     [];
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-          if (slug) {
-            const sub = document.getElementById(slug);
-            if (sub) {
-              sub.scrollIntoView({ behavior: "smooth" });
-            }
-          }
-        }, 200);
-        return () => clearTimeout(timer);
-      }, [slug]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (slug) {
+        const sub = document.getElementById(slug);
+        if (sub) {
+          sub.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    }, 200);
+    return () => clearTimeout(timer);
+  }, [slug]);
   return (
     <Page
-    errorCode={errorCode}
+      errorCode={errorCode}
       outbreak={outbreak}
       title={pageTitle || "FAQ"}
       classes={{ section: classes.section }}
@@ -141,7 +146,7 @@ export async function getServerSideProps({ query }) {
   let errorCode = null;
   if (slug) {
     const index = outbreak.page.faqs
-      ? outbreak.page.faqs.findIndex(({topic}) => slugify(topic) === slug)
+      ? outbreak.page.faqs.findIndex(({ topic }) => slugify(topic) === slug)
       : -1;
     if (index === -1) {
       errorCode = 404;
@@ -152,7 +157,7 @@ export async function getServerSideProps({ query }) {
     props: {
       errorCode,
       outbreak,
-      slug
+      slug,
     },
   };
 }

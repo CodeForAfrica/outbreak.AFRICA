@@ -50,7 +50,7 @@ const ICONS = {
 function Main({ classes: classesProp, content, ...props }) {
   const classes = useStyles({ ...props, classes: classesProp });
   const iconSrc = content.icon || ICONS[content.slug];
-  const icon = { src: iconSrc };
+  const icon = iconSrc ? { src: iconSrc } : undefined;
 
   return (
     <div id={content.slug} className={classes.root}>

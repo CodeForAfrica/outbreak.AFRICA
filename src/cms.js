@@ -25,7 +25,7 @@ export async function getPostById(type, id, lang) {
   return res.ok ? res.json() : null;
 }
 
-export async function getPostByParentId(
+export async function getPostsByParentId(
   type,
   parent,
   lang,
@@ -57,9 +57,27 @@ export async function getSitePage(slug, lang) {
 export async function getSitePageWithChildren(slug, lang) {
   const site = await getSitePage(slug, lang);
   if (site.page && site.page.id) {
-    site.page.children = await getPostByParentId("pages", config.page.id, lang);
+    site.page.children = await getPostsByParentId(
+      "pages",
+      config.page.id,
+      lang
+    );
   }
   return site;
+}
+
+export async function getArticle(slug, lang) {
+  const [post] = await getPostBySlug("posts", slug, lang);
+  if (post) {
+    const author = await getPostById("users", post.author, lang);
+    const {
+      media_details: { sizes: media },
+    } = await getPostById("media", post.featured_media, lang);
+    if (author && media) {
+      return { post, author, media };
+    }
+  }
+  return null;
 }
 
 export async function getSectionedCharts(lang) {

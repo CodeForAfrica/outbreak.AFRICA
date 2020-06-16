@@ -1,10 +1,9 @@
- 
-import { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
+import { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
 
 function Portal({ children, element }) {
   // Create a new div within the element that we'll render our component
-  const el = document.createElement('div');
+  const el = document.createElement("div");
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     element.appendChild(el);

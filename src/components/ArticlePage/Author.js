@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A, RichTypography } from "@commons-ui/core";
 
@@ -101,23 +101,43 @@ function Author({ author, variant, ...props }) {
   if (!author) {
     return null;
   }
-  const { name, description, avatar_urls: avatar, acf: {position} } = author;
+  const {
+    name,
+    description,
+    avatar_urls: avatar,
+    acf: { position },
+  } = author;
   return (
-    <Grid container direction="row" alignItems="flex-start" justify="center" className={classes.root}>
-      <Grid item className={classes.imageDiv} md={ variant === "full" && 5}>
+    <Grid
+      container
+      direction="row"
+      alignItems="flex-start"
+      justify="center"
+      className={classes.root}
+    >
+      <Grid
+        item
+        md={variant === "full" ? 5 : undefined}
+        className={classes.imageDiv}
+      >
         <img src={avatar["96"]} alt="" className={classes.image} />
       </Grid>
-      <Grid item xs={12} className={classes.contentDiv} md={ variant ==="full" && 7}>
-        <Typography variant="subtitle2" className={classes.title}>
+      <Grid
+        item
+        xs={12}
+        md={variant === "full" ? 7 : undefined}
+        className={classes.contentDiv}
+      >
+        <RichTypography variant="subtitle2" className={classes.title}>
           {name}
-        </Typography>
-        <Typography variant="caption" className={classes.position}>
+        </RichTypography>
+        <RichTypography variant="caption" className={classes.position}>
           {position}
-        </Typography>
-        <Typography variant="caption" className={classes.organisation}>
+        </RichTypography>
+        <RichTypography variant="caption" className={classes.organisation}>
           Code For Africa
-        </Typography>
-        { variant === "compact" && (
+        </RichTypography>
+        {variant === "compact" && (
           <RichTypography variant="caption" className={classes.description}>
             {description}
           </RichTypography>
@@ -134,7 +154,7 @@ function Author({ author, variant, ...props }) {
           </A>
         </Grid>
       </Grid>
-      { variant === "full" && (
+      {variant === "full" && (
         <Grid item md={12}>
           <RichTypography variant="caption" className={classes.description}>
             {description}
@@ -152,6 +172,6 @@ Author.propTypes = {
 
 Author.defaultProps = {
   variant: "compact",
-}
+};
 
 export default Author;

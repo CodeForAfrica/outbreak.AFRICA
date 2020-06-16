@@ -40,14 +40,14 @@ function Analysis({ outbreak, ...props }) {
       title={pageTitle || "Featured Stories"}
       classes={{ section: classes.section }}
     >
-        <InsightPage
-          posts={posts}
-          joinUs={joinUs}
-          subscribe={subscribe}
-          title={pageTitle}
-          insightSlug={"insights/analysis"}
-          classes={{ section: classes.section }}
-        />
+      <InsightPage
+        posts={posts}
+        joinUs={joinUs}
+        subscribe={subscribe}
+        title={pageTitle}
+        variant="stories"
+        classes={{ section: classes.section }}
+      />
     </Page>
   );
 }

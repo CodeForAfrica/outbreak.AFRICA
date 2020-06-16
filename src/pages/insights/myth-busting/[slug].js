@@ -2,11 +2,11 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import InsightPage from "components/InsightPage";
+import ArticlePage from "components/ArticlePage";
 import Page from "components/Page";
 
 import config from "config";
-import { getSitePage } from "cms";
+import { getArticle, getSitePage } from "cms";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -27,25 +27,25 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function Analysis({ outbreak, ...props }) {
+function Analysis({ outbreak, article: { post, author, media }, ...props }) {
   const classes = useStyles(props);
-
   const {
-    page: { posts, join_us: joinUs, subscribe, title: pageTitle },
+    page: { subscribe, title },
   } = outbreak;
+  const pageTitle = title || "Misinformation";
 
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Resources"}
+      title={pageTitle}
       classes={{ section: classes.section }}
     >
-      <InsightPage
-        posts={posts}
-        joinUs={joinUs}
+      <ArticlePage
+        author={author}
+        link={{ href: "/insights/myth-busting", title: pageTitle }}
+        media={media}
+        post={post}
         subscribe={subscribe}
-        title={pageTitle}
-        variant="resources"
         classes={{ section: classes.section }}
       />
     </Page>
@@ -53,12 +53,16 @@ function Analysis({ outbreak, ...props }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const { lang: pageLanguage } = query;
+  const { lang: pageLanguage, slug } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("insights-resources", lang);
+  const outbreak = await getSitePage("insights-myth-busting", lang);
+  const article = await getArticle(slug, lang);
+  const errorCode = article ? null : 404;
 
   return {
     props: {
+      article,
+      errorCode,
       outbreak,
     },
   };
