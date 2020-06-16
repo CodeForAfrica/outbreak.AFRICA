@@ -79,25 +79,27 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props }) {
+function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
   const classes = useStyles(props);
-
+  const linkHref = `/insights/${variant}/[slug]`;
+  const linkAs = (slug) => `/insights/${variant}/${slug}`;
   const [activeTopic, setActiveTopic] = useState("all");
   const [subTopics, setSubTopics] = useState([]);
   const [topicPosts, setTopicPosts] = useState(posts);
 
   const uniqueTopics = useMemo(
     () =>
-      posts ?
       posts
-        .reduce((a, b) => a.concat(b.categories), [])
-        .reduce((acc, current) => {
-          const x = acc.find((item) => item.term_id === current.term_id);
-          if (!x) {
-            return acc.concat([current]);
-          }
-          return acc;
-        }, []): [],
+        ? posts
+            .reduce((a, b) => a.concat(b.categories), [])
+            .reduce((acc, current) => {
+              const x = acc.find((item) => item.term_id === current.term_id);
+              if (!x) {
+                return acc.concat([current]);
+              }
+              return acc;
+            }, [])
+        : [],
     [posts]
   );
 
@@ -119,11 +121,12 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
 
   const parentTopics = [
     { name: "All", slug: "all" },
-    ...uniqueTopics && uniqueTopics.filter((topic) => topic.parent === 0),
+    ...(uniqueTopics && uniqueTopics.filter((topic) => topic.parent === 0)),
   ];
 
   useEffect(() => {
-    const foundActiveTopic = uniqueTopics && uniqueTopics.find((a) => a.slug === activeTopic);
+    const foundActiveTopic =
+      uniqueTopics && uniqueTopics.find((a) => a.slug === activeTopic);
     if (foundActiveTopic) {
       setSubTopics(
         uniqueTopics.filter((top) => top.parent === foundActiveTopic.term_id)
@@ -159,8 +162,8 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
         />
         {topicPosts && topicPosts.length > 0 && (
           <Link
-            as={`/${insightSlug}/${topicPosts[0].post_name}`}
-            href={`/${insightSlug}/[...slug]`}
+            as={linkAs(posts[0].post_name)}
+            href={linkHref}
             className={classes.link}
           >
             <FeaturedCard
@@ -177,8 +180,8 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
             topicPosts.slice(1, 4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
-                  as={`/${insightSlug}/${post.post_name}`}
-                  href={`/${insightSlug}/[...slug]`}
+                  as={linkAs(post.post_name)}
+                  href={linkHref}
                   className={classes.link}
                 >
                   <PostItem
@@ -215,8 +218,8 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
             topicPosts.slice(4).map((post) => (
               <Grid item md={4} className={classes.postItem}>
                 <Link
-                  as={`/${insightSlug}/${post.post_name}`}
-                  href={`/${insightSlug}/[...slug]`}
+                  as={linkAs(post.post_name)}
+                  href={linkHref}
                   className={classes.link}
                 >
                   <PostItem
@@ -251,11 +254,12 @@ function InsightPage({ posts, joinUs, insightSlug, subscribe, title, ...props })
 }
 
 InsightPage.propTypes = {
-  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-  insightSlug: PropTypes.oneOf(["analysis", "myth-busting", "resources", "stories"]).isRequired,
   joinUs: PropTypes.shape({}).isRequired,
+  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   subscribe: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
+  variant: PropTypes.oneOf(["analysis", "myth-busting", "resources", "stories"])
+    .isRequired,
 };
 
 export default InsightPage;

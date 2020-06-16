@@ -2,7 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Error from "next/error";
+import Router from "next/router";
 
+import { LinearProgress } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Footer from "./Footer";
@@ -18,6 +20,15 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
   },
   section: {
     paddingTop: 0,
+  },
+  routeIndicator: {
+    position: "relative",
+  },
+  routeIndicatorProgress: {
+    top: 0,
+    left: 0,
+    width: "100%",
+    position: "absolute",
   },
   footer: {
     marginTop: typography.pxToRem(91.82),
@@ -35,6 +46,28 @@ function Page({
   ...props
 }) {
   const classes = useStyles({ classes: classesProp });
+  const [routeChanging, setRouteChanging] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleRouteChangeStart = () => {
+      setRouteChanging(true);
+    };
+    const handleRouteChangeComplete = () => {
+      setRouteChanging(false);
+    };
+    const handleRouteChangeError = () => {
+      setRouteChanging(false);
+    };
+
+    Router.events.on("routeChangeStart", handleRouteChangeStart);
+    Router.events.on("routeChangeComplete", handleRouteChangeComplete);
+    Router.events.on("routeChangeError", handleRouteChangeError);
+    return () => {
+      Router.events.off("routeChangeStart", handleRouteChangeStart);
+      Router.events.off("routeChangeComplete", handleRouteChangeComplete);
+      Router.events.off("routeChangeError", handleRouteChangeError);
+    };
+  }, []);
 
   if (errorCode) {
     return <Error statusCode={errorCode} />;
@@ -43,6 +76,15 @@ function Page({
     <div className={classes.root}>
       <SEO {...props} />
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
+      {routeChanging && (
+        <div className={classes.routeIndicator}>
+          <LinearProgress
+            variant="query"
+            color="primary"
+            className={classes.routeIndicatorProgress}
+          />
+        </div>
+      )}
 
       {children}
       <Footer

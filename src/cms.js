@@ -66,6 +66,20 @@ export async function getSitePageWithChildren(slug, lang) {
   return site;
 }
 
+export async function getArticle(slug, lang) {
+  const [post] = await getPostBySlug("posts", slug, lang);
+  if (post) {
+    const author = await getPostById("users", post.author, lang);
+    const {
+      media_details: { sizes: media },
+    } = await getPostById("media", post.featured_media, lang);
+    if (author && media) {
+      return { post, author, media };
+    }
+  }
+  return null;
+}
+
 export async function getSectionedCharts(lang) {
   const res = await fetch(
     `${config.WP_BACKEND_URL}/wp-json/hurumap-data/charts?sectioned=1&type=hurumap&lang=${lang}`

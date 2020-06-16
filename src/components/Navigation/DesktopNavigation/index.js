@@ -116,10 +116,6 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
                     className={classes.button}
                   >
                     <PageNavigation
-                      pathname={`${otherNavigation.url}/[...slug]`.replace(
-                        "//",
-                        "/"
-                      )} // Ensure single '/'
                       asPath={otherNavigation.url}
                       navigation={otherNavigation.subnav}
                       classes={{
@@ -169,7 +165,6 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
       {pageNavigation && pageNavigation.subnav && (
         <Grid item xs={12}>
           <PageNavigation
-            pathname={`${currentPageUrl}/[...slug]`}
             asPath={asPath}
             navigation={pageNavigation.subnav}
             classes={{ section: classes.section }}

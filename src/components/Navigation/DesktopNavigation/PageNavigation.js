@@ -46,12 +46,11 @@ function PageNavigation({
 }) {
   const classes = useStyles(props);
   // Remove query from asPath (if any)
-  const asPath = (asPathProp && asPathProp.split("?")[0]) || undefined;
+  const asPath = asPathProp && asPathProp.split("?")[0];
   const asPathParts = asPath && asPath.split("/");
-  // Limit navigationUrl to only subnav level i.e. ignore item/story slug
+  // Limit navigationUrl to subnav level only i.e. ignore article slug
   const navigationUrl =
     asPathParts && asPathParts.length > 2 && asPathParts.slice(0, 3).join("/");
-  console.log('BOOM', { asPathProp, asPathParts, pathname });
 
   if (!navigation || navigation.length < 1) {
     return null;

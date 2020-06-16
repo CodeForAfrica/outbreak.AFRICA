@@ -26,12 +26,16 @@ const useStyles = makeStyles(
       [breakpoints.up("md")]: {
         position: "relative",
         display: "initial",
-        height: (widths.values.md * 839) / widths.values.xl,
-        paddingRight: (widths.values.md * 73) / widths.values.xl,
+        height: typography.pxToRem((widths.values.md * 839) / widths.values.xl),
+        paddingRight: typography.pxToRem(
+          (widths.values.md * 73) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
-        height: (widths.values.lg * 839) / widths.values.xl,
-        paddingRight: (widths.values.lg * 73) / widths.values.xl,
+        height: typography.pxToRem((widths.values.lg * 839) / widths.values.xl),
+        paddingRight: typography.pxToRem(
+          (widths.values.lg * 73) / widths.values.xl
+        ),
       },
       [breakpoints.up("xl")]: {
         height: typography.pxToRem(839),
@@ -40,22 +44,25 @@ const useStyles = makeStyles(
     },
     articleContent: {
       [breakpoints.up("md")]: {
-        minHeight: (widths.values.md * 1591) / widths.values.xl,
+        minHeight: typography.pxToRem(
+          (widths.values.md * 1591) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
-        minHeight: (widths.values.lg * 1591) / widths.values.xl,
+        minHeight: typography.pxToRem(
+          (widths.values.lg * 1591) / widths.values.xl
+        ),
       },
       [breakpoints.up("xl")]: {
         minHeight: typography.pxToRem(1591),
       },
-
     },
     aside: {
       [breakpoints.up("md")]: {
-        right: (widths.values.md * 73) / widths.values.xl,
+        right: typography.pxToRem((widths.values.md * 73) / widths.values.xl),
       },
       [breakpoints.up("lg")]: {
-        right: (widths.values.lg * 73) / widths.values.xl,
+        right: typography.pxToRem((widths.values.lg * 73) / widths.values.xl),
       },
       [breakpoints.up("xl")]: {
         right: typography.pxToRem(73),
@@ -94,37 +101,65 @@ const useStyles = makeStyles(
       },
       [breakpoints.up("md")]: {
         "& .wp-block-quote": {
-          marginLeft: (widths.values.md * 69) / widths.values.xl,
-          marginBottom: (widths.values.md * 50) / widths.values.xl,
-          marginTop: (widths.values.md * 23) / widths.values.xl,
-          paddingTop: (widths.values.md * 24) / widths.values.xl,
+          marginLeft: typography.pxToRem(
+            (widths.values.md * 69) / widths.values.xl
+          ),
+          marginBottom: typography.pxToRem(
+            (widths.values.md * 50) / widths.values.xl
+          ),
+          marginTop: typography.pxToRem(
+            (widths.values.md * 23) / widths.values.xl
+          ),
+          paddingTop: typography.pxToRem(
+            (widths.values.md * 24) / widths.values.xl
+          ),
           "&:before": {
             top: "-10px !important",
             height: "70px !important",
           },
           "& p": {
-            paddingLeft: (widths.values.md * 69) / widths.values.xl,
+            paddingLeft: typography.pxToRem(
+              (widths.values.md * 69) / widths.values.xl
+            ),
             borderLeft: "1px solid #0050FF",
           },
         },
         "& figure": {
-          marginTop: (widths.values.md * 86) / widths.values.xl,
-          marginBottom: (widths.values.md * 100) / widths.values.xl,
+          marginTop: typography.pxToRem(
+            (widths.values.md * 86) / widths.values.xl
+          ),
+          marginBottom: typography.pxToRem(
+            (widths.values.md * 100) / widths.values.xl
+          ),
         },
       },
       [breakpoints.up("lg")]: {
         "& .wp-block-quote": {
-          marginLeft: (widths.values.lg * 69) / widths.values.xl,
-          marginBottom: (widths.values.lg * 50) / widths.values.xl,
-          marginTop: (widths.values.lg * 23) / widths.values.xl,
-          paddingTop: (widths.values.lg * 24) / widths.values.xl,
+          marginLeft: typography.pxToRem(
+            (widths.values.lg * 69) / widths.values.xl
+          ),
+          marginBottom: typography.pxToRem(
+            (widths.values.lg * 50) / widths.values.xl
+          ),
+          marginTop: typography.pxToRem(
+            (widths.values.lg * 23) / widths.values.xl
+          ),
+          paddingTop: typography.pxToRem(
+            (widths.values.lg * 24) / widths.values.xl
+          ),
           "& p": {
-            paddingLeft: (widths.values.lg * 69) / widths.values.xl,
+            paddingLeft: typography.pxToRem(
+              (widths.values.lg * 69) / widths.values.xl
+            ),
           },
         },
         "& figure": {
-          marginTop: (widths.values.lg * 86) / widths.values.xl,
-          marginBottom: (widths.values.lg * 100) / widths.values.xl,
+          marginTop: typography.pxToRem(
+            (widths.values.lg * 86) / widths.values.xl
+          ),
+          marginBottom: typography.pxToRem(
+            (widths.values.lg * 100) / widths.values.xl
+          ),
         },
       },
       [breakpoints.up("xl")]: {
@@ -160,10 +195,10 @@ const useStyles = makeStyles(
       width: "100%",
       height: typography.pxToRem(119),
       [breakpoints.up("md")]: {
-        height: (widths.values.md * 633) / widths.values.xl,
+        height: typography.pxToRem((widths.values.md * 633) / widths.values.xl),
       },
       [breakpoints.up("lg")]: {
-        height: (widths.values.lg * 633) / widths.values.xl,
+        height: typography.pxToRem((widths.values.lg * 633) / widths.values.xl),
       },
       [breakpoints.up("xl")]: {
         height: typography.pxToRem(633),
@@ -211,13 +246,17 @@ const useStyles = makeStyles(
     readAttr: {
       paddingTop: 7,
       [breakpoints.up("md")]: {
-        paddingLeft: (widths.values.md * 74) / widths.values.xl,
+        paddingLeft: typography.pxToRem(
+          (widths.values.md * 74) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
-        paddingLeft: (widths.values.lg * 74) / widths.values.xl,
+        paddingLeft: typography.pxToRem(
+          (widths.values.lg * 74) / widths.values.xl
+        ),
       },
       [breakpoints.up("xl")]: {
-        paddingLeft: 74,
+        paddingLeft: typography.pxToRem(74),
       },
     },
     socialIcons: {
@@ -226,10 +265,10 @@ const useStyles = makeStyles(
         paddingTop: "1.5rem",
         display: "initial",
         position: "absolute",
-        right: (widths.values.md * -307) / widths.values.xl,
+        right: typography.pxToRem((widths.values.md * -307) / widths.values.xl),
       },
       [breakpoints.up("lg")]: {
-        right: (widths.values.lg * -307) / widths.values.xl,
+        right: typography.pxToRem((widths.values.lg * -307) / widths.values.xl),
       },
       [breakpoints.up("xl")]: {
         right: typography.pxToRem(-307),
@@ -243,8 +282,8 @@ const useStyles = makeStyles(
       },
       [breakpoints.up("xl")]: {
         fontSize: typography.pxToRem(60),
-        lineHeight: 80/60,
-      }
+        lineHeight: 80 / 60,
+      },
     },
     authorContentDiv: {
       paddingTop: "0rem",
@@ -259,10 +298,14 @@ const useStyles = makeStyles(
       boxShadow: "0px 0.25rem 0.25rem #00000029",
       padding: "3.625rem 2.5rem 2.5rem",
       [breakpoints.up("md")]: {
-        marginTop: (widths.values.md * 50) / widths.values.xl,
+        marginTop: typography.pxToRem(
+          (widths.values.md * 50) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
-        marginTop: (widths.values.lg * 50) / widths.values.xl,
+        marginTop: typography.pxToRem(
+          (widths.values.lg * 50) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
         marginTop: typography.pxToRem(50),

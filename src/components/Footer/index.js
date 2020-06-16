@@ -6,6 +6,8 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 import { Footer } from "@commons-ui/core";
 
+import Link from "components/Link";
+
 // import Email from 'assets/Icon awesome-at.svg';
 import Facebook from "assets/Icon awesome-facebook-f.svg";
 import GitHub from "assets/Icon awesome-git.svg";
@@ -128,9 +130,9 @@ function MainFooter({
     page: {
       about,
       initiative_logo: initiativeLogoProp,
-      legal_links: legalLinks,
+      legal_links: legalLinksLinks,
       organization_logo: organizationLogoProp,
-      quick_links: quickLinks,
+      quick_links: quickLinksLinks,
     },
   },
   ...props
@@ -140,10 +142,12 @@ function MainFooter({
     image: { url: initiativeLogoProp.image, alt: organizationLogoProp.alt },
     url: initiativeLogoProp.link,
   };
+  const legalLinks = { linkComponent: Link, links: legalLinksLinks };
   const organizationLogo = {
     image: { url: organizationLogoProp.image, alt: organizationLogoProp.alt },
     url: organizationLogoProp.link,
   };
+  const quickLinks = { linkComponent: Link, links: quickLinksLinks };
 
   return (
     <Footer
@@ -153,8 +157,8 @@ function MainFooter({
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}
-      quickLinks={quickLinks}
       organizationLogo={organizationLogo}
+      quickLinks={quickLinks}
       classes={{
         initiative: classes.initiative,
         copyright: classes.copyright,
@@ -181,8 +185,8 @@ MainFooter.propTypes = {
       about: PropTypes.shape({}),
       organization_logo: PropTypes.shape({}),
       initiative_logo: PropTypes.shape({}),
-      quick_links: PropTypes.shape({}),
-      legal_links: PropTypes.shape({}),
+      quick_links: PropTypes.arrayOf(PropTypes.shape({})),
+      legal_links: PropTypes.arrayOf(PropTypes.shape({})),
     }),
   }).isRequired,
 };
