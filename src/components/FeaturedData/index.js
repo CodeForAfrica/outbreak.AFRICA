@@ -9,7 +9,7 @@ import { Section, RichTypography } from "@commons-ui/core";
 import Container from "./Container";
 import FlourishContainer from "./FlourishContainer";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {},
   sectionTitle: {
@@ -20,6 +20,15 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     height: "15%",
     display: "flex",
     alignItems: "flex-end",
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem((widths.values.md * 21)/ widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      marginTop: typography.pxToRem((widths.values.lg * 21)/ widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      marginTop: typography.pxToRem(21),
+    },
   },
   actionIcon: {
     width: "2rem",
@@ -135,13 +144,14 @@ function FeaturedData({ featuredContent, ...props }) {
               featuredCharts.map((chart, index) => (
                 <Grid
                   item
+                  container
                   xs={12}
                   md={6}
                   lg={index === 0 || index === 3 ? 4 : 8}
                   className={classNames(classes.chartGrid, `chart${index}`)}
                   key={chart.id}
                 >
-                  <Grid className={classes.chartShadow}>
+                  <Grid item className={classes.chartShadow} xs={12}>
                     {chart.type === "hurumap" ? (
                       <Container action="Explore" featuredChart={chart} />
                     ) : (
@@ -151,7 +161,7 @@ function FeaturedData({ featuredContent, ...props }) {
                       />
                     )}
                   </Grid>
-                  <Grid className={classes.actionGrid}>
+                  <Grid item container className={classes.actionGrid} xs={12}>
                     <RichTypography
                       variant="body2"
                       className={classes.description}
