@@ -146,7 +146,11 @@ function Content({
             <Grid item xs={12} md={main}>
               {contents &&
                 contents.map((content) => (
-                  <Main key={content.slug} content={content} classes={{ root: classes.main }} />
+                  <Main
+                    key={content.slug}
+                    content={content}
+                    classes={{ root: classes.main }}
+                  />
                 ))}
               {children}
             </Grid>
