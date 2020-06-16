@@ -124,6 +124,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const toLink = (link) => {
+  if (!(link && link.href)) {
+    return link;
+  }
+  let as;
+  let { href } = link;
+  // About page links
+  if (link.href.startsWith("/about/")) {
+    as = href;
+    href = "/about/[...slug]";
+  }
+  // Resource link
+  if (link.href.startsWith("/insights/")) {
+    as = href;
+    href = "/insights/[slug]";
+  }
+  return { as, href };
+};
+
 function MainFooter({
   classes: classesProp,
   outbreak: {
@@ -142,12 +161,23 @@ function MainFooter({
     image: { url: initiativeLogoProp.image, alt: organizationLogoProp.alt },
     url: initiativeLogoProp.link,
   };
-  const legalLinks = { linkComponent: Link, links: legalLinksLinks };
   const organizationLogo = {
     image: { url: organizationLogoProp.image, alt: organizationLogoProp.alt },
     url: organizationLogoProp.link,
   };
-  const quickLinks = { linkComponent: Link, links: quickLinksLinks };
+  const legalLinks = {
+    linkComponent: Link,
+    links: legalLinksLinks.map((l) => ({
+      ...l,
+      as: l.href,
+      href: "/legal/[slug]",
+    })),
+  };
+  const quickLinks = quickLinksLinks.map((q) => ({
+    ...q,
+    links: q.links.map((l) => ({ ...l, ...toLink(l) })),
+    linkComponent: Link,
+  }));
 
   return (
     <Footer
@@ -157,8 +187,8 @@ function MainFooter({
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}
-      organizationLogo={organizationLogo}
       quickLinks={quickLinks}
+      organizationLogo={organizationLogo}
       classes={{
         initiative: classes.initiative,
         copyright: classes.copyright,
@@ -183,10 +213,10 @@ MainFooter.propTypes = {
   outbreak: PropTypes.shape({
     page: PropTypes.shape({
       about: PropTypes.shape({}),
-      organization_logo: PropTypes.shape({}),
       initiative_logo: PropTypes.shape({}),
+      legal_links: PropTypes.shape({}),
       quick_links: PropTypes.arrayOf(PropTypes.shape({})),
-      legal_links: PropTypes.arrayOf(PropTypes.shape({})),
+      organization_logo: PropTypes.shape({}),
     }),
   }).isRequired,
 };
