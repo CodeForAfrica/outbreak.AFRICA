@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { RichTypography } from "@commons-ui/core";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints }) => ({
   expansionPanel: {
     backgroundColor: "#C1D5FF",
     boxShadow: "none",
@@ -57,16 +57,15 @@ export default function FaqContent({ questionsAnswers, slug, ...props }) {
               expandIcon={<ExpandMoreIcon />}
               aria-controls={`${slug}-panel${index}-d-content`}
               id={`${slug}-panel${index}d-header`}
-              classes={{ root: classes.panelSummary, content: classes.panelContent }}
+              classes={{
+                root: classes.panelSummary,
+                content: classes.panelContent,
+              }}
             >
-              <Typography variant="subtitle2">
-                {question}
-              </Typography>
+              <Typography variant="subtitle2">{question}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails>
-              <RichTypography variant="caption">
-                {answer}
-              </RichTypography>
+              <RichTypography variant="caption">{answer}</RichTypography>
             </ExpansionPanelDetails>
           </ExpansionPanel>
         ))}

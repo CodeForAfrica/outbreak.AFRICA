@@ -146,7 +146,7 @@ Disallow:
       slug: "south-africa",
       lang: "en",
       published: true,
-    }
+    },
   ],
   settings: {
     mailingList: {
@@ -184,10 +184,7 @@ Disallow:
       "https://cfa-outbreakafrica.s3-eu-west-1.amazonaws.com/media/images",
     imageType: ".png",
   },
-  populationTables: [
-    "allPopulationKe2019S",
-    "allPopulationZa2016S",
-  ],
+  populationTables: ["allPopulationKe2019S", "allPopulationZa2016S"],
   colorIndexTable: {
     all: "allFinalVulnerabilityIndices",
     "demographic-vulnerability": "allDemographicsVulnerabilityIndices",

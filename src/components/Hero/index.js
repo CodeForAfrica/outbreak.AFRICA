@@ -170,7 +170,7 @@ function Hero({ heroContent, isResearch, ...props }) {
           <Grid item container md={md}>
             <Grid item xs={12}>
               <RichTypography
-                variant={isResearch? "h3": "h1"}
+                variant={isResearch ? "h3" : "h1"}
                 component="div"
                 classes={{
                   root: classNames(classes.title, {
