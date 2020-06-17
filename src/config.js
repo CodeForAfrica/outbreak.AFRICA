@@ -31,7 +31,7 @@ Disallow:
   ES_URL:
     process.env.NODE_ENV === "development"
       ? "http://localhost:9200"
-      : "https://search-cfa-openafrica-z56l24lkfbv5erjxxs76sevr3i.eu-west-1.es.amazonaws.com",
+      : "https://search.hurumap.org",
   MAPIT_URL: "https://mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
