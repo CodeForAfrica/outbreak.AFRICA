@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-
 import { makeStyles } from "@material-ui/core/styles";
 
-import Content from "components/Content";
-import Hero from "components/Hero";
-import JoinUs from "components/JoinUs";
 import Page from "components/Page";
+import Hero from "components/Hero";
+import Content from "components/Content";
+import FaqContent from "components/FaqContent";
+import iconBox from "assets/icon-infobox.svg";
 
 import config from "config";
-import { getSitePageWithChildren } from "cms";
+import { getSitePage } from "cms";
 
-const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
@@ -26,47 +26,77 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       width: widths.values.xl,
     },
   },
-  content: {},
-  joinUs: {
-    marginTop: 0,
-    [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem(50),
-    },
-  },
-  subscribe: {},
   heroDescription: {
     [breakpoints.up("md")]: {
-      maxWidth: (widths.values.md * 812) / widths.values.xl,
+      maxWidth: (widths.values.md * 1385) / widths.values.xl,
     },
     [breakpoints.up("lg")]: {
-      maxWidth: (widths.values.lg * 812) / widths.values.xl,
+      maxWidth: (widths.values.lg * 1385) / widths.values.xl,
     },
     [breakpoints.up("xl")]: {
-      maxWidth: "50.75rem",
+      maxWidth: "86.5625rem",
+    },
+  },
+  contentMain: {
+    [breakpoints.up("md")]: {
+      paddingLeft: (widths.values.md * 73) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      paddingLeft: (widths.values.lg * 73) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      paddingLeft: "4.5625rem",
     },
   },
 }));
 
-function About({ errorCode, outbreak, slug, ...props }) {
+function slugify(word) {
+  if (!word) return "";
+  return word
+    .toString()
+    .trim()
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-+/, "")
+    .replace(/-+$/, "");
+}
+
+function FAQ({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
+
   const {
     page: {
       hero_content: heroContent,
-      join_us: joinUs,
+      faqs,
       subscribe,
       title: { rendered: pageTitle },
-      children: childPages,
     },
   } = outbreak;
+
   const contents =
-    (childPages &&
-      childPages.map((page) => ({
-        ...page,
-        as: `/about/${page.slug}`,
-        href: "/about/[...slug]",
-        name: page.title.rendered,
+    (faqs &&
+      faqs.map(({ topic, questions_answers: questionsAnswers }) => ({
+        as: `/faq/${slugify(topic)}`,
+        href: "/faq/[...slug]",
+        slug: `${slugify(topic)}`,
+        name: topic,
+        icon: iconBox,
+        title: {
+          rendered: topic,
+        },
+        content: {
+          rendered: (
+            <FaqContent
+              questionsAnswers={questionsAnswers}
+              slug={`${slugify(topic)}`}
+            />
+          ),
+        },
       }))) ||
     [];
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (slug) {
@@ -78,36 +108,29 @@ function About({ errorCode, outbreak, slug, ...props }) {
     }, 200);
     return () => clearTimeout(timer);
   }, [slug]);
-
   return (
     <Page
       errorCode={errorCode}
       outbreak={outbreak}
-      title={pageTitle || "About us"}
+      title={pageTitle || "FAQ"}
       classes={{ section: classes.section }}
     >
       <Hero
         heroContent={heroContent}
         classes={{
-          section: classes.section,
           description: classes.heroDescription,
+          section: classes.section,
         }}
       />
       <Content
         contents={contents}
         current={slug}
+        classes={{
+          main: classes.contentMain,
+          section: classes.section,
+        }}
+        main={9}
         subscribe={subscribe}
-        classes={{
-          root: classes.content,
-          section: classes.section,
-        }}
-      />
-      <JoinUs
-        classes={{
-          root: classes.joinUs,
-          section: classes.section,
-        }}
-        joinUs={joinUs}
       />
     </Page>
   );
@@ -116,13 +139,14 @@ function About({ errorCode, outbreak, slug, ...props }) {
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage, slug: pageSlug } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePageWithChildren("about", lang);
+  const outbreak = await getSitePage("faq", lang);
+
   const [firstSlug] = pageSlug || [];
   const slug = (firstSlug && firstSlug.toLowerCase()) || null;
   let errorCode = null;
   if (slug) {
-    const index = outbreak.page.children
-      ? outbreak.page.children.findIndex((child) => child.slug === slug)
+    const index = outbreak.page.faqs
+      ? outbreak.page.faqs.findIndex(({ topic }) => slugify(topic) === slug)
       : -1;
     if (index === -1) {
       errorCode = 404;
@@ -130,8 +154,12 @@ export async function getServerSideProps({ query }) {
   }
 
   return {
-    props: { errorCode, outbreak, slug },
+    props: {
+      errorCode,
+      outbreak,
+      slug,
+    },
   };
 }
 
-export default About;
+export default FAQ;

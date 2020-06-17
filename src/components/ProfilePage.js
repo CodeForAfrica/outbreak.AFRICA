@@ -233,7 +233,7 @@ function ProfilePage({
 
   const onClickGeoLayer = useCallback(
     (area) => {
-      router.push(`/${area.codes.AFR}`);
+      router.push(`/data/${area.codes.AFR}`);
     },
     [router]
   );

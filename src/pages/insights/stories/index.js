@@ -2,57 +2,52 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
+import InsightPage from "components/InsightPage";
 import Page from "components/Page";
-import Hero from "components/Hero";
 
-import Content from 'components/Content';
-import FaqSection from 'components/Faq'
 import config from "config";
 import { getSitePage } from "cms";
-const useStyles = makeStyles(({ breakpoints }) => ({
+
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
   section: {
     margin: "0 1.25rem 0 1.375rem",
     width: "auto",
-    [breakpoints.up("lg")]: {
+    [breakpoints.up("md")]: {
       margin: "0 auto",
-      width: "78.5rem",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
     },
     [breakpoints.up("xl")]: {
       margin: "0 auto",
-      width: "102.5rem",
+      width: widths.values.xl,
     },
-  }
+  },
 }));
 
-function FAQ({ outbreak, ...props }) {
+function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
+
   const {
-    page: {
-      hero_content: heroContent,
-      subscribe,
-      title: { rendered: pageTitle },
-    },
+    page: { posts, join_us: joinUs, subscribe, title: pageTitle },
   } = outbreak;
 
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "FAQ"}
+      title={pageTitle || "Featured Stories"}
       classes={{ section: classes.section }}
     >
-      <Hero
-        heroContent={heroContent}
+      <InsightPage
+        posts={posts}
+        joinUs={joinUs}
+        subscribe={subscribe}
+        title={pageTitle}
+        variant="stories"
         classes={{ section: classes.section }}
       />
-      <Content
-        subscribe={subscribe}
-        classes={{
-          root: classes.content,
-          section: classes.section,
-        }}
-      />
-      <FaqSection />
     </Page>
   );
 }
@@ -60,7 +55,7 @@ function FAQ({ outbreak, ...props }) {
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("faq", lang);
+  const outbreak = await getSitePage("insights-stories", lang);
 
   return {
     props: {
@@ -69,4 +64,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default FAQ;
+export default Analysis;

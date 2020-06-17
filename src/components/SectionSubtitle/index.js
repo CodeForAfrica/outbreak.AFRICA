@@ -49,7 +49,7 @@ function SectionSubtitle({ children, icon, name, ...props }) {
   }
   return (
     <Grid container alignItems="center" className={classes.root}>
-      <RichTypography variant="h3" className={classes.title}>
+      <RichTypography variant="h4" className={classes.title}>
         {icon && (
           <img
             src={icon.src}

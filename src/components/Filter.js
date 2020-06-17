@@ -21,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     textTransform: "capitalize",
     fontSize: "0.75rem",
     minWidth: "57px",
+    padding: "0.5rem",
     "&:hover": {
       backgroundColor: "#0050FF",
       color: "white",

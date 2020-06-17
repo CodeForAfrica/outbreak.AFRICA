@@ -1089,10 +1089,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@commons-ui/core@^0.0.1-alpha.20":
-  version "0.0.1-alpha.20"
-  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.20.tgz#fb159fa05bb960ae7e67ac24dcf43aab28024576"
-  integrity sha512-AqUgW5NNQa86gCaXW5gsErALY1k6BLTbCT0OrL9lSROEyEmfyxjfk23uWBuBnO14Y49mv5NNpxRLO5bnlgEY4A==
+"@commons-ui/core@^0.0.1-alpha.21":
+  version "0.0.1-alpha.21"
+  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.21.tgz#a02640c5ce4511b61b8504e5f1955d57d95a4763"
+  integrity sha512-nROOi2woKSNSVtVKKjICPVI5zM6A0cDw8Zl2vlhVX7ltkuAyU+kTu06Yx+tnanOJJPvOe3zDSdnK/seR4xYKLQ==
   dependencies:
     clsx "^1.1.0"
     prop-types "^15.7.2"

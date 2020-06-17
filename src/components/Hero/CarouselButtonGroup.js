@@ -34,7 +34,7 @@ function CarouselButttonGroup({ next, previous, ...props }) {
             aria-label="back"
             color="secondary"
             className={classes.button}
-            onClick={() => previous()}
+            onClick={previous}
           >
             <ArrowBackIcon />
           </IconButton>
@@ -44,7 +44,7 @@ function CarouselButttonGroup({ next, previous, ...props }) {
             aria-label="forward"
             color="secondary"
             className={classes.button}
-            onClick={() => next()}
+            onClick={next}
           >
             <ArrowForwardIcon />
           </IconButton>

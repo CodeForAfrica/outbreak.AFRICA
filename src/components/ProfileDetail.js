@@ -117,8 +117,8 @@ function ProfileDetail({
   };
 
   const { squareKms, totalPopulation, name } = geo;
-  const population = totalPopulation.toFixed(0);
-  const populationDensity = (population / squareKms).toFixed(1);
+  const population = Number(totalPopulation).toFixed(0);
+  const populationDensity = (population / Number(squareKms)).toFixed(1);
 
   return (
     <Grid container className={classes.root}>

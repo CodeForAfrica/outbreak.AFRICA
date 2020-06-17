@@ -27,7 +27,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function Resources({ outbreak, ...props }) {
+function Analysis({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -45,6 +45,7 @@ function Resources({ outbreak, ...props }) {
         joinUs={joinUs}
         subscribe={subscribe}
         title={pageTitle}
+        variant="resources"
         classes={{ section: classes.section }}
       />
     </Page>
@@ -63,4 +64,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default Resources;
+export default Analysis;

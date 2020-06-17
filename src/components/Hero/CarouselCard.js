@@ -13,7 +13,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {
     backgroundColor: "#fafafa",
     border: "1px solid #eeeeee",

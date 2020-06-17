@@ -37,7 +37,7 @@ function Analysis({ outbreak, ...props }) {
   return (
     <Page
       outbreak={outbreak}
-      title={pageTitle || "Analysis"}
+      title={pageTitle || "Misinformation"}
       classes={{ section: classes.section }}
     >
       <InsightPage
@@ -45,6 +45,7 @@ function Analysis({ outbreak, ...props }) {
         joinUs={joinUs}
         subscribe={subscribe}
         title={pageTitle}
+        variant="myth-busting"
         classes={{ section: classes.section }}
       />
     </Page>
@@ -54,7 +55,7 @@ function Analysis({ outbreak, ...props }) {
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
-  const outbreak = await getSitePage("insights-analysis", lang);
+  const outbreak = await getSitePage("insights-myth-busting", lang);
 
   return {
     props: {

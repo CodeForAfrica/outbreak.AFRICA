@@ -38,7 +38,7 @@ function GeoId({ errorCode, ...props }) {
         {/** MapIt Preconnect */}
         <link
           rel="preconnect"
-          href="https://dev.mapit.hurumap.org"
+          href="https://mapit.hurumap.org"
           crossOrigin="anonymous"
         />
         {/** Map Tiles Preconnect */}

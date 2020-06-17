@@ -181,16 +181,15 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
               />
             )}
             {otherNavigations &&
-              (console.log("BOOM", { otherNavigations }) ||
-                otherNavigations.map((otherNavigation) => (
-                  <NavigationList
-                    title={otherNavigation.title}
-                    items={otherNavigation.subnav}
-                    toAs={() => undefined}
-                    toHref={({ url }) => url}
-                    toName={({ title }) => title}
-                  />
-                )))}
+              otherNavigations.map((otherNavigation) => (
+                <NavigationList
+                  title={otherNavigation.title}
+                  items={otherNavigation.subnav}
+                  toAs={() => undefined}
+                  toHref={({ url }) => url}
+                  toName={({ title }) => title}
+                />
+              ))}
           </DialogContent>
         </Dialog>
       </Grid>

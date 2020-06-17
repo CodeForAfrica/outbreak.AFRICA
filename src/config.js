@@ -32,7 +32,7 @@ Disallow:
     process.env.NODE_ENV === "development"
       ? "http://localhost:9200"
       : "https://search-cfa-openafrica-z56l24lkfbv5erjxxs76sevr3i.eu-west-1.es.amazonaws.com",
-  MAPIT_URL: "https://dev.mapit.hurumap.org",
+  MAPIT_URL: "https://mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
   researchMenu: [
@@ -139,38 +139,11 @@ Disallow:
       published: true,
     },
     {
-      isoCode: "NG",
-      name: "Nigeria",
-      isoName: "Nigeria",
-      shortName: "Nigeria",
-      slug: "nigeria",
-      lang: "en",
-      published: true,
-    },
-    {
       isoCode: "ZA",
       name: "South Africa",
       isoName: "South Africa",
       shortName: "South Africa",
       slug: "south-africa",
-      lang: "en",
-      published: true,
-    },
-    {
-      isoCode: "GH",
-      name: "Ghana",
-      isoName: "Ghana",
-      shortName: "Ghana",
-      slug: "ghana",
-      lang: "en",
-      published: true,
-    },
-    {
-      isoCode: "MA",
-      name: "Morocco",
-      isoName: "Morocco",
-      shortName: "Morocco",
-      slug: "morocco",
       lang: "en",
       published: true,
     },
@@ -211,11 +184,7 @@ Disallow:
       "https://cfa-outbreakafrica.s3-eu-west-1.amazonaws.com/media/images",
     imageType: ".png",
   },
-  populationTables: [
-    "allPopulationSex2019S",
-    "allPopulationResidence2009S",
-    "allPopulationZa2016S",
-  ],
+  populationTables: ["allPopulationKe2019S", "allPopulationZa2016S"],
   colorIndexTable: {
     all: "allFinalVulnerabilityIndices",
     "demographic-vulnerability": "allDemographicsVulnerabilityIndices",
@@ -240,247 +209,12 @@ Disallow:
     low: "#73acff",
     "very low": "#99ccff",
   },
-  faqTopics: [
-    {
-      title: 'Topic 1',
-      slug: 'topic-1',
-      topics: [
-        {
-          panel: 'panel1',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel2',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel3',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel4',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        }
-      ]
-    },
-    {
-      title: 'Topic 2',
-      slug: 'topic-2',
-      topics: [
-        {
-          panel: 'panel5',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel6',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel7',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel8',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        }
-      ]
-    },
-    {
-      title: 'Topic 3',
-      slug: 'topic-3',
-      topics: [
-        {
-          panel: 'panel9',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel10',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel11',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel12',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        }
-      ]
-    },
-    {
-      title: 'Topic 4',
-      slug: 'topic-4',
-      topics: [
-        {
-          panel: 'panel13',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel14',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel15',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        },
-        {
-          panel: 'panel16',
-          subtitle: 'Question',
-          content: `Contrary to popular belief, Lorem Ipsum is not simply
-                random text. It has roots in a piece of classical Latin
-                literature from 45 BC, making it over 2000 years old.
-                Richard McClintock, a Latin professor at Hampden-Sydney
-                College in Virginia, looked up one of the more obscure
-                Latin words, consectetur, from a Lorem Ipsum passage,
-                and going through the cites of the word in classical
-                literature, discovered the undoubtable source.`
-
-        }
-      ]
-    }
-  ],
   CKAN_BACKEND_URL: "https://openafrica.net",
   DATA_OPTIONS: {
     day: "short",
     month: "long",
     year: "numeric",
   },
-
 };
 
 if (typeof document !== "undefined") {
