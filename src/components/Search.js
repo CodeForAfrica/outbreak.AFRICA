@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import {
-  Grid,
   MenuList,
   Tooltip,
   Typography,
@@ -16,7 +15,7 @@ import sliceMultiLangData from 'utils/sliceMultiLangData';
 
 import config from 'config';
 
-const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     alignItems: "center",
     display: "flex",
@@ -74,17 +73,15 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     [breakpoints.up("xl")]: {
       maxWidth: typography.pxToRem(390),
     },
-    '& > li > p': {
-      fontFamily: typography.fontText,
-      fontSize: '1rem',
-      color: "#170F49",
-    },
     [breakpoints.up('md')]: {
       backgroundColor: "#EEEEEE",
-      '& > li > p': {
-        color: "#9D9C9C",
-      },
     }
+  },
+  text: {
+    color: "#170F49",
+    [breakpoints.up("md")]: {
+      color: "#9D9C9C",
+    },
   },
 }));
 
@@ -110,7 +107,7 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
         }}
         parseSuggestion={suggestion => ({
           label: (
-            <Typography color="textSecondary" noWrap>
+            <Typography variant="caption" className={classes.text} noWrap>
               {sliceMultiLangData(
                 suggestion.source.post_title,
                 config.DEFAULT_LANG
