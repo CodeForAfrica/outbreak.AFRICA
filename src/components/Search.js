@@ -1,19 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import {
-  MenuList,
-  Tooltip,
-  Typography,
-  MenuItem
-} from '@material-ui/core';
+import { MenuList, Tooltip, Typography, MenuItem } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 import { Search as SearchIcon } from "@material-ui/icons";
-import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
-import sliceMultiLangData from 'utils/sliceMultiLangData';
+import { ReactiveBase, DataSearch } from "@appbaseio/reactivesearch";
+import sliceMultiLangData from "utils/sliceMultiLangData";
 
-import config from 'config';
+import config from "config";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
@@ -32,7 +27,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     [breakpoints.up("md")]: {
       border: "1px solid #9D9C9C !important",
       fontSize: "1.25rem !important",
-      lineHeight: typography.pxToRem(38/20),
+      lineHeight: typography.pxToRem(38 / 20),
     },
   },
   iconButton: {
@@ -46,10 +41,10 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     position: "relative",
     maxWidth: typography.pxToRem(247),
     [breakpoints.up("md")]: {
-      maxWidth: typography.pxToRem((widths.values.md * 390) /widths.values.xl),
+      maxWidth: typography.pxToRem((widths.values.md * 390) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      maxWidth: typography.pxToRem((widths.values.lg * 390) /widths.values.xl),
+      maxWidth: typography.pxToRem((widths.values.lg * 390) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
       maxWidth: typography.pxToRem(390),
@@ -60,22 +55,22 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     border: "1px solid #707070",
     position: "absolute",
     boxShadow: "none",
-    marginTop: '1.25rem',
-    padding: '0.625rem',
+    marginTop: "1.25rem",
+    padding: "0.625rem",
     zIndex: 1,
     maxWidth: typography.pxToRem(247),
     [breakpoints.up("md")]: {
-      maxWidth: typography.pxToRem((widths.values.md * 390) /widths.values.xl),
+      maxWidth: typography.pxToRem((widths.values.md * 390) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      maxWidth: typography.pxToRem((widths.values.lg * 390) /widths.values.xl),
+      maxWidth: typography.pxToRem((widths.values.lg * 390) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
       maxWidth: typography.pxToRem(390),
     },
-    [breakpoints.up('md')]: {
+    [breakpoints.up("md")]: {
       backgroundColor: "#EEEEEE",
-    }
+    },
   },
   text: {
     color: "#170F49",
@@ -85,14 +80,21 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props }) {
+function Search({
+  ariaLabel,
+  isMobile,
+  onClick,
+  onChange,
+  placeholder,
+  ...props
+}) {
   const classes = useStyles(props);
 
   return (
     <ReactiveBase app="outbreak" url={config.ES_URL}>
       <DataSearch
         componentId="autoSuggest"
-        dataField={['post_title', 'post_content']}
+        dataField={["post_title", "post_content"]}
         highlight
         autosuggest
         queryFormat="and"
@@ -105,7 +107,7 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
           input: classes.input,
           icon: classes.inputIcon,
         }}
-        parseSuggestion={suggestion => ({
+        parseSuggestion={(suggestion) => ({
           label: (
             <Typography variant="caption" className={classes.text} noWrap>
               {sliceMultiLangData(
@@ -118,33 +120,29 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
             suggestion.source.post_title,
             config.DEFAULT_LANG
           ),
-          source: suggestion.source
+          source: suggestion.source,
         })}
-        render={({
-          data,
-          value,
-          downshiftProps: { isOpen, getItemProps }
-        }) => {
+        render={({ data, value, downshiftProps: { isOpen, getItemProps } }) => {
           return isOpen && Boolean(value.length) && Boolean(data.length) ? (
-              <MenuList className={classes.searchResults}>
-                {data.slice(0, 10).map(suggestion => (
-                  <MenuItem
-                    key={`${suggestion.value}-${suggestion._click_id}`} // eslint-disable-line no-underscore-dangle
-                    {...getItemProps({ item: suggestion })}
+            <MenuList className={classes.searchResults}>
+              {data.slice(0, 10).map((suggestion) => (
+                <MenuItem
+                  key={`${suggestion.value}-${suggestion._click_id}`} // eslint-disable-line no-underscore-dangle
+                  {...getItemProps({ item: suggestion })}
+                >
+                  <Tooltip
+                    title={suggestion.value}
+                    placement="bottom-start"
+                    classes={{ tooltip: classes.tooltip }}
                   >
-                    <Tooltip
-                      title={suggestion.value}
-                      placement="bottom-start"
-                      classes={{ tooltip: classes.tooltip }}
-                    >
-                      {suggestion.label}
-                    </Tooltip>
-                  </MenuItem>
-                ))}
-              </MenuList>
+                    {suggestion.label}
+                  </Tooltip>
+                </MenuItem>
+              ))}
+            </MenuList>
           ) : null;
         }}
-        />
+      />
     </ReactiveBase>
   );
 }

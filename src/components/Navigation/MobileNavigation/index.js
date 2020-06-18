@@ -23,7 +23,6 @@ import Logo from "components/Navigation/Logo";
 import Search from "components/Search";
 
 import NavigationList from "./NavigationList";
-import { typography } from "@material-ui/system";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -78,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
   searchIcon: {
     color: "#D6D6D6",
     fontSize: theme.typography.pxToRem(20),
-  }
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -133,10 +132,15 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
           classes={{ root: classes.dialog, paper: classes.dialogPaper }}
         >
           <DialogActions className={classes.dialogActions}>
-            { showSearchBar ? (
+            {showSearchBar ? (
               <Search isMobile />
-            ): (
-              <Grid container justify="flex-start" alignItems="center" spacing={2}>
+            ) : (
+              <Grid
+                container
+                justify="flex-start"
+                alignItems="center"
+                spacing={2}
+              >
                 <Grid item>
                   <Link
                     href="/#"
@@ -156,7 +160,10 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                     href="/#"
                     variant="overline"
                     underline="none"
-                    className={classNames(classes.button, classes.languageButton)}
+                    className={classNames(
+                      classes.button,
+                      classes.languageButton
+                    )}
                   >
                     Fr
                   </Link>
@@ -166,7 +173,10 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                     href="/#"
                     variant="overline"
                     underline="none"
-                    className={classNames(classes.button, classes.languageButton)}
+                    className={classNames(
+                      classes.button,
+                      classes.languageButton
+                    )}
                   >
                     عربى
                   </Link>

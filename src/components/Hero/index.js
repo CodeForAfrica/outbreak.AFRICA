@@ -29,18 +29,26 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${props.heroContent && props.heroContent.background_image? props.heroContent.background_image: coronaImage})`,
+      backgroundImage: `url(${
+        props.heroContent && props.heroContent.background_image
+          ? props.heroContent.background_image
+          : coronaImage
+      })`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "90% 5%",
       backgroundSize: `${typography.pxToRem(136)} ${typography.pxToRem(127)}`,
       [breakpoints.up("md")]: {
         backgroundPosition: "50% 20%",
         padding: `${typography.pxToRem(20)} 0`,
-        backgroundSize: `${typography.pxToRem((widths.values.md * 587)/widths.values.xl)} ${typography.pxToRem((widths.values.md * 551)/widths.values.xl)}`,
+        backgroundSize: `${typography.pxToRem(
+          (widths.values.md * 587) / widths.values.xl
+        )} ${typography.pxToRem((widths.values.md * 551) / widths.values.xl)}`,
       },
       [breakpoints.up("lg")]: {
         backgroundPosition: "40% 60%",
-        backgroundSize: `${typography.pxToRem((widths.values.lg * 587)/widths.values.xl)} ${typography.pxToRem((widths.values.lg * 551)/widths.values.xl)}`,
+        backgroundSize: `${typography.pxToRem(
+          (widths.values.lg * 587) / widths.values.xl
+        )} ${typography.pxToRem((widths.values.lg * 551) / widths.values.xl)}`,
       },
       [breakpoints.up("xl")]: {
         backgroundPosition: "40% 80%",
