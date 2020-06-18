@@ -43,6 +43,10 @@ export default class CustomApp extends App {
     return (
       <>
         <Head>
+          <meta
+            name="viewport"
+            content="width=device-width,minimum-scale=1,initial-scale=1"
+          />
           <meta charSet="utf-8" />
         </Head>
         <ApolloProvider client={client}>
