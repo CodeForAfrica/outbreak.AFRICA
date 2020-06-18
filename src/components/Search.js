@@ -1,11 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
+import {
+  Grid,
+  MenuList,
+  Tooltip,
+  Typography,
+  MenuItem
+} from '@material-ui/core';
+
 import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, InputBase, Paper } from "@material-ui/core";
 import { Search as SearchIcon } from "@material-ui/icons";
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
+import sliceMultiLangData from 'utils/sliceMultiLangData';
 
+import { useRouter } from 'next/router';
 import config from 'config';
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
@@ -54,27 +63,14 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
 
 function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props }) {
   const classes = useStyles(props);
-  const [term, setTerm] = useState();
-  const handleChange = (e) => {
-    setTerm(e.target.value);
-    if (onChange) {
-      onChange(e);
-    }
-  };
-  const handleClick = (e) => {
-    if (onClick) {
-      const ev = e;
-      ev.target.value = term;
-      onClick(ev);
-    }
-  };
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      // Do code here
-      e.preventDefault();
-      if (onClick) {
-        onClick(e);
-      }
+  const router = useRouter();
+
+  const handleInput = queryTerm => {
+    if (queryTerm.length > 0) {
+      router.push({
+        pathname: '/search',
+        query: { q: queryTerm, lang: language }
+      });
     }
   };
 
@@ -94,27 +90,54 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
           input: classes.input,
           icon: classes.inputIcon,
         }}
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            handleInput(e.target.value);
+          }
+        }}
+        onValueSelected={value => handleInput(value)}
+        parseSuggestion={suggestion => ({
+          label: (
+            <Typography color="textSecondary" noWrap>
+              {sliceMultiLangData(
+                suggestion.source.post_title,
+                language
+              )}
+            </Typography>
+          ),
+          value: sliceMultiLangData(
+            suggestion.source.post_title,
+            language
+          ),
+          source: suggestion.source
+        })}
+        render={({
+          data,
+          value,
+          downshiftProps: { isOpen, getItemProps }
+        }) => {
+          return isOpen && Boolean(value.length) ? (
+            <Grid container justify="flex-end">
+              <MenuList className={classes.searchResults}>
+                {data.slice(0, 10).map(suggestion => (
+                  <MenuItem
+                    key={`${suggestion.value}-${suggestion._click_id}`} // eslint-disable-line no-underscore-dangle
+                    {...getItemProps({ item: suggestion })}
+                  >
+                    <Tooltip
+                      title={suggestion.value}
+                      placement="bottom-start"
+                      classes={{ tooltip: classes.tooltip }}
+                    >
+                      {suggestion.label}
+                    </Tooltip>
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Grid>
+          ) : null;
+        }}
         />
-      {/* <Paper component="form" className={classes.root}>
-        <InputBase
-          inputProps={{ "aria-label": ariaLabel }}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-          placeholder={placeholder}
-          classes={{
-            root: classes.input,
-            input: classes.inputInput,
-          }}
-          {...props}
-        />
-        <IconButton
-          onClick={handleClick}
-          className={classes.iconButton}
-          aria-label="search"
-        >
-          <SearchIcon style={{ fontSize: 42 }} />
-        </IconButton>
-      </Paper> */}
     </ReactiveBase>
   );
 }
