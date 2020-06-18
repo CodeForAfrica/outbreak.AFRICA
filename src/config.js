@@ -30,7 +30,7 @@ Disallow:
   WP_HURUMAP_DATA_API: `${WP_BACKEND_URL}/wp-json/hurumap-data`,
   ES_URL:
     process.env.NODE_ENV === "development"
-      ? "https://search.hurumap.org"
+      ? "http://localhost:9200"
       : "https://search.hurumap.org",
   MAPIT_URL: "https://mapit.hurumap.org",
   DEFAULT_LANG: "en",

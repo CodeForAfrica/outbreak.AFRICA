@@ -14,10 +14,9 @@ import { Search as SearchIcon } from "@material-ui/icons";
 import { ReactiveBase, DataSearch } from '@appbaseio/reactivesearch';
 import sliceMultiLangData from 'utils/sliceMultiLangData';
 
-import { useRouter } from 'next/router';
 import config from 'config';
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
   root: {
     alignItems: "center",
     display: "flex",
@@ -37,42 +36,60 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       lineHeight: typography.pxToRem(38/20),
     },
   },
-  inputInput: {
-    flex: 1,
-    [breakpoints.up("md")]: {
-      paddingBottom: typography.pxToRem(7),
-      paddingLeft: typography.pxToRem(9),
-      paddingRight: typography.pxToRem(9),
-      paddingTop: typography.pxToRem(7),
-    },
-    [breakpoints.up("xl")]: {
-      paddingBottom: typography.pxToRem(15),
-      paddingLeft: typography.pxToRem(19),
-      paddingRight: typography.pxToRem(19),
-      paddingTop: typography.pxToRem(13),
-    },
-  },
   iconButton: {
     color: "#9D9C9C",
     fontSize: "1.5rem",
   },
   inputIcon: {
     top: typography.pxToRem(10),
-  }
+  },
+  searchBar: {
+    position: "relative",
+    maxWidth: typography.pxToRem(247),
+    [breakpoints.up("md")]: {
+      maxWidth: typography.pxToRem((widths.values.md * 390) /widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: typography.pxToRem((widths.values.lg * 390) /widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: typography.pxToRem(390),
+    },
+  },
+  searchResults: {
+    backgroundColor: "#FFFFFF",
+    border: "1px solid #707070",
+    position: "absolute",
+    boxShadow: "none",
+    marginTop: '1.25rem',
+    padding: '0.625rem',
+    zIndex: 1,
+    maxWidth: typography.pxToRem(247),
+    [breakpoints.up("md")]: {
+      maxWidth: typography.pxToRem((widths.values.md * 390) /widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: typography.pxToRem((widths.values.lg * 390) /widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: typography.pxToRem(390),
+    },
+    '& > li > p': {
+      fontFamily: typography.fontText,
+      fontSize: '1rem',
+      color: "#170F49",
+    },
+    [breakpoints.up('md')]: {
+      backgroundColor: "#EEEEEE",
+      '& > li > p': {
+        color: "#9D9C9C",
+      },
+    }
+  },
 }));
 
 function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props }) {
   const classes = useStyles(props);
-  const router = useRouter();
-
-  const handleInput = queryTerm => {
-    if (queryTerm.length > 0) {
-      router.push({
-        pathname: '/search',
-        query: { q: queryTerm, lang: language }
-      });
-    }
-  };
 
   return (
     <ReactiveBase app="outbreak" url={config.ES_URL}>
@@ -84,30 +101,25 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
         queryFormat="and"
         placeholder="Search for issues, topics, etc.."
         showIcon={isMobile}
+        className={classes.searchBar}
         iconPosition="right"
         icon={<SearchIcon className={classes.iconButton} />}
         innerClass={{
           input: classes.input,
           icon: classes.inputIcon,
         }}
-        onKeyDown={e => {
-          if (e.key === 'Enter') {
-            handleInput(e.target.value);
-          }
-        }}
-        onValueSelected={value => handleInput(value)}
         parseSuggestion={suggestion => ({
           label: (
             <Typography color="textSecondary" noWrap>
               {sliceMultiLangData(
                 suggestion.source.post_title,
-                language
+                config.DEFAULT_LANG
               )}
             </Typography>
           ),
           value: sliceMultiLangData(
             suggestion.source.post_title,
-            language
+            config.DEFAULT_LANG
           ),
           source: suggestion.source
         })}
@@ -116,8 +128,7 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
           value,
           downshiftProps: { isOpen, getItemProps }
         }) => {
-          return isOpen && Boolean(value.length) ? (
-            <Grid container justify="flex-end">
+          return isOpen && Boolean(value.length) && Boolean(data.length) ? (
               <MenuList className={classes.searchResults}>
                 {data.slice(0, 10).map(suggestion => (
                   <MenuItem
@@ -134,7 +145,6 @@ function Search({ ariaLabel, isMobile, onClick, onChange, placeholder, ...props 
                   </MenuItem>
                 ))}
               </MenuList>
-            </Grid>
           ) : null;
         }}
         />
