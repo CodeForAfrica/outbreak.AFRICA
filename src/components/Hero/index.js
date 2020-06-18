@@ -29,7 +29,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${coronaImage})`,
+      backgroundImage: `url(${props.heroContent && props.heroContent.background_image? props.heroContent.background_image: coronaImage})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "90% 2%",
       backgroundSize: "50%",
@@ -139,7 +139,7 @@ function Hero({ heroContent, isResearch, ...props }) {
     heroContent.component.length &&
     heroContent.component[0].acf_fc_layout === "image";
 
-  const classes = useStyles({ ...props, hasCarousel });
+  const classes = useStyles({ ...props, hasCarousel, heroContent });
 
   if (!heroContent) {
     return null;
