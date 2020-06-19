@@ -21,10 +21,10 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     display: "flex",
     alignItems: "flex-end",
     [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem((widths.values.md * 21)/ widths.values.xl),
+      marginTop: typography.pxToRem((widths.values.md * 21) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      marginTop: typography.pxToRem((widths.values.lg * 21)/ widths.values.xl),
+      marginTop: typography.pxToRem((widths.values.lg * 21) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
       marginTop: typography.pxToRem(21),

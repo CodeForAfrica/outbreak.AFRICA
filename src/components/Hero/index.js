@@ -29,21 +29,31 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${coronaImage})`,
+      backgroundImage: `url(${
+        props.heroContent && props.heroContent.background_image
+          ? props.heroContent.background_image
+          : coronaImage
+      })`,
       backgroundRepeat: "no-repeat",
-      backgroundPosition: "90% 2%",
-      backgroundSize: "50%",
+      backgroundPosition: "90% 5%",
+      backgroundSize: `${typography.pxToRem(136)} ${typography.pxToRem(127)}`,
       [breakpoints.up("md")]: {
-        backgroundPosition: "20% 30%",
-        backgroundSize: "75% 55%",
+        backgroundPosition: "50% 20%",
         padding: `${typography.pxToRem(20)} 0`,
+        backgroundSize: `${typography.pxToRem(
+          (widths.values.md * 587) / widths.values.xl
+        )} ${typography.pxToRem((widths.values.md * 551) / widths.values.xl)}`,
       },
       [breakpoints.up("lg")]: {
-        backgroundPosition: "20% 90%",
-        backgroundSize: "70% 75%",
+        backgroundPosition: "40% 60%",
+        backgroundSize: `${typography.pxToRem(
+          (widths.values.lg * 587) / widths.values.xl
+        )} ${typography.pxToRem((widths.values.lg * 551) / widths.values.xl)}`,
       },
       [breakpoints.up("xl")]: {
+        backgroundPosition: "40% 80%",
         padding: `${typography.pxToRem(59)} 0 ${typography.pxToRem(57)}`,
+        backgroundSize: `${typography.pxToRem(587)} ${typography.pxToRem(551)}`,
       },
     };
   },
@@ -64,19 +74,19 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   heroImage: {
-    width: "315px",
-    height: "250px",
+    width: typography.pxToRem(315),
+    height: typography.pxToRem(250),
     [breakpoints.up("md")]: {
-      width: (widths.values.md * 536) / widths.values.xl,
-      height: (widths.values.md * 426) / widths.values.xl,
+      width: typography.pxToRem((widths.values.md * 536) / widths.values.xl),
+      height: typography.pxToRem((widths.values.md * 426) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      width: (widths.values.lg * 536) / widths.values.xl,
-      height: (widths.values.lg * 426) / widths.values.xl,
+      width: typography.pxToRem((widths.values.lg * 536) / widths.values.xl),
+      height: typography.pxToRem((widths.values.lg * 426) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      width: "536px",
-      height: "426px",
+      width: typography.pxToRem(536),
+      height: typography.pxToRem(426),
     },
   },
   title: {
@@ -139,7 +149,7 @@ function Hero({ heroContent, isResearch, ...props }) {
     heroContent.component.length &&
     heroContent.component[0].acf_fc_layout === "image";
 
-  const classes = useStyles({ ...props, hasCarousel });
+  const classes = useStyles({ ...props, hasCarousel, heroContent });
 
   if (!heroContent) {
     return null;

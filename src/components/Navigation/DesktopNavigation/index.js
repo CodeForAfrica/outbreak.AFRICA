@@ -128,7 +128,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
               ))}
             </Grid>
             <Grid item md={3}>
-              <Search size="large" />
+              <Search isMobile={false} />
             </Grid>
             <Grid item md={1} container justify="flex-start">
               <Link

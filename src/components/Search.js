@@ -1,106 +1,156 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { IconButton, InputBase, Paper } from "@material-ui/core";
-import { Search as SearchIcon } from "@material-ui/icons";
+import { MenuList, Tooltip, Typography, MenuItem } from "@material-ui/core";
 
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+import { makeStyles } from "@material-ui/core/styles";
+import { Search as SearchIcon } from "@material-ui/icons";
+import { ReactiveBase, DataSearch } from "@appbaseio/reactivesearch";
+import sliceMultiLangData from "utils/sliceMultiLangData";
+
+import config from "config";
+
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     alignItems: "center",
-    backgroundColor: "#EEEEEE",
-    border: "1px solid #9D9C9C",
-    borderRadius: 10,
-    boxShadow: "none",
     display: "flex",
     width: "100%",
   },
   input: {
+    backgroundColor: "#EEEEEE !important",
+    border: "1px solid #707070 !important",
+    borderRadius: typography.pxToRem(10),
+    boxShadow: "none",
     color: "#9D9C9C",
     flex: 1,
-    fontSize: typography.pxToRem(20),
-  },
-  inputInput: {
-    flex: 1,
+    fontSize: "0.8125rem !important",
     [breakpoints.up("md")]: {
-      paddingBottom: typography.pxToRem(7),
-      paddingLeft: typography.pxToRem(9),
-      paddingRight: typography.pxToRem(9),
-      paddingTop: typography.pxToRem(7),
-    },
-    [breakpoints.up("xl")]: {
-      paddingBottom: typography.pxToRem(15),
-      paddingLeft: typography.pxToRem(19),
-      paddingRight: typography.pxToRem(19),
-      paddingTop: typography.pxToRem(13),
+      border: "1px solid #9D9C9C !important",
+      fontSize: "1.25rem !important",
+      lineHeight: typography.pxToRem(38 / 20),
     },
   },
   iconButton: {
     color: "#9D9C9C",
+    fontSize: "1.5rem",
+  },
+  inputIcon: {
+    top: typography.pxToRem(10),
+  },
+  searchBar: {
+    position: "relative",
+    maxWidth: typography.pxToRem(247),
     [breakpoints.up("md")]: {
-      paddingBottom: 0,
-      paddingTop: 0,
+      maxWidth: typography.pxToRem((widths.values.md * 390) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: typography.pxToRem((widths.values.lg * 390) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      paddingBottom: `${typography.pxToRem(7)}`,
-      paddingTop: `${typography.pxToRem(7)}`,
+      maxWidth: typography.pxToRem(390),
+    },
+  },
+  searchResults: {
+    backgroundColor: "#FFFFFF",
+    border: "1px solid #707070",
+    position: "absolute",
+    boxShadow: "none",
+    marginTop: "1.25rem",
+    padding: "0.625rem",
+    zIndex: 1,
+    maxWidth: typography.pxToRem(247),
+    [breakpoints.up("md")]: {
+      maxWidth: typography.pxToRem((widths.values.md * 390) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      maxWidth: typography.pxToRem((widths.values.lg * 390) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      maxWidth: typography.pxToRem(390),
+    },
+    [breakpoints.up("md")]: {
+      backgroundColor: "#EEEEEE",
+    },
+  },
+  text: {
+    color: "#170F49",
+    [breakpoints.up("md")]: {
+      color: "#9D9C9C",
     },
   },
 }));
 
-function Search({ ariaLabel, onClick, onChange, placeholder, ...props }) {
+function Search({
+  ariaLabel,
+  isMobile,
+  onClick,
+  onChange,
+  placeholder,
+  ...props
+}) {
   const classes = useStyles(props);
-  const [term, setTerm] = useState();
-  const handleChange = (e) => {
-    setTerm(e.target.value);
-    if (onChange) {
-      onChange(e);
-    }
-  };
-  const handleClick = (e) => {
-    if (onClick) {
-      const ev = e;
-      ev.target.value = term;
-      onClick(ev);
-    }
-  };
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      // Do code here
-      e.preventDefault();
-      if (onClick) {
-        onClick(e);
-      }
-    }
-  };
 
   return (
-    <Paper component="form" className={classes.root}>
-      <InputBase
-        inputProps={{ "aria-label": ariaLabel }}
-        onChange={handleChange}
-        onKeyPress={handleKeyPress}
-        placeholder={placeholder}
-        classes={{
-          root: classes.input,
-          input: classes.inputInput,
+    <ReactiveBase app="outbreak" url={config.ES_URL}>
+      <DataSearch
+        componentId="autoSuggest"
+        dataField={["post_title"]}
+        highlight
+        autosuggest
+        queryFormat="and"
+        placeholder="Search for issues, topics, etc.."
+        showIcon={isMobile}
+        className={classes.searchBar}
+        iconPosition="right"
+        icon={<SearchIcon className={classes.iconButton} />}
+        innerClass={{
+          input: classes.input,
+          icon: classes.inputIcon,
         }}
-        {...props}
+        parseSuggestion={(suggestion) => ({
+          label: (
+            <Typography variant="caption" className={classes.text} noWrap>
+              {sliceMultiLangData(
+                suggestion.source.post_title,
+                config.DEFAULT_LANG
+              )}
+            </Typography>
+          ),
+          value: sliceMultiLangData(
+            suggestion.source.post_title,
+            config.DEFAULT_LANG
+          ),
+          source: suggestion.source,
+        })}
+        render={({ data, value, downshiftProps: { isOpen, getItemProps } }) => {
+          return isOpen && Boolean(value.length) && Boolean(data.length) ? (
+            <MenuList className={classes.searchResults}>
+              {data.slice(0, 10).map((suggestion) => (
+                <MenuItem
+                  key={`${suggestion.value}-${suggestion._click_id}`} // eslint-disable-line no-underscore-dangle
+                  {...getItemProps({ item: suggestion })}
+                >
+                  <Tooltip
+                    title={suggestion.value}
+                    placement="bottom-start"
+                    classes={{ tooltip: classes.tooltip }}
+                  >
+                    {suggestion.label}
+                  </Tooltip>
+                </MenuItem>
+              ))}
+            </MenuList>
+          ) : null;
+        }}
       />
-      <IconButton
-        onClick={handleClick}
-        className={classes.iconButton}
-        aria-label="search"
-      >
-        <SearchIcon style={{ fontSize: 42 }} />
-      </IconButton>
-    </Paper>
+    </ReactiveBase>
   );
 }
 
 Search.propTypes = {
   ariaLabel: PropTypes.string,
   placeholder: PropTypes.string,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 Search.defaultProps = {

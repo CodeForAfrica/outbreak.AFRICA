@@ -20,6 +20,7 @@ import MenuIcon from "@material-ui/icons/Menu";
 
 import IconButtonLink from "components/Link/IconButton";
 import Logo from "components/Navigation/Logo";
+import Search from "components/Search";
 
 import NavigationList from "./NavigationList";
 
@@ -73,6 +74,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: "white",
   },
+  searchIcon: {
+    color: "#D6D6D6",
+    fontSize: theme.typography.pxToRem(20),
+  },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -82,12 +87,14 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 function MobileNavigation({ country, countries, navigation, ...props }) {
   const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
+  const [showSearchBar, setShowSearchBar] = React.useState(false);
   const [dataNavigation, ...otherNavigations] = navigation || [];
   const handleClickOpen = () => {
     setOpen(true);
   };
   const handleClose = () => {
     setOpen(false);
+    setShowSearchBar(false);
   };
 
   return (
@@ -98,12 +105,24 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
       <Grid item>
         <IconButtonLink
           aria-label="Open drawer"
+          className={classes.searchIcon}
+          edge="start"
+          href="/#"
+          onClick={() => {
+            setShowSearchBar(true);
+            handleClickOpen();
+          }}
+        >
+          <SearchIcon />
+        </IconButtonLink>
+        <IconButtonLink
+          aria-label="Open drawer"
           color="secondary"
           edge="start"
           href="/#"
           onClick={handleClickOpen}
         >
-          <MenuIcon fontSize="large" />
+          <MenuIcon />
         </IconButtonLink>
         <Dialog
           fullScreen
@@ -113,50 +132,57 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
           classes={{ root: classes.dialog, paper: classes.dialogPaper }}
         >
           <DialogActions className={classes.dialogActions}>
-            <IconButton
-              aria-label="search"
-              edge="start"
-              href="/search"
-              className={classes.button}
-            >
-              <SearchIcon fontSize="large" />
-            </IconButton>
-            <Grid container justify="flex-end" alignItems="center" spacing={1}>
-              <Grid item>
-                <Link
-                  href="/#"
-                  variant="overline"
-                  underline="none"
-                  className={classNames(
-                    classes.button,
-                    classes.languageButton,
-                    "active"
-                  )}
-                >
-                  En
-                </Link>
+            {showSearchBar ? (
+              <Search isMobile />
+            ) : (
+              <Grid
+                container
+                justify="flex-start"
+                alignItems="center"
+                spacing={2}
+              >
+                <Grid item>
+                  <Link
+                    href="/#"
+                    variant="overline"
+                    underline="none"
+                    className={classNames(
+                      classes.button,
+                      classes.languageButton,
+                      "active"
+                    )}
+                  >
+                    En
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="/#"
+                    variant="overline"
+                    underline="none"
+                    className={classNames(
+                      classes.button,
+                      classes.languageButton
+                    )}
+                  >
+                    Fr
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    href="/#"
+                    variant="overline"
+                    underline="none"
+                    className={classNames(
+                      classes.button,
+                      classes.languageButton
+                    )}
+                  >
+                    عربى
+                  </Link>
+                </Grid>
               </Grid>
-              <Grid item>
-                <Link
-                  href="/#"
-                  variant="overline"
-                  underline="none"
-                  className={classNames(classes.button, classes.languageButton)}
-                >
-                  Fr
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link
-                  href="/#"
-                  variant="overline"
-                  underline="none"
-                  className={classNames(classes.button, classes.languageButton)}
-                >
-                  عربى
-                </Link>
-              </Grid>
-            </Grid>
+            )}
             <IconButton
               aria-label="close drawer"
               edge="start"
