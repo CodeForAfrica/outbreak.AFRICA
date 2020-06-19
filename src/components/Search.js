@@ -94,7 +94,7 @@ function Search({
     <ReactiveBase app="outbreak" url={config.ES_URL}>
       <DataSearch
         componentId="autoSuggest"
-        dataField={["post_title", "post_content"]}
+        dataField={["post_title"]}
         highlight
         autosuggest
         queryFormat="and"
