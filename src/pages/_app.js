@@ -20,6 +20,10 @@ import theme from "theme";
 import * as ga from "lib/ga";
 import config from "config";
 
+import "leaflet/dist/leaflet.css";
+import "react-multi-carousel/lib/styles.css";
+import "simplebar/dist/simplebar.min.css";
+
 Router.events.on("routeChangeComplete", (url) => ga.pageview(url));
 
 const client = new ApolloClient({

@@ -7,7 +7,6 @@ import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 import CarouselCard from "./CarouselCard";
 
