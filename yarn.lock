@@ -1201,29 +1201,29 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@hurumap-ui/charts@^0.3.5-alpha.27":
-  version "0.3.5-alpha.27"
-  resolved "https://registry.yarnpkg.com/@hurumap-ui/charts/-/charts-0.3.5-alpha.27.tgz#87c594907e4ed659a2c59a2605acd508d946384c"
-  integrity sha512-rySmcuL9qKFaE/p9kQquJdxBXGo0hfOLTauNwFjGMDBWFuJQjHJmIRYmYw0GsMnYlYpZO1ECLprdDXSCu5BXwQ==
+"@hurumap-ui/charts@^0.3.5-alpha.29":
+  version "0.3.5-alpha.29"
+  resolved "https://registry.yarnpkg.com/@hurumap-ui/charts/-/charts-0.3.5-alpha.29.tgz#f027e9f034c7973f5f3f7e82877bb6b1cdb1aec9"
+  integrity sha512-hgt6Ci43E0160H5h5frJd7ea/oDLQ9x3XNN2gegrWNHF5pPOJ3a3gcpfNIju305f2c+RSzn48ISD+p850mORbQ==
   dependencies:
     prop-types "^15.7.2"
     shortid "^2.2.15"
 
-"@hurumap-ui/content@^0.3.5-alpha.28":
-  version "0.3.5-alpha.28"
-  resolved "https://registry.yarnpkg.com/@hurumap-ui/content/-/content-0.3.5-alpha.28.tgz#bfba6512a7053da5ac9ca2740a275a619b664d9b"
-  integrity sha512-O4NCG5Xy70gUV7pK8Iepf3vEgYIwz2iju3yxHouVkYRzx7pi7GTmf0MA3/YbMms7fZQZ50cni9AZe2SsCW58Ug==
+"@hurumap-ui/content@^0.3.5-alpha.29":
+  version "0.3.5-alpha.29"
+  resolved "https://registry.yarnpkg.com/@hurumap-ui/content/-/content-0.3.5-alpha.29.tgz#6d7c5d56956d24bf673f09cd34b7f033f4f55f6a"
+  integrity sha512-3XZGPLes0aE631aGrKCQt+vxoBUa7tKFISkJJWQXPFgac5yZAF4OYEsJL+Ue4eNk1KCiOvN3z3pCfQ2omiR1KA==
   dependencies:
-    "@hurumap-ui/core" "^0.3.5-alpha.28"
+    "@hurumap-ui/core" "^0.3.5-alpha.29"
     prop-types "^15.7.2"
     shortid "^2.2.15"
 
-"@hurumap-ui/core@^0.3.5-alpha.28":
-  version "0.3.5-alpha.28"
-  resolved "https://registry.yarnpkg.com/@hurumap-ui/core/-/core-0.3.5-alpha.28.tgz#8b4c6419503b092e40eb3e77cbcdad266f95f23e"
-  integrity sha512-Sa9BQlRhBzyc97tQfrhNAwE2RqBEb7cfhucpDMrZV0NwErdqfoEb8RQeWyRxVR3Xh0sH0Diu95/yTj0S4b+rFQ==
+"@hurumap-ui/core@^0.3.5-alpha.29":
+  version "0.3.5-alpha.29"
+  resolved "https://registry.yarnpkg.com/@hurumap-ui/core/-/core-0.3.5-alpha.29.tgz#538e70ebd3cb4f9be30b4d71932df5248d4bc21b"
+  integrity sha512-Z8Q7uZ8OuSCi8AtQjMVAzXKJh6r4T5Lu3z28SvYdZReEN6tQXt9tqGIK4gBnoYs2TlrEkD5NBwnkRNYaajQlpw==
   dependencies:
-    "@hurumap-ui/charts" "^0.3.5-alpha.27"
+    "@hurumap-ui/charts" "^0.3.5-alpha.29"
     classnames "^2.2.6"
     dequal "^1.0.0"
     dom-to-image "^2.6.0"
