@@ -21,7 +21,7 @@ const COPYRIGHT_LOGO = {
     alt: "Creative Commons",
     url: cc,
   },
-  url: "/#",
+  url: "//creativecommons.org",
 };
 
 const SOCIAL_MEDIA = {
@@ -182,8 +182,8 @@ function MainFooter({
   return (
     <Footer
       {...props}
-      about={SOCIAL_MEDIA}
-      aboutSection={about}
+      about={about}
+      contacts={SOCIAL_MEDIA}
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}

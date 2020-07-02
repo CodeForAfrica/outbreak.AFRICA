@@ -6,8 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 
-import "simplebar/dist/simplebar.min.css";
-
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     overflow: "visible",
