@@ -12,7 +12,7 @@ const config = {
   url:
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://takwimu.africa",
+      : "https://covid19.dev.hurumap.org",
   graphqlOrigin: GRAPHQL_ORIGIN,
   graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
   robots: {
