@@ -122,15 +122,9 @@ function FeaturedCard({ date, description, image, title, ...props }) {
           </RichTypography>
         )}
         <div className={classes.attributes}>
-          <img src={logo} alt="Code for Africa" className={classes.logo} />
-          <div className={classes.readAttr}>
-            <Typography variant="caption" className={classes.author}>
-              Code for Africa
-            </Typography>
             <Typography variant="caption" className={classes.date}>
               {thisDate}
             </Typography>
-          </div>
         </div>
       </Grid>
     </Grid>

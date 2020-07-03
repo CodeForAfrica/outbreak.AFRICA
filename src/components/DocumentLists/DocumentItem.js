@@ -136,11 +136,6 @@ function DocumentItem({
             <img src={websiteBlue} alt={title} className={classes.icon} />
           </A>
         )}
-        {isStory && !isDesktop && (
-          <Typography variant="caption" className={classes.author}>
-            Code For Africa
-          </Typography>
-        )}
       </Grid>
     </Grid>
   );
