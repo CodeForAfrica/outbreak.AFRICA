@@ -47,7 +47,12 @@ function ArticlePage({
   if (!post) {
     return null;
   }
-  const date = new Date(post.date).toDateString().slice(4, 10);
+
+  let date = new Date(post.date).toDateString().slice(4, 10);
+  if (post.acf.attributes && post.attributes.date) {
+    date = post.attributes.date.slice(0, -6)
+  }
+
   let imageUrl = "";
   if (media) {
     if (isDesktop) {
