@@ -1,3 +1,10 @@
+import imgLinkedIn from "assets/Icon awesome-linkedin-in-b.svg";
+import imgLinkedInDesktop from "assets/Icon awesome-linkedin-in.svg";
+import imgTwitter from "assets/Icon awesome-twitter-b.svg";
+import imgTwitterDesktop from "assets/Icon awesome-twitter.svg";
+import imgWebsite from "assets/icon web.svg";
+import imgWebsiteDesktop from "assets/icon web-white.svg";
+
 const WP_BACKEND_URL =
   process.env.NODE_ENV === "development"
     ? "https://dashboard.hurumap.org"
@@ -149,6 +156,42 @@ Disallow:
     },
   ],
   settings: {
+    icons: {
+      mobile: {
+        linkedIn: {
+          image: {
+            url: imgLinkedIn,
+          },
+        },
+        twitter: {
+          image: {
+            url: imgTwitter,
+          },
+        },
+        website: {
+          image: {
+            url: imgWebsite,
+          },
+        },
+      },
+      desktop: {
+        linkedIn: {
+          image: {
+            url: imgLinkedInDesktop,
+          },
+        },
+        twitter: {
+          image: {
+            url: imgTwitterDesktop,
+          },
+        },
+        website: {
+          image: {
+            url: imgWebsiteDesktop,
+          },
+        },
+      },
+    },
     mailingList: {
       href:
         "https://sibforms.com/serve/MUIEAAXyVOKndq92iptN5nNOxxO8YIbsJQ6GRLFcss45EFC4D-346vXQNHit8uLluJ44jcDUNQztzGSQSX3H_AHE7J71-tlgBI4-cS6dnZrjzgxQxnK2Hd89yCpi_SJDZyUAKo9GGBNqQmbJEgpCInlf403iFzCqHf75RaNFWuGd73QH6yNWhnvrmDGgj3N_DcbUt3GLDzcm_wIP",
