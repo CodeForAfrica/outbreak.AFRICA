@@ -8,7 +8,6 @@ const useStyles = makeStyles(
     attributes: {
       display: "flex",
       width: "100%",
-      position: "relative",
       marginBottom: typography.pxToRem(50),
       [breakpoints.up("md")]: {
         marginBottom: (widths.values.md * 100) / widths.values.xl,
@@ -248,16 +247,9 @@ const useStyles = makeStyles(
     socialIcons: {
       marginTop: typography.pxToRem(50),
       [breakpoints.up("md")]: {
+        display: "flex",
+        justifyContent: "flex-end",
         marginTop: 0,
-        display: "initial",
-        position: "absolute",
-        right: typography.pxToRem((widths.values.md * -307) / widths.values.xl),
-      },
-      [breakpoints.up("lg")]: {
-        right: typography.pxToRem((widths.values.lg * -307) / widths.values.xl),
-      },
-      [breakpoints.up("xl")]: {
-        right: typography.pxToRem(-307),
       },
     },
     title: {
