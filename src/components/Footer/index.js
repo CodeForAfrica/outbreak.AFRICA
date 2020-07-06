@@ -106,7 +106,7 @@ function MainFooter({
       legal_links: legalLinksLinks,
       organization_logo: organizationLogoProp,
       quick_links: quickLinksLinks,
-      social_media: socialMedia
+      social_media: socialMedia,
     },
   },
   ...props
@@ -138,7 +138,7 @@ function MainFooter({
     <Footer
       {...props}
       about={about}
-      contacts={{socialMedia: socialMedia}}
+      contacts={{ socialMedia }}
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}
