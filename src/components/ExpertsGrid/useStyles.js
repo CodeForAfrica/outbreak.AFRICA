@@ -1,6 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
+const useStyles = makeStyles(({ palette, typography }) => ({
   root: {},
   section: {},
   sectionTitle: {

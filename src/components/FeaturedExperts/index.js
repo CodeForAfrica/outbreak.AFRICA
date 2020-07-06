@@ -6,8 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 
-import config from "config";
-
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     overflow: "visible",
