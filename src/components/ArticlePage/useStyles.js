@@ -90,6 +90,8 @@ const useStyles = makeStyles(
       },
       "& img": {
         width: "100%",
+        boxBhadow: "0 0.25rem 0.25rem #00000029",
+        border: "1px solid #D6D6D6"
       },
       "& figure": {
         marginRight: 0,
