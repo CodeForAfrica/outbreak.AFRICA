@@ -138,7 +138,8 @@ function MainFooter({
     <Footer
       {...props}
       about={about}
-      contacts={{ socialMedia }}
+      contacts={{ title: "Stay in touch with us",
+                  socialMedia }}
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}
