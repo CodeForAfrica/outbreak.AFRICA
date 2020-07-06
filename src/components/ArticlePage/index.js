@@ -17,7 +17,6 @@ import getChartElements from "utils/getChartElements";
 import facebook from "assets/Icon awesome-facebook-f-b.svg";
 import instagram from "assets/Icon awesome-instagram-b.svg";
 import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import logo from "assets/logo-C4A.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import Author from "./Author";
@@ -95,37 +94,13 @@ function ArticlePage({
                 className={classes.attributes}
                 direction={isDesktop ? "column" : "row"}
               >
-                <Grid
-                  item
-                  container
-                  direction={isDesktop ? "row" : "row-reverse"}
-                  alignItems="flex-end"
-                  justify={!isDesktop && "space-between"}
-                >
-                  <Grid item xs={6}>
-                    <img
-                      src={logo}
-                      alt="Code for Africa"
-                      className={classes.logo}
-                    />
-                  </Grid>
                   <Grid
                     item
-                    container
-                    xs={6}
                     className={classes.readAttr}
-                    direction={isDesktop ? "column" : "column-reverse"}
                   >
-                    <RichTypography
-                      variant="caption"
-                      className={classes.organization}
-                    >
-                      Code for Africa
-                    </RichTypography>
                     <RichTypography variant="caption" className={classes.date}>
                       {date}
                     </RichTypography>
-                  </Grid>
                 </Grid>
                 <Grid item className={classes.socialIcons}>
                   <A href="" color="textSecondary" className={classes.link}>

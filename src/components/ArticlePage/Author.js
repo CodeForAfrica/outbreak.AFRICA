@@ -134,9 +134,6 @@ function Author({ author, variant, ...props }) {
         <RichTypography variant="caption" className={classes.position}>
           {position}
         </RichTypography>
-        <RichTypography variant="caption" className={classes.organisation}>
-          Code For Africa
-        </RichTypography>
         {variant === "compact" && (
           <RichTypography variant="caption" className={classes.description}>
             {description}

@@ -7,7 +7,6 @@ const useStyles = makeStyles(
     section: {},
     attributes: {
       display: "flex",
-      alignItems: "flex-end",
       width: "100%",
       position: "relative",
       marginBottom: typography.pxToRem(50),
@@ -245,24 +244,9 @@ const useStyles = makeStyles(
     },
     readAttr: {
       paddingTop: 7,
-      [breakpoints.up("md")]: {
-        paddingLeft: typography.pxToRem(
-          (widths.values.md * 74) / widths.values.xl
-        ),
-      },
-      [breakpoints.up("lg")]: {
-        paddingLeft: typography.pxToRem(
-          (widths.values.lg * 74) / widths.values.xl
-        ),
-      },
-      [breakpoints.up("xl")]: {
-        paddingLeft: typography.pxToRem(74),
-      },
     },
     socialIcons: {
-      paddingTop: "3.125rem",
       [breakpoints.up("md")]: {
-        paddingTop: "1.5rem",
         display: "initial",
         position: "absolute",
         right: typography.pxToRem((widths.values.md * -307) / widths.values.xl),
