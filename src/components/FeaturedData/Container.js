@@ -108,7 +108,7 @@ function Container({ action, children, featuredChart, ...props }) {
     : [];
 
   return (
-    <div>
+    <>
       <ChartContainer
         attribution={`Source: ${
           (source && source.href) || ""
@@ -161,7 +161,7 @@ function Container({ action, children, featuredChart, ...props }) {
       <div className={classes.description}>
         <RichTypography variant="body2">{chart.description}</RichTypography>
       </div>
-    </div>
+    </>
   );
 }
 
