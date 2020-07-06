@@ -5,8 +5,6 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography } from "@commons-ui/core";
 
-import logo from "assets/logo-C4A.svg";
-
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {
     marginBottom: 37.5,
@@ -34,11 +32,9 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
     },
   },
   date: {
-    paddingLeft: 7,
     fontSize: 12,
     [breakpoints.up("md")]: {
       fontSize: "initial",
-      paddingLeft: 0,
     },
   },
   description: {
