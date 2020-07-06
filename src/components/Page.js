@@ -74,6 +74,7 @@ function Page({
   if (errorCode) {
     return <Error statusCode={errorCode} />;
   }
+
   return (
     <div className={classes.root}>
       <SEO {...props} />
