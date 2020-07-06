@@ -246,7 +246,9 @@ const useStyles = makeStyles(
       paddingTop: 7,
     },
     socialIcons: {
+      marginTop: typography.pxToRem(50),
       [breakpoints.up("md")]: {
+        marginTop: 0,
         display: "initial",
         position: "absolute",
         right: typography.pxToRem((widths.values.md * -307) / widths.values.xl),

@@ -92,12 +92,9 @@ function ArticlePage({
                 item
                 container
                 className={classes.attributes}
-                direction={isDesktop ? "column" : "row"}
+                direction="column"
               >
-                  <Grid
-                    item
-                    className={classes.readAttr}
-                  >
+                  <Grid item className={classes.readAttr}>
                     <RichTypography variant="caption" className={classes.date}>
                       {date}
                     </RichTypography>
