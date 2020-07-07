@@ -7,9 +7,7 @@ const useStyles = makeStyles(
     section: {},
     attributes: {
       display: "flex",
-      alignItems: "flex-end",
       width: "100%",
-      position: "relative",
       marginBottom: typography.pxToRem(50),
       [breakpoints.up("md")]: {
         marginBottom: (widths.values.md * 100) / widths.values.xl,
@@ -92,6 +90,8 @@ const useStyles = makeStyles(
       },
       "& img": {
         width: "100%",
+        boxShadow: "0 0.25rem 0.25rem #00000029",
+        border: "1px solid #D6D6D6"
       },
       "& figure": {
         marginRight: 0,
@@ -245,33 +245,13 @@ const useStyles = makeStyles(
     },
     readAttr: {
       paddingTop: 7,
-      [breakpoints.up("md")]: {
-        paddingLeft: typography.pxToRem(
-          (widths.values.md * 74) / widths.values.xl
-        ),
-      },
-      [breakpoints.up("lg")]: {
-        paddingLeft: typography.pxToRem(
-          (widths.values.lg * 74) / widths.values.xl
-        ),
-      },
-      [breakpoints.up("xl")]: {
-        paddingLeft: typography.pxToRem(74),
-      },
     },
     socialIcons: {
-      paddingTop: "3.125rem",
+      marginTop: typography.pxToRem(50),
       [breakpoints.up("md")]: {
-        paddingTop: "1.5rem",
-        display: "initial",
-        position: "absolute",
-        right: typography.pxToRem((widths.values.md * -307) / widths.values.xl),
-      },
-      [breakpoints.up("lg")]: {
-        right: typography.pxToRem((widths.values.lg * -307) / widths.values.xl),
-      },
-      [breakpoints.up("xl")]: {
-        right: typography.pxToRem(-307),
+        display: "flex",
+        justifyContent: "flex-end",
+        marginTop: 0,
       },
     },
     title: {
