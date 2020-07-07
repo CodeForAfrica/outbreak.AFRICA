@@ -8,8 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { A, Section } from "@commons-ui/core";
 
-import shareIcon from "assets/icon-share.svg";
-
 import Status from "./Status";
 
 const useStyles = makeStyles((theme) => ({

@@ -195,7 +195,6 @@ Index.getInitialProps = async ({ query }) => {
   const { values: status, error } = await getOutbreakStatus();
   const errorCode = error ? 500 : null;
   outbreak.status = status;
-  console.log("BOOM", { status, error, errorCode });
 
   return {
     errorCode,
