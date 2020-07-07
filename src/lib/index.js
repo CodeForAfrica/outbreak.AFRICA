@@ -1,4 +1,71 @@
 import { useEffect, useState } from "react";
+import Papa from "papaparse";
+
+import config from "config";
+
+export async function getCountryStats() {
+  return Promise.all(
+    config.countries.map((country) =>
+      fetch(
+        `${config.COUNTRY_STATS_URL}?countryTotal=${country.isoCode}`
+      ).then((res) => res.json())
+    )
+  );
+}
+
+function fileNameFromDate(date) {
+  const dateGroups = date.toISOString().split("T")[0].split("-");
+  return `${dateGroups[1]}-${dateGroups[2]}-${dateGroups[0]}.csv`;
+}
+
+export async function getOutbreakStatus() {
+  const date = new Date();
+  const timestamp = date.getTime();
+  const { values, lastUpdated, url } = config.status;
+  if (lastUpdated && timestamp - lastUpdated < 30 * 60 * 1000) {
+    return { values };
+  }
+
+  let fileName = fileNameFromDate(date);
+  let csv;
+  try {
+    let response = await fetch(`${url}/${fileName}`);
+    if (response.status === 404) {
+      // Use the previous day's data if today's data hasn't been published yet
+      // Don't update timestamp since we don't want to hit the endpoint
+      // for the next half half hour regardless of which data file we use
+      date.setDate(date.getDate() - 1);
+      fileName = fileNameFromDate(date);
+      response = await fetch(`${url}/${fileName}`);
+    }
+    if (response.status !== 200) {
+      return { error: { status: response.status } };
+    }
+    csv = await response.text();
+  } catch (error) {
+    return { error };
+  }
+  const output = Papa.parse(csv, { header: true });
+  if (output.data) {
+    const countriesOfInterest = new Set(config.status.countries);
+    const { data: rawData } = output;
+    const reducer = (acc, curr) => {
+      if (countriesOfInterest.has(curr.Country_Region)) {
+        acc.confirmed += Number.parseInt(curr.Confirmed, 10);
+        acc.deaths += Number.parseInt(curr.Deaths, 10);
+        acc.recovered += Number.parseInt(curr.Recovered, 10);
+        acc.active += Number.parseInt(curr.Active, 10);
+      }
+      return acc;
+    };
+    const acc = { confirmed: 0, deaths: 0, recovered: 0, active: 0 };
+    rawData.reduce(reducer, acc);
+    config.status.values = acc;
+    config.status.lastUpdated = timestamp;
+    return { values: acc };
+  }
+  return output;
+}
 
 export function fromTimestamp(timestamp) {
   return new Date(timestamp).toLocaleString("en-GB", {
