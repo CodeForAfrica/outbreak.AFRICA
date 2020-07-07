@@ -171,7 +171,11 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
               title={topicPosts[0].post_title}
               description={topicPosts[0].post_excerpt}
               image={topicPosts[0].featured_image}
-              date={topicPosts[0].published_date ? topicPosts[0].published_date: topicPosts[0].post_date}
+              date={
+                topicPosts[0].published_date
+                  ? topicPosts[0].published_date
+                  : topicPosts[0].post_date
+              }
             />
           </Link>
         )}
@@ -212,8 +216,8 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
         }}
         joinUs={joinUs}
       />
-      <Section classes={{ root: classes.section }}> 
-      {topicPosts && topicPosts.length > 3 && (
+      <Section classes={{ root: classes.section }}>
+        {topicPosts && topicPosts.length > 3 && (
           <Link
             as={linkAs(posts[4].post_name)}
             href={linkHref}
@@ -223,7 +227,11 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
               title={topicPosts[4].post_title}
               description={topicPosts[4].post_excerpt}
               image={topicPosts[4].featured_image}
-              date={topicPosts[4].published_date ? topicPosts[0].published_date: topicPosts[4].post_date}
+              date={
+                topicPosts[4].published_date
+                  ? topicPosts[0].published_date
+                  : topicPosts[4].post_date
+              }
             />
           </Link>
         )}
