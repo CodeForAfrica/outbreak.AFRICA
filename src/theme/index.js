@@ -157,8 +157,8 @@ deepmerge(
   typography,
   {
     h1: {
-      fontSize: pxToRem(40),
-      lineHeight: 40 / 40,
+      fontSize: pxToRem(35),
+      lineHeight: 40 / 35,
       [breakpoints.up("lg")]: {
         fontSize: pxToRem(50),
         lineHeight: 80 / 50,
@@ -169,8 +169,8 @@ deepmerge(
       },
     },
     h2: {
-      fontSize: pxToRem(40),
-      lineHeight: 40 / 40,
+      fontSize: pxToRem(35),
+      lineHeight: 40 / 35,
       [breakpoints.up("lg")]: {
         fontSize: pxToRem(50),
         lineHeight: 80 / 50,

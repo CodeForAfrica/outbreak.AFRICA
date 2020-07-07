@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   statusBorderTop: {
     borderTop: "1px solid #D6D6D6",
+    paddingTop: "1rem",
   },
   statusHighlight: {
     color: theme.palette.secondary.main,
@@ -74,9 +75,12 @@ function Ticker({ lang, source, statuses, title, ...props }) {
                 {title}
               </Typography>
             </Grid>
+            {/* TODO(kilemensi): Hide share for MVP */}
+            {/*
             <Grid item>
               <img src={shareIcon} alt="share" className={classes.shareImg} />
             </Grid>
+            */}
           </Grid>
           <Grid item xs={12} container className={classes.statuses}>
             {statuses.map((status, index) => (
