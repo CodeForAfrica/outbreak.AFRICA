@@ -49,11 +49,14 @@ const useStyles = makeStyles((theme) => ({
   title: {},
 }));
 
-function Ticker({ lang, source, statuses, title, ...props }) {
+function Ticker({ lang, source, statuses, title, values, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
 
+  if (!values) {
+    return null;
+  }
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -85,6 +88,7 @@ function Ticker({ lang, source, statuses, title, ...props }) {
               <Grid key={status.name} item xs={6} md={3}>
                 <Status
                   {...status}
+                  value={values[status.slug]}
                   lang={lang}
                   classes={{
                     root: classNames(
@@ -133,6 +137,7 @@ Ticker.propTypes = {
     url: PropTypes.string.isRequired,
   }).isRequired,
   title: PropTypes.string.isRequired,
+  values: PropTypes.shape({}).isRequired,
 };
 
 Ticker.defaultProps = {
