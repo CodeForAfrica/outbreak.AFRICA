@@ -137,6 +137,8 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                   En
                 </Link>
               </Grid>
+              {/* TODO(kilemensi): Disable other languages for MVP */}
+              {/*
               <Grid item>
                 <Link
                   href="/#"
@@ -157,6 +159,7 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                   عربى
                 </Link>
               </Grid>
+              */}
             </Grid>
             <IconButton
               aria-label="close drawer"
