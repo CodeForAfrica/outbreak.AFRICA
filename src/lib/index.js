@@ -22,7 +22,7 @@ export async function getOutbreakStatus() {
   const date = new Date();
   const timestamp = date.getTime();
   const { values, lastUpdated, url } = config.status;
-  if (lastUpdated && timestamp - lastUpdated < 30 * 60 * 1000) {
+  if (values && lastUpdated && timestamp - lastUpdated < 30 * 60 * 1000) {
     return { values };
   }
 
