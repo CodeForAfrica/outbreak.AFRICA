@@ -16,6 +16,7 @@ import Ticker from "components/Ticker";
 import config from "config";
 import { getSitePage } from "cms";
 import { withApollo } from "lib/apollo";
+import { getOutbreakStatus } from "lib/";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -84,6 +85,8 @@ function Index({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
+    errorCode,
+    status,
     page: {
       myth,
       partners,
@@ -97,34 +100,38 @@ function Index({ outbreak, featuredExperts, ...props }) {
   } = outbreak;
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      errorCode={errorCode}
+      outbreak={outbreak}
+      classes={{ section: classes.section }}
+    >
       <Hero heroContent={heroContent} classes={{ section: classes.section }} />
       <Ticker
         source={{
-          title: "openAFRICA",
-          url: "https://open.africa",
+          title: "CSSE at Johns Hopkins University",
+          url: "//github.com/CSSEGISandData/COVID-19",
         }}
         statuses={[
           {
             name: "Infections",
             status: "Confirmed",
-            value: "3,721",
+            value: status.confirmed.toLocaleString(),
           },
           {
             name: "Deaths",
             status: "Confirmed",
-            value: "670",
+            value: status.deaths.toLocaleString(),
             highlight: true,
           },
           {
             name: "Active",
             status: "Confirmed",
-            value: "2621",
+            value: status.active.toLocaleString(),
           },
           {
             name: "Recoveries",
             status: "Confirmed",
-            value: "730",
+            value: status.recovered.toLocaleString(),
           },
         ]}
         title="Covid-19 cases in Africa"
@@ -186,8 +193,12 @@ Index.getInitialProps = async ({ query }) => {
     page: { featured_experts: featuredExperts },
   } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
+  const { values: status, error } = await getOutbreakStatus();
+  const errorCode = error ? 500 : null;
+  outbreak.status = status;
 
   return {
+    errorCode,
     outbreak,
     featuredExperts,
   };
