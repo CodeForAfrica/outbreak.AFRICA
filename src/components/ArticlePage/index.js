@@ -17,7 +17,6 @@ import getChartElements from "utils/getChartElements";
 import facebook from "assets/Icon awesome-facebook-f-b.svg";
 import instagram from "assets/Icon awesome-instagram-b.svg";
 import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import logo from "assets/logo-C4A.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import Author from "./Author";
@@ -47,7 +46,12 @@ function ArticlePage({
   if (!post) {
     return null;
   }
-  const date = new Date(post.date).toDateString().slice(4, 10);
+
+  let date = new Date(post.date).toDateString().slice(4, 10);
+  if (post.acf.attributes && post.attributes.date) {
+    date = post.attributes.date.slice(0, -6)
+  }
+
   let imageUrl = "";
   if (media) {
     if (isDesktop) {
@@ -88,41 +92,15 @@ function ArticlePage({
                 item
                 container
                 className={classes.attributes}
-                direction={isDesktop ? "column" : "row"}
+                direction="column"
+                justify="space-between"
               >
-                <Grid
-                  item
-                  container
-                  direction={isDesktop ? "row" : "row-reverse"}
-                  alignItems="flex-end"
-                  justify={!isDesktop && "space-between"}
-                >
-                  <Grid item xs={6}>
-                    <img
-                      src={logo}
-                      alt="Code for Africa"
-                      className={classes.logo}
-                    />
-                  </Grid>
-                  <Grid
-                    item
-                    container
-                    xs={6}
-                    className={classes.readAttr}
-                    direction={isDesktop ? "column" : "column-reverse"}
-                  >
-                    <RichTypography
-                      variant="caption"
-                      className={classes.organization}
-                    >
-                      Code for Africa
-                    </RichTypography>
+                  <Grid item md={6} className={classes.readAttr}>
                     <RichTypography variant="caption" className={classes.date}>
                       {date}
                     </RichTypography>
-                  </Grid>
                 </Grid>
-                <Grid item className={classes.socialIcons}>
+                <Grid item md={6} className={classes.socialIcons}>
                   <A href="" color="textSecondary" className={classes.link}>
                     <img
                       src={linkedIn}
