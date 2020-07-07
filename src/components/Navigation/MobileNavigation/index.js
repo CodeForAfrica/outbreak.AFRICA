@@ -28,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     padding: "1.125rem 1.234375rem 0 1.6875rem",
   },
+  section: {},
   button: {
     color: theme.palette.text.secondary,
   },

@@ -78,7 +78,7 @@ const useStyles = makeStyles(
       "&.subtitle": {},
       "& .highlight": {
         background:
-          "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+          "linear-gradient(180deg, rgba(255,255,255,0) 50%, #0050FF 30% )",
       },
       [breakpoints.up("md")]: {
         marginTop: "unset",

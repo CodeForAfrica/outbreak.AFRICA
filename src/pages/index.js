@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
-import FeaturedResearchers from "components/FeaturedResearchers";
+import FeaturedExperts from "components/FeaturedExperts";
 import FeaturedStories from "components/FeaturedStories";
 import Hero from "components/Hero";
 import MythBusting from "components/MythBusting";
@@ -149,8 +149,9 @@ function Index({ outbreak, featuredExperts, ...props }) {
         }}
         heroContent
       />
-      <FeaturedResearchers
-        featuredExperts={featuredExperts}
+      <FeaturedExperts
+        {...featuredExperts}
+        icons={config.settings.icons}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
@@ -161,7 +162,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
-        featuredStories={featuredStories}
+        {...featuredStories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
       <Partners

@@ -19,6 +19,8 @@ const COPYRIGHT_LOGO = {
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
+  section: {},
   initiative: {
     [theme.breakpoints.up("md")]: {
       "& img": {
@@ -146,6 +148,8 @@ function MainFooter({
       quickLinks={quickLinks}
       organizationLogo={organizationLogo}
       classes={{
+        root: classes.root,
+        section: classes.section,
         initiative: classes.initiative,
         copyright: classes.copyright,
         legalLinks: classes.legalLinks,

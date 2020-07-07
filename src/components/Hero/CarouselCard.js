@@ -13,12 +13,25 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: "100%",
-    minHeight: "21rem",
-    height: "100%",
-    backgroundColor: "#fafafa",
     border: "1px solid #eeeeee",
+    backgroundColor: "#fafafa",
+    height: "100%",
+    minHeight: "21rem",
     opacity: 0.9,
+    position: "relative",
+    width: "100%",
+    "&:after": {
+      bottom: 0,
+      content: '""',
+      background:
+        "transparent linear-gradient(180deg, #FFFFFF 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.5,
+      position: "absolute",
+      right: 0,
+      top: 0,
+    },
     "&:hover": {
       opacity: 1,
       backgroundColor: "#fff",
@@ -28,13 +41,25 @@ const useStyles = makeStyles((theme) => ({
       minHeight: "30rem",
     },
   },
-  contentRoot: {
+  content: {
+    zIndex: 1,
+  },
+  contents: {
+    padding: "1rem",
     position: "absolute",
-    top: "50%",
+    top: "20%",
     left: "35px",
     width: "90%",
     [theme.breakpoints.up("md")]: {
-      top: "62.5%",
+      top: "45%",
+      left: "15px",
+    },
+    [theme.breakpoints.up("lg")]: {
+      top: "57.5%",
+      left: "15px",
+    },
+    [theme.breakpoints.up("xl")]: {
+      top: "37%",
       left: "15px",
     },
   },
@@ -75,23 +100,33 @@ function CarouselCard({ item, linkTitle, ...props }) {
           container
           item
           direction="column"
-          className={classes.contentRoot}
+          className={classes.contents}
           alignItems="flex-start"
         >
           {title && (
-            <Typography variant="subtitle2" className={classes.bodyTitle}>
-              {title}
-            </Typography>
+            <Grid item className={classes.content}>
+              <Typography variant="subtitle2" className={classes.bodyTitle}>
+                {title}
+              </Typography>
+            </Grid>
           )}
           {brief && (
-            <Typography variant="caption" className={classes.bodyText}>
-              {brief}
-            </Typography>
+            <Grid item className={classes.content}>
+              <Typography variant="caption" className={classes.bodyText}>
+                {brief}
+              </Typography>
+            </Grid>
           )}
           {link && (
-            <Button variant="outlined" href={link} className={classes.cardLink}>
-              {linkTitle}
-            </Button>
+            <Grid item className={classes.content}>
+              <Button
+                variant="outlined"
+                href={link}
+                className={classes.cardLink}
+              >
+                {linkTitle}
+              </Button>
+            </Grid>
           )}
         </Grid>
       </CardActionArea>
