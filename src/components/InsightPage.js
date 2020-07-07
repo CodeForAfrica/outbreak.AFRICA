@@ -49,6 +49,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     fontSize: 12,
   },
   postItem: {
+    width: "100%",
     [breakpoints.up("md")]: {
       paddingRight: typography.pxToRem(16),
       "&:last-of-type": {
