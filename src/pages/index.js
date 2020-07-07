@@ -115,25 +115,26 @@ function Index({ outbreak, featuredExperts, ...props }) {
           {
             name: "Infections",
             status: "Confirmed",
-            value: status.confirmed.toLocaleString(),
+            slug: "confirmed",
           },
           {
             name: "Deaths",
             status: "Confirmed",
-            value: status.deaths.toLocaleString(),
+            slug: "deaths",
             highlight: true,
           },
           {
             name: "Active",
             status: "Confirmed",
-            value: status.active.toLocaleString(),
+            slug: "active",
           },
           {
             name: "Recoveries",
             status: "Confirmed",
-            value: status.recovered.toLocaleString(),
+            slug: "recovered",
           },
         ]}
+        values={status.values}
         title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
       />
@@ -193,9 +194,11 @@ Index.getInitialProps = async ({ query }) => {
     page: { featured_experts: featuredExperts },
   } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
-  const { values: status, error } = await getOutbreakStatus();
-  const errorCode = error ? 500 : null;
-  outbreak.status = status;
+  const status = await getOutbreakStatus();
+  const errorCode = status.error ? 500 : null;
+  if (status.values) {
+    outbreak.status = status;
+  }
 
   return {
     errorCode,

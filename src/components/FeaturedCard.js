@@ -118,9 +118,9 @@ function FeaturedCard({ date, description, image, title, ...props }) {
           </RichTypography>
         )}
         <div className={classes.attributes}>
-            <Typography variant="caption" className={classes.date}>
-              {thisDate}
-            </Typography>
+          <Typography variant="caption" className={classes.date}>
+            {thisDate}
+          </Typography>
         </div>
       </Grid>
     </Grid>

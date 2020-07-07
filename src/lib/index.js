@@ -21,8 +21,8 @@ function fileNameFromDate(date) {
 export async function getOutbreakStatus() {
   const date = new Date();
   const timestamp = date.getTime();
-  const { values, lastUpdated, url } = config.status;
-  if (values && lastUpdated && timestamp - lastUpdated < 30 * 60 * 1000) {
+  const { countries, lastUpdated, url, values } = config.status;
+  if (lastUpdated && timestamp - lastUpdated < 30 * 60 * 1000) {
     return { values };
   }
 
@@ -47,7 +47,7 @@ export async function getOutbreakStatus() {
   }
   const output = Papa.parse(csv, { header: true });
   if (output.data) {
-    const countriesOfInterest = new Set(config.status.countries);
+    const countriesOfInterest = new Set(countries);
     const { data: rawData } = output;
     const reducer = (acc, curr) => {
       if (countriesOfInterest.has(curr.Country_Region)) {
@@ -62,7 +62,7 @@ export async function getOutbreakStatus() {
     rawData.reduce(reducer, acc);
     config.status.values = acc;
     config.status.lastUpdated = timestamp;
-    return { values: acc };
+    return config.status;
   }
   return output;
 }

@@ -49,7 +49,7 @@ function ArticlePage({
 
   let date = new Date(post.date).toDateString().slice(4, 10);
   if (post.acf.attributes && post.attributes.date) {
-    date = post.attributes.date.slice(0, -6)
+    date = post.attributes.date.slice(0, -6);
   }
 
   let imageUrl = "";
@@ -95,10 +95,10 @@ function ArticlePage({
                 direction="column"
                 justify="space-between"
               >
-                  <Grid item md={6} className={classes.readAttr}>
-                    <RichTypography variant="caption" className={classes.date}>
-                      {date}
-                    </RichTypography>
+                <Grid item md={6} className={classes.readAttr}>
+                  <RichTypography variant="caption" className={classes.date}>
+                    {date}
+                  </RichTypography>
                 </Grid>
                 <Grid item md={6} className={classes.socialIcons}>
                   <A href="" color="textSecondary" className={classes.link}>

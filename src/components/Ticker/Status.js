@@ -40,7 +40,7 @@ function Status({ name, status, value, ...props }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h1" className={classes.value}>
-          {value}
+          {value.toLocaleString()}
         </Typography>
       </Grid>
     </Grid>
@@ -51,7 +51,7 @@ Status.propTypes = {
   lang: PropTypes.string,
   name: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
 };
 
 Status.defaultProps = {
