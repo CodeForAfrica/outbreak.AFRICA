@@ -13,11 +13,14 @@ const useStyles = makeStyles(({ typography, palette }) => ({
       background: "#C1D5FF",
     },
     [`& ${props.selector} h2`]: {
-      ...typography.subtitle2,
-      paddingLeft: typography.pxToRem(30),
+      ...typography.subtitle1,
       backgroundImage: `url(${iconBox})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "24px 24px",
+      fontWeight: 700,
+      lineHeight: 1,
+      paddingBottom: 8,
+      paddingLeft: typography.pxToRem(30),
     },
     [`& ${props.selector} label`]: {
       ...typography.caption,
