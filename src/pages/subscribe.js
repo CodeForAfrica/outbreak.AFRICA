@@ -27,6 +27,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   content: {},
+  contentAsideMobile: {
+    border: "none",
+  },
   form: {
     marginBottom: typography.pxToRem(50),
     [breakpoints.up("md")]: {
@@ -72,13 +75,16 @@ function About({ errorCode, outbreak, slug, ...props }) {
         }}
       />
       <Content
-        subscribe={subscribe}
         classes={{
           root: classes.content,
           section: classes.section,
+          asideMobile: classes.contentAsideMobile,
         }}
+        subscribe={subscribe}
       >
-        <Form classes={{ root: classes.form }} />
+        <Form selector="#mc_embed_signup" classes={{ root: classes.form }}>
+          {config.settings.subscribe.embedCode}
+        </Form>
       </Content>
     </Page>
   );
