@@ -1,16 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid, IconButton, Typography } from "@material-ui/core";
-import TextField from "@material-ui/core/TextField";
+import { Grid, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
+
+import Form from "components/Form";
+import config from "config";
 
 import email from "assets/email.svg";
 import emailFocus from "assets/electric-blue-email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    color: theme.palette.text.secondary,
     width: "100%",
     [theme.breakpoints.up("md")]: {
       paddingTop: "10%",
@@ -31,7 +34,43 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: "5rem",
     },
   },
-  form: {},
+  form: {
+    "& #mc_embed_signup": {
+      background: "inherit",
+      color: "inherit",
+    },
+    "& #mc_embed_signup form": {
+      padding: 0,
+    },
+    "& #mc_embed_signup label": {
+      display: "none",
+    },
+    "& #mc_embed_signup input.email": {
+      background: "none",
+      border: "none",
+      borderBottom: "1px solid currentColor",
+      color: "currentColor",
+      margin: "1rem 0",
+      width: "100%",
+    },
+    "& #mc_embed_signup .button": {
+      backgroundImage: `url(${email})`,
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "40px 40px",
+      height: 55,
+      paddingLeft: theme.typography.pxToRem(50),
+      "&:hover": {
+        backgroundImage: `url(${emailFocus})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "40px 40px",
+      },
+      "&:focus": {
+        backgroundImage: `url(${emailFocus})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "40px 40px",
+      },
+    },
+  },
   input: {
     color: theme.palette.text.secondary,
     fontSize: theme.typography.caption.fontSize,
@@ -49,14 +88,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Subscribe({ title, description, ...props }) {
   const classes = useStyles(props);
-  const handleEvent = (e) => {
-    if (e.type === "mouseout" || e.type === "blur") {
-      e.currentTarget.src = email;
-    }
-    if (e.type === "mouseover" || e.type === "focus") {
-      e.currentTarget.src = emailFocus;
-    }
-  };
 
   return (
     <Grid item className={classes.root}>
@@ -71,28 +102,9 @@ function Subscribe({ title, description, ...props }) {
         {description}
       </Typography>
 
-      <form className={classes.form}>
-        <TextField
-          id="standard-basic"
-          autoFocus={false}
-          placeholder="Enter your email address"
-          margin="normal"
-          fullWidth
-          InputProps={{ className: classes.input }}
-        />
-
-        <IconButton className={classes.button}>
-          <img
-            src={email}
-            alt="Arrow icon"
-            className={classes.img}
-            onMouseOver={handleEvent}
-            onFocus={handleEvent}
-            onMouseOut={handleEvent}
-            onBlur={handleEvent}
-          />
-        </IconButton>
-      </form>
+      <Form selector="#mc_embed_signup" classes={{ root: classes.form }}>
+        {config.settings.subscribe.embedCode}
+      </Form>
     </Grid>
   );
 }
