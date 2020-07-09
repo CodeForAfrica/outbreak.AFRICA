@@ -36,13 +36,13 @@ const ICONS = {
 
 function slugifyName(name) {
   switch (name.toLowerCase()) {
-    case "epidemiological factors":
+    case "epidemiological":
       return "epidemiological";
-    case "healthcare system factors":
+    case "healthcare system":
       return "healthsystem";
-    case "demographic vulnerability":
+    case "demographic":
       return "demographic";
-    case "wash / basic services":
+    case "wash":
       return "socialeconomic";
     default:
       return undefined;
