@@ -38,9 +38,9 @@ function slugifyName(name) {
   switch (name.toLowerCase()) {
     case "epidemiological":
       return "epidemiological";
-    case "healthcare system":
+    case "healthcare systems":
       return "healthsystem";
-    case "demographic":
+    case "demographics":
       return "demographic";
     case "wash":
       return "socialeconomic";
