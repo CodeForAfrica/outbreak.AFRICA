@@ -54,8 +54,6 @@ const useStyles = makeStyles(
         backgroundImage: `url(${email})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "40px 40px",
-        // fontSize: "2.5rem",
-        // lineHeight: 1,
         height: 55,
         paddingLeft: typography.pxToRem(50),
         "&:hover": {
