@@ -1,12 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid, IconButton } from "@material-ui/core";
+import { Grid, IconButton, Link } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import Carousel from "react-multi-carousel";
+
+import { RichTypography } from "@commons-ui/core";
 
 import CarouselCard from "./CarouselCard";
 
@@ -25,10 +27,10 @@ const responsive = {
   },
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   buttonContainer: {
     display: "none",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       display: "flex",
       position: "absolute",
       top: "50px",
@@ -53,16 +55,17 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
   },
   carouselMedia: {
-    height: "18rem",
-    minHeight: "18rem",
+    height: typography.pxToRem(288),
+    minHeight: typography.pxToRem(288),
   },
   carouselRoot: {
-    height: "23rem",
-    minHeight: "23rem",
-    border: 0,
     backgroundColor: "unset",
+    border: 0,
     borderRadius: 0,
     boxShadow: "unset",
+    height: typography.pxToRem(288),
+    minHeight: typography.pxToRem(288),
+    marginBottom: "1rem",
   },
   carouselContentRoot: {
     display: "block",
@@ -109,6 +112,7 @@ function HeroCarousel({
   isResearch,
 }) {
   const classes = useStyles();
+
   if (!carouselItems || carouselItems.length === 0) {
     return null;
   }
@@ -131,21 +135,29 @@ function HeroCarousel({
       itemClass="carousel-item-padding-40-px"
     >
       {carouselItems.map((item) => (
-        <CarouselCard
-          key={item.title}
-          item={item}
-          linkTitle={carouselLinkTitle}
-          classes={
-            isResearch && {
-              media: classes.carouselMedia,
-              bodyTitle: classes.carouselBodyTitle,
-              bodyText: classes.carouselBodyText,
-              cardLink: classes.carouselCardLink,
-              root: classes.carouselRoot,
-              contentRoot: classes.carouselContentRoot,
+        <>
+          <CarouselCard
+            key={item.title}
+            height={isResearch ? "auto" : undefined}
+            item={isResearch ? { image: item.image } : item}
+            linkTitle={carouselLinkTitle}
+            classes={
+              isResearch && {
+                media: classes.carouselMedia,
+                bodyTitle: classes.carouselBodyTitle,
+                bodyText: classes.carouselBodyText,
+                cardLink: classes.carouselCardLink,
+                root: classes.carouselRoot,
+                contentRoot: classes.carouselContentRoot,
+              }
             }
-          }
-        />
+          />
+          {isResearch && (
+            <Link color="textPrimary" href={item.link_url} variant="subtitle2">
+              {item.title}
+            </Link>
+          )}
+        </>
       ))}
     </Carousel>
   );
