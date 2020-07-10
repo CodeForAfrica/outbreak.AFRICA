@@ -35,8 +35,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#cbdbfb",
     position: "absolute",
     width: "30%",
-    bottom: "12.5%",
-    height: "25%",
+    bottom: "2.5%",
+    height: "40%",
   },
   section: {
     zIndex: 1,
@@ -68,13 +68,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#cbdbfb",
     [theme.breakpoints.up("md")]: {
       background: "transparent",
-      paddingTop: "25%",
+      paddingTop: "20%",
       paddingRight: 0,
       paddingLeft: 0,
     },
   },
   subscribe: {
-    padding: "5rem 1.25rem 5rem 1.375rem",
+    padding: "5rem 1.25rem 2.5rem 1.375rem",
     backgroundColor: "#170F49",
     [theme.breakpoints.up("md")]: {
       background: "transparent",
