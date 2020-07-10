@@ -16,10 +16,7 @@ const useStyles = makeStyles((theme) => ({
   },
   img: {
     maxWidth: "100%",
-    [theme.breakpoints.up("md")]: {
-      height: "3rem",
-      width: "auto",
-    },
+    maxHeight: theme.typography.pxToRem(127),
   },
   image: {
     maxWidth: "100%",
