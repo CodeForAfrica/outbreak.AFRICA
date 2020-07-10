@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function CarouselCard({ item, linkTitle, ...props }) {
+function CarouselCard({ height, item, linkTitle, ...props }) {
   const classes = useStyles(props);
 
   if (!item) {
@@ -94,7 +94,7 @@ function CarouselCard({ item, linkTitle, ...props }) {
 
   return (
     <Card className={classes.root}>
-      <CardActionArea style={{ height: "100%" }}>
+      <CardActionArea style={{ height }}>
         <CardMedia className={classes.media} image={image} title="Item" />
         <Grid
           container
@@ -135,6 +135,7 @@ function CarouselCard({ item, linkTitle, ...props }) {
 }
 
 CarouselCard.propTypes = {
+  height: PropTypes.string,
   item: PropTypes.shape({
     title: PropTypes.string,
     brief: PropTypes.string,
@@ -145,8 +146,9 @@ CarouselCard.propTypes = {
 };
 
 CarouselCard.defaultProps = {
-  linkTitle: "Learn More",
+  height: "100%",
   item: undefined,
+  linkTitle: "Learn More",
 };
 
 export default CarouselCard;
