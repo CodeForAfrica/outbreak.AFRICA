@@ -47,6 +47,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
     borderRight: "none",
     width: "100%",
   },
+  asideTableOfContents: {},
+  asideTableOfContentsLink: {},
   joinUs: {},
   subscribe: {},
   support: {},
@@ -126,6 +128,8 @@ function Content({
               current={current}
               classes={{
                 root: classNames(classes.aside, classes.asideHidden),
+                tableOfContents: classes.asideTableOfContents,
+                tableOfContentsLink: classes.asideTableOfContentsLink,
               }}
             >
               <SupportComponent

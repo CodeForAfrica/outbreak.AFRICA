@@ -41,7 +41,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
 }));
 
 const ICONS = {
-  methodology: economicIcon,
+  default: economicIcon,
   partners: safetyIcon,
   project: epidemiologicalIcon,
   team: demographicIcon,
@@ -49,8 +49,8 @@ const ICONS = {
 
 function Main({ classes: classesProp, content, ...props }) {
   const classes = useStyles({ ...props, classes: classesProp });
-  const iconSrc = content.icon || ICONS[content.slug];
-  const icon = iconSrc ? { src: iconSrc } : undefined;
+  const iconSrc = content.icon || ICONS[content.slug] || ICONS.default;
+  const icon = { src: iconSrc };
 
   return (
     <div id={content.slug} className={classes.root}>
