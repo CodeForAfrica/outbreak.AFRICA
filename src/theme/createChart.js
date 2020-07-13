@@ -37,9 +37,6 @@ export default function createChart({ colorScale }, { labelStyle }) {
           minDomain: {y: 0}
         }
       },
-      parent: {
-        minDomain: {y: 0}
-      },
       style: {
         data: {
           strokeWidth: 4,
