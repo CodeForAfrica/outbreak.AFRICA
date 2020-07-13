@@ -24,15 +24,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: "2rem",
     [theme.breakpoints.up("md")]: {
       width: "80%",
-      paddingBottom: "5rem",
     },
   },
   title: {
     color: theme.palette.text.secondary,
     paddingBottom: "2rem",
-    [theme.breakpoints.up("md")]: {
-      paddingBottom: "5rem",
-    },
   },
   form: {
     "& #mc_embed_signup": {

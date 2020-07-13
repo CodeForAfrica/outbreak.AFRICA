@@ -9,9 +9,13 @@ const FONT_FAMILY_TEXT = '"Open Sans", sans-serif';
 const COLOR_BREWER_DIVERGING = [
   "#0050FF",
   "#170F49",
-  "#00000029",
-  "#D6D6D6",
+  "#3373FF",
+  "#99B9FF",
+  "#CCDCFF",
+  "#DADADA",
+  "#CCDCFF",
   "#F9FF71",
+  "#D63197"
 ];
 
 // ## DEFAULT

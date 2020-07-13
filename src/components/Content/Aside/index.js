@@ -23,6 +23,8 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
   children: {},
   contents: {},
+  tableOfContents: {},
+  tableOfContentsLink: {},
 }));
 
 function Aside({ children, contents, current, ...props }) {
@@ -35,7 +37,15 @@ function Aside({ children, contents, current, ...props }) {
     <Grid container className={classes.root}>
       {contents && (
         <Grid item xs={12} className={classes.contents}>
-          <TableOfContents {...props} contents={contents} value={current} />
+          <TableOfContents
+            {...props}
+            contents={contents}
+            value={current}
+            classes={{
+              root: classes.tableOfContents,
+              link: classes.tableOfContentsLink,
+            }}
+          />
         </Grid>
       )}
       {children && (
