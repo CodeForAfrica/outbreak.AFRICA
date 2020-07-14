@@ -117,9 +117,9 @@ const useStyles = makeStyles(
     },
   })
 );
-const processYValues = (data) => {
+const processYValues = (data, label) => {
   return data.map(z => {
-      return { ...z, y: Number(z.y)}
+      return { ...z, y: Number(z.y), tooltip: label}
   })
 }
 
@@ -129,9 +129,9 @@ function Chart({ chartData, definition, profiles, classes }) {
   ) : (
     <ChartFactory
       definition={definition}
-      data={processYValues(chartData.profileVisualsData[definition.queryAlias].nodes)}
+      data={processYValues(chartData.profileVisualsData[definition.queryAlias].nodes, profiles.profile.name)}
       isComparison={!!chartData.profileVisualsData[`${definition.queryAlias}Reference`]}
-      comparisonData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && processYValues(chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes)}
+      comparisonData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && processYValues(chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes, profiles.parent.name)}
       profiles={profiles}
       disableShowMore
       classes={classes}
