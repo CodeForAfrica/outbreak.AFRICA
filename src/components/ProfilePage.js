@@ -117,11 +117,6 @@ const useStyles = makeStyles(
     },
   })
 );
-const processYValues = (data, label) => {
-  return data.map(z => {
-      return { ...z, y: Number(z.y), tooltip: label}
-  })
-}
 
 function Chart({ chartData, definition, profiles, classes }) {
   return chartData.isLoading ? (
@@ -129,9 +124,8 @@ function Chart({ chartData, definition, profiles, classes }) {
   ) : (
     <ChartFactory
       definition={definition}
-      data={processYValues(chartData.profileVisualsData[definition.queryAlias].nodes, profiles.profile.name)}
-      isComparison={!!chartData.profileVisualsData[`${definition.queryAlias}Reference`]}
-      comparisonData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && processYValues(chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes, profiles.parent.name)}
+      data={chartData.profileVisualsData[definition.queryAlias].nodes}
+      referenceData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes}
       profiles={profiles}
       disableShowMore
       classes={classes}
@@ -226,6 +220,8 @@ function ProfilePage({
     populationTables: config.populationTables,
     visuals,
   });
+
+  console.log(chartData);
 
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
