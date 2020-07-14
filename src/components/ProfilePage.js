@@ -125,7 +125,7 @@ function Chart({ chartData, definition, profiles, classes }) {
     <ChartFactory
       definition={definition}
       data={chartData.profileVisualsData[definition.queryAlias].nodes}
-      referenceData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes}
+      referenceData={reference.nodes}
       profiles={profiles}
       disableShowMore
       classes={classes}
