@@ -117,6 +117,11 @@ const useStyles = makeStyles(
     },
   })
 );
+const processYValues = (data) => {
+  return data.map(z => {
+      return { ...z, y: Number(z.y)}
+  })
+}
 
 function Chart({ chartData, definition, profiles, classes }) {
   return chartData.isLoading ? (
@@ -124,7 +129,9 @@ function Chart({ chartData, definition, profiles, classes }) {
   ) : (
     <ChartFactory
       definition={definition}
-      data={chartData.profileVisualsData[definition.queryAlias].nodes}
+      data={processYValues(chartData.profileVisualsData[definition.queryAlias].nodes)}
+      isComparison={!!chartData.profileVisualsData[`${definition.queryAlias}Reference`]}
+      comparisonData={chartData.profileVisualsData[`${definition.queryAlias}Reference`] && processYValues(chartData.profileVisualsData[`${definition.queryAlias}Reference`].nodes)}
       profiles={profiles}
       disableShowMore
       classes={classes}
@@ -202,7 +209,15 @@ function ProfilePage({
       sectionedCharts
         .reduce((a, b) => a.concat(b.charts), [])
         .filter(filterByGeography)
-        .map(({ visual }) => visual),
+        .map(({ visual }) => {
+          if(visual.type=== "line"){
+            return {
+              ...visual,
+              reference: {}
+            }
+          }
+          return visual
+        }),
     [filterByGeography, sectionedCharts]
   );
 
