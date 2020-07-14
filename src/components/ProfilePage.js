@@ -119,6 +119,7 @@ const useStyles = makeStyles(
 );
 
 function Chart({ chartData, definition, profiles, classes }) {
+  const reference = chartData.profileVisualsData[`${definition.queryAlias}Reference`] || {nodes: []};
   return chartData.isLoading ? (
     <div />
   ) : (
