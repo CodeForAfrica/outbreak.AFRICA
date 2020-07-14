@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
   source: {
     color: "#9D9C9C",
-    fontSize: "1rem",
   },
   status: {},
   statusBorderRight: {
@@ -109,7 +108,7 @@ function Ticker({ lang, source, statuses, title, values, ...props }) {
           <Grid item xs={12}>
             <A
               href={source.url}
-              variant="caption"
+              variant="h6"
               size="small"
               underline="none"
               className={classes.source}

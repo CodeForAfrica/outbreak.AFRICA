@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme) => ({
   },
   name: {
     color: "inherit",
+    textTransform: "none",
   },
   status: {
     color: "inherit",
-    fontSize: "1rem",
   },
   value: {
     color: "inherit",
@@ -29,17 +29,17 @@ function Status({ name, status, value, ...props }) {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
-        <Typography variant="caption" component="h3" className={classes.status}>
+        <Typography variant="h6" component="h4" className={classes.status}>
           {status}
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="subtitle2" component="h2" className={classes.name}>
+        <Typography variant="button" component="h3" className={classes.name}>
           {name}
         </Typography>
       </Grid>
       <Grid item xs={12}>
-        <Typography variant="h1" className={classes.value}>
+        <Typography variant="h2" className={classes.value}>
           {value.toLocaleString()}
         </Typography>
       </Grid>
