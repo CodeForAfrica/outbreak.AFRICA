@@ -221,8 +221,6 @@ function ProfilePage({
     visuals,
   });
 
-  console.log(chartData);
-
   const geoIndeces = useGeoIndexLoader({
     countryCode: country.isoCode,
     indexField: config.colorIndexField,
