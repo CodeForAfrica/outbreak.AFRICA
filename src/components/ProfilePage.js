@@ -119,12 +119,14 @@ const useStyles = makeStyles(
 );
 
 function Chart({ chartData, definition, profiles, classes }) {
+  const reference = chartData.profileVisualsData[`${definition.queryAlias}Reference`] || {nodes: []};
   return chartData.isLoading ? (
     <div />
   ) : (
     <ChartFactory
       definition={definition}
       data={chartData.profileVisualsData[definition.queryAlias].nodes}
+      referenceData={reference.nodes}
       profiles={profiles}
       disableShowMore
       classes={classes}
@@ -202,7 +204,15 @@ function ProfilePage({
       sectionedCharts
         .reduce((a, b) => a.concat(b.charts), [])
         .filter(filterByGeography)
-        .map(({ visual }) => visual),
+        .map(({ visual }) => {
+          if(visual.type=== "line"){
+            return {
+              ...visual,
+              reference: {}
+            }
+          }
+          return visual
+        }),
     [filterByGeography, sectionedCharts]
   );
 
