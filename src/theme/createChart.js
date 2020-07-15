@@ -31,7 +31,7 @@ export default function createChart({ colorScale }, { labelStyle }) {
     line: {
       offset: 70,
       width: 400,
-      height: 400,
+      height: 350,
       colorScale: ["#0050FF", "#CCDCFF", "#DADADA", "#99B9FF"],
       parts: {
         parent: {
