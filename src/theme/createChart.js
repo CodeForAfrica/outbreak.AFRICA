@@ -33,7 +33,6 @@ export default function createChart({ colorScale }, { labelStyle }) {
       width: 400,
       height: 400,
       colorScale: ["#0050FF", "#CCDCFF", "#DADADA", "#99B9FF"],
-      strokeWidth: [4, 1],
       parts: {
         parent: {
           minDomain: {y: 0}
