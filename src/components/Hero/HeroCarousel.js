@@ -8,8 +8,6 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 import Carousel from "react-multi-carousel";
 
-import { RichTypography } from "@commons-ui/core";
-
 import CarouselCard from "./CarouselCard";
 
 const responsive = {
