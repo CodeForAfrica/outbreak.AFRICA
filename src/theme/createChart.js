@@ -31,13 +31,14 @@ export default function createChart({ colorScale }, { labelStyle }) {
     line: {
       offset: 70,
       width: 400,
-      height: 400,
-      colorScale: ["#0050FF", "#DADADA", "#CCDCFF", "#99B9FF"],
+      height: 350,
+      colorScale: ["#0050FF", "#CCDCFF", "#DADADA", "#99B9FF"],
       parts: {
         parent: {
-          minDomain: {y: 0}
-        }
+          minDomain: { y: 0 },
+        },
       },
+      strokeWidth: [4, 3],
       style: {
         data: {
           strokeWidth: 4,

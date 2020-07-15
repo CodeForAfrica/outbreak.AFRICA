@@ -119,12 +119,24 @@ const useStyles = makeStyles(
 );
 
 function Chart({ chartData, definition, profiles, classes }) {
-  const reference = chartData.profileVisualsData[`${definition.queryAlias}Reference`] || {nodes: []};
+  const reference = chartData.profileVisualsData[
+    `${definition.queryAlias}Reference`
+  ] || { nodes: [] };
+  const parts = {};
+  if (reference.nodes.length && profiles.profile && profiles.parent) {
+    const dataLegend = {
+      data: [{ name: profiles.profile.name }, { name: profiles.parent.name }],
+    };
+    Object.assign(parts, { legend: dataLegend });
+  }
   return chartData.isLoading ? (
     <div />
   ) : (
     <ChartFactory
-      definition={definition}
+      definition={{
+        ...definition,
+        typeProps: { ...definition.typeProps, parts },
+      }}
       data={chartData.profileVisualsData[definition.queryAlias].nodes}
       referenceData={reference.nodes}
       profiles={profiles}
@@ -205,13 +217,13 @@ function ProfilePage({
         .reduce((a, b) => a.concat(b.charts), [])
         .filter(filterByGeography)
         .map(({ visual }) => {
-          if(visual.type=== "line"){
+          if (visual.type === "line") {
             return {
               ...visual,
-              reference: {}
-            }
+              reference: {},
+            };
           }
-          return visual
+          return visual;
         }),
     [filterByGeography, sectionedCharts]
   );
