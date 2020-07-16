@@ -48,8 +48,8 @@ function ArticlePage({
   }
 
   let date = new Date(post.date).toDateString().slice(4, 10);
-  if (post.acf.attributes && post.attributes.date) {
-    date = post.attributes.date.slice(0, -6);
+  if (post.acf.attributes && post.acf.attributes.date) {
+    date = post.acf.attributes.date.slice(0, -6);
   }
 
   let imageUrl = "";
