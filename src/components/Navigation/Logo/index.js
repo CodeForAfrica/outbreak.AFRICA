@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("md")]: {
       marginLeft: "-1rem",
     },
+    "&:hover": {
+      backgroundColor: "unset",
+    },
   },
   title: {
     display: "inline-block",
