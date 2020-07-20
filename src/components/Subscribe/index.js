@@ -49,6 +49,15 @@ const useStyles = makeStyles(
         color: "currentColor",
         margin: "1rem 0",
         width: "100%",
+        [breakpoints.up("md")]: {
+          width: typography.pxToRem((395 * widths.values.md) / widths.values.xl),
+        },
+        [breakpoints.up("lg")]: {
+          width: typography.pxToRem((395 * widths.values.lg) / widths.values.xl),
+        },
+        [breakpoints.up("xl")]: {
+            width: typography.pxToRem(395),
+        },
       },
       "& #mc_embed_signup .button": {
         backgroundImage: `url(${email})`,
