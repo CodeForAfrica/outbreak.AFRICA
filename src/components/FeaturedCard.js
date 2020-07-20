@@ -113,7 +113,7 @@ function FeaturedCard({ date, description, image, title, ...props }) {
           </Typography>
         )}
         {description && (
-          <RichTypography variant="caption" className={classes.description}>
+          <RichTypography variant="body2" className={classes.description}>
             {description}
           </RichTypography>
         )}
