@@ -1,13 +1,14 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles(({ palette, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {},
   section: {},
   sectionTitle: {
     margin: "unset",
     marginBottom: typography.pxToRem(16),
   },
-  profile: {},
+  profile: {
+  },
   profileDescription: {
     marginTop: typography.pxToRem(25),
   },
@@ -44,7 +45,12 @@ const useStyles = makeStyles(({ palette, typography }) => ({
     },
   },
   profiles: {
-    padding: "0.25rem",
+    borderTop: "1px solid #D6D6D6",
+    padding: `${typography.pxToRem(15.5)} 0`,
+    [breakpoints.up("md")]:{
+      padding: "0.25rem",
+      border: "unset",
+    }
   },
 }));
 
