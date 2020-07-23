@@ -4,12 +4,12 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ReactMultiCarousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 
 import useBreakpoint from "lib/useBreakpoint";
 
 import ButtonGroup from "./CarouselButtonGroup";
 import CarouselCard from "./CarouselCard";
+import CarouselFeature from "./CarouselFeature";
 import usePartialVisibilityGutter from "./usePartialVisibilityGutter";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
@@ -50,6 +50,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   carousel: {
     width: "100%",
     [breakpoints.up("md")]: {
+      overflow: "visible",
       width: (props) =>
         (widths.values.md * props.width) / widths.values.xl +
         props.partialVisibilityGutter,
@@ -65,7 +66,13 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
+function Carousel({
+  carouselItems,
+  carouselLinkTitle,
+  deviceType,
+  isResearch,
+  ...props
+}) {
   const partialVisibilityGutter = usePartialVisibilityGutter();
   const classes = useStyles({ ...props, partialVisibilityGutter });
   const [partialVisible, setPartialVisible] = useState(false);
@@ -111,6 +118,8 @@ function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
     return null;
   }
   const { height, width } = props;
+  const Card = isResearch ? CarouselFeature : CarouselCard;
+
   return (
     <div className={classes.root}>
       <ReactMultiCarousel
@@ -134,11 +143,11 @@ function Carousel({ deviceType, carouselItems, carouselLinkTitle, ...props }) {
         responsive={responsive}
         renderButtonGroupOutside
         showDots={false}
-        ssr // means to render carousel on server-side.
+        ssr
         swipeable
       >
         {carouselItems.map((item) => (
-          <CarouselCard
+          <Card
             key={item.title}
             height={height}
             item={item}
@@ -159,6 +168,7 @@ Carousel.propTypes = {
   ),
   carouselLinkTitle: PropTypes.string,
   height: PropTypes.number,
+  isResearch: PropTypes.bool,
   width: PropTypes.number,
 };
 
@@ -166,6 +176,7 @@ Carousel.defaultProps = {
   carouselItems: undefined,
   carouselLinkTitle: undefined,
   height: 637,
+  isResearch: false,
   width: 536,
 };
 

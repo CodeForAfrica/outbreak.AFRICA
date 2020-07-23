@@ -13,36 +13,43 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
+import NextComposed from "components/Link/NextComposed";
+
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {
-    backgroundColor: "#fafafa",
     border: "1px solid #eeeeee",
+    backgroundColor: "#fafafa",
+    height: "100%",
+    minHeight: "21rem",
     opacity: 0.9,
+    position: "relative",
+    width: "100%",
+    "&:after": {
+      bottom: 0,
+      content: '""',
+      background:
+        "transparent linear-gradient(180deg, #FFFFFF 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
+      height: "50%",
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.5,
+      position: "absolute",
+      right: 0,
+    },
     "&:hover": {
       opacity: 1,
       backgroundColor: "#fff",
     },
   },
-  contentRoot: {
-    position: "absolute",
-    top: "50%",
-    left: "35px",
-    width: "90%",
-    [breakpoints.up("md")]: {
-      top: "62.5%",
-      left: "15px",
-    },
+  actionArea: {
+    position: "relative",
   },
-  media: {},
-  cardLink: {},
-  bodyTitle: {
-    color: "#fff",
-    fontWeight: "bold",
-    marginTop: "1rem",
-  },
-  bodyText: {
+  brief: {
     color: "#fff",
     marginBottom: "2rem",
+  },
+  cardLink: {
+    marginTop: "1rem",
   },
   cardSize: {
     height: (props) => props.height,
@@ -60,6 +67,21 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
       width: (props) => props.width,
     },
   },
+  content: {
+    zIndex: 1,
+  },
+  contents: {
+    padding: "1rem",
+    position: "absolute",
+    left: 0,
+    bottom: 0,
+  },
+  media: {},
+  title: {
+    color: "#fff",
+    fontWeight: "bold",
+    marginTop: "1rem",
+  },
 }));
 
 function CarouselCard({ item, linkTitle, ...props }) {
@@ -68,36 +90,53 @@ function CarouselCard({ item, linkTitle, ...props }) {
   if (!item) {
     return null;
   }
-  const { title, brief, image, link_url: link } = item;
+  const { title, brief, image, link_url: linkUrl } = item;
+  const link = linkUrl && new URL(linkUrl).pathname;
+  const actionAreaProps =
+    (link && { component: NextComposed, href: link }) || undefined;
   return (
     <Card className={classNames(classes.cardSize, classes.root)}>
-      <CardActionArea style={{ height: "100%" }}>
+      <CardActionArea
+        {...actionAreaProps}
+        className={classNames(classes.cardSize, classes.actionArea)}
+      >
         <CardMedia
           className={classNames(classes.cardSize, classes.media)}
           image={image}
-          title="Item"
+          title={title}
         />
         <Grid
           container
           item
           direction="column"
-          className={classes.contentRoot}
           alignItems="flex-start"
+          justify="flex-end"
+          className={classes.contents}
         >
           {title && (
-            <Typography variant="subtitle2" className={classes.bodyTitle}>
-              {title}
-            </Typography>
+            <Grid item className={classes.content}>
+              <Typography variant="subtitle2" className={classes.title}>
+                {title}
+              </Typography>
+            </Grid>
           )}
           {brief && (
-            <Typography variant="caption" className={classes.bodyText}>
-              {brief}
-            </Typography>
+            <Grid item className={classes.content}>
+              <Typography variant="caption" className={classes.brief}>
+                {brief}
+              </Typography>
+            </Grid>
           )}
           {link && (
-            <Button variant="outlined" href={link} className={classes.cardLink}>
-              {linkTitle}
-            </Button>
+            <Grid item className={classes.content}>
+              <Button
+                variant="outlined"
+                href={link}
+                className={classes.cardLink}
+              >
+                {linkTitle}
+              </Button>
+            </Grid>
           )}
         </Grid>
       </CardActionArea>
