@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+
 import classNames from "classnames";
 
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import { Section, RichTypography } from "@commons-ui/core";
+
+import Button from "components/Link/Button";
 
 import Container from "./Container";
 import FlourishContainer from "./FlourishContainer";
@@ -20,19 +24,17 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     height: "15%",
     display: "flex",
     alignItems: "flex-end",
-    [breakpoints.up("md")]: {
-      marginTop: typography.pxToRem((widths.values.md * 21)/ widths.values.xl),
-    },
-    [breakpoints.up("lg")]: {
-      marginTop: typography.pxToRem((widths.values.lg * 21)/ widths.values.xl),
-    },
-    [breakpoints.up("xl")]: {
-      marginTop: typography.pxToRem(21),
-    },
   },
   actionIcon: {
     width: "2rem",
     height: "auto",
+  },
+  buttonExplore: {},
+  charts: {
+    alignItems: "flex-start",
+    [breakpoints.only("md")]: {
+      alignItems: "stretch",
+    },
   },
   chart0: {
     [breakpoints.only("md")]: {
@@ -67,6 +69,16 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       background:
         "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
     },
+    marginTop: typography.pxToRem(8),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem((widths.values.md * 21) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      marginTop: typography.pxToRem((widths.values.lg * 21) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      marginTop: typography.pxToRem(21),
+    },
   },
   insight: {
     [breakpoints.up("md")]: {
@@ -98,7 +110,7 @@ function FeaturedData({ featuredContent, ...props }) {
     // eslint-disable-next-line array-callback-return
     Array.from(tmp.querySelectorAll(`div[id^=indicator-`)).map((el) => {
       const chartId = el.getAttribute("id").split("-");
-      const geoId = el.getAttribute("data-geo-id") || "";
+      const geoId = el.getAttribute("data-data-geo-id") || "";
       const chartTitle = el.getAttribute("data-title") || "";
       const chartDescription = el.getAttribute("data-description") || "";
 
@@ -127,31 +139,30 @@ function FeaturedData({ featuredContent, ...props }) {
               {description}
             </RichTypography>
           </Grid>
+          {/* Disable See insights for MVP */}
+          {/*
           <Grid item xs={12} md={4} container className={classes.insight}>
             <Button variant="contained" size="large">
               See Insights
             </Button>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            container
-            spacing={2}
-            justify="flex-start"
-            alignItems="stretch"
-          >
-            {featuredCharts.length > 0 &&
-              featuredCharts.map((chart, index) => (
+          */}
+          {featuredCharts && featuredCharts.length > 0 && (
+            <Grid item xs={12} container spacing={2} className={classes.charts}>
+              {featuredCharts.map((chart, index) => (
                 <Grid
                   item
-                  container
                   xs={12}
-                  md={6}
+                  md={index === 0 || index === 3 ? 6 : 12}
                   lg={index === 0 || index === 3 ? 4 : 8}
-                  className={classNames(classes.chartGrid, `chart${index}`)}
+                  container
+                  className={classNames(
+                    classes.chartGrid,
+                    classes[`chart${index}`]
+                  )}
                   key={chart.id}
                 >
-                  <Grid item className={classes.chartShadow} xs={12}>
+                  <Grid item xs={12} className={classes.chartShadow}>
                     {chart.type === "hurumap" ? (
                       <Container action="Explore" featuredChart={chart} />
                     ) : (
@@ -161,20 +172,29 @@ function FeaturedData({ featuredContent, ...props }) {
                       />
                     )}
                   </Grid>
-                  <Grid item container className={classes.actionGrid} xs={12}>
-                    <RichTypography
-                      variant="body2"
-                      className={classes.description}
+                  <Grid item xs={12} container className={classes.actionGrid}>
+                    <Grid item xs={12}>
+                      <RichTypography
+                        variant="body2"
+                        className={classes.description}
+                      >
+                        {chart.description}
+                      </RichTypography>
+                    </Grid>
+                    <Button
+                      href="/data/[geoId]"
+                      as={`/data/${chart.geoId}`}
+                      variant="contained"
+                      size="large"
+                      className={classes.buttonExplore}
                     >
-                      {chart.description}
-                    </RichTypography>
-                    <Button variant="contained" size="large">
                       Explore
                     </Button>
                   </Grid>
                 </Grid>
               ))}
-          </Grid>
+            </Grid>
+          )}
         </Grid>
       </Section>
     </div>

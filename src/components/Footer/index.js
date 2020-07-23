@@ -8,12 +8,6 @@ import { Footer } from "@commons-ui/core";
 
 import Link from "components/Link";
 
-// import Email from 'assets/Icon awesome-at.svg';
-import Facebook from "assets/Icon awesome-facebook-f.svg";
-import GitHub from "assets/Icon awesome-git.svg";
-import Instagram from "assets/Icon awesome-instagram.svg";
-import LinkedIn from "assets/Icon awesome-linkedin-in.svg";
-import Twitter from "assets/Icon awesome-twitter.svg";
 import cc from "assets/cc.svg";
 
 const COPYRIGHT_LOGO = {
@@ -21,50 +15,12 @@ const COPYRIGHT_LOGO = {
     alt: "Creative Commons",
     url: cc,
   },
-  url: "/#",
-};
-
-const SOCIAL_MEDIA = {
-  socialMedia: [
-    {
-      url: "https://linkedin.com",
-      image: {
-        url: LinkedIn,
-        alt: "LinkedIn",
-      },
-    },
-    {
-      url: "https://instagram.com",
-      image: {
-        url: Instagram,
-        alt: "Instagram",
-      },
-    },
-    {
-      url: "https://twitter.com",
-      image: {
-        url: Twitter,
-        alt: "Twitter",
-      },
-    },
-    {
-      url: "https://facebook.com",
-      image: {
-        url: Facebook,
-        alt: "Facebook",
-      },
-    },
-    {
-      url: "https://github.com/CodeForAfrica",
-      image: {
-        url: GitHub,
-        alt: "GitHub",
-      },
-    },
-  ],
+  url: "//creativecommons.org",
 };
 
 const useStyles = makeStyles((theme) => ({
+  root: {},
+  section: {},
   initiative: {
     [theme.breakpoints.up("md")]: {
       "& img": {
@@ -152,6 +108,7 @@ function MainFooter({
       legal_links: legalLinksLinks,
       organization_logo: organizationLogoProp,
       quick_links: quickLinksLinks,
+      social_media: socialMedia,
     },
   },
   ...props
@@ -182,14 +139,16 @@ function MainFooter({
   return (
     <Footer
       {...props}
-      about={SOCIAL_MEDIA}
-      aboutSection={about}
+      about={about}
+      contacts={{ title: "Stay in touch with us", socialMedia }}
       copyrightLogo={COPYRIGHT_LOGO}
       initiativeLogo={initiativeLogo}
       legalLinks={legalLinks}
       quickLinks={quickLinks}
       organizationLogo={organizationLogo}
       classes={{
+        root: classes.root,
+        section: classes.section,
         initiative: classes.initiative,
         copyright: classes.copyright,
         legalLinks: classes.legalLinks,

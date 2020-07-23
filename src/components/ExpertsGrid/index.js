@@ -1,16 +1,20 @@
 /* eslint-disable react/no-danger, jsx-a11y/control-has-associated-label */
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 
 import classNames from "classnames";
-import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
-import { ListItem, Section } from "@commons-ui/core";
 
-import useStyles from "components/ExpertList/useStyles";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { ListItem as Profile, Section } from "@commons-ui/core";
+import { Contacts as ProfileContacts } from "@commons-ui/core/ProfileList";
+
 import Filter from "components/Filter";
 
-function ExpertList({
+import useStyles from "./useStyles";
+
+function ExpertsGrid({
   experts,
+  icons: availableIcons,
   profileClassCount,
   profileClassPrefix,
   title,
@@ -24,11 +28,17 @@ function ExpertList({
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
   const isLg = isUpLg && !isUpXl;
-  let cellHeight;
-  if (isUpLg) {
-    cellHeight = isLg ? 438 : 637;
+  let icons;
+  if (availableIcons) {
+    icons = isDesktop ? availableIcons.desktop : availableIcons.mobile;
   }
-
+  let cellHeight = 213;
+  if (isDesktop) {
+    cellHeight = 304;
+    if (isLg) {
+      cellHeight = isUpXl ? 546 : 400;
+    }
+  }
   const [activeTopic, setActiveTopic] = useState("all");
   const [subTopics, setSubTopics] = useState([]);
   const [topicExperts, setTopicExperts] = useState(experts);
@@ -110,60 +120,51 @@ function ExpertList({
           subTopics={subTopics}
         />
 
-        <Grid container direction="row">
+        <Grid container>
           {topicExperts.map((profile, index) => (
             <Grid
               item
-              container
               xs={12}
               md={3}
               key={profile.id}
-              className={classes.profilesGridList}
+              className={classes.profiles}
             >
-              {isDesktop ? (
-                <ListItem
-                  key={profile.title}
-                  classes={{
-                    root: `${profileClassPrefix}${index % profileClassCount}`,
-                    description: classes.profileDescription,
-                    link: classes.profileLink,
-                    name: classes.profileName,
-                    title: classes.profileTitle,
-                  }}
-                  height={cellHeight}
-                  description={profile.description}
-                  image={profile.image}
-                  itemChildren={profile.itemChildren}
-                  name={profile.name}
-                  title={profile.title}
-                />
-              ) : (
-                <>
-                  <Grid item xs={6}>
-                    <Typography variant="h4">{profile.name}</Typography>
-                    <Typography variant="subtitle2" className={classes.title}>
+              <Profile
+                classes={{
+                  root: classes.profile,
+                  contentsRoot: classNames(
+                    classes.profileContentsRoot,
+                    classes[`profileContentsRoot${index % 3}`]
+                  ),
+                }}
+                height={cellHeight}
+                image={profile.image}
+                name={profile.name}
+                description={profile.description}
+                variant="profile"
+              >
+                <ProfileContacts icons={icons} profile={profile} />
+              </Profile>
+              {isDesktop && (profile.title || profile.description) && (
+                <div>
+                  {profile.title && (
+                    <Typography
+                      variant="subtitle2"
+                      className={classes.profileTitle}
+                    >
                       {profile.title}
                     </Typography>
-                    <Typography className={classes.profileDescription}>
+                  )}
+                  {profile.description && (
+                    <Typography
+                      component="div"
+                      variant="caption"
+                      className={classes.profileDescription}
+                    >
                       {profile.description}
                     </Typography>
-                    {profile.itemChildren && <>{profile.itemChildren}</>}
-                  </Grid>
-                  <Grid
-                    item
-                    xs={6}
-                    className={classNames(
-                      classes.picture,
-                      `${profileClassPrefix}${index % profileClassCount}`
-                    )}
-                  >
-                    <img
-                      alt={profile.name}
-                      src={profile.image.url}
-                      className={classes.mobileImg}
-                    />
-                  </Grid>
-                </>
+                  )}
+                </div>
               )}
             </Grid>
           ))}
@@ -173,17 +174,22 @@ function ExpertList({
   );
 }
 
-ExpertList.propTypes = {
+ExpertsGrid.propTypes = {
   experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  icons: PropTypes.shape({
+    desktop: PropTypes.shape({}),
+    mobile: PropTypes.shape({}),
+  }),
   profileClassCount: PropTypes.number,
   profileClassPrefix: PropTypes.string,
   title: PropTypes.string,
 };
 
-ExpertList.defaultProps = {
+ExpertsGrid.defaultProps = {
+  icons: undefined,
   profileClassCount: 3,
   profileClassPrefix: "profile-",
   title: "Featured Experts",
 };
 
-export default ExpertList;
+export default ExpertsGrid;

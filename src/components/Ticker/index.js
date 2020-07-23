@@ -8,8 +8,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { A, Section } from "@commons-ui/core";
 
-import shareIcon from "assets/icon-share.svg";
-
 import Status from "./Status";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
   source: {
     color: "#9D9C9C",
-    fontSize: "1rem",
   },
   status: {},
   statusBorderRight: {
@@ -37,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   statusBorderTop: {
     borderTop: "1px solid #D6D6D6",
+    paddingTop: "1rem",
   },
   statusHighlight: {
     color: theme.palette.secondary.main,
@@ -50,11 +48,14 @@ const useStyles = makeStyles((theme) => ({
   title: {},
 }));
 
-function Ticker({ lang, source, statuses, title, ...props }) {
+function Ticker({ lang, source, statuses, title, values, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isMobile = !useMediaQuery(theme.breakpoints.up("md"));
 
+  if (!values) {
+    return null;
+  }
   return (
     <div className={classes.root}>
       <Section classes={{ root: classes.section }}>
@@ -74,15 +75,19 @@ function Ticker({ lang, source, statuses, title, ...props }) {
                 {title}
               </Typography>
             </Grid>
+            {/* TODO(kilemensi): Hide share for MVP */}
+            {/*
             <Grid item>
               <img src={shareIcon} alt="share" className={classes.shareImg} />
             </Grid>
+            */}
           </Grid>
           <Grid item xs={12} container className={classes.statuses}>
             {statuses.map((status, index) => (
               <Grid key={status.name} item xs={6} md={3}>
                 <Status
                   {...status}
+                  value={values[status.slug]}
                   lang={lang}
                   classes={{
                     root: classNames(
@@ -103,7 +108,7 @@ function Ticker({ lang, source, statuses, title, ...props }) {
           <Grid item xs={12}>
             <A
               href={source.url}
-              variant="caption"
+              variant="h6"
               size="small"
               underline="none"
               className={classes.source}
@@ -131,6 +136,7 @@ Ticker.propTypes = {
     url: PropTypes.string.isRequired,
   }).isRequired,
   title: PropTypes.string.isRequired,
+  values: PropTypes.shape({}).isRequired,
 };
 
 Ticker.defaultProps = {

@@ -27,6 +27,7 @@ const useStyles = makeStyles(({ palette, typography }) => ({
   chart: {
     margin: "0 !important",
   },
+  containerRoot: {},
   content: {
     paddingBottom: 0,
   },

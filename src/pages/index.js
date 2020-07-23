@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import FeaturedData from "components/FeaturedData";
 import FeaturedResearch from "components/FeaturedResearch";
-import FeaturedResearchers from "components/FeaturedResearchers";
+import FeaturedExperts from "components/FeaturedExperts";
 import FeaturedStories from "components/FeaturedStories";
 import Hero from "components/Hero";
 import MythBusting from "components/MythBusting";
@@ -16,6 +16,7 @@ import Ticker from "components/Ticker";
 import config from "config";
 import { getSitePage } from "cms";
 import { withApollo } from "lib/apollo";
+import { getOutbreakStatus } from "lib/";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -84,6 +85,8 @@ function Index({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
+    errorCode,
+    status,
     page: {
       myth,
       partners,
@@ -97,36 +100,41 @@ function Index({ outbreak, featuredExperts, ...props }) {
   } = outbreak;
 
   return (
-    <Page outbreak={outbreak} classes={{ section: classes.section }}>
+    <Page
+      errorCode={errorCode}
+      outbreak={outbreak}
+      classes={{ section: classes.section }}
+    >
       <Hero heroContent={heroContent} classes={{ section: classes.section }} />
       <Ticker
         source={{
-          title: "openAFRICA",
-          url: "https://open.africa",
+          title: "CSSE at Johns Hopkins University",
+          url: "//github.com/CSSEGISandData/COVID-19",
         }}
         statuses={[
           {
             name: "Infections",
             status: "Confirmed",
-            value: "3,721",
+            slug: "confirmed",
           },
           {
             name: "Deaths",
             status: "Confirmed",
-            value: "670",
+            slug: "deaths",
             highlight: true,
           },
           {
             name: "Active",
             status: "Confirmed",
-            value: "2621",
+            slug: "active",
           },
           {
             name: "Recoveries",
             status: "Confirmed",
-            value: "730",
+            slug: "recovered",
           },
         ]}
+        values={status.values}
         title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
       />
@@ -142,8 +150,9 @@ function Index({ outbreak, featuredExperts, ...props }) {
         }}
         heroContent
       />
-      <FeaturedResearchers
-        featuredExperts={featuredExperts}
+      <FeaturedExperts
+        {...featuredExperts}
+        icons={config.settings.icons}
         classes={{
           root: classes.featuredResearchers,
           section: classes.section,
@@ -154,7 +163,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
         classes={{ root: classes.mythBusting, section: classes.section }}
       />
       <FeaturedStories
-        featuredStories={featuredStories}
+        {...featuredStories}
         classes={{ root: classes.featuredStories, section: classes.section }}
       />
       <Partners
@@ -185,8 +194,14 @@ Index.getInitialProps = async ({ query }) => {
     page: { featured_experts: featuredExperts },
   } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
+  const status = await getOutbreakStatus();
+  const errorCode = status.error ? 500 : null;
+  if (status.values) {
+    outbreak.status = status;
+  }
 
   return {
+    errorCode,
     outbreak,
     featuredExperts,
   };

@@ -20,6 +20,10 @@ import theme from "theme";
 import * as ga from "lib/ga";
 import config from "config";
 
+import "leaflet/dist/leaflet.css";
+import "react-multi-carousel/lib/styles.css";
+import "simplebar/dist/simplebar.min.css";
+
 Router.events.on("routeChangeComplete", (url) => ga.pageview(url));
 
 const client = new ApolloClient({
@@ -43,7 +47,10 @@ export default class CustomApp extends App {
     return (
       <>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta
+            name="viewport"
+            content="width=device-width,minimum-scale=1,initial-scale=1"
+          />
           <meta charSet="utf-8" />
         </Head>
         <ApolloProvider client={client}>

@@ -4,11 +4,9 @@ import PropTypes from "prop-types";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { RichTypography, StoryList, Section } from "@commons-ui/core";
+import { RichTypography, Section, StoryList } from "@commons-ui/core";
 
-import "simplebar/dist/simplebar.min.css";
-
-const useStyles = makeStyles(({ breakpoints, typography }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     overflow: "visible",
   },
@@ -24,7 +22,6 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
     },
   },
   storyList: {
-    color: "white",
     marginTop: "2.375rem",
     "& .simplebar-track": {
       backgroundColor: "#D6D6D6",
@@ -43,18 +40,27 @@ const useStyles = makeStyles(({ breakpoints, typography }) => ({
       backgroundColor: "#9D9C9C",
     },
   },
-  storyListStory: {
-    "&:after": {
-      backgroundColor: "inherit",
-      mixBlendMode: "overlay",
-      opacity: 1,
-    },
+  storyListStory: {},
+  storyListStoryContentsRoot: {
+    color: palette.text.secondary,
   },
-  storyListStories: {},
+  storyListStoryContents: {
+    padding: "1rem",
+  },
+  storyListStoryPicture: {
+    height: "auto",
+    width: "100%",
+  },
   title: {},
 }));
 
-function FeatureStories({ featuredStories, ...props }) {
+function FeatureStories({
+  description,
+  link_label: linkLabel,
+  stories,
+  title,
+  ...props
+}) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
@@ -65,15 +71,9 @@ function FeatureStories({ featuredStories, ...props }) {
     cellHeight = isLg ? 438 : 637;
   }
 
-  if (!featuredStories) {
+  if (!stories || !stories.length) {
     return null;
   }
-  const {
-    description,
-    stories,
-    title,
-    link_label: linkLabel,
-  } = featuredStories;
   const storiesList =
     stories &&
     stories.map((story, index) => {
@@ -118,7 +118,9 @@ function FeatureStories({ featuredStories, ...props }) {
             classes={{
               root: classes.storyList,
               story: classes.storyListStory,
-              stories: classes.storyListStories,
+              storyContentsRoot: classes.storyListStoryContentsRoot,
+              storyContents: classes.storyListStoryContents,
+              storyPicture: classes.storyListStoryPicture,
             }}
           />
         </Grid>
@@ -128,16 +130,17 @@ function FeatureStories({ featuredStories, ...props }) {
 }
 
 FeatureStories.propTypes = {
-  featuredStories: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    link_label: PropTypes.string,
-    stories: PropTypes.arrayOf(PropTypes.shape({})),
-  }),
+  description: PropTypes.string,
+  link_label: PropTypes.string,
+  stories: PropTypes.arrayOf(PropTypes.shape({})),
+  title: PropTypes.string,
 };
 
 FeatureStories.defaultProps = {
-  featuredStories: undefined,
+  description: undefined,
+  link_label: undefined,
+  stories: undefined,
+  title: undefined,
 };
 
 export default FeatureStories;

@@ -96,7 +96,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     marginTop: typography.pxToRem(16),
     "& .highlight": {
       background:
-        "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
+        "linear-gradient(180deg, rgba(255,255,255,0) 50%, rgba(255,255,255,0.4) 30% )",
     },
     [breakpoints.up("md")]: {
       marginTop: "unset",

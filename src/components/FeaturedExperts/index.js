@@ -6,8 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 
-import "simplebar/dist/simplebar.min.css";
-
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
     overflow: "visible",
@@ -23,8 +21,35 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
         "linear-gradient(180deg, rgba(255,255,255,0) 50%, #ccdcff 30% )",
     },
   },
+  profileContentsRoot: {
+    "&:after": {
+      bottom: 0,
+      content: '""',
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.3,
+      position: "absolute",
+      right: 0,
+      top: 0,
+    },
+    "&.profile-contents-root-0": {
+      "&:after": {
+        backgroundColor: `${palette.primary.main}`,
+      },
+    },
+    "&.profile-contents-root-1": {
+      "&:after": {
+        backgroundColor: `${palette.secondary.main}`,
+      },
+    },
+    "&.profile-contents-root-2": {
+      "&:after": {
+        backgroundColor: `${palette.highlight.main}`,
+      },
+    },
+  },
+  profileContents: {},
   profileList: {
-    color: "white",
     marginTop: "2.375rem",
     "& .simplebar-track": {
       backgroundColor: "#D6D6D6",
@@ -43,58 +68,61 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
       backgroundColor: "#9D9C9C",
     },
   },
-  profileListProfile: {
-    "&:after": {
-      mixBlendMode: "overlay",
-    },
-    "&.profile-0:after": {
-      backgroundColor: palette.primary.main,
-    },
-    "&.profile-1:after": {
-      backgroundColor: `#000000`,
-    },
-    "&.profile-2:after": {
-      backgroundColor: palette.highlight.main,
-    },
-  },
+  profileListProfile: {},
   profileListProfiles: {},
 }));
 
-function FeatureResearchers({ featuredExperts, ...props }) {
+function FeaturedExperts({
+  brief: description,
+  experts,
+  icons: availableIcons,
+  title,
+  ...props
+}) {
   const classes = useStyles(props);
   const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
+  let icons;
+  if (availableIcons) {
+    icons = isDesktop ? availableIcons.desktop : availableIcons.mobile;
+  }
   const isLg = isUpLg && !isUpXl;
   let cellHeight;
   if (isUpLg) {
     cellHeight = isLg ? 438 : 637;
   }
 
-  if (!featuredExperts) {
+  if (!experts || experts.length < 1) {
     return null;
   }
-
-  const { brief: description, experts, title } = featuredExperts;
-
   const profiles =
     experts &&
     experts.map((profile, index) => {
       return {
         id: index,
-        name: profile.name,
-        title: profile.affiliation,
-        description: profile.biography,
         image: {
           url: profile.image,
         },
+        contacts: {
+          linkedIn: {
+            url: profile.linkedin_profile_url,
+          },
+          twitter: {
+            url: profile.twitter_profile_url,
+          },
+          website: {
+            url: profile.website_url,
+          },
+        },
+        name: profile.name,
       };
     });
-
   return (
     <div className={classes.root}>
       <Section
-        title={title || "Featured Researchers"}
+        title={title || "Featured Experts"}
         classes={{ root: classes.section, title: classes.sectionTitle }}
       >
         <Grid
@@ -112,11 +140,14 @@ function FeatureResearchers({ featuredExperts, ...props }) {
           <Grid item xs={12}>
             <ProfileList
               cellHeight={cellHeight}
+              contactIcons={icons}
               height={cellHeight && cellHeight + 48}
               profiles={profiles}
               classes={{
                 root: classes.profileList,
                 profile: classes.profileListProfile,
+                profileContentsRoot: classes.profileContentsRoot,
+                profileContent: classes.profileContents,
                 profiles: classes.profileListProfiles,
               }}
             />
@@ -127,15 +158,20 @@ function FeatureResearchers({ featuredExperts, ...props }) {
   );
 }
 
-FeatureResearchers.propTypes = {
-  featuredExperts: PropTypes.shape({
-    experts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
-    title: PropTypes.string,
-    brief: PropTypes.string,
+FeaturedExperts.propTypes = {
+  brief: PropTypes.string,
+  experts: PropTypes.arrayOf(PropTypes.shape({})),
+  icons: PropTypes.shape({
+    desktop: PropTypes.shape({}),
+    mobile: PropTypes.shape({}),
   }),
+  title: PropTypes.string,
 };
 
-FeatureResearchers.defaultProps = {
-  featuredExperts: undefined,
+FeaturedExperts.defaultProps = {
+  brief: undefined,
+  experts: undefined,
+  icons: undefined,
+  title: undefined,
 };
-export default FeatureResearchers;
+export default FeaturedExperts;

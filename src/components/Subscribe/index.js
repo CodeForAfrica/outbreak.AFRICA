@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Grid, TextField, IconButton, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 
 import { Section } from "@commons-ui/core";
 
+import Form from "components/Form";
+
+import config from "config";
 import email from "assets/email.svg";
 import emailFocus from "assets/electric-blue-email.svg";
 import source from "assets/subscribe.png";
@@ -28,7 +31,52 @@ const useStyles = makeStyles(
       padding: 0,
       paddingTop: "1rem",
     },
-    form: {},
+    form: {
+      "& #mc_embed_signup": {
+        background: "inherit",
+        color: "inherit",
+      },
+      "& #mc_embed_signup form": {
+        padding: 0,
+      },
+      "& #mc_embed_signup label": {
+        display: "none",
+      },
+      "& #mc_embed_signup input.email": {
+        background: "none",
+        border: "none",
+        borderBottom: "1px solid currentColor",
+        color: "currentColor",
+        margin: "1rem 0",
+        width: "100%",
+        [breakpoints.up("md")]: {
+          width: typography.pxToRem((395 * widths.values.md) / widths.values.xl),
+        },
+        [breakpoints.up("lg")]: {
+          width: typography.pxToRem((395 * widths.values.lg) / widths.values.xl),
+        },
+        [breakpoints.up("xl")]: {
+            width: typography.pxToRem(395),
+        },
+      },
+      "& #mc_embed_signup .button": {
+        backgroundImage: `url(${email})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "40px 40px",
+        height: 55,
+        paddingLeft: typography.pxToRem(50),
+        "&:hover": {
+          backgroundImage: `url(${emailFocus})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "40px 40px",
+        },
+        "&:focus": {
+          backgroundImage: `url(${emailFocus})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "40px 40px",
+        },
+      },
+    },
     img: {
       height: "2.5rem",
     },
@@ -142,17 +190,10 @@ const useStyles = makeStyles(
   })
 );
 
-function Subscribe({ subscribe, variant, ...props }) {
+function Subscribe({ children, subscribe, variant, ...props }) {
   const classes = useStyles({ ...props, variant });
   const { title, description } = subscribe;
-  const handleEvent = (e) => {
-    if (e.type === "mouseout" || e.type === "blur") {
-      e.currentTarget.src = email;
-    }
-    if (e.type === "mouseover" || e.type === "focus") {
-      e.currentTarget.src = emailFocus;
-    }
-  };
+
   // Default is variant = "full"
   let highlightColumns = 5;
   let descriptionColumns = 7;
@@ -213,7 +254,10 @@ function Subscribe({ subscribe, variant, ...props }) {
               {description}
             </Typography>
 
-            <form className={classes.form}>
+            <Form selector="#mc_embed_signup" classes={{ root: classes.form }}>
+              {config.settings.subscribe.embedCode}
+            </Form>
+            {/* <form className={classes.form}>
               <TextField
                 id="standard-basic"
                 autoFocus={false}
@@ -233,7 +277,7 @@ function Subscribe({ subscribe, variant, ...props }) {
                   onBlur={handleEvent}
                 />
               </IconButton>
-            </form>
+            </form> */}
           </Grid>
         </Grid>
       </Section>

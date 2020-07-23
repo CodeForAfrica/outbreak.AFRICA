@@ -139,6 +139,8 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
               >
                 En
               </Link>
+              {/* TODO(kilemens): Hide other languages for MVP */}
+              {/*
               <Link
                 href="/#"
                 underline="none"
@@ -158,6 +160,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
               >
                 عربى
               </Link>
+              */}
             </Grid>
           </Grid>
         </Section>

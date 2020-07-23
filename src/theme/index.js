@@ -9,9 +9,13 @@ const FONT_FAMILY_TEXT = '"Open Sans", sans-serif';
 const COLOR_BREWER_DIVERGING = [
   "#0050FF",
   "#170F49",
-  "#00000029",
-  "#D6D6D6",
+  "#3373FF",
+  "#99B9FF",
+  "#CCDCFF",
+  "#DADADA",
+  "#CCDCFF",
   "#F9FF71",
+  "#D63197",
 ];
 
 // ## DEFAULT
@@ -74,6 +78,20 @@ const theme = createTheme({
       fontWeight: 700,
       letterSpacing: 0,
       textTransform: "uppercase",
+    },
+    h5: {
+      fontFamily: FONT_FAMILY_TEXT,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      fontWeight: 700,
+      letterSpacing: 0,
+    },
+    h6: {
+      fontFamily: FONT_FAMILY_TEXT,
+      fontStretch: "normal",
+      fontStyle: "normal",
+      fontWeight: 400,
+      letterSpacing: 0,
     },
     subtitle1: {
       fontFamily: FONT_FAMILY_TEXT,
@@ -157,8 +175,8 @@ deepmerge(
   typography,
   {
     h1: {
-      fontSize: pxToRem(40),
-      lineHeight: 40 / 40,
+      fontSize: pxToRem(35),
+      lineHeight: 40 / 35,
       [breakpoints.up("lg")]: {
         fontSize: pxToRem(50),
         lineHeight: 80 / 50,
@@ -169,8 +187,8 @@ deepmerge(
       },
     },
     h2: {
-      fontSize: pxToRem(40),
-      lineHeight: 40 / 40,
+      fontSize: pxToRem(35),
+      lineHeight: 40 / 35,
       [breakpoints.up("lg")]: {
         fontSize: pxToRem(50),
         lineHeight: 80 / 50,
@@ -200,6 +218,26 @@ deepmerge(
         fontSize: pxToRem(30),
         lineHeight: 38 / 30,
         letterSpacing: pxToRem(3),
+      },
+    },
+    h5: {
+      fontSize: pxToRem(18),
+      lineHeight: 20 / 18,
+      [breakpoints.up("lg")]: {
+        fontSize: pxToRem(16),
+        lineHeight: 20 / 16,
+      },
+      [breakpoints.up("xl")]: {
+        fontSize: pxToRem(20),
+        lineHeight: 30 / 20,
+      },
+    },
+    h6: {
+      fontSize: pxToRem(12),
+      lineHeight: 20 / 12,
+      [breakpoints.up("xl")]: {
+        fontSize: pxToRem(16),
+        lineHeight: 24 / 16,
       },
     },
     subtitle1: {

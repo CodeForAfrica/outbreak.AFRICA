@@ -47,7 +47,6 @@ const useStyles = makeStyles((theme) => ({
   countryLink: {
     display: "flex",
     alignItems: "center",
-    // Override original takwimu.css & Bootstrap styles
     "&:hover": {
       backgroundColor: "transparent",
       color: "black",
@@ -86,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
       marginBottom: "0",
     },
 
-    // Override takwimu.css styles
     "& p": {
       fontSize: theme.typography.body2.fontSize,
     },

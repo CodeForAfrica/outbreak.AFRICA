@@ -75,9 +75,15 @@ function Filter({
   onSubTopicButtonClick,
   parentTopics,
   subTopics,
+  hide,
+  ...props
 }) {
-  const classes = useStyles();
+  const classes = useStyles(props);
 
+  // TODO(kilemens): Hide Filter for MVP until content team can clean up.
+  if (hide) {
+    return null;
+  }
   return (
     <Grid container className={classes.root}>
       <Grid item container spacing={2} classes={classes.filter}>
@@ -118,5 +124,10 @@ Filter.propTypes = {
   onSubTopicButtonClick: PropTypes.func.isRequired,
   parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   subTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  hide: PropTypes.bool,
 };
+Filter.defaultProps = {
+  hide: true,
+};
+
 export default Filter;
