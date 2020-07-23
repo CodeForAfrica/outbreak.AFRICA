@@ -52,16 +52,23 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     [breakpoints.up("md")]: {
       overflow: "visible",
       width: (props) =>
-        (widths.values.md * props.width) / widths.values.xl +
-        props.partialVisibilityGutter,
+        typography.pxToRem(
+          (widths.values.md * props.width) / widths.values.xl +
+            props.partialVisibilityGutter +
+            8 // margin/padding between items
+        ),
     },
     [breakpoints.up("lg")]: {
       width: (props) =>
-        (widths.values.lg * props.width) / widths.values.xl +
-        props.partialVisibilityGutter,
+        typography.pxToRem(
+          (widths.values.lg * props.width) / widths.values.xl +
+            props.partialVisibilityGutter +
+            8
+        ),
     },
     [breakpoints.up("xl")]: {
-      width: (props) => props.width + props.partialVisibilityGutter,
+      width: (props) =>
+        typography.pxToRem(props.width + props.partialVisibilityGutter + 8),
     },
   },
 }));
@@ -123,8 +130,6 @@ function Carousel({
   return (
     <div className={classes.root}>
       <ReactMultiCarousel
-        autoPlay={false}
-        autoPlaySpeed={5000}
         className={classes.carousel}
         customButtonGroup={
           <ButtonGroup
@@ -142,7 +147,6 @@ function Carousel({
         removeArrowOnDeviceType={["xl", "lg", "md", "sm", "xs"]}
         responsive={responsive}
         renderButtonGroupOutside
-        showDots={false}
         ssr
         swipeable
       >

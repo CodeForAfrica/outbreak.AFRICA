@@ -7,7 +7,7 @@ import { ButtonBase, Grid, Typography, makeStyles } from "@material-ui/core";
 
 import NextComposed from "components/Link/NextComposed";
 
-const useStyles = makeStyles(({ breakpoints, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   actionArea: {},
   brief: {
@@ -19,24 +19,30 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
   cardSize: {
     [breakpoints.up("md")]: {
-      width: (props) => (widths.values.md * props.width) / widths.values.xl,
+      width: (props) =>
+        typography.pxToRem(
+          // `8` is for margin/padding between items
+          (widths.values.md * props.width) / widths.values.xl + 8
+        ),
     },
     [breakpoints.up("lg")]: {
-      width: (props) => (widths.values.lg * props.width) / widths.values.xl,
+      width: (props) =>
+        typography.pxToRem(
+          (widths.values.lg * props.width) / widths.values.xl + 8
+        ),
     },
     [breakpoints.up("xl")]: {
-      width: (props) => props.width,
+      width: (props) => typography.pxToRem(props.width + 8),
     },
   },
-  content: {
-    zIndex: 1,
-  },
+  content: {},
   contents: {
-    paddingRight: 8,
+    paddingRight: typography.pxToRem(8),
   },
   media: {
     borderRight: "2px solid #fff",
     objectFit: "cover",
+    width: "100%",
     [breakpoints.up("md")]: {
       height: (props) => (widths.values.md * props.height) / widths.values.xl,
     },
@@ -70,10 +76,10 @@ function CarouselCard({ item, linkTitle, ...props }) {
         className={classNames(classes.cardSize, classes.actionArea)}
       >
         <Grid container className={classNames(classes.contents)}>
-          <Grid item xs={12}>
+          <Grid item xs={12} className={classes.content}>
             <img
               src={image}
-              className={classNames(classes.cardSize, classes.media)}
+              className={classNames(classes.media)}
               alt={title}
             />
           </Grid>
