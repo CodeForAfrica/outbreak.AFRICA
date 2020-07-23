@@ -147,7 +147,7 @@ function FeaturedExperts({
                 root: classes.profileList,
                 profile: classes.profileListProfile,
                 profileContentsRoot: classes.profileContentsRoot,
-                profileContent: classes.profileContents,
+                profileContents: classes.profileContents,
                 profiles: classes.profileListProfiles,
               }}
             />

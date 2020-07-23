@@ -193,6 +193,7 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
             {otherNavigations &&
               otherNavigations.map((otherNavigation) => (
                 <NavigationList
+                  key={otherNavigation.title}
                   title={otherNavigation.title}
                   items={otherNavigation.subnav}
                   toAs={() => undefined}
