@@ -46,6 +46,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   storyListStoryContents: {
     padding: "1rem",
+    "&:before": {
+      background:
+        "transparent linear-gradient(180deg, #FFFFFF 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
+    },
   },
   storyListStoryPicture: {
     height: "auto",

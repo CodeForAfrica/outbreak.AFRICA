@@ -173,7 +173,7 @@ MainFooter.propTypes = {
     page: PropTypes.shape({
       about: PropTypes.shape({}),
       initiative_logo: PropTypes.shape({}),
-      legal_links: PropTypes.shape({}),
+      legal_links: PropTypes.arrayOf(PropTypes.shape({})),
       quick_links: PropTypes.arrayOf(PropTypes.shape({})),
       organization_logo: PropTypes.shape({}),
     }),

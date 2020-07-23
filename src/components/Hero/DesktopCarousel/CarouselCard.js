@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import classNames from "classnames";
+
 import {
   Button,
   Card,
@@ -11,7 +13,9 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-const useStyles = makeStyles((theme) => ({
+import NextComposed from "components/Link/NextComposed";
+
+const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {
     border: "1px solid #eeeeee",
     backgroundColor: "#fafafa",
@@ -25,20 +29,42 @@ const useStyles = makeStyles((theme) => ({
       content: '""',
       background:
         "transparent linear-gradient(180deg, #FFFFFF 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
+      height: "50%",
       left: 0,
       mixBlendMode: "multiply",
       opacity: 0.5,
       position: "absolute",
       right: 0,
-      top: 0,
     },
     "&:hover": {
       opacity: 1,
       backgroundColor: "#fff",
     },
-    [theme.breakpoints.up("md")]: {
-      marginRight: "1.25rem",
-      minHeight: "30rem",
+  },
+  actionArea: {
+    position: "relative",
+  },
+  brief: {
+    color: "#fff",
+    marginBottom: "2rem",
+  },
+  cardLink: {
+    marginTop: "1rem",
+  },
+  cardSize: {
+    height: (props) => props.height,
+    width: (props) => props.width,
+    [breakpoints.up("md")]: {
+      height: (props) => (widths.values.md * props.height) / widths.values.xl,
+      width: (props) => (widths.values.md * props.width) / widths.values.xl,
+    },
+    [breakpoints.up("lg")]: {
+      height: (props) => (widths.values.lg * props.height) / widths.values.xl,
+      width: (props) => (widths.values.lg * props.width) / widths.values.xl,
+    },
+    [breakpoints.up("xl")]: {
+      height: (props) => props.height,
+      width: (props) => props.width,
     },
   },
   content: {
@@ -47,72 +73,56 @@ const useStyles = makeStyles((theme) => ({
   contents: {
     padding: "1rem",
     position: "absolute",
-    top: "20%",
-    left: "35px",
-    width: "90%",
-    [theme.breakpoints.up("md")]: {
-      top: "45%",
-      left: "15px",
-    },
-    [theme.breakpoints.up("lg")]: {
-      top: "57.5%",
-      left: "15px",
-    },
-    [theme.breakpoints.up("xl")]: {
-      top: "37%",
-      left: "15px",
-    },
+    left: 0,
+    bottom: 0,
   },
-  media: {
-    minHeight: "21rem",
-    height: "100%",
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      minHeight: "30rem",
-    },
-  },
-  cardLink: {},
-  bodyTitle: {
+  media: {},
+  title: {
     color: "#fff",
     fontWeight: "bold",
     marginTop: "1rem",
   },
-  bodyText: {
-    color: "#fff",
-    marginBottom: "2rem",
-  },
 }));
 
-function CarouselCard({ height, item, linkTitle, ...props }) {
+function CarouselCard({ item, linkTitle, ...props }) {
   const classes = useStyles(props);
 
   if (!item) {
     return null;
   }
-
-  const { title, brief, image, link_url: link } = item;
-
+  const { title, brief, image, link_url: linkUrl } = item;
+  const link = linkUrl && new URL(linkUrl).pathname;
+  const actionAreaProps =
+    (link && { component: NextComposed, href: link }) || undefined;
   return (
-    <Card className={classes.root}>
-      <CardActionArea style={{ height }}>
-        <CardMedia className={classes.media} image={image} title="Item" />
+    <Card className={classNames(classes.cardSize, classes.root)}>
+      <CardActionArea
+        {...actionAreaProps}
+        className={classNames(classes.cardSize, classes.actionArea)}
+      >
+        <CardMedia
+          className={classNames(classes.cardSize, classes.media)}
+          image={image}
+          title={title}
+        />
         <Grid
           container
           item
           direction="column"
-          className={classes.contents}
           alignItems="flex-start"
+          justify="flex-end"
+          className={classes.contents}
         >
           {title && (
             <Grid item className={classes.content}>
-              <Typography variant="subtitle2" className={classes.bodyTitle}>
+              <Typography variant="subtitle2" className={classes.title}>
                 {title}
               </Typography>
             </Grid>
           )}
           {brief && (
             <Grid item className={classes.content}>
-              <Typography variant="caption" className={classes.bodyText}>
+              <Typography variant="caption" className={classes.brief}>
                 {brief}
               </Typography>
             </Grid>
@@ -135,7 +145,7 @@ function CarouselCard({ height, item, linkTitle, ...props }) {
 }
 
 CarouselCard.propTypes = {
-  height: PropTypes.string,
+  height: PropTypes.number.isRequired,
   item: PropTypes.shape({
     title: PropTypes.string,
     brief: PropTypes.string,
@@ -143,10 +153,10 @@ CarouselCard.propTypes = {
     link_url: PropTypes.string,
   }),
   linkTitle: PropTypes.string,
+  width: PropTypes.number.isRequired,
 };
 
 CarouselCard.defaultProps = {
-  height: "100%",
   item: undefined,
   linkTitle: "Learn More",
 };

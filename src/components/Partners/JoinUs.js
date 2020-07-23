@@ -31,7 +31,7 @@ function JoinUs({ title, description, linkLabel }) {
       <Typography variant="subtitle1" className={classes.brief}>
         {description}
       </Typography>
-      <Button variant="outline" color="secondary" className={classes.link}>
+      <Button variant="outlined" color="secondary" className={classes.link}>
         {linkLabel}
       </Button>
     </Grid>

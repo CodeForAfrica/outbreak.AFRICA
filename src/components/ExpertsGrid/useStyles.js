@@ -7,8 +7,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     margin: "unset",
     marginBottom: typography.pxToRem(16),
   },
-  profile: {
-  },
+  profile: {},
   profileDescription: {
     marginTop: typography.pxToRem(25),
   },
@@ -47,10 +46,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   profiles: {
     borderTop: "1px solid #D6D6D6",
     padding: `${typography.pxToRem(15.5)} 0`,
-    [breakpoints.up("md")]:{
+    [breakpoints.up("md")]: {
       padding: "0.25rem",
       border: "unset",
-    }
+    },
   },
 }));
 

@@ -24,7 +24,7 @@ function DataMenuList({ country, countries, ...props }) {
 
 DataMenuList.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  country: PropTypes.shape({ isoCode: PropTypes.string.isRequired }),
+  country: PropTypes.shape({ isoCode: PropTypes.string }),
 };
 
 DataMenuList.defaultProps = {

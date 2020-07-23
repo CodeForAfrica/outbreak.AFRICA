@@ -2,13 +2,16 @@ import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 
-import { Grid } from "@material-ui/core";
+import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
 import { RichTypography, Section } from "@commons-ui/core";
 
 import heroImage from "assets/images/heropattern.png";
 import coronaImage from "assets/images/coronavirus.svg";
-import HeroCarousel from "./HeroCarousel";
+
+import DesktopCarousel from "./DesktopCarousel";
+import MobileCarousel from "./MobileCarousel";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: (props) => {
@@ -47,36 +50,25 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       },
     };
   },
-
-  heroCarousel: {
-    "& ul > li": {
-      padding: "0 8px",
-    },
+  carousel: {
+    overflow: "hidden",
     width: "calc(((100vw - 100%) / 2) + 100%)",
     zIndex: 1,
-    [breakpoints.up("md")]: {
-      paddingTop: "2.625rem",
-      position: "relative",
-      right: "-100px",
-    },
-    [breakpoints.up("xl")]: {
-      right: "-244px",
-    },
   },
   heroImage: {
-    width: "315px",
-    height: "250px",
+    height: 250,
+    width: 315,
     [breakpoints.up("md")]: {
-      width: (widths.values.md * 536) / widths.values.xl,
       height: (widths.values.md * 426) / widths.values.xl,
+      width: (widths.values.md * 536) / widths.values.xl,
     },
     [breakpoints.up("lg")]: {
-      width: (widths.values.lg * 536) / widths.values.xl,
       height: (widths.values.lg * 426) / widths.values.xl,
+      width: (widths.values.lg * 536) / widths.values.xl,
     },
     [breakpoints.up("xl")]: {
-      width: "536px",
-      height: "426px",
+      height: 426,
+      width: 536,
     },
   },
   title: {
@@ -87,12 +79,12 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       background:
         "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
     },
-    [breakpoints.up("md")]: {
-      paddingTop: "4.625rem",
-    },
-    [breakpoints.up("lg")]: {
-      paddingTop: "8.125rem",
-    },
+    [breakpoints.up("md")]: (props) => ({
+      paddingTop: props.isResearch ? 0 : "4.625rem",
+    }),
+    [breakpoints.up("lg")]: (props) => ({
+      paddingTop: props.isResearch ? 0 : "8.125rem",
+    }),
     "& p": {
       margin: 0,
     },
@@ -127,6 +119,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
 }));
 
 function Hero({ heroContent, isResearch, ...props }) {
+  const theme = useTheme();
   const hasCarousel =
     heroContent &&
     heroContent.component &&
@@ -139,7 +132,7 @@ function Hero({ heroContent, isResearch, ...props }) {
     heroContent.component.length &&
     heroContent.component[0].acf_fc_layout === "image";
 
-  const classes = useStyles({ ...props, hasCarousel });
+  const classes = useStyles({ ...props, isResearch, hasCarousel });
 
   if (!heroContent) {
     return null;
@@ -148,6 +141,8 @@ function Hero({ heroContent, isResearch, ...props }) {
 
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
     (hasCarousel && component && component[0]) || {};
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+  const Carousel = isDesktop ? DesktopCarousel : MobileCarousel;
 
   const { url: imageUrl } = (hasImage && component && component[0]) || {};
 
@@ -181,7 +176,7 @@ function Hero({ heroContent, isResearch, ...props }) {
                 {title}
               </RichTypography>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={12} md={8}>
               <RichTypography
                 variant="subtitle1"
                 classes={{ root: classes.description }}
@@ -191,11 +186,13 @@ function Hero({ heroContent, isResearch, ...props }) {
             </Grid>
           </Grid>
           {hasCarousel && (
-            <Grid item xs={12} md={5} className={classes.heroCarousel}>
-              <HeroCarousel
+            <Grid item xs={12} md={4} className={classes.heroCarousel}>
+              <Carousel
                 carouselItems={carouselItems}
                 carouselLinkTitle={carouselLinkTitle}
+                height={isResearch ? 288 : undefined}
                 isResearch={isResearch}
+                classes={{ root: classes.carousel }}
               />
             </Grid>
           )}
