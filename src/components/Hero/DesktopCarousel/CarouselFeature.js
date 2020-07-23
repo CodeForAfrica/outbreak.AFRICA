@@ -40,7 +40,6 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     paddingRight: typography.pxToRem(8),
   },
   media: {
-    borderRight: "2px solid #fff",
     objectFit: "cover",
     width: "100%",
     [breakpoints.up("md")]: {
