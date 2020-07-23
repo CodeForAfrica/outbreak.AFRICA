@@ -84,10 +84,16 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
   const classes = useStyles(props);
   const [open, setOpen] = React.useState(false);
   const [dataNavigation, ...otherNavigations] = navigation || [];
-  const handleClickOpen = () => {
+  const handleClickOpen = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     setOpen(true);
   };
-  const handleClose = () => {
+  const handleClose = (e) => {
+    if (e) {
+      e.preventDefault();
+    }
     setOpen(false);
   };
 
