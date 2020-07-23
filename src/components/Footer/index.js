@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 
 import { makeStyles } from "@material-ui/core/styles";
+
 import { Footer } from "@commons-ui/core";
 
 import Link from "components/Link";
-
 import cc from "assets/cc.svg";
 
 const COPYRIGHT_LOGO = {
@@ -18,57 +18,102 @@ const COPYRIGHT_LOGO = {
   url: "//creativecommons.org",
 };
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
   section: {},
   initiative: {
-    [theme.breakpoints.up("md")]: {
+    "& img": {
+      objectFit: "contain",
+      width: typography.pxToRem(154),
+    },
+    [breakpoints.up("md")]: {
+      textAlign: "right",
       "& img": {
-        width: "100%",
+        width: typography.pxToRem((widths.values.md * 189) / widths.values.xl),
+      },
+    },
+    [breakpoints.up("lg")]: {
+      "& img": {
+        width: typography.pxToRem((widths.values.lg * 189) / widths.values.xl),
+      },
+    },
+    [breakpoints.up("xl")]: {
+      "& img": {
+        width: typography.pxToRem(189),
       },
     },
   },
   copyright: {
     "& img": {
-      height: theme.typography.caption.fontSize,
-      width: theme.typography.caption.fontSize,
+      height: typography.caption.fontSize,
+      width: typography.caption.fontSize,
     },
   },
   legalLinks: {
     marginTop: "3.09375",
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       marginTop: 0,
     },
   },
   legalLinksLink: {},
   organizationLogo: {
-    [theme.breakpoints.up("md")]: {
-      width: "100%",
+    objectFit: "contain",
+    width: typography.pxToRem(222),
+    [breakpoints.up("md")]: {
+      width: typography.pxToRem((widths.values.md * 293) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      width: typography.pxToRem((widths.values.lg * 293) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      width: typography.pxToRem(293),
     },
   },
   primary: {
-    paddingBottom: theme.typography.pxToRem(50),
-    [theme.breakpoints.up("md")]: {
-      paddingBottom: theme.typography.pxToRem(50),
+    paddingBottom: typography.pxToRem(50),
+    [breakpoints.up("md")]: {
+      paddingBottom: typography.pxToRem(50),
+    },
+  },
+  quickLinksContact: {
+    "& li": {
+      marginTop: "1rem",
+    },
+  },
+  quickLinksMore: {
+    "& li": {
+      marginTop: "1rem",
     },
   },
   secondary: {
-    [theme.breakpoints.up("md")]: {
-      paddingBottom: theme.typography.pxToRem(50),
-      paddingTop: theme.typography.pxToRem(50),
+    [breakpoints.up("md")]: {
+      paddingBottom: typography.pxToRem(
+        (breakpoints.values.md * 80.5) / breakpoints.values.xl
+      ),
+      paddingTop: typography.pxToRem(
+        (breakpoints.values.md * 86) / breakpoints.values.xl
+      ),
     },
-    [theme.breakpoints.up("xl")]: {
-      paddingBottom: theme.typography.pxToRem(80.5),
-      paddingTop: theme.typography.pxToRem(86),
+    [breakpoints.up("lg")]: {
+      paddingBottom: typography.pxToRem(
+        (breakpoints.values.lg * 80.5) / breakpoints.values.xl
+      ),
+      paddingTop: typography.pxToRem(
+        (breakpoints.values.lg * 86) / breakpoints.values.xl
+      ),
+    },
+    [breakpoints.up("xl")]: {
+      paddingBottom: typography.pxToRem(80.5),
+      paddingTop: typography.pxToRem(86),
     },
   },
   stayInTouchLinks: {
     marginTop: "2.215rem",
     "& img": {
-      height: theme.typography.caption.fontSize,
-      width: theme.typography.caption.fontSize,
+      height: typography.caption.fontSize,
+      width: typography.caption.fontSize,
     },
-    [theme.breakpoints.up("md")]: {
+    [breakpoints.up("md")]: {
       marginTop: 0,
     },
   },
@@ -155,6 +200,8 @@ function MainFooter({
         legalLinksLink: classNames(classes.typography, classes.legalLinksLink),
         organizationLogo: classes.organizationLogo,
         primary: classes.primary,
+        quickLinksContact: classes.quickLinksContact,
+        quickLinksMore: classes.quickLinksMore,
         secondary: classes.secondary,
         stayInTouchLinks: classes.stayInTouchLinks,
         stayInTouchText: classNames(
