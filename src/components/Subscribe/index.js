@@ -223,6 +223,7 @@ function Subscribe({ children, subscribe, variant, ...props }) {
             item
             xs={12}
             md={highlightColumns}
+            container
             alignItems="center"
             className={classes.subscribeImageDiv}
           >
@@ -261,27 +262,6 @@ function Subscribe({ children, subscribe, variant, ...props }) {
             <Form selector="#mc_embed_signup" classes={{ root: classes.form }}>
               {config.settings.subscribe.embedCode}
             </Form>
-            {/* <form className={classes.form}>
-              <TextField
-                id="standard-basic"
-                autoFocus={false}
-                placeholder="Enter your email address"
-                margin="normal"
-                fullWidth
-                InputProps={{ className: classes.input }}
-              />
-              <IconButton className={classes.button}>
-                <img
-                  src={email}
-                  alt="Arrow icon"
-                  className={classes.img}
-                  onMouseOver={handleEvent}
-                  onFocus={handleEvent}
-                  onMouseOut={handleEvent}
-                  onBlur={handleEvent}
-                />
-              </IconButton>
-            </form> */}
           </Grid>
         </Grid>
       </Section>
