@@ -26,6 +26,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     display: "flex",
     alignItems: "flex-end",
     width: "100%",
+    marginTop: "1rem",
   },
   author: {
     fontSize: 12,
@@ -44,24 +45,35 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   description: {
     display: "none",
     [breakpoints.up("md")]: {
-      display: "initial",
+      display: "flex",
+      marginTop: typography.pxToRem((widths.values.md * 49) / widths.values.xl),
       "& p": {
         margin: 0,
       },
     },
+    [breakpoints.up("lg")]: {
+      marginTop: typography.pxToRem((widths.values.lg * 49) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      paddingLeft: typography.pxToRem(49),
+    },
   },
   image: {
     objectFit: "cover",
-    height: typography.pxToRem(160),
+    minHeight: typography.pxToRem(160),
     width: "100%",
     [breakpoints.up("md")]: {
-      height: typography.pxToRem((widths.values.md * 547) / widths.values.xl),
+      maxHeight: typography.pxToRem(
+        (widths.values.md * 547) / widths.values.xl
+      ),
     },
     [breakpoints.up("lg")]: {
-      height: typography.pxToRem((widths.values.lg * 547) / widths.values.xl),
+      maxHeight: typography.pxToRem(
+        (widths.values.lg * 547) / widths.values.xl
+      ),
     },
     [breakpoints.up("xl")]: {
-      height: typography.pxToRem(547),
+      maxHeight: typography.pxToRem(547),
     },
   },
   logo: {
@@ -103,7 +115,7 @@ function FeaturedCard({ date, description, image, title, ...props }) {
       <Grid item xs={12} md={8}>
         <img src={image} alt={title} className={classes.image} />
       </Grid>
-      <Grid item xs={12} md={4} container className={classes.insight}>
+      <Grid item xs={12} md={4} className={classes.insight}>
         {title && (
           <Typography variant="subtitle2" className={classes.title}>
             {title}
