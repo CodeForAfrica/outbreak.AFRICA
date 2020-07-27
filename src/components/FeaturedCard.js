@@ -5,14 +5,18 @@ import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography } from "@commons-ui/core";
 
-const useStyles = makeStyles(({ breakpoints, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     marginBottom: 37.5,
     [breakpoints.up("md")]: {
-      marginBottom: (widths.values.md * 59) / widths.values.xl,
+      marginBottom: typography.pxToRem(
+        (widths.values.md * 59) / widths.values.xl
+      ),
     },
     [breakpoints.up("lg")]: {
-      marginBottom: (widths.values.lg * 59) / widths.values.xl,
+      marginBottom: typography.pxToRem(
+        (widths.values.lg * 59) / widths.values.xl
+      ),
     },
     [breakpoints.up("xl")]: {
       marginBottom: 59,
@@ -22,6 +26,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
     display: "flex",
     alignItems: "flex-end",
     width: "100%",
+    marginTop: "1rem",
   },
   author: {
     fontSize: 12,
@@ -40,23 +45,35 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   description: {
     display: "none",
     [breakpoints.up("md")]: {
-      display: "initial",
+      display: "flex",
+      marginTop: typography.pxToRem((widths.values.md * 49) / widths.values.xl),
       "& p": {
         margin: 0,
       },
     },
-  },
-  featuredImage: {
-    width: "100%",
-    height: 160,
-    [breakpoints.up("md")]: {
-      height: (widths.values.md * 547) / widths.values.xl,
-    },
     [breakpoints.up("lg")]: {
-      height: (widths.values.lg * 547) / widths.values.xl,
+      marginTop: typography.pxToRem((widths.values.lg * 49) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      height: 547,
+      marginTop: typography.pxToRem(49),
+    },
+  },
+  image: {
+    objectFit: "cover",
+    minHeight: typography.pxToRem(160),
+    width: "100%",
+    [breakpoints.up("md")]: {
+      maxHeight: typography.pxToRem(
+        (widths.values.md * 547) / widths.values.xl
+      ),
+    },
+    [breakpoints.up("lg")]: {
+      maxHeight: typography.pxToRem(
+        (widths.values.lg * 547) / widths.values.xl
+      ),
+    },
+    [breakpoints.up("xl")]: {
+      maxHeight: typography.pxToRem(547),
     },
   },
   logo: {
@@ -68,25 +85,17 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   insight: {
     alignItems: "flex-start",
     [breakpoints.up("md")]: {
-      paddingLeft: (widths.values.md * 77) / widths.values.xl,
+      paddingLeft: typography.pxToRem(
+        (widths.values.md * 77) / widths.values.xl
+      ),
     },
     [breakpoints.up("lg")]: {
-      paddingLeft: (widths.values.lg * 77) / widths.values.xl,
+      paddingLeft: typography.pxToRem(
+        (widths.values.lg * 77) / widths.values.xl
+      ),
     },
     [breakpoints.up("xl")]: {
-      paddingLeft: 77,
-    },
-  },
-  readAttr: {
-    paddingTop: 7,
-    [breakpoints.up("md")]: {
-      paddingLeft: (widths.values.md * 74) / widths.values.xl,
-    },
-    [breakpoints.up("lg")]: {
-      paddingLeft: (widths.values.lg * 74) / widths.values.xl,
-    },
-    [breakpoints.up("xl")]: {
-      paddingLeft: 74,
+      paddingLeft: typography.pxToRem(77),
     },
   },
   title: {
@@ -104,9 +113,9 @@ function FeaturedCard({ date, description, image, title, ...props }) {
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12} md={8}>
-        <img src={image} alt={title} className={classes.featuredImage} />
+        <img src={image} alt={title} className={classes.image} />
       </Grid>
-      <Grid item xs={12} md={4} container className={classes.insight}>
+      <Grid item xs={12} md={4} className={classes.insight}>
         {title && (
           <Typography variant="subtitle2" className={classes.title}>
             {title}

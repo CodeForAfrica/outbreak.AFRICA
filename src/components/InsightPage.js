@@ -12,9 +12,15 @@ import Filter from "components/Filter";
 import Subscribe from "components/Subscribe";
 import FeaturedCard from "./FeaturedCard";
 
-const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
   section: {},
+  joinUs: {
+    marginTop: "3.5rem",
+    [breakpoints.up("md")]: {
+      marginTop: "3.8125rem",
+    },
+  },
   link: {
     color: "unset",
     "&:hover": {
@@ -22,39 +28,13 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       color: "unset",
     },
   },
-  joinUs: {
-    marginTop: "3.5rem",
-    [breakpoints.up("md")]: {
-      marginTop: "3.8125rem",
-    },
-  },
-  imageDiv: {
-    height: 40,
-    padding: 0,
-    backgroundColor: "unset",
-    "&:after": {
-      backgroundColor: "unset",
-    },
-    [breakpoints.up("md")]: {
-      height: (widths.values.md * 288) / widths.values.xl,
-    },
-    [breakpoints.up("lg")]: {
-      height: (widths.values.lg * 288) / widths.values.xl,
-    },
-    [breakpoints.up("xl")]: {
-      height: 208,
-    },
-  },
   postAuthor: {
     fontSize: 12,
   },
-  postItem: {
-    width: "100%",
+  postContentDiv: {
+    paddingRight: typography.pxToRem(16),
     [breakpoints.up("md")]: {
-      paddingRight: typography.pxToRem(16),
-      "&:last-of-type": {
-        paddingRight: 0,
-      },
+      paddingRight: 0,
     },
   },
   postDescription: {
@@ -63,10 +43,13 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       display: "inherit",
     },
   },
-  postContentDiv: {
-    paddingRight: typography.pxToRem(16),
+  postItem: {
+    width: "100%",
     [breakpoints.up("md")]: {
-      paddingRight: 0,
+      paddingRight: typography.pxToRem(16),
+      "&:last-of-type": {
+        paddingRight: 0,
+      },
     },
   },
   postImage: {
@@ -183,7 +166,12 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
           {topicPosts &&
             topicPosts.length > 1 &&
             topicPosts.slice(1, 4).map((post) => (
-              <Grid item md={4} className={classes.postItem}>
+              <Grid
+                key={post.post_name}
+                item
+                md={4}
+                className={classes.postItem}
+              >
                 <Link
                   as={linkAs(post.post_name)}
                   href={linkHref}
@@ -196,12 +184,11 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
                     md={12}
                     isStory
                     classes={{
-                      imageDiv: classes.imageDiv,
-                      description: classes.postDescription,
-                      title: classes.postTitle,
                       author: classes.postAuthor,
+                      description: classes.postDescription,
                       contentDiv: classes.postContentDiv,
                       image: classes.postImage,
+                      title: classes.postTitle,
                     }}
                   />
                 </Link>
@@ -239,7 +226,12 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
           {topicPosts &&
             topicPosts.length > 5 &&
             topicPosts.slice(5).map((post) => (
-              <Grid item md={4} className={classes.postItem}>
+              <Grid
+                key={post.post_name}
+                item
+                md={4}
+                className={classes.postItem}
+              >
                 <Link
                   as={linkAs(post.post_name)}
                   href={linkHref}

@@ -43,13 +43,19 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     objectFit: "cover",
     width: "100%",
     [breakpoints.up("md")]: {
-      height: (props) => (widths.values.md * props.height) / widths.values.xl,
+      maxHeight: (props) =>
+        typography.pxToRem(
+          (widths.values.md * props.height) / widths.values.xl
+        ),
     },
     [breakpoints.up("lg")]: {
-      height: (props) => (widths.values.lg * props.height) / widths.values.xl,
+      maxHeight: (props) =>
+        typography.pxToRem(
+          (widths.values.lg * props.height) / widths.values.xl
+        ),
     },
     [breakpoints.up("xl")]: {
-      height: (props) => props.height,
+      maxHeight: (props) => typography.pxToRem(props.height),
     },
   },
   title: {

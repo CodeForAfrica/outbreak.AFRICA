@@ -181,7 +181,7 @@ Carousel.defaultProps = {
   carouselLinkTitle: undefined,
   height: 637,
   isResearch: false,
-  width: 536,
+  width: 534,
 };
 
 export default Carousel;

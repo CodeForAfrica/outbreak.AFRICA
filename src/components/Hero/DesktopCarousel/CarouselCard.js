@@ -15,7 +15,7 @@ import {
 
 import NextComposed from "components/Link/NextComposed";
 
-const useStyles = makeStyles(({ breakpoints, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     border: "1px solid #eeeeee",
     backgroundColor: "#fafafa",
@@ -52,19 +52,27 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
     marginTop: "1rem",
   },
   cardSize: {
-    height: (props) => props.height,
-    width: (props) => props.width,
+    height: (props) => typography.pxToRem(props.height),
+    width: (props) => typography.pxToRem(props.width),
     [breakpoints.up("md")]: {
-      height: (props) => (widths.values.md * props.height) / widths.values.xl,
-      width: (props) => (widths.values.md * props.width) / widths.values.xl,
+      height: (props) =>
+        typography.pxToRem(
+          (widths.values.md * props.height) / widths.values.xl
+        ),
+      width: (props) =>
+        typography.pxToRem((widths.values.md * props.width) / widths.values.xl),
     },
     [breakpoints.up("lg")]: {
-      height: (props) => (widths.values.lg * props.height) / widths.values.xl,
-      width: (props) => (widths.values.lg * props.width) / widths.values.xl,
+      height: (props) =>
+        typography.pxToRem(
+          (widths.values.lg * props.height) / widths.values.xl
+        ),
+      width: (props) =>
+        typography.pxToRem((widths.values.lg * props.width) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      height: (props) => props.height,
-      width: (props) => props.width,
+      height: (props) => typography.pxToRem(props.height),
+      width: (props) => typography.pxToRem(props.width),
     },
   },
   content: {

@@ -192,16 +192,21 @@ const useStyles = makeStyles(
       },
     },
     heroImage: {
+      objectFit: "cover",
+      minHeight: typography.pxToRem(118),
       width: "100%",
-      height: typography.pxToRem(119),
       [breakpoints.up("md")]: {
-        height: typography.pxToRem((widths.values.md * 633) / widths.values.xl),
+        maxHeight: typography.pxToRem(
+          (widths.values.md * 633) / widths.values.xl
+        ),
       },
       [breakpoints.up("lg")]: {
-        height: typography.pxToRem((widths.values.lg * 633) / widths.values.xl),
+        maxHeight: typography.pxToRem(
+          (widths.values.lg * 633) / widths.values.xl
+        ),
       },
       [breakpoints.up("xl")]: {
-        height: typography.pxToRem(633),
+        maxHeight: typography.pxToRem(633),
       },
     },
     highlight: {
