@@ -55,7 +55,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       marginTop: typography.pxToRem((widths.values.lg * 49) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      paddingLeft: typography.pxToRem(49),
+      marginTop: typography.pxToRem(49),
     },
   },
   image: {
