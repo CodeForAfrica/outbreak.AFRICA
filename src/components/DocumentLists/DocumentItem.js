@@ -7,91 +7,65 @@ import { A, RichTypography } from "@commons-ui/core";
 
 import websiteBlue from "assets/icon web.svg";
 
-const useStyles = makeStyles(
-  ({ breakpoints, palette, typography, widths }) => ({
-    link: {
-      display: "flex",
-      paddingTop: "1rem",
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+  link: {
+    display: "flex",
+    paddingTop: "1rem",
+  },
+  icon: {
+    objectFit: "contain",
+    height: "1rem",
+    width: "1rem",
+    [breakpoints.up("md")]: {
+      height: "1.375rem",
+      width: "1.375rem",
     },
-    icon: {
-      objectFit: "contain",
-      height: "1rem",
-      width: "1rem",
-      [breakpoints.up("md")]: {
-        height: "1.375rem",
-        width: "1.375rem",
-      },
+  },
+  author: {},
+  image: {
+    minHeight: typography.pxToRem(40),
+    objectFit: "cover",
+    width: "100%",
+    [breakpoints.up("md")]: {
+      maxHeight: typography.pxToRem(
+        (widths.values.md * 288) / widths.values.xl
+      ),
     },
-    author: {},
-    image: {
-      filter: "grayscale(100%)",
-      height: 180,
-      width: "auto",
-      [breakpoints.up("md")]: {
-        height: (widths.values.md * 460) / widths.values.xl,
-      },
-      [breakpoints.up("lg")]: {
-        height: (widths.values.lg * 460) / widths.values.xl,
-      },
-      [breakpoints.up("xl")]: {
-        height: 460,
-      },
+    [breakpoints.up("lg")]: {
+      maxHeight: typography.pxToRem(
+        (widths.values.lg * 288) / widths.values.xl
+      ),
     },
-    imageDiv: {
-      width: "100%",
-      height: 221,
-      padding: "1rem 0.6875rem 1rem 0.8125rem",
-      overflow: "hidden",
-      position: "relative",
-      "&:after": {
-        backgroundColor: palette.primary.main,
-        bottom: 0,
-        content: '""',
-        left: 0,
-        mixBlendMode: "multiply",
-        opacity: 0.3,
-        position: "absolute",
-        right: 0,
-        top: 0,
-      },
-      [breakpoints.up("md")]: {
-        height: (widths.values.md * 546) / widths.values.xl,
-        padding: "1.5rem 1rem",
-      },
-      [breakpoints.up("lg")]: {
-        height: (widths.values.lg * 546) / widths.values.xl,
-        padding: "2rem 1.5rem",
-      },
-      [breakpoints.up("xl")]: {
-        height: 546,
-        padding: "2.6875rem 1.875rem 2.6875rem 2rem",
+    [breakpoints.up("xl")]: {
+      maxHeight: typography.pxToRem(288),
+    },
+  },
+  contentDiv: {
+    [breakpoints.up("md")]: {
+      paddingTop: "1.375rem",
+    },
+  },
+  description: {
+    paddingTop: "1rem",
+  },
+  documentDiv: {
+    borderTop: "1px solid #D6D6D6",
+    paddingTop: typography.pxToRem(16),
+    paddingBottom: typography.pxToRem(16),
+    [breakpoints.up("md")]: {
+      border: 0,
+      paddingTop: 0,
+      paddingBottom: typography.pxToRem(50),
+      paddingRight: typography.pxToRem(16),
+      "&:last-of-type": {
+        paddingRight: 0,
       },
     },
-    contentDiv: {
-      [breakpoints.up("md")]: {
-        paddingTop: "1.375rem",
-      },
-    },
-    description: {},
-    documentDiv: {
-      borderTop: "1px solid #D6D6D6",
-      paddingTop: typography.pxToRem(16),
-      paddingBottom: typography.pxToRem(16),
-      [breakpoints.up("md")]: {
-        border: 0,
-        paddingTop: 0,
-        paddingBottom: typography.pxToRem(50),
-        paddingRight: typography.pxToRem(16),
-        "&:last-of-type": {
-          paddingRight: 0,
-        },
-      },
-    },
-    title: {
-      fontWeight: "bold",
-    },
-  })
-);
+  },
+  title: {
+    fontWeight: "bold",
+  },
+}));
 
 function DocumentItem({
   description,
@@ -106,6 +80,9 @@ function DocumentItem({
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
+  if (!(title || description)) {
+    return null;
+  }
   return (
     <Grid
       item
@@ -116,8 +93,12 @@ function DocumentItem({
       className={classes.documentDiv}
     >
       {imageUrl && (
-        <Grid item xs={isStory ? 3 : 6} md={12} className={classes.imageDiv}>
-          <img src={imageUrl} alt="" className={classes.image} />
+        <Grid item xs={isStory ? 3 : 6} md={12}>
+          <img
+            src={imageUrl}
+            alt={title || description}
+            className={classes.image}
+          />
         </Grid>
       )}
       <Grid item xs={isStory ? 9 : 6} md={12} className={classes.contentDiv}>
@@ -142,15 +123,20 @@ function DocumentItem({
 }
 
 DocumentItem.propTypes = {
-  description: PropTypes.string.isRequired,
-  documentUrl: PropTypes.string.isRequired,
-  md: PropTypes.number,
+  description: PropTypes.string,
+  documentUrl: PropTypes.string,
+  imageUrl: PropTypes.string.isRequired,
   isStory: PropTypes.bool,
+  md: PropTypes.number,
+  title: PropTypes.string,
 };
 
 DocumentItem.defaultProps = {
-  md: 3,
+  description: undefined,
+  documentUrl: undefined,
   isStory: false,
+  md: 3,
+  title: undefined,
 };
 
 export default DocumentItem;
