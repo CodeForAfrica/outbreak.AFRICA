@@ -143,6 +143,7 @@ function FeaturedExperts({
               contactIcons={icons}
               height={cellHeight && cellHeight + 48}
               profiles={profiles}
+              profileVariant="story"
               classes={{
                 root: classes.profileList,
                 profile: classes.profileListProfile,
