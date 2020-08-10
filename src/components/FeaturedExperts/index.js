@@ -22,6 +22,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     },
   },
   profileContentsRoot: {
+    justifyContent: "center",
     "&:after": {
       bottom: 0,
       content: '""',
@@ -48,7 +49,27 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
       },
     },
   },
-  profileContents: {},
+  profileContents: {
+    [breakpoints.down("md")]: {
+      bottom: 0,
+      color: palette.text.secondary,
+      minHeight: "33%",
+      padding: "1rem",
+      position: "absolute",
+      "&:before": {
+        bottom: 0,
+        background:
+          "transparent linear-gradient(180deg, #170F49 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
+        content: '""',
+        left: 0,
+        mixBlendMode: "multiply",
+        opacity: 0.5,
+        position: "absolute",
+        right: 0,
+        top: 0,
+      },
+    },
+  },
   profileList: {
     marginTop: "2.375rem",
     "& .simplebar-track": {
@@ -97,6 +118,7 @@ function FeaturedExperts({
   if (!experts || experts.length < 1) {
     return null;
   }
+
   const profiles =
     experts &&
     experts.map((profile, index) => {
@@ -105,18 +127,9 @@ function FeaturedExperts({
         image: {
           url: profile.image,
         },
-        contacts: {
-          linkedIn: {
-            url: profile.linkedin_profile_url,
-          },
-          twitter: {
-            url: profile.twitter_profile_url,
-          },
-          website: {
-            url: profile.website_url,
-          },
-        },
         name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
       };
     });
   return (
