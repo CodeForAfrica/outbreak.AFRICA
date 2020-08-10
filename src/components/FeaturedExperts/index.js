@@ -50,7 +50,6 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     },
   },
   profileContents: {
-    [breakpoints.down("md")]: {
       bottom: 0,
       color: palette.text.secondary,
       minHeight: "33%",
@@ -68,7 +67,6 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
         right: 0,
         top: 0,
       },
-    },
   },
   profileList: {
     marginTop: "2.375rem",
