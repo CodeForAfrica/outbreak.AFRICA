@@ -54,18 +54,9 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
       color: palette.text.secondary,
       minHeight: "33%",
       padding: "1rem",
-      position: "absolute",
       "&:before": {
-        bottom: 0,
-        background:
-          "transparent linear-gradient(180deg, #170F49 0%, #000000 60%, #000000 100%) 0% 0% no-repeat padding-box",
-        content: '""',
-        left: 0,
-        mixBlendMode: "multiply",
-        opacity: 0.5,
-        position: "absolute",
-        right: 0,
-        top: 0,
+        background:"unset",
+        content: "unset",
       },
   },
   profileList: {
