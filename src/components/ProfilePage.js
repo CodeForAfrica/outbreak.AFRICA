@@ -98,8 +98,8 @@ const useStyles = makeStyles(
         width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
       },
       [breakpoints.up("lg")]: {
-        height: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
-        width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+        height: typography.pxToRem((widths.values.lg * 30) / widths.values.xl),
+        width: typography.pxToRem((widths.values.lg * 30) / widths.values.xl),
       },
       [breakpoints.up("xl")]: {
         height: typography.pxToRem(30),
