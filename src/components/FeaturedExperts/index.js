@@ -50,13 +50,10 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     },
   },
   profileContents: {
-      bottom: 0,
       color: palette.text.secondary,
-      minHeight: "33%",
-      padding: "1rem",
+      padding: typography.pxToRem(16),
       "&:before": {
         background:"unset",
-        content: "unset",
       },
   },
   profileList: {
