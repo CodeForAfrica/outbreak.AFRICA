@@ -34,25 +34,18 @@ function DocumentLists({ documents, title, ...props }) {
           {documents &&
             documents.map(
               ({
-                title: documentTitle,
+                title,
                 description,
-                canonical_url: url,
-                resources: {
-                  page: { image },
-                },
-              }) => {
-                const imageUrl = image
-                  .replace("{page}", "1")
-                  .replace("{size}", "large");
-                return (
+                source,
+                document
+              }) => (
                   <DocumentItem
                     description={description}
-                    documentUrl={url}
-                    imageUrl={imageUrl}
-                    title={documentTitle}
+                    documentUrl={source}
+                    imageUrl={document}
+                    title={title}
                   />
-                );
-              }
+                )
             )}
         </Grid>
       </Section>
