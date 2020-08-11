@@ -91,8 +91,20 @@ const useStyles = makeStyles(
       paddingBottom: 0,
     },
     actionIcon: {
-      width: "2rem",
-      height: "auto",
+      height: typography.pxToRem(24),
+      width: typography.pxToRem(24),
+      [breakpoints.up("md")]: {
+        height: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+        width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+      },
+      [breakpoints.up("lg")]: {
+        height: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+        width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+      },
+      [breakpoints.up("xl")]: {
+        height: typography.pxToRem(30),
+        width: typography.pxToRem(30),
+      },
     },
     title: {
       fontSize: typography.subtitle2.fontSize,

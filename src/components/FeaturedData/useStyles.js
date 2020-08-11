@@ -5,6 +5,8 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
     width: "100%",
   },
   actionIcon: {
+    height: typography.pxToRem(24),
+    width: typography.pxToRem(24),
     [breakpoints.up("md")]: {
       height: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
       width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
@@ -14,7 +16,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
       width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
     },
     [breakpoints.up("xl")]: {
-      right: typography.pxToRem(30),
+      height: typography.pxToRem(30),
       width: typography.pxToRem(30),
     },
   },
