@@ -55,7 +55,6 @@ function DocumentLists({ documents, title, ...props }) {
                 description={description}
                 documentUrl={source}
                 documentId={document && document.id}
-                imageUrl={document && document.icon}
                 title={documentTitle}
                 classes={{
                   imageDiv: classes.imageDiv,
