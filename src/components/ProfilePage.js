@@ -388,7 +388,7 @@ function ProfilePage({
                           source: classes.sourceDiv,
                           sourceLink: classes.source,
                           groupActionsButton: classes.actionIcon,
-                          groupActionSocialIcons: classes.actionIcon,
+                          groupActionSocialIcon: classes.actionIcon,
                           embedSubtitle: classes.embedSubtitle,
                           embedRoot: classes.embedRoot,
                         }}
