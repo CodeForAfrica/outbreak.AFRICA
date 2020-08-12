@@ -94,15 +94,17 @@ function DocumentItem({
       if (documentId) {
         const media = await getPostById("media", documentId);
         if (isDesktop) {
-          setThumbnail(media["media_details"]["sizes"].full.source_url)
+          setThumbnail(media.media_details.sizes.full.source_url);
         } else {
-          setThumbnail(media["media_details"]["sizes"].medium
-            ? media["media_details"]["sizes"].medium.source_url
-            : media["media_details"]["sizes"].thumbnail.source_url)
+          setThumbnail(
+            media.media_details.sizes.medium
+              ? media.media_details.sizes.medium.source_url
+              : media.media_details.sizes.thumbnail.source_url
+          );
         }
       }
     })();
-  },[documentId, isDesktop])
+  }, [documentId, isDesktop]);
 
   return (
     <Grid
