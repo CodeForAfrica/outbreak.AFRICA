@@ -7,7 +7,7 @@ import { Section } from "@commons-ui/core";
 
 import DocumentItem from "./DocumentItem";
 
-const useStyles = makeStyles(({ typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     marginTop: "0.85rem",
   },
@@ -18,6 +18,28 @@ const useStyles = makeStyles(({ typography }) => ({
   },
   title: {
     fontWeight: "bold",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "unset",
+    minHeight: "unset"
+  },
+  imageDiv: {
+    height: typography.pxToRem(212),
+    [breakpoints.up("md")]: {
+      height: typography.pxToRem(
+        (widths.values.md * 546) / widths.values.xl
+      ),
+    },
+    [breakpoints.up("lg")]: {
+      height: typography.pxToRem(
+        (widths.values.lg * 546) / widths.values.xl
+      ),
+    },
+    [breakpoints.up("xl")]: {
+      height: typography.pxToRem(546),
+    },
   },
 }));
 
@@ -42,8 +64,13 @@ function DocumentLists({ documents, title, ...props }) {
                   <DocumentItem
                     description={description}
                     documentUrl={source}
-                    imageUrl={document}
+                    documentId={document && document.id}
+                    imageUrl={document && document.icon}
                     title={title}
+                    classes={{
+                      imageDiv: classes.imageDiv,
+                      image: classes.image
+                    }}
                   />
                 )
             )}
