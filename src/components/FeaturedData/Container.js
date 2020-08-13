@@ -14,6 +14,9 @@ import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
 import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
+import LinkIcon from "assets/icon web.svg";
+import DownloadIcon from "assets/icon download.svg";
+import EmbedIcon from "assets/icon embed.svg";
 import logo from "assets/logo-outbreak-small.png";
 
 import useStyles from "./useStyles";
@@ -134,20 +137,26 @@ function Container({ action, children, featuredChart, ...props }) {
         }}
         groupIcons={{
           facebook: {
-            icon: <img src={FacebookIcon} alt="Facebook" />,
+            icon: <img className={classes.actionIcon} src={FacebookIcon} alt="Facebook" />,
           },
           twitter: {
-            icon: <img src={TwitterIcon} alt="Twitter" />,
+            icon: <img className={classes.actionIcon} src={TwitterIcon} alt="Twitter" />,
           },
           linkedin: {
-            icon: <img src={LinkedInIcon} alt="LinkedIn" />,
+            icon: <img className={classes.actionIcon} src={LinkedInIcon} alt="LinkedIn" />,
           },
           instagram: {
-            icon: <img src={InstagramIcon} alt="Instagram" />,
+            icon: <img className={classes.actionIcon} src={InstagramIcon} alt="Instagram" />,
           },
-          embed: {},
-          link: {},
-          download: {},
+          embed: {
+            icon: <img className={classes.actionIcon} src={EmbedIcon} alt="Embed" />,
+          },
+          link: {
+            icon: <img className={classes.actionIcon} src={LinkIcon} alt="Link" />,
+          },
+          download: {
+            icon: <img className={classes.actionIcon} src={DownloadIcon} alt="Download" />,
+          },
         }}
       >
         <Chart

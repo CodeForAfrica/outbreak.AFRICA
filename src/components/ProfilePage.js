@@ -91,8 +91,20 @@ const useStyles = makeStyles(
       paddingBottom: 0,
     },
     actionIcon: {
-      width: "2rem",
-      height: "auto",
+      height: typography.pxToRem(24),
+      width: typography.pxToRem(24),
+      [breakpoints.up("md")]: {
+        height: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+        width: typography.pxToRem((widths.values.md * 30) / widths.values.xl),
+      },
+      [breakpoints.up("lg")]: {
+        height: typography.pxToRem((widths.values.lg * 30) / widths.values.xl),
+        width: typography.pxToRem((widths.values.lg * 30) / widths.values.xl),
+      },
+      [breakpoints.up("xl")]: {
+        height: typography.pxToRem(30),
+        width: typography.pxToRem(30),
+      },
     },
     title: {
       fontSize: typography.subtitle2.fontSize,
@@ -398,25 +410,25 @@ function ProfilePage({
                         groupActions
                         groupIcons={{
                           facebook: {
-                            icon: <img src={FacebookIcon} alt="Facebook" />,
+                            icon: <img className={classes.actionIcon} src={FacebookIcon} alt="Facebook" />,
                           },
                           twitter: {
-                            icon: <img src={TwitterIcon} alt="Twitter" />,
+                            icon: <img className={classes.actionIcon} src={TwitterIcon} alt="Twitter" />,
                           },
                           linkedin: {
-                            icon: <img src={LinkedInIcon} alt="LinkedIn" />,
+                            icon: <img className={classes.actionIcon} src={LinkedInIcon} alt="LinkedIn" />,
                           },
                           instagram: {
-                            icon: <img src={InstagramIcon} alt="Instagram" />,
+                            icon: <img className={classes.actionIcon} src={InstagramIcon} alt="Instagram" />,
                           },
                           embed: {
-                            icon: <img src={EmbedIcon} alt="Embed" />,
+                            icon: <img className={classes.actionIcon} src={EmbedIcon} alt="Embed" />,
                           },
                           link: {
-                            icon: <img src={LinkIcon} alt="Link" />,
+                            icon: <img className={classes.actionIcon} src={LinkIcon} alt="Link" />,
                           },
                           download: {
-                            icon: <img src={DownloadIcon} alt="Download" />,
+                            icon: <img className={classes.actionIcon} src={DownloadIcon} alt="Download" />,
                           },
                         }}
                       >
