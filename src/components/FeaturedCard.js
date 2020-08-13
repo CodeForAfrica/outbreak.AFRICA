@@ -99,9 +99,10 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   title: {
-    fontWeight: "normal",
+    fontSize: typography.subtitle2.fontSize,
+    lineHeight: typography.subtitle2.lineHeight,
     [breakpoints.up("md")]: {
-      fontWeight: "bold",
+      fontWeight: 700,
     },
   },
 }));
@@ -117,7 +118,7 @@ function FeaturedCard({ date, description, image, title, ...props }) {
       </Grid>
       <Grid item xs={12} md={4} className={classes.insight}>
         {title && (
-          <Typography variant="subtitle2" className={classes.title}>
+          <Typography variant="subtitle1" className={classes.title}>
             {title}
           </Typography>
         )}
