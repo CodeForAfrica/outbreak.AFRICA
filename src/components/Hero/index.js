@@ -159,10 +159,10 @@ function Hero({ heroContent, isResearch, ...props }) {
         <Grid
           container
           justify="flex-start"
-          alignItems="flex-start"
+          alignItems="center"
           className={classes.hero}
         >
-          <Grid item container md={md}>
+          <Grid item md={md} container>
             <Grid item xs={12}>
               <RichTypography
                 variant={isResearch ? "h3" : "h1"}
