@@ -1210,19 +1210,19 @@
     prop-types "^15.7.2"
     shortid "^2.2.15"
 
-"@hurumap-ui/content@^0.3.5-alpha.38":
-  version "0.3.5-alpha.38"
-  resolved "https://registry.yarnpkg.com/@hurumap-ui/content/-/content-0.3.5-alpha.38.tgz#5b1b1eb277fc6a451c62c7f3b996f48138ef2280"
-  integrity sha512-knsnqWXqRicLNA273lbCduLZEKVs8w7kkW4fHu+CVvS8xAkEC/Obx3KP4eRTg1YGoUJwuxz3dbH8gdarSOvBYw==
+"@hurumap-ui/content@^0.3.5-alpha.39":
+  version "0.3.5-alpha.39"
+  resolved "https://registry.yarnpkg.com/@hurumap-ui/content/-/content-0.3.5-alpha.39.tgz#fd65d09637f5f7042e779459cc32143afbbc09a1"
+  integrity sha512-lpuIVJjj2UBtcsnWD8Qwv8YOl//sZnf03RPKV09g3RpvoyfbMqcI8UD1HAbpKKUe/MtoQyosTzDdQsjXa3Jjfg==
   dependencies:
-    "@hurumap-ui/core" "^0.3.5-alpha.38"
+    "@hurumap-ui/core" "^0.3.5-alpha.39"
     prop-types "^15.7.2"
     shortid "^2.2.15"
 
-"@hurumap-ui/core@^0.3.5-alpha.38":
-  version "0.3.5-alpha.38"
-  resolved "https://registry.yarnpkg.com/@hurumap-ui/core/-/core-0.3.5-alpha.38.tgz#1c824fb45a5ef2e748a626c1da3aaba25fbf3ba5"
-  integrity sha512-vMdId14Ab4dKpmYDBGD2mB+/nazL22TIjTyV+jmBfgkCJeGTVxO1ysd7fBMqDD4yDAZ/v4f3wNRP4X3yLbo1tw==
+"@hurumap-ui/core@^0.3.5-alpha.39":
+  version "0.3.5-alpha.39"
+  resolved "https://registry.yarnpkg.com/@hurumap-ui/core/-/core-0.3.5-alpha.39.tgz#1b6135b8ab8bd66a3bd3ebe46306628bff3787b3"
+  integrity sha512-/TBc2rpaUbN3VvGT8/PMpoglUxj9xLCNGZ5cU27C89TrqOkpiLsOtZN/sCBQSYYHjSD2MlVA86/7idwJyUXFlw==
   dependencies:
     "@hurumap-ui/charts" "^0.3.5-alpha.36"
     classnames "^2.2.6"
