@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A, RichTypography } from "@commons-ui/core";
+
+import { getPostById } from "cms";
 
 import websiteBlue from "assets/icon web.svg";
 
@@ -22,6 +24,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   author: {},
+  imageDiv: {},
   image: {
     minHeight: typography.pxToRem(40),
     objectFit: "cover",
@@ -73,16 +76,36 @@ function DocumentItem({
   imageUrl,
   isStory,
   documentUrl,
+  documentId,
   md,
   ...props
 }) {
   const classes = useStyles(props);
+  const [thumbnail, setThumbnail] = useState(imageUrl);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   if (!(title || description)) {
     return null;
   }
+
+  useEffect(() => {
+    (async () => {
+      if (documentId) {
+        const media = await getPostById("media", documentId);
+        if (isDesktop) {
+          setThumbnail(media.media_details.sizes.full.source_url);
+        } else {
+          setThumbnail(
+            media.media_details.sizes.medium
+              ? media.media_details.sizes.medium.source_url
+              : media.media_details.sizes.thumbnail.source_url
+          );
+        }
+      }
+    })();
+  }, [documentId, isDesktop]);
+
   return (
     <Grid
       item
@@ -92,10 +115,10 @@ function DocumentItem({
       direction={isDesktop ? "row" : "row-reverse"}
       className={classes.documentDiv}
     >
-      {imageUrl && (
-        <Grid item xs={isStory ? 3 : 6} md={12}>
+      {thumbnail && (
+        <Grid item xs={isStory ? 3 : 6} md={12} className={classes.imageDiv}>
           <img
-            src={imageUrl}
+            src={thumbnail}
             alt={title || description}
             className={classes.image}
           />
@@ -125,7 +148,8 @@ function DocumentItem({
 DocumentItem.propTypes = {
   description: PropTypes.string,
   documentUrl: PropTypes.string,
-  imageUrl: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string,
+  documentId: PropTypes.number,
   isStory: PropTypes.bool,
   md: PropTypes.number,
   title: PropTypes.string,
@@ -134,6 +158,8 @@ DocumentItem.propTypes = {
 DocumentItem.defaultProps = {
   description: undefined,
   documentUrl: undefined,
+  documentId: undefined,
+  imageUrl: undefined,
   isStory: false,
   md: 3,
   title: undefined,

@@ -7,7 +7,7 @@ import { Section } from "@commons-ui/core";
 
 import DocumentItem from "./DocumentItem";
 
-const useStyles = makeStyles(({ typography }) => ({
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
     marginTop: "0.85rem",
   },
@@ -18,6 +18,24 @@ const useStyles = makeStyles(({ typography }) => ({
   },
   title: {
     fontWeight: "bold",
+  },
+  image: {
+    width: "100%",
+    height: "100%",
+    maxHeight: "unset",
+    minHeight: "unset",
+  },
+  imageDiv: {
+    height: typography.pxToRem(212),
+    [breakpoints.up("md")]: {
+      height: typography.pxToRem((widths.values.md * 546) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      height: typography.pxToRem((widths.values.lg * 546) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      height: typography.pxToRem(546),
+    },
   },
 }));
 
@@ -32,28 +50,19 @@ function DocumentLists({ documents, title, ...props }) {
       >
         <Grid container direction="row" alignItems="flex-start">
           {documents &&
-            documents.map(
-              ({
-                title: documentTitle,
-                description,
-                canonical_url: url,
-                resources: {
-                  page: { image },
-                },
-              }) => {
-                const imageUrl = image
-                  .replace("{page}", "1")
-                  .replace("{size}", "large");
-                return (
-                  <DocumentItem
-                    description={description}
-                    documentUrl={url}
-                    imageUrl={imageUrl}
-                    title={documentTitle}
-                  />
-                );
-              }
-            )}
+            documents.map(({ title: documentTitle, description, source, document }) => (
+              <DocumentItem
+                description={description}
+                documentUrl={source}
+                documentId={document && document.id}
+                imageUrl={document && document.icon}
+                title={documentTitle}
+                classes={{
+                  imageDiv: classes.imageDiv,
+                  image: classes.image,
+                }}
+              />
+            ))}
         </Grid>
       </Section>
     </div>
