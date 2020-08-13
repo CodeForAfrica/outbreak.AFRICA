@@ -47,12 +47,13 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function FeaturedDocuments({ count, documents, outbreak, ...props }) {
+function FeaturedDocuments({ outbreak, ...props }) {
   const classes = useStyles(props);
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const {
     page: {
+      featured_documents: documents,
       hero_content: heroContent,
       subscribe,
       section_title: title,
@@ -99,17 +100,9 @@ export async function getServerSideProps({ query }) {
   const lang = pageLanguage || config.DEFAULT_LANG;
   const outbreak = await getSitePage("research-documents", lang);
 
-  // https://corsanywhere.devops.codeforafrica.org
-  const response = await fetch(
-    "https://dc.sourceafrica.net/api/search.json?q=coronavirus&per_page=40&sections=true&mentions=3&contributor=true"
-  );
-  const { documents, total: count } = response.ok ? await response.json() : {};
-
   return {
     props: {
       outbreak,
-      documents,
-      count,
     },
   };
 }

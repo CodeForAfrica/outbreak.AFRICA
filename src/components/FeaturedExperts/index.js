@@ -22,6 +22,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     },
   },
   profileContentsRoot: {
+    justifyContent: "center",
     "&:after": {
       bottom: 0,
       content: '""',
@@ -48,7 +49,13 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
       },
     },
   },
-  profileContents: {},
+  profileContents: {
+      color: palette.text.secondary,
+      padding: typography.pxToRem(16),
+      "&:before": {
+        background:"unset",
+      },
+  },
   profileList: {
     marginTop: "2.375rem",
     "& .simplebar-track": {
@@ -97,6 +104,7 @@ function FeaturedExperts({
   if (!experts || experts.length < 1) {
     return null;
   }
+
   const profiles =
     experts &&
     experts.map((profile, index) => {
@@ -105,18 +113,9 @@ function FeaturedExperts({
         image: {
           url: profile.image,
         },
-        contacts: {
-          linkedIn: {
-            url: profile.linkedin_profile_url,
-          },
-          twitter: {
-            url: profile.twitter_profile_url,
-          },
-          website: {
-            url: profile.website_url,
-          },
-        },
         name: profile.name,
+        title: profile.affiliation,
+        description: profile.biography,
       };
     });
   return (
@@ -143,6 +142,7 @@ function FeaturedExperts({
               contactIcons={icons}
               height={cellHeight && cellHeight + 48}
               profiles={profiles}
+              profileVariant="story"
               classes={{
                 root: classes.profileList,
                 profile: classes.profileListProfile,
