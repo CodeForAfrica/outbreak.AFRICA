@@ -131,7 +131,7 @@ function Container({ action, children, featuredChart, ...props }) {
           root: classes.chartRoot,
           sourceLink: classes.source,
           groupActionsButton: classes.actionIcon,
-          groupActionSocialIcon: classes.actionIcon,
+          groupActionsSocialIcon: classes.actionIcon,
         }}
         groupIcons={{
           facebook: {
