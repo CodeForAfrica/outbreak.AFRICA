@@ -59,9 +59,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       border: 0,
       paddingTop: 0,
       paddingBottom: typography.pxToRem(50),
-      paddingRight: typography.pxToRem(16),
+      marginRight: typography.pxToRem(16),
       "&:last-of-type": {
-        paddingRight: 0,
+        marginRight: 0,
       },
     },
   },

@@ -7,7 +7,7 @@ import { Section } from "@commons-ui/core";
 
 import DocumentItem from "./DocumentItem";
 
-const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => ({
   root: {
     marginTop: "0.85rem",
   },
@@ -20,21 +20,39 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     fontWeight: "bold",
   },
   image: {
-    width: "100%",
-    height: "100%",
-    maxHeight: "unset",
-    minHeight: "unset",
-  },
-  imageDiv: {
-    height: typography.pxToRem(212),
+    maxHeight: "initial",
+    minHeight: "initial",
+    height: typography.pxToRem(180),
+    width: typography.pxToRem(131),
+    margin: `${typography.pxToRem(16)} ${typography.pxToRem(11)}`,
     [breakpoints.up("md")]: {
-      height: typography.pxToRem((widths.values.md * 546) / widths.values.xl),
+      height: typography.pxToRem((widths.values.md * 460) / widths.values.xl),
+      width: typography.pxToRem((widths.values.md * 336) / widths.values.xl),
+      margin: `${typography.pxToRem((widths.values.md * 43) / widths.values.xl)} ${typography.pxToRem((widths.values.md * 30) / widths.values.xl)}`
     },
     [breakpoints.up("lg")]: {
-      height: typography.pxToRem((widths.values.lg * 546) / widths.values.xl),
+      height: typography.pxToRem((widths.values.lg * 460) / widths.values.xl),
+      width: typography.pxToRem((widths.values.lg * 336) / widths.values.xl),
+      margin: `${typography.pxToRem((widths.values.lg * 43) / widths.values.xl)} ${typography.pxToRem((widths.values.lg * 30) / widths.values.xl)}`
     },
     [breakpoints.up("xl")]: {
-      height: typography.pxToRem(546),
+      height: typography.pxToRem(460),
+      width: typography.pxToRem(336),
+      margin: `${typography.pxToRem(43)} ${typography.pxToRem(30)}`
+    },
+  },
+  imageDiv: {
+    position: "relative",
+    "&:after": {
+      bottom: 0,
+      content: '""',
+      left: 0,
+      mixBlendMode: "multiply",
+      opacity: 0.3,
+      position: "absolute",
+      right: 0,
+      top: 0,
+      backgroundColor: `${palette.primary.main}`,
     },
   },
 }));
@@ -58,8 +76,8 @@ function DocumentLists({ documents, title, ...props }) {
                 imageUrl={document && document.icon}
                 title={documentTitle}
                 classes={{
-                  imageDiv: classes.imageDiv,
                   image: classes.image,
+                  imageDiv: classes.imageDiv,
                 }}
               />
             ))}
