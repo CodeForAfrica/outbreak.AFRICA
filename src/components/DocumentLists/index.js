@@ -43,6 +43,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography, widths }) => (
   },
   imageDiv: {
     position: "relative",
+    height: "100%",
     "&:after": {
       bottom: 0,
       content: '""',
