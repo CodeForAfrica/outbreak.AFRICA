@@ -57,6 +57,7 @@ function MapIt({
         geoLevel={geoId.split("-")[0]}
         geoIndexMapping={geoIndeces}
         indexColor={config.vulnerabilityIndexColor}
+        zoomControlPosition="topright"
         {...props}
       />
     </div>
