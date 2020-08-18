@@ -22,24 +22,26 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       marginBottom: 59,
     },
   },
-  attributes: {
-    display: "flex",
-    alignItems: "flex-end",
-    width: "100%",
-    marginTop: "1rem",
-  },
   author: {
     fontSize: 12,
     [breakpoints.up("md")]: {
       display: "block",
       fontSize: "initial",
       fontWeight: "bold",
+      marginTop: typography.pxToRem((widths.values.md * 49) / widths.values.xl),
     },
   },
   date: {
     fontSize: 12,
     [breakpoints.up("md")]: {
       fontSize: "initial",
+      marginTop: typography.pxToRem((widths.values.md * 50) / widths.values.xl),
+    },
+    [breakpoints.up("lg")]: {
+      marginTop: typography.pxToRem((widths.values.lg * 50) / widths.values.xl),
+    },
+    [breakpoints.up("xl")]: {
+      marginTop: typography.pxToRem(50),
     },
   },
   description: {
@@ -107,9 +109,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function FeaturedCard({ date, description, image, title, ...props }) {
+function FeaturedCard({ date: dateProp, description, image, title, ...props }) {
   const classes = useStyles(props);
-  const thisDate = new Date(date).toDateString().slice(4, 10);
+  const date = dateProp && new Date(dateProp).toDateString().slice(4, 10);
 
   return (
     <Grid container className={classes.root}>
@@ -122,16 +124,18 @@ function FeaturedCard({ date, description, image, title, ...props }) {
             {title}
           </Typography>
         )}
+        {date && (
+          <div className={classes.date}>
+            <Typography variant="caption" className={classes.date}>
+              {date}
+            </Typography>
+          </div>
+        )}
         {description && (
           <RichTypography variant="body2" className={classes.description}>
             {description}
           </RichTypography>
         )}
-        <div className={classes.attributes}>
-          <Typography variant="caption" className={classes.date}>
-            {thisDate}
-          </Typography>
-        </div>
       </Grid>
     </Grid>
   );
