@@ -92,15 +92,14 @@ function ArticlePage({
                 item
                 container
                 className={classes.attributes}
-                direction="column"
-                justify="space-between"
+                justify="flex-start"
               >
-                <Grid item md={6} className={classes.readAttr}>
+                <Grid item xs={12} className={classes.readAttr}>
                   <RichTypography variant="caption" className={classes.date}>
                     {date}
                   </RichTypography>
                 </Grid>
-                <Grid item md={6} className={classes.socialIcons}>
+                <Grid item xs={12} className={classes.socialIcons}>
                   <A href="" color="textSecondary" className={classes.link}>
                     <img
                       src={linkedIn}

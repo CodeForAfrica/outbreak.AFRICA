@@ -255,8 +255,7 @@ const useStyles = makeStyles(
       marginTop: typography.pxToRem(50),
       [breakpoints.up("md")]: {
         display: "flex",
-        justifyContent: "flex-end",
-        marginTop: 0,
+        marginTop: typography.pxToRem(26),
       },
     },
     title: {
