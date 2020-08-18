@@ -19,6 +19,12 @@ const useStyles = makeStyles(
     link: {
       display: "inline-block",
       paddingRight: "1rem",
+      [breakpoints.up("md")]: {
+        paddingRight: "0.75rem",
+      },
+      [breakpoints.up("lg")]: {
+        paddingRight: "1rem",
+      },
     },
     author: {},
     image: {
@@ -105,8 +111,14 @@ function Author({ author, variant, ...props }) {
     name,
     description,
     avatar_urls: avatar,
-    acf: { position },
+    acf: {
+      linkedin: linkedInUrl,
+      position,
+      twitter: twitterUrl,
+      website: websiteUrl,
+    },
   } = author;
+  const hasSocialLinks = linkedInUrl || twitterUrl || websiteUrl;
   return (
     <Grid
       container
@@ -126,6 +138,7 @@ function Author({ author, variant, ...props }) {
         item
         xs={12}
         md={variant === "full" ? 7 : undefined}
+        container
         className={classes.contentDiv}
       >
         <RichTypography variant="subtitle2" className={classes.title}>
@@ -139,17 +152,37 @@ function Author({ author, variant, ...props }) {
             {description}
           </RichTypography>
         )}
-        <Grid item className={classes.socialIcons}>
-          <A href="" color="textSecondary" className={classes.link}>
-            <img src={websiteBlue} alt="Website" className={classes.icon} />
-          </A>
-          <A href="" color="textSecondary" className={classes.link}>
-            <img src={linkedIn} alt="LinkedIn" className={classes.icon} />
-          </A>
-          <A href="" color="textSecondary" className={classes.link}>
-            <img src={twitter} alt="Twitter" className={classes.icon} />
-          </A>
-        </Grid>
+        {hasSocialLinks && (
+          <Grid item className={classes.socialIcons}>
+            {websiteUrl && (
+              <A
+                href={websiteUrl}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img src={websiteBlue} alt="Website" className={classes.icon} />
+              </A>
+            )}
+            {linkedInUrl && (
+              <A
+                href={linkedInUrl}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img src={linkedIn} alt="LinkedIn" className={classes.icon} />
+              </A>
+            )}
+            {twitterUrl && (
+              <A
+                href={twitterUrl}
+                color="textSecondary"
+                className={classes.link}
+              >
+                <img src={twitter} alt="Twitter" className={classes.icon} />
+              </A>
+            )}
+          </Grid>
+        )}
       </Grid>
       {variant === "full" && (
         <Grid item md={12}>

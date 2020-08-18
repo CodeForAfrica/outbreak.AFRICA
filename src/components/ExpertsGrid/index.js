@@ -136,6 +136,9 @@ function ExpertsGrid({
                     classes.profileContentsRoot,
                     classes[`profileContentsRoot${index % 3}`]
                   ),
+                  contents: classes.profileContents,
+                  description: classes.profileDescription,
+                  name: classes.profileName,
                 }}
                 height={cellHeight}
                 image={profile.image}
