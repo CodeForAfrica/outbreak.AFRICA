@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { ProfileList, RichTypography, Section } from "@commons-ui/core";
+
+import useWindowSize from "lib/useWindowSize";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
@@ -23,6 +25,7 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   },
   profileContentsRoot: {
     justifyContent: "center",
+    width: typography.pxToRem(306),
     "&:after": {
       bottom: 0,
       content: '""',
@@ -48,13 +51,37 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
         backgroundColor: `${palette.highlight.main}`,
       },
     },
+    [breakpoints.up("md")]: {
+      width: "100%",
+    },
+  },
+  profileName: {
+    display: "inline-block",
+    marginBottom: "0.5rem",
   },
   profileContents: {
-      color: palette.text.secondary,
-      padding: typography.pxToRem(16),
+    color: palette.text.secondary,
+    padding: typography.pxToRem(16),
+    position: "relative",
+    "&:before": {
+      background:
+        "transparent linear-gradient(180deg, #FFFFFF 0%, #000000 24%, #000000 35%, #000000 100%) 0% 0% no-repeat padding-box;",
+      bottom: 0,
+      content: '""',
+      left: 0,
+      opacity: 0.5,
+      position: "absolute",
+      right: 0,
+      top: 0,
+    },
+    [breakpoints.up("md")]: {
+      alignContent: "flex-end",
       "&:before": {
-        background:"unset",
+        background:
+          "transparent linear-gradient(180deg, #170F4900 0%, #170F49E6 24%, #170F49 35%, #170F49 100%) 0% 0% no-repeat padding-box;",
+        opacity: 1,
       },
+    },
   },
   profileList: {
     marginTop: "2.375rem",
@@ -88,36 +115,59 @@ function FeaturedExperts({
 }) {
   const classes = useStyles(props);
   const theme = useTheme();
+  const [width, setWidth] = useState();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isUpLg = useMediaQuery(theme.breakpoints.up("lg"));
   const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
-  let icons;
-  if (availableIcons) {
-    icons = isDesktop ? availableIcons.desktop : availableIcons.mobile;
-  }
-  const isLg = isUpLg && !isUpXl;
-  let cellHeight;
-  if (isUpLg) {
-    cellHeight = isLg ? 438 : 637;
-  }
+  const { width: windowWidth } = useWindowSize();
+  useEffect(() => {
+    if (windowWidth) {
+      setWidth(windowWidth);
+    }
+  }, [windowWidth]);
 
   if (!experts || experts.length < 1) {
     return null;
   }
-
+  let icons;
+  if (availableIcons) {
+    icons = isDesktop ? availableIcons.desktop : availableIcons.mobile;
+  }
+  let cellHeight = 420;
+  if (isDesktop) {
+    cellHeight = (theme.widths.values.md * 546) / theme.widths.values.xl;
+  }
+  if (isUpLg) {
+    cellHeight = (theme.widths.values.lg * 546) / theme.widths.values.xl;
+  }
+  if (isUpXl) {
+    cellHeight = 546;
+  }
   const profiles =
     experts &&
     experts.map((profile, index) => {
       return {
+        contacts: isDesktop && {
+          linkedIn: {
+            url: profile.linkedin_profile_url,
+          },
+          twitter: {
+            url: profile.twitter_profile_url,
+          },
+          website: {
+            url: profile.website_url,
+          },
+        },
         id: index,
         image: {
           url: profile.image,
         },
         name: profile.name,
-        title: profile.affiliation,
-        description: profile.biography,
+        title: !isDesktop && profile.affiliation,
+        description: !isDesktop && profile.biography,
       };
     });
+  const xs = !isDesktop && width > 306 ? width / 306 : undefined;
   return (
     <div className={classes.root}>
       <Section
@@ -141,13 +191,16 @@ function FeaturedExperts({
               cellHeight={cellHeight}
               contactIcons={icons}
               height={cellHeight && cellHeight + 48}
+              md={4.3}
               profiles={profiles}
               profileVariant="story"
+              xs={xs}
               classes={{
                 root: classes.profileList,
                 profile: classes.profileListProfile,
                 profileContentsRoot: classes.profileContentsRoot,
                 profileContents: classes.profileContents,
+                profileName: classes.profileName,
                 profiles: classes.profileListProfiles,
               }}
             />
