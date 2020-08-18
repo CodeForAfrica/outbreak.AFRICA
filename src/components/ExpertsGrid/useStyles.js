@@ -10,7 +10,10 @@ const useStyles = makeStyles(
     },
     profile: {},
     profileDescription: {
-      marginTop: typography.pxToRem(25),
+      maxHeight: typography.pxToRem(24 * 5), // 5 lines
+      [breakpoints.up("md")]: {
+        maxHeight: "unset",
+      },
     },
     profileLink: {},
     profileName: {
@@ -21,11 +24,13 @@ const useStyles = makeStyles(
       marginTop: typography.pxToRem(25),
     },
     profileContents: {
-      alignContent: "flex-end",
-      "&:before": {
-        background:
-          "transparent linear-gradient(180deg, #170F4900 0%, #170F49E6 24%, #170F49 35%, #170F49 100%) 0% 0% no-repeat padding-box;",
-        opacity: 1,
+      [breakpoints.up("md")]: {
+        alignContent: "flex-end",
+        "&:before": {
+          background:
+            "transparent linear-gradient(180deg, #170F4900 0%, #170F49E6 24%, #170F49 35%, #170F49 100%) 0% 0% no-repeat padding-box;",
+          opacity: 1,
+        },
       },
     },
     profileContentsRoot: {
