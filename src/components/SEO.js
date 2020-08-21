@@ -13,9 +13,16 @@ function SEO({ title, description, image, location = "" }) {
   const {
     query: { indicatorId },
   } = useRouter();
-  const imageUrl = indicatorId
-    ? `${config.media.imageUrl}/${indicatorId}${config.media.imageType}`
-    : `${config.url}${image || defaultImage}`;
+  let imageUrl;
+  if (indicatorId) {
+    imageUrl = `${config.media.imageUrl}/${indicatorId}${config.media.imageType}`;
+  } else if (image) {
+    imageUrl = /^(www\.|http:\/\/|https:\/\/)/.test(image)
+      ? image
+      : `${config.url}/${image}`;
+  } else {
+    imageUrl = `${config.url}/${defaultImage}`;
+  }
 
   const structuredDataOrganization = {
     __html: `{
