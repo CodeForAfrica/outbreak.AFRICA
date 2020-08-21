@@ -4,7 +4,12 @@ import PropTypes from "prop-types";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
-import { A, RichTypography, Section } from "@commons-ui/core";
+import { RichTypography, Section } from "@commons-ui/core";
+import {
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+} from "react-share";
 
 import Aside from "components/Content/Aside";
 import FlourishContainer from "components/FeaturedData/FlourishContainer";
@@ -15,10 +20,10 @@ import Subscribe from "components/Subscribe";
 import getChartElements from "utils/getChartElements";
 
 import facebook from "assets/Icon awesome-facebook-f-b.svg";
-import instagram from "assets/Icon awesome-instagram-b.svg";
 import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "assets/Icon awesome-twitter-b.svg";
 
+import config from "config";
 import Author from "./Author";
 import useStyles from "./useStyles";
 
@@ -62,6 +67,8 @@ function ArticlePage({
         : media.medium.source_url;
     }
   }
+  const articleUrl = `${config.url}${link.href}/${post.slug}`;
+
   return (
     <div className={classes.root}>
       {!isDesktop && (
@@ -100,30 +107,55 @@ function ArticlePage({
                   </RichTypography>
                 </Grid>
                 <Grid item xs={12} className={classes.socialIcons}>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  <LinkedinShareButton
+                    title={post.title.rendered}
+                    url={articleUrl}
+                    additionalProps={{
+                      "ga-on": "click",
+                      "ga-event-category": "linkedin",
+                      "ga-event-action": "share",
+                      "ga-event-label": articleUrl,
+                    }}
+                    className={classes.link}
+                  >
                     <img
                       src={linkedIn}
                       alt="LinkedIn"
                       className={classes.icon}
                     />
-                  </A>
-                  <A href="" color="textSecondary" className={classes.link}>
-                    <img
-                      src={instagram}
-                      alt="Instagram"
-                      className={classes.icon}
-                    />
-                  </A>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  </LinkedinShareButton>
+                  <FacebookShareButton
+                    title={post.title.rendered}
+                    hashtag="COVID-19"
+                    url={articleUrl}
+                    additionalProps={{
+                      "ga-on": "click",
+                      "ga-event-category": "facebook",
+                      "ga-event-action": "send",
+                      "ga-event-label": articleUrl,
+                    }}
+                    className={classes.link}
+                  >
                     <img
                       src={facebook}
                       alt="Facebook"
                       className={classes.icon}
                     />
-                  </A>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    title={post.title.rendered}
+                    hashtags={["COVID-19"]}
+                    additionalProps={{
+                      "ga-on": "click",
+                      "ga-event-category": "twitter",
+                      "ga-event-action": "tweet",
+                      "ga-event-label": articleUrl,
+                    }}
+                    url={articleUrl}
+                    className={classes.link}
+                  >
                     <img src={twitter} alt="Twitter" className={classes.icon} />
-                  </A>
+                  </TwitterShareButton>
                 </Grid>
               </Grid>
             </Grid>

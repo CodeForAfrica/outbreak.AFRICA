@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Grid, Typography } from "@material-ui/core";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography } from "@commons-ui/core";
 
@@ -101,8 +101,6 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     },
   },
   title: {
-    fontSize: typography.subtitle2.fontSize,
-    lineHeight: typography.subtitle2.lineHeight,
     [breakpoints.up("md")]: {
       fontWeight: 700,
     },
@@ -111,6 +109,8 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
 
 function FeaturedCard({ date: dateProp, description, image, title, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const date = dateProp && new Date(dateProp).toDateString().slice(4, 10);
 
   return (
@@ -120,7 +120,10 @@ function FeaturedCard({ date: dateProp, description, image, title, ...props }) {
       </Grid>
       <Grid item xs={12} md={4} className={classes.insight}>
         {title && (
-          <Typography variant="subtitle1" className={classes.title}>
+          <Typography
+            variant={isDesktop ? "subtitle1" : "subtitle2"}
+            className={classes.title}
+          >
             {title}
           </Typography>
         )}
