@@ -294,7 +294,7 @@ Disallow:
   name: "Outbreak.africa",
   legalName: "Code for Africa",
   description:
-    "Data driven analysis on development policies, programmes & outcomes in 10 African countries.",
+    "Contextual data with actionable insights: Data driven analysis on Covid-19 in Africa",
   media: {
     imageUrl:
       "https://cfa-outbreakafrica.s3-eu-west-1.amazonaws.com/media/images",
