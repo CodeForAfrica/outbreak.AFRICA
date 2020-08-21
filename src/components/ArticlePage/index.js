@@ -5,6 +5,7 @@ import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
 
 import { A, RichTypography, Section } from "@commons-ui/core";
+import { FacebookShareButton, TwitterShareButton, LinkedinShareButton } from 'react-share';
 
 import Aside from "components/Content/Aside";
 import FlourishContainer from "components/FeaturedData/FlourishContainer";
@@ -21,6 +22,7 @@ import twitter from "assets/Icon awesome-twitter-b.svg";
 
 import Author from "./Author";
 import useStyles from "./useStyles";
+import config from "config";
 
 function ArticlePage({
   post,
@@ -62,6 +64,8 @@ function ArticlePage({
         : media.medium.source_url;
     }
   }
+  const articleUrl = `${config.url}${link.href}/${post.slug}`;
+
   return (
     <div className={classes.root}>
       {!isDesktop && (
@@ -100,13 +104,16 @@ function ArticlePage({
                   </RichTypography>
                 </Grid>
                 <Grid item xs={12} className={classes.socialIcons}>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  <LinkedinShareButton
+                    title={post.title.rendered}
+                    url={articleUrl}
+                    className={classes.link}>
                     <img
                       src={linkedIn}
                       alt="LinkedIn"
                       className={classes.icon}
                     />
-                  </A>
+                  </LinkedinShareButton>
                   <A href="" color="textSecondary" className={classes.link}>
                     <img
                       src={instagram}
@@ -114,16 +121,31 @@ function ArticlePage({
                       className={classes.icon}
                     />
                   </A>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  <FacebookShareButton 
+                    title={post.title.rendered}
+                    hashtag={"COVID-19"}
+                    url={articleUrl}
+                    className={classes.link}>
                     <img
                       src={facebook}
                       alt="Facebook"
                       className={classes.icon}
                     />
-                  </A>
-                  <A href="" color="textSecondary" className={classes.link}>
+                  </FacebookShareButton>
+                  <TwitterShareButton
+                    title={post.title.rendered}
+                    hashtags={["COVID-19"]}
+                    additionalProps={{
+                      'ga-on': 'click',
+                      'ga-event-category': 'Twitter',
+                      'ga-event-action': 'Tweet',
+                      'ga-event-label': articleUrl
+                    }}
+                    url={articleUrl}
+                    className={classes.link}
+                    >
                     <img src={twitter} alt="Twitter" className={classes.icon} />
-                  </A>
+                  </TwitterShareButton>
                 </Grid>
               </Grid>
             </Grid>

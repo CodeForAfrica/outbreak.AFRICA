@@ -227,7 +227,7 @@ const useStyles = makeStyles(
     },
     link: {
       display: "inline-flex",
-      paddingRight: "1rem",
+      marginRight: "1rem",
     },
     topLink: {
       lineHeight: 60 / 24,
