@@ -33,6 +33,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       maxHeight: typography.pxToRem(
         (widths.values.md * 288) / widths.values.xl
       ),
+      width: "auto",
     },
     [breakpoints.up("lg")]: {
       maxHeight: typography.pxToRem(
@@ -59,9 +60,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       border: 0,
       paddingTop: 0,
       paddingBottom: typography.pxToRem(50),
-      marginRight: typography.pxToRem(16),
+      paddingRight: typography.pxToRem(16),
       "&:last-of-type": {
-        marginRight: 0,
+        paddingRight: 0,
       },
     },
   },
