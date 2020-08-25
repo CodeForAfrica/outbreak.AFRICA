@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import { useRouter } from "next/router";
 
-import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
@@ -61,14 +61,16 @@ const useStyles = makeStyles(
       },
     },
     chartShadow: {
-      boxShadow: "0px 4px 4px #00000029",
       border: "1px solid #D6D6D6",
+      boxShadow: "0px 4px 4px #00000029",
       height: "100%",
     },
     container: {
       marginBottom: "1.675rem",
       marginTop: "2.5rem",
       position: "relative",
+    },
+    containerGridItem: {
       paddingRight: typography.pxToRem(16),
       "&:last-of-type": {
         paddingRight: 0,
@@ -89,6 +91,25 @@ const useStyles = makeStyles(
     },
     content: {
       paddingBottom: 0,
+    },
+    description: {
+      fontSize: typography.pxToRem(16),
+      marginTop: typography.pxToRem(8),
+      [breakpoints.up("md")]: {
+        fontSize: typography.pxToRem(16),
+        marginTop: typography.pxToRem(
+          (widths.values.md * 30) / widths.values.xl
+        ),
+      },
+      [breakpoints.up("lg")]: {
+        marginTop: typography.pxToRem(
+          (widths.values.lg * 30) / widths.values.xl
+        ),
+      },
+      [breakpoints.up("xl")]: {
+        fontSize: typography.pxToRem(24),
+        marginTop: typography.pxToRem(30),
+      },
     },
     actionIcon: {
       height: typography.pxToRem(24),
@@ -111,9 +132,23 @@ const useStyles = makeStyles(
       fontWeight: typography.subtitle2.fontWeight,
     },
     sourceDiv: {
-      position: "absolute",
       bottom: 0,
       paddingLeft: "38px", // similar to chartRoot
+      position: "absolute",
+      marginBottom: "1rem",
+      "& a": {
+        fontSize: typography.pxToRem(9),
+      },
+      [breakpoints.up("md")]: {
+        "& a": {
+          fontSize: typography.pxToRem(14),
+        },
+      },
+      [breakpoints.up("xl")]: {
+        "& a": {
+          fontSize: typography.pxToRem(16),
+        },
+      },
     },
     source: {
       color: "#9D9C9C",
@@ -368,95 +403,146 @@ function ProfilePage({
                           ) * 12
                         : 12
                     }
-                    className={classes.container}
+                    className={classes.containerGridItem}
                   >
-                    <div className={classes.chartShadow}>
-                      <ChartContainer
-                        key={chart.id}
-                        attribution={`Source: ${
-                          (source && source.href) || ""
-                        }<span class="site">${config.name}</span>`}
-                        variant="data"
-                        classes={{
-                          attribution: classes.attribution,
-                          attributionSource: classes.attributionSource,
-                          chart: classes.chart,
-                          content: classes.content,
-                          title: classes.title,
-                          root: classes.chartRoot,
-                          containerRoot: classes.containerRoot,
-                          source: classes.sourceDiv,
-                          sourceLink: classes.source,
-                          groupActionsButton: classes.actionIcon,
-                          embedSubtitle: classes.embedSubtitle,
-                          embedRoot: classes.embedRoot,
-                        }}
-                        embed={{
-                          title: "Embed code for this chart",
-                          subtitle:
-                            "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
-                          code: `<iframe
+                    <div className={classes.container}>
+                      <div className={classes.chartShadow}>
+                        <ChartContainer
+                          key={chart.id}
+                          attribution={`Source: ${
+                            (source && source.href) || ""
+                          }<span class="site">${config.name}</span>`}
+                          variant="data"
+                          classes={{
+                            attribution: classes.attribution,
+                            attributionSource: classes.attributionSource,
+                            chart: classes.chart,
+                            content: classes.content,
+                            title: classes.title,
+                            root: classes.chartRoot,
+                            containerRoot: classes.containerRoot,
+                            source: classes.sourceDiv,
+                            sourceLink: classes.source,
+                            groupActionsButton: classes.actionIcon,
+                            embedSubtitle: classes.embedSubtitle,
+                            embedRoot: classes.embedRoot,
+                          }}
+                          embed={{
+                            title: "Embed code for this chart",
+                            subtitle:
+                              "Copy the code below, then paste into your own CMS or HTML. Embedded charts are responsive to your page width, and have been tested in Firefox, Safari, Chrome, and Edge.",
+                            code: `<iframe
                         id="${chart.id}"
                         src="${config.url}/embed/${embedPath}"
                         title="${chart.title}"
                         allowFullScreen
                       />`,
-                        }}
-                        loading={chartData.isLoading}
-                        logo={logo}
-                        sourceLink={source && source.href}
-                        sourceTitle={source && source.title}
-                        title={chart.title}
-                        groupActions
-                        groupIcons={{
-                          facebook: {
-                            icon: <img className={classes.actionIcon} src={FacebookIcon} alt="Facebook" />,
-                          },
-                          twitter: {
-                            icon: <img className={classes.actionIcon} src={TwitterIcon} alt="Twitter" />,
-                          },
-                          linkedin: {
-                            icon: <img className={classes.actionIcon} src={LinkedInIcon} alt="LinkedIn" />,
-                          },
-                          instagram: {
-                            icon: <img className={classes.actionIcon} src={InstagramIcon} alt="Instagram" />,
-                          },
-                          embed: {
-                            icon: <img className={classes.actionIcon} src={EmbedIcon} alt="Embed" />,
-                          },
-                          link: {
-                            icon: <img className={classes.actionIcon} src={LinkIcon} alt="Link" />,
-                          },
-                          download: {
-                            icon: <img className={classes.actionIcon} src={DownloadIcon} alt="Download" />,
-                          },
-                        }}
+                          }}
+                          loading={chartData.isLoading}
+                          logo={logo}
+                          sourceLink={source && source.href}
+                          sourceTitle={source && source.title}
+                          title={chart.title}
+                          groupActions
+                          groupIcons={{
+                            facebook: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={FacebookIcon}
+                                  alt="Facebook"
+                                />
+                              ),
+                            },
+                            twitter: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={TwitterIcon}
+                                  alt="Twitter"
+                                />
+                              ),
+                            },
+                            linkedin: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={LinkedInIcon}
+                                  alt="LinkedIn"
+                                />
+                              ),
+                            },
+                            instagram: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={InstagramIcon}
+                                  alt="Instagram"
+                                />
+                              ),
+                            },
+                            embed: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={EmbedIcon}
+                                  alt="Embed"
+                                />
+                              ),
+                            },
+                            link: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={LinkIcon}
+                                  alt="Link"
+                                />
+                              ),
+                            },
+                            download: {
+                              icon: (
+                                <img
+                                  className={classes.actionIcon}
+                                  src={DownloadIcon}
+                                  alt="Download"
+                                />
+                              ),
+                            },
+                          }}
+                        >
+                          {chart.type === "hurumap" ? (
+                            <Chart
+                              key={chart.id}
+                              chartData={chartData}
+                              definition={{
+                                ...chart.visual,
+                                typeProps: {
+                                  ...chart.visual.typeProps,
+                                  ...overrideTypePropsFor(chart.visual.type),
+                                },
+                              }}
+                              profiles={profiles}
+                              classes={classes}
+                            />
+                          ) : (
+                            <iframe
+                              key={chart.id}
+                              width="100%"
+                              scrolling="no"
+                              frameBorder="0"
+                              title={chart.title}
+                              src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
+                            />
+                          )}
+                        </ChartContainer>
+                      </div>
+                      <Typography
+                        variant="body2"
+                        className={classes.description}
+                        component="div"
                       >
-                        {chart.type === "hurumap" ? (
-                          <Chart
-                            key={chart.id}
-                            chartData={chartData}
-                            definition={{
-                              ...chart.visual,
-                              typeProps: {
-                                ...chart.visual.typeProps,
-                                ...overrideTypePropsFor(chart.visual.type),
-                              },
-                            }}
-                            profiles={profiles}
-                            classes={classes}
-                          />
-                        ) : (
-                          <iframe
-                            key={chart.id}
-                            width="100%"
-                            scrolling="no"
-                            frameBorder="0"
-                            title={chart.title}
-                            src={`${config.WP_HURUMAP_DATA_API}/flourish/${chart.id}`}
-                          />
-                        )}
-                      </ChartContainer>
+                        {chart.subtitle}
+                      </Typography>
                     </div>
                   </Grid>
                 );
