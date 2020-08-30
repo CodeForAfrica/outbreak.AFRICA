@@ -42,6 +42,53 @@ Disallow:
   MAPIT_URL: "https://mapit.hurumap.org",
   DEFAULT_LANG: "en",
   country: {},
+  navigation: [
+    {
+      title: "Data",
+      url: "#",
+      subnav: false,
+    },
+    {
+      title: "Research",
+      url: "/research",
+      subnav: [
+        {
+          title: "Featured Expert",
+          url: "/research/featured-experts",
+        },
+        {
+          title: "Featured Documents",
+          url: "/research/featured-documents",
+        },
+        {
+          title: "Featured Datasets",
+          url: "/research/featured-datasets",
+        },
+      ],
+    },
+    {
+      title: "Insights",
+      url: "/insights",
+      subnav: [
+        {
+          title: "Analysis",
+          url: "/insights/analysis",
+        },
+        {
+          title: "Myth-Busters",
+          url: "/insights/mythbusters",
+        },
+        {
+          title: "Featured Stories",
+          url: "/insights/featured-stories",
+        },
+        {
+          title: "Resources",
+          url: "/insights/resources",
+        },
+      ],
+    },
+  ],
   researchMenu: [
     {
       name: "Featured Expert",
@@ -290,7 +337,106 @@ Disallow:
       postalCode: "00100",
     },
   },
-  page: {},
+  page: {
+    about: {
+      about:
+        "How should Africa, with its fragile healthcare systems and large informal economies tailor global strategies for fighting Covid-19 to ensure they are feasible and effective locally? African policymakers and health agencies need evidence-based insights with strong local context to make informed decisions. Outbreak.AFRICA seeks to help by giving actionable data and expert insights.",
+      initiative:
+        "This Code for Africa initiative was made possible with support from the Pulitzer Center on Crisis Reporting.",
+    },
+    initiative_logo: {
+      image:
+        "https://dashboard.hurumap.org/wp-content/uploads/2020/05/pulitzer.png",
+      link: "#",
+      alt: "Pulitzer Center",
+    },
+    legal_links: [
+      {
+        label: "PRIVACY POLICY",
+        href: "/legal/privacy",
+      },
+      {
+        label: "TERMS OF SERVICE",
+        href: "/legal/terms",
+      },
+    ],
+    organization_logo: {
+      image: "https://dashboard.hurumap.org/wp-content/uploads/2020/05/cfa.png",
+      link: "//codeforafrica.org",
+      alt: "CodeforAfrica",
+    },
+    quick_links: [
+      {
+        title: "About Us",
+        links: [
+          {
+            label: "The project",
+            href: "/about/project",
+          },
+          {
+            label: "The team",
+            href: "/about/team",
+          },
+          {
+            label: "The partners",
+            href: "/about/partners",
+          },
+          {
+            label: "Methodology",
+            href: "/methodology",
+          },
+        ],
+      },
+      {
+        title: "More",
+        links: [
+          {
+            label: "Subscribe",
+            href: "/subscribe",
+          },
+          {
+            label: "Join Us",
+            href: "/join",
+          },
+        ],
+      },
+    ],
+    social_media: [
+      {
+        url: "https://www.linkedin.com/company/code-for-africa/",
+        image: {
+          url:
+            "https://dashboard.hurumap.org/wp-content/uploads/2020/07/linkedin-1.png",
+          alt: "",
+        },
+      },
+      {
+        url:
+          "https://twitter.com/Code4Africa?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor",
+        image: {
+          url:
+            "https://dashboard.hurumap.org/wp-content/uploads/2020/07/twitter-1.png",
+          alt: "",
+        },
+      },
+      {
+        url: "https://www.facebook.com/CodeForAfrica/",
+        image: {
+          url:
+            "https://dashboard.hurumap.org/wp-content/uploads/2020/07/facebook-1.png",
+          alt: "",
+        },
+      },
+      {
+        url: "https://github.com/codeforafrica",
+        image: {
+          url:
+            "https://dashboard.hurumap.org/wp-content/uploads/2020/07/github-image-1.png",
+          alt: "",
+        },
+      },
+    ],
+  },
   name: "Outbreak.africa",
   legalName: "Code for Africa",
   description:
