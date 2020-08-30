@@ -1,0 +1,80 @@
+import React from "react";
+import PropTypes from "prop-types";
+
+import { makeStyles } from "@material-ui/core/styles";
+import config from "config";
+
+import Error from "components/Error";
+import Footer from "components/Footer";
+import Navigation from "components/Navigation";
+
+const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
+  root: {
+    // Seems like you need height defined for AppBar position="sticky" to work
+    // see: https://github.com/mui-org/material-ui/issues/16186
+    height: "100vh",
+    // font-boosting: https://stackoverflow.com/questions/13430897/how-to-override-font-boosting-in-mobile-chrome#comment61478376_16432702
+    maxHeight: 999999,
+    overflowX: "hidden",
+  },
+  section: {
+    margin: "0 1.25rem 0 1.375rem",
+    width: "auto",
+    /** Since our design if of XL, we're going to optimize for space in
+     * MD & LG i.e. minimize margins
+     */
+    [breakpoints.up("md")]: {
+      margin: "0 auto",
+      width: widths.values.md,
+    },
+    [breakpoints.up("lg")]: {
+      width: widths.values.lg,
+    },
+    [breakpoints.up("xl")]: {
+      width: widths.values.xl,
+    },
+  },
+
+  footer: {
+    marginTop: typography.pxToRem(91.82),
+    [breakpoints.up("md")]: {
+      marginTop: typography.pxToRem(81.39),
+    },
+  },
+}));
+
+const outbreak = {
+  page: { navigation: config.navigation },
+  researchMenu: config.researchMenu,
+  insightsMenu: config.insightsMenu,
+  country: config.country,
+  countries: config.countries,
+};
+
+function Page({ children, classes: classesProp, errorCode, ...props }) {
+  const classes = useStyles({ classes: classesProp });
+
+  return (
+    <div className={classes.root}>
+      <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
+      <Error
+        title='Page Not Found'
+        tagline='Ooops The Page you are looking for cannot be found. Try Browsing the menu bar. Or click on our Logo above to go home.'
+        classes={{ section: classes.section }}
+      />
+      <Footer
+        outbreak={config}
+        classes={{ root: classes.footer, section: classes.section }}
+      />
+    </div>
+  );
+}
+
+Page.propTypes = {
+  children: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.node),
+    PropTypes.node,
+  ]).isRequired,
+};
+
+export default Page;
