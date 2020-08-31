@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 import config from "config";
+import { getSitePage } from "cms";
 
 import Error from "components/Error";
 import Footer from "components/Footer";
@@ -43,27 +44,27 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-const outbreak = {
-  page: { navigation: config.navigation },
-  researchMenu: config.researchMenu,
-  insightsMenu: config.insightsMenu,
-  country: config.country,
-  countries: config.countries,
-};
-
-function Page({ children, classes: classesProp, errorCode, ...props }) {
+function Page({
+  children,
+  outbreak,
+  posts,
+  classes: classesProp,
+  errorCode,
+  ...props
+}) {
   const classes = useStyles({ classes: classesProp });
-
   return (
     <div className={classes.root}>
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
       <Error
+        articles={posts}
+        variant='stories'
         title='Page Not Found'
-        tagline='Ooops The Page you are looking for cannot be found. Try Browsing the menu bar. Or click on our Logo above to go home.'
+        tagline='Ooops The Page you are looking for cannot be found. Try Browsing the menu bar or read one of our Articles Below'
         classes={{ section: classes.section }}
       />
       <Footer
-        outbreak={config}
+        outbreak={outbreak}
         classes={{ root: classes.footer, section: classes.section }}
       />
     </div>
@@ -76,5 +77,22 @@ Page.propTypes = {
     PropTypes.node,
   ]).isRequired,
 };
+
+export async function getStaticProps(query) {
+  const { lang: pageLanguage } = query;
+  const lang = pageLanguage || config.DEFAULT_LANG;
+  const {
+    page: { posts },
+  } = await getSitePage("insights-stories", lang);
+  const outbreak = await getSitePage("index", lang);
+
+  return {
+    props: {
+      outbreak,
+      posts,
+    },
+    revalidate: 86400,
+  };
+}
 
 export default Page;
