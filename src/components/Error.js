@@ -20,10 +20,10 @@ const useStyles = makeStyles(({ typography, breakpoints }) => ({
     maxWidth: typography.pxToRem(769),
   },
   virus: {
-    height: "80%",
+    height: "100%",
   },
   text404: {
-    height: "16rem",
+    height: "8rem",
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -31,6 +31,9 @@ const useStyles = makeStyles(({ typography, breakpoints }) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "contain",
+    [breakpoints.up("md")]: {
+      height: "16rem",
+    },
   },
   link: {
     color: "unset",
