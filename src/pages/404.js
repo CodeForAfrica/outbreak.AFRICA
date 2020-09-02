@@ -91,7 +91,7 @@ export async function getStaticProps(query) {
       outbreak,
       posts,
     },
-    revalidate: 86400,
+    revalidate: 2 * 24 * 60 * 60, // 2 days,
   };
 }
 
