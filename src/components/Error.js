@@ -99,39 +99,46 @@ function Error({ articles, variant, tagline, title, ...props }) {
           </div>
         </Grid>
       </Grid>
-      <Grid container>
-        {articles &&
-          articles.length &&
-          articles.slice(0, 3).map((post) => (
-            <Grid key={post.post_name} item md={4} className={classes.postItem}>
-              <Link
-                as={linkAs(post.post_name)}
-                href={linkHref}
-                className={classes.link}
+      {articles?.length > 0 ??
+        false(
+          <Grid container>
+            {articles.slice(0, 3).map((post) => (
+              <Grid
+                key={post.post_name}
+                item
+                md={4}
+                className={classes.postItem}
               >
-                <PostItem
-                  description={post.post_excerpt}
-                  imageUrl={post.featured_image}
-                  title={post.post_title}
-                  md={12}
-                  isStory
-                  classes={{
-                    author: classes.postAuthor,
-                    description: classes.postDescription,
-                    contentDiv: classes.postContentDiv,
-                    image: classes.postImage,
-                    title: classes.postTitle,
-                  }}
-                />
-              </Link>
-            </Grid>
-          ))}
-      </Grid>
+                <Link
+                  as={linkAs(post.post_name)}
+                  href={linkHref}
+                  className={classes.link}
+                >
+                  <PostItem
+                    description={post.post_excerpt}
+                    imageUrl={post.featured_image}
+                    title={post.post_title}
+                    md={12}
+                    isStory
+                    classes={{
+                      author: classes.postAuthor,
+                      description: classes.postDescription,
+                      contentDiv: classes.postContentDiv,
+                      image: classes.postImage,
+                      title: classes.postTitle,
+                    }}
+                  />
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        )}
     </div>
   );
 }
 
 Error.propTypes = {
+  variant: PropTypes.string.isRequired,
   tagline: PropTypes.string,
   title: PropTypes.string.isRequired,
   articles: PropTypes.arrayOf({}).isRequired,
