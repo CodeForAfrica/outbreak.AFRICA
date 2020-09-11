@@ -2,16 +2,22 @@ name: Dokku CD
 on:
   push:
     branches: [ master ]
+env:
+  DOKKU_APP_NAME: 'outbreak'
+  DOKKU_HOST: 'dokku-1.hurumap.org'
+  DOKKU_REMOTE_BRANCH: 'master'
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
         with:
             fetch-depth: 0
       - id: deploy
-        uses: vitalyliber/dokku-github-action@v6.0
-        env:
-          PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
-          HOST: dokku-1.hurumap.org
-          PROJECT: outbreak
+        name: Deploy to dokku
+        uses: idoberko2/dokku-deploy-github-action@v1
+        with:
+            ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+            dokku-host: ${{ env.DOKKU_HOST }}
+            app-name: ${{ env.DOKKU_APP_NAME }}
+            remote-branch: ${{ env.DOKKU_REMOTE_BRANCH }}
