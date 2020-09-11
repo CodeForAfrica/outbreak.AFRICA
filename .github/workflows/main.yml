@@ -6,7 +6,7 @@ env:
   DOKKU_APP_NAME: 'outbreak'
   DOKKU_HOST: 'dokku-1.hurumap.org'
   DOKKU_REMOTE_BRANCH: 'master'
-  DOKKU_USER: 'dokku'
+  DOKKU_USER: 'ubuntu'
 jobs:
   deploy:
     runs-on: ubuntu-latest
