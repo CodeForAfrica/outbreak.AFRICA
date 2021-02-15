@@ -16,10 +16,8 @@ const GRAPHQL_ORIGIN =
     : "https://graphql.hurumap.org";
 
 const config = {
-  url:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://covid19.dev.hurumap.org",
+  hostname: process.env.NEXT_PUBLIC_HOSTNAME || "localhost",
+  url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000",
   graphqlOrigin: GRAPHQL_ORIGIN,
   graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
   robots: {
@@ -399,7 +397,7 @@ Disallow:
 if (typeof document !== "undefined") {
   // Same-Origin Policy
   if (!window.location.hostname.includes("hurumap.org")) {
-    document.domain = window.location.hostname;
+    document.domain = config.hostname;
   } else {
     document.domain = "hurumap.org";
   }
