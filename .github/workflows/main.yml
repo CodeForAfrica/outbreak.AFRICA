@@ -1,7 +1,7 @@
 name: Dokku CD
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 env:
   DOKKU_APP_NAME: 'outbreak'
   DOKKU_HOST: 'dokku-1.hurumap.org'
