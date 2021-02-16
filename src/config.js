@@ -6,9 +6,7 @@ import imgWebsite from "assets/icon web.svg";
 import imgWebsiteDesktop from "assets/icon web-white.svg";
 
 const WP_BACKEND_URL =
-  process.env.NODE_ENV === "development"
-    ? "https://dashboard.hurumap.org"
-    : "https://dashboard.hurumap.org";
+    process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:8080";
 
 const GRAPHQL_ORIGIN =
   process.env.NODE_ENV === "development"
