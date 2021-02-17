@@ -131,7 +131,8 @@ function Partners({ partners, subscribe, joinUs, ...props }) {
             </Grid>
           </Grid>
           <Grid item md={7} sm={12} className={classes.partnerContainer}>
-            <PartnerGrid partners={partners} />
+            {/* temp fix remove partners  */}
+            <PartnerGrid partners={[]} /> 
           </Grid>
         </Grid>
       </Section>
