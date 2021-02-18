@@ -45,9 +45,9 @@ export async function getSitePage(slug, lang) {
   Object.assign(
     config.page,
     page,
-    options,
     { rendered: page.content.rendered },
-    page.acf
+    page.acf,
+    options,
   );
   config.language = lang;
 
