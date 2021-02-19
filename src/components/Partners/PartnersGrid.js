@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { A } from "@commons-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,6 +54,7 @@ function PartnersGrid({ partners, ...props }) {
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6} key={partner.name}>
+            <A href={partner.url}>
             <img
               src={partner.image}
               alt={partner.name}
@@ -60,6 +62,7 @@ function PartnersGrid({ partners, ...props }) {
                 partner.name === "Africa Ar Xiv" ? classes.image : classes.img
               }
             />
+            </A>
             <div
               className={
                 partner.name === "Africa Ar Xiv"
