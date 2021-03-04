@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { A } from "@commons-ui/core";
+import ConditionalWrapper from "components/ConditionalWrapper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,13 +55,19 @@ function PartnersGrid({ partners, ...props }) {
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6} key={partner.name}>
-            <img
-              src={partner.image}
-              alt={partner.name}
-              className={
-                partner.name === "Africa Ar Xiv" ? classes.image : classes.img
-              }
-            />
+            <ConditionalWrapper
+              condition={partner?.url}
+              wrapper={(children) => <A href={partner.url}>{children}</A>}
+            >
+              <img
+                src={partner.image}
+                alt={partner.name}
+                className={
+                  partner.name === "Africa Ar Xiv" ? classes.image : classes.img
+                }
+              />
+            </ConditionalWrapper>
+
             <div
               className={
                 partner.name === "Africa Ar Xiv"
