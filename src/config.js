@@ -10,8 +10,8 @@ const WP_BACKEND_URL =
 
 const GRAPHQL_ORIGIN =
   process.env.NODE_ENV === "development"
-    ? "https://graphql.outbreak.africa"
-    : "https://graphql.outbreak.africa";
+    ? "https://graphql.hurumap.org"
+    : "https://graphql.hurumap.org";
 
 const config = {
   hostname: process.env.NEXT_PUBLIC_HOSTNAME || "localhost",
