@@ -40,7 +40,7 @@ function Status({ name, status, value, ...props }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" className={classes.value}>
-          {value?.toLocaleString() ?? "-"}
+          {(value?? "-").toLocaleString()}
         </Typography>
       </Grid>
     </Grid>
