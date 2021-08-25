@@ -39,7 +39,7 @@ function Status({ name, status, value, ...props }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" className={classes.value}>
-          {typeof value !== "number"? "-" : value.toLocaleString()}
+          {Number.isFinite(value)? value.toLocaleString() : "-"}
         </Typography>
       </Grid>
     </Grid>
