@@ -25,7 +25,6 @@ const useStyles = makeStyles((theme) => ({
 
 function Status({ name, status, value, ...props }) {
   const classes = useStyles(props);
-
   return (
     <Grid container className={classes.root}>
       <Grid item xs={12}>
@@ -40,7 +39,7 @@ function Status({ name, status, value, ...props }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" className={classes.value}>
-          {value.toLocaleString()}
+          {Number.isFinite(value)? value.toLocaleString() : "-"}
         </Typography>
       </Grid>
     </Grid>
