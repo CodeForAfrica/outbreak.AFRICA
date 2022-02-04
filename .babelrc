@@ -30,7 +30,8 @@
           "assets": "./src/assets",
           "components": "./src/components",
           "lib": "./src/lib",
-          "pages": "./src/pages"
+          "pages": "./src/pages",
+          "@/outbreakafrica": "./src"
         }
       }
     ]
