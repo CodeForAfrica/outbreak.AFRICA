@@ -1,10 +1,10 @@
 import React from "react";
 
-import Document, { Head, Main, NextScript } from "next/document";
+import Document, { Head, Html, Main, NextScript } from "next/document";
 
 import { ServerStyleSheets } from "@material-ui/core/styles";
 
-import theme from "theme";
+ import theme from "@/outbreakafrica/theme";
 
 import { GA_TRACKING_ID } from "lib/ga";
 
@@ -60,8 +60,9 @@ const getGaScript = () => {
 class CustomDocument extends Document {
   render() {
     const { lang } = this.props;
+
     return (
-      <html lang={lang}>
+      <Html lang={lang}>
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link
@@ -116,7 +117,7 @@ class CustomDocument extends Document {
           <Main />
           <NextScript />
         </body>
-      </html>
+      </Html>
     );
   }
 }
