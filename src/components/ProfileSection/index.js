@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import Tabs from "components/Tabs";
+import Tabs from "@/outbreakafrica/components/Tabs";
 
 const useStyles = makeStyles(({ breakpoints, palette }) => ({
   root: {

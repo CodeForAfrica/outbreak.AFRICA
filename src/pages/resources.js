@@ -2,11 +2,11 @@ import React from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Page from "components/Page";
-import Hero from "components/Hero";
+import Page from "@/outbreakafrica/components/Page";
+import Hero from "@/outbreakafrica/components/Hero";
 
-import config from "config";
-import { getSitePage } from "cms";
+import config from "@/outbreakafrica/config";
+import { getSitePage } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},

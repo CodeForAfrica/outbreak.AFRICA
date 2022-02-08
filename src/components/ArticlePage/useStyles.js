@@ -1,5 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
-import quote from "assets/quote.svg";
+import quote from "@/outbreakafrica/assets/quote.svg";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({

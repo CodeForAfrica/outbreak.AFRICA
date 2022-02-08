@@ -3,10 +3,10 @@ import React from "react";
 import { Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 
-import IconButton from "components/Link/IconButton";
-import Link from "components/Link";
-import logo from "assets/logo-outbreak-1.svg";
-import logoDesktop from "assets/logo-outbreak.svg";
+import IconButton from "@/outbreakafrica/components/Link/IconButton";
+import Link from "@/outbreakafrica/components/Link";
+import logo from "@/outbreakafrica/assets/logo-outbreak-1.svg";
+import logoDesktop from "@/outbreakafrica/assets/logo-outbreak.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {

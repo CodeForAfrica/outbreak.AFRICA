@@ -5,11 +5,11 @@ import { Grid, Typography } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Form from "components/Form";
-import config from "config";
+import Form from "@/outbreakafrica/components/Form";
+import config from "@/outbreakafrica/config";
 
-import email from "assets/email.svg";
-import emailFocus from "assets/electric-blue-email.svg";
+import email from "@/outbreakafrica/assets/email.svg";
+import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -114,4 +114,5 @@ Subscribe.defaultProps = {
   title: "Subscribe",
   description: "Stay updated with the latest News, Research and Analysis",
 };
+
 export default Subscribe;

@@ -3,13 +3,13 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useMediaQuery, useTheme } from "@material-ui/core";
 
-import Page from "components/Page";
-import Hero from "components/Hero";
-import DocumentLists from "components/DocumentLists";
-import Subscribe from "components/Subscribe";
+import Page from "@/outbreakafrica/components/Page";
+import Hero from "@/outbreakafrica/components/Hero";
+import DocumentLists from "@/outbreakafrica/components/DocumentLists";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 
-import config from "config";
-import { getSitePage } from "cms";
+import config from "@/outbreakafrica/config";
+import { getSitePage } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},

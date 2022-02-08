@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import { useTheme } from "@material-ui/core";
 
-import useWindowSize from "lib/useWindowSize";
-import useBreakpoint from "lib/useBreakpoint";
+import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
+import useBreakpoint from "@/outbreakafrica/lib/useBreakpoint";
 
 function usePartialVisibilityGutter(spacing = 0) {
   const theme = useTheme();

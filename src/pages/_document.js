@@ -6,7 +6,7 @@ import { ServerStyleSheets } from "@material-ui/core/styles";
 
  import theme from "@/outbreakafrica/theme";
 
-import { GA_TRACKING_ID } from "lib/ga";
+import { GA_TRACKING_ID } from "@/outbreakafrica/lib/ga";
 
 const getGaScript = () => {
   return {

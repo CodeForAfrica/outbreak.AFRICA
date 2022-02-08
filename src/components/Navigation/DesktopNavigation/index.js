@@ -9,9 +9,9 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import Link from "components/Link";
-import Logo from "components/Navigation/Logo";
-import Search from "components/Search";
+import Link from "@/outbreakafrica/components/Link";
+import Logo from "@/outbreakafrica/components/Navigation/Logo";
+import Search from "@/outbreakafrica/components/Search";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";

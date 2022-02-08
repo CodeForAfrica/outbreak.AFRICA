@@ -18,8 +18,8 @@ import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
 
-import IconButtonLink from "components/Link/IconButton";
-import Logo from "components/Navigation/Logo";
+import IconButtonLink from "@/outbreakafrica/components/Link/IconButton";
+import Logo from "@/outbreakafrica/components/Navigation/Logo";
 
 import NavigationList from "./NavigationList";
 

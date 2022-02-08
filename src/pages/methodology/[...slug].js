@@ -2,13 +2,13 @@ import React, { useEffect } from "react";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import Content from "components/Content";
-import Hero from "components/Hero";
-import JoinUs from "components/JoinUs";
-import Page from "components/Page";
+import Content from "@/outbreakafrica/components/Content";
+import Hero from "@/outbreakafrica/components/Hero";
+import JoinUs from "@/outbreakafrica/components/JoinUs";
+import Page from "@/outbreakafrica/components/Page";
 
-import config from "config";
-import { getSitePageWithChildren } from "cms";
+import config from "@/outbreakafrica/config";
+import { getSitePageWithChildren } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},

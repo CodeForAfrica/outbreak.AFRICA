@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { A, Section } from "@commons-ui/core";
 
-import Link from "components/Link";
+import Link from "@/outbreakafrica/components/Link";
 
 import Card from "./Card";
 

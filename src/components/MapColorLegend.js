@@ -4,8 +4,8 @@ import { Grid, List, ListItem, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import config from "config";
-import MapKey from "assets/map-key.svg";
+import config from "@/outbreakafrica/config";
+import MapKey from "@/outbreakafrica/assets/map-key.svg";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},

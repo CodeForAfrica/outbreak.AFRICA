@@ -5,7 +5,7 @@ import classNames from "classnames";
 
 import { ButtonBase, Grid, Typography, makeStyles } from "@material-ui/core";
 
-import NextComposed from "components/Link/NextComposed";
+import NextComposed from "@/outbreakafrica/components/Link/NextComposed";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},

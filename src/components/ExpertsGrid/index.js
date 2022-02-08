@@ -7,8 +7,7 @@ import classNames from "classnames";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { ListItem as Profile, Section } from "@commons-ui/core";
 import { Contacts as ProfileContacts } from "@commons-ui/core/ProfileList";
-
-import Filter from "components/Filter";
+import Filter from "@/outbreakafrica/components/Filter";
 
 import useStyles from "./useStyles";
 

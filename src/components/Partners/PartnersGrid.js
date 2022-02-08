@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { A } from "@commons-ui/core";
-import ConditionalWrapper from "components/ConditionalWrapper";
+
+import ConditionalWrapper from "@/outbreakafrica/components/ConditionalWrapper";
 
 const useStyles = makeStyles((theme) => ({
   root: {

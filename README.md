@@ -4,7 +4,7 @@ HURUmap Coronavirus Disease 2019 Edition
 
 ## Installation
 
-outbreak.Africa is a SSR rendered [Next](https://nextjs.org/) web app deployable to [Vercel](https://vercel.com/) on staging. See [package.json](./package.json) for the full list of dependencies and build & deploy scripts.
+outbreak.AFRICA is a SSR rendered [Next](https://nextjs.org/) web app deployable to [Vercel](https://vercel.com/) on staging. See [package.json](./package.json) for the full list of dependencies and build & deploy scripts.
 
 Run the following to get started locally:
 

@@ -11,8 +11,8 @@ import Truncate from "react-truncate";
 
 import { A, RichTypography } from "@commons-ui/core";
 
-import config from "config";
-import icon from "assets/icon web.svg";
+import config from "@/outbreakafrica/config";
+import icon from "@/outbreakafrica/assets/icon web.svg";
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
   root: {

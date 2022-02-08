@@ -5,7 +5,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import ReactMultiCarousel from "react-multi-carousel";
 
-import useBreakpoint from "lib/useBreakpoint";
+import useBreakpoint from "@/outbreakafrica/lib/useBreakpoint";
 
 import ButtonGroup from "./CarouselButtonGroup";
 import CarouselCard from "./CarouselCard";

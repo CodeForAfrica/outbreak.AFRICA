@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core";
 
-import config from "config";
+import config from "@/outbreakafrica/config";
 
 const CommonsMapIt = dynamic({
   ssr: false,

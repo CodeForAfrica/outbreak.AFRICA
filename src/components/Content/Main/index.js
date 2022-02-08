@@ -5,12 +5,12 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography } from "@commons-ui/core";
 
-import SectionSubtitle from "components/SectionSubtitle";
+import SectionSubtitle from "@/outbreakafrica/components/SectionSubtitle";
 
-import demographicIcon from "assets/icon-demographic.svg";
-import economicIcon from "assets/icon-economic.svg";
-import epidemiologicalIcon from "assets/icon-epidemiological.svg";
-import safetyIcon from "assets/icon-safety.svg";
+import demographicIcon from "@/outbreakafrica/assets/icon-demographic.svg";
+import economicIcon from "@/outbreakafrica/assets/icon-economic.svg";
+import epidemiologicalIcon from "@/outbreakafrica/assets/icon-epidemiological.svg";
+import safetyIcon from "@/outbreakafrica/assets/icon-safety.svg";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

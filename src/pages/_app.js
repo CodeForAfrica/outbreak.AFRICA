@@ -15,10 +15,10 @@ import {
 } from "@material-ui/core/styles";
 import { create } from "jss";
 
-import theme from "theme";
+import theme from "@/outbreakafrica/theme";
 
-import * as ga from "lib/ga";
-import config from "config";
+import * as ga from "@/outbreakafrica/lib/ga";
+import config from "@/outbreakafrica/config";
 
 import "leaflet/dist/leaflet.css";
 import "react-multi-carousel/lib/styles.css";
@@ -45,23 +45,14 @@ export default class CustomApp extends App {
     const { Component, pageProps } = this.props;
 
     return (
-      <>
-        <Head>
-          <meta
-            name="viewport"
-            content="width=device-width,minimum-scale=1,initial-scale=1"
-          />
-          <meta charSet="utf-8" />
-        </Head>
-        <ApolloProvider client={client}>
-          <StylesProvider jss={CustomApp.jss}>
-            <ThemeProvider theme={theme}>
-              <CssBaseline />
-              <Component {...pageProps} />
-            </ThemeProvider>
-          </StylesProvider>
-        </ApolloProvider>
-      </>
+      <ApolloProvider client={client}>
+        <StylesProvider jss={CustomApp.jss}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+        </StylesProvider>
+      </ApolloProvider>
     );
   }
 }

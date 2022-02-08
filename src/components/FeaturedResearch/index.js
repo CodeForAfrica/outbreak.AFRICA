@@ -7,9 +7,9 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { DocumentsAndDatasets } from "@commons-ui/core";
 
-import datasetsIcon from "assets/icon-datasets.svg";
-import docsIcon from "assets/icon-docs.svg";
-import highlightImg from "assets/illo-02.png";
+import datasetsIcon from "@/outbreakafrica/assets/icon-datasets.svg";
+import docsIcon from "@/outbreakafrica/assets/icon-docs.svg";
+import highlightImg from "@/outbreakafrica/assets/illo-02.png";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -125,7 +125,6 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
       link: datasetLink,
     },
   } = documentsAndDatasets;
-
   return (
     <DocumentsAndDatasets
       title={title}

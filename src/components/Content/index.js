@@ -8,8 +8,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Section } from "@commons-ui/core";
 
-import JoinUs from "components/JoinUs";
-import Subscribe from "components/Subscribe";
+import JoinUs from "@/outbreakafrica/components/JoinUs";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 
 import Aside from "./Aside";
 import Main from "./Main";

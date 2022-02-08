@@ -11,19 +11,19 @@ import {
   TwitterShareButton,
 } from "react-share";
 
-import Aside from "components/Content/Aside";
-import FlourishContainer from "components/FeaturedData/FlourishContainer";
-import HURUmapContainer from "components/FeaturedData/Container";
-import Link from "components/Link";
-import Portal from "components/Portal";
-import Subscribe from "components/Subscribe";
+import Aside from "@/outbreakafrica/components/Content/Aside";
+import FlourishContainer from "@/outbreakafrica/components/FeaturedData/FlourishContainer";
+import HURUmapContainer from "@/outbreakafrica/components/FeaturedData/Container";
+import Link from "@/outbreakafrica/components/Link";
+import Portal from "@/outbreakafrica/components/Portal";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 import getChartElements from "utils/getChartElements";
 
-import facebook from "assets/Icon awesome-facebook-f-b.svg";
-import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import twitter from "assets/Icon awesome-twitter-b.svg";
+import facebook from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
+import linkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
 
-import config from "config";
+import config from "@/outbreakafrica/config";
 import Author from "./Author";
 import useStyles from "./useStyles";
 

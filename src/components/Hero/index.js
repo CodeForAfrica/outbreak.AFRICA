@@ -7,8 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography, Section } from "@commons-ui/core";
 
-import heroImage from "assets/images/heropattern.png";
-import coronaImage from "assets/images/coronavirus.svg";
+import heroImage from "@/outbreakafrica/assets/images/heropattern.png";
+import coronaImage from "@/outbreakafrica/assets/images/coronavirus.svg";
 
 import DesktopCarousel from "./DesktopCarousel";
 import MobileCarousel from "./MobileCarousel";

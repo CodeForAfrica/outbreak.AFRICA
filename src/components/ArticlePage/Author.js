@@ -5,9 +5,9 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A, RichTypography } from "@commons-ui/core";
 
-import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import twitter from "assets/Icon awesome-twitter-b.svg";
-import websiteBlue from "assets/icon web.svg";
+import linkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import websiteBlue from "@/outbreakafrica/assets/icon web.svg";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({

@@ -2,12 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
-import config from "config";
-import { getSitePage } from "cms";
 
-import Error from "components/Error";
-import Footer from "components/Footer";
-import Navigation from "components/Navigation";
+import config from "@/outbreakafrica/config";
+import { getSitePage } from "@/outbreakafrica/cms";
+
+import Error from "@/outbreakafrica/components/Error";
+import Footer from "@/outbreakafrica/components/Footer";
+import Navigation from "@/outbreakafrica/components/Navigation";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
@@ -58,9 +59,9 @@ function Page({
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
       <Error
         articles={posts}
-        variant='stories'
-        title='Page Not Found'
-        tagline='Ooops The Page you are looking for cannot be found. Try Browsing the menu bar or read one of our Articles Below'
+        variant="stories"
+        title="Page Not Found"
+        tagline="Ooops The Page you are looking for cannot be found. Try Browsing the menu bar or read one of our Articles Below"
         classes={{ section: classes.section }}
       />
       <Footer

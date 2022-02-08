@@ -14,10 +14,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Section } from "@commons-ui/core";
 
-import LinkButton from "components/Link/Button";
-import imgMobile from "assets/joinus-illo.svg";
-import img1 from "assets/joinus-illo-1.svg";
-import img2 from "assets/joinus-illo-2.svg";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
+import imgMobile from "@/outbreakafrica/assets/joinus-illo.svg";
+import img1 from "@/outbreakafrica/assets/joinus-illo-1.svg";
+import img2 from "@/outbreakafrica/assets/joinus-illo-2.svg";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {

@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Section, RichTypography } from "@commons-ui/core";
 
-import Button from "components/Link/Button";
+import Button from "@/outbreakafrica/components/Link/Button";
 
 import Container from "./Container";
 import FlourishContainer from "./FlourishContainer";

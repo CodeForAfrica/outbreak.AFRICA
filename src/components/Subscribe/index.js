@@ -8,13 +8,13 @@ import { Grid, Typography } from "@material-ui/core";
 
 import { Section } from "@commons-ui/core";
 
-import Form from "components/Form";
+import Form from "@/outbreakafrica/components/Form";
 
-import config from "config";
-import email from "assets/email.svg";
-import emailFocus from "assets/electric-blue-email.svg";
-import source from "assets/subscribe.png";
-import blueCircles from "assets/blue-circles.svg";
+import config from "@/outbreakafrica/config";
+import email from "@/outbreakafrica/assets/email.svg";
+import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
+import source from "@/outbreakafrica/assets/subscribe.png";
+import blueCircles from "@/outbreakafrica/assets/blue-circles.svg";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({

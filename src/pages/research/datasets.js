@@ -5,12 +5,12 @@ import { useMediaQuery, useTheme } from "@material-ui/core";
 
 import { useRouter } from "next/router";
 
-import Datasets from "components/CkanDatasets";
-import Hero from "components/Hero";
-import Page from "components/Page";
+import Datasets from "@/outbreakafrica/components/CkanDatasets";
+import Hero from "@/outbreakafrica/components/Hero";
+import Page from "@/outbreakafrica/components/Page";
 
-import config from "config";
-import { getSitePage } from "cms";
+import config from "@/outbreakafrica/config";
+import { getSitePage } from "@/outbreakafrica/cms";
 
 const GROUP_QUERY = "fq=groups:covid-19&rows=10&sort=score desc";
 

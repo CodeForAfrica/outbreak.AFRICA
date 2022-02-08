@@ -5,11 +5,11 @@ import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Section } from "@commons-ui/core";
 
-import JoinUs from "components/JoinUs";
-import Link from "components/Link";
-import PostItem from "components/DocumentLists/DocumentItem";
-import Filter from "components/Filter";
-import Subscribe from "components/Subscribe";
+import JoinUs from "@/outbreakafrica/components/JoinUs";
+import Link from "@/outbreakafrica/components/Link";
+import PostItem from "@/outbreakafrica/components/DocumentLists/DocumentItem";
+import Filter from "@/outbreakafrica/components/Filter";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 import FeaturedCard from "./FeaturedCard";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({

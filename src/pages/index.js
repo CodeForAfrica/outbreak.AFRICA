@@ -3,20 +3,20 @@ import PropTypes from "prop-types";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import FeaturedData from "components/FeaturedData";
-import FeaturedResearch from "components/FeaturedResearch";
-import FeaturedExperts from "components/FeaturedExperts";
-import FeaturedStories from "components/FeaturedStories";
-import Hero from "components/Hero";
-import MythBusting from "components/MythBusting";
-import Page from "components/Page";
-import Partners from "components/Partners";
-import Ticker from "components/Ticker";
+import FeaturedData from "@/outbreakafrica/components/FeaturedData";
+import FeaturedResearch from "@/outbreakafrica/components/FeaturedResearch";
+import FeaturedExperts from "@/outbreakafrica/components/FeaturedExperts";
+import FeaturedStories from "@/outbreakafrica/components/FeaturedStories";
+import Hero from "@/outbreakafrica/components/Hero";
+import MythBusting from "@/outbreakafrica/components/MythBusting";
+import Page from "@/outbreakafrica/components/Page";
+import Partners from "@/outbreakafrica/components/Partners";
+import Ticker from "@/outbreakafrica/components/Ticker";
 
-import config from "config";
-import { getSitePage } from "cms";
-import { withApollo } from "lib/apollo";
-import { getOutbreakStatus } from "lib/";
+import config from "@/outbreakafrica/config";
+import { getSitePage } from "@/outbreakafrica/cms";
+import { withApollo } from "@/outbreakafrica/lib/apollo";
+import { getOutbreakStatus } from "@/outbreakafrica/lib/";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -109,7 +109,7 @@ function Index({ outbreak, featuredExperts, ...props }) {
       <Ticker
         source={{
           title: "CSSE at Johns Hopkins University",
-          url: "//github.com/CSSEGISandData/COVID-19",
+          url: "https://github.com/CSSEGISandData/COVID-19",
         }}
         statuses={[
           {

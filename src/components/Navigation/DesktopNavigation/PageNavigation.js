@@ -8,7 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Section } from "@commons-ui/core";
 
-import LinkButton from "components/Link/Button";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

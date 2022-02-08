@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import Link from "components/Link";
+import Link from "@/outbreakafrica/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {

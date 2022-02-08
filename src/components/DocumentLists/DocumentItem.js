@@ -5,9 +5,9 @@ import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { A, RichTypography } from "@commons-ui/core";
 
-import { getPostById } from "cms";
+import { getPostById } from "@/outbreakafrica/cms";
 
-import websiteBlue from "assets/icon web.svg";
+import websiteBlue from "@/outbreakafrica/assets/icon web.svg";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   link: {

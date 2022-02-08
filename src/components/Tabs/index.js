@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Tab, Tabs } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-import LinkButton from "components/Link/Button";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {

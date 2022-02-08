@@ -5,8 +5,8 @@ import { MenuItem } from "@material-ui/core";
 
 import { makeStyles } from "@material-ui/core/styles";
 
-import config from "config";
-import Link from "components/Link";
+import config from "@/outbreakafrica/config";
+import Link from "@/outbreakafrica/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   root: {

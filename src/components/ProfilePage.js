@@ -13,15 +13,15 @@ import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
 
 import { Section } from "@commons-ui/core";
 
-import config from "config";
-import logo from "assets/logo-outbreak-small.png";
-import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
-import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
-import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
-import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
-import LinkIcon from "assets/icon web.svg";
-import DownloadIcon from "assets/icon download.svg";
-import EmbedIcon from "assets/icon embed.svg";
+import config from "@/outbreakafrica/config";
+import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
+import FacebookIcon from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "@/outbreakafrica/assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
+import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
+import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
 
 import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";

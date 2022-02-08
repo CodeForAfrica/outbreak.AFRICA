@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { RichTypography, Section } from "@commons-ui/core";
 
-import Search from "components/Search";
+import Search from "@/outbreakafrica/components/Search";
 
 import Rows from "./Rows";
 import Sort from "./Sort";

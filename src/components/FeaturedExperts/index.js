@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 
-import useWindowSize from "lib/useWindowSize";
+import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

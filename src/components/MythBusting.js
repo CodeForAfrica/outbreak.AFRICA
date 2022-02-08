@@ -7,10 +7,10 @@ import { Grid, Typography } from "@material-ui/core";
 
 import { RichTypography, Section } from "@commons-ui/core";
 
-import LinkButton from "components/Link/Button";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
 
-import illo from "assets/images/illo-03.png";
-import illoMobile from "assets/images/illo-03-mobile.png";
+import illo from "@/outbreakafrica/assets/images/illo-03.png";
+import illoMobile from "@/outbreakafrica/assets/images/illo-03-mobile.png";
 import PropTypes from "prop-types";
 
 const useStyles = makeStyles(

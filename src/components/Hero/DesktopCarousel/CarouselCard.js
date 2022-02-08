@@ -13,7 +13,7 @@ import {
   makeStyles,
 } from "@material-ui/core";
 
-import NextComposed from "components/Link/NextComposed";
+import NextComposed from "@/outbreakafrica/components/Link/NextComposed";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {

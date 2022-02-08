@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 import Error from "next/error";
 import Head from "next/head";
 
-import ProfilePage from "components/ProfilePage";
+import ProfilePage from "@/outbreakafrica/components/ProfilePage";
 
-import config from "config";
-import { getSectionedCharts, getSitePage } from "cms";
+import config from "@/outbreakafrica/config";
+import { getSectionedCharts, getSitePage } from "@/outbreakafrica/cms";
 
 function GeoId({ errorCode, ...props }) {
   if (errorCode === 404) {

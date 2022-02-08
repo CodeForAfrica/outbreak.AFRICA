@@ -18,8 +18,8 @@ import { makeStyles } from "@material-ui/core/styles";
 
 import { Section } from "@commons-ui/core";
 
-import Button from "components/Link/Button";
-import searchIcon from "assets/images/icon-search.svg";
+import Button from "@/outbreakafrica/components/Link/Button";
+import searchIcon from "@/outbreakafrica/assets/images/icon-search.svg";
 import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 

@@ -1,5 +1,5 @@
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
-import config from "config";
+import config from "@/outbreakafrica/config";
 
 export default function createApolloClient(initialState, ctx) {
   // The `ctx` (NextPageContext) will only be present on the server.
