@@ -2,18 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "assets/*": [
-        "src/assets/*"
-      ],
-      "components/*": [
-        "src/components/*"
-      ],
-      "lib/*": [
-        "src/lib/*"
-      ],
-      "pages/*": [
-        "src/pages/*"
-      ],
       "@/outbreakafrica/*": ["./src/*"]
     }
   }
