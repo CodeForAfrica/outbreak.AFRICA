@@ -1183,13 +1183,14 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@commons-ui/core@^0.1.0-alpha.6":
-  version "0.1.0-alpha.6"
-  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.1.0-alpha.6.tgz#e7f35e24ff0efa463775ee21fe059099197f618f"
-  integrity sha512-7x/GE6x1aT2/2VJbKD8No1FXJ1yQfz/CBFXplT09E9kJHmdmywwehwquYnl1qcu7oAAbaJogkc+e4Ve5yvsY4w==
+"@commons-ui/core@^0.0.1-alpha.31":
+  version "0.0.1-alpha.35"
+  resolved "https://registry.yarnpkg.com/@commons-ui/core/-/core-0.0.1-alpha.35.tgz#28d4ba8d16771977f13101a3e776cd4e84dc1994"
+  integrity sha512-lstAdBp38cCtJiTEtETIuRa0xtDXrETXeQ0OWCKK2D7Q1CHmMWX76fzGm1QTsL/nRJCmRTsgXOjADuIx9a3brg==
   dependencies:
     clsx "^1.1.0"
     prop-types "^15.7.2"
+    simplebar "^5.1.0"
     simplebar-react "^2.1.0"
 
 "@emotion/cache@^10.0.27":
