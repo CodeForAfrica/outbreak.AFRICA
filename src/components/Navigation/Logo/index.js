@@ -4,6 +4,7 @@ import React from "react";
 
 import logo from "@/outbreakafrica/assets/logo-outbreak-1.svg";
 import logoDesktop from "@/outbreakafrica/assets/logo-outbreak.svg";
+import Image from "@/outbreakafrica/components/Image";
 import Link from "@/outbreakafrica/components/Link";
 import IconButton from "@/outbreakafrica/components/Link/IconButton";
 
@@ -61,7 +62,7 @@ function Logo(props) {
   return (
     <>
       <IconButton href="/" className={classes.logo}>
-        <img src={src} alt="Outbreak Covid-19" />
+        <Image layout="fixed" src={src} alt="Outbreak Covid-19" />
       </IconButton>
       <Typography variant="h1" className={classes.title}>
         <Link
