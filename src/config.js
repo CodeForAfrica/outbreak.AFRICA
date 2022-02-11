@@ -2,8 +2,8 @@ import imgLinkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg"
 import imgLinkedInDesktop from "@/outbreakafrica/assets/Icon awesome-linkedin-in.svg";
 import imgTwitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
 import imgTwitterDesktop from "@/outbreakafrica/assets/Icon awesome-twitter.svg";
-import imgWebsite from "@/outbreakafrica/assets/icon web.svg";
 import imgWebsiteDesktop from "@/outbreakafrica/assets/icon web-white.svg";
+import imgWebsite from "@/outbreakafrica/assets/icon web.svg";
 
 const WP_BACKEND_URL =
   process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:8080";

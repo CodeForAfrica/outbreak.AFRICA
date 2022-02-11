@@ -1,18 +1,14 @@
-import React, { useState, useRef } from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { A, RichTypography } from "@commons-ui/core";
 import { Avatar, Button, Grid, Tooltip } from "@material-ui/core";
-import { BarChart, Check } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { BarChart, Check } from "@material-ui/icons";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React, { useState, useRef } from "react";
 import Truncate from "react-truncate";
 
-import { A, RichTypography } from "@commons-ui/core";
-
-import config from "@/outbreakafrica/config";
 import icon from "@/outbreakafrica/assets/icon web.svg";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
   root: {
@@ -140,6 +136,14 @@ function DatasetStatus({ overdueDate, ...props }) {
     </Tooltip>
   );
 }
+
+DatasetStatus.propTypes = {
+  overdueDate: PropTypes.string,
+};
+
+DatasetStatus.defaultProps = {
+  overdueDate: undefined,
+};
 
 function Dataset({ dataset, lines, ...props }) {
   const classes = useStyles(props);
@@ -281,10 +285,7 @@ function Dataset({ dataset, lines, ...props }) {
             {Object.keys(formats).map((format) => (
               <RichTypography
                 variant="caption"
-                className={classNames(
-                  classes.format,
-                  format.toLocaleLowerCase()
-                )}
+                className={clsx(classes.format, format.toLocaleLowerCase())}
               >
                 {format}
               </RichTypography>
@@ -312,6 +313,7 @@ Dataset.propTypes = {
     dataset_date: PropTypes.string,
     has_quickcharts: PropTypes.bool,
     last_modified: PropTypes.string,
+    metadata_modified: PropTypes.string,
     name: PropTypes.string,
     notes: PropTypes.string,
     organization: PropTypes.shape({

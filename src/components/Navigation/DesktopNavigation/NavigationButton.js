@@ -1,6 +1,3 @@
-import React, { useEffect, useRef, useState } from "react";
-import PropTypes from "prop-types";
-
 import {
   Box,
   Button,
@@ -9,6 +6,8 @@ import {
   Popper,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { useEffect, useRef, useState } from "react";
 
 const useStyles = makeStyles(({ breakpoints, spacing, typography }) => ({
   root: {
@@ -97,18 +96,25 @@ function NavigationButton({
 NavigationButton.propTypes = {
   active: PropTypes.bool,
   anchorEl: PropTypes.shape({}),
+  button: PropTypes.node,
+  children: PropTypes.bool,
   onClose: PropTypes.func,
   open: PropTypes.bool,
   popperProps: PropTypes.shape({}),
+  size: PropTypes.string,
   title: PropTypes.string,
 };
 
 NavigationButton.defaultProps = {
   active: false,
   anchorEl: false,
+  button: undefined,
+  children: undefined,
   onClose: undefined,
   open: false,
   popperProps: undefined,
+  size: undefined,
   title: undefined,
 };
+
 export default NavigationButton;

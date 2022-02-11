@@ -1,15 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Grid, Typography } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
+import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
+import email from "@/outbreakafrica/assets/email.svg";
 import Form from "@/outbreakafrica/components/Form";
 import config from "@/outbreakafrica/config";
-
-import email from "@/outbreakafrica/assets/email.svg";
-import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
 
 const useStyles = makeStyles((theme) => ({
   root: {

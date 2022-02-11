@@ -1,17 +1,13 @@
+import { RichTypography, Section } from "@commons-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
 import React from "react";
 
-import classNames from "classnames";
-
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-
-import { RichTypography, Section } from "@commons-ui/core";
-
-import LinkButton from "@/outbreakafrica/components/Link/Button";
-
-import illo from "@/outbreakafrica/assets/images/illo-03.png";
 import illoMobile from "@/outbreakafrica/assets/images/illo-03-mobile.png";
-import PropTypes from "prop-types";
+import illo from "@/outbreakafrica/assets/images/illo-03.png";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
@@ -104,10 +100,7 @@ function MythBursting({ myth, ...props }) {
               container
               direction="column"
               justify="space-around"
-              className={classNames(
-                classes.hightlightHeight,
-                classes.description
-              )}
+              className={clsx(classes.hightlightHeight, classes.description)}
             >
               <div>
                 <img
@@ -120,7 +113,7 @@ function MythBursting({ myth, ...props }) {
                 </Typography>
                 <RichTypography
                   variant="subtitle1"
-                  className={classNames(classes.subtitle, "subtitle")}
+                  className={clsx(classes.subtitle, "subtitle")}
                 >
                   {description}
                 </RichTypography>
@@ -141,7 +134,7 @@ function MythBursting({ myth, ...props }) {
             item
             xs={12}
             md={6}
-            className={classNames(
+            className={clsx(
               classes.hightlightHeight,
               classes.hightlightWidth,
               classes.highlight
@@ -150,7 +143,7 @@ function MythBursting({ myth, ...props }) {
             <img
               src={illo}
               alt="Corona virus"
-              className={classNames(
+              className={clsx(
                 classes.hightlightHeight,
                 classes.hightlightWidth,
                 classes.img
@@ -167,7 +160,7 @@ MythBursting.propTypes = {
   myth: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
-    lin_label: PropTypes.string,
+    link_label: PropTypes.string,
     link_url: PropTypes.string,
   }),
 };

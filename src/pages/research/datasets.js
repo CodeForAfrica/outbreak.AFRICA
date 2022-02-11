@@ -1,16 +1,14 @@
+import { useMediaQuery, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-
-import { useRouter } from "next/router";
-
+import { getSitePage } from "@/outbreakafrica/cms";
 import Datasets from "@/outbreakafrica/components/CkanDatasets";
 import Hero from "@/outbreakafrica/components/Hero";
 import Page from "@/outbreakafrica/components/Page";
-
 import config from "@/outbreakafrica/config";
-import { getSitePage } from "@/outbreakafrica/cms";
 
 const GROUP_QUERY = "fq=groups:covid-19&rows=10&sort=score desc";
 
@@ -82,6 +80,8 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
     const { asPath } = router;
     const pathname = asPath.split("?")[0];
     router.push(`${pathname}?${ckanQuery}`, undefined, { shallow: true });
+    // router shouldn't be part of useEffect dependencies
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ckanQuery]);
 
   return (
@@ -114,6 +114,32 @@ function FeaturedDatasets({ ckanQuery, count, outbreak, results, ...props }) {
     </Page>
   );
 }
+
+FeaturedDatasets.propTypes = {
+  ckanQuery: PropTypes.string,
+  count: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      featured_experts: PropTypes.shape({
+        experts: PropTypes.arrayOf(PropTypes.shape({})),
+      }),
+      hero_content: PropTypes.shape({}),
+      section_title: PropTypes.string,
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+  results: PropTypes.arrayOf(PropTypes.shape({})),
+};
+
+FeaturedDatasets.defaultProps = {
+  ckanQuery: undefined,
+  count: undefined,
+  outbreak: undefined,
+  results: undefined,
+};
 
 /**
  * We are using getInitialProps and not the recommended getServerSideProps

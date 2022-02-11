@@ -1,14 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import config from "@/outbreakafrica/config";
 import { getSitePage } from "@/outbreakafrica/cms";
-
 import Error from "@/outbreakafrica/components/Error";
 import Footer from "@/outbreakafrica/components/Footer";
 import Navigation from "@/outbreakafrica/components/Navigation";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
@@ -45,15 +43,9 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Page({
-  children,
-  outbreak,
-  posts,
-  classes: classesProp,
-  errorCode,
-  ...props
-}) {
+function Page({ outbreak, posts, classes: classesProp }) {
   const classes = useStyles({ classes: classesProp });
+
   return (
     <div className={classes.root}>
       <Navigation outbreak={outbreak} classes={{ section: classes.section }} />
@@ -73,10 +65,15 @@ function Page({
 }
 
 Page.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  classes: PropTypes.shape({}),
+  outbreak: PropTypes.shape({}),
+  posts: PropTypes.arrayOf({}),
+};
+
+Page.defaultProps = {
+  classes: undefined,
+  outbreak: undefined,
+  posts: undefined,
 };
 
 export async function getStaticProps(query) {

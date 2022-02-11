@@ -1,4 +1,5 @@
 import { ApolloClient, InMemoryCache, HttpLink } from "apollo-boost";
+
 import config from "@/outbreakafrica/config";
 
 export default function createApolloClient(initialState, ctx) {

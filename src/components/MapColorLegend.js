@@ -1,11 +1,10 @@
-import React from "react";
-
+import { Section } from "@commons-ui/core";
 import { Grid, List, ListItem, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
+import React from "react";
 
-import config from "@/outbreakafrica/config";
 import MapKey from "@/outbreakafrica/assets/map-key.svg";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},
@@ -33,8 +32,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function MapColorLegend() {
-  const classes = useStyles();
+function MapColorLegend(props) {
+  const classes = useStyles(props);
 
   return (
     <Grid container className={classes.root}>

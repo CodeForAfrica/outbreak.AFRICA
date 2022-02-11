@@ -1,14 +1,13 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
+import { getSitePage } from "@/outbreakafrica/cms";
 import Content from "@/outbreakafrica/components/Content";
 import Form from "@/outbreakafrica/components/Form";
 import Hero from "@/outbreakafrica/components/Hero";
 import Page from "@/outbreakafrica/components/Page";
-
 import config from "@/outbreakafrica/config";
-import { getSitePage } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -50,7 +49,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function About({ errorCode, outbreak, slug, ...props }) {
+function Join({ errorCode, outbreak, ...props }) {
   const classes = useStyles(props);
   const {
     page: {
@@ -90,6 +89,24 @@ function About({ errorCode, outbreak, slug, ...props }) {
   );
 }
 
+Join.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      hero_content: PropTypes.shape({}),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+Join.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+};
+
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
@@ -100,4 +117,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default About;
+export default Join;

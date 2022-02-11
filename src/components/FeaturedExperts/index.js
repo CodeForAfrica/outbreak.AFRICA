@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-
+import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { ProfileList, RichTypography, Section } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
 import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
 

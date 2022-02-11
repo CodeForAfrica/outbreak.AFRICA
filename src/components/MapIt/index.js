@@ -1,11 +1,8 @@
-import React from "react";
-
-import PropTypes from "prop-types";
-
-import dynamic from "next/dynamic";
-
-import { makeStyles } from "@material-ui/core/styles";
 import { useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
+import React from "react";
 
 import config from "@/outbreakafrica/config";
 
@@ -65,6 +62,7 @@ function MapIt({
 }
 
 MapIt.propTypes = {
+  classes: PropTypes.shape({}),
   geoId: PropTypes.string.isRequired,
   height: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
   width: PropTypes.oneOfType(PropTypes.number, PropTypes.number),
@@ -72,9 +70,10 @@ MapIt.propTypes = {
 };
 
 MapIt.defaultProps = {
+  classes: undefined,
+  geoIndeces: undefined,
   height: "500px",
   width: "100%",
-  geoIndeces: undefined,
 };
 
 export default MapIt;

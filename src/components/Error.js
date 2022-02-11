@@ -1,14 +1,12 @@
-import React from "react";
-
-import PropTypes from "prop-types";
-
 import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import virus from "@/outbreakafrica/assets/about-illo.png";
 import outbreak404 from "@/outbreakafrica/assets/404.svg";
-import Link from "@/outbreakafrica/components/Link";
+import virus from "@/outbreakafrica/assets/about-illo.png";
 import PostItem from "@/outbreakafrica/components/DocumentLists/DocumentItem";
+import Link from "@/outbreakafrica/components/Link";
 
 const useStyles = makeStyles(({ typography, breakpoints }) => ({
   section: {},

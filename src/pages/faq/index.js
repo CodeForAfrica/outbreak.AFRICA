@@ -1,1 +1,5 @@
-export { default, getServerSideProps } from "./[...slug]";
+import Faq, { getServerSideProps } from "./[...slug]";
+
+export { getServerSideProps };
+
+export default Faq;

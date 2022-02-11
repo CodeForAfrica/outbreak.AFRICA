@@ -1,26 +1,22 @@
-import React from "react";
-
-import App from "next/app";
-import Head from "next/head";
-import Router from "next/router";
-
-import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "@apollo/react-hooks";
-
-import CssBaseline from "@material-ui/core/CssBaseline";
+import { CssBaseline } from "@material-ui/core";
 import {
   jssPreset,
   StylesProvider,
   ThemeProvider,
 } from "@material-ui/core/styles";
+import ApolloClient from "apollo-boost";
 import { create } from "jss";
+import App from "next/app";
+import Router from "next/router";
+import React from "react";
 
+import config from "@/outbreakafrica/config";
+import * as ga from "@/outbreakafrica/lib/ga";
 import theme from "@/outbreakafrica/theme";
 
-import * as ga from "@/outbreakafrica/lib/ga";
-import config from "@/outbreakafrica/config";
-
 import "leaflet/dist/leaflet.css";
+
 import "react-multi-carousel/lib/styles.css";
 import "simplebar/dist/simplebar.min.css";
 
@@ -47,10 +43,10 @@ export default class CustomApp extends App {
     return (
       <ApolloProvider client={client}>
         <StylesProvider jss={CustomApp.jss}>
-        <ThemeProvider theme={theme}>
-          <CssBaseline />
-          <Component {...pageProps} />
-        </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Component {...pageProps} />
+          </ThemeProvider>
         </StylesProvider>
       </ApolloProvider>
     );

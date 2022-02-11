@@ -1,10 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Grid, IconButton } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import ArrowForwardIcon from "@material-ui/icons/ArrowForward";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles(({ palette }) => ({
   root: {},
@@ -56,7 +55,7 @@ function CarouselButttonGroup({ next, previous, ...props }) {
 
 CarouselButttonGroup.propTypes = {
   next: PropTypes.func.isRequired,
-  prev: PropTypes.func.isRequired,
+  previous: PropTypes.func.isRequired,
 };
 
 export default CarouselButttonGroup;

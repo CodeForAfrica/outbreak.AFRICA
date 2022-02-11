@@ -1,22 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
+import { getSitePage } from "@/outbreakafrica/cms";
 import FeaturedData from "@/outbreakafrica/components/FeaturedData";
-import FeaturedResearch from "@/outbreakafrica/components/FeaturedResearch";
 import FeaturedExperts from "@/outbreakafrica/components/FeaturedExperts";
+import FeaturedResearch from "@/outbreakafrica/components/FeaturedResearch";
 import FeaturedStories from "@/outbreakafrica/components/FeaturedStories";
 import Hero from "@/outbreakafrica/components/Hero";
 import MythBusting from "@/outbreakafrica/components/MythBusting";
 import Page from "@/outbreakafrica/components/Page";
 import Partners from "@/outbreakafrica/components/Partners";
 import Ticker from "@/outbreakafrica/components/Ticker";
-
 import config from "@/outbreakafrica/config";
-import { getSitePage } from "@/outbreakafrica/cms";
-import { withApollo } from "@/outbreakafrica/lib/apollo";
 import { getOutbreakStatus } from "@/outbreakafrica/lib/";
+import { withApollo } from "@/outbreakafrica/lib/apollo";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -81,11 +79,10 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Index({ outbreak, featuredExperts, ...props }) {
+function Index({ errorCode, outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
-    errorCode,
     status,
     page: {
       myth,
@@ -177,12 +174,36 @@ function Index({ outbreak, featuredExperts, ...props }) {
 }
 
 Index.propTypes = {
+  errorCode: PropTypes.number,
+  featuredExperts: PropTypes.shape({}),
   outbreak: PropTypes.shape({
     language: PropTypes.string,
     page: PropTypes.shape({
+      documents_and_datasets: PropTypes.shape({}),
+      featured_experts: PropTypes.shape({
+        experts: PropTypes.arrayOf(PropTypes.shape({})),
+      }),
+      featured_stories: PropTypes.shape({}),
+      hero_content: PropTypes.shape({}),
+      join_us: PropTypes.shape({}),
+      myth: PropTypes.shape({}),
+      partners: PropTypes.arrayOf(PropTypes.shape({})),
       rendered: PropTypes.string,
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
     }),
-  }).isRequired,
+    status: PropTypes.shape({
+      values: PropTypes.shape({}),
+    }),
+  }),
+};
+
+Index.defaultProps = {
+  errorCode: undefined,
+  featuredExperts: undefined,
+  outbreak: undefined,
 };
 
 // withApollo uses page component's getInitialProps to supply GraphQL data &

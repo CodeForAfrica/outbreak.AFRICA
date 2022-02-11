@@ -1,15 +1,14 @@
-import React from "react";
-
 import { useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import Page from "@/outbreakafrica/components/Page";
-import Hero from "@/outbreakafrica/components/Hero";
-import Subscribe from "@/outbreakafrica/components/Subscribe";
-import ExpertsGrid from "@/outbreakafrica/components/ExpertsGrid";
-
-import config from "@/outbreakafrica/config";
 import { getSitePage } from "@/outbreakafrica/cms";
+import ExpertsGrid from "@/outbreakafrica/components/ExpertsGrid";
+import Hero from "@/outbreakafrica/components/Hero";
+import Page from "@/outbreakafrica/components/Page";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -78,31 +77,29 @@ function Research({ outbreak, ...props }) {
     },
   } = outbreak;
 
-  const profiles =
-    experts &&
-    experts.map((profile, index) => {
-      return {
-        id: index,
-        contacts: {
-          linkedIn: {
-            url: profile.linkedin_profile_url,
-          },
-          twitter: {
-            url: profile.twitter_profile_url,
-          },
-          website: {
-            url: profile.website_url,
-          },
+  const profiles = experts?.map((profile, index) => {
+    return {
+      id: index,
+      contacts: {
+        linkedIn: {
+          url: profile.linkedin_profile_url,
         },
-        description: profile.biography,
-        image: {
-          url: profile.image,
+        twitter: {
+          url: profile.twitter_profile_url,
         },
-        name: profile.name,
-        title: profile.affiliation,
-        topic: profile.topic,
-      };
-    });
+        website: {
+          url: profile.website_url,
+        },
+      },
+      description: profile.biography,
+      image: {
+        url: profile.image,
+      },
+      name: profile.name,
+      title: profile.affiliation,
+      topic: profile.topic,
+    };
+  });
 
   return (
     <Page
@@ -139,6 +136,30 @@ function Research({ outbreak, ...props }) {
     </Page>
   );
 }
+
+Research.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      featured_experts: PropTypes.shape({
+        experts: PropTypes.arrayOf(PropTypes.shape({})),
+      }),
+      hero_content: PropTypes.shape({}),
+      section_title: PropTypes.string,
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+  slug: PropTypes.string,
+};
+
+Research.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+  slug: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;

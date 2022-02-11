@@ -1,10 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { Section } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { Section } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
 
 import ActionBar from "./ActionBar";
 import Dataset from "./Dataset";
@@ -80,6 +78,7 @@ CkanDatasets.propTypes = {
   onSearch: PropTypes.func,
   onSort: PropTypes.func,
   sort: PropTypes.string.isRequired,
+  title: PropTypes.string,
   q: PropTypes.string,
   results: PropTypes.arrayOf(PropTypes.shape({})),
   rows: PropTypes.number.isRequired,
@@ -91,6 +90,7 @@ CkanDatasets.defaultProps = {
   onSearch: undefined,
   onSort: undefined,
   q: undefined,
+  title: undefined,
   results: undefined,
 };
 export default CkanDatasets;

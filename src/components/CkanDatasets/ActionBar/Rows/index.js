@@ -1,12 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { RichTypography } from "@commons-ui/core";
 import { Button, Divider, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { RichTypography } from "@commons-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -68,7 +65,7 @@ function Rows({ count, label, onClick, options, value, ...props }) {
           <Divider
             orientation="vertical"
             flexItem
-            className={classNames(classes.divider, {
+            className={clsx(classes.divider, {
               [classes.dividerLast]: i === options.length - 1,
             })}
           />
@@ -82,7 +79,11 @@ Rows.propTypes = {
   count: PropTypes.number.isRequired,
   label: PropTypes.string,
   onClick: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  options: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string,
+    })
+  ).isRequired,
   value: PropTypes.string.isRequired,
 };
 

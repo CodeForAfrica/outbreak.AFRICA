@@ -1,25 +1,21 @@
-import React, { useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
-
-import dynamic from "next/dynamic";
-
 import { RichTypography } from "@commons-ui/core";
-
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
+import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
+import React, { useEffect, useMemo, useState } from "react";
 
-import config from "@/outbreakafrica/config";
+import useStyles from "./useStyles";
 
 import FacebookIcon from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
 import InstagramIcon from "@/outbreakafrica/assets/Icon awesome-instagram-b.svg";
 import LinkedInIcon from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
 import TwitterIcon from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
-import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
 import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
 import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
+import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
 import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
-
-import useStyles from "./useStyles";
+import config from "@/outbreakafrica/config";
 
 const ChartContainer = dynamic(
   () => import("@hurumap-ui/core/ChartContainer"),
@@ -50,7 +46,7 @@ Chart.propTypes = {
   profiles: PropTypes.shape({}).isRequired,
 };
 
-function Container({ action, children, featuredChart, ...props }) {
+function Container({ featuredChart, ...props }) {
   const classes = useStyles(props);
   const { type, id, geoId } = featuredChart;
 
@@ -105,11 +101,9 @@ function Container({ action, children, featuredChart, ...props }) {
   ) {
     return null;
   }
-
   const rawData = !chartData.isLoading
     ? chartData.profileVisualsData[chart.visual.queryAlias].nodes
     : [];
-
   return (
     <>
       <ChartContainer
@@ -207,5 +201,15 @@ function Container({ action, children, featuredChart, ...props }) {
     </>
   );
 }
+
+Container.propTypes = {
+  featuredChart: PropTypes.shape({
+    geoId: PropTypes.string,
+    id: PropTypes.string,
+    type: PropTypes.string,
+  }).isRequired,
+};
+
+Container.defaultProps = {};
 
 export default Container;

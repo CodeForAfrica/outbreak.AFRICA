@@ -1,1 +1,5 @@
-export { default, getServerSideProps } from "./[...slug]";
+import Methodology, { getServerSideProps } from "./[...slug]";
+
+export { getServerSideProps };
+
+export default Methodology;

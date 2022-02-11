@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { A } from "@commons-ui/core";
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { A } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
 
 import ConditionalWrapper from "@/outbreakafrica/components/ConditionalWrapper";
 
@@ -58,7 +57,8 @@ function PartnersGrid({ partners, ...props }) {
           <Grid item xs={12} md={6} key={partner.name}>
             <ConditionalWrapper
               condition={partner?.url}
-              wrapper={(children) => <A href={partner.url}>{children}</A>}
+              wrapper={A}
+              href={partner?.url}
             >
               <img
                 src={partner.image}

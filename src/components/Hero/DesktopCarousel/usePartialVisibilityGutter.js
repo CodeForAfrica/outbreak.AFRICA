@@ -1,9 +1,8 @@
+import { useTheme } from "@material-ui/core";
 import { useState, useEffect } from "react";
 
-import { useTheme } from "@material-ui/core";
-
-import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
 import useBreakpoint from "@/outbreakafrica/lib/useBreakpoint";
+import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
 
 function usePartialVisibilityGutter(spacing = 0) {
   const theme = useTheme();
@@ -18,7 +17,7 @@ function usePartialVisibilityGutter(spacing = 0) {
     } else {
       setPartialVisibilityGutter(0);
     }
-  }, [breakpoint, windowWidth]);
+  }, [breakpoint, spacing, theme.widths.values, windowWidth]);
   return partialVisibilityGutter;
 }
 

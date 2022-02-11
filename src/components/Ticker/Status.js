@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +38,7 @@ function Status({ name, status, value, ...props }) {
       </Grid>
       <Grid item xs={12}>
         <Typography variant="h2" className={classes.value}>
-          {Number.isFinite(value)? value.toLocaleString() : "-"}
+          {Number.isFinite(value) ? value.toLocaleString() : "-"}
         </Typography>
       </Grid>
     </Grid>

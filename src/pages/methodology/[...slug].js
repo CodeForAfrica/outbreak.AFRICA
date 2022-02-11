@@ -1,14 +1,13 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
+import { getSitePageWithChildren } from "@/outbreakafrica/cms";
 import Content from "@/outbreakafrica/components/Content";
 import Hero from "@/outbreakafrica/components/Hero";
 import JoinUs from "@/outbreakafrica/components/JoinUs";
 import Page from "@/outbreakafrica/components/Page";
-
 import config from "@/outbreakafrica/config";
-import { getSitePageWithChildren } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -59,14 +58,12 @@ function Methodology({ errorCode, outbreak, slug, ...props }) {
     },
   } = outbreak;
   const contents =
-    (childPages &&
-      childPages.map((page) => ({
-        ...page,
-        as: `/methodology/${page.slug}`,
-        href: "/methodology/[...slug]",
-        name: page.title.rendered,
-      }))) ||
-    [];
+    childPages?.map((page) => ({
+      ...page,
+      as: `/methodology/${page.slug}`,
+      href: "/methodology/[...slug]",
+      name: page.title.rendered,
+    })) || [];
   useEffect(() => {
     const timer = setTimeout(() => {
       if (slug) {
@@ -112,6 +109,28 @@ function Methodology({ errorCode, outbreak, slug, ...props }) {
     </Page>
   );
 }
+
+Methodology.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      children: PropTypes.node,
+      hero_content: PropTypes.shape({}),
+      join_us: PropTypes.shape({}),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+  slug: PropTypes.string,
+};
+
+Methodology.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+  slug: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage, slug: pageSlug } = query;

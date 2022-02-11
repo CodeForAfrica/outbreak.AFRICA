@@ -1,14 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
-import { makeStyles } from "@material-ui/core/styles";
-
 import { Footer } from "@commons-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import Link from "@/outbreakafrica/components/Link";
 import cc from "@/outbreakafrica/assets/cc.svg";
+import Link from "@/outbreakafrica/components/Link";
 
 const COPYRIGHT_LOGO = {
   image: {
@@ -214,18 +211,15 @@ function MainFooter({
         initiative: classes.initiative,
         copyright: classes.copyright,
         legalLinks: classes.legalLinks,
-        legalLinksLink: classNames(classes.typography, classes.legalLinksLink),
+        legalLinksLink: clsx(classes.typography, classes.legalLinksLink),
         organizationLogo: classes.organizationLogo,
         primary: classes.primary,
         quickLinksContact: classes.quickLinksContact,
         quickLinksMore: classes.quickLinksMore,
         secondary: classes.secondary,
         stayInTouchLinks: classes.stayInTouchLinks,
-        stayInTouchText: classNames(
-          classes.typography,
-          classes.stayInTouchText
-        ),
-        text: classNames(classes.typography, classes.text),
+        stayInTouchText: clsx(classes.typography, classes.stayInTouchText),
+        text: clsx(classes.typography, classes.text),
         ...classesProp,
       }}
     />
@@ -233,15 +227,28 @@ function MainFooter({
 }
 
 MainFooter.propTypes = {
+  classes: PropTypes.shape({}),
   outbreak: PropTypes.shape({
     page: PropTypes.shape({
       about: PropTypes.shape({}),
-      initiative_logo: PropTypes.shape({}),
+      initiative_logo: PropTypes.shape({
+        image: PropTypes.string,
+        link: PropTypes.string,
+      }),
       legal_links: PropTypes.arrayOf(PropTypes.shape({})),
       quick_links: PropTypes.arrayOf(PropTypes.shape({})),
-      organization_logo: PropTypes.shape({}),
+      organization_logo: PropTypes.shape({
+        alt: PropTypes.string,
+        image: PropTypes.string,
+        link: PropTypes.string,
+      }),
+      social_media: PropTypes.shape({}),
     }),
   }).isRequired,
+};
+
+MainFooter.defaultProps = {
+  classes: undefined,
 };
 
 export default MainFooter;

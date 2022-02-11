@@ -1,12 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Section } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { Section } from "@commons-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 import LinkButton from "@/outbreakafrica/components/Link/Button";
 
@@ -46,13 +43,13 @@ function PageNavigation({
 }) {
   const classes = useStyles(props);
   // Remove query from asPath (if any)
-  const asPath = asPathProp && asPathProp.split("?")[0];
-  const asPathParts = asPath && asPath.split("/");
+  const asPath = asPathProp?.split("?")[0];
+  const asPathParts = asPath?.split("/");
   // Limit navigationUrl to subnav level only i.e. ignore article slug
   const navigationUrl =
-    asPathParts && asPathParts.length > 2 && asPathParts.slice(0, 3).join("/");
+    asPathParts?.length > 2 && asPathParts.slice(0, 3).join("/");
 
-  if (!navigation || navigation.length < 1) {
+  if (!navigation?.length) {
     return null;
   }
   return (
@@ -71,7 +68,7 @@ function PageNavigation({
                 href={pathname || link.url}
                 as={pathname ? link.url : undefined}
                 size="small"
-                className={classNames(classes.button, {
+                className={clsx(classes.button, {
                   [classes.buttonCurrent]: link.url.startsWith(navigationUrl),
                 })}
               >
@@ -86,16 +83,19 @@ function PageNavigation({
 }
 
 PageNavigation.propTypes = {
+  asPath: PropTypes.string,
   navigation: PropTypes.arrayOf(
     PropTypes.shape({
       title: PropTypes.string.isRequired,
       url: PropTypes.string.isRequired,
     })
-  ).isRequired,
+  ),
   pathname: PropTypes.string,
 };
 
 PageNavigation.defaultProps = {
+  asPath: undefined,
+  navigation: undefined,
   pathname: undefined,
 };
 

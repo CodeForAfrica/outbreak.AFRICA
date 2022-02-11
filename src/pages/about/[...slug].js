@@ -1,14 +1,13 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
+import { getSitePageWithChildren } from "@/outbreakafrica/cms";
 import Content from "@/outbreakafrica/components/Content";
 import Hero from "@/outbreakafrica/components/Hero";
 import JoinUs from "@/outbreakafrica/components/JoinUs";
 import Page from "@/outbreakafrica/components/Page";
-
 import config from "@/outbreakafrica/config";
-import { getSitePageWithChildren } from "@/outbreakafrica/cms";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -112,6 +111,28 @@ function About({ errorCode, outbreak, slug, ...props }) {
     </Page>
   );
 }
+
+About.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      children: PropTypes.node,
+      join_us: PropTypes.shape({}),
+      hero_content: PropTypes.shape({}),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+  slug: PropTypes.string,
+};
+
+About.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+  slug: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage, slug: pageSlug } = query;

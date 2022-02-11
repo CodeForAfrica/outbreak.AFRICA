@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
 import { RichTypography } from "@commons-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 import iconBox from "@/outbreakafrica/assets/icon-infobox.svg";
 

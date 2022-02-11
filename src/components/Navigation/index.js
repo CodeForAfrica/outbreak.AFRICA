@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { AppBar, Toolbar, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileNavigation from "./MobileNavigation";
@@ -105,40 +104,39 @@ function Navigation({
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <>
-      <AppBar color="inherit" position="sticky" className={classes.root}>
-        <Toolbar disableGutters className={classes.toolbar}>
-          {isDesktop ? (
-            <DesktopNavigation
+    <AppBar color="inherit" position="sticky" className={classes.root}>
+      <Toolbar disableGutters className={classes.toolbar}>
+        {isDesktop ? (
+          <DesktopNavigation
+            country={country}
+            countries={countries}
+            navigation={navigation}
+            classes={{ section: classes.section }}
+          />
+        ) : (
+          <>
+            <div className={classes.grow} />
+            <MobileNavigation
               country={country}
               countries={countries}
               navigation={navigation}
               classes={{ section: classes.section }}
             />
-          ) : (
-            <>
-              <div className={classes.grow} />
-              <MobileNavigation
-                country={country}
-                countries={countries}
-                navigation={navigation}
-                classes={{ section: classes.section }}
-              />
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-    </>
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 }
 
 Navigation.propTypes = {
   classes: PropTypes.shape({}).isRequired,
   outbreak: PropTypes.shape({
+    country: PropTypes.string,
+    countries: PropTypes.arrayOf(PropTypes.shape({})),
     page: PropTypes.shape({
       navigation: PropTypes.arrayOf(PropTypes.shape({})),
     }),
-    countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   }).isRequired,
 };
 

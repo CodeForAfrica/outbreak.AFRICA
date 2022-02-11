@@ -1,9 +1,3 @@
-import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
 import {
   Slide,
   Grid,
@@ -13,15 +7,18 @@ import {
   DialogContent,
   Link,
 } from "@material-ui/core";
-
-import SearchIcon from "@material-ui/icons/Search";
+import { makeStyles } from "@material-ui/core/styles";
 import CloseIcon from "@material-ui/icons/Close";
 import MenuIcon from "@material-ui/icons/Menu";
+import SearchIcon from "@material-ui/icons/Search";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
+
+import NavigationList from "./NavigationList";
 
 import IconButtonLink from "@/outbreakafrica/components/Link/IconButton";
 import Logo from "@/outbreakafrica/components/Navigation/Logo";
-
-import NavigationList from "./NavigationList";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -134,7 +131,7 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                   href="/#"
                   variant="overline"
                   underline="none"
-                  className={classNames(
+                  className={clsx(
                     classes.button,
                     classes.languageButton,
                     "active"
@@ -150,7 +147,7 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                   href="/#"
                   variant="overline"
                   underline="none"
-                  className={classNames(classes.button, classes.languageButton)}
+                  className={clsx(classes.button, classes.languageButton)}
                 >
                   Fr
                 </Link>
@@ -160,7 +157,7 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
                   href="/#"
                   variant="overline"
                   underline="none"
-                  className={classNames(classes.button, classes.languageButton)}
+                  className={clsx(classes.button, classes.languageButton)}
                 >
                   عربى
                 </Link>
@@ -210,7 +207,9 @@ function MobileNavigation({ country, countries, navigation, ...props }) {
 
 MobileNavigation.propTypes = {
   countries: PropTypes.arrayOf(PropTypes.shape({}).isRequired).isRequired,
-  country: PropTypes.shape({}),
+  country: PropTypes.shape({
+    isoCode: PropTypes.string,
+  }),
   navigation: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 

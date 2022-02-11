@@ -1,8 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 import Link from "@/outbreakafrica/components/Link";
 import Tabs from "@/outbreakafrica/components/Tabs";

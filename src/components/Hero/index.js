@@ -1,17 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-
+import { RichTypography, Section } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { RichTypography, Section } from "@commons-ui/core";
-
-import heroImage from "@/outbreakafrica/assets/images/heropattern.png";
-import coronaImage from "@/outbreakafrica/assets/images/coronavirus.svg";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 import DesktopCarousel from "./DesktopCarousel";
 import MobileCarousel from "./MobileCarousel";
+
+import coronaImage from "@/outbreakafrica/assets/images/coronavirus.svg";
+import heroImage from "@/outbreakafrica/assets/images/heropattern.png";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: (props) => {
@@ -120,31 +118,19 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
 
 function Hero({ heroContent, isResearch, ...props }) {
   const theme = useTheme();
-  const hasCarousel =
-    heroContent &&
-    heroContent.component &&
-    heroContent.component.length &&
-    heroContent.component[0].acf_fc_layout === "carousel";
-
-  const hasImage =
-    heroContent &&
-    heroContent.component &&
-    heroContent.component.length &&
-    heroContent.component[0].acf_fc_layout === "image";
+  const hasCarousel = heroContent?.component?.[0]?.acf_fc_layout === "carousel";
+  const hasImage = heroContent?.component?.[0]?.acf_fc_layout === "image";
 
   const classes = useStyles({ ...props, isResearch, hasCarousel });
 
-  if (!heroContent) {
-    return null;
-  }
-  const { tagline, title, component } = heroContent;
+  const { tagline, title, component } = heroContent || {};
 
   const { carousel_items: carouselItems, link_title: carouselLinkTitle } =
-    (hasCarousel && component && component[0]) || {};
+    (hasCarousel && component?.[0]) || {};
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const Carousel = isDesktop ? DesktopCarousel : MobileCarousel;
 
-  const { url: imageUrl } = (hasImage && component && component[0]) || {};
+  const { url: imageUrl } = (hasImage && component?.[0]) || {};
 
   let md = 12;
   if (hasCarousel) {
@@ -152,6 +138,10 @@ function Hero({ heroContent, isResearch, ...props }) {
   }
   if (hasImage) {
     md = 6;
+  }
+
+  if (!heroContent) {
+    return null;
   }
   return (
     <div className={classes.root}>
@@ -168,7 +158,7 @@ function Hero({ heroContent, isResearch, ...props }) {
                 variant={isResearch ? "h3" : "h1"}
                 component="div"
                 classes={{
-                  root: classNames(classes.title, {
+                  root: clsx(classes.title, {
                     [classes.notCarousel]: !hasCarousel,
                   }),
                 }}
@@ -208,7 +198,11 @@ function Hero({ heroContent, isResearch, ...props }) {
 }
 Hero.propTypes = {
   heroContent: PropTypes.shape({
-    component: PropTypes.arrayOf(PropTypes.shape({})),
+    component: PropTypes.arrayOf(
+      PropTypes.shape({
+        acf_fc_layout: PropTypes.string,
+      })
+    ),
     tagline: PropTypes.string,
     title: PropTypes.string,
     background_image: PropTypes.string,

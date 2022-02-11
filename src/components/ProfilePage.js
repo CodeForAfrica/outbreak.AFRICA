@@ -1,33 +1,29 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
-import PropTypes from "prop-types";
-
-import { useRouter } from "next/router";
-
-import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-
+import { Section } from "@commons-ui/core";
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import ChartContainer from "@hurumap-ui/core/ChartContainer";
 import useGeoIndexLoader from "@hurumap-ui/core/useGeoIndexLoader";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
-
-import { Section } from "@commons-ui/core";
-
-import config from "@/outbreakafrica/config";
-import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
-import FacebookIcon from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
-import InstagramIcon from "@/outbreakafrica/assets/Icon awesome-instagram-b.svg";
-import LinkedInIcon from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
-import TwitterIcon from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
-import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
-import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
-import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import React, { useEffect, useState, useMemo, useCallback } from "react";
 
 import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 import Page from "./Page";
 import ProfileDetail from "./ProfileDetail";
 import ProfileSection, { ProfileSectionTitle } from "./ProfileSection";
+
+import FacebookIcon from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "@/outbreakafrica/assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
+import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
+import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
+import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
@@ -194,6 +190,7 @@ function Chart({ chartData, definition, profiles, classes }) {
 }
 
 Chart.propTypes = {
+  classes: PropTypes.shape({}).isRequired,
   chartData: PropTypes.shape({
     isLoading: PropTypes.bool,
     profileVisualsData: PropTypes.shape({
@@ -202,8 +199,16 @@ Chart.propTypes = {
   }).isRequired,
   definition: PropTypes.shape({
     queryAlias: PropTypes.string,
+    typeProps: PropTypes.shape({}),
   }).isRequired,
-  profiles: PropTypes.shape({}).isRequired,
+  profiles: PropTypes.shape({
+    parent: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+    profile: PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 const overrideTypePropsFor = (chartType) => {
@@ -550,7 +555,7 @@ function ProfilePage({
             </Grid>
           )
       ),
-    [activeTab, chartData, classes, country.slug, geoId, profileTabs, profiles]
+    [activeTab, chartData, classes, geoId, profileTabs, profiles]
   );
 
   useEffect(() => {
@@ -633,6 +638,12 @@ function ProfilePage({
 
 ProfilePage.propTypes = {
   indicatorId: PropTypes.string,
+  country: PropTypes.shape({
+    isoCode: PropTypes.string,
+    shortName: PropTypes.string,
+    slug: PropTypes.string,
+  }),
+  geoId: PropTypes.string,
   language: PropTypes.string.isRequired,
   outbreak: PropTypes.shape({
     countries: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -649,6 +660,8 @@ ProfilePage.propTypes = {
 };
 
 ProfilePage.defaultProps = {
+  country: undefined,
+  geoId: undefined,
   indicatorId: undefined,
 };
 

@@ -1,11 +1,7 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
-
 import ContentLoader from "@hurumap-ui/core/ContentLoader";
-
-import SectionSubtitle from "@/outbreakafrica/components/SectionSubtitle";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
 import demographicIcon from "@/outbreakafrica/assets/icon-demographic.svg";
 import economicIcon from "@/outbreakafrica/assets/icon-economic.svg";
@@ -15,6 +11,7 @@ import infrastructureIcon from "@/outbreakafrica/assets/icon-infrastructure.svg"
 import mobilityIcon from "@/outbreakafrica/assets/icon-mobility.svg";
 import safetyIcon from "@/outbreakafrica/assets/icon-safety.svg";
 import socioEconomicIcon from "@/outbreakafrica/assets/icon-socioeconomic.svg";
+import SectionSubtitle from "@/outbreakafrica/components/SectionSubtitle";
 
 const useStyles = makeStyles(() => ({
   root: {},

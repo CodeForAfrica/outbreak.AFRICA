@@ -1,1 +1,5 @@
-export { default, getServerSideProps } from "./[...slug]";
+import Legal, { getServerSideProps } from "./[...slug]";
+
+export { getServerSideProps };
+
+export default Legal;

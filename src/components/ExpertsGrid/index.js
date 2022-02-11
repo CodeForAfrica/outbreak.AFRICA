@@ -1,15 +1,15 @@
 /* eslint-disable react/no-danger, jsx-a11y/control-has-associated-label */
-import React, { useEffect, useMemo, useRef, useState } from "react";
-import PropTypes from "prop-types";
 
-import classNames from "classnames";
-
-import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { ListItem as Profile, Section } from "@commons-ui/core";
 import { Contacts as ProfileContacts } from "@commons-ui/core/ProfileList";
-import Filter from "@/outbreakafrica/components/Filter";
+import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 import useStyles from "./useStyles";
+
+import Filter from "@/outbreakafrica/components/Filter";
 
 function ExpertsGrid({
   experts,
@@ -131,7 +131,7 @@ function ExpertsGrid({
               <Profile
                 classes={{
                   root: classes.profile,
-                  contentsRoot: classNames(
+                  contentsRoot: clsx(
                     classes.profileContentsRoot,
                     classes[`profileContentsRoot${index % 3}`]
                   ),

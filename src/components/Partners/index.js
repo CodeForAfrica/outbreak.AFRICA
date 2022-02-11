@@ -1,15 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { Section } from "@commons-ui/core";
 import { Grid, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import classNames from "classnames";
-
-import Subscribe from "./Subscribe";
-import PartnerGrid from "./PartnersGrid";
 import JoinUs from "./JoinUs";
+import PartnerGrid from "./PartnersGrid";
+import Subscribe from "./Subscribe";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -102,7 +100,7 @@ function Partners({ partners, subscribe, joinUs, ...props }) {
           <div className={classes.oceanBlueDiv} />
         </>
       )}
-      <Section classes={{ root: classNames({ [classes.section]: isDesktop }) }}>
+      <Section classes={{ root: clsx({ [classes.section]: isDesktop }) }}>
         <Grid container direction={isDesktop ? "row" : "column-reverse"}>
           <Grid
             item
@@ -131,7 +129,7 @@ function Partners({ partners, subscribe, joinUs, ...props }) {
             </Grid>
           </Grid>
           <Grid item md={7} sm={12} className={classes.partnerContainer}>
-            <PartnerGrid partners={partners} /> 
+            <PartnerGrid partners={partners} />
           </Grid>
         </Grid>
       </Section>

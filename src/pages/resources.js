@@ -1,12 +1,11 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-import Page from "@/outbreakafrica/components/Page";
-import Hero from "@/outbreakafrica/components/Hero";
-
-import config from "@/outbreakafrica/config";
 import { getSitePage } from "@/outbreakafrica/cms";
+import Hero from "@/outbreakafrica/components/Hero";
+import Page from "@/outbreakafrica/components/Page";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},
@@ -43,6 +42,23 @@ function Resources({ outbreak, ...props }) {
     </Page>
   );
 }
+
+Resources.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      hero_content: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+Resources.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;

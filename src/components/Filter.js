@@ -1,10 +1,8 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-import classNames from "classnames";
-
 import { Grid, Button, ButtonBase } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -91,7 +89,7 @@ function Filter({
           <Grid item>
             <Button
               rounded
-              className={classNames(classes.button, {
+              className={clsx(classes.button, {
                 [classes.activeButton]: item.slug === activeTopic,
               })}
               onClick={() => onButtonClick(item.slug)}
@@ -120,6 +118,7 @@ function Filter({
 }
 
 Filter.propTypes = {
+  activeTopic: PropTypes.string,
   onButtonClick: PropTypes.func.isRequired,
   onSubTopicButtonClick: PropTypes.func.isRequired,
   parentTopics: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
@@ -127,6 +126,7 @@ Filter.propTypes = {
   hide: PropTypes.bool,
 };
 Filter.defaultProps = {
+  activeTopic: undefined,
   hide: true,
 };
 

@@ -1,20 +1,16 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
-import { makeStyles } from "@material-ui/core/styles";
-import { Grid, Typography } from "@material-ui/core";
-
 import { Section } from "@commons-ui/core";
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import Form from "@/outbreakafrica/components/Form";
-
-import config from "@/outbreakafrica/config";
-import email from "@/outbreakafrica/assets/email.svg";
-import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
-import source from "@/outbreakafrica/assets/subscribe.png";
 import blueCircles from "@/outbreakafrica/assets/blue-circles.svg";
+import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
+import email from "@/outbreakafrica/assets/email.svg";
+import source from "@/outbreakafrica/assets/subscribe.png";
+import Form from "@/outbreakafrica/components/Form";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
@@ -194,7 +190,7 @@ const useStyles = makeStyles(
   })
 );
 
-function Subscribe({ children, subscribe, variant, ...props }) {
+function Subscribe({ subscribe, variant, ...props }) {
   const classes = useStyles({ ...props, variant });
   const { title, description } = subscribe;
 
@@ -212,7 +208,7 @@ function Subscribe({ children, subscribe, variant, ...props }) {
     <div className={classes.root}>
       <Section
         classes={{
-          root: classNames(
+          root: clsx(
             { [classes.section]: variant === "full" },
             { [classes.sectionCompact]: variant === "compact" }
           ),
@@ -284,4 +280,5 @@ Subscribe.defaultProps = {
   },
   variant: "full",
 };
+
 export default Subscribe;

@@ -1,8 +1,3 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
 import {
   Button,
   Card,
@@ -12,6 +7,9 @@ import {
   Typography,
   makeStyles,
 } from "@material-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 import NextComposed from "@/outbreakafrica/components/Link/NextComposed";
 
@@ -103,13 +101,13 @@ function CarouselCard({ item, linkTitle, ...props }) {
   const actionAreaProps =
     (link && { component: NextComposed, href: link }) || undefined;
   return (
-    <Card className={classNames(classes.cardSize, classes.root)}>
+    <Card className={clsx(classes.cardSize, classes.root)}>
       <CardActionArea
         {...actionAreaProps}
-        className={classNames(classes.cardSize, classes.actionArea)}
+        className={clsx(classes.cardSize, classes.actionArea)}
       >
         <CardMedia
-          className={classNames(classes.cardSize, classes.media)}
+          className={clsx(classes.cardSize, classes.media)}
           image={image}
           title={title}
         />

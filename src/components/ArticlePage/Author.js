@@ -1,9 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { A, RichTypography } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { A, RichTypography } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
 
 import linkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
@@ -196,7 +195,19 @@ function Author({ author, variant, ...props }) {
 }
 
 Author.propTypes = {
-  author: PropTypes.shape({}).isRequired,
+  author: PropTypes.shape({
+    acf: PropTypes.shape({
+      linkedin: PropTypes.string,
+      position: PropTypes.string,
+      twitter: PropTypes.string,
+      website: PropTypes.string,
+    }),
+    avatar_urls: PropTypes.shape({
+      96: PropTypes.string,
+    }),
+    description: PropTypes.string,
+    name: PropTypes.string,
+  }).isRequired,
   variant: PropTypes.oneOf(["compact", "full"]),
 };
 
