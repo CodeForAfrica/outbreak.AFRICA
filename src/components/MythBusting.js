@@ -85,7 +85,7 @@ const useStyles = makeStyles(
   })
 );
 
-function MythBursting({ myth, ...props }) {
+function MythBusting({ myth, ...props }) {
   const classes = useStyles(props);
 
   if (!myth) {
@@ -158,7 +158,7 @@ function MythBursting({ myth, ...props }) {
   );
 }
 
-MythBursting.propTypes = {
+MythBusting.propTypes = {
   myth: PropTypes.shape({
     title: PropTypes.string,
     description: PropTypes.string,
@@ -167,8 +167,8 @@ MythBursting.propTypes = {
   }),
 };
 
-MythBursting.defaultProps = {
+MythBusting.defaultProps = {
   myth: undefined,
 };
 
-export default MythBursting;
+export default MythBusting;
