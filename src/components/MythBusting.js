@@ -7,6 +7,7 @@ import React from "react";
 
 import illoMobile from "@/outbreakafrica/assets/images/illo-03-mobile.png";
 import illo from "@/outbreakafrica/assets/images/illo-03.png";
+import Figure from "@/outbreakafrica/components/Figure";
 import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(
@@ -103,7 +104,8 @@ function MythBursting({ myth, ...props }) {
               className={clsx(classes.hightlightHeight, classes.description)}
             >
               <div>
-                <img
+                <Figure
+                  layout="intrinsic"
                   src={illoMobile}
                   alt="Corona virus"
                   className={classes.mobileImgContainer}
@@ -140,7 +142,7 @@ function MythBursting({ myth, ...props }) {
               classes.highlight
             )}
           >
-            <img
+            <Figure
               src={illo}
               alt="Corona virus"
               className={clsx(
