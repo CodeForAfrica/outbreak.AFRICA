@@ -10,7 +10,7 @@ import Link from "@/outbreakafrica/components/Link";
 const COPYRIGHT_LOGO = {
   image: {
     alt: "Creative Commons",
-    url: cc,
+    url: cc.src,
   },
   url: "//creativecommons.org",
 };
