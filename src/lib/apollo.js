@@ -172,7 +172,9 @@ export const withApollo =
 
             // getDataFromTree does not call componentWillUnmount
             // head side effect therefore need to be cleared manually
-            Head.rewind();
+            // NOTE(kilemensi): Head.rewind has been removed as of Next.js v910
+            //                  https://nextjs.org/docs/upgrading#remove-headrewind
+            // Head.rewind();
           }
         }
 
