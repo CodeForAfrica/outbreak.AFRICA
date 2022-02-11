@@ -17,7 +17,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       return {};
     }
     return {
-      backgroundImage: `url(${heroImage})`,
+      backgroundImage: `url(${heroImage.src})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "0% 0%",
       backgroundSize: "cover",
@@ -30,7 +30,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
     }
     return {
       flexGrow: 1,
-      backgroundImage: `url(${coronaImage})`,
+      backgroundImage: `url(${coronaImage.src})`,
       backgroundRepeat: "no-repeat",
       backgroundPosition: "90% 2%",
       backgroundSize: "50%",
