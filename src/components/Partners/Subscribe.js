@@ -47,18 +47,18 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
     "& #mc_embed_signup .button": {
-      backgroundImage: `url(${email})`,
+      backgroundImage: `url(${email.src})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "40px 40px",
       height: 55,
       paddingLeft: theme.typography.pxToRem(50),
       "&:hover": {
-        backgroundImage: `url(${emailFocus})`,
+        backgroundImage: `url(${emailFocus.src})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "40px 40px",
       },
       "&:focus": {
-        backgroundImage: `url(${emailFocus})`,
+        backgroundImage: `url(${emailFocus.src})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "40px 40px",
       },
