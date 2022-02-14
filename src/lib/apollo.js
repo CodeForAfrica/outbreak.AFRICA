@@ -1,7 +1,6 @@
 /* eslint-disable no-console */
 import { ApolloProvider } from "@apollo/react-hooks";
 import App from "next/app";
-import Head from "next/head";
 import PropTypes from "prop-types";
 import React from "react";
 
