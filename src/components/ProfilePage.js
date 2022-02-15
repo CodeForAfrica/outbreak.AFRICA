@@ -23,6 +23,7 @@ import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
 import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
 import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
 import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
+import Figure from "@/outbreakafrica/components/Figure";
 import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(
@@ -452,7 +453,7 @@ function ProfilePage({
                           groupIcons={{
                             facebook: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={FacebookIcon}
                                   alt="Facebook"
@@ -461,7 +462,7 @@ function ProfilePage({
                             },
                             twitter: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={TwitterIcon}
                                   alt="Twitter"
@@ -470,7 +471,7 @@ function ProfilePage({
                             },
                             linkedin: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={LinkedInIcon}
                                   alt="LinkedIn"
@@ -479,7 +480,7 @@ function ProfilePage({
                             },
                             instagram: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={InstagramIcon}
                                   alt="Instagram"
@@ -488,7 +489,7 @@ function ProfilePage({
                             },
                             embed: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={EmbedIcon}
                                   alt="Embed"
@@ -497,7 +498,7 @@ function ProfilePage({
                             },
                             link: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={LinkIcon}
                                   alt="Link"
@@ -506,7 +507,7 @@ function ProfilePage({
                             },
                             download: {
                               icon: (
-                                <img
+                                <Figure
                                   className={classes.actionIcon}
                                   src={DownloadIcon}
                                   alt="Download"
