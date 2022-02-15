@@ -15,6 +15,7 @@ import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
 import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
 import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
 import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
+import Figure from "@/outbreakafrica/components/Figure";
 import config from "@/outbreakafrica/config";
 
 const ChartContainer = dynamic(
@@ -132,7 +133,7 @@ function Container({ featuredChart, ...props }) {
         groupIcons={{
           facebook: {
             icon: (
-              <img
+              <Figure
                 className={classes.actionIcon}
                 src={FacebookIcon}
                 alt="Facebook"
@@ -141,7 +142,7 @@ function Container({ featuredChart, ...props }) {
           },
           twitter: {
             icon: (
-              <img
+              <Figure
                 className={classes.actionIcon}
                 src={TwitterIcon}
                 alt="Twitter"
@@ -150,7 +151,7 @@ function Container({ featuredChart, ...props }) {
           },
           linkedin: {
             icon: (
-              <img
+              <Figure
                 className={classes.actionIcon}
                 src={LinkedInIcon}
                 alt="LinkedIn"
@@ -159,7 +160,7 @@ function Container({ featuredChart, ...props }) {
           },
           instagram: {
             icon: (
-              <img
+              <Figure
                 className={classes.actionIcon}
                 src={InstagramIcon}
                 alt="Instagram"
@@ -168,17 +169,25 @@ function Container({ featuredChart, ...props }) {
           },
           embed: {
             icon: (
-              <img className={classes.actionIcon} src={EmbedIcon} alt="Embed" />
+              <Figure
+                className={classes.actionIcon}
+                src={EmbedIcon}
+                alt="Embed"
+              />
             ),
           },
           link: {
             icon: (
-              <img className={classes.actionIcon} src={LinkIcon} alt="Link" />
+              <Figure
+                className={classes.actionIcon}
+                src={LinkIcon}
+                alt="Link"
+              />
             ),
           },
           download: {
             icon: (
-              <img
+              <Figure
                 className={classes.actionIcon}
                 src={DownloadIcon}
                 alt="Download"

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { RichTypography } from "@commons-ui/core";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";

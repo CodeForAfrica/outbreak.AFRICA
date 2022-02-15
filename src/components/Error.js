@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { Typography, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
