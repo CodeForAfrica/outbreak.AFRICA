@@ -27,10 +27,12 @@ const useStyles = makeStyles(
     },
     author: {},
     image: {
-      borderRadius: typography.pxToRem(100),
       height: typography.pxToRem(155),
       width: typography.pxToRem(155),
       position: "relative",
+      "& img": {
+        borderRadius: "50%",
+      },
       "& img:after": {
         backgroundColor: palette.primary.main,
         bottom: 0,

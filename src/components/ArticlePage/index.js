@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { RichTypography, Section } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
@@ -18,6 +19,7 @@ import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
 import Aside from "@/outbreakafrica/components/Content/Aside";
 import HURUmapContainer from "@/outbreakafrica/components/FeaturedData/Container";
 import FlourishContainer from "@/outbreakafrica/components/FeaturedData/FlourishContainer";
+import Figure from "@/outbreakafrica/components/Figure";
 import Link from "@/outbreakafrica/components/Link";
 import Portal from "@/outbreakafrica/components/Portal";
 import Subscribe from "@/outbreakafrica/components/Subscribe";
@@ -115,7 +117,7 @@ function ArticlePage({
                     }}
                     className={classes.link}
                   >
-                    <img
+                    <Figure
                       src={linkedIn}
                       alt="LinkedIn"
                       className={classes.icon}
@@ -133,7 +135,7 @@ function ArticlePage({
                     }}
                     className={classes.link}
                   >
-                    <img
+                    <Figure
                       src={facebook}
                       alt="Facebook"
                       className={classes.icon}
@@ -151,7 +153,11 @@ function ArticlePage({
                     url={articleUrl}
                     className={classes.link}
                   >
-                    <img src={twitter} alt="Twitter" className={classes.icon} />
+                    <Figure
+                      src={twitter}
+                      alt="Twitter"
+                      className={classes.icon}
+                    />
                   </TwitterShareButton>
                 </Grid>
               </Grid>
@@ -219,9 +225,10 @@ function ArticlePage({
                       </RichTypography>
                     </Grid>
                     <Grid item md={6}>
-                      <img
+                      <Figure
                         src={post.acf.source_attribution.background_image}
                         alt={post.acf.title}
+                        layout="contain"
                       />
                     </Grid>
                   </Grid>
