@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { ButtonBase, Grid, Typography, makeStyles } from "@material-ui/core";
 import clsx from "clsx";
 import PropTypes from "prop-types";
@@ -80,7 +81,7 @@ function CarouselCard({ item, linkTitle, ...props }) {
       >
         <Grid container className={clsx(classes.contents)}>
           <Grid item xs={12} className={classes.content}>
-            <img src={image} className={clsx(classes.media)} alt={title} />
+            <img src={image} className={classes.media} alt={title} />
           </Grid>
           {title && (
             <Grid item xs={12} className={classes.content}>

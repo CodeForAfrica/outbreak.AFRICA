@@ -10,6 +10,7 @@ import MobileCarousel from "./MobileCarousel";
 
 import coronaImage from "@/outbreakafrica/assets/images/coronavirus.svg";
 import heroImage from "@/outbreakafrica/assets/images/heropattern.png";
+import Figure from "@/outbreakafrica/components/Figure";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: (props) => {
@@ -188,7 +189,11 @@ function Hero({ heroContent, isResearch, ...props }) {
           )}
           {hasImage && (
             <Grid item xs={12} md={6} className={classes.notCarousel}>
-              <img className={classes.heroImage} src={imageUrl} alt="title" />
+              <Figure
+                src={imageUrl}
+                alt="title"
+                className={classes.heroImage}
+              />
             </Grid>
           )}
         </Grid>
