@@ -8,6 +8,7 @@ import React, { useState, useRef } from "react";
 import Truncate from "react-truncate";
 
 import icon from "@/outbreakafrica/assets/icon web.svg";
+import Image from "@/outbreakafrica/components/Image";
 import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
@@ -66,10 +67,11 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
     position: "absolute",
     left: 16,
     "& img": {
-      height: "auto",
-      width: "1.5rem",
+      // Need !important to override next/image size
+      height: "auto !important",
+      width: "1.5rem !important",
       [breakpoints.up("xl")]: {
-        width: "2rem",
+        width: "2rem !important",
       },
     },
   },
@@ -190,7 +192,7 @@ function Dataset({ dataset, lines, ...props }) {
           href={`${config.CKAN_BACKEND_URL}/dataset/${name}`}
           className={classes.link}
         >
-          <img src={icon} alt="link" />
+          <Image src={icon} alt="link" />
         </A>
         <A
           color="secondary"
