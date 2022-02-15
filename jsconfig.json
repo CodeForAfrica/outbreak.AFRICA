@@ -4,5 +4,6 @@
     "paths": {
       "@/outbreakafrica/*": ["./src/*"]
     }
-  }
+  },
+  "exclude": ["node_modules"]
 }
