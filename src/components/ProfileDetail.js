@@ -20,6 +20,7 @@ import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 
 import searchIcon from "@/outbreakafrica/assets/images/icon-search.svg";
+import Image from "@/outbreakafrica/components/Image";
 import Button from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -233,7 +234,7 @@ function ProfileDetail({
                         placeholder="Compare with"
                         onChange={handleSearch}
                       />
-                      <img
+                      <Image
                         alt=""
                         src={searchIcon}
                         className={classes.searchBarIcon}
