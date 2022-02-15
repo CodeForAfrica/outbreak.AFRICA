@@ -14,6 +14,7 @@ import React from "react";
 import img1 from "@/outbreakafrica/assets/joinus-illo-1.svg";
 import img2 from "@/outbreakafrica/assets/joinus-illo-2.svg";
 import imgMobile from "@/outbreakafrica/assets/joinus-illo.svg";
+import Figure from "@/outbreakafrica/components/Figure";
 import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
@@ -105,9 +106,11 @@ function JoinUs({ joinUs, ...props }) {
             item
             xs={12}
             md={3}
+            container
             className={clsx(classes.highlightHeight, classes.highlight)}
           >
-            <img
+            <Figure
+              layout="intrinsic"
               src={imgSrc1}
               alt="hightlight"
               className={clsx(
@@ -142,7 +145,8 @@ function JoinUs({ joinUs, ...props }) {
             </div>
           </Grid>
           <Grid item md={4} implementation="css" smDown component={Hidden}>
-            <img
+            <Figure
+              layout="responsive"
               src={imgSrc2}
               alt="hightlight"
               className={clsx(classes.imgSrc2)}
