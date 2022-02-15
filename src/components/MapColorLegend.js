@@ -4,6 +4,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import React from "react";
 
 import MapKey from "@/outbreakafrica/assets/map-key.svg";
+import Image from "@/outbreakafrica/components/Image";
 import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
@@ -59,7 +60,7 @@ function MapColorLegend(props) {
                 </Typography>
               </Grid>
               <Grid item container>
-                <img src={MapKey} alt="Map Index" />
+                <Image src={MapKey} alt="Map Index" />
                 <List dense>
                   {Object.keys(config.vulnerabilityIndexColor).map((item) => (
                     <ListItem>
