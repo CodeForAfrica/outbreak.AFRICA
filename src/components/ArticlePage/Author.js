@@ -7,11 +7,11 @@ import React from "react";
 import linkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
 import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
 import websiteBlue from "@/outbreakafrica/assets/icon web.svg";
+import Figure from "@/outbreakafrica/components/Figure";
 
 const useStyles = makeStyles(
   ({ breakpoints, palette, typography, widths }) => ({
     icon: {
-      objectFit: "contain",
       height: "1.375rem",
       width: "1.375rem",
     },
@@ -27,11 +27,11 @@ const useStyles = makeStyles(
     },
     author: {},
     image: {
-      width: typography.pxToRem(200),
-      height: typography.pxToRem(200),
       borderRadius: typography.pxToRem(100),
+      height: typography.pxToRem(155),
+      width: typography.pxToRem(155),
       position: "relative",
-      "&:after": {
+      "& img:after": {
         backgroundColor: palette.primary.main,
         bottom: 0,
         content: '""',
@@ -41,6 +41,10 @@ const useStyles = makeStyles(
         position: "absolute",
         right: 0,
         top: 0,
+      },
+      [breakpoints.up("lg")]: {
+        height: typography.pxToRem(200),
+        width: typography.pxToRem(200),
       },
     },
     imageDiv: {
@@ -118,6 +122,7 @@ function Author({ author, variant, ...props }) {
     },
   } = author;
   const hasSocialLinks = linkedInUrl || twitterUrl || websiteUrl;
+
   return (
     <Grid
       container
@@ -131,7 +136,7 @@ function Author({ author, variant, ...props }) {
         md={variant === "full" ? 5 : undefined}
         className={classes.imageDiv}
       >
-        <img src={avatar["96"]} alt="" className={classes.image} />
+        <Figure src={avatar["96"]} alt="" className={classes.image} />
       </Grid>
       <Grid
         item
@@ -159,7 +164,11 @@ function Author({ author, variant, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img src={websiteBlue} alt="Website" className={classes.icon} />
+                <Figure
+                  src={websiteBlue}
+                  alt="Website"
+                  className={classes.icon}
+                />
               </A>
             )}
             {linkedInUrl && (
@@ -168,7 +177,11 @@ function Author({ author, variant, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img src={linkedIn} alt="LinkedIn" className={classes.icon} />
+                <Figure
+                  src={linkedIn}
+                  alt="LinkedIn"
+                  className={classes.icon}
+                />
               </A>
             )}
             {twitterUrl && (
@@ -177,7 +190,7 @@ function Author({ author, variant, ...props }) {
                 color="textSecondary"
                 className={classes.link}
               >
-                <img src={twitter} alt="Twitter" className={classes.icon} />
+                <Figure src={twitter} alt="Twitter" className={classes.icon} />
               </A>
             )}
           </Grid>
