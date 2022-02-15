@@ -24,7 +24,7 @@ import Link from "@/outbreakafrica/components/Link";
 import Portal from "@/outbreakafrica/components/Portal";
 import Subscribe from "@/outbreakafrica/components/Subscribe";
 import config from "@/outbreakafrica/config";
-import getChartElements from "utils/getChartElements";
+import getChartElements from "@/outbreakafrica/utils/getChartElements";
 
 function ArticlePage({
   post,

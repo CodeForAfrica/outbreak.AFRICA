@@ -4,7 +4,7 @@ import App from "next/app";
 import PropTypes from "prop-types";
 import React from "react";
 
-import createApolloClient from "apolloClient";
+import createApolloClient from "@/outbreakafrica/apolloClient";
 
 // On the client, we store the Apollo Client in the following variable.
 // This prevents the client from reinitializing between page transitions.
