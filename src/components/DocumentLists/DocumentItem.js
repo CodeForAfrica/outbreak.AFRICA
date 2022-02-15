@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { A, RichTypography } from "@commons-ui/core";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
@@ -6,6 +7,7 @@ import React, { useEffect, useState } from "react";
 
 import websiteBlue from "@/outbreakafrica/assets/icon web.svg";
 import { getPostById } from "@/outbreakafrica/cms";
+import Figure from "@/outbreakafrica/components/Figure";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   link: {
@@ -135,7 +137,7 @@ function DocumentItem({
         )}
         {documentUrl && (
           <A href={documentUrl} color="textSecondary" className={classes.link}>
-            <img src={websiteBlue} alt={title} className={classes.icon} />
+            <Figure src={websiteBlue} alt={title} className={classes.icon} />
           </A>
         )}
       </Grid>
