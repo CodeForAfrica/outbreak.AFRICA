@@ -384,13 +384,4 @@ Disallow:
   },
 };
 
-if (typeof document !== "undefined") {
-  // Same-Origin Policy
-  if (!window.location.hostname.includes("hurumap.org")) {
-    document.domain = config.hostname;
-  } else {
-    document.domain = "hurumap.org";
-  }
-}
-
 export default config;

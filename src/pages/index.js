@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import { getSitePage } from "@/outbreakafrica/cms";
-import FeaturedData from "@/outbreakafrica/components/FeaturedData";
 import FeaturedExperts from "@/outbreakafrica/components/FeaturedExperts";
 import FeaturedResearch from "@/outbreakafrica/components/FeaturedResearch";
 import FeaturedStories from "@/outbreakafrica/components/FeaturedStories";
@@ -88,7 +87,6 @@ function Index({ errorCode, outbreak, featuredExperts, ...props }) {
       myth,
       partners,
       subscribe,
-      rendered,
       hero_content: heroContent,
       documents_and_datasets: documentsAndDatasets,
       featured_stories: featuredStories,
@@ -134,10 +132,6 @@ function Index({ errorCode, outbreak, featuredExperts, ...props }) {
         values={status.values}
         title="Covid-19 cases in Africa"
         classes={{ root: classes.ticker, section: classes.section }}
-      />
-      <FeaturedData
-        featuredContent={rendered}
-        classes={{ root: classes.featuredData, section: classes.section }}
       />
       <FeaturedResearch
         documentsAndDatasets={documentsAndDatasets}
