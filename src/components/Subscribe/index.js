@@ -81,17 +81,16 @@ const useStyles = makeStyles(
     img: {
       height: "2.5rem",
     },
-    input: {
+    input: (props) => ({
       color: palette.text.secondary,
       fontSize: typography.caption.fontSize,
       lineHeight: typography.caption.lineHeight,
       borderBottom: "1px solid white",
       width: "100%",
-      [breakpoints.up("md")]: (props) =>
-        props.variant === "full" && {
-          width: "80%",
-        },
-    },
+      [breakpoints.up("md")]: {
+        width: props.variant === "full" ? "80%" : "100%",
+      },
+    }),
     subscribeGrid: (props) => {
       if (props.variant === "compact") {
         return {
