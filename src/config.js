@@ -149,34 +149,34 @@ Disallow:
       mobile: {
         linkedIn: {
           image: {
-            url: imgLinkedIn,
+            url: imgLinkedIn.src,
           },
         },
         twitter: {
           image: {
-            url: imgTwitter,
+            url: imgTwitter.src,
           },
         },
         website: {
           image: {
-            url: imgWebsite,
+            url: imgWebsite.src,
           },
         },
       },
       desktop: {
         linkedIn: {
           image: {
-            url: imgLinkedInDesktop,
+            url: imgLinkedInDesktop.src,
           },
         },
         twitter: {
           image: {
-            url: imgTwitterDesktop,
+            url: imgTwitterDesktop.src,
           },
         },
         website: {
           image: {
-            url: imgWebsiteDesktop,
+            url: imgWebsiteDesktop.src,
           },
         },
       },
