@@ -1,16 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
-
 import { RichTypography } from "@commons-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import SectionSubtitle from "components/SectionSubtitle";
-
-import demographicIcon from "assets/icon-demographic.svg";
-import economicIcon from "assets/icon-economic.svg";
-import epidemiologicalIcon from "assets/icon-epidemiological.svg";
-import safetyIcon from "assets/icon-safety.svg";
+import demographicIcon from "@/outbreakafrica/assets/icon-demographic.svg";
+import economicIcon from "@/outbreakafrica/assets/icon-economic.svg";
+import epidemiologicalIcon from "@/outbreakafrica/assets/icon-epidemiological.svg";
+import safetyIcon from "@/outbreakafrica/assets/icon-safety.svg";
+import SectionSubtitle from "@/outbreakafrica/components/SectionSubtitle";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
@@ -72,7 +69,22 @@ function Main({ classes: classesProp, content, ...props }) {
 }
 
 Main.propTypes = {
-  content: PropTypes.shape({}).isRequired,
+  classes: PropTypes.shape({
+    content: PropTypes.string,
+    root: PropTypes.string,
+    sectionSubtitle: PropTypes.string,
+    sectionSubtitleTitle: PropTypes.string,
+  }).isRequired,
+  content: PropTypes.shape({
+    icon: PropTypes.string,
+    content: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+    slug: PropTypes.string,
+    title: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default Main;

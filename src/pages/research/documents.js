@@ -1,15 +1,14 @@
+import { useMediaQuery, useTheme } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-import { useMediaQuery, useTheme } from "@material-ui/core";
-
-import Page from "components/Page";
-import Hero from "components/Hero";
-import DocumentLists from "components/DocumentLists";
-import Subscribe from "components/Subscribe";
-
-import config from "config";
-import { getSitePage } from "cms";
+import { getSitePage } from "@/outbreakafrica/cms";
+import DocumentLists from "@/outbreakafrica/components/DocumentLists";
+import Hero from "@/outbreakafrica/components/Hero";
+import Page from "@/outbreakafrica/components/Page";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -94,6 +93,24 @@ function FeaturedDocuments({ outbreak, ...props }) {
     </Page>
   );
 }
+
+FeaturedDocuments.propTypes = {
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      featured_documents: PropTypes.arrayOf(PropTypes.shape({})),
+      hero_content: PropTypes.shape({}),
+      section_title: PropTypes.string,
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+FeaturedDocuments.defaultProps = {
+  outbreak: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;

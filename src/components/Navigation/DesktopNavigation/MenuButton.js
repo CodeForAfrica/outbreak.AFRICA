@@ -1,12 +1,9 @@
-import React, { useRef, useState } from "react";
-import PropTypes from "prop-types";
-
+import { RichTypography } from "@commons-ui/core";
 import { Button, IconButton, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
 import { ExpandLess, ExpandMore } from "@material-ui/icons";
-
-import { RichTypography } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React, { useRef, useState } from "react";
 
 import NavigationButton from "./NavigationButton";
 
@@ -88,14 +85,20 @@ function MenuButton({
 }
 
 MenuButton.propTypes = {
+  children: PropTypes.node,
+  open: PropTypes.bool,
   popperProps: PropTypes.shape({}),
+  size: PropTypes.string,
   subtitle: PropTypes.string,
   title: PropTypes.string,
 };
 
 MenuButton.defaultProps = {
+  children: undefined,
+  open: undefined,
+  popperProps: undefined,
+  size: undefined,
   subtitle: undefined,
   title: undefined,
-  popperProps: undefined,
 };
 export default MenuButton;

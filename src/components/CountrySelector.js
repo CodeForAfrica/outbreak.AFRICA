@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import DataMenuList from "components/Navigation/DesktopNavigation/DataMenuList";
-import MenuButton from "components/Navigation/DesktopNavigation//MenuButton";
+import MenuButton from "@/outbreakafrica/components/Navigation/DesktopNavigation//MenuButton";
+import DataMenuList from "@/outbreakafrica/components/Navigation/DesktopNavigation/DataMenuList";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {

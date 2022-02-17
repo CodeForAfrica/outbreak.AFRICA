@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
 import Papa from "papaparse";
+import { useEffect, useState } from "react";
 
-import config from "config";
+import config from "@/outbreakafrica/config";
 
 export async function getCountryStats() {
   return Promise.all(
     config.countries.map((country) =>
-      fetch(
-        `${config.COUNTRY_STATS_URL}?countryTotal=${country.isoCode}`
-      ).then((res) => res.json())
+      fetch(`${config.COUNTRY_STATS_URL}?countryTotal=${country.isoCode}`).then(
+        (res) => res.json()
+      )
     )
   );
 }
@@ -81,10 +81,9 @@ export function useStories(url) {
   useEffect(() => {
     async function fetchStories() {
       const response = await fetch(urlJson);
-      const jsonClean = await (await response.text()).replace(
-        "])}while(1);</x>",
-        ""
-      );
+      const jsonClean = await (
+        await response.text()
+      ).replace("])}while(1);</x>", "");
       const json = await JSON.parse(jsonClean);
       const streamItems = await json.payload.streamItems;
       const foundStories = await streamItems.map(

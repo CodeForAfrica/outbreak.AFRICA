@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
-import { makeStyles } from "@material-ui/core/styles";
-
 import { DocumentsAndDatasets } from "@commons-ui/core";
+import { useMediaQuery } from "@material-ui/core";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import datasetsIcon from "assets/icon-datasets.svg";
-import docsIcon from "assets/icon-docs.svg";
-import highlightImg from "assets/illo-02.png";
+import datasetsIcon from "@/outbreakafrica/assets/icon-datasets.svg";
+import docsIcon from "@/outbreakafrica/assets/icon-docs.svg";
+import highlightImg from "@/outbreakafrica/assets/illo-02.png";
+import Figure from "@/outbreakafrica/components/Figure";
+import Image from "@/outbreakafrica/components/Image";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -53,14 +53,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       width: typography.pxToRem(817),
     },
   },
-  icon: {
-    height: typography.pxToRem(53),
-    width: typography.pxToRem(53),
-    [breakpoints.up("xl")]: {
-      height: typography.pxToRem(93),
-      width: typography.pxToRem(93),
-    },
-  },
+  icon: {},
   datasets: {
     margin: `${typography.pxToRem(57)} 0 ${typography.pxToRem(67)} 0`,
     [breakpoints.up("md")]: {
@@ -106,6 +99,8 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
 
 function FeaturedResearch({ documentsAndDatasets, ...props }) {
   const classes = useStyles(props);
+  const theme = useTheme();
+  const isUpXl = useMediaQuery(theme.breakpoints.up("xl"));
 
   if (!documentsAndDatasets) {
     return null;
@@ -125,7 +120,6 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
       link: datasetLink,
     },
   } = documentsAndDatasets;
-
   return (
     <DocumentsAndDatasets
       title={title}
@@ -135,7 +129,14 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
         description: documentDescription,
         link: { href: documentLink, label: linkLabel },
         icon: (
-          <img src={docsIcon} alt={documentTitle} className={classes.icon} />
+          <Image
+            layout="fixed"
+            src={docsIcon}
+            height={isUpXl ? 93 : 53}
+            width={isUpXl ? 93 : 53}
+            alt={documentTitle}
+            className={classes.icon}
+          />
         ),
       }}
       datasets={{
@@ -143,7 +144,14 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
         description: datasetDescription,
         link: { href: datasetLink, label: linkLabel },
         icon: (
-          <img src={datasetsIcon} alt={datasetTitle} className={classes.icon} />
+          <Image
+            layout="fixed"
+            src={datasetsIcon}
+            height={isUpXl ? 93 : 53}
+            width={isUpXl ? 93 : 53}
+            alt={datasetTitle}
+            className={classes.icon}
+          />
         ),
       }}
       classes={{
@@ -159,14 +167,14 @@ function FeaturedResearch({ documentsAndDatasets, ...props }) {
         documentsDescription: classes.documentsAndDatasetsDescription,
         documentsLink: classes.documentsAndDatasetsLink,
         heading: classes.heading,
-        highlight: classNames(classes.highlightSize, classes.highlight),
+        highlight: clsx(classes.highlightSize, classes.highlight),
         subtitle: classes.subtitle,
       }}
     >
-      <img
+      <Figure
         alt="Covid19"
         src={highlightImg}
-        className={classNames(classes.highlightSize, classes.highlightImg)}
+        className={clsx(classes.highlightSize, classes.highlightImg)}
       />
     </DocumentsAndDatasets>
   );

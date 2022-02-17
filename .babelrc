@@ -1,7 +1,5 @@
 {
-  "presets": [
-    "next/babel"
-  ],
+  "presets": ["next/babel"],
   "plugins": [
     [
       "transform-imports",
@@ -23,14 +21,9 @@
     [
       "module-resolver",
       {
-        "root": [
-          "./src"
-        ],
+        "root": ["./"],
         "alias": {
-          "assets": "./src/assets",
-          "components": "./src/components",
-          "lib": "./src/lib",
-          "pages": "./src/pages"
+          "@/outbreakafrica": "./src"
         }
       }
     ]

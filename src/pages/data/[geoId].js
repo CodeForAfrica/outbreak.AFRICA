@@ -1,13 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import Error from "next/error";
 import Head from "next/head";
+import PropTypes from "prop-types";
+import React from "react";
 
-import ProfilePage from "components/ProfilePage";
-
-import config from "config";
-import { getSectionedCharts, getSitePage } from "cms";
+import { getSectionedCharts, getSitePage } from "@/outbreakafrica/cms";
+import ProfilePage from "@/outbreakafrica/components/ProfilePage";
+import config from "@/outbreakafrica/config";
 
 function GeoId({ errorCode, ...props }) {
   if (errorCode === 404) {
@@ -54,6 +52,7 @@ function GeoId({ errorCode, ...props }) {
 }
 
 GeoId.propTypes = {
+  errorCode: PropTypes.number,
   geoId: PropTypes.string.isRequired,
   sectionedCharts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   language: PropTypes.string.isRequired,
@@ -61,6 +60,7 @@ GeoId.propTypes = {
 };
 
 GeoId.defaultProps = {
+  errorCode: undefined,
   indicatorId: undefined,
 };
 

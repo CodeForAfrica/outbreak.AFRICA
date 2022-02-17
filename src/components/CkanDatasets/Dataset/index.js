@@ -1,18 +1,15 @@
-import React, { useState, useRef } from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { A, RichTypography } from "@commons-ui/core";
 import { Avatar, Button, Grid, Tooltip } from "@material-ui/core";
-import { BarChart, Check } from "@material-ui/icons";
 import { makeStyles } from "@material-ui/core/styles";
-
+import { BarChart, Check } from "@material-ui/icons";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React, { useState, useRef } from "react";
 import Truncate from "react-truncate";
 
-import { A, RichTypography } from "@commons-ui/core";
-
-import config from "config";
-import icon from "assets/icon web.svg";
+import icon from "@/outbreakafrica/assets/icon web.svg";
+import Image from "@/outbreakafrica/components/Image";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
   root: {
@@ -70,10 +67,11 @@ const useStyles = makeStyles(({ breakpoints, palette, spacing }) => ({
     position: "absolute",
     left: 16,
     "& img": {
-      height: "auto",
-      width: "1.5rem",
+      // Need !important to override next/image size
+      height: "auto !important",
+      width: "1.5rem !important",
       [breakpoints.up("xl")]: {
-        width: "2rem",
+        width: "2rem !important",
       },
     },
   },
@@ -141,6 +139,14 @@ function DatasetStatus({ overdueDate, ...props }) {
   );
 }
 
+DatasetStatus.propTypes = {
+  overdueDate: PropTypes.string,
+};
+
+DatasetStatus.defaultProps = {
+  overdueDate: undefined,
+};
+
 function Dataset({ dataset, lines, ...props }) {
   const classes = useStyles(props);
   const notesRef = useRef(null);
@@ -186,7 +192,7 @@ function Dataset({ dataset, lines, ...props }) {
           href={`${config.CKAN_BACKEND_URL}/dataset/${name}`}
           className={classes.link}
         >
-          <img src={icon} alt="link" />
+          <Image src={icon} alt="link" />
         </A>
         <A
           color="secondary"
@@ -281,10 +287,7 @@ function Dataset({ dataset, lines, ...props }) {
             {Object.keys(formats).map((format) => (
               <RichTypography
                 variant="caption"
-                className={classNames(
-                  classes.format,
-                  format.toLocaleLowerCase()
-                )}
+                className={clsx(classes.format, format.toLocaleLowerCase())}
               >
                 {format}
               </RichTypography>
@@ -312,6 +315,7 @@ Dataset.propTypes = {
     dataset_date: PropTypes.string,
     has_quickcharts: PropTypes.bool,
     last_modified: PropTypes.string,
+    metadata_modified: PropTypes.string,
     name: PropTypes.string,
     notes: PropTypes.string,
     organization: PropTypes.shape({

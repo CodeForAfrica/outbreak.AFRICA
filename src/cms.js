@@ -1,4 +1,4 @@
-import config from "config";
+import config from "@/outbreakafrica/config";
 
 export async function getSiteOptions(lang) {
   const res = await fetch(
@@ -47,7 +47,7 @@ export async function getSitePage(slug, lang) {
     page,
     { rendered: page.content.rendered },
     page.acf,
-    options,
+    options
   );
   config.language = lang;
 

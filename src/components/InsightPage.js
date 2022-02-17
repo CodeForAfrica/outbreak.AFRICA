@@ -1,16 +1,16 @@
-import React, { useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
-
+import { Section } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React, { useEffect, useMemo, useState } from "react";
 
-import JoinUs from "components/JoinUs";
-import Link from "components/Link";
-import PostItem from "components/DocumentLists/DocumentItem";
-import Filter from "components/Filter";
-import Subscribe from "components/Subscribe";
 import FeaturedCard from "./FeaturedCard";
+
+import PostItem from "@/outbreakafrica/components/DocumentLists/DocumentItem";
+import Filter from "@/outbreakafrica/components/Filter";
+import JoinUs from "@/outbreakafrica/components/JoinUs";
+import Link from "@/outbreakafrica/components/Link";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
@@ -270,7 +270,11 @@ function InsightPage({ joinUs, posts, subscribe, title, variant, ...props }) {
 
 InsightPage.propTypes = {
   joinUs: PropTypes.shape({}).isRequired,
-  posts: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  posts: PropTypes.arrayOf(
+    PropTypes.shape({
+      post_name: PropTypes.string,
+    })
+  ).isRequired,
   subscribe: PropTypes.shape({}).isRequired,
   title: PropTypes.string.isRequired,
   variant: PropTypes.oneOf(["analysis", "myth-busting", "resources", "stories"])

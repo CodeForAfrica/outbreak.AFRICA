@@ -1,12 +1,11 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-import InsightPage from "components/InsightPage";
-import Page from "components/Page";
-
-import config from "config";
-import { getSitePage } from "cms";
+import { getSitePage } from "@/outbreakafrica/cms";
+import InsightPage from "@/outbreakafrica/components/InsightPage";
+import Page from "@/outbreakafrica/components/Page";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -51,6 +50,23 @@ function Analysis({ outbreak, ...props }) {
     </Page>
   );
 }
+
+Analysis.propTypes = {
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      join_us: PropTypes.shape({}),
+      posts: PropTypes.arrayOf(PropTypes.shape({})),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+Analysis.defaultProps = {
+  outbreak: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;

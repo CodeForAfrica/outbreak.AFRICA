@@ -1,14 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
+import { Typography, Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
-
-import virus from "assets/about-illo.png";
-import outbreak404 from "assets/404.svg";
-import { Typography, Grid } from "@material-ui/core";
-import Link from "components/Link";
-import PostItem from "components/DocumentLists/DocumentItem";
+import outbreak404 from "@/outbreakafrica/assets/404.svg";
+import virus from "@/outbreakafrica/assets/about-illo.png";
+import PostItem from "@/outbreakafrica/components/DocumentLists/DocumentItem";
+import Link from "@/outbreakafrica/components/Link";
 
 const useStyles = makeStyles(({ typography, breakpoints }) => ({
   section: {},
@@ -86,16 +85,16 @@ function Error({ articles, variant, tagline, title, ...props }) {
     <div className={classes.section}>
       <Grid container spacing={4} className={classes.errorContainer}>
         <Grid item xs={12} md={6}>
-          <Typography variant='h1' className={classes.title}>
+          <Typography variant="h1" className={classes.title}>
             {title}
           </Typography>
-          <Typography variant='body1' className={classes.tagline}>
+          <Typography variant="body1" className={classes.tagline}>
             {tagline}
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>
           <div className={classes.text404}>
-            <img src={virus} alt='404' className={classes.virus} />
+            <img src={virus} alt="404" className={classes.virus} />
           </div>
         </Grid>
       </Grid>

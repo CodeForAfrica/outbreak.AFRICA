@@ -1,12 +1,11 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-import InsightPage from "components/InsightPage";
-import Page from "components/Page";
-
-import config from "config";
-import { getSitePage } from "cms";
+import { getSitePage } from "@/outbreakafrica/cms";
+import InsightPage from "@/outbreakafrica/components/InsightPage";
+import Page from "@/outbreakafrica/components/Page";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -27,7 +26,7 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function Analysis({ outbreak, ...props }) {
+function MythBustings({ outbreak, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -52,6 +51,23 @@ function Analysis({ outbreak, ...props }) {
   );
 }
 
+MythBustings.propTypes = {
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      join_us: PropTypes.shape({}),
+      posts: PropTypes.arrayOf(PropTypes.shape({})),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+MythBustings.defaultProps = {
+  outbreak: undefined,
+};
+
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
@@ -64,4 +80,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default Analysis;
+export default MythBustings;

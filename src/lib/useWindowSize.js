@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import debounce from "lodash/debounce";
+import { useState, useEffect } from "react";
 
 const isClient = typeof window !== "undefined";
 
@@ -18,7 +18,7 @@ function getSize() {
   };
 }
 
-function useWindowSize(wait = 150, options) {
+function useWindowSize(wait = 150, options = undefined) {
   const [windowSize, setWindowSize] = useState(getSize);
   useEffect(() => {
     if (!isClient) {
@@ -33,7 +33,7 @@ function useWindowSize(wait = 150, options) {
     window.addEventListener("resize", debouncedHandleResize);
 
     return () => window.removeEventListener("resize", debouncedHandleResize);
-  }, []); // Empty array ensures that effect is only run on mount and unmount
+  }, [options, wait]); // Empty array ensures that effect is only run on mount and unmount
 
   return windowSize;
 }

@@ -1,12 +1,12 @@
-import imgLinkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import imgLinkedInDesktop from "assets/Icon awesome-linkedin-in.svg";
-import imgTwitter from "assets/Icon awesome-twitter-b.svg";
-import imgTwitterDesktop from "assets/Icon awesome-twitter.svg";
-import imgWebsite from "assets/icon web.svg";
-import imgWebsiteDesktop from "assets/icon web-white.svg";
+import imgLinkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import imgLinkedInDesktop from "@/outbreakafrica/assets/Icon awesome-linkedin-in.svg";
+import imgTwitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import imgTwitterDesktop from "@/outbreakafrica/assets/Icon awesome-twitter.svg";
+import imgWebsiteDesktop from "@/outbreakafrica/assets/icon web-white.svg";
+import imgWebsite from "@/outbreakafrica/assets/icon web.svg";
 
 const WP_BACKEND_URL =
-    process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:8080";
+  process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:8080";
 
 const GRAPHQL_ORIGIN =
   process.env.NODE_ENV === "development"
@@ -75,32 +75,28 @@ Disallow:
     {
       index: 0,
       title: "Research",
-      link:
-        "https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0",
+      link: "https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0",
       mediaSrc: "http://placekitten.com/g/400/300",
       media: "img",
     },
     {
       index: 1,
       title: "Economy",
-      link:
-        "https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b",
+      link: "https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b",
       mediaSrc: "http://placekitten.com/g/400/300",
       media: "img",
     },
     {
       index: 2,
       title: "Health",
-      link:
-        "https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f",
+      link: "https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f",
       mediaSrc: "http://placekitten.com/g/400/300",
       media: "img",
     },
     {
       index: 3,
       title: "Infrastructure",
-      link:
-        "https://city-press.news24.com/News/a-farmers-15-year-wait-for-land-justice-20180822",
+      link: "https://city-press.news24.com/News/a-farmers-15-year-wait-for-land-justice-20180822",
       mediaSrc: "http://placekitten.com/g/400/300",
       media: "img",
     },
@@ -110,24 +106,21 @@ Disallow:
       index: 0,
       subtitle: "Job Creation",
       title: "Research",
-      link:
-        "https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0",
+      link: "https://pesacheck.org/fact-checking-claims-on-ugandas-trade-with-kenya-8797b87844f0",
       mediaSrc: "http://placekitten.com/g/40/40",
     },
     {
       index: 1,
       subtitle: "Coronavirus",
       title: "Example article heading ",
-      link:
-        "https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b",
+      link: "https://pesacheck.org/did-uganda-earn-more-gold-than-from-coffee-for-the-first-time-in-march-2019-1f7f4bb71f6b",
       mediaSrc: "http://placekitten.com/g/40/30",
     },
     {
       index: 2,
       subtitle: "Economy",
       title: "Another article heading here",
-      link:
-        "https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f",
+      link: "https://pesacheck.org/can-the-government-of-uganda-afford-to-run-an-airline-47288e3e559f",
       mediaSrc: "http://placekitten.com/g/40/30",
     },
   ],
@@ -287,7 +280,7 @@ Disallow:
     },
   },
   page: {},
-  name: "Outbreak.africa",
+  name: "outbreak.AFRICA",
   legalName: "Code for Africa",
   description:
     "Contextual data with actionable insights: Data driven analysis on Covid-19 in Africa",
@@ -322,8 +315,7 @@ Disallow:
     "very low": "#99ccff",
   },
   status: {
-    url:
-      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports",
+    url: "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports",
     countries: [
       "Algeria",
       "Angola",

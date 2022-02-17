@@ -1,25 +1,22 @@
-import React, { useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
-
-import dynamic from "next/dynamic";
-
 import { RichTypography } from "@commons-ui/core";
-
 import ChartFactory from "@hurumap-ui/charts/ChartFactory";
 import useProfileLoader from "@hurumap-ui/core/useProfileLoader";
-
-import config from "config";
-
-import FacebookIcon from "assets/Icon awesome-facebook-f-b.svg";
-import InstagramIcon from "assets/Icon awesome-instagram-b.svg";
-import LinkedInIcon from "assets/Icon awesome-linkedin-in-b.svg";
-import TwitterIcon from "assets/Icon awesome-twitter-b.svg";
-import LinkIcon from "assets/icon web.svg";
-import DownloadIcon from "assets/icon download.svg";
-import EmbedIcon from "assets/icon embed.svg";
-import logo from "assets/logo-outbreak-small.png";
+import dynamic from "next/dynamic";
+import PropTypes from "prop-types";
+import React, { useEffect, useMemo, useState } from "react";
 
 import useStyles from "./useStyles";
+
+import FacebookIcon from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
+import InstagramIcon from "@/outbreakafrica/assets/Icon awesome-instagram-b.svg";
+import LinkedInIcon from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import TwitterIcon from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import DownloadIcon from "@/outbreakafrica/assets/icon download.svg";
+import EmbedIcon from "@/outbreakafrica/assets/icon embed.svg";
+import LinkIcon from "@/outbreakafrica/assets/icon web.svg";
+import logo from "@/outbreakafrica/assets/logo-outbreak-small.png";
+import Figure from "@/outbreakafrica/components/Figure";
+import config from "@/outbreakafrica/config";
 
 const ChartContainer = dynamic(
   () => import("@hurumap-ui/core/ChartContainer"),
@@ -50,7 +47,7 @@ Chart.propTypes = {
   profiles: PropTypes.shape({}).isRequired,
 };
 
-function Container({ action, children, featuredChart, ...props }) {
+function Container({ featuredChart, ...props }) {
   const classes = useStyles(props);
   const { type, id, geoId } = featuredChart;
 
@@ -105,11 +102,9 @@ function Container({ action, children, featuredChart, ...props }) {
   ) {
     return null;
   }
-
   const rawData = !chartData.isLoading
     ? chartData.profileVisualsData[chart.visual.queryAlias].nodes
     : [];
-
   return (
     <>
       <ChartContainer
@@ -137,25 +132,67 @@ function Container({ action, children, featuredChart, ...props }) {
         }}
         groupIcons={{
           facebook: {
-            icon: <img className={classes.actionIcon} src={FacebookIcon} alt="Facebook" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={FacebookIcon}
+                alt="Facebook"
+              />
+            ),
           },
           twitter: {
-            icon: <img className={classes.actionIcon} src={TwitterIcon} alt="Twitter" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={TwitterIcon}
+                alt="Twitter"
+              />
+            ),
           },
           linkedin: {
-            icon: <img className={classes.actionIcon} src={LinkedInIcon} alt="LinkedIn" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={LinkedInIcon}
+                alt="LinkedIn"
+              />
+            ),
           },
           instagram: {
-            icon: <img className={classes.actionIcon} src={InstagramIcon} alt="Instagram" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={InstagramIcon}
+                alt="Instagram"
+              />
+            ),
           },
           embed: {
-            icon: <img className={classes.actionIcon} src={EmbedIcon} alt="Embed" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={EmbedIcon}
+                alt="Embed"
+              />
+            ),
           },
           link: {
-            icon: <img className={classes.actionIcon} src={LinkIcon} alt="Link" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={LinkIcon}
+                alt="Link"
+              />
+            ),
           },
           download: {
-            icon: <img className={classes.actionIcon} src={DownloadIcon} alt="Download" />,
+            icon: (
+              <Figure
+                className={classes.actionIcon}
+                src={DownloadIcon}
+                alt="Download"
+              />
+            ),
           },
         }}
       >
@@ -173,5 +210,15 @@ function Container({ action, children, featuredChart, ...props }) {
     </>
   );
 }
+
+Container.propTypes = {
+  featuredChart: PropTypes.shape({
+    geoId: PropTypes.string,
+    id: PropTypes.string,
+    type: PropTypes.string,
+  }).isRequired,
+};
+
+Container.defaultProps = {};
 
 export default Container;

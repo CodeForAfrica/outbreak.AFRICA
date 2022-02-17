@@ -1,15 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { Grid, Typography } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import Form from "components/Form";
-import config from "config";
-
-import email from "assets/email.svg";
-import emailFocus from "assets/electric-blue-email.svg";
+import emailFocus from "@/outbreakafrica/assets/electric-blue-email.svg";
+import email from "@/outbreakafrica/assets/email.svg";
+import Form from "@/outbreakafrica/components/Form";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -50,18 +47,18 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
     "& #mc_embed_signup .button": {
-      backgroundImage: `url(${email})`,
+      backgroundImage: `url(${email.src})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "40px 40px",
       height: 55,
       paddingLeft: theme.typography.pxToRem(50),
       "&:hover": {
-        backgroundImage: `url(${emailFocus})`,
+        backgroundImage: `url(${emailFocus.src})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "40px 40px",
       },
       "&:focus": {
-        backgroundImage: `url(${emailFocus})`,
+        backgroundImage: `url(${emailFocus.src})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "40px 40px",
       },
@@ -114,4 +111,5 @@ Subscribe.defaultProps = {
   title: "Subscribe",
   description: "Stay updated with the latest News, Research and Analysis",
 };
+
 export default Subscribe;

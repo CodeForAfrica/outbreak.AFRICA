@@ -1,31 +1,30 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
+/* eslint-disable @next/next/no-img-element */
+import { RichTypography, Section } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import ArrowBackIosIcon from "@material-ui/icons/ArrowBackIos";
-
-import { RichTypography, Section } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import {
   FacebookShareButton,
   LinkedinShareButton,
   TwitterShareButton,
 } from "react-share";
 
-import Aside from "components/Content/Aside";
-import FlourishContainer from "components/FeaturedData/FlourishContainer";
-import HURUmapContainer from "components/FeaturedData/Container";
-import Link from "components/Link";
-import Portal from "components/Portal";
-import Subscribe from "components/Subscribe";
-import getChartElements from "utils/getChartElements";
-
-import facebook from "assets/Icon awesome-facebook-f-b.svg";
-import linkedIn from "assets/Icon awesome-linkedin-in-b.svg";
-import twitter from "assets/Icon awesome-twitter-b.svg";
-
-import config from "config";
 import Author from "./Author";
 import useStyles from "./useStyles";
+
+import facebook from "@/outbreakafrica/assets/Icon awesome-facebook-f-b.svg";
+import linkedIn from "@/outbreakafrica/assets/Icon awesome-linkedin-in-b.svg";
+import twitter from "@/outbreakafrica/assets/Icon awesome-twitter-b.svg";
+import Aside from "@/outbreakafrica/components/Content/Aside";
+import HURUmapContainer from "@/outbreakafrica/components/FeaturedData/Container";
+import FlourishContainer from "@/outbreakafrica/components/FeaturedData/FlourishContainer";
+import Figure from "@/outbreakafrica/components/Figure";
+import Link from "@/outbreakafrica/components/Link";
+import Portal from "@/outbreakafrica/components/Portal";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
+import config from "@/outbreakafrica/config";
+import getChartElements from "@/outbreakafrica/utils/getChartElements";
 
 function ArticlePage({
   post,
@@ -118,7 +117,7 @@ function ArticlePage({
                     }}
                     className={classes.link}
                   >
-                    <img
+                    <Figure
                       src={linkedIn}
                       alt="LinkedIn"
                       className={classes.icon}
@@ -136,7 +135,7 @@ function ArticlePage({
                     }}
                     className={classes.link}
                   >
-                    <img
+                    <Figure
                       src={facebook}
                       alt="Facebook"
                       className={classes.icon}
@@ -154,7 +153,11 @@ function ArticlePage({
                     url={articleUrl}
                     className={classes.link}
                   >
-                    <img src={twitter} alt="Twitter" className={classes.icon} />
+                    <Figure
+                      src={twitter}
+                      alt="Twitter"
+                      className={classes.icon}
+                    />
                   </TwitterShareButton>
                 </Grid>
               </Grid>
@@ -222,9 +225,10 @@ function ArticlePage({
                       </RichTypography>
                     </Grid>
                     <Grid item md={6}>
-                      <img
+                      <Figure
                         src={post.acf.source_attribution.background_image}
                         alt={post.acf.title}
+                        layout="contain"
                       />
                     </Grid>
                   </Grid>
@@ -251,8 +255,50 @@ ArticlePage.propTypes = {
     href: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
   }).isRequired,
-  media: PropTypes.shape({}).isRequired,
-  post: PropTypes.shape({}).isRequired,
+  media: PropTypes.shape({
+    full: PropTypes.shape({
+      source_url: PropTypes.string,
+    }),
+    medium: PropTypes.shape({
+      source_url: PropTypes.string,
+    }),
+    medium_large: PropTypes.shape({
+      source_url: PropTypes.string,
+    }),
+  }).isRequired,
+  pageTitle: PropTypes.string.isRequired,
+  post: PropTypes.shape({
+    acf: PropTypes.shape({
+      attributes: PropTypes.shape({
+        date: PropTypes.string,
+      }),
+      linkedin: PropTypes.string,
+      position: PropTypes.string,
+      source_attribution: PropTypes.shape({
+        background_image: PropTypes.string,
+        description: PropTypes.string,
+        title: PropTypes.string,
+      }),
+      title: PropTypes.string,
+      twitter: PropTypes.string,
+      website: PropTypes.string,
+    }),
+    avatar_urls: PropTypes.shape({
+      96: PropTypes.string,
+    }),
+    content: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+    date: PropTypes.string,
+    description: PropTypes.string,
+    excerpt: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+    slug: PropTypes.string,
+    title: PropTypes.shape({
+      rendered: PropTypes.string,
+    }),
+  }).isRequired,
   subscribe: PropTypes.shape({}).isRequired,
 };
 

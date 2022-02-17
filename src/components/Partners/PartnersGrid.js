@@ -1,10 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+// NOTE(kilemensi) This component depends on natural size of images. Since
+//                 each image has a different size, we can't do anything
+//                 at the moment until we implement a WP loader for next/image
+/* eslint-disable @next/next/no-img-element */
+import { A } from "@commons-ui/core";
 import { Grid, Typography, useMediaQuery } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { A } from "@commons-ui/core";
-import ConditionalWrapper from "components/ConditionalWrapper";
+import PropTypes from "prop-types";
+import React from "react";
+
+import ConditionalWrapper from "@/outbreakafrica/components/ConditionalWrapper";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,17 +24,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: "100%",
     maxHeight: theme.typography.pxToRem(127),
   },
-  image: {
-    maxWidth: "100%",
-    height: "auto",
-    [theme.breakpoints.up("md")]: {
-      marginTop: "-3rem",
-    },
-  },
-  descGrid: {
-    marginTop: "-0.25rem",
-  },
-  divGrid: {
+  description: {
     marginTop: "2rem",
   },
 }));
@@ -51,34 +45,28 @@ function PartnersGrid({ partners, ...props }) {
         direction="row"
         className={classes.imageGrid}
         justify="center"
-        spacing={isDesktop ? 10 : 2}
+        spacing={isDesktop ? 4 : 2}
       >
         {partners.map((partner) => (
           <Grid item xs={12} md={6} key={partner.name}>
             <ConditionalWrapper
               condition={partner?.url}
-              wrapper={(children) => <A href={partner.url}>{children}</A>}
+              wrapper={A}
+              href={partner?.url}
             >
               <img
                 src={partner.image}
                 alt={partner.name}
-                className={
-                  partner.name === "Africa Ar Xiv" ? classes.image : classes.img
-                }
+                objectFit="contain"
+                className={classes.img}
               />
             </ConditionalWrapper>
 
-            <div
-              className={
-                partner.name === "Africa Ar Xiv"
-                  ? classes.descGrid
-                  : classes.divGrid
-              }
-            >
-              {isDesktop && (
-                <Typography variant="body2">{partner.description}</Typography>
-              )}
-            </div>
+            {isDesktop && (
+              <Typography variant="body2" className={classes.description}>
+                {partner.description}
+              </Typography>
+            )}
           </Grid>
         ))}
       </Grid>

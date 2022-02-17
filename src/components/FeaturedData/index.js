@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Section, RichTypography } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { Section, RichTypography } from "@commons-ui/core";
-
-import Button from "components/Link/Button";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 
 import Container from "./Container";
 import FlourishContainer from "./FlourishContainer";
+
+import Button from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -156,10 +153,7 @@ function FeaturedData({ featuredContent, ...props }) {
                   md={index === 0 || index === 3 ? 6 : 12}
                   lg={index === 0 || index === 3 ? 4 : 8}
                   container
-                  className={classNames(
-                    classes.chartGrid,
-                    classes[`chart${index}`]
-                  )}
+                  className={clsx(classes.chartGrid, classes[`chart${index}`])}
                   key={chart.id}
                 >
                   <Grid item xs={12} className={classes.chartShadow}>

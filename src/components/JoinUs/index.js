@@ -1,8 +1,4 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Section } from "@commons-ui/core";
 import {
   Grid,
   Hidden,
@@ -11,13 +7,15 @@ import {
   useTheme,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import { Section } from "@commons-ui/core";
-
-import LinkButton from "components/Link/Button";
-import imgMobile from "assets/joinus-illo.svg";
-import img1 from "assets/joinus-illo-1.svg";
-import img2 from "assets/joinus-illo-2.svg";
+import img1 from "@/outbreakafrica/assets/joinus-illo-1.svg";
+import img2 from "@/outbreakafrica/assets/joinus-illo-2.svg";
+import imgMobile from "@/outbreakafrica/assets/joinus-illo.svg";
+import Figure from "@/outbreakafrica/components/Figure";
+import LinkButton from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
@@ -108,12 +106,14 @@ function JoinUs({ joinUs, ...props }) {
             item
             xs={12}
             md={3}
-            className={classNames(classes.highlightHeight, classes.highlight)}
+            container
+            className={clsx(classes.highlightHeight, classes.highlight)}
           >
-            <img
+            <Figure
+              layout="intrinsic"
               src={imgSrc1}
               alt="hightlight"
-              className={classNames(
+              className={clsx(
                 classes.highlightHeight,
                 classes.highlightWidth,
                 classes.imgSrc1
@@ -127,7 +127,7 @@ function JoinUs({ joinUs, ...props }) {
             container
             direction="column"
             justify="space-between"
-            className={classNames(classes.highlightHeight, classes.description)}
+            className={clsx(classes.highlightHeight, classes.description)}
           >
             <Typography variant="h2">{title}</Typography>
             <Typography variant="body1" className={classes.subtitle}>
@@ -145,10 +145,11 @@ function JoinUs({ joinUs, ...props }) {
             </div>
           </Grid>
           <Grid item md={4} implementation="css" smDown component={Hidden}>
-            <img
+            <Figure
+              layout="responsive"
               src={imgSrc2}
               alt="hightlight"
-              className={classNames(classes.imgSrc2)}
+              className={clsx(classes.imgSrc2)}
             />
           </Grid>
         </Grid>
@@ -160,8 +161,9 @@ function JoinUs({ joinUs, ...props }) {
 JoinUs.propTypes = {
   joinUs: PropTypes.shape({
     description: PropTypes.string,
-    title: PropTypes.string,
+    link: PropTypes.string,
     link_label: PropTypes.string,
+    title: PropTypes.string,
   }),
   variant: PropTypes.oneOf(["compact", "full"]),
 };

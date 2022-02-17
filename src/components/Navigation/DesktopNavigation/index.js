@@ -1,22 +1,19 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import { useRouter } from "next/router";
-
-import classNames from "classnames";
-
+import { Section } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
-
-import Link from "components/Link";
-import Logo from "components/Navigation/Logo";
-import Search from "components/Search";
+import clsx from "clsx";
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
+import React from "react";
 
 import DataMenuList from "./DataMenuList";
 import MenuButton from "./MenuButton";
 import NavigationButton from "./NavigationButton";
 import PageNavigation from "./PageNavigation";
+
+import Link from "@/outbreakafrica/components/Link";
+import Logo from "@/outbreakafrica/components/Navigation/Logo";
+import Search from "@/outbreakafrica/components/Search";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {},
@@ -135,7 +132,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
                 href="/#"
                 underline="none"
                 variant="overline"
-                className={classNames(classes.buttonLanguage, "active")}
+                className={clsx(classes.buttonLanguage, "active")}
               >
                 En
               </Link>
@@ -145,7 +142,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
                 href="/#"
                 underline="none"
                 variant="overline"
-                className={classNames(classes.buttonLanguage)}
+                className={clsx(classes.buttonLanguage)}
               >
                 Fr
               </Link>
@@ -153,7 +150,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
                 href="/#"
                 underline="none"
                 variant="overline"
-                className={classNames(
+                className={clsx(
                   classes.buttonLanguage,
                   classes.buttonLanguageLast
                 )}

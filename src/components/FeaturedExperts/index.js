@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
-
+import { ProfileList, RichTypography, Section } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { useState, useEffect } from "react";
 
-import { ProfileList, RichTypography, Section } from "@commons-ui/core";
-
-import useWindowSize from "lib/useWindowSize";
+import useWindowSize from "@/outbreakafrica/lib/useWindowSize";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

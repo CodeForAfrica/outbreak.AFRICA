@@ -1,4 +1,4 @@
-import config from "config";
+import config from "@/outbreakafrica/config";
 
 function Robots() {}
 

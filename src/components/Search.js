@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
 import { IconButton, InputBase, Paper } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import { Search as SearchIcon } from "@material-ui/icons";
+import PropTypes from "prop-types";
+import React, { useState } from "react";
 
 const useStyles = makeStyles(({ breakpoints, typography }) => ({
   root: {
@@ -101,10 +100,15 @@ function Search({ ariaLabel, onClick, onChange, placeholder, ...props }) {
 Search.propTypes = {
   ariaLabel: PropTypes.string,
   placeholder: PropTypes.string,
+  onChange: PropTypes.func,
+  onClick: PropTypes.func,
 };
 
 Search.defaultProps = {
   ariaLabel: "search al datasets",
   placeholder: "Search for issues, topics, etc…",
+  onChange: undefined,
+  onClick: undefined,
 };
+
 export default Search;

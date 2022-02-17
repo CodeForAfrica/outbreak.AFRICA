@@ -1,14 +1,12 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-
-import Grid from "@material-ui/core/Grid";
-import { makeStyles } from "@material-ui/core/styles";
-
 import { A, Section } from "@commons-ui/core";
-
-import Link from "components/Link";
+import { Grid } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import { PropTypes } from "prop-types";
+import React from "react";
 
 import Card from "./Card";
+
+import Link from "@/outbreakafrica/components/Link";
 
 const useStyles = makeStyles((theme) => ({
   sectionRoot: {},

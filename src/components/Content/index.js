@@ -1,18 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Section } from "@commons-ui/core";
 import { Grid, Hidden } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { Section } from "@commons-ui/core";
-
-import JoinUs from "components/JoinUs";
-import Subscribe from "components/Subscribe";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
 import Aside from "./Aside";
 import Main from "./Main";
+
+import JoinUs from "@/outbreakafrica/components/JoinUs";
+import Subscribe from "@/outbreakafrica/components/Subscribe";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -82,7 +79,7 @@ function Content({
                 {...props}
                 variant="compact"
                 classes={{
-                  root: classNames(
+                  root: clsx(
                     classes.support,
                     { [classes.subscribe]: variant === "join" },
                     { [classes.joinUs]: variant === "join" }
@@ -114,7 +111,7 @@ function Content({
                 {...props}
                 variant="compact"
                 classes={{
-                  root: classNames(
+                  root: clsx(
                     classes.support,
                     { [classes.subscribe]: variant === "join" },
                     { [classes.joinUs]: variant === "join" }
@@ -127,7 +124,7 @@ function Content({
               contents={contents}
               current={current}
               classes={{
-                root: classNames(classes.aside, classes.asideHidden),
+                root: clsx(classes.aside, classes.asideHidden),
                 tableOfContents: classes.asideTableOfContents,
                 tableOfContentsLink: classes.asideTableOfContentsLink,
               }}
@@ -136,7 +133,7 @@ function Content({
                 {...props}
                 variant="compact"
                 classes={{
-                  root: classNames(
+                  root: clsx(
                     classes.support,
                     { [classes.subscribe]: variant === "join" },
                     { [classes.joinUs]: variant === "join" }
@@ -165,7 +162,7 @@ function Content({
         <SupportComponent
           {...props}
           classes={{
-            root: classNames(
+            root: clsx(
               classes.support,
               { [classes.subscribe]: variant === "join" },
               { [classes.joinUs]: variant === "join" }
@@ -180,6 +177,9 @@ function Content({
 
 Content.propTypes = {
   aside: PropTypes.number,
+  children: PropTypes.node,
+  classes: PropTypes.shape({}),
+  contents: PropTypes.arrayOf(PropTypes.shape({})),
   current: PropTypes.string,
   main: PropTypes.number,
   variant: PropTypes.oneOf(["subscribe", "join"]),
@@ -187,6 +187,9 @@ Content.propTypes = {
 
 Content.defaultProps = {
   aside: 3,
+  children: undefined,
+  classes: undefined,
+  contents: undefined,
   current: undefined,
   main: 6,
   variant: "subscribe",

@@ -1,12 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-
 import { MenuItem } from "@material-ui/core";
-
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import config from "config";
-import Link from "components/Link";
+import Link from "@/outbreakafrica/components/Link";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles((theme) => ({
   root: {

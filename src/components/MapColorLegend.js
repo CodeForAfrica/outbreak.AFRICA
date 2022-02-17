@@ -1,11 +1,11 @@
-import React from "react";
-
+import { Section } from "@commons-ui/core";
 import { Grid, List, ListItem, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Section } from "@commons-ui/core";
+import React from "react";
 
-import config from "config";
-import MapKey from "assets/map-key.svg";
+import MapKey from "@/outbreakafrica/assets/map-key.svg";
+import Image from "@/outbreakafrica/components/Image";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {},
@@ -33,8 +33,8 @@ const useStyles = makeStyles(({ breakpoints }) => ({
   },
 }));
 
-function MapColorLegend() {
-  const classes = useStyles();
+function MapColorLegend(props) {
+  const classes = useStyles(props);
 
   return (
     <Grid container className={classes.root}>
@@ -60,7 +60,7 @@ function MapColorLegend() {
                 </Typography>
               </Grid>
               <Grid item container>
-                <img src={MapKey} alt="Map Index" />
+                <Image src={MapKey} alt="Map Index" />
                 <List dense>
                   {Object.keys(config.vulnerabilityIndexColor).map((item) => (
                     <ListItem>

@@ -1,14 +1,14 @@
-import React, { useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React, { useEffect } from "react";
 
-import Page from "components/Page";
-import Hero from "components/Hero";
-import Content from "components/Content";
-import FaqContent from "components/FaqContent";
-import iconBox from "assets/icon-infobox.svg";
-
-import config from "config";
-import { getSitePage } from "cms";
+import iconBox from "@/outbreakafrica/assets/icon-infobox.svg";
+import { getSitePage } from "@/outbreakafrica/cms";
+import Content from "@/outbreakafrica/components/Content";
+import FaqContent from "@/outbreakafrica/components/FaqContent";
+import Hero from "@/outbreakafrica/components/Hero";
+import Page from "@/outbreakafrica/components/Page";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -63,7 +63,7 @@ function slugify(word) {
     .replace(/-+$/, "");
 }
 
-function FAQ({ errorCode, outbreak, slug, ...props }) {
+function Faq({ errorCode, outbreak, slug, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -76,26 +76,24 @@ function FAQ({ errorCode, outbreak, slug, ...props }) {
   } = outbreak;
 
   const contents =
-    (faqs &&
-      faqs.map(({ topic, questions_answers: questionsAnswers }) => ({
-        as: `/faq/${slugify(topic)}`,
-        href: "/faq/[...slug]",
-        slug: `${slugify(topic)}`,
-        name: topic,
-        icon: iconBox,
-        title: {
-          rendered: topic,
-        },
-        content: {
-          rendered: (
-            <FaqContent
-              questionsAnswers={questionsAnswers}
-              slug={`${slugify(topic)}`}
-            />
-          ),
-        },
-      }))) ||
-    [];
+    faqs?.map(({ topic, questions_answers: questionsAnswers }) => ({
+      as: `/faq/${slugify(topic)}`,
+      href: "/faq/[...slug]",
+      slug: `${slugify(topic)}`,
+      name: topic,
+      icon: iconBox,
+      title: {
+        rendered: topic,
+      },
+      content: {
+        rendered: (
+          <FaqContent
+            questionsAnswers={questionsAnswers}
+            slug={`${slugify(topic)}`}
+          />
+        ),
+      },
+    })) || [];
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -136,6 +134,27 @@ function FAQ({ errorCode, outbreak, slug, ...props }) {
   );
 }
 
+Faq.propTypes = {
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      faqs: PropTypes.arrayOf(PropTypes.shape({})),
+      hero_content: PropTypes.shape({}),
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+  slug: PropTypes.string,
+};
+
+Faq.defaultProps = {
+  errorCode: undefined,
+  outbreak: undefined,
+  slug: undefined,
+};
+
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage, slug: pageSlug } = query;
   const lang = pageLanguage || config.DEFAULT_LANG;
@@ -162,4 +181,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default FAQ;
+export default Faq;

@@ -1,11 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Button } from "@material-ui/core";
+import clsx from "clsx";
 import { useRouter } from "next/router";
-
-import Button from "@material-ui/core/Button";
+import PropTypes from "prop-types";
+import React from "react";
 
 import NextComposed from "./NextComposed";
 
@@ -22,7 +19,7 @@ function ButtonLink(props) {
   } = props;
   const router = useRouter();
 
-  const className = classNames(classNameProps, {
+  const className = clsx(classNameProps, {
     [activeClassName]: router.pathname === href && activeClassName,
   });
 

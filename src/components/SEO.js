@@ -1,11 +1,10 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { useRouter } from "next/router";
+import { PropTypes } from "prop-types";
+import React from "react";
 
-import config from "config";
-import defaultImage from "assets/images/cfa.png";
+import defaultImage from "@/outbreakafrica/assets/images/cfa.png";
+import config from "@/outbreakafrica/config";
 
 function SEO({ title, description, image, location = "" }) {
   const pageTitle = title ? `${title} | ${config.name}` : config.name;

@@ -1,8 +1,4 @@
-import React, { useState, useRef } from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+import { Section } from "@commons-ui/core";
 import {
   Grid,
   Input,
@@ -15,15 +11,17 @@ import {
   useTheme,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React, { useState, useRef } from "react";
 
-import { Section } from "@commons-ui/core";
-
-import Button from "components/Link/Button";
-import searchIcon from "assets/images/icon-search.svg";
+import CountrySelector from "./CountrySelector";
 import MapColorLegend from "./MapColorLegend";
 import MapIt from "./MapIt";
 
-import CountrySelector from "./CountrySelector";
+import searchIcon from "@/outbreakafrica/assets/images/icon-search.svg";
+import Image from "@/outbreakafrica/components/Image";
+import Button from "@/outbreakafrica/components/Link/Button";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -171,10 +169,7 @@ function ProfileDetail({
                         </Typography>
                         <Typography
                           variant="body1"
-                          className={classNames([
-                            classes.label,
-                            classes.valueLabel,
-                          ])}
+                          className={clsx([classes.label, classes.valueLabel])}
                         >
                           {Number(population).toLocaleString()}
                         </Typography>
@@ -187,10 +182,7 @@ function ProfileDetail({
                         </Typography>
                         <Typography
                           variant="body1"
-                          className={classNames([
-                            classes.label,
-                            classes.valueLabel,
-                          ])}
+                          className={clsx([classes.label, classes.valueLabel])}
                         >
                           {Number(squareKms).toLocaleString()}
                         </Typography>
@@ -203,10 +195,7 @@ function ProfileDetail({
                         </Typography>
                         <Typography
                           variant="body1"
-                          className={classNames([
-                            classes.label,
-                            classes.valueLabel,
-                          ])}
+                          className={clsx([classes.label, classes.valueLabel])}
                         >
                           {Number(populationDensity).toLocaleString()}
                         </Typography>
@@ -245,7 +234,7 @@ function ProfileDetail({
                         placeholder="Compare with"
                         onChange={handleSearch}
                       />
-                      <img
+                      <Image
                         alt=""
                         src={searchIcon}
                         className={classes.searchBarIcon}

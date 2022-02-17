@@ -1,15 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { RichTypography, Section } from "@commons-ui/core";
 import { Grid, Paper } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { RichTypography, Section } from "@commons-ui/core";
-
-import Search from "components/Search";
+import PropTypes from "prop-types";
+import React from "react";
 
 import Rows from "./Rows";
 import Sort from "./Sort";
+
+import Search from "@/outbreakafrica/components/Search";
 
 const useStyles = makeStyles(({ breakpoints }) => ({
   root: {
@@ -34,15 +32,12 @@ const useStyles = makeStyles(({ breakpoints }) => ({
 
 function ActionBar({
   count,
-  onClick,
   onPageSize,
   onSearch,
   onSort,
-  options,
   q,
   rows,
   sort,
-  value,
   ...props
 }) {
   const classes = useStyles(props);

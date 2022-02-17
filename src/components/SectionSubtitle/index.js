@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { RichTypography } from "@commons-ui/core";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import { RichTypography } from "@commons-ui/core";
+import Image from "@/outbreakafrica/components/Figure";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {
@@ -24,10 +24,11 @@ const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
     },
   },
   icon: {
-    height: "auto",
     marginRight: "1rem",
+    height: typography.pxToRem(50),
     width: typography.pxToRem(50),
     [breakpoints.up("xl")]: {
+      height: typography.pxToRem(60),
       width: typography.pxToRem(60),
     },
   },
@@ -51,7 +52,7 @@ function SectionSubtitle({ children, icon, name, ...props }) {
     <Grid container alignItems="center" className={classes.root}>
       <RichTypography variant="h4" className={classes.title}>
         {icon && (
-          <img
+          <Image
             src={icon.src}
             alt={icon.alt || name || children}
             className={classes.icon}

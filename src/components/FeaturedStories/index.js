@@ -1,10 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-
+import { RichTypography, Section, StoryList } from "@commons-ui/core";
 import { Grid, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-
-import { RichTypography, Section, StoryList } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles(({ breakpoints, palette, typography }) => ({
   root: {

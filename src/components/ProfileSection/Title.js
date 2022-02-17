@@ -1,20 +1,17 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import { makeStyles } from "@material-ui/core/styles";
-
 import ContentLoader from "@hurumap-ui/core/ContentLoader";
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import React from "react";
 
-import SectionSubtitle from "components/SectionSubtitle";
-
-import demographicIcon from "assets/icon-demographic.svg";
-import economicIcon from "assets/icon-economic.svg";
-import epidemiologicalIcon from "assets/icon-epidemiological.svg";
-import healthsystemIcon from "assets/icon-healthsystem.svg";
-import infrastructureIcon from "assets/icon-infrastructure.svg";
-import mobilityIcon from "assets/icon-mobility.svg";
-import safetyIcon from "assets/icon-safety.svg";
-import socioEconomicIcon from "assets/icon-socioeconomic.svg";
+import demographicIcon from "@/outbreakafrica/assets/icon-demographic.svg";
+import economicIcon from "@/outbreakafrica/assets/icon-economic.svg";
+import epidemiologicalIcon from "@/outbreakafrica/assets/icon-epidemiological.svg";
+import healthsystemIcon from "@/outbreakafrica/assets/icon-healthsystem.svg";
+import infrastructureIcon from "@/outbreakafrica/assets/icon-infrastructure.svg";
+import mobilityIcon from "@/outbreakafrica/assets/icon-mobility.svg";
+import safetyIcon from "@/outbreakafrica/assets/icon-safety.svg";
+import socioEconomicIcon from "@/outbreakafrica/assets/icon-socioeconomic.svg";
+import SectionSubtitle from "@/outbreakafrica/components/SectionSubtitle";
 
 const useStyles = makeStyles(() => ({
   root: {},

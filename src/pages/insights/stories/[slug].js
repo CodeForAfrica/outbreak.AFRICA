@@ -1,12 +1,11 @@
+import { makeStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 import React from "react";
 
-import { makeStyles } from "@material-ui/core/styles";
-
-import ArticlePage from "components/ArticlePage";
-import Page from "components/Page";
-
-import config from "config";
-import { getArticle, getSitePage } from "cms";
+import { getArticle, getSitePage } from "@/outbreakafrica/cms";
+import ArticlePage from "@/outbreakafrica/components/ArticlePage";
+import Page from "@/outbreakafrica/components/Page";
+import config from "@/outbreakafrica/config";
 
 const useStyles = makeStyles(({ breakpoints, widths }) => ({
   root: {},
@@ -27,7 +26,12 @@ const useStyles = makeStyles(({ breakpoints, widths }) => ({
   },
 }));
 
-function Analysis({ outbreak, article: { post, author, media }, ...props }) {
+function Story({
+  outbreak,
+  article: { post, author, media },
+  errorCode,
+  ...props
+}) {
   const classes = useStyles(props);
   const {
     page: { subscribe, title },
@@ -36,6 +40,7 @@ function Analysis({ outbreak, article: { post, author, media }, ...props }) {
 
   return (
     <Page
+      errorCode={errorCode}
       outbreak={outbreak}
       title={pageTitle}
       classes={{ section: classes.section }}
@@ -51,6 +56,29 @@ function Analysis({ outbreak, article: { post, author, media }, ...props }) {
     </Page>
   );
 }
+
+Story.propTypes = {
+  article: PropTypes.shape({
+    author: PropTypes.shape({}),
+    media: PropTypes.shape({}),
+    post: PropTypes.shape({}),
+  }),
+  errorCode: PropTypes.number,
+  outbreak: PropTypes.shape({
+    page: PropTypes.shape({
+      subscribe: PropTypes.shape({}),
+      title: PropTypes.shape({
+        rendered: PropTypes.string,
+      }),
+    }),
+  }),
+};
+
+Story.defaultProps = {
+  article: undefined,
+  errorCode: undefined,
+  outbreak: undefined,
+};
 
 export async function getServerSideProps({ query }) {
   const { lang: pageLanguage, slug } = query;
@@ -68,4 +96,4 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-export default Analysis;
+export default Story;

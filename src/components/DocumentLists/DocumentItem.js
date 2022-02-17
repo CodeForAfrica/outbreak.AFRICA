@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
+/* eslint-disable @next/next/no-img-element */
+import { A, RichTypography } from "@commons-ui/core";
 import { Grid, Typography, useMediaQuery, useTheme } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { A, RichTypography } from "@commons-ui/core";
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 
-import { getPostById } from "cms";
-
-import websiteBlue from "assets/icon web.svg";
+import websiteBlue from "@/outbreakafrica/assets/icon web.svg";
+import { getPostById } from "@/outbreakafrica/cms";
+import Figure from "@/outbreakafrica/components/Figure";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   link: {
@@ -86,10 +86,6 @@ function DocumentItem({
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
-  if (!(title || description)) {
-    return null;
-  }
-
   useEffect(() => {
     (async () => {
       if (documentId) {
@@ -107,6 +103,9 @@ function DocumentItem({
     })();
   }, [documentId, isDesktop]);
 
+  if (!(title || description)) {
+    return null;
+  }
   return (
     <Grid
       item
@@ -138,7 +137,7 @@ function DocumentItem({
         )}
         {documentUrl && (
           <A href={documentUrl} color="textSecondary" className={classes.link}>
-            <img src={websiteBlue} alt={title} className={classes.icon} />
+            <Figure src={websiteBlue} alt={title} className={classes.icon} />
           </A>
         )}
       </Grid>

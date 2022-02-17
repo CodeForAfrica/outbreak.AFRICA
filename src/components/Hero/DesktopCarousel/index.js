@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-
 import { makeStyles } from "@material-ui/core/styles";
-
+import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import ReactMultiCarousel from "react-multi-carousel";
-
-import useBreakpoint from "lib/useBreakpoint";
 
 import ButtonGroup from "./CarouselButtonGroup";
 import CarouselCard from "./CarouselCard";
 import CarouselFeature from "./CarouselFeature";
 import usePartialVisibilityGutter from "./usePartialVisibilityGutter";
+
+import useBreakpoint from "@/outbreakafrica/lib/useBreakpoint";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {
@@ -171,6 +169,7 @@ Carousel.propTypes = {
     })
   ),
   carouselLinkTitle: PropTypes.string,
+  deviceType: PropTypes.string,
   height: PropTypes.number,
   isResearch: PropTypes.bool,
   width: PropTypes.number,
@@ -179,6 +178,7 @@ Carousel.propTypes = {
 Carousel.defaultProps = {
   carouselItems: undefined,
   carouselLinkTitle: undefined,
+  deviceType: undefined,
   height: 637,
   isResearch: false,
   width: 534,

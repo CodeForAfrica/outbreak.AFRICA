@@ -1,11 +1,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import { PropTypes } from "prop-types";
-
-import classNames from "classnames";
 
 import { Button, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import clsx from "clsx";
+import { PropTypes } from "prop-types";
+import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,7 +61,7 @@ function Card({ children, variant, ...props }) {
 
   return (
     <Button
-      className={classNames(classes.root, variantClass)}
+      className={clsx(classes.root, variantClass)}
       color="primary"
       {...props}
     >

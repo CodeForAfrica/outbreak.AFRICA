@@ -1,11 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-
-import classNames from "classnames";
-
+/* eslint-disable @next/next/no-img-element */
 import { ButtonBase, Grid, Typography, makeStyles } from "@material-ui/core";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import React from "react";
 
-import NextComposed from "components/Link/NextComposed";
+import NextComposed from "@/outbreakafrica/components/Link/NextComposed";
 
 const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   root: {},
@@ -75,18 +74,14 @@ function CarouselCard({ item, linkTitle, ...props }) {
   const actionAreaProps =
     (link && { component: NextComposed, href: link }) || undefined;
   return (
-    <div className={classNames(classes.cardSize, classes.root)}>
+    <div className={clsx(classes.cardSize, classes.root)}>
       <ButtonBase
         {...actionAreaProps}
-        className={classNames(classes.cardSize, classes.actionArea)}
+        className={clsx(classes.cardSize, classes.actionArea)}
       >
-        <Grid container className={classNames(classes.contents)}>
+        <Grid container className={clsx(classes.contents)}>
           <Grid item xs={12} className={classes.content}>
-            <img
-              src={image}
-              className={classNames(classes.media)}
-              alt={title}
-            />
+            <img src={image} className={classes.media} alt={title} />
           </Grid>
           {title && (
             <Grid item xs={12} className={classes.content}>

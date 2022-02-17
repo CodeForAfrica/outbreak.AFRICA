@@ -1,1 +1,5 @@
-export { default, getServerSideProps } from "./[...slug]";
+import About, { getServerSideProps } from "./[...slug]";
+
+export { getServerSideProps };
+
+export default About;
