@@ -127,6 +127,7 @@ function FeaturedExperts({
   if (!experts || experts.length < 1) {
     return null;
   }
+
   let icons;
   if (availableIcons) {
     icons = isDesktop ? availableIcons.desktop : availableIcons.mobile;

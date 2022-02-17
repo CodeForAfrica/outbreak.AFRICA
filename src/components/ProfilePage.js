@@ -445,7 +445,7 @@ function ProfilePage({
                       />`,
                           }}
                           loading={chartData.isLoading}
-                          logo={logo}
+                          logo={logo.src}
                           sourceLink={source && source.href}
                           sourceTitle={source && source.title}
                           title={chart.title}

@@ -94,7 +94,7 @@ function Error({ articles, variant, tagline, title, ...props }) {
         </Grid>
         <Grid item xs={12} md={6}>
           <div className={classes.text404}>
-            <img src={virus} alt="404" className={classes.virus} />
+            <img src={virus.src} alt="404" className={classes.virus} />
           </div>
         </Grid>
       </Grid>
