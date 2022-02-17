@@ -13,7 +13,7 @@ const useStyles = makeStyles(({ typography, palette }) => ({
     },
     [`& ${props.selector} h2`]: {
       ...typography.subtitle1,
-      backgroundImage: `url(${iconBox})`,
+      backgroundImage: `url(${iconBox.src})`,
       backgroundRepeat: "no-repeat",
       backgroundSize: "24px 24px",
       fontWeight: 700,

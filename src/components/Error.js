@@ -26,7 +26,7 @@ const useStyles = makeStyles(({ typography, breakpoints }) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundImage: `url(${outbreak404})`,
+    backgroundImage: `url(${outbreak404.src})`,
     backgroundRepeat: "no-repeat",
     backgroundPosition: "center top",
     backgroundSize: "contain",

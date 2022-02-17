@@ -70,7 +70,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       width: 536,
     },
   },
-  title: {
+  title: (props) => ({
     width: "100%",
     paddingTop: typography.pxToRem(29),
     "& .highlight": {
@@ -78,16 +78,16 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
       background:
         "linear-gradient(180deg,rgba(255,255,255,0) 50%, #F9FF71 30% )",
     },
-    [breakpoints.up("md")]: (props) => ({
+    [breakpoints.up("md")]: {
       paddingTop: props.isResearch ? 0 : "4.625rem",
-    }),
-    [breakpoints.up("lg")]: (props) => ({
+    },
+    [breakpoints.up("lg")]: {
       paddingTop: props.isResearch ? 0 : "8.125rem",
-    }),
+    },
     "& p": {
       margin: 0,
     },
-  },
+  }),
   notCarousel: {
     paddingTop: typography.pxToRem(29),
     [breakpoints.up("md")]: {

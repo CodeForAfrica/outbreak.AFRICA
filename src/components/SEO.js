@@ -20,7 +20,7 @@ function SEO({ title, description, image, location = "" }) {
       ? image
       : `${config.url}/${image}`;
   } else {
-    imageUrl = `${config.url}/${defaultImage}`;
+    imageUrl = `${config.url}/${defaultImage.src}`;
   }
 
   const structuredDataOrganization = {
