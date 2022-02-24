@@ -4,7 +4,7 @@ on:
     branches: [main]
 env:
   DOKKU_REMOTE_BRANCH: "master"
-  DOKKU_REMOTE_URL: "ssh://dokku@dokku-1.dev.codeforafrica.org/twoopstracker"
+  DOKKU_REMOTE_URL: "ssh://dokku@dokku-1.hurumap.org/outbreak"
   GIT_PUSH_FLAGS: "--force"
 jobs:
   deploy:
