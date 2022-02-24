@@ -289,12 +289,8 @@ tags
 
 # Customizations
 
-### Zeit Now ###
+### Local .env files ###
 
-.now
-
-# Local development .env files
-.env
 .env.build
 
 # End of Customizations
