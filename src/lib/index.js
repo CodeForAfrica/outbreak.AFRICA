@@ -29,22 +29,25 @@ export async function getOutbreakStatus() {
   let fileName = fileNameFromDate(date);
   let csv;
   try {
-    let response = await fetch(`${url}/${fileName}`);
+    let fetchUrl = `${url}/${fileName}`;
+    let response = await fetch(fetchUrl);
     if (response.status === 404) {
       // Use the previous day's data if today's data hasn't been published yet
       // Don't update timestamp since we don't want to hit the endpoint
       // for the next half half hour regardless of which data file we use
       date.setDate(date.getDate() - 1);
       fileName = fileNameFromDate(date);
-      response = await fetch(`${url}/${fileName}`);
+      fetchUrl = `${url}/${fileName}`;
+      response = await fetch(fetchUrl);
     }
     if (response.status !== 200) {
-      return { error: { status: response.status } };
+      return null;
     }
     csv = await response.text();
   } catch (error) {
-    return { error };
+    return null;
   }
+
   const output = Papa.parse(csv, { header: true });
   if (output.data) {
     const countriesOfInterest = new Set(countries);
@@ -64,7 +67,7 @@ export async function getOutbreakStatus() {
     config.status.lastUpdated = timestamp;
     return config.status;
   }
-  return output;
+  return null;
 }
 
 export function fromTimestamp(timestamp) {

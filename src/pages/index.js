@@ -210,13 +210,11 @@ Index.getInitialProps = async ({ query }) => {
   } = await getSitePage("research-experts", lang);
   const outbreak = await getSitePage("index", lang);
   const status = await getOutbreakStatus();
-  const errorCode = status.error ? 500 : null;
-  if (status.values) {
-    outbreak.status = status;
+  if (status?.values) {
+    outbreak.status.values = status.values;
   }
 
   return {
-    errorCode,
     outbreak,
     featuredExperts,
   };
