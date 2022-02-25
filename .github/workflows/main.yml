@@ -39,13 +39,6 @@ jobs:
           # omit this.
           diff-search: true
 
-      - name: Setup Environmental Variables
-        if: steps.version-check.outputs.changed == 'true'
-        run: |
-          echo "NEXT_PUBLIC_DASHBOARD_URL=${{ env.NEXT_PUBLIC_DASHBOARD_URL }}" >> .env
-          echo "NEXT_PUBLIC_HOSTNAME=${{ env.NEXT_PUBLIC_HOSTNAME }}" >> .env
-          echo "NEXT_PUBLIC_URL=${{ env.NEXT_PUBLIC_URL }}" >> .env
-
       - name: Set up Docker Buildx
         if: steps.version-check.outputs.changed == 'true'
         uses: docker/setup-buildx-action@v1
@@ -70,6 +63,11 @@ jobs:
         if: steps.version-check.outputs.changed == 'true'
         uses: docker/build-push-action@v2
         with:
+          build-args: |
+            NEXT_PUBLIC_DASHBOARD_URL=${{ env.NEXT_PUBLIC_DASHBOARD_URL }}
+            NEXT_PUBLIC_HOSTNAME=${{ env.NEXT_PUBLIC_HOSTNAME }}
+            NEXT_PUBLIC_URL=${{ env.NEXT_PUBLIC_URL }}
+
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
           context: .

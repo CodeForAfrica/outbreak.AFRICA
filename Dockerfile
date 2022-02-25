@@ -12,9 +12,17 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+ARG NEXT_TELEMETRY_DISABLED=1
+ARG NEXT_PUBLIC_DASHBOARD_URL=https://dashboard.covid19.outbreak.africa
+ARG NEXT_PUBLIC_HOSTNAME=localhot
+ARG NEXT_PUBLIC_URL=http://localhost:3000
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_TELEMETRY_DISABLED=${NEXT_TELEMETRY_DISABLED} \
+    NEXT_PUBLIC_DASHBOARD_URL=${NEXT_PUBLIC_DASHBOARD_URL} \
+    NEXT_PUBLIC_HOSTNAME=${NEXT_PUBLIC_HOSTNAME} \
+    NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
 
 RUN yarn build
 
@@ -22,8 +30,8 @@ RUN yarn build
 FROM node:16-alpine AS runner
 WORKDIR /app
 
-ENV NODE_ENV production
-ENV NEXT_TELEMETRY_DISABLED 1
+ENV NODE_ENV=production \
+    NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -41,6 +49,6 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT 3000
+ENV PORT=3000
 
 CMD ["node", "server.js"]
