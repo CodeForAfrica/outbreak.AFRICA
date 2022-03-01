@@ -78,7 +78,7 @@ const useStyles = makeStyles(({ breakpoints, typography, widths }) => ({
   },
 }));
 
-function Index({ errorCode, outbreak, featuredExperts, ...props }) {
+function Index({ outbreak, featuredExperts, ...props }) {
   const classes = useStyles(props);
 
   const {
@@ -95,11 +95,7 @@ function Index({ errorCode, outbreak, featuredExperts, ...props }) {
   } = outbreak;
 
   return (
-    <Page
-      errorCode={errorCode}
-      outbreak={outbreak}
-      classes={{ section: classes.section }}
-    >
+    <Page outbreak={outbreak} classes={{ section: classes.section }}>
       <Hero heroContent={heroContent} classes={{ section: classes.section }} />
       <Ticker
         source={{
@@ -168,7 +164,6 @@ function Index({ errorCode, outbreak, featuredExperts, ...props }) {
 }
 
 Index.propTypes = {
-  errorCode: PropTypes.number,
   featuredExperts: PropTypes.shape({}),
   outbreak: PropTypes.shape({
     language: PropTypes.string,
@@ -195,7 +190,6 @@ Index.propTypes = {
 };
 
 Index.defaultProps = {
-  errorCode: undefined,
   featuredExperts: undefined,
   outbreak: undefined,
 };
