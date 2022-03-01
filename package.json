@@ -1,5 +1,5 @@
 {
-  "name": "covid19map",
+  "name": "outbreak-africa-covid19",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -99,5 +99,5 @@
     "node": ">=12.22.0 <17",
     "yarn": ">=1.19.2 <2.x"
   },
-  "version": "0.1.3"
+  "version": "0.1.4"
 }
