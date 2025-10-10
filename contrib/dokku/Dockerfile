@@ -1,1 +1,1 @@
-FROM codeforafrica/outbreak-africa-covid19:0.1.4
+FROM codeforafrica/outbreak-africa-covid19:0.1.6
