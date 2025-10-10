@@ -42,12 +42,6 @@ class CustomDocument extends Document {
           />
 
           <link rel="manifest" href="/manifest.json" />
-
-          {/* <!-- Google Analytics: impressionTracker browser support --> */}
-          <script
-            async
-            src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver"
-          />
         </Head>
         <body>
           <Main />
