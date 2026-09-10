@@ -1,14 +1,13 @@
 # Install dependencies only when needed
-FROM node:16-alpine AS deps
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+FROM node:24-alpine3.24 AS node
 WORKDIR /app
+
+FROM node AS deps
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # Rebuild the source code only when needed
-FROM node:16-alpine AS builder
-WORKDIR /app
+FROM node AS builder
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
@@ -27,10 +26,13 @@ ENV NEXT_TELEMETRY_DISABLED=${NEXT_TELEMETRY_DISABLED} \
 RUN yarn build
 
 # Production image, copy all the files and run next
-FROM node:16-alpine AS runner
-WORKDIR /app
+FROM node AS runner
 
-ENV NODE_ENV=production \
+ENV CKAN_BACKEND_URL= \
+    GA_TRACKING_ID= \
+    GRAPHQL_URL= \
+    MAPIT_URL= \
+    NODE_ENV=production \
     NEXT_TELEMETRY_DISABLED=1
 
 RUN addgroup --system --gid 1001 nodejs
