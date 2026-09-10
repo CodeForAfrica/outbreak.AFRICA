@@ -3,6 +3,7 @@ import { CssBaseline } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/core/styles";
 import ApolloClient from "apollo-boost";
 import Router from "next/router";
+import Script from "next/script";
 import PropTypes from "prop-types";
 import React, { useEffect } from "react";
 
@@ -34,6 +35,25 @@ export default function CustomApp({ Component, pageProps }) {
     <ApolloProvider client={apolloClient}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${ga.GA_TRACKING_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-init"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${ga.GA_TRACKING_ID}', {
+              page_path: window.location.pathname,
+            });
+          `,
+          }}
+        />
         <Component {...pageProps} />
       </ThemeProvider>
     </ApolloProvider>
