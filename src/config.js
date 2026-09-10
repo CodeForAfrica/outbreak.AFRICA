@@ -5,19 +5,17 @@ import imgTwitterDesktop from "@/outbreakafrica/assets/Icon awesome-twitter.svg"
 import imgWebsiteDesktop from "@/outbreakafrica/assets/icon web-white.svg";
 import imgWebsite from "@/outbreakafrica/assets/icon web.svg";
 
+const CKAN_BACKEND_URL = process.env.CKAN_BACKEND_URL || "https://open.africa";
+const GRAPHQL_URL = process.env.GRAPHQL_URL || "https://graphql.hurumap.org";
+const MAPIT_URL = process.env.MAPIT_URL || "https://mapit.hurumap.org";
 const WP_BACKEND_URL =
   process.env.NEXT_PUBLIC_DASHBOARD_URL || "http://localhost:8080";
-
-const GRAPHQL_ORIGIN =
-  process.env.NODE_ENV === "development"
-    ? "https://graphql.hurumap.org"
-    : "https://graphql.hurumap.org";
 
 const config = {
   hostname: process.env.NEXT_PUBLIC_HOSTNAME || "localhost",
   url: process.env.NEXT_PUBLIC_URL || "http://localhost:3000",
-  graphqlOrigin: GRAPHQL_ORIGIN,
-  graphqlURI: `${GRAPHQL_ORIGIN}/graphql`,
+  graphqlOrigin: GRAPHQL_URL,
+  graphqlURI: `${GRAPHQL_URL}/graphql`,
   robots: {
     devHosts: ["dev.hurumap.org", "now.sh"],
     dev: `
@@ -31,11 +29,7 @@ Disallow:
   },
   WP_BACKEND_URL,
   WP_HURUMAP_DATA_API: `${WP_BACKEND_URL}/wp-json/hurumap-data`,
-  ES_URL:
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:9200"
-      : "https://search-cfa-openafrica-z56l24lkfbv5erjxxs76sevr3i.eu-west-1.es.amazonaws.com",
-  MAPIT_URL: "https://mapit.hurumap.org",
+  MAPIT_URL,
   DEFAULT_LANG: "en",
   country: {},
   researchMenu: [
@@ -376,7 +370,7 @@ Disallow:
     values: null,
     lastUpdated: null,
   },
-  CKAN_BACKEND_URL: "https://openafrica.net",
+  CKAN_BACKEND_URL,
   DATA_OPTIONS: {
     day: "short",
     month: "long",
