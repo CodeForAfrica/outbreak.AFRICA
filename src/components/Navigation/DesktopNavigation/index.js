@@ -129,7 +129,7 @@ function DesktopNavigation({ country, countries, navigation, ...props }) {
             </Grid>
             <Grid item md={1} container justify="flex-start">
               <Link
-                href="/#"
+                href="#"
                 underline="none"
                 variant="overline"
                 className={clsx(classes.buttonLanguage, "active")}
