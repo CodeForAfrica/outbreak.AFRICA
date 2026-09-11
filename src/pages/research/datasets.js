@@ -141,30 +141,48 @@ FeaturedDatasets.defaultProps = {
   results: undefined,
 };
 
-/**
- * We are using getInitialProps and not the recommended getServerSideProps
- * because getServerSideProps does not support asPath as of yet.
- */
-FeaturedDatasets.getInitialProps = async ({ query, asPath }) => {
-  const { lang: pageLanguage } = query;
-  const lang = pageLanguage || config.DEFAULT_LANG;
-  const asPaths = asPath.split("?");
+export async function getServerSideProps(context) {
+  const { locale, resolvedUrl } = context;
+  const pageQuery = resolvedUrl.split("?");
   const ckanQuery =
-    asPaths.length === 2 && asPaths[1] ? asPaths[1] : GROUP_QUERY;
-  const response = await fetch(
+    pageQuery.length === 2 && pageQuery[1] ? pageQuery[1] : GROUP_QUERY;
+
+  const ckanPromise = fetch(
     `${config.CKAN_BACKEND_URL}/api/3/action/package_search?${ckanQuery}`
+  )
+    .then((response) => response.json())
+    .catch((err) => {
+      console.error("CKAN fetch error: ", err);
+      // Fallback to an empty object to prevent downstream crashes
+      return {};
+    });
+
+  const lang = locale || config.DEFAULT_LANG;
+  const sitePagePromise = getSitePage("research-datasets", lang).catch(
+    (err) => {
+      console.error("getSitePage error: ", err);
+      return null;
+    }
   );
-  const result = response.ok ? await response.json() : {};
-  const count = (result.success && result.result.count) || null;
-  const results = (result.success && result.result.results) || null;
-  const outbreak = await getSitePage("research-datasets", lang);
+
+  const [ckanResult, sitePageResult] = await Promise.all([
+    ckanPromise,
+    sitePagePromise,
+  ]);
+
+  const count = (ckanResult.success && ckanResult.result?.count) || null;
+  const results = (ckanResult.success && ckanResult.result?.results) || null;
+
+  const outbreak = sitePageResult;
 
   return {
-    ckanQuery,
-    count,
-    outbreak,
-    results,
+    props: {
+      ckanQuery,
+      count,
+      results,
+      outbreak,
+    },
   };
-};
+}
 
 export default FeaturedDatasets;
