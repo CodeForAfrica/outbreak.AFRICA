@@ -32,19 +32,22 @@ export default function CustomApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <ApolloProvider client={apolloClient}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${ga.GA_TRACKING_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="gtag-init"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
+    <>
+      <ApolloProvider client={apolloClient}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </ApolloProvider>
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${ga.GA_TRACKING_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script
+        id="gtag-init"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -52,11 +55,9 @@ export default function CustomApp({ Component, pageProps }) {
               page_path: window.location.pathname,
             });
           `,
-          }}
-        />
-        <Component {...pageProps} />
-      </ThemeProvider>
-    </ApolloProvider>
+        }}
+      />
+    </>
   );
 }
 
